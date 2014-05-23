@@ -15,5 +15,5 @@ app/config/parameters.yml
 # Composer
 composer.phar
 
-#SFTP log
+# SFTP log
 sftp-config*
