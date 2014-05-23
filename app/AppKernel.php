@@ -19,6 +19,9 @@ class AppKernel extends Kernel
             new Dof\UserBundle\DofUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Dof\ArticlesBundle\DofArticlesBundle(),
+            new Dof\ItemsBundle\DofItemsBundle(),
+            new Dof\MainBundle\DofMainBundle(),
+            new Dof\ArtBundle\DofArtBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
