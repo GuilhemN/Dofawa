@@ -1,0 +1,3 @@
+dof_articles_homepage:
+    pattern:  /
+    defaults: { _controller: ArticlesBundle:Default:index }

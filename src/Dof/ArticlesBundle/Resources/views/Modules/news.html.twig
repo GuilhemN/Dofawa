@@ -1,0 +1,19 @@
+<div class="breadcumb">
+  {{trad | trans({}) }}
+</div>
+
+<div class="contenu ulstyle">
+  <ul>
+    {% for article in articles %}
+    <a href="/quetes/astrub/-manger-pour-tous-957.html" title="{{article.titre}}">
+      <li>
+        {{article.titre | striptags | slice(0, 40) }}
+        {% if  article.titre | length > 40 %}
+        ...
+        {% endif  %}
+      </li>
+    </a>
+    {% endfor %}
+  </ul>
+  
+</div>

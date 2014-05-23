@@ -1,0 +1,6 @@
+parameters:
+#    dof_user.example.class: Dof\UserBundle\Example
+
+services:
+#    authentication_handler:
+#        class: Dof\UserBundle\Handler\AuthenticationHandler

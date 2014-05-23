@@ -1,0 +1,3 @@
+dof_main_homepage:
+    pattern:  /
+    defaults: { _controller: DofMainBundle:Default:index }

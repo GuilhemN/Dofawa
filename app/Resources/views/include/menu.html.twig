@@ -1,0 +1,296 @@
+<nav id="top">
+      <ul>
+        <li>
+            <span></span>
+            <span></span>
+            <span></span>
+        </li>
+        <li class="cached">
+          <a href="#">
+            Krosmoz
+          </a>
+
+          <ul class="dropdown">
+            <li>
+              <ul>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+        <li class="cached">
+          <a href="#">
+            Actualités
+          </a>
+
+          <ul class="dropdown">
+            <li>
+              <ul>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+        <li class="cached">
+          <a href="#">
+            Encyclopédie
+          </a>
+
+          <ul class="dropdown">
+            <li>
+              <ul>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+        <li id="logo">
+            <span></span>
+        </li>
+        <li class="cached">
+          <a href="#">
+            Communauté
+          </a>
+
+          <ul class="dropdown">
+            <li>
+              <ul>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    test
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+        <li class="cached">
+          <a href="#">
+            Calendrier
+          </a>
+
+          <ul class="dropdown r2">
+            <li>
+              <span>
+                Les Events Dofusiens
+              </span>
+            </li>
+            <li>
+              <ul>
+                <li>
+                  <a href="#">
+                    Javian
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Flovor
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Martalo
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Aperirel
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Maisial
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Juinssidor
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li>
+                  <a href="#">
+                    Jouillet
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Fraouctor
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Septange
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Octolliard
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Novamaire
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Descendre
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+        <li class="cached">
+          <a href="#">
+            Contact
+          </a>
+
+          <ul class="dropdown">
+            <li>
+              <ul>
+                <li>
+                  <a href="https://twitter.com/Dofawa_fr">
+                    Twitter
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/dofawa.fr">
+                    Facebook
+                  </a>
+                </li>
+                <li>
+                  <a href="/contact">
+                    Mail
+                  </a>
+                </li>
+                <li>
+                  <a href="/contact">
+                    Recrutement
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      </nav>
+        <script type="text/javascript">
+
+          //Mobile
+          nav = document.querySelector('nav#top');
+
+          var unlockmenu = document.querySelector('nav#top > ul > li:first-child');
+
+          unlockmenu.onclick=function(e){
+        var listli=document.querySelectorAll('nav#top > ul > li');
+
+        for (var i = 0; i < listli.length; i++) {
+          var li = listli[i];
+          if(li.className=='')
+            li.className = 'cached';
+          else
+            li.className = '';
+        }
+          }
+
+          //Desktop & Mobile
+          document.onmouseup=function(e){
+          target = e.target || e.srcElement;
+          parent=target.parentNode;
+
+        dropdown=document.querySelectorAll('.dropdown');
+
+        for (var i = 0; i < dropdown.length; i++) {
+          var d = dropdown[i];
+          if(d.parentNode != parent)
+            d.style.display='none';
+        }
+
+
+          }
+
+          var matches = document.querySelectorAll("nav#top > ul > li:not(#logo) > a");
+
+          for (var i = 0; i < matches.length; i++) {
+        var r = matches[i];
+
+          r.onclick = function(e){
+
+
+            var target = e.target || e.srcElement; 
+          var dropdown=target.parentNode.querySelectorAll('.dropdown');
+
+          for (var i = 0; i < dropdown.length; i++) {
+            var d = dropdown[i];
+
+            if(d.style.display=='none' || d.style.display=='')
+              d.style.display='block';
+            else
+              d.style.display='none';
+          }
+          return false;
+        }
+      }
+        </script>

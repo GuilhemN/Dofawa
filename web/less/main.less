@@ -1,0 +1,34 @@
+@import "partials/reset.less.pr";
+
+@small: 480px;
+@large: 768px;
+
+@maxlarge:@large;
+@minlarge:769px;
+
+@maxsmall:@small;
+@minsmall:481px;
+
+body {
+	line-height: 14px;
+	background: #F2AC2F;
+	font-family: Tahoma;
+	font-size: 14px;
+}
+img {
+	max-width: 100% !important;
+}
+.clear{
+	clear:both;
+}
+
+@import "partials/menu.less.pr";
+
+@import "partials/content.less.pr";
+
+@import "partials/footer.less.pr";
+
+
+//BUNDLES
+// @import "../bundles/dofarticles/moduleright.less"
+@import "../bundles/dofarticles/css/Article/box.less";

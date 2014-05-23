@@ -1,0 +1,7 @@
+parameters:
+#    dof_items.example.class: Dof\ItemsBundle\Example
+
+services:
+#    dof_items.example:
+#        class: %dof_items.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

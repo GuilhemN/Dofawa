@@ -1,0 +1,20 @@
+<section id="right">
+  <div class="contenu">
+    <div class="breadcumb">
+      Publicité
+    </div>
+
+    <div id="selectorpublicity">
+    </div>
+  </div>
+
+
+  {% block rightmenu %}
+  <div class="contenu">
+    {{ render(controller('DofArticlesBundle:Modules:moduleRight', { 'type' : 'news' })) }}
+  </div>
+  <div class="contenu">
+    {{ render(controller('DofArticlesBundle:Modules:moduleRight', { 'type' : 'tutoriels' })) }}
+  </div>
+  {% endblock %}
+</section>

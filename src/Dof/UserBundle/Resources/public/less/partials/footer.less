@@ -1,0 +1,38 @@
+footer#bottom{
+	margin-top: 20px;
+	max-width: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	padding: 30px;
+	color: white;
+	
+	@media screen and (min-width: @minlarge){
+		text-align:center;
+	}
+
+	& > ul{
+		display: inline-block;
+		margin-bottom:15px;
+		font-family: Myriad pro;
+
+		@media screen and (min-width: @minlarge){
+			width: 24%;
+		}
+		@media screen and (max-width: @maxlarge){
+			width: 49%;
+		}
+		
+		& li:first-child{
+			font-variant: small-caps;
+			text-decoration: underline;
+			margin-bottom: 6px;
+		}
+
+		& li{
+			text-align: left;
+		}
+	}
+
+	#recup_publicity{
+		display: none;
+	}
+}

@@ -1,0 +1,14 @@
+<article class="article">
+	<header>
+		<h1>
+			<a href="">
+				{{ article.titre }}
+			</a>
+		</h1>
+		par toto,
+		le {{ article.date|date('d/m/Y') }}.
+	</header>
+	<div class="content">
+		{{ article.message }}
+	</div>
+</article>

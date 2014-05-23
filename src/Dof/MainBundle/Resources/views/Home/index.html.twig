@@ -1,0 +1,13 @@
+{% extends "::layout.html.twig" %}
+
+
+{% block body %}
+<h2>Liste des articles</h2>
+
+	{% for article in articles %}
+		{% include 'DofArticlesBundle:Article:box.html.twig' %}
+	{% else %}
+		<li>Pas (encore !) d'articles</li>
+	{% endfor %}
+
+{% endblock %}
