@@ -1,6 +1,0 @@
-# src/sdz/BlogBundle/Resources/config/routing.yml
-sdzblog_accueil:
-    path:      /{page}
-    defaults:  { _controller: DofUserBundle:User:index, page: 1 }
-    requirements:
-        page: \d*
