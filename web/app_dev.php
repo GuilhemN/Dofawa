@@ -16,15 +16,6 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
     		'127.0.0.1', 
     		'fe80::1', 
     		'::1',
-
-            //SEB
-			'89.94.155.84',
-			//SEB MAISON
-			'86.199.146.128',
-
-            //GUIGUI
-            '90.29.47.83',
-            '90.29.255.141'
     	))
 ) {
     header('HTTP/1.0 403 Forbidden');
