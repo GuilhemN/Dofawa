@@ -10,7 +10,7 @@ use FOS\UserBundle\Controller\SecurityController as BaseController;
 
 class SecurityController extends BaseController
 {
-    public function moduleloginAction()
+    public function moduleloginAction($module = '')
     {
         $request = $this->container->get('request');
         /* @var $request \Symfony\Component\HttpFoundation\Request */
@@ -38,10 +38,12 @@ class SecurityController extends BaseController
 
 
         return $this->renderModuleLogin(array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-            'csrf_token' => $csrfToken,
-        ));
+                'last_username' => $lastUsername,
+                'error'         => $error,
+                'csrf_token' => $csrfToken,
+            ),
+            $module
+        );
     }
 
     /**
@@ -52,7 +54,7 @@ class SecurityController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function renderModuleLogin(array $data)
+    protected function renderModuleLogin(array $data, $module = '')
     {
         $template = sprintf('DofUserBundle:Security:loginmodule.html.%s', $this->container->getParameter('fos_user.template.engine'));
 
