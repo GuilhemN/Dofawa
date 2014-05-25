@@ -16,6 +16,7 @@ app/config/parameters.yml
 composer.phar
 
 # SFTP log
+# TEST
 sftp-config*
 
 # Eclipse
