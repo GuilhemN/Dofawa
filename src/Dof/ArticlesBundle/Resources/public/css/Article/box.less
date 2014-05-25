@@ -3,17 +3,33 @@ article.article{
 	width: 30%;
 	min-height: 100px; 
 	margin-bottom: 20px;
+	margin-left: 5px;
+	float: right;
+	height: 150px;
+	border: 2px solid #858684;
+	border-radius: 5px;
 	&:nth-child(1), &:nth-child(2){
-		background-color: red;
+		background-color: #E8E7E3;
 		width: 95%;
 		border: 2px solid #858684;
 		border-radius: 5px;
+		float: left;
+	}
+	&:nth-child(3n+1){
+		float: left;
+		margin-left: 0px;
 	}
 	header{		
-		border-top: 2px solid #858684;
 		border-bottom: 2px solid #858684;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		a{
+			text-decoration: none;
+			padding-top: 5px;
+		}
 	}
 	.content{
 		min-height: 90px;
+		padding-left: 5px;
 	}
 }
