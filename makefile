@@ -42,7 +42,6 @@ css: $(CSS)
 
 # The same as above, except we clean up the generated combined CSS files after minifying
 css-dist: $(CSS_MIN)
-	rm -f $(CSS)
 
 js: $(JS)
 js-dist: $(JS_MIN)
