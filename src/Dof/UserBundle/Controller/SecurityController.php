@@ -52,7 +52,7 @@ class SecurityController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function renderModuleLogin(array $data)
+    protected function renderModuleAction(array $data)
     {
         $template = sprintf('DofUserBundle:Security:loginmodule.html.%s', $this->container->getParameter('fos_user.template.engine'));
 
