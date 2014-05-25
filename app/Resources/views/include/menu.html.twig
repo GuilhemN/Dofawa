@@ -238,10 +238,10 @@
 
           //Desktop & Mobile
           document.onmouseup=function(e){
-            var target = e.target || e.srcElement;
+            target = e.target || e.srcElement;
             var a = target;
 
-            var els = [];
+            els = [];
             while (a) {
                 els.unshift(a);
                 a = a.parentNode;
