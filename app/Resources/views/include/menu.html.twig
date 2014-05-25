@@ -225,53 +225,56 @@
           var unlockmenu = document.querySelector('nav#top > ul > li:first-child');
 
           unlockmenu.onclick=function(e){
-        var listli=document.querySelectorAll('nav#top > ul > li');
+            var listli=document.querySelectorAll('nav#top > ul > li');
 
-        for (var i = 0; i < listli.length; i++) {
-          var li = listli[i];
-          if(li.className=='')
-            li.className = 'cached';
-          else
-            li.className = '';
-        }
+            for (var i = 0; i < listli.length; i++) {
+              var li = listli[i];
+              if(li.className=='')
+                li.className = 'cached';
+              else
+                li.className = '';
+            }
           }
 
           //Desktop & Mobile
           document.onmouseup=function(e){
-          target = e.target || e.srcElement;
-          parent=target.parentNode;
+            var target = e.target || e.srcElement;
 
-        dropdown=document.querySelectorAll('.dropdown');
+            var els = [];
+            while (a) {
+                els.unshift(a);
+                a = a.parentNode;
+            }
 
-        for (var i = 0; i < dropdown.length; i++) {
-          var d = dropdown[i];
-          if(d.parentNode != parent)
-            d.style.display='none';
-        }
+            dropdown=document.querySelectorAll('.dropdown');
 
+            for (var i = 0; i < dropdown.length; i++) {
+              var d = dropdown[i];
+              if(typeof els[d.parentNode] != 'undefined')
+                d.style.display='none';
+            }
 
           }
 
           var matches = document.querySelectorAll("nav#top > ul > li:not(#logo) > a");
 
           for (var i = 0; i < matches.length; i++) {
-        var r = matches[i];
+            var r = matches[i];
 
-          r.onclick = function(e){
+            r.onclick = function(e){
 
+              var target = e.target || e.srcElement; 
+              var dropdown=target.parentNode.querySelectorAll('.dropdown');
 
-            var target = e.target || e.srcElement; 
-          var dropdown=target.parentNode.querySelectorAll('.dropdown');
+              for (var i = 0; i < dropdown.length; i++) {
+                var d = dropdown[i];
 
-          for (var i = 0; i < dropdown.length; i++) {
-            var d = dropdown[i];
-
-            if(d.style.display=='none' || d.style.display=='')
-              d.style.display='block';
-            else
-              d.style.display='none';
+                if(d.style.display=='none' || d.style.display=='')
+                  d.style.display='block';
+                else
+                  d.style.display='none';
+              }
+              return false;
+            }
           }
-          return false;
-        }
-      }
         </script>
