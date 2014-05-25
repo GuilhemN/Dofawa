@@ -251,7 +251,7 @@
 
             for (var i = 0; i < dropdown.length; i++) {
               var d = dropdown[i];
-              if(typeof els[d.parentNode] != 'undefined')
+              if(typeof els[d.parentNode] == 'undefined')
                 d.style.display='none';
 
               console.log(d);
