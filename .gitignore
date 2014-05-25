@@ -17,3 +17,6 @@ composer.phar
 
 # SFTP log
 sftp-config*
+
+# Eclipse
+.project

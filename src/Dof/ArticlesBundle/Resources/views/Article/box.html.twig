@@ -9,6 +9,6 @@
 		le {{ article.date|date('d/m/Y') }}.
 	</header>
 	<div class="content">
-		{{ article.message }}
+		{{ article.message|raw }}
 	</div>
 </article>
