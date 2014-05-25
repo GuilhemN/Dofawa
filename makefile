@@ -1,4 +1,4 @@
-CSSMIN = node_modules/.bin/cssmin
+CSSMIN = /usr/local/bin/cssmin
 
 # Our LESS input file(s)
 LESS = $(shell find web -type f -name '*.less')
@@ -42,6 +42,7 @@ css: $(CSS)
 
 # The same as above, except we clean up the generated combined CSS files after minifying
 css-dist: $(CSS_MIN)
+	rm -f $(CSS)
 
 js: $(JS)
 js-dist: $(JS_MIN)

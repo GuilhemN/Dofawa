@@ -437,20 +437,23 @@ footer#bottom > ul li {
 footer#bottom #recup_publicity {
   display: none;
 }
-.news:nth-child(1),
-.news:nth-child(2) {
-  background-color: red;
-  width: 95%;
-  height: 100px;
-  border: 2px solid #858684;
-  border-radius: 5px;
-}
-.news {
+article.article {
   background-color: #E8E7E3;
   width: 30%;
-  height: 100px;
+  min-height: 100px;
+  margin-bottom: 20px;
 }
-.topnews {
+article.article:nth-child(1),
+article.article:nth-child(2) {
+  background-color: red;
+  width: 95%;
   border: 2px solid #858684;
   border-radius: 5px;
+}
+article.article header {
+  border-top: 2px solid #858684;
+  border-bottom: 2px solid #858684;
+}
+article.article .content {
+  min-height: 90px;
 }
