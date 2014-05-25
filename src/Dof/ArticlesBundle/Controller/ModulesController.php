@@ -15,7 +15,7 @@ class ModulesController extends Controller
     	$trad='menuright.'.$type;
 
     	$em = $this->getDoctrine()->getManager();
-    	$articles = $em->getRepository('DofArticlesBundle:Articles')->findArticlesWithLimits();
+    	$articles = $em->getRepository('DofArticlesBundle:Articles')->findArticlesWithLimits(true, 0, 11);
 
         return $this->render('DofArticlesBundle:Modules:news.html.twig', array('articles' => $articles, 'trad'=>$trad));
     }

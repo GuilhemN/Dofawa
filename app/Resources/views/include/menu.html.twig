@@ -203,8 +203,22 @@
 
         </li>
         <li class="cached">
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
           <a href="#">
-            Connexion
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+          </a>
+
+          <ul class="dropdown">
+            <li>
+              <ul>
+                <li>{{ app.user.getUsername() }}
+              </ul>
+            </li>
+          </ul>
+
+          {% else %}
+          <a href="#">
+            {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
           </a>
 
           <ul class="dropdown">
@@ -214,6 +228,7 @@
               </ul>
             </li>
           </ul>
+        {% endif %}
         </li>
       </ul>
       </nav>
