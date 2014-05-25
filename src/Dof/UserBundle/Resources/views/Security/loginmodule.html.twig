@@ -11,12 +11,10 @@
 		 <input type="submit">
 	</li>
 	<li>
-		<a href="/contact">
-			Recrutement
+		<a href="{{ path('fos_user_registration_register') }}">
+			{{ 'layout.register'|trans({}, 'FOSUserBundle') }}
 		</a>
 	</li>
 
 	<input type="hidden" id="remember_me" name="_remember_me" value="on" />
-
-	<input type="submit" style="display:inline;" id="_submit" name="_submit" value="Ok" />
 </form>
