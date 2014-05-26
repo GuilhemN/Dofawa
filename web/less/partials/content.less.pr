@@ -37,7 +37,7 @@ div#content{
 	& > section {
 		border-radius: 3px;
 		overflow: hidden;
-		.breadcumb{
+		.breadcrumb {
 			width: 100%;
 			background: #34C924;
 			text-transform: uppercase;
