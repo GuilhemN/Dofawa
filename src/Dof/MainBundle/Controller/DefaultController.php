@@ -15,8 +15,8 @@ class DefaultController extends Controller
 		$articles = $em->getRepository('DofArticlesBundle:Articles')->findArticlesWithLimits(true);
 
 		foreach ($articles as $k => &$article) {
+			var_dump($article);
 			$content = $article->getMessage();
-			$article->setMessage(preg_replace('/<img(.*?)>/', '', $content));
 		}
 
 		return $this->render('DofMainBundle:Home:index.html.twig', array('articles'=>$articles));
