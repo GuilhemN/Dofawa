@@ -16,6 +16,7 @@ class DefaultController extends Controller
 
 		foreach ($articles as $k => &$article) {
 		$content = $article->getMessage();
+			$article->setMessage(preg_replace('/<img(.*?)>/', '', $content));
 		}
 
 		return $this->render('DofMainBundle:Home:index.html.twig', array('articles'=>$articles));
