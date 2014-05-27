@@ -1,0 +1,24 @@
+parameters:
+    xn.data.identifiable_updater.class: XN\DataBundle\IdentifiableUpdater
+    xn.data.ownable_updater.class: XN\DataBundle\OwnableUpdater
+    xn.data.timestampable_updater.class: XN\DataBundle\TimestampableUpdater
+
+services:
+#    xn.data.identifiable_updater:
+#        class:     "%xn.data.identifiable_updater.class%"
+#        arguments: [ "@xn.data.id_generator" ]
+#        tags:
+#            - { name: doctrine.event_listener, event: prePersist }
+#
+    xn.data.ownable_updater:
+        class:     "%xn.data.ownable_updater.class%"
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: onFlush }
+
+    xn.data.timestampable_updater:
+        class: "%xn.data.timestampable_updater.class%"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: onFlush }

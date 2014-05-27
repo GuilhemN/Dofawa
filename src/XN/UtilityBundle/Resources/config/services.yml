@@ -1,0 +1,15 @@
+parameters:
+    xn.utility.twig_extension.class: XN\UtilityBundle\Twig\UtilityExtension
+    xn.utility.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
+
+services:
+    xn.utility.twig_extension:
+        class: %xn.utility.twig_extension.class%
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: twig.extension }
+
+    xn.utility.json_request_listener:
+        class: %xn.utility.json_request_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

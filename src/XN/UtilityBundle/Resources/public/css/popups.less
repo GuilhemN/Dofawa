@@ -1,0 +1,124 @@
+@CHARSET "UTF-8";
+
+/* Utiliser display: none; entre en conflit avec la transition d'opacité */
+#popup-overlay {
+	display: block;
+	background: black;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 0;
+	z-index: 10;
+	transition: opacity 0.1s linear 0.1s, height 0.0001s linear 0.2s;
+	&.visible {
+		height: 100%;
+		opacity: 0.5;
+		transition: opacity 0.1s linear;
+	}
+}
+
+.popup {
+	display: block;
+	background: white;
+	color: black;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	transform: scale(0);
+	opacity: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	z-index: 20;
+	transition: opacity 0.1s linear, transform 0.1s ease-out, margin-top 0.0001s linear 0.1s, height 0.0001s linear 0.1s;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+	padding: 4px;
+	border: 1px solid black;
+	&.visible {
+		transform: scale(1);
+		opacity: 1;
+		transition: opacity 0.1s linear 0.1s, transform 0.1s ease-in 0.1s;
+	}
+	&.measuring {
+		left: auto;
+		right: 100%;
+		top: auto;
+		bottom: 100%;
+	}
+	> h2 {
+		background: #F29512;
+		color: white;
+		margin: 4px -4px;
+		padding: 4px 8px;
+		text-align: center;
+		white-space: nowrap;
+		&:first-child {
+			margin-top: -4px;
+			padding-top: 8px;
+		}
+	}
+}
+
+#task-dialog {
+	padding: 12px 12px;
+	min-width: 320px;
+	> h2 {
+		margin: 4px -12px;
+		padding: 4px 16px;
+		&:first-child {
+			margin-top: -12px;
+			padding-top: 8px;
+			margin-bottom: 12px;
+		}
+	}
+	> p {
+		margin: 0;
+	}
+	> p + label, > label + button, > p + input, > input + button, > p + select, > select + button, > p + button {
+		margin-top: 12px;
+	}
+	> label {
+		> span:first-child {
+			min-width: 150px;
+			display: inline-block;
+			white-space: nowrap;
+			text-align: right;
+		}
+		> span + input {
+			width: 200px;
+		}
+		> * + * {
+			margin-left: 4px;
+		}
+	}
+	> label, > input, > select {
+		margin-top: 4px;
+	}
+	> button {
+		margin: 4px 0 0;
+		font-size: 80%;
+		font-weight: normal;
+		text-align: left;
+		&:before {
+			content: '➔ ';
+			color: black;
+		}
+		&:first-line {
+			font-size: 125%;
+			font-weight: bold;
+		}
+	}
+	> .buttons {
+		margin: 12px 0 0;
+		> input {
+			margin: 0;
+		}
+	}
+	> * {
+		white-space: nowrap;
+	}
+}
