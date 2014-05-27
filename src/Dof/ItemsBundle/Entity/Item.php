@@ -160,29 +160,6 @@ class Item
     }
 
     /**
-     * Set dernmodif
-     *
-     * @param \DateTime $dernmodif
-     * @return Item
-     */
-    public function setDernmodif($dernmodif)
-    {
-        $this->dernmodif = $dernmodif;
-
-        return $this;
-    }
-
-    /**
-     * Get dernmodif
-     *
-     * @return \DateTime 
-     */
-    public function getDernmodif()
-    {
-        return $this->dernmodif;
-    }
-
-    /**
      * Set element
      *
      * @param array $element
