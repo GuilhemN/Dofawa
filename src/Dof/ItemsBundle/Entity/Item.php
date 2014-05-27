@@ -50,13 +50,6 @@ class Item
     private $type;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dernmodif", type="datetime")
-     */
-    private $dernmodif;
-
-    /**
      * @var array
      *
      * @ORM\Column(name="element", type="simple_array")
