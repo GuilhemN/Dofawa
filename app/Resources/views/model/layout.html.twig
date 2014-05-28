@@ -36,7 +36,7 @@
   </script>
 </head>
 <body onload="decompte();">
-  {% include('menu.html.twig')%}
+  {% include('::model/menu.html.twig')%}
 
   <div id="content">
     <section id="left">
@@ -44,12 +44,12 @@
         {% block breadcumb %}<a href="/">Accueil</a>{% endblock %}
       </div>
       <div class="contenu padding">
-        {% block body %}
+        {% block modelbody %}
         {% endblock %}
         <div class="clear"></div>
       </div>
     </section>
-    {% include 'right.html.twig' %}
+    {% include '::model/right.html.twig' %}
 
   </div>
   <div class="clear"></div>
