@@ -13,7 +13,12 @@
 	<section>
 		<table>
 			<tr><td>{{ 'index.registeredon' | trans() }} :</td> <td>{{ user.getInscription() }}</td></tr>
+			<tr><td>{{ 'index.nbvisite' | trans() }} :</td> <td>{{ user.getNbvisite() }}</td></tr>
 			<tr><td>{{ 'index.point' | trans() }} :</td> <td>{{ user.getPoint() }}</td></tr>
+			<tr><td>{{ 'index.born' | trans() }} :</td> <td>{{ user.getBorn() }}</td></tr>
+			<tr><td>{{ 'index.location' | trans() }} :</td> <td>{{ user.getLieu() }}</td></tr>
+			<tr><td>{{ 'index.guilde' | trans() }} :</td> <td>{{ user.getGuilde() }}</td></tr>
+			<tr><td>{{ 'index.site' | trans() }} :</td> <td>{{ user.getSite() }}</td></tr>
 		</table>
 	</section>
 
@@ -23,8 +28,7 @@
 </section>
 
 
-<section id="persosprofile">
-
-	
+<section id="identite">
+	<h1>{{ 'index.personnages' | trans() }}</h1>	
 </section>
 {% endblock %}
