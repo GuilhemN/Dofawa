@@ -1,9 +1,13 @@
 {% extends "::layout.html.twig" %}
 
+{% block breadcrumb %}
+	{{ parent() }}
+	{{ 'index.profileof'|trans({'%name%': user.getUsername()})}}
+{% endblock %}
+
 {% block body %}
 <section id="identite">
 	<header>
-		<h1>Profile de {{ user.getUsername() }}</h1>
 		<table>
 			<tr>Inscrit le : {{ user.getInscription() }}</tr>
 			<tr>Nombre de point : {{ user.getPoint() }}</tr>
