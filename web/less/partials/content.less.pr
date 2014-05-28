@@ -47,6 +47,12 @@ div#content{
 			margin: 1%;
 			height: 270px;
 			overflow: hidden;
+
+			@media screen and (max-width: @maxsmall){
+				&{
+					width: 100%;
+				}
+			}
 		}
 		.breadcrumb {
 			width: 100%;
