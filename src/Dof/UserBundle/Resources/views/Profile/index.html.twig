@@ -1,7 +1,9 @@
 {% extends "::layout.html.twig" %}
 
 {% block breadcrumb %}
+	{{ parent() }}
 	> {{ 'index.profileof'|trans({'%name%': user.getUsername()}) }}
+	
 {% endblock %}
 
 {% block body %}
