@@ -9,6 +9,6 @@
 		le {{ article.date|date('d/m/Y') }}.
 	</div>
 	<div class="contenu padding">
-		{{ article.message|raw| truncatehtml('100')}}
+		{{ article.message| truncatehtml('300')|raw}}
 	</div>
 </article>
