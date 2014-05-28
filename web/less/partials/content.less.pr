@@ -58,7 +58,7 @@ div#content{
 				color: inherit;
 			}
 		}
-		& > .contenu{
+		.contenu{
 			min-height: 200px;
 			margin-bottom: 10px;
 			background: white;
