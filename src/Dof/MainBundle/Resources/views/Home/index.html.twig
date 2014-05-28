@@ -7,11 +7,12 @@
 {% endblock %}
 
 {% block modelbody %}
+{% endblock %}
 
+{% block differentdisplay %}
 	{% for article in articles %}
 		{% include 'DofArticlesBundle:Article:box.html.twig' %}
 	{% else %}
 		<li>Pas (encore !) d'articles</li>
 	{% endfor %}
-
 {% endblock %}

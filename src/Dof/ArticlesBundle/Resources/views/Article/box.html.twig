@@ -1,5 +1,5 @@
-<article class="article">
-	<header>
+<article class="wblock3">
+	<div class="breadcrumb">
 		<h1>
 			<a href="">
 				{{ article.titre }}
@@ -7,11 +7,8 @@
 		</h1>
 		par toto,
 		le {{ article.date|date('d/m/Y') }}.
-	</header>
-	<div class="content">
+	</div>
+	<div class="contenu padding">
 		{{ article.message|raw }}
 	</div>
-	<footer>
-		<a href="">Lire la suite--></a>
-	</footer>
 </article>
