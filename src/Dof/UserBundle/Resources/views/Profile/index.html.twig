@@ -1,3 +1,6 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block body %}
 <section id="identite">
 	<header>
 		<h1>Profile de {{ user.getUsername() }}</h1>
@@ -20,3 +23,4 @@
 
 	
 </section>
+{% endblock %}
