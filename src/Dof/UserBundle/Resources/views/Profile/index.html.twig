@@ -2,15 +2,15 @@
 
 {% block breadcrumb %}
 	{{ parent() }}
-	{{ 'index.profileof'|trans({'%name%': user.getUsername()})}}
+	> {{ 'index.profileof'|trans({'%name%': user.getUsername()})}}
 {% endblock %}
 
 {% block body %}
 <section id="identite">
 	<header>
 		<table>
-			<tr>Inscrit le : {{ user.getInscription() }}</tr>
-			<tr>Nombre de point : {{ user.getPoint() }}</tr>
+			<tr><td>Inscrit le :</td> <td>{{ user.getInscription() }}</td></tr>
+			<tr><td>Nombre de point :</td> <td>{{ user.getPoint() }}</td></tr>
 		</table>
 
 	</header>
