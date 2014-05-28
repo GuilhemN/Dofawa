@@ -8,10 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
+use Dof\UserBundle\Entity\User;
+
 class ProfileController extends Controller
 {
 	/**
-	 * @ParamConverter("user", class="DofUserBundle:User", options={"username" = "name_user"})
+	 * @ParamConverter("user", options={"username" = "name_user"})
 	 */
     public function indexAction(User $user)
     {
