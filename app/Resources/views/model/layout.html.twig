@@ -40,14 +40,15 @@
 
   <div id="content">
     <section id="left">
-      <div class="breadcrumb">
-        {% block breadcumb %}<a href="/">Accueil</a>{% endblock %}
-      </div>
-      <div class="contenu padding">
+      <section class="full">
+        <div class="breadcrumb">
+          {% block breadcumb %}<a href="/">Accueil</a>{% endblock %}
+        </div>
         {% block modelbody %}
         {% endblock %}
-        <div class="clear"></div>
-      </div>
+      </section>
+      {% block differentdisplay %}
+      {% endblock %}
     </section>
     {% include '::model/right.html.twig' %}
 

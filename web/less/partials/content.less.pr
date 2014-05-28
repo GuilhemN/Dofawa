@@ -36,8 +36,15 @@ div#content{
 	}
 
 	& > section {
+		float: left;
 		border-radius: 3px;
 		overflow: hidden;
+		.full{
+			width: 100%;
+		}
+		.wblock3{
+			width: 33%;
+		}
 		.breadcrumb {
 			width: 100%;
 			background: #34C924;
