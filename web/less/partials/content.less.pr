@@ -56,7 +56,7 @@ div#content{
 		}
 		.breadcrumb {
 			width: 100%;
-			background: #34C924;
+			background: @headercolor;
 			text-transform: uppercase;
 			font-size: 23px;
 			padding: 10px;
