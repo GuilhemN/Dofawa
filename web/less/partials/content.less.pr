@@ -45,6 +45,8 @@ div#content{
 			width: 31%;
 			float: left;
 			margin: 1%;
+			height: 270px;
+			overflow: hidden;
 		}
 		.breadcrumb {
 			width: 100%;
