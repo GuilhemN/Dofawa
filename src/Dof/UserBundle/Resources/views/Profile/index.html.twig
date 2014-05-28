@@ -7,12 +7,12 @@
 
 {% block body %}
 <section id="identite">
+	<h1>{{ 'index.indentie' | trans() }}</h1>
 	<header>
 		<table>
-			<tr><td>Inscrit le :</td> <td>{{ user.getInscription() }}</td></tr>
-			<tr><td>Nombre de point :</td> <td>{{ user.getPoint() }}</td></tr>
+			<tr><td>{{ 'index.registeredon' | trans() }} :</td> <td>{{ user.getInscription() }}</td></tr>
+			<tr><td>{{ 'index.point' | trans() }} :</td> <td>{{ user.getPoint() }}</td></tr>
 		</table>
-
 	</header>
 
 	<footer>
