@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 {% extends "::layout.html.twig" %}
+=======
+{% extends "d::layout.html.twig" %}
+>>>>>>> 815745aebec9d4817a88a85968a4ec270056e489
 
 {% block body %}
 <section id="identite">
@@ -6,6 +10,7 @@
 		<h1>Profile de {{ user.getUsername() }}</h1>
 		<table>
 			<tr>Inscrit le : {{ user.getInscription() }}</tr>
+			<tr>Nombre de visite : {{ user.getNbvisite() }}</tr>
 			<tr>Derinere visite : {{ user.getDernvisite() }}</tr>
 			<tr>Nombre de point : {{ user.getPoint() }}</tr>
 		</table>
