@@ -36,14 +36,15 @@ div#content{
 	}
 
 	& > section {
-		float: left;
 		border-radius: 3px;
 		overflow: hidden;
 		.full{
 			width: 100%;
 		}
 		.wblock3{
-			width: 33%;
+			width: 31%;
+			float: left;
+			margin: 1%;
 		}
 		.breadcrumb {
 			width: 100%;
@@ -53,6 +54,7 @@ div#content{
 			padding: 10px;
 			color: white;
 			font-family: impact, Myriad pro, Tahoma;
+			line-height: 22px;
 			a{
 				text-decoration: none;
 				color: inherit;
