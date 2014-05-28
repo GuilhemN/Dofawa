@@ -10,7 +10,7 @@ class MainExtension extends \Twig_Extension
             );
     }
 
-    public function truncateHtmlFilter($maxLength, $html, $isUtf8=true)
+    public function truncateHtmlFilter($html, $maxLength, $isUtf8=true)
     {
         $printedLength = 0;
         $position = 0;
