@@ -1,10 +1,7 @@
 {% extends "::layout.html.twig" %}
 
-{% block fos_user_content %}
-{% if error %}
-    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-{% endif %}
+{% block body %}
 
-
+{{ user.getUsername() }}
 
 {% endblock fos_user_content %}
