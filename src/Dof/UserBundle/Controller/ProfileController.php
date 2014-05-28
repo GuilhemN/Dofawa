@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class ProfileController extends Controller
 {
 	/**
-	 * @ParamConverter("user", options={"mapping": {"username": "name_user"}})
+	 * @ParamConverter("user", class="DofUserBundle:User", options={"username" = "name_user"})
 	 */
     public function indexAction(User $user)
     {
