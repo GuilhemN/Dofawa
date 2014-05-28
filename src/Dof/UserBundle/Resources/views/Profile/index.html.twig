@@ -1,10 +1,22 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+<section id="identite">
+	<header>
+		<h1>Profile de {{ user.getUsername() }}</h1>
+		<table>
+			<tr>Inscrit le : {{ user.getInscription() }}</tr>
+			<tr>Nombre de visite : {{ user.getNbvisite() }}</tr>
+			<tr>Derinere visite : {{ user.getDernvisite() }}</tr>
+			<tr>Nombre de point : {{ user.getPoint() }}</tr>
+		</table>
 
-{% block fos_user_content %}
-{% if error %}
-    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-{% endif %}
+	</header>
+
+	<footer>
+    	<h1>Badges:</h1>
+	</footer>
+</section>
 
 
+<section id="persosprofile">
 
-{% endblock fos_user_content %}
+	
+</section>
