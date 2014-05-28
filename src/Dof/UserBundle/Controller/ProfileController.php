@@ -13,7 +13,7 @@ use Dof\UserBundle\Entity\User;
 class ProfileController extends Controller
 {
 	/**
-	 * @ParamConverter("user", options={"mapping": {"username": "name_user"}})
+	 * @ParamConverter("user", options={"mapping": {"name_user": "username"}})
 	 */
     public function indexAction(User $user)
     {
