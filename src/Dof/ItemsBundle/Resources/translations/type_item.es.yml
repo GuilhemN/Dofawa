@@ -1,0 +1,27 @@
+weapons:
+    main: "Arma|Armas"
+
+    bow: "Arco|Arcos"
+    wand: "Varita|Varitas"
+    staff: "Bastón|Bastones"
+    dagger: Dagas
+    sword: "Espada|Espadas"
+    hammer: "Martillo|Martillos"
+    shovel: "Pala|Palas"
+    axe: "Hacha|Hachas"
+    tool: "Herramienta|Herramientas"
+    pickaxe: "Pico|Picos"
+    scythe: "Guadaña|Guadañas"
+    soulstone: "Piedra de alma|Piedras de alma"
+
+equipments:
+    main: Equipo
+
+    amulet: "Amuleto|Amuletos"
+    ring: "Anillo|Anillos"
+    belt: "Cinturón|Cinturones"
+    boots: Botas
+    shield: "Escudo|Escudos"
+    hat: "Sombrero|Sombreros"
+    cloak: "Capa|Capas"
+    backpack: "Mochila|Mochilas"

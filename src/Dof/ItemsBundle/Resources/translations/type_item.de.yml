@@ -1,0 +1,27 @@
+weapons:
+    main: "Waffe|Waffen"
+
+    bow: "Bogen|Bögen"
+    wand: "Stab|Stäbe"
+    staff: Stecken
+    dagger: Dolche
+    sword: "Schwert|Schwerter"
+    hammer: "Hammer|Hämmer"
+    shovel: "Schaufel|Schaufeln"
+    axe: "Axt|Äxte"
+    tool: "Werkzeug|Werkzeuge"
+    pickaxe: Spitzhacke
+    scythe: "Sense|Sensen"
+    soulstone: "Seelenstein|Seelensteine"
+
+equipments:
+    main: "Ausrüstung|Ausrüstunge"
+
+    amulet: "Amulett|Amulette"
+    ring: "Ring|Ringe"
+    belt: Gürtel
+    boots: Stiefel
+    shield: "Schild|Schilde"
+    hat: "Hut|Hüte"
+    cloak: "Umhang|Umhänge"
+    backpack: "Rucksack|Rucksäcke"

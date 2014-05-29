@@ -10,6 +10,18 @@ weapons:
     shovel: "Pelle|Pelles"
     axe: "Hache|Haches"
     tool: "Outil|Outils"
-    pickaxe: "pioche|pioches"
+    pickaxe: "Pioche|Pioches"
     scythe: Faux
     soulstone: "Pierre d'âme|Pierres d'âme"
+
+equipments:
+    main: "Equipement|Equipements"
+
+    amulet: "Amulette|Amulettes"
+    ring: "Anneau|Anneaux"
+    belt: "Ceinture|Ceintures"
+    boots: Bottes
+    shield: "Bouclier|Boucliers"
+    hat: "Coiffe|Coiffes"
+    cloak: "Cape|Capes"
+    backpack: "Sac|Sacs"

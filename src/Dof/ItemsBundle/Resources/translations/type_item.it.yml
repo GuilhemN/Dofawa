@@ -1,0 +1,27 @@
+weapons:
+    main: "Arma|Armi"
+
+    bow: "Arco|Archi"
+    wand: "Bacchetta|Bacchette"
+    staff: "Bastone|Bastoni"
+    dagger: Daghe
+    sword: "Spada|Spade"
+    hammer: "Martello|Martelli"
+    shovel: "Pala|Pale"
+    axe: "Ascia|Asce"
+    tool: "Attrezzo|Attrezzi"
+    pickaxe: "Piccone|Picconi"
+    scythe: "Falce|Falci"
+    soulstone: "Pietra d'anima|Pietre d'anima"
+
+equipments:
+    main: "Equipaggiamento|Equipaggiamenti"
+
+    amulet: "Amuleto|Amuleti"
+    ring: "Anello|Anelli"
+    belt: "Cintura|Cinture"
+    boots: Stivali
+    shield: "Scudo|Scudi"
+    hat: "Cappello|Cappelli"
+    cloak: "Mantello|Mantelli"
+    backpack: "Zaino|Zaini"
