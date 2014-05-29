@@ -1,6 +1,7 @@
 parameters:
     xn.data.identifiable_updater.class: XN\DataBundle\IdentifiableUpdater
     xn.data.ownable_updater.class: XN\DataBundle\OwnableUpdater
+    xn.data.sluggable_updater.class: XN\DataBundle\SluggableUpdater
     xn.data.timestampable_updater.class: XN\DataBundle\TimestampableUpdater
 
 services:
@@ -16,6 +17,11 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }
+
+    xn.data.sluggable_updater:
+        class: "%xn.data.sluggable_updater.class%"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
 
     xn.data.timestampable_updater:
         class: "%xn.data.timestampable_updater.class%"

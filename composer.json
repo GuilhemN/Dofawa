@@ -20,7 +20,8 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~1.3",
-        "leafo/lessphp": "dev-master"
+        "patchwork/utf8": "1.1.*",
+	"friendsofsymfony/jsrouting-bundle": "1.5.*"
     },
     "scripts": {
         "post-install-cmd": [
