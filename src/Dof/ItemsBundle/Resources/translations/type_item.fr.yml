@@ -1,0 +1,14 @@
+weapons: "Arme|Armes"
+weapons:
+	bow: "Arc|Arcs"
+	wand: "Baguette|Baguettes"
+	staff: "Bâton|Bâtons"
+	dagger: Dagues
+	sword: "Epée|Epées"
+	hammer: "Marteau|Marteaux"
+	shovel: "Pelle|Pelles"
+	axe: "Hache|Haches"
+	tool: "Outil|Outils"
+	pickaxe: "pioche|pioches"
+	scythe: Faux
+	soulstone: "Pierre d'âme|Pierres d'âme"
