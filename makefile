@@ -1,4 +1,5 @@
 CSSMIN = /usr/local/bin/cssmin
+LESSC = /usr/local/bin/lessc
 
 # Our LESS input file(s)
 LESS = $(shell find web -type f -name '*.less')
@@ -17,7 +18,7 @@ JS_MIN = $(JS:src.js=.min.js)
 
 # Translate from .less to .css using the following command ($< = input file, $@ = output file)
 %.css: %.less
-	lessc $< > $@
+	$(LESSC) $< > $@
 
 # The same as above, bith with minification using the YUI CSS Compressor
 %.min.css: %.css
