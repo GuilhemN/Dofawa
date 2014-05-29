@@ -1,5 +1,6 @@
-weapons: "Arme|Armes"
 weapons:
+    main: "Arme|Armes"
+
     bow: "Arc|Arcs"
     wand: "Baguette|Baguettes"
     staff: "Bâton|Bâtons"
