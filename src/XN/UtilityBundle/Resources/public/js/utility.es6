@@ -235,7 +235,7 @@ var measureStrings = wrapAsync(function* measureStrings(clazz, strings) {
 		document.body.appendChild(el);
 		return el;
 	});
-	while (els.some(function (el) { return Dimension.fromElement(el).isEmpty(); }))Ì
+	while (els.some(function (el) { return Dimension.fromElement(el).isEmpty(); }))
 		yield sleep(0);
 	return els.map(function (el) {
 		var dim = Dimension.fromElement(el);
