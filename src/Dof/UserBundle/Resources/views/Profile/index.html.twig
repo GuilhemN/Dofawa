@@ -2,33 +2,30 @@
 
 {% block breadcrumb %}
 	{{ parent() }}
-	> {{ 'index.profileof'|trans({'%name%': user.getUsername()})}}
+	> {{ 'of'|trans({'%name%': user.getUsername()}, 'profile')}}
 {% endblock %}
 
 {% block body %}
 <section id="identite">
-	<header>
-		<h1>{{ 'index.indentie' | trans() }}</h1>
-	</header>
 	<section>
 		<table>
-			<tr><td>{{ 'index.registeredon' | trans() }} :</td> <td>{{ user.getInscription() }}</td></tr>
-			<tr><td>{{ 'index.nbvisite' | trans() }} :</td> <td>{{ user.getNbvisite() }}</td></tr>
-			<tr><td>{{ 'index.point' | trans() }} :</td> <td>{{ user.getPoint() }}</td></tr>
-			<tr><td>{{ 'index.born' | trans() }} :</td> <td>{{ user.getBorn() }}</td></tr>
-			<tr><td>{{ 'index.location' | trans() }} :</td> <td>{{ user.getLieu() }}</td></tr>
-			<tr><td>{{ 'index.guilde' | trans() }} :</td> <td>{{ user.getGuilde() }}</td></tr>
-			<tr><td>{{ 'index.site' | trans() }} :</td> <td>{{ user.getSite() }}</td></tr>
+			<tr><td>{{ 'inputs.registration' | trans({}, 'profile') }} :</td> <td>{{ user.getInscription() }}</td></tr>
+			<tr><td>{{ 'inputs.nbvisits' | trans({}, 'profile') }} :</td> <td>{{ user.getNbvisite() }}</td></tr>
+			<tr><td>{{ 'inputs.points' | trans({}, 'profile') }} :</td> <td>{{ user.getPoint() }}</td></tr>
+			<tr><td>{{ 'inputs.born' | trans({}, 'profile') }} :</td> <td>{{ user.getBorn() }}</td></tr>
+			<tr><td>{{ 'inputs.location' | trans({}, 'profile') }} :</td> <td>{{ user.getLieu() }}</td></tr>
+			<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }} :</td> <td>{{ user.getGuilde() }}</td></tr>
+			<tr><td>{{ 'inputs.website' | trans({}, 'profile') }} :</td> <td>{{ user.getSite() }}</td></tr>
 		</table>
 	</section>
 
 	<footer>
-    	<h1>Badges:</h1>
+    	<h1>{{ 'inputs.website' | trans({}, 'profile') }}:</h1>
 	</footer>
 </section>
 
 
 <section id="identite">
-	<h1>{{ 'index.personnages' | trans() }}</h1>	
+	<h1>{{ 'input.badges' | trans({}, 'profile') }}</h1>	
 </section>
 {% endblock %}

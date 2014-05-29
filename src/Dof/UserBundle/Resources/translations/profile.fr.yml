@@ -1,0 +1,13 @@
+profile:
+    mine: Mon profil
+    of: Profil de %name%
+    input:
+        identity: Fiche d'identité
+        registration: Inscrit le
+        point: Nombre de point(s)
+        characters: Personnages
+        nbvisits: Normbre de visite(s)
+        born: Date de Naissance
+        location: Localité
+        guild: Guilde
+        website: Site

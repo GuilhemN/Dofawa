@@ -1,0 +1,12 @@
+mine: My profile
+of: %name% Profile
+input:
+    points: Nombre de point(s)
+    characters: Personnages
+    nbvisits: Nombre de visite(s)
+    location: Localité
+    guild: Guilde
+    website: Site
+    date:
+        registration: Inscrit le
+        born: Date de Naissance

@@ -1,0 +1,12 @@
+mine: Мой Профайл
+of: Профиль %name%
+inputs:
+    points: очки
+    characters: Персонажи
+    nbvisits: Number of visits
+    location: Location
+    guild: Guild
+    website: Website
+    date:
+        registration: Registered on
+        born: Born

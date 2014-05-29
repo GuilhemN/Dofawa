@@ -215,6 +215,9 @@
                   <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                   </a>
+                  <a href="{{ path('dof_profile_homepage', {'name_user': app.user.getUsername()}) }}">
+                    {{ 'mine'|trans({}, 'profile') }}
+                  </a>
                 </li>
               </ul>
             </li>

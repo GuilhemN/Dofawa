@@ -1,0 +1,13 @@
+mine: My profile
+of: %name% Profile
+inputs:
+    points: Number of points
+    characters: Characters
+    nbvisits: Number of visits
+    location: Location
+    guild: Guild
+    website: Website
+    badges: Badges
+    date:
+        registration: Registered on
+        born: Born
