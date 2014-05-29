@@ -1,12 +1,12 @@
-mine: My profile
-of: %name% Profile
+mine: Mein Profil
+of: %name% Profil
 inputs:
-    points: Number of points
-    characters: Characters
-    nbvisits: Number of visits
-    location: Location
-    guild: Guild
-    website: Website
+    points: Punkte
+    nbvisits: Anzahl der Besuche
+    location: Lage
+    guild: Gilde
+    website: Webseite
+    badges: Abzeichen
     date:
-        registration: Registered on
-        born: Born
+        registration: Registriert am
+        born: Geboren

@@ -2,7 +2,6 @@ mine: My profile
 of: %name% Profile
 inputs:
     points: Number of points
-    characters: Characters
     nbvisits: Number of visits
     location: Location
     guild: Guild

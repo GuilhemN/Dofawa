@@ -1,18 +1,19 @@
-characters: Personnages
+characters: Personagens
+classe: "Classe|Classes"
 
 character:
     steamer: Steamer
-    cra: Crâ
+    cra: Cra
     enutrof: Enutrof
-    feca: Féca
+    feca: Feca
     iop: Iop
     osamodas: Osamodas
     sram: Sram
-    sacrieur: Sacrieur
+    sacrieur: Sacrier
     ecaflip: Ecaflip
     eniripsa: Eniripsa
     sadida: Sadida
-    xelor: Xélor
+    xelor: Xelor
     pandawa: Pandawa
     roublard: Roublard
     zobal: Zobal

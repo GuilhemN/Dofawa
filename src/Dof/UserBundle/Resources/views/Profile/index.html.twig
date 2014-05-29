@@ -9,10 +9,10 @@
 <section id="identite">
 	<section>
 		<table>
-			<tr><td>{{ 'inputs.registration' | trans({}, 'profile') }} :</td> <td>{{ user.getInscription() }}</td></tr>
+			<tr><td>{{ 'inputs.date.registration' | trans({}, 'profile') }} :</td> <td>{{ user.getInscription() }}</td></tr>
 			<tr><td>{{ 'inputs.nbvisits' | trans({}, 'profile') }} :</td> <td>{{ user.getNbvisite() }}</td></tr>
 			<tr><td>{{ 'inputs.points' | trans({}, 'profile') }} :</td> <td>{{ user.getPoint() }}</td></tr>
-			<tr><td>{{ 'inputs.born' | trans({}, 'profile') }} :</td> <td>{{ user.getBorn() }}</td></tr>
+			<tr><td>{{ 'inputs.date.born' | trans({}, 'profile') }} :</td> <td>{{ user.getBorn() }}</td></tr>
 			<tr><td>{{ 'inputs.location' | trans({}, 'profile') }} :</td> <td>{{ user.getLieu() }}</td></tr>
 			<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }} :</td> <td>{{ user.getGuilde() }}</td></tr>
 			<tr><td>{{ 'inputs.website' | trans({}, 'profile') }} :</td> <td>{{ user.getSite() }}</td></tr>
@@ -24,8 +24,8 @@
 	</footer>
 </section>
 
-
+{{'classe'|transchoice(2, {}, 'characters')}}
 <section id="identite">
-	<h1>{{ 'input.badges' | trans({}, 'profile') }}</h1>	
+	<h1>{{ 'inputs.badges' | trans({}, 'profile') }}</h1>	
 </section>
 {% endblock %}
