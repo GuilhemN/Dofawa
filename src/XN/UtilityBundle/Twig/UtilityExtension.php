@@ -5,6 +5,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class UtilityExtension extends \Twig_Extension
 {
+	const INFLECTOR_CLASS = 'Doctrine\Common\Inflector\Inflector';
+	const SLUGGABLE_UPDATER_CLASS = 'XN\DataBundle\SluggableUpdater';
+
     private $container;
 
     public function __construct(ContainerInterface $container)
@@ -22,7 +25,12 @@ class UtilityExtension extends \Twig_Extension
 	public function getFilters()
 	{
 		return array(
-			new \Twig_SimpleFilter('singularize', [ $this, 'singularize' ]),
+			new \Twig_SimpleFilter('tableize', [ self::INFLECTOR_CLASS, 'tableize' ]),
+			new \Twig_SimpleFilter('classify', [ self::INFLECTOR_CLASS, 'classify' ]),
+			new \Twig_SimpleFilter('camelize', [ self::INFLECTOR_CLASS, 'camelize' ]),
+			new \Twig_SimpleFilter('pluralize', [ self::INFLECTOR_CLASS, 'pluralize' ]),
+			new \Twig_SimpleFilter('singularize', [ self::INFLECTOR_CLASS, 'singularize' ]),
+			new \Twig_SimpleFilter('slugify', [ self::SLUGGABLE_UPDATER_CLASS, 'slugify' ]),
 		);
 	}
 
@@ -30,17 +38,12 @@ class UtilityExtension extends \Twig_Extension
 	{
 		return 'xn.utility.twig_extension';
 	}
-
-	public function singularize($str)
-	{
-		return preg_replace('/^(\\S+)s(?:$|(?=\\s))/i', '\1', $str);
-	}
 	
 	public function es6asset($path, $packageName = null)
     {
     	$req = $this->container->get('request_stack')->getCurrentRequest();
     	if ($req && $req->cookies->get('has-es6') == '1')
-    		$path = strtr($path, array('.js' => '.es6.js'));
+    		$path = strtr($path, array('.js' => '.es6'));
         return $this->container->get('templating.helper.assets')->getUrl($path, $packageName);
     }
 }
