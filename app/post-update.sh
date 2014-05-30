@@ -14,5 +14,3 @@ app/console cache:clear -e prod
 chown -R www-data:www-data app/cache
 chown -R www-data:www-data app/logs
 chown -R www-data:www-data bin/cache
-
-make
