@@ -19,8 +19,8 @@ class SluggableUpdater
 			$em = $args->getEntityManager();
 			$repo = $em->getRepository(get_class($ent));
 			if (!$this->tryAssignSlug($ent, $slug, $repo) &&
-			if (!$this->tryAssignSlug($ent, $slug . '-bis', $repo) &&
-			if (!$this->tryAssignSlug($ent, $slug . '-ter', $repo))
+				!$this->tryAssignSlug($ent, $slug . '-bis', $repo) &&
+				!$this->tryAssignSlug($ent, $slug . '-ter', $repo))
 				for ($i = 4; !$this->tryAssignSlug($ent, $slug . '-' . $i, $repo); ++$i) { }
 		}
 	}
