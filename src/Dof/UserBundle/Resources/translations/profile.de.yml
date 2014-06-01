@@ -1,0 +1,12 @@
+mine: Mein Profil
+of: %name% Profil
+inputs:
+    points: Punkte
+    nbvisits: Anzahl der Besuche
+    location: Lage
+    guild: Gilde
+    website: Webseite
+    badges: Abzeichen
+    date:
+        registration: Registriert am
+        born: Geboren

@@ -1,0 +1,12 @@
+mine: Mi perfil
+of: Perfil %name%
+input:
+    points: Puntos
+    nbvisits: Número de visitas
+    location: Ubicación
+    guild: Gremio
+    website: Sitio
+    badges: Emblemas
+    date:
+        registration: Registrado el día
+        born: Nacido

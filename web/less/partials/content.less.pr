@@ -32,28 +32,51 @@ div#content{
 
 	*{
 		box-sizing: border-box;
+		-moz-box-sizing: border-box;
 	}
 
 	& > section {
 		border-radius: 3px;
 		overflow: hidden;
+		.full{
+			width: 100%;
+		}
+		.wblock3{
+			width: 31%;
+			float: left;
+			margin: 1%;
+			height: 270px;
+			overflow: hidden;
+			
+			.breadcrumb{
+				font-size: 18px;
+			}
+
+			@media screen and (max-width: @maxsmall){
+				&{
+					width: 100%;
+				}
+			}
+		}
 		.breadcrumb {
 			width: 100%;
-			background: #34C924;
+			background: @headercolor;
 			text-transform: uppercase;
 			font-size: 23px;
 			padding: 10px;
 			color: white;
 			font-family: impact, Myriad pro, Tahoma;
+			line-height: 22px;
 			a{
 				text-decoration: none;
 				color: inherit;
 			}
 		}
-		& > .contenu{
+		.contenu{
 			min-height: 200px;
 			margin-bottom: 10px;
 			background: white;
+			font-family: "Trebuchet MS",Tahoma, Arial;
 		}
 
 		.padding{

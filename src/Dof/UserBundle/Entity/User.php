@@ -401,29 +401,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set dernvisite
-     *
-     * @param string $dernvisite
-     * @return User
-     */
-    public function setDernvisite($dernvisite)
-    {
-        $this->dernvisite = $dernvisite;
-
-        return $this;
-    }
-
-    /**
-     * Get dernvisite
-     *
-     * @return string 
-     */
-    public function getDernvisite()
-    {
-        return $this->dernvisite;
-    }
-
-    /**
      * Set nbvisite
      *
      * @param integer $nbvisite

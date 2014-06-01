@@ -1,0 +1,3 @@
+dof_profile_homepage:
+    pattern:  /{name_user}
+    defaults: { _controller: DofUserBundle:Profile:index }

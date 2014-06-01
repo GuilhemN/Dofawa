@@ -1,0 +1,27 @@
+weapons:
+    main: "Weapon|Weapons"
+
+    bow: "Bow|Bows"
+    wand: "Wand|Wands"
+    staff: "Staff|Staves"
+    dagger: "Dagger|Daggers"
+    sword: "Sword|Swords"
+    hammer: "Hammer|Hammers"
+    shovel: "Shovel|Shovels"
+    axe: "Axe|Axes"
+    tool: "Tool|Tools"
+    pickaxe: "Pickaxe|Pickaxes"
+    scythe: "Scythe|Scythes"
+    soulstone: "Soul stone|Soul stones"
+
+equipments:
+    main: "Equipment|Equipments"
+
+    amulet: "Amulet|Amulets"
+    ring: "Ring|Rings"
+    belt: "Belt|Belt"
+    boots: Boots
+    shield: "Shield|Shields"
+    hat: "Hat|Hats"
+    cloak: "Cloack|Cloacks"
+    backpack: "Backpack|Backpacks"
