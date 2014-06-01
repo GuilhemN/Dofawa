@@ -1,5 +1,11 @@
 @import 'mixins.less';
 
+@masterColor: #34C924;
+
+@fieldColor: @masterColor;
+@buttonColor: #F6BD34;
+@busyIndicatorColor: @masterColor;
+
 form {
 	overflow: hidden;
 	input, textarea, select, button {
@@ -16,9 +22,9 @@ form {
 	}
 	input, textarea, select {
 		&:hover, &:focus {
-			border: 1px solid #F9CB89;
-			border: 1px solid rgba(242, 149, 18, 0.5);
-			box-shadow: 0 1px 3px rgba(242, 149, 18, 0.3) inset;
+			border: 1px solid lighten(@fieldColor, 50%);
+			border: 1px solid fadeout(@fieldColor, 50%);
+			box-shadow: 0 1px 3px fadeout(@fieldColor, 70%) inset;
 			outline: 0 none;
 		}
 		&[readonly] {
@@ -61,7 +67,7 @@ form {
 		resize: none;
 	}
 	input[type="button"], input[type="submit"], input[type="reset"], button {
-		background-color: #F29512;
+		background-color: @buttonColor;
 		box-shadow: none;
 		border: 1px solid #808080;
 		border: 1px solid rgba(0, 0, 0, 0.5);
@@ -135,10 +141,10 @@ form {
 		}
 	}
 	&.loading {
-		.busy-indicator(#F29512, 'Chargement ...');
+		.busy-indicator(@busyIndicatorColor, 'Chargement ...', 40px);
 	}
 	&.submitting {
-		.busy-indicator(#F29512, 'Enregistrement ...');
+		.busy-indicator(@busyIndicatorColor, 'Enregistrement ...', 40px);
 	}
 	&.loading, &.submitting {
 		&.ajax[data-method="DELETE"]:before {

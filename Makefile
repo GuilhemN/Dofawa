@@ -26,10 +26,10 @@ ES6 = $(shell find src -type f -name '*.es6')
 MISC =
 
 # Our CSS list (replaces .less with .css in the list)
-CSS = $(LESS:.less=.css)
+CSS = $(LESS:.less=.css) src/XN/UtilityBundle/Resources/public/css/utlcat.css
 
 # Our JS list (replaces .es6 with .js in the list)
-JS = $(ES6:.es6=.js)
+JS = $(ES6:.es6=.js) src/XN/UtilityBundle/Resources/public/js/utlcat.js
 
 # Our pre-existing or already generated non-minified file(s)
 CSS_PRE = $(shell find src -type f -name '*.css' ! -name '*.min.css')
@@ -54,6 +54,12 @@ all: comp
 # Translate from .less to .css using the following command ($< = input file, $@ = output file)
 %.css: %.less
 	$(LESSC) $(LCFLAGS) $< > $@
+
+src/XN/UtilityBundle/Resources/public/css/utlcat.css: $(shell bash -c "echo src/XN/UtilityBundle/Resources/public/css/{utility,forms,lists,popups}.css")
+	cat $^ > $@
+
+src/XN/UtilityBundle/Resources/public/js/utlcat.js: $(shell bash -c "echo src/XN/UtilityBundle/Resources/public/js/{compat,traceur-runtime,async-primitives,utility,forms,lists,popups}.js")
+	cat $^ > $@
 
 # The same as above, bith with minification
 %.min.css: %.css
