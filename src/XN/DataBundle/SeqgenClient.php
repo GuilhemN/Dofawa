@@ -40,7 +40,7 @@ class SeqgenClient implements IdentifierGeneratorInterface
 	private static function decode($raw)
 	{
 		$unpacked = unpack('N2', $raw);
-		return self::make64($unpacked[1], $unpacked[2]);
+		return strval(self::make64($unpacked[1], $unpacked[2]));
 	}
 	private static function make64($hi, $lo)
 	// http://www.mysqlperformanceblog.com/2007/03/27/integers-in-php-running-with-scissors-and-portability/

@@ -482,7 +482,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     
     public function getMinorColumns()
     {
-        return array('lastLogin');
+        return array('lastLogin', 'nbvisite');
     }
 
     public function __toString()

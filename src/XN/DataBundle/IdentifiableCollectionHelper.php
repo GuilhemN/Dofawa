@@ -12,7 +12,7 @@ class IdentifiableCollectionHelper
 	
 	public static function getIds(Collection $coll)
 	{
-		return array_map([ This::class, 'getId' ], $coll->toArray());
+		return array_map([ 'XN\UtilityBundle\This', 'getId' ], $coll->toArray());
 	}
 	
 	public static function setIds(Collection $coll, array $ids, EntityRepository $repo, $inverseGetter = null, IdentifiableInterface $that = null)

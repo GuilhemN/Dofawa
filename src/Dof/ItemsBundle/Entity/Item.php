@@ -12,6 +12,8 @@ use XN\DataBundle\SluggableTrait;
 use XN\DataBundle\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
+use Dof\ItemsBundle\CharacteristicsRangeTrait;
+
 /**
  * Item
  *
@@ -29,7 +31,7 @@ class Item implements IdentifiableInterface, TimestampableInterface, SluggableIn
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait, CharacteristicsRangeTrait;
 
     /**
      * @var string
