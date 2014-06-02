@@ -7,6 +7,8 @@ inputs:
     location: Localisation
     guild: Guilde
     website: Site
+    badges: badges
+    persos: Personnages de %name%
     date:
         registration: Inscrit le
         born: Date de Naissance

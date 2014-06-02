@@ -10,7 +10,7 @@
 	<section>
 		<table>
 			<tr><td>{{ 'inputs.nbvisits' | trans({}, 'profile') }} :</td> <td>{{ user.getNbvisite() }}</td></tr>
-			<tr><td>{{ 'inputs.points' | trans({}, 'profile') }} :</td> <td>{{ user.getPoint() }}</td></tr>
+			<tr><td>{{ 'inputs.point' | trans({}, 'profile') }} :</td> <td>{{ user.getPoint() }}</td></tr>
 			<tr><td>{{ 'inputs.date.born' | trans({}, 'profile') }} :</td> <td>{{ user.getBorn() }}</td></tr>
 			<tr><td>{{ 'inputs.location' | trans({}, 'profile') }} :</td> <td>{{ user.getLieu() }}</td></tr>
 			<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }} :</td> <td>{{ user.getGuilde() }}</td></tr>
@@ -25,5 +25,9 @@
 
 <section id="identite">
 	<h1>{{ 'inputs.badges' | trans({}, 'profile') }}</h1>	
+</section>
+
+<section id="profperso">
+	<h1>{{ 'inputs.persos' | trans({%name%: user.getUsername()}, 'profile') }}</h1>	
 </section>
 {% endblock %}
