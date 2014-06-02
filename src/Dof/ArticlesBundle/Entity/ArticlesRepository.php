@@ -22,7 +22,7 @@ class ArticlesRepository extends EntityRepository
 	    $qb = $this->createQueryBuilder('a');
 
 	    $qb->add('where', 'a.news= :boolean')
-	       ->add('orderBy', 'a.date DESC')
+	       ->add('orderBy', 'a.createdAt DESC, a.id DESC')
 	       ->setParameter('boolean', $boolean)
 		   ->setFirstResult( $firstresult )
 		   ->setMaxResults( $maxresults );
