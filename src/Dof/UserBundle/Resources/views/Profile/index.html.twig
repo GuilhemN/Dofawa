@@ -28,6 +28,6 @@
 </section>
 
 <section id="profperso">
-	<h1>{{ 'inputs.persos' | trans({%name%: user.getUsername()}, 'profile') }}</h1>	
+	<h1>{{ 'inputs.persos' | trans({'%name%': user.getUsername()}, 'profile') }}</h1>	
 </section>
 {% endblock %}
