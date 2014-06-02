@@ -4,13 +4,21 @@ namespace Dof\ArticlesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\DataBundle\IdentifiableInterface;
+use XN\DataBundle\TimestampableInterface;
+use XN\DataBundle\TimestampableTrait;
+use XN\DataBundle\SluggableInterface;
+use XN\DataBundle\SluggableTrait;
+use XN\DataBundle\OwnableInterface;
+use Dof\UserBundle\OwnableTrait;
+
 /**
  * Articles
  *
  * @ORM\Table(name="dof_articles")
  * @ORM\Entity(repositoryClass="Dof\ArticlesBundle\Entity\ArticlesRepository")
  */
-class Articles
+class Articles implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
 {
     /**
      * @var integer
@@ -21,12 +29,7 @@ class Articles
      */
     private $id;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="iduser", type="integer")
-     */
-    private $idUser;
+    use TimestampableTrait, SluggableTrait, OwnableTrait;
 
     /**
      * @var string
@@ -34,13 +37,6 @@ class Articles
      * @ORM\Column(name="titre", type="string", length=150)
      */
     private $titre;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime", nullable=true)
-     */
-    private $date;
 
     /**
      * @var string
@@ -126,13 +122,6 @@ class Articles
      */
     private $journal;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="inscription", type="datetime", nullable=true)
-     */
-    private $dernmodif;
-
 
     /**
      * Get id
@@ -142,29 +131,6 @@ class Articles
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     * @return Articles
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return integer 
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
     }
 
     /**
@@ -188,29 +154,6 @@ class Articles
     public function getTitre()
     {
         return $this->titre;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return Articles
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime 
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 
     /**
@@ -512,26 +455,8 @@ class Articles
         return $this->journal;
     }
 
-    /**
-     * Set dernmodif
-     *
-     * @param \DateTime $dernmodif
-     * @return Articles
-     */
-    public function setDernmodif($dernmodif)
+    public function __toString()
     {
-        $this->dernmodif = $dernmodif;
-
-        return $this;
-    }
-
-    /**
-     * Get dernmodif
-     *
-     * @return \DateTime 
-     */
-    public function getDernmodif()
-    {
-        return $this->dernmodif;
+        return $this->titre;
     }
 }

@@ -4,13 +4,21 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\DataBundle\IdentifiableInterface;
+use XN\DataBundle\TimestampableInterface;
+use XN\DataBundle\TimestampableTrait;
+use XN\DataBundle\SluggableInterface;
+use XN\DataBundle\SluggableTrait;
+use XN\DataBundle\OwnableInterface;
+use Dof\UserBundle\OwnableTrait;
+
 /**
  * Item
  *
  * @ORM\Table(name="dof_items")
- * @ORM\Entity(repositoryClass="Dof\ArticlesBundle\Entity\ArticlesRepository")
+ * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\ItemRepository")
  */
-class Item
+class Item implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
 {
     /**
      * @var integer
@@ -20,6 +28,15 @@ class Item
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    use TimestampableTrait, SluggableTrait, OwnableTrait;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=150)
+     */
+    private $nom;
 
     /**
      * @var integer
@@ -65,6 +82,29 @@ class Item
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return User
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
     }
 
     /**
@@ -180,5 +220,10 @@ class Item
     public function getElement()
     {
         return $this->element;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

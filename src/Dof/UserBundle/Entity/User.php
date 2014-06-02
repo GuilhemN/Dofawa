@@ -5,13 +5,22 @@ namespace Dof\UserBundle\Entity;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\DataBundle\IdentifiableInterface;
+use XN\DataBundle\MinorColumnsInterface;
+use XN\DataBundle\TimestampableInterface;
+use XN\DataBundle\TimestampableTrait;
+use XN\DataBundle\SluggableInterface;
+use XN\DataBundle\SluggableTrait;
+use XN\DataBundle\OwnableInterface;
+use Dof\UserBundle\OwnableTrait;
+
 /**
  * User
  *
  * @ORM\Table(name="dof_user")
  * @ORM\Entity(repositoryClass="Dof\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser
+class User extends BaseUser implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, MinorColumnsInterface
 {
     /**
      * @var integer
@@ -21,6 +30,15 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    use TimestampableTrait, SluggableTrait, OwnableTrait;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=150)
+     */
+    private $nom;
 
     /**
      * @var integer
@@ -63,13 +81,6 @@ class User extends BaseUser
      * @ORM\Column(name="born", type="date", nullable=true)
      */
     private $born;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="inscription", type="date", nullable=true)
-     */
-    private $inscription;
 
     /**
      * @var integer
@@ -148,29 +159,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set mdp
-     *
-     * @param string $mdp
-     * @return User
-     */
-    public function setMdp($mdp)
-    {
-        $this->mdp = $mdp;
-
-        return $this;
-    }
-
-    /**
-     * Get mdp
-     *
-     * @return string 
-     */
-    public function getMdp()
-    {
-        return $this->mdp;
-    }
-
-    /**
      * Set point
      *
      * @param integer $point
@@ -237,29 +225,6 @@ class User extends BaseUser
     public function getGroupe()
     {
         return $this->groupe;
-    }
-
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     * @return User
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string 
-     */
-    public function getMail()
-    {
-        return $this->mail;
     }
 
     /**
@@ -375,29 +340,6 @@ class User extends BaseUser
     public function getBorn()
     {
         return $this->born;
-    }
-
-    /**
-     * Set inscription
-     *
-     * @param \DateTime $inscription
-     * @return User
-     */
-    public function setInscription($inscription)
-    {
-        $this->inscription = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * Get inscription
-     *
-     * @return \DateTime 
-     */
-    public function getInscription()
-    {
-        return $this->inscription;
     }
 
     /**
@@ -536,5 +478,15 @@ class User extends BaseUser
     public function getDifferentpseudo()
     {
         return $this->differentpseudo;
+    }
+    
+    public function getMinorColumns()
+    {
+        return array('lastLogin');
+    }
+
+    public function __toString()
+    {
+        return $this->getUsername();
     }
 }
