@@ -6,7 +6,7 @@
 			</a>
 		</h1>
 		par toto,
-		le {{ article.date|date('d/m/Y') }}.
+		le {{ article.createdAt|date('d/m/Y') }}.
 	</div>
 	<div class="contenu padding">
 		{{ article.message| truncatehtml('300')|raw}}
