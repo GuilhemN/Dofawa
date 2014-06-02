@@ -16,3 +16,5 @@ app/console doctrine:schema:update --force
 chown -R www-data:www-data app/cache
 chown -R www-data:www-data app/logs
 chown -R www-data:www-data bin/cache
+
+app/console assets:install
