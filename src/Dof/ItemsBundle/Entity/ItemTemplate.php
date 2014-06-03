@@ -12,15 +12,16 @@ use XN\DataBundle\SluggableTrait;
 use XN\DataBundle\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
-use Dof\ItemsBundle\CharacteristicsRangeTrait;
-
 /**
- * Item
+ * ItemTemplate
  *
- * @ORM\Table(name="dof_items")
- * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\ItemRepository")
+ * @ORM\Table(name="dof_item_templates")
+ * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\ItemTemplateRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="class", type="string")
+ * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "weapon" = "WeaponTemplate"})
  */
-class Item implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
+class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
 {
     /**
      * @var integer
@@ -31,7 +32,7 @@ class Item implements IdentifiableInterface, TimestampableInterface, SluggableIn
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait, CharacteristicsRangeTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait;
 
     /**
      * @var string
@@ -48,33 +49,11 @@ class Item implements IdentifiableInterface, TimestampableInterface, SluggableIn
     private $level;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="idpano", type="integer")
-     */
-    private $idpano;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=150)
      */
     private $image;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="type", type="integer")
-     */
-    private $type;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="element", type="simple_array")
-     */
-    private $element;
-
 
     /**
      * Get id
@@ -113,7 +92,7 @@ class Item implements IdentifiableInterface, TimestampableInterface, SluggableIn
      * Set level
      *
      * @param integer $level
-     * @return Item
+     * @return ItemTemplate
      */
     public function setLevel($level)
     {
@@ -133,33 +112,10 @@ class Item implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Set idpano
-     *
-     * @param integer $idpano
-     * @return Item
-     */
-    public function setIdpano($idpano)
-    {
-        $this->idpano = $idpano;
-
-        return $this;
-    }
-
-    /**
-     * Get idpano
-     *
-     * @return integer 
-     */
-    public function getIdpano()
-    {
-        return $this->idpano;
-    }
-
-    /**
      * Set image
      *
      * @param string $image
-     * @return Item
+     * @return ItemTemplate
      */
     public function setImage($image)
     {
@@ -178,54 +134,11 @@ class Item implements IdentifiableInterface, TimestampableInterface, SluggableIn
         return $this->image;
     }
 
-    /**
-     * Set type
-     *
-     * @param integer $type
-     * @return Item
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return integer 
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set element
-     *
-     * @param array $element
-     * @return Item
-     */
-    public function setElement($element)
-    {
-        $this->element = $element;
-
-        return $this;
-    }
-
-    /**
-     * Get element
-     *
-     * @return array 
-     */
-    public function getElement()
-    {
-        return $this->element;
-    }
-
     public function __toString()
     {
         return $this->nom;
     }
+
+    public function isEquipment() { return false; }
+    public function isWeapon() { return false; }
 }
