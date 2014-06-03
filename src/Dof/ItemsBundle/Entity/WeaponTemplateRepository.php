@@ -5,6 +5,6 @@ namespace Dof\ItemsBundle\Entity;
 /**
  * WeaponTemplateRepository
  */
-class WeaponTemplateRepository extends EquipmentTemplateRepository
+class WeaponTemplateRepository extends SkinnedEquipmentTemplateRepository
 {
 }

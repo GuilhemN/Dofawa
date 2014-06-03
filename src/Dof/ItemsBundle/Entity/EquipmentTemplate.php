@@ -15,5 +15,10 @@ class EquipmentTemplate extends ItemTemplate
 {
 	use CharacteristicsRangeTrait;
 
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	public function isEquipment() { return true; }
 }

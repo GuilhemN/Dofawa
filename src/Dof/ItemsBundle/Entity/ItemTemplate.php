@@ -2,6 +2,9 @@
 
 namespace Dof\ItemsBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 use XN\DataBundle\IdentifiableInterface;
@@ -19,7 +22,7 @@ use Dof\UserBundle\OwnableTrait;
  * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\ItemTemplateRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="class", type="string")
- * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "weapon" = "WeaponTemplate"})
+ * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
  */
 class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
 {
@@ -37,9 +40,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=150)
+     * @ORM\Column(name="name", type="string", length=150)
      */
-    private $nom;
+    private $name;
 
     /**
      * @var integer
@@ -55,6 +58,11 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $image;
 
+    public function __construct()
+    {
+
+    }
+
     /**
      * Get id
      *
@@ -66,26 +74,26 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set nom
+     * Set name
      *
-     * @param string $nom
+     * @param string $name
      * @return User
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get name
      *
      * @return string 
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
@@ -136,9 +144,13 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
 
     public function __toString()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     public function isEquipment() { return false; }
+    public function isSkinned() { return false; }
     public function isWeapon() { return false; }
+    public function isPet() { return false; }
+    public function isMount() { return false; }
+    public function isUseable() { return false; }
 }
