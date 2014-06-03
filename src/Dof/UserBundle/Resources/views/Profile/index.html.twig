@@ -8,7 +8,7 @@
 {% block body %}
 <section id="identite">
 	<h1>{{ 'profil' | trans({}, 'profile') }}</h1>
-	<section>
+	<section id="infosprofil">
 		<table>
 			<tr><td>{{ 'inputs.nbvisits' | trans({}, 'profile') }} : {{ user.nbvisite }}</td></tr>
 			<tr><td>{{ 'inputs.point' | trans({}, 'profile') }} : {{ user.point }}</td></tr>
@@ -17,7 +17,7 @@
 			<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }} : {{ user.guilde }}</td></tr>
 			<tr><td>{{ 'inputs.website' | trans({}, 'profile') }} : {{ user.site }}</td></tr>
 		</table>
-		<div id="imgprofil"></div>
+		<section id="imgprofil"></section>
 	</section>
 
 	<footer>
