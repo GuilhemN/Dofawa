@@ -7,14 +7,15 @@
 
 {% block body %}
 <section id="identite">
+	<h1>{{ 'profil' | trans({}, 'profile') }}</h1>
 	<section>
 		<table>
-			<tr><td>{{ 'inputs.nbvisits' | trans({}, 'profile') }} :</td> <td>{{ user.nbvisite }}</td></tr>
-			<tr><td>{{ 'inputs.point' | trans({}, 'profile') }} :</td> <td>{{ user.point }}</td></tr>
-			<tr><td>{{ 'inputs.date.born' | trans({}, 'profile') }} :</td> <td>{{ user.born }}</td></tr>
-			<tr><td>{{ 'inputs.location' | trans({}, 'profile') }} :</td> <td>{{ user.lieu }}</td></tr>
-			<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }} :</td> <td>{{ user.guilde }}</td></tr>
-			<tr><td>{{ 'inputs.website' | trans({}, 'profile') }} :</td> <td>{{ user.site }}</td></tr>
+			<tr><td>{{ 'inputs.nbvisits' | trans({}, 'profile') }} : {{ user.nbvisite }}</td></tr>
+			<tr><td>{{ 'inputs.point' | trans({}, 'profile') }} : {{ user.point }}</td></tr>
+			<tr><td>{{ 'inputs.date.born' | trans({}, 'profile') }} : {{ user.born }}</td></tr>
+			<tr><td>{{ 'inputs.location' | trans({}, 'profile') }} : {{ user.lieu }}</td></tr>
+			<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }} : {{ user.guilde }}</td></tr>
+			<tr><td>{{ 'inputs.website' | trans({}, 'profile') }} : {{ user.site }}</td></tr>
 		</table>
 	</section>
 
