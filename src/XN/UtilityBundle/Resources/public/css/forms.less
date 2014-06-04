@@ -8,7 +8,7 @@
 
 form {
 	overflow: hidden;
-	input, textarea, select, button {
+	input, textarea, select, button, .btn {
 		border: 1px solid #808080;
 		border: 1px solid rgba(0, 0, 0, 0.5);
 		padding: 4px 8px;
@@ -66,17 +66,24 @@ form {
 	textarea {
 		resize: none;
 	}
-	input[type="button"], .lienorange, input[type="submit"], input[type="reset"], button {
+	input[type="button"], input[type="submit"], input[type="reset"], button, .btn {
 		background-color: @buttonColor;
 		box-shadow: none;
 		border: 1px solid #808080;
 		border: 1px solid rgba(0, 0, 0, 0.5);
 		color: white;
 		font-weight: bold;
-		width: 120px;
-		padding: 4px 8px;
-		float: right;
+		
+		//Limit the width
+		width: 100%;
+		max-width: 120px;
+
+		padding: 0;
 		margin-top: 4px;
+
+		//FOR .btn
+		text-decoration: none;
+		text-align: center;
 		&.mini {
 			width: 40px;
 		}
