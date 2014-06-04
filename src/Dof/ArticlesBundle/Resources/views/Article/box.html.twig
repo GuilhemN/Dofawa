@@ -9,6 +9,8 @@
 		le {{ article.createdAt|date('d/m/Y') }}.
 	</div>
 	<div class="contenu padding">
+		<div class="imgarticle">
+		</div>
 		{{ article.message| truncatehtml('300')|raw}}
 	</div>
 </article>

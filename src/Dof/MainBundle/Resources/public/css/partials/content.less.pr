@@ -42,7 +42,7 @@ div#content{
 			width: 100%;
 		}
 		.wblock3{
-			width: 31%;
+			width: 48%;
 			float: left;
 			margin: 1%;
 			height: 270px;
@@ -51,7 +51,10 @@ div#content{
 			.breadcrumb{
 				font-size: 18px;
 			}
-
+			.imgarticle{
+				width: 99%;
+				height: 90px;
+			}
 			@media screen and (max-width: @maxsmall){
 				&{
 					width: 100%;
