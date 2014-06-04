@@ -3,18 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <title>Test</title>
-
-        {% stylesheets filter='lessphp' 
-        filter='cssrewrite'
-
-        '@DofUserBundle/Resources/public/css/login/*'
-        'less/sprite.less'
-
-        output='css/all.css'
-
-        %}
-            <link rel="stylesheet" href="{{ asset_url }}">
-        {% endstylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/dofuser/css/login/main.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/dofmain/css/sprite.min.css') }}">
     </head>
     <body>
         <div>
