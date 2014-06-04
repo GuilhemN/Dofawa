@@ -50,6 +50,7 @@ div#content{
 			
 			.breadcrumb{
 				font-size: 18px;
+				height: 86px;
 			}
 			.imgarticle{
 				width: 99%;
