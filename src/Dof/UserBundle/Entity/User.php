@@ -34,13 +34,6 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     use TimestampableTrait, SluggableTrait, OwnableTrait;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=150)
-     */
-    private $nom;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="point", type="integer", nullable=true)
@@ -134,30 +127,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     {
         return $this->id;
     }
-
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     * @return User
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string 
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
+    
     /**
      * Set point
      *
