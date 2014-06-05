@@ -19,6 +19,6 @@ class ProfileController extends BaseController
 	 */
     public function indexAction(User $user)
     {
-        return $this->render('DofUserBundle:Profile:index.html.twig', array('user' => $user));
+        return $this->container->get('templating')->renderResponse('DofUserBundle:Profile:index.html.twig', array('user' => $user));
     }
 }
