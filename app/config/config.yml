@@ -16,6 +16,8 @@ framework:
         engines: ['twig']
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
+    translator:
+        fallback: %locale%
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
