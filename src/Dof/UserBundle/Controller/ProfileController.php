@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\UserBundle\Entity\User;
 
-use FOS\UserBundle\Controller as BaseController;
+use FOS\UserBundle\Controller\ProfileController as BaseController;
 
 class ProfileController extends BaseController
 {
