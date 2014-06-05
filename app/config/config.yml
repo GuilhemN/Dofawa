@@ -4,7 +4,6 @@ imports:
 
 framework:
     #esi:             ~
-    translator: { fallback: fr }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/grouting.yml"

@@ -10,7 +10,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\UserBundle\Entity\User;
 
-class ProfileController extends Controller
+use FOS\UserBundle\ProfileController as BaseController;
+
+class ProfileController extends BaseController
 {
 	/**
 	 * @ParamConverter("user", options={"mapping": {"name_user": "slug"}})
