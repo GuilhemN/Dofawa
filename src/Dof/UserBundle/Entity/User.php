@@ -1,6 +1,6 @@
 <?php
 
-namespace Dof\UserBundle\Entity;
+namespace Dof\UserBundle\Entity\User;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
