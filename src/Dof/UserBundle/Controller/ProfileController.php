@@ -10,13 +10,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\UserBundle\Entity\User;
 
-class ProfileController extends Controller
+use FOS\UserBundle\Controller\ProfileController as BaseController;
+
+class ProfileController extends BaseController
 {
 	/**
 	 * @ParamConverter("user", options={"mapping": {"name_user": "slug"}})
 	 */
     public function indexAction(User $user)
     {
-        return $this->render('DofUserBundle:Profile:index.html.twig', array('user' => $user));
+        return $this->container->get('templating')->renderResponse('DofUserBundle:Profile:index.html.twig', array('user' => $user));
     }
 }

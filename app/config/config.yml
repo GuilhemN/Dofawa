@@ -4,7 +4,6 @@ imports:
 
 framework:
     #esi:             ~
-    translator: { fallback: fr }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/grouting.yml"
@@ -17,6 +16,8 @@ framework:
         engines: ['twig']
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
+    translator:
+        fallback: %locale%
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
