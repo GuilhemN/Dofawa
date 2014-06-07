@@ -1,0 +1,31 @@
+parameters:
+    translator.class: SymfonyExtender\TranslationsBundle\Translation\Translator
+    language_fallbacks: 
+        en: 
+            - fr
+        fr:
+            - en
+        ru:
+            - en
+            - fr
+        it:
+            - en
+            - fr
+        es:
+            - fr
+            - en
+        de:
+            - en
+            - fr
+    #language_fallbacks_by_domain:
+        #price:
+        #    fr:
+        #        - ue
+        #    en:
+        #        - ue
+        #testimonies: ['fr']
+
+services:
+    translator.fallbacks:
+        class: %translator.class%
+        arguments: [%language_fallbacks%]#, %language_fallbacks_by_domain%]

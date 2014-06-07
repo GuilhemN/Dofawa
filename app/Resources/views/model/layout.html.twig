@@ -39,13 +39,13 @@
 
   </script>
 </head>
-<body onload="decompte();">
+<body onload="decompte();" vocab="http://schema.org/" typeof="WebPage">
   {% include('::model/menu.html.twig')%}
 
   <div id="content">
-    <section id="left">
+    <section id="left" property="mainContentOfPage">
       <section class="full">
-        <div class="breadcrumb">
+        <div class="breadcrumb" property="breadcrumb">
           {% block breadcrumb %}<a href="/">{{ 'menu_haut.home' | trans()}}</a>{% endblock %}
         </div>
         {% block modelbody %}

@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Dof\ArtBundle\DofArtBundle(),
             new XN\DataBundle\XNDataBundle(),
             new XN\UtilityBundle\XNUtilityBundle(),
+            new SymfonyExtender\TranslationsBundle\SymfonyExtenderTranslationsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
