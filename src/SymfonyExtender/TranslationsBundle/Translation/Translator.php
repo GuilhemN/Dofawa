@@ -118,10 +118,11 @@
                 if (!isset($this->catalogues[$v]))
                     $this->loadCatalogue($v);
 
-                if($type == 'trans')
-                    return strtr($this->catalogues[$v]->get((string) $id, $domain), $parameters);
-                elseif($type == 'transchoice')
-                    return strtr($this->selector->choose($this->catalogues[$v]->get($id, $domain), (int) $number, $v), $parameters);
+                if($this->catalogues[$v]->has((string) ($id), $domain))
+                    if($type == 'trans')
+                        return strtr($this->catalogues[$v]->get((string) $id, $domain), $parameters);
+                    elseif($type == 'transchoice')
+                        return strtr($this->selector->choose($this->catalogues[$v]->get($id, $domain), (int) $number, $v), $parameters);
 
             }
             return strtr($id, $parameters);
