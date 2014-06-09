@@ -7,7 +7,11 @@
 
 {% block body %}
 <section id="identite">
-	<h1>{{ 'profil' | trans({}, 'profile') }}</h1>
+	<h1>{{ 'profil' | trans({}, 'profile') }}
+		{{% if  %}}
+			<a href="/app_dev.php/fr/profile/edit">Editer</a>
+		{{% endif %}}
+	</h1>
 	<section id="infosprofil">
 		<table>
 			<tr><td>{{ 'inputs.nbvisits' | trans({}, 'profile') }} : {{ user.nbvisite }}</td></tr>

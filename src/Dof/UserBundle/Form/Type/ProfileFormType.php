@@ -45,6 +45,9 @@ class ProfileFormType extends BaseForm
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('guilde', null, array('label' => 'inputs.guild', 'translation_domain' => 'profile'))
+            ->add('lieu', null, array('label' => 'inputs.location', 'translation_domain' => 'profile'))
+            ->add('site', null, array('label' => 'inputs.website', 'translation_domain' => 'profile'))
+            ->add('born', null, array('label' => 'inputs.date.born', 'translation_domain' => 'profile'))
         ;
     }
 
