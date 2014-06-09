@@ -40,9 +40,10 @@ class ProfileFormType extends BaseForm
      */
     protected function buildUserForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildUserForm($builder, $options);
 
         $builder
+            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
+            ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('guilde', null, array('label' => 'form.guilde', 'translation_domain' => 'profile'))
         ;
     }
