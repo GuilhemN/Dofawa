@@ -98,16 +98,17 @@
 
         private function searchfallbacks(array $array, $id, array $parameters, $domain, $locale, $type = 'trans', $number = 0){
 
-                //Si array simple (fallbacks général)
-                if(isset($array[0]) && !empty($array)){
-                    //Renvoi la traduction ou l'id si échec
-                    return $this->searchTraduction($array[$locale], $id, $parameters, $domain, $type, $number);
-                }
-                //Si multidimensionnel (pour chaque locale)
-                elseif(array_key_exists($locale,(array) $array)){
-                    //Renvoi la traduction ou l'id si échec
-                    return $this->searchTraduction($array[$locale], $id, $parameters, $domain, $type, $number);
-                }
+                if(isset($array[$locale]))
+                    //Si array simple (fallbacks général)
+                    if(!is_array($array[$locale])){
+                        //Renvoi la traduction ou l'id si échec
+                        return $this->searchTraduction($array[$locale], $id, $parameters, $domain, $type, $number);
+                    }
+                    //Si multidimensionnel (pour chaque locale)
+                    else{
+                        //Renvoi la traduction ou l'id si échec
+                        return $this->searchTraduction($array[$locale], $id, $parameters, $domain, $type, $number);
+                    }
 
                 //Continue si rien n'a été renseignée pour la locale en cours
                 return false;
