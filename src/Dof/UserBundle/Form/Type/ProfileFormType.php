@@ -29,7 +29,7 @@ class ProfileFormType extends BaseForm
     {
         $this->class = $class;
 
-        parent::_construct($class);
+        parent::__construct($class);
     }
 
     /**
