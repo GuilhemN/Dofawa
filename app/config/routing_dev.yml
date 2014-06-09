@@ -11,4 +11,4 @@ _configurator:
     prefix:   /_configurator
 
 _main:
-    resource: routing.yml
+    resource: grouting.yml

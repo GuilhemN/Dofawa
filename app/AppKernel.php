@@ -25,9 +25,6 @@ class AppKernel extends Kernel
             new XN\DataBundle\XNDataBundle(),
             new XN\UtilityBundle\XNUtilityBundle(),
             new SymfonyExtender\TranslationsBundle\SymfonyExtenderTranslationsBundle(),
-            
-            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
-            new JMS\TranslationBundle\JMSTranslationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
