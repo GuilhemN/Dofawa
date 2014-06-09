@@ -2,5 +2,8 @@ parameters:
 #    dof_user.example.class: Dof\UserBundle\Example
 
 services:
-#    authentication_handler:
-#        class: Dof\UserBundle\Handler\AuthenticationHandler
+    dof_user.profile.form.type:
+        class: Dof\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: dof_user_profile }
