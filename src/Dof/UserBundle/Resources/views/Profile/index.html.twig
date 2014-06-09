@@ -8,9 +8,9 @@
 {% block body %}
 <section id="identite">
 	<h1>{{ 'profil' | trans({}, 'profile') }}
-		{{% if app.user.id == user.id %}}
+		{% if app.user.id == user.id %}
 			<a href="/app_dev.php/fr/profile/edit">Editer</a>
-		{{% endif %}}
+		{% endif %}
 	</h1>
 	<section id="infosprofil">
 		<table>
