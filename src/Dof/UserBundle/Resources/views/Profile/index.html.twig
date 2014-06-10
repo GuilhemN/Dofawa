@@ -16,7 +16,7 @@
 		<table>
 			<tr><td>{{ 'inputs.nbvisits' | trans({}, 'profile') }} : {{ user.nbvisite }}</td></tr>
 			<tr><td>{{ 'inputs.point' | trans({}, 'profile') }} : {{ user.point }}</td></tr>
-			<tr><td>{{ 'inputs.date.born' | trans({}, 'profile') }} : {{ user.born }}</td></tr>
+			<tr><td>{{ 'inputs.date.born' | trans({}, 'profile') }} : {{ user.born | date('Y-m-d') }}</td></tr>
 			<tr><td>{{ 'inputs.location' | trans({}, 'profile') }} : {{ user.lieu }}</td></tr>
 			<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }} : {{ user.guilde }}</td></tr>
 			<tr><td>{{ 'inputs.website' | trans({}, 'profile') }} : {{ user.site }}</td></tr>
