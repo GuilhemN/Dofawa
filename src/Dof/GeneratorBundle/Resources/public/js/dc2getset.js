@@ -84,7 +84,7 @@ formHooks['main-form'] = {
 			data.nullable = false;
 		} else if (('multiple' in data) && data.multiple)
 			data.nullable = false;
-	}
+	},
 	postImport: function (data) {
 		elById("nullable").disabled = !elById("relation").checked || elById("multiple").checked;
 		elById("multiple").disabled = !elById("relation").checked;
@@ -95,4 +95,5 @@ $(function () {
 	$('input').on('change click', function () {
 		syncData('form');
 	});
+	syncData('form');
 });
