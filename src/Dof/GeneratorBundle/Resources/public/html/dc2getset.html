@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dofawa DC2GetSet Generator</title>
+<link rel="stylesheet" type="text/css" href="../../xnutility/css/utlcat.css" />
+<script type="text/javascript" href="../../xnutility/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" href="../../xnutility/js/utlcat.js"></script>
+<script type="text/javascript" href="../js/dc2getset.js"></script>
+</head>
+<body>
+<form class="ajax" autocomplete="off" id="main-form">
+	<h2>Dofawa DC2GetSet Generator</h2>
+	<p>Unless otherwise stated, all names are the PHP ones.</p>
+	<label><span>Field name</span><input id="field-name" name="fieldName" /></label>
+	<label><span>Field type (or target entity name, if relation)</span><input id="field-type" name="fieldType" value="mixed" /></label>
+	<label><span>Declaring entity name</span><input id="entity-name" name="entityName" value="object" /></label>
+	<label><span>Getter/setter name<br />Default : capitalized field name</span><input id="xetter-name" name="xetterName" /></label>
+	<label><span>Getter/setter singularized name<br />Default : Getter/setter name without final "s"</span><input id="xetter-singular-name" name="xetterSingularName" /></label>
+	<label><input type="checkbox" id="relation" name="relation" /> Relation</label>
+	<label><input type="checkbox" id="multiple" name="multiple" /> Multiple (zero/one to many)</label>
+	<label><input type="checkbox" id="nullable" name="nullable" /> Nullable (zero to one)</label>
+	<label><span>Generated code</span><textarea id="generated-code" name="generatedCode" readonly="readonly" rows="10" cols="30"></textarea></label>
+</form>
+</body>
+</html>
