@@ -182,11 +182,20 @@ var dialog = wrapAsync(function* dialog(options) {
 	var dim;
 	while ((dim = Dimension.fromElement(node)).isEmpty())
 		yield sleep(0);
+	if (dim.width < 380) {
+		node.className += " narrow";
+		document.body.removeChild(node);
+		while (!Dimension.fromElement(node).isEmpty())
+			yield sleep(0);
+		document.body.appendChild(node);
+		while ((dim = Dimension.fromElement(node)).isEmpty())
+			yield sleep(0);
+	}
 	node.style.width = dim.width + 'px';
 	node.style.height = dim.height + 'px';
 	node.style.marginLeft = '-' + (dim.width >> 1) + 'px';
 	node.style.marginTop = '-' + (dim.height >> 1) + 'px';
-	node.className = node.className.replace(/^measuring /, (dim.width < 380) ? "narrow " : "");
+	node.className = node.className.replace(/^measuring /, "");
 	var waitClose;
 	proms.push(new Promise(function (resolve, reject) {
 		waitClose = runAsync.call(this, function* () {
