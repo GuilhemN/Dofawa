@@ -186,7 +186,7 @@ var dialog = wrapAsync(function* dialog(options) {
 	node.style.height = dim.height + 'px';
 	node.style.marginLeft = '-' + (dim.width >> 1) + 'px';
 	node.style.marginTop = '-' + (dim.height >> 1) + 'px';
-	jQuery(node).removeClass('measuring');
+	node.className = node.className.replace(/^measuring /, (dim.width < 380) ? "narrow " : "");
 	var waitClose;
 	proms.push(new Promise(function (resolve, reject) {
 		waitClose = runAsync.call(this, function* () {
