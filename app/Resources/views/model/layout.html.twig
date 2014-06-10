@@ -41,7 +41,7 @@
 
   </script>
 </head>
-<body onload="decompte();" vocab="http://schema.org/" typeof="WebPage">
+<body vocab="http://schema.org/" typeof="WebPage">
   {% include('::model/menu.html.twig')%}
 
   <div id="content">
@@ -81,6 +81,12 @@
       <li>Link 3</li>
     </ul>
   </footer>
+
+  <div id="popup-overlay"></div>
+
+  {% block popups %}
+  {% endblock %}
+
   <div id="recup_publicity">
     <script defer async type='text/javascript'>
       document.MAX_ct0 ='';

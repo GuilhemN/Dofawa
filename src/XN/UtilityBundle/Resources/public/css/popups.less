@@ -101,9 +101,11 @@
 		font-size: 80%;
 		font-weight: normal;
 		text-align: left;
+		max-width: unset;
+		padding: 4px 8px;
 		&:before {
 			content: '➔ ';
-			color: black;
+			color: white;
 		}
 		&:first-line {
 			font-size: 125%;
@@ -114,6 +116,8 @@
 		margin: 12px 0 0;
 		> input {
 			margin: 0;
+			padding: 4px 8px;
+			display: inline-block;
 		}
 	}
 	> * {
