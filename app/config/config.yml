@@ -2,11 +2,16 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+jms_i18n_routing:
+    default_locale: en
+    locales: [en, de, fr, es]
+    strategy: prefix
+
 framework:
     #esi:             ~
     secret:          "%secret%"
     router:
-        resource: "%kernel.root_dir%/config/grouting.yml"
+        resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
