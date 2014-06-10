@@ -8,6 +8,8 @@ mkdir -p bin/cache
 rm -rf app/cache
 mkdir -p app/cache
 
+composer install
+
 app/console cache:clear -e dev
 app/console cache:clear -e prod
 

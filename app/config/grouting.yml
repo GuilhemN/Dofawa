@@ -4,3 +4,17 @@ dof_general_access:
     requirements:
        _locale: (fr|en|es|de|ru|it)?
     defaults: { _locale: fr}
+
+# This route is designed to be unmatchable
+# It's meant to be used with path generation,
+# to get the application root path :
+# PHP :
+#     $dic->get('router')->generate('root')
+# Twig :
+#     {{ path('root') }}
+# JavaScript (with FOSJsRoutingBundle) :
+#     Routing.generate("root")
+root:
+    pattern: /
+    requirements: { _method: (*FAIL) }
+    options: { expose: true }
