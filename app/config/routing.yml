@@ -6,12 +6,22 @@ dof_items:
     resource: "@DofItemsBundle/Resources/config/routing.yml"
     prefix:   /
 
+# To get the application root path :
+# PHP :
+#     $dic->get('router')->generate('root')
+# Twig :
+#     {{ path('root') }}
+# JavaScript (with FOSJsRoutingBundle) :
+#     Routing.generate("root")
 root:
     pattern: /
     defaults:
         _controller: FrameworkBundle:Redirect:urlRedirect
         path: /%locale%/
         permanent: true
+    options:
+        expose: true
+        i18n: false
 
 dof_articles:
     resource: "@DofArticlesBundle/Resources/config/routing.yml"
@@ -39,3 +49,7 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+fos_js_routing:
+     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+     options: { i18n: false }
