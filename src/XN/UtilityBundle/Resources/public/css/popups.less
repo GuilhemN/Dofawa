@@ -1,3 +1,5 @@
+@popupTitleColor: #34C924;
+
 /* Utiliser display: none; entre en conflit avec la transition d'opacité */
 #popup-overlay {
 	display: block;
@@ -48,7 +50,11 @@
 		bottom: 100%;
 	}
 	> h2 {
-		background: #F29512;
+		background: @popupTitleColor;
+		text-transform: uppercase;
+		font-family: Impact, "Myriad Pro", Tahoma;
+		line-height: 22px;
+		font-size: 23px;
 		color: white;
 		margin: 4px -4px;
 		padding: 4px 8px;
