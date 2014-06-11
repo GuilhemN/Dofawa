@@ -1,0 +1,44 @@
+body {
+    font-family: Helvetica, sans-serif;
+    font-size: 10pt;
+    background: #F2AC2F;
+}
+form {
+    background: white;
+    width: 700px;
+    padding: 16px;
+    margin: 0 auto;
+}
+h2 {
+    background: #34C924;
+    color: white;
+    font-family: Impact, "Myriad Pro", Tahoma;
+    font-size: 23px;
+    line-height: 22px;
+    text-transform: uppercase;
+    margin: -16px -16px 0;
+    padding: 16px;
+    font-weight: normal;
+    text-align: center;
+}
+label {
+    margin-top: 12px;
+    > * {
+        vertical-align: middle;
+    }
+    > span {
+        width: 300px;
+        display: inline-block;
+        text-align: right;
+        > span {
+            color: gray;
+            font-size: 90%;
+        }
+        + input, + textarea {
+            margin-left: 12px;
+        }
+    }
+}
+textarea {
+    width: 350px;
+}

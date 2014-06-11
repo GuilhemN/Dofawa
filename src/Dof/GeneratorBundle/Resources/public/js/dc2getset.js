@@ -90,10 +90,3 @@ formHooks['main-form'] = {
 		elById("multiple").disabled = !elById("relation").checked;
 	}
 };
-
-$(function () {
-	$('input').on('change click', function () {
-		syncData('form');
-	});
-	syncData('form');
-});

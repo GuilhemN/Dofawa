@@ -3,9 +3,11 @@
 <head>
 <title>Dofawa DC2GetSet Generator</title>
 <link rel="stylesheet" type="text/css" href="../../xnutility/css/utlcat.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/generators.min.css" />
 <script type="text/javascript" src="../../xnutility/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../../xnutility/js/utlcat.min.js"></script>
-<script type="text/javascript" src="../js/dc2getset.js"></script>
+<script type="text/javascript" src="../js/generators.min.js"></script>
+<script type="text/javascript" src="../js/dc2getset.min.js"></script>
 </head>
 <body>
 <form class="ajax" autocomplete="off" id="main-form">
@@ -14,11 +16,11 @@
 	<label><span>Field name</span><input id="field-name" name="fieldName" /></label>
 	<label><span>Field type (or target entity name, if relation)</span><input id="field-type" name="fieldType" value="mixed" /></label>
 	<label><span>Declaring entity name</span><input id="entity-name" name="entityName" value="object" /></label>
-	<label><span>Getter/setter name<br />Default : capitalized field name</span><input id="xetter-name" name="xetterName" /></label>
-	<label><span>Getter/setter singularized name<br />Default : Getter/setter name without final "s"</span><input id="xetter-singular-name" name="xetterSingularName" /></label>
+	<label><span>Getter/setter name<br /><span>Default : capitalized field name</span></span><input id="xetter-name" name="xetterName" /></label>
+	<label><span>Getter/setter singularized name<br /><span>Default : Getter/setter name without final "s"</span></span><input id="xetter-singular-name" name="xetterSingularName" /></label>
 	<label><input type="checkbox" id="relation" name="relation" /> Relation</label>
-	<label><input type="checkbox" id="multiple" name="multiple" /> Multiple (zero/one to many)</label>
-	<label><input type="checkbox" id="nullable" name="nullable" /> Nullable (zero to one)</label>
+	<label><input type="checkbox" id="multiple" name="multiple" /> Multiple (... to many)</label>
+	<label><input type="checkbox" id="nullable" name="nullable" /> Nullable (... to zero-one)</label>
 	<label><span>Generated code</span><textarea id="generated-code" name="generatedCode" readonly="readonly" rows="10" cols="30"></textarea></label>
 </form>
 </body>
