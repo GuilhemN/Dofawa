@@ -117,9 +117,25 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $effects;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="ItemComponent", mappedBy="compound")
+     */
+    private $components;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="ItemComponent", mappedBy="component")
+     */
+    private $compounds;
+
     public function __construct()
     {
         $this->effects = new ArrayCollection();
+        $this->components = new ArrayCollection();
+        $this->compounds = new ArrayCollection();
     }
 
     /**
@@ -406,6 +422,78 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function getEffects()
     {
         return $this->effects;
+    }
+    
+    /**
+     * Add components
+     *
+     * @param ItemComponent $components
+     * @return ItemTemplate
+     */
+    public function addComponent(ItemComponent $components)
+    {
+        $this->components[] = $components;
+
+        return $this;
+    }
+
+    /**
+     * Remove components
+     *
+     * @param ItemComponent $components
+     * @return ItemTemplate
+     */
+    public function removeComponent(ItemComponent $components)
+    {
+        $this->components->removeElement($components);
+
+        return $this;
+    }
+
+    /**
+     * Get components
+     *
+     * @return Collection
+     */
+    public function getComponents()
+    {
+        return $this->components;
+    }
+
+    /**
+     * Add compounds
+     *
+     * @param ItemComponent $compounds
+     * @return ItemTemplate
+     */
+    public function addCompound(ItemComponent $compounds)
+    {
+        $this->compounds[] = $compounds;
+
+        return $this;
+    }
+
+    /**
+     * Remove compounds
+     *
+     * @param ItemComponent $compounds
+     * @return ItemTemplate
+     */
+    public function removeCompound(ItemComponent $compounds)
+    {
+        $this->compounds->removeElement($compounds);
+
+        return $this;
+    }
+
+    /**
+     * Get compounds
+     *
+     * @return Collection
+     */
+    public function getCompounds()
+    {
+        return $this->compounds;
     }
 
     public function __toString()
