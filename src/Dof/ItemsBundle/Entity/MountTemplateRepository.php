@@ -5,6 +5,6 @@ namespace Dof\ItemsBundle\Entity;
 /**
  * MountTemplateRepository
  */
-class MountTemplateRepository extends EquipmentTemplateRepository
+class MountTemplateRepository extends AnimalTemplateRepository
 {
 }

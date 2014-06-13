@@ -5,6 +5,6 @@ namespace Dof\ItemsBundle\Entity;
 /**
  * PetTemplateRepository
  */
-class PetTemplateRepository extends EquipmentTemplateRepository
+class PetTemplateRepository extends AnimalTemplateRepository
 {
 }

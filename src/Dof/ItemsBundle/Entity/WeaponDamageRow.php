@@ -4,15 +4,17 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\DataBundle\IdentifiableInterface;
+
 use Dof\ItemsBundle\Element;
 
 /**
  * WeaponDamageRow
  *
  * @ORM\Table(name="dof_weapon_damage_rows")
- * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\WeaponDamageRowRepository")
+ * @ORM\Entity(repositoryClass="WeaponDamageRowRepository")
  */
-class WeaponDamageRow
+class WeaponDamageRow implements IdentifiableInterface
 {
 	/**
      * @var integer
@@ -22,6 +24,14 @@ class WeaponDamageRow
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var WeaponTemplate
+     *
+     * @ORM\ManyToOne(targetEntity="WeaponTemplate", inversedBy="damageRows")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $weapon;
 
     /**
      * @var integer
@@ -59,14 +69,6 @@ class WeaponDamageRow
     private $leech;
 
     /**
-     * @var WeaponTemplate
-     *
-     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\WeaponTemplate", inversedBy="damageRows")
-     * @ORM\JoinColumn(onDelete="CASCADE")
-     */
-    private $weapon;
-
-    /**
      * Get id
      *
      * @return integer 
@@ -74,6 +76,29 @@ class WeaponDamageRow
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set weapon
+     *
+     * @param WeaponTemplate $weapon
+     * @return WeaponDamageRow
+     */
+    public function setWeapon(WeaponTemplate $weapon)
+    {
+        $this->weapon = $weapon;
+
+        return $this;
+    }
+
+    /**
+     * Get weapon
+     *
+     * @return WeaponTemplate 
+     */
+    public function getWeapon()
+    {
+        return $this->weapon;
     }
 
     /**
@@ -199,29 +224,6 @@ class WeaponDamageRow
     public function isLeech()
     {
         return $this->leech;
-    }
-
-    /**
-     * Set weapon
-     *
-     * @param WeaponTemplate $weapon
-     * @return WeaponDamageRow
-     */
-    public function setWeapon(WeaponTemplate $weapon = null)
-    {
-        $this->weapon = $weapon;
-
-        return $this;
-    }
-
-    /**
-     * Get weapon
-     *
-     * @return WeaponTemplate 
-     */
-    public function getWeapon()
-    {
-        return $this->weapon;
     }
 
     public function canMage()

@@ -7,9 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PetTemplate
  *
- * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\PetTemplateRepository")
+ * @ORM\Entity(repositoryClass="PetTemplateRepository")
  */
-class PetTemplate extends EquipmentTemplate
+class PetTemplate extends AnimalTemplate
 {
 	public function __construct()
 	{

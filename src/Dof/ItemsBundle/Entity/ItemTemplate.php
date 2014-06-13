@@ -15,14 +15,16 @@ use XN\DataBundle\SluggableTrait;
 use XN\DataBundle\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
+use Dof\ItemsBundle\ReleaseBoundTrait;
+
 /**
  * ItemTemplate
  *
  * @ORM\Table(name="dof_item_templates")
- * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\ItemTemplateRepository")
+ * @ORM\Entity(repositoryClass="ItemTemplateRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="class", type="string")
- * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
+ * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
  */
 class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
 {
@@ -35,7 +37,15 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait, ReleaseBoundTrait;
+
+    /**
+     * @var ItemType
+     *
+     * @ORM\ManyToOne(targetEntity="ItemType", inversedBy="items")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $type;
 
     /**
      * @var string
@@ -45,6 +55,34 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="icon_relative_path", type="string", length=31, nullable=true)
+     */
+    private $iconRelativePath;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dominant_color", type="integer", nullable=true)
+     */
+    private $dominantColor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="criteria", type="string", length=127, nullable=true)
+     */
+    private $criteria;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="level", type="integer")
@@ -52,15 +90,36 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $level;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="image", type="string", length=150)
+     * @ORM\Column(name="weight", type="integer")
      */
-    private $image;
+    private $weight;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="tradeable", type="boolean")
+     */
+    private $tradeable;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="npc_price", type="integer")
+     */
+    private $npcPrice;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="ItemTemplateEffect", mappedBy="item")
+     */
+    private $effects;
 
     public function __construct()
     {
-
+        $this->effects = new ArrayCollection();
     }
 
     /**
@@ -71,6 +130,29 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param ItemType $type
+     * @return ItemTemplate
+     */
+    public function setType(ItemType $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return ItemType
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -97,6 +179,98 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
+     * Set description
+     *
+     * @param string $description
+     * @return ItemTemplate
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set iconRelativePath
+     *
+     * @param string $iconRelativePath
+     * @return ItemTemplate
+     */
+    public function setIconRelativePath($iconRelativePath)
+    {
+        $this->iconRelativePath = $iconRelativePath;
+
+        return $this;
+    }
+
+    /**
+     * Get iconRelativePath
+     *
+     * @return string
+     */
+    public function getIconRelativePath()
+    {
+        return $this->iconRelativePath;
+    }
+
+    /**
+     * Set dominantColor
+     *
+     * @param integer $dominantColor
+     * @return ItemTemplate
+     */
+    public function setDominantColor($dominantColor)
+    {
+        $this->dominantColor = $dominantColor;
+
+        return $this;
+    }
+
+    /**
+     * Get dominantColor
+     *
+     * @return integer
+     */
+    public function getDominantColor()
+    {
+        return $this->dominantColor;
+    }
+
+    /**
+     * Set criteria
+     *
+     * @param string $criteria
+     * @return ItemTemplate
+     */
+    public function setCriteria($criteria)
+    {
+        $this->criteria = $criteria;
+
+        return $this;
+    }
+
+    /**
+     * Get criteria
+     *
+     * @return string
+     */
+    public function getCriteria()
+    {
+        return $this->criteria;
+    }
+
+    /**
      * Set level
      *
      * @param integer $level
@@ -118,28 +292,120 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     {
         return $this->level;
     }
-
+    
     /**
-     * Set image
+     * Set weight
      *
-     * @param string $image
+     * @param integer $weight
      * @return ItemTemplate
      */
-    public function setImage($image)
+    public function setWeight($weight)
     {
-        $this->image = $image;
+        $this->weight = $weight;
 
         return $this;
     }
 
     /**
-     * Get image
+     * Get weight
      *
-     * @return string 
+     * @return integer
      */
-    public function getImage()
+    public function getWeight()
     {
-        return $this->image;
+        return $this->weight;
+    }
+
+    /**
+     * Set tradeable
+     *
+     * @param boolean $tradeable
+     * @return ItemTemplate
+     */
+    public function setTradeable($tradeable)
+    {
+        $this->tradeable = $tradeable;
+
+        return $this;
+    }
+
+    /**
+     * Get tradeable
+     *
+     * @return boolean
+     */
+    public function getTradeable()
+    {
+        return $this->tradeable;
+    }
+
+    /**
+     * Get tradeable
+     *
+     * @return boolean
+     */
+    public function isTradeable()
+    {
+        return $this->tradeable;
+    }
+
+    /**
+     * Set npcPrice
+     *
+     * @param integer $npcPrice
+     * @return ItemTemplate
+     */
+    public function setNpcPrice($npcPrice)
+    {
+        $this->npcPrice = $npcPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get npcPrice
+     *
+     * @return integer
+     */
+    public function getNpcPrice()
+    {
+        return $this->npcPrice;
+    }
+
+    /**
+     * Add effects
+     *
+     * @param ItemTemplateEffect $effects
+     * @return ItemTemplate
+     */
+    public function addEffect(ItemTemplateEffect $effects)
+    {
+        $this->effects[] = $effects;
+
+        return $this;
+    }
+
+    /**
+     * Remove effects
+     *
+     * @param ItemTemplateEffect $effects
+     * @return ItemTemplate
+     */
+    public function removeEffect(ItemTemplateEffect $effects)
+    {
+        $this->effects->removeElement($effects);
+
+        return $this;
+    }
+
+    /**
+     * Get effects
+     *
+     * @return Collection
+     */
+    public function getEffects()
+    {
+        return $this->effects;
     }
 
     public function __toString()
@@ -150,6 +416,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function isEquipment() { return false; }
     public function isSkinned() { return false; }
     public function isWeapon() { return false; }
+    public function isAnimal() { return false; }
     public function isPet() { return false; }
     public function isMount() { return false; }
     public function isUseable() { return false; }
