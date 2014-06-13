@@ -35,13 +35,19 @@ class AnimalTemplate extends EquipmentTemplate
      */
     private $favoriteAreaBonus;
 
-	/* (no /**)
+	/* (no /** because attr is disabled, because only partly defined for now)
 	 * @var Collection
 	 *
-	 * @ORM\ManyToMany(targetEntity="Dof\ItemsBundle\Entity\WeaponDamageRow", mappedBy="weapon")
-	 * @ORM\OrderBy({ "order" = "ASC" })
+	 * @ORM\ManyToMany(targetEntity="**TBD**")
 	 */
 	//private $favoriteAreas;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="size", type="integer")
+     */
+    private $size;
 
 	public function __construct()
 	{
@@ -115,6 +121,29 @@ class AnimalTemplate extends EquipmentTemplate
     public function getFavoriteAreaBonus()
     {
         return $this->favoriteAreaBonus;
+    }
+
+    /**
+     * Set size
+     *
+     * @param integer $size
+     * @return AnimalTemplate
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return integer
+     */
+    public function getSize()
+    {
+        return $this->size;
     }
 
 	public function isAnimal() { return true; }

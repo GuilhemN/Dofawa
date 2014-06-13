@@ -131,6 +131,13 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $compounds;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="visible", type="boolean")
+     */
+    private $visible;
+
     public function __construct()
     {
         $this->effects = new ArrayCollection();
@@ -494,6 +501,39 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function getCompounds()
     {
         return $this->compounds;
+    }
+    
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     * @return ItemTemplate
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean
+     */
+    public function isVisible()
+    {
+        return $this->visible;
     }
 
     public function __toString()
