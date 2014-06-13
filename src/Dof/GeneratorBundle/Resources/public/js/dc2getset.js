@@ -44,7 +44,7 @@ function generateGetter(data, verb) {
 	return  "    /**\n" +
 			"     * Get " + data.fieldName + "\n" +
 			"     *\n" +
-			"     * @return " + data.fieldType + "\n" +
+			"     * @return " + (data.multiple ? "Collection" : data.fieldType) + "\n" +
 			"     */\n" +
 			"    public function " + (verb ? verb : "get") + data.xetterName + "()\n" +
 			"    {\n" +
