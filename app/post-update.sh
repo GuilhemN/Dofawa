@@ -13,6 +13,7 @@ composer install
 app/console cache:clear -e dev
 app/console cache:clear -e prod
 
+app/console doctrine:schema:update --dump-sql
 app/console doctrine:schema:update --force
 
 chown -R www-data:www-data app/cache
