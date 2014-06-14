@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Collection;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Dof\MapBundle\Entity\SubArea;
+
 /**
  * AnimalTemplate
  *
@@ -35,12 +37,13 @@ class AnimalTemplate extends EquipmentTemplate
      */
     private $favoriteAreaBonus;
 
-	/* (no /** because attr is disabled, because only partly defined for now)
+	/**
 	 * @var Collection
 	 *
-	 * @ORM\ManyToMany(targetEntity="**TBD**")
+	 * @ORM\ManyToMany(targetEntity="Dof\MapBundle\Entity\SubArea")
+     * @ORM\JoinTable(name="dof_animal_favorite_areas")
 	 */
-	//private $favoriteAreas;
+	private $favoriteAreas;
 
     /**
      * @var integer
@@ -52,6 +55,7 @@ class AnimalTemplate extends EquipmentTemplate
 	public function __construct()
 	{
 		parent::__construct();
+        $this->favoriteAreas = new ArrayCollection();
 	}
 
     /**
@@ -144,6 +148,42 @@ class AnimalTemplate extends EquipmentTemplate
     public function getSize()
     {
         return $this->size;
+    }
+
+    /**
+     * Add favoriteAreas
+     *
+     * @param SubArea $favoriteAreas
+     * @return AnimalTemplate
+     */
+    public function addFavoriteArea(SubArea $favoriteAreas)
+    {
+        $this->favoriteAreas[] = $favoriteAreas;
+
+        return $this;
+    }
+
+    /**
+     * Remove favoriteAreas
+     *
+     * @param SubArea $favoriteAreas
+     * @return AnimalTemplate
+     */
+    public function removeFavoriteArea(SubArea $favoriteAreas)
+    {
+        $this->favoriteAreas->removeElement($favoriteAreas);
+
+        return $this;
+    }
+
+    /**
+     * Get favoriteAreas
+     *
+     * @return Collection
+     */
+    public function getFavoriteAreas()
+    {
+        return $this->favoriteAreas;
     }
 
 	public function isAnimal() { return true; }

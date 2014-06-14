@@ -15,6 +15,8 @@ use XN\DataBundle\SluggableTrait;
 use XN\DataBundle\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
+use XN\DataBundle\LocalizedNameTrait;
+use XN\DataBundle\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
 /**
@@ -33,11 +35,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait, ReleaseBoundTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
     /**
      * @var ItemType
@@ -50,16 +51,58 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=150)
+     * @ORM\Column(name="obtainment_fr", type="text", nullable=true)
      */
-    private $name;
+    private $obtainmentFr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="obtainment_en", type="text", nullable=true)
      */
-    private $description;
+    private $obtainmentEn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="obtainment_de", type="text", nullable=true)
+     */
+    private $obtainmentDe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="obtainment_es", type="text", nullable=true)
+     */
+    private $obtainmentEs;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="obtainment_it", type="text", nullable=true)
+     */
+    private $obtainmentIt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="obtainment_pt", type="text", nullable=true)
+     */
+    private $obtainmentPt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="obtainment_jp", type="text", nullable=true)
+     */
+    private $obtainmentJp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="obtainment_ru", type="text", nullable=true)
+     */
+    private $obtainmentRu;
 
     /**
      * @var string
@@ -138,11 +181,54 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $visible;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="preliminary", type="boolean")
+     */
+    private $preliminary;
+
+    /**
+     * @var Job
+     *
+     * @ORM\ManyToOne(targetEntity="Job", inversedBy="gatherableItems")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $gatheringJob;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="gathering_job_min_level", type="integer", nullable=true)
+     */
+    private $gatheringJobMinLevel;
+
+    /**
+     * @var Job
+     *
+     * @ORM\ManyToOne(targetEntity="Job", inversedBy="craftableItems")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $craftingJob;
+
     public function __construct()
     {
         $this->effects = new ArrayCollection();
         $this->components = new ArrayCollection();
         $this->compounds = new ArrayCollection();
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return ItemTemplate
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -179,49 +265,238 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set name
+     * Set obtainmentFr
      *
-     * @param string $name
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
+     * @param string $obtainmentFr
      * @return ItemTemplate
      */
-    public function setDescription($description)
+    public function setObtainmentFr($obtainmentFr)
     {
-        $this->description = $description;
+        $this->obtainmentFr = $obtainmentFr;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get obtainmentFr
      *
      * @return string
      */
-    public function getDescription()
+    public function getObtainmentFr()
     {
-        return $this->description;
+        return $this->obtainmentFr;
+    }
+
+    /**
+     * Set obtainmentEn
+     *
+     * @param string $obtainmentEn
+     * @return ItemTemplate
+     */
+    public function setObtainmentEn($obtainmentEn)
+    {
+        $this->obtainmentEn = $obtainmentEn;
+
+        return $this;
+    }
+
+    /**
+     * Get obtainmentEn
+     *
+     * @return string
+     */
+    public function getObtainmentEn()
+    {
+        return $this->obtainmentEn;
+    }
+
+    /**
+     * Set obtainmentDe
+     *
+     * @param string $obtainmentDe
+     * @return ItemTemplate
+     */
+    public function setObtainmentDe($obtainmentDe)
+    {
+        $this->obtainmentDe = $obtainmentDe;
+
+        return $this;
+    }
+
+    /**
+     * Get obtainmentDe
+     *
+     * @return string
+     */
+    public function getObtainmentDe()
+    {
+        return $this->obtainmentDe;
+    }
+
+    /**
+     * Set obtainmentEs
+     *
+     * @param string $obtainmentEs
+     * @return ItemTemplate
+     */
+    public function setObtainmentEs($obtainmentEs)
+    {
+        $this->obtainmentEs = $obtainmentEs;
+
+        return $this;
+    }
+
+    /**
+     * Get obtainmentEs
+     *
+     * @return string
+     */
+    public function getObtainmentEs()
+    {
+        return $this->obtainmentEs;
+    }
+
+    /**
+     * Set obtainmentIt
+     *
+     * @param string $obtainmentIt
+     * @return ItemTemplate
+     */
+    public function setObtainmentIt($obtainmentIt)
+    {
+        $this->obtainmentIt = $obtainmentIt;
+
+        return $this;
+    }
+
+    /**
+     * Get obtainmentIt
+     *
+     * @return string
+     */
+    public function getObtainmentIt()
+    {
+        return $this->obtainmentIt;
+    }
+
+    /**
+     * Set obtainmentPt
+     *
+     * @param string $obtainmentPt
+     * @return ItemTemplate
+     */
+    public function setObtainmentPt($obtainmentPt)
+    {
+        $this->obtainmentPt = $obtainmentPt;
+
+        return $this;
+    }
+
+    /**
+     * Get obtainmentPt
+     *
+     * @return string
+     */
+    public function getObtainmentPt()
+    {
+        return $this->obtainmentPt;
+    }
+
+    /**
+     * Set obtainmentJp
+     *
+     * @param string $obtainmentJp
+     * @return ItemTemplate
+     */
+    public function setObtainmentJp($obtainmentJp)
+    {
+        $this->obtainmentJp = $obtainmentJp;
+
+        return $this;
+    }
+
+    /**
+     * Get obtainmentJp
+     *
+     * @return string
+     */
+    public function getObtainmentJp()
+    {
+        return $this->obtainmentJp;
+    }
+
+    /**
+     * Set obtainmentRu
+     *
+     * @param string $obtainmentRu
+     * @return ItemTemplate
+     */
+    public function setObtainmentRu($obtainmentRu)
+    {
+        $this->obtainmentRu = $obtainmentRu;
+
+        return $this;
+    }
+
+    /**
+     * Get obtainmentRu
+     *
+     * @return string
+     */
+    public function getObtainmentRu()
+    {
+        return $this->obtainmentRu;
+    }
+
+    /**
+     * Set obtainment
+     *
+     * @param string $obtainment
+     * @param string $locale
+     * @return object
+     */
+    public function setObtainment($obtainment, $locale = 'fr')
+    {
+        switch ($locale) {
+            case 'fr': $this->obtainmentFr = $obtainment; break;
+            case 'en': $this->obtainmentEn = $obtainment; break;
+            case 'de': $this->obtainmentDe = $obtainment; break;
+            case 'es': $this->obtainmentEs = $obtainment; break;
+            case 'it': $this->obtainmentIt = $obtainment; break;
+            case 'pt': $this->obtainmentPt = $obtainment; break;
+            case 'jp': $this->obtainmentJp = $obtainment; break;
+            case 'ru': $this->obtainmentRu = $obtainment; break;
+        }
+        return $this;
+    }
+
+    /**
+     * Get obtainment
+     *
+     * @param string|array $locale
+     * @return string
+     */
+    public function getObtainment($locale = 'fr')
+    {
+        if (is_array($locale)) {
+            foreach ($locale as $loc) {
+                $obtainment = $this->getObtainment($loc);
+                if ($obtainment !== null)
+                    return $obtainment;
+            }
+            return null;
+        }
+        switch ($locale) {
+            case 'fr': return $this->obtainmentFr;
+            case 'en': return $this->obtainmentEn;
+            case 'de': return $this->obtainmentDe;
+            case 'es': return $this->obtainmentEs;
+            case 'it': return $this->obtainmentIt;
+            case 'pt': return $this->obtainmentPt;
+            case 'jp': return $this->obtainmentJp;
+            case 'ru': return $this->obtainmentRu;
+            default: return null;
+        }
     }
 
     /**
@@ -502,7 +777,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     {
         return $this->compounds;
     }
-    
+
     /**
      * Set visible
      *
@@ -536,9 +811,111 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         return $this->visible;
     }
 
+    /**
+     * Set preliminary
+     *
+     * @param boolean $preliminary
+     * @return ItemTemplate
+     */
+    public function setPreliminary($preliminary)
+    {
+        $this->preliminary = $preliminary;
+
+        return $this;
+    }
+
+    /**
+     * Get preliminary
+     *
+     * @return boolean
+     */
+    public function getPreliminary()
+    {
+        return $this->preliminary;
+    }
+
+    /**
+     * Get preliminary
+     *
+     * @return boolean
+     */
+    public function isPreliminary()
+    {
+        return $this->preliminary;
+    }
+
+    /**
+     * Set gatheringJob
+     *
+     * @param Job $gatheringJob
+     * @return ItemTemplate
+     */
+    public function setGatheringJob(Job $gatheringJob = null)
+    {
+        $this->gatheringJob = $gatheringJob;
+
+        return $this;
+    }
+
+    /**
+     * Get gatheringJob
+     *
+     * @return Job
+     */
+    public function getGatheringJob()
+    {
+        return $this->gatheringJob;
+    }
+
+    /**
+     * Set gatheringJobMinLevel
+     *
+     * @param integer $gatheringJobMinLevel
+     * @return ItemTemplate
+     */
+    public function setGatheringJobMinLevel($gatheringJobMinLevel)
+    {
+        $this->gatheringJobMinLevel = $gatheringJobMinLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get gatheringJobMinLevel
+     *
+     * @return integer
+     */
+    public function getGatheringJobMinLevel()
+    {
+        return $this->gatheringJobMinLevel;
+    }
+    
+    /**
+     * Set craftingJob
+     *
+     * @param Job $craftingJob
+     * @return ItemTemplate
+     */
+    public function setCraftingJob(Job $craftingJob = null)
+    {
+        $this->craftingJob = $craftingJob;
+
+        return $this;
+    }
+
+    /**
+     * Get craftingJob
+     *
+     * @return Job
+     */
+    public function getCraftingJob()
+    {
+        return $this->craftingJob;
+    }
+
     public function __toString()
     {
-        return $this->name;
+        return $this->nameFr;
     }
 
     public function isEquipment() { return false; }

@@ -13,7 +13,10 @@ use XN\DataBundle\TimestampableTrait;
 use XN\DataBundle\SluggableInterface;
 use XN\DataBundle\SluggableTrait;
 
+use XN\DataBundle\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
+
+use Dof\ItemsBundle\ItemTemplateFactory;
 
 /**
  * ItemType
@@ -28,18 +31,10 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ReleaseBoundTrait;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=150)
-     */
-    private $name;
+    use TimestampableTrait, SluggableTrait, ReleaseBoundTrait, LocalizedNameTrait;
 
     /**
      * @var integer
@@ -68,6 +63,19 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
+     * Set id
+     *
+     * @param integer $id
+     * @return ItemType
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -75,29 +83,6 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return ItemType
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -182,8 +167,17 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
         return $this->items;
     }
 
+    public function createItemTemplate($autoAdd = true)
+    {
+        $item = ItemTemplateFactory::createItemTemplate($this->getSlot(), $this->getId());
+        $item->setType($this);
+        if ($autoAdd)
+            $this->addItem($item);
+        return $item;
+    }
+
     public function __toString()
     {
-        return $this->name;
+        return $this->nameFr;
     }
 }

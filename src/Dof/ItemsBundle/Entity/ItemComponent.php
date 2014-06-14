@@ -4,13 +4,15 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\DataBundle\IdentifiableInterface;
+
 /**
  * ItemComponent
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_item_components")
  * @ORM\Entity(repositoryClass="ItemComponentRepository")
  */
-class ItemComponent
+class ItemComponent implements IdentifiableInterface
 {
     /**
      * @var integer
