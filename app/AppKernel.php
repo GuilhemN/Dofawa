@@ -29,6 +29,8 @@ class AppKernel extends Kernel
             
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
+            new Dof\MapBundle\DofMapBundle(),
+            new Dof\GraphicsBundle\DofGraphicsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

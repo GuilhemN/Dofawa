@@ -1,3 +1,11 @@
+#dof_graphics:
+#    resource: "@DofGraphicsBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#dof_map:
+#    resource: "@DofMapBundle/Resources/config/routing.yml"
+#    prefix:   /
+
 dof_main:
     resource: "@DofMainBundle/Resources/config/routing.yml"
     prefix:   /

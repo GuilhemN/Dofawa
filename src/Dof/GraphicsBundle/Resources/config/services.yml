@@ -1,0 +1,7 @@
+parameters:
+#    dof_graphics.example.class: Dof\GraphicsBundle\Example
+
+services:
+#    dof_graphics.example:
+#        class: %dof_graphics.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
