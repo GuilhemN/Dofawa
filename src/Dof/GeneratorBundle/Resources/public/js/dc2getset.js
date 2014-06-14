@@ -67,6 +67,7 @@ function generateCode(data) {
 // { fieldName: string, fieldType: string, entityName: string, xetterName: string, xetterSingularName: string, relation: boolean, multiple: boolean, nullable: boolean, generatedCode: string }
 formHooks['main-form'] = {
 	postExport: function (data) {
+		formHooks['main-form'].preImport.call(this, data);
 		var data2 = Object.create(data);
 		if (data2.fieldName && !data2.xetterName) {
 			data2.xetterName = data2.fieldName.charAt(0).toUpperCase() + data2.fieldName.substring(1);
