@@ -2,7 +2,7 @@
 
 {% block breadcrumb %} 
 	{{ parent() }} 
-	> {{ 'profil'|trans({}, 'profile')}} 
+	> <a href="{{ path('fos_user_profile_show') }}">{{ 'profil'|trans({}, 'profile')}}</a> 
 	> {{ 'edit'|trans({}, 'generalTrans')}}
 
 {% endblock %}
