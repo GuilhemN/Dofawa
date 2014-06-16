@@ -47,7 +47,7 @@ class ProfileFormType extends BaseForm
             ->add('guilde', null, array('label' => 'inputs.guild', 'translation_domain' => 'profile'))
             ->add('lieu', null, array('label' => 'inputs.location', 'translation_domain' => 'profile'))
             ->add('site', null, array('label' => 'inputs.website', 'translation_domain' => 'profile'))
-            ->add('born', 'date', array('label' => 'inputs.date.born', 'translation_domain' => 'profile', 'years' => array('min' => '1970', 'max' => '2013')))
+            ->add('born', 'date', array('label' => 'inputs.date.born', 'translation_domain' => 'profile', 'years' => range(1930, date('Y'))))
         ;
     }
 
