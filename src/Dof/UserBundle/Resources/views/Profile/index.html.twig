@@ -6,13 +6,15 @@
 {% endblock %}
 
 {% block body %}
-<section id="identite">
-	<h1>{{ 'profil' | trans({}, 'profile') }}
-		{% if app.user.id == user.id %}
-		<span class="form">
+	{% if app.user.id == user.id %}
+		<span class="form editbtn">
 			<a class="btn" href="{{ path('fos_user_profile_edit') }}">{{ 'edit' | trans({}, 'generalTrans') }}</a>
 		</span>
-		{% endif %}
+	{% endif %}
+<section id="identite">
+	<h1>
+		{{ 'profil' | trans({}, 'profile') }}
+
 	</h1>
 	<section id="infosprofil">
 		<table>
