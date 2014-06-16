@@ -1,3 +1,0 @@
-dof_profile_userpage:
-    pattern:  /{name_user}
-    defaults: { _controller: DofUserBundle:Profile:userpage }
