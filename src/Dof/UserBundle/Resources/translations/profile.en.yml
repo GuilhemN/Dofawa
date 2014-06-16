@@ -3,10 +3,13 @@ of: %name% Profile
 inputs:
     points: Number of points
     nbvisits: Number of visits
+    characters: Characters
     location: Location
     guild: Guild
     website: Website
     badges: Badges
+    persos: Characters of %name%
     date:
         registration: Registered on
         born: Born
+    
