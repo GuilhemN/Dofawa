@@ -1,6 +1,7 @@
 mine: Mon profil
 of: Profil de %name%
 profil: Profil
+editprofile: Edition de votre profil
 inputs:
     point: Nombre de points
     characters: Personnages

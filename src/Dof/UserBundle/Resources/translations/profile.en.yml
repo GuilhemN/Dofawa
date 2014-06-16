@@ -1,5 +1,6 @@
 mine: My profile
 of: %name% Profile
+editprofile: Edit your profile
 inputs:
     points: Number of points
     nbvisits: Number of visits

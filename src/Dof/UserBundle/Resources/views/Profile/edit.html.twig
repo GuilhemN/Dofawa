@@ -1,5 +1,11 @@
 {% extends "::layout.html.twig" %}
 
+{% block breadcrumb %} 
+	{{ parent() }} 
+	> {{ 'editprofile'|trans({}, 'profile')}}
+
+{% endblock %}
+
 {% block body %}
 {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
 {% endblock body %}
