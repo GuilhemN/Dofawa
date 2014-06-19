@@ -60,6 +60,10 @@ nav#top {
 				background: rgba(0, 0, 0, 0.8);
 				padding: 3px 0;
 
+				&.padding{
+					padding: 10px 20px;
+				}
+
 				@media screen and (min-width : @minlarge){
 					position: absolute;
 					text-align: left;
@@ -85,7 +89,7 @@ nav#top {
 					& > ul{
 						@media screen and (min-width: @minlarge){
 							float:left;
-							width: 100px;
+							width: 160px;
 						}
 						/*Lien individuel*/
 						& > li{
