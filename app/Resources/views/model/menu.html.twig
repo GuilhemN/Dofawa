@@ -20,12 +20,12 @@
                 </li>
                 <li>
                   <a href="#">
-                    Equipements
+                    {{ 'equipments.main' | transchoice(2, {}, 'type_item')}}
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    Armes
+                    {{ 'weapons.main' | transchoice(2, {}, 'type_item')}}
                   </a>
                 </li>
                 <li>
