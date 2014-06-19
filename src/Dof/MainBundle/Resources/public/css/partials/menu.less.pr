@@ -58,6 +58,7 @@ nav#top {
 			& > ul.dropdown {
 				display: none;
 				background: rgba(0, 0, 0, 0.8);
+				padding: 3px 0;
 
 				@media screen and (min-width : @minlarge){
 					position: absolute;
@@ -88,14 +89,14 @@ nav#top {
 						}
 						/*Lien individuel*/
 						& > li{
-							padding: 10px 20px;
+							padding: 0 20px;
 							display: block;
 							line-height: 24px;
 							font-variant: small-caps;
 							text-transform: lowercase;
 
 							&:hover{
-								background: orange;
+								background: #97A801;
 							}
 
 							& > a {
