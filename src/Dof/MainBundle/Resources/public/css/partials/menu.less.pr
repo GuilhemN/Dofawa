@@ -58,7 +58,6 @@ nav#top {
 			& > ul.dropdown {
 				display: none;
 				background: rgba(0, 0, 0, 0.8);
-				padding: 10px 20px;
 
 				@media screen and (min-width : @minlarge){
 					position: absolute;
@@ -89,9 +88,15 @@ nav#top {
 						}
 						/*Lien individuel*/
 						& > li{
+							padding: 10px 20px;
+							display: block;
 							line-height: 24px;
 							font-variant: small-caps;
 							text-transform: lowercase;
+
+							&:hover{
+								background: orange;
+							}
 
 							& > a {
 								color: #FFF;
@@ -103,6 +108,7 @@ nav#top {
 			}
 		}
 
+		//Logo du site
 		& > li#logo{
 
 			@media screen and (min-width : @minlarge){
@@ -112,7 +118,7 @@ nav#top {
 				color: transparent;
 
 				span:before{
-					content:"dofawa";
+					content: "d";
 				}
 			}
 
@@ -121,6 +127,7 @@ nav#top {
 			}
 		}
 
+		//Bouton d'ouverture mobile
 		& > li:first-child{
 			@media screen and (min-width : @minlarge){
 				display:none;
