@@ -7,7 +7,7 @@
         </li>
         <li class="cached">
           <a href="#">
-            Krosmoz
+            Objets
           </a>
 
           <ul class="dropdown">
@@ -15,17 +15,62 @@
               <ul>
                 <li>
                   <a href="#">
-                    test
+                    Panoplies
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    test
+                    Equipements
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    test
+                    Armes
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Familiers
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Dofus
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Ressources
+                  </a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li>
+                  <a href="#">
+                    Ajouter un item
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+        <li class="cached">
+          <a href="#">
+            Univers
+          </a>
+
+          <ul class="dropdown">
+            <li>
+              <ul>
+                <li>
+                  <a href="#">
+                    Quêtes
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Tutoriels
                   </a>
                 </li>
               </ul>
@@ -35,7 +80,7 @@
         </li>
         <li class="cached">
           <a href="#">
-            Actualités
+            Outils
           </a>
 
           <ul class="dropdown">
@@ -43,45 +88,22 @@
               <ul>
                 <li>
                   <a href="#">
-                    test
+                    Builds
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    test
+                    Recherche de build
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    test
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-
-        </li>
-        <li class="cached">
-          <a href="#">
-            Encyclopédie
-          </a>
-
-          <ul class="dropdown">
-            <li>
-              <ul>
-                <li>
-                  <a href="#">
-                    test
+                    Les guildes
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    test
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    test
+                    Calculateurs
                   </a>
                 </li>
               </ul>
@@ -94,7 +116,7 @@
         </li>
         <li class="cached">
           <a href="#">
-            Communauté
+            La communauté
           </a>
 
           <ul class="dropdown">
@@ -102,99 +124,50 @@
               <ul>
                 <li>
                   <a href="#">
-                    test
+                    Fan-art
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    test
+                    Skins
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    test
+                    Forum officiel des créations
                   </a>
                 </li>
               </ul>
             </li>
           </ul>
-
         </li>
+
         <li class="cached">
           <a href="#">
-            Calendrier
+            Fan-site
           </a>
 
-          <ul class="dropdown r2">
-            <li>
-              <span>
-                Les Events Dofusiens
-              </span>
-            </li>
+          <ul class="dropdown">
             <li>
               <ul>
                 <li>
                   <a href="#">
-                    Javian
+                    Les news
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    Flovor
+                    Twitter
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    Martalo
+                    Facebook
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    Aperirel
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Maisial
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Juinssidor
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <ul>
-                <li>
-                  <a href="#">
-                    Jouillet
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Fraouctor
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Septange
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Octolliard
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Novamaire
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Descendre
+                    [...] Partenaires
                   </a>
                 </li>
               </ul>
@@ -202,6 +175,7 @@
           </ul>
 
         </li>
+
         <li class="cached">
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
           <a href="#">
@@ -219,6 +193,11 @@
                 <li>
                   <a href="{{ path('dof_profile_userpage', {'name_user': app.user.getUsername()}) }}">
                     {{ 'mine'|trans({}, 'profile') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Messagerie
                   </a>
                 </li>
               </ul>
