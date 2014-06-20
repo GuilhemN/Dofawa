@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Dofawa{% endblock %}</title>
+
+  <link rel="stylesheet" href="{{ asset('bundles/xnutility/css/utlcat.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('bundles/dofmain/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('bundles/dofarticles/css/moduleright.min.css')}}">
+
+  {% block style %}
+  {% endblock %}
+
+  <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
+  <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="DESCRIPTION" content="Dofawa est un fan site dédié à l'univers de dofus avec de nombreux tutoriels, conseils et astuces pour Dofus et ses donjons " />
+
+  <meta name="KEYWORDS" content="dofus ,astuces, quêtes, donjon, dofus build , tutoriels dofus , calculateur dofus, secrets, solutions, dofus tutoriels , donjons dofus , succès dofus, dofus fan site , astuces kamas , dofus frigost , dofus 2.0, élevage dofus, builds dofus, avatars dofus" />
+
+  <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+  <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/jquery-2.1.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/utlcat.min.js') }}"></script>
+
+  <script defer type="text/javascript" src="http://c.ad6media.fr/l.js"></script> 
+
+  <script type="text/javascript" defer async>
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36904065-1']);
+    _gaq.push(['_setDomainName', 'dofawa.fr']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <!-- Conteneur principal -->
+  <div class="container">
+
+    <!-- Barre de navigation -->
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <!-- Bouton apparaissant sur les résolutions mobiles afin de faire apparaître le menu de navigation -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Responsive Design</a>
+        <!-- Structure du menu -->
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">Accueil</a></li>
+            <li><a href="#">A propos</a></li>
+            <li><a href="#">Contactez-nous</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

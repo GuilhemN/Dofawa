@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-	public function indexAction()
+	public function indexAction($type = '')
 	{
 		$u = $this->get('security.context')->getToken()->getUser();
 
@@ -19,6 +19,10 @@ class DefaultController extends Controller
 			$article->setMessage(preg_replace('/<img(.*?)>/', '', $content));
 		}
 
-		return $this->render('DofMainBundle:Home:index.html.twig', array('articles'=>$articles));
+		if($type =='')
+			return $this->render('DofMainBundle:Home:index.html.twig', array('articles'=>$articles));
+		else
+			return $this->render('::bootstraplayout.html.twig', array('articles'=>$articles));
+
 	}
 }
