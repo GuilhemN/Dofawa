@@ -153,6 +153,7 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            {% if app.user is null %}
             <li class="dropdown" id="menuLogin">
               <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
               <div class="dropdown-menu" style="padding:17px;">
@@ -160,6 +161,28 @@
               </div>
             </li>
             <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+            {% else %}
+            <li class="dropdown" id="menuLogin">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ app.user.username }}</a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ path('dof_profile_userpage', {'name_user': app.user.getUsername()}) }}">
+                    {{ 'mine'|trans({}, 'profile') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Messagerie
+                  </a>
+                </li>
+              </div>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
