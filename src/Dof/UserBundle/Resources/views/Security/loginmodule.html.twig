@@ -4,8 +4,8 @@
 
     <input  type="text" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" id="username" name="_username" value="{{ last_username }}">
     <input type="password" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" id="password" name="_password"><br>
-    <button type="submit" id="btnLogin" class="btn">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</button>
+    <button type="submit" id="btnLogin" class="btn">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
 
 	<br><br>
-	<label>Se souvenir de moi <input id="remember_me" name="_remember_me" value="on" type="checkbox" /></label>
+	<label><input id="remember_me" name="_remember_me" value="on" type="checkbox" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}i</label>
 </form>
