@@ -82,48 +82,81 @@
             </li>
 
             {# Nav #}
-            <li class="active"><a href="{{ path('dof_main_homepage') }}">Home</a></li>
+            <li {% if app.request.get('_route') == 'dof_main_homepage' %}class="active"{% endif %}><a href="{{ path('dof_main_homepage') }}">Home</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Objets <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Panoplies</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Items</li>
                 <li><a href="#">Equipements</a></li>
                 <li><a href="#">Armes</a></li>
+                <li><a href="#">Familiers</a></li>
+                <li><a href="#">Ressources</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Quêtes</a></li>
+            <li><a href="#">Tutoriels</a></li>
+            <li><a href="#">Donjons</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outils <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">Stuffs</li>
+                {% if app.user is not null %}
+                <li><a href="#">Mes builds</a></li>
+                {% endif %}
+                <li><a href="#">Recherche de build</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li class="dropdown-header">Autres</li>
+                <li><a href="#">Les guildes</a></li>
+                <li><a href="#">Calculateurs</a></li>
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outils <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li class="dropdown-header">Stuffs</li>
+                {% if app.user is not null %}
+                <li><a href="#">Mes builds</a></li>
+                {% endif %}
+                <li><a href="#">Recherche de build</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li class="dropdown-header">Autres</li>
+                <li><a href="#">Les guildes</a></li>
+                <li><a href="#">Calculateurs</a></li>
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">La communauté <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Fan-art</a></li>
+                <li><a href="#">Skins</a></li>
+                <li><a href="#">Forum officiel</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fan-sites <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">Dofawa</li>
+                <li><a href="#">Les News</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Facebook</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li class="dropdown-header">Nos partenaires</li>
+                <li><a href="#">Dofusblog</a></li>
+                <li><a href="#">[...]</a></li>
               </ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top</a></li>
+            <li class="dropdown" id="menuLogin">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+              <div class="dropdown-menu" style="padding:17px;">
+                {{ render(controller('DofUserBundle:Security:modulelogin', { 'module': 'module' })) }}
+              </div>
+            </li>
+            <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
           </ul>
         </div>
       </div>

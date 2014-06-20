@@ -1,19 +1,11 @@
 <form action="{{ path("fos_user_security_check") }}" method="post">
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-	<li>
-		<input type="text" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" id="username" name="_username" value="{{ last_username }}" required="required" />
-	</li>
-	<li>
-		<input type="password" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" id="password" name="_password" required="required" />
-	</li>
-	<li>
-		 <input type="submit">
-	</li>
-	<li>
-		<a class="btn" href="{{ path('fos_user_registration_register') }}">
-			{{ 'layout.register'|trans({}, 'FOSUserBundle') }}
-		</a>
-	</li>
-	<input type="hidden" id="remember_me" name="_remember_me" value="on" />
+
+    <input  type="text" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" id="username" name="_username" value="{{ last_username }}">
+    <input type="password" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" id="password" name="_password"><br>
+    <button type="button" id="btnLogin" class="btn">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</button>
+
+	<br><br>
+	<label>Se souvenir de moi <input id="remember_me" name="_remember_me" value="on" /></label>
 </form>
