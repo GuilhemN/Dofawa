@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-	{% if app.id != null and app.user.id == user.id %}
+	{% if app.user.id != null and app.user.id == user.id %}
 		<span class="form editbtn">
 			<a class="btn" href="{{ path('fos_user_profile_edit') }}">{{ 'edit' | trans({}, 'generalTrans') }}</a>
 		</span>
