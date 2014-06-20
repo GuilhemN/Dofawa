@@ -4,9 +4,7 @@
   <meta charset="utf-8">
   <title>{% block title %}Dofawa{% endblock %}</title>
 
-  <link rel="stylesheet" href="{{ asset('bundles/xnutility/css/utlcat.min.css') }}">
   <link rel="stylesheet" href="{{ asset('bundles/dofmain/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('bundles/dofarticles/css/moduleright.min.css')}}">
 
   {% block style %}
   {% endblock %}
@@ -95,9 +93,14 @@
                 <li><a href="#">Ressources</a></li>
               </ul>
             </li>
-            <li><a href="#">Quêtes</a></li>
-            <li><a href="#">Tutoriels</a></li>
-            <li><a href="#">Donjons</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Univers <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Quêtes</a></li>
+                <li><a href="#">Tutoriels</a></li>
+                <li><a href="#">Donjons</a></li>
+              </ul>
+            </li>
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outils <b class="caret"></b></a>
