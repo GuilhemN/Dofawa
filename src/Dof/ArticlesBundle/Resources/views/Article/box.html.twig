@@ -1,3 +1,13 @@
+<div class="col-sm-6 col-md-4">
+<div class="thumbnail content">
+		<div class="caption">
+			<h3>{{ article.titre }}</h3>
+			<p>{{ article.message| truncatehtml('200')|raw}}</p>
+			<p><a href="#" class="btn btn-primary" role="button">See</a></p>
+		</div>
+	</div>
+</div>
+{#
 <article class="wblock3">
 	<div class="breadcrumb">
 		<h1>
@@ -14,3 +24,4 @@
 		{{ article.message| truncatehtml('200')|raw}}
 	</div>
 </article>
+#}
