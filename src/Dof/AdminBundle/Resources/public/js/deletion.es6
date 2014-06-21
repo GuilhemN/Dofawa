@@ -1,7 +1,7 @@
 var ajaxDelete = wrapAsync(function* ajaxDelete(url, description, e) {
 if (yield dialogConfirm('Voulez-vous vraiment supprimer ' + description + ' ?'))
 	 try {
-        var { data: response } = yield ajax(...);
+        var { data: response } = yield ajax({ url: url, type: 'DELETE' });
 
 		e.parentNode.parentNode.remove();
     } catch (err) {
