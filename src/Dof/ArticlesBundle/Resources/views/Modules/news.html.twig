@@ -6,6 +6,9 @@
     {% for article in articles %}
     <a class="list-group-item" href="#" title="{{article.titre}}">
       {{article.titre | striptags | slice(0, 40) }}
+      {% if  article.titre | length > 40 %}
+      ...
+      {% endif  %}
     </a>
     {% endfor %}
   </div>
