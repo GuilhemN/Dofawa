@@ -13,6 +13,8 @@ use Dof\UserBundle\Entity\User;
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 use FOS\UserBundle\Model\UserInterface;
 
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+
 class ProfileController extends BaseController
 {
 	/**

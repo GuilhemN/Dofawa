@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>{% block title %}Dofawa{% endblock %}</title>
 
+  <link rel="stylesheet" href="{{ asset('bundles/xnutility/css/utlcat.min.css') }}">
   <link rel="stylesheet" href="{{ asset('bundles/dofmain/css/newmain.min.css') }}">
 
   {% block style %}
@@ -56,7 +57,7 @@
           <header>
             <ol class="breadcrumb" itemscope itemtype="http://schema.org/breadcrumb">
               {% block breadcrumb %}
-              <li>{{ 'menu_haut.home' | trans()}}</li>
+              <li><a href="{{ path('dof_main_homepage') }}">{{ 'menu_haut.home' | trans()}}</a></li>
               {% endblock %}
             </ol>
           </header>
