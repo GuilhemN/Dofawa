@@ -1,0 +1,3 @@
+dof_characters_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: DofCharactersBundle:Default:index }

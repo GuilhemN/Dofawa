@@ -1,14 +1,18 @@
+#dof_characters:
+#    resource: "@DofCharactersBundle/Resources/config/routing.yml"
+#    prefix:   /characters
+
 dof_admin:
     resource: "@DofAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
 
 #dof_graphics:
 #    resource: "@DofGraphicsBundle/Resources/config/routing.yml"
-#    prefix:   /
+#    prefix:   /graphics
 
 #dof_map:
 #    resource: "@DofMapBundle/Resources/config/routing.yml"
-#    prefix:   /
+#    prefix:   /map
 
 dof_main:
     resource: "@DofMainBundle/Resources/config/routing.yml"
@@ -16,7 +20,7 @@ dof_main:
 
 dof_items:
     resource: "@DofItemsBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /items
 
 # To get the application root path :
 # PHP :
