@@ -1,10 +1,385 @@
-{% extends "model/layout.html.twig" %}
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Dofawa{% endblock %}</title>
 
+  <link rel="stylesheet" href="{{ asset('bundles/dofmain/css/newmain.min.css') }}">
 
-{% block modelbody %}
-  <div class="contenu padding">
-    {% block body %}
-    {% endblock %}
-    <div class="clear"></div>
+  {% block style %}
+  {% endblock %}
+
+  <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
+  <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="DESCRIPTION" content="Dofawa est un fan site dédié à l'univers de dofus avec de nombreux tutoriels, conseils et astuces pour Dofus et ses donjons " />
+
+  <meta name="KEYWORDS" content="dofus ,astuces, quêtes, donjon, dofus build , tutoriels dofus , calculateur dofus, secrets, solutions, dofus tutoriels , donjons dofus , succès dofus, dofus fan site , astuces kamas , dofus frigost , dofus 2.0, élevage dofus, builds dofus, avatars dofus" />
+
+  <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+  <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/jquery-2.1.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/utlcat.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/dofmain/js/bootstrap.min.js') }}"></script>
+
+  <script defer type="text/javascript" src="http://c.ad6media.fr/l.js"></script> 
+
+  <script type="text/javascript" defer async>
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36904065-1']);
+    _gaq.push(['_setDomainName', 'dofawa.fr']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  {# Barre de navigation fixe #}
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ path('dof_main_homepage') }}">Dofawa</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          {# Languages switcher#}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/dofmain/images/flag/' ~ app.request.getLocale() ~ '.png') }}" alt="" /><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ path(app.request.get('_route'),
+                app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) ) }}">
+                English
+              </a></li>
+              <li><a href="{{ path(app.request.get('_route'),
+                app.request.attributes.get('_route_params')|merge({'_locale': 'fr'}) ) }}">
+                Français
+              </a></li>
+              <li><a href="{{ path(app.request.get('_route'),
+                app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) }}">
+                Español
+              </a></li>
+              <li><a href="{{ path(app.request.get('_route'),
+                app.request.attributes.get('_route_params')|merge({'_locale': 'de'}) ) }}">
+                Deutsch
+              </a></li>
+            </ul>
+          </li>
+
+          {# Nav #}
+          <li {% if app.request.get('_route') == 'dof_main_homepage' %}class="active"{% endif %}><a href="{{ path('dof_main_homepage') }}">Home</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Objets <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Panoplies</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Items</li>
+              <li><a href="#">Equipements</a></li>
+              <li><a href="#">Armes</a></li>
+              <li><a href="#">Familiers</a></li>
+              <li><a href="#">Ressources</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Univers <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Quêtes</a></li>
+              <li><a href="#">Tutoriels</a></li>
+              <li><a href="#">Donjons</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outils <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header">Stuffs</li>
+              {% if app.user is not null %}
+              <li><a href="#">Mes builds</a></li>
+              {% endif %}
+              <li><a href="#">Recherche de build</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Autres</li>
+              <li><a href="#">Les guildes</a></li>
+              <li><a href="#">Calculateurs</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outils <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header">Stuffs</li>
+              {% if app.user is not null %}
+              <li><a href="#">Mes builds</a></li>
+              {% endif %}
+              <li><a href="#">Recherche de build</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Divers</li>
+              <li><a href="#">Les guildes</a></li>
+              <li><a href="#">Calculateurs</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Créations des joueurs</li>
+              <li><a href="#">Fan-art</a></li>
+              <li><a href="#">Skins</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fan-sites <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header">Dofawa</li>
+              <li><a href="#">Les News</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nos partenaires</li>
+              <li><a href="#">Dofusblog</a></li>
+              <li><a href="#">[...]</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if app.user is null %}
+          <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            <div class="dropdown-menu" style="padding:17px;">
+              {{ render(controller('DofUserBundle:Security:modulelogin', { 'module': 'module' })) }}
+              {# Lien d'inscription #}
+              <div class="visible-sm">
+                <br>
+                <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+              </div>
+            </div>
+          </li>
+          <li class="hidden-sm"><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+          {% else %}
+          <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ app.user.username }}</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="{{ path('fos_user_security_logout') }}">
+                  {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('dof_profile_userpage', {'name_user': app.user.getUsername()}) }}">
+                  {{ 'mine'|trans({}, 'profile') }}
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Messagerie
+                </a>
+              </li>
+            </div>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
   </div>
-{% endblock %}
+
+  {# Contenu principal #}
+  <div class="container" style="margin-top: 60px;">
+    <div class="row">
+      {# Colonne principale, à gauche #}
+      <div class="col-sm-7 col-lg-8 nopadding" itemscope itemtype="http://schema.org/mainContentOfPage">
+        <section class="col-xs-12 col-sm-11 content-box nopadding">
+          <header>
+            <ol class="breadcrumb" itemscope itemtype="http://schema.org/breadcrumb">
+              {% block breadcrumb %}
+              <li>Accueil</li>
+              {% endblock %}
+            </ol>
+          </header>
+
+          {# Contenu principal #}
+          {% block modelbody %}
+          <div class="content">
+            {% block body %}
+            {% endblock body %}
+          </div>
+          {% endblock modelbody %}
+          
+          {# page spéciale #}
+          {% block differentdisplay %}
+          {% endblock %}
+
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail content">
+                <img data-src="holder.js/300x200" alt="...">
+                <div class="caption">
+                  <h3>Thumbnail label</h3>
+                  <p>...</p>
+                  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail content">
+                <img data-src="holder.js/300x200" alt="...">
+                <div class="caption">
+                  <h3>Thumbnail label</h3>
+                  <p>...</p>
+                  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail content">
+                <img data-src="holder.js/300x200" alt="...">
+                <div class="caption">
+                  <h3>Thumbnail label</h3>
+                  <p>...</p>
+                  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail content">
+                <img data-src="holder.js/300x200" alt="...">
+                <div class="caption">
+                  <h3>Thumbnail label</h3>
+                  <p>...</p>
+                  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail content">
+                <img data-src="holder.js/300x200" alt="...">
+                <div class="caption">
+                  <h3>Thumbnail label</h3>
+                  <p>...</p>
+                  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail content">
+                <img data-src="holder.js/300x200" alt="...">
+                <div class="caption">
+                  <h3>Thumbnail label</h3>
+                  <p>...</p>
+                  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+        <div class="col-sm-1 hidden-xs"></div>
+      </div>
+      <div class="visible-xs" style="height: 20px; clear: both;"></div>
+      <div class="col-sm-5 col-lg-4 content-box">
+        {# Colonne de droite (pub + bonus) #}
+        <section class="row content-box">
+          <header>
+            Publicité
+          </header>
+          <div class="content sm-nopadding">
+            {# Publicité placée dans ce div #}
+            <div id="selectorpublicity" style="text-align: center;">
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom">
+    <div class="container">
+      {# Tabs #}
+      <div class="row">
+        <div class="col-md-4">
+          <h3><span class="glyphicon glyphicon-link"></span> Liens</h3>
+          <p>
+            <a href="https://www.facebook.com/dofawa.fr">Facebook</a><br>
+            <a href="https://twitter.com/Dofawa_fr">Twitter</a><br>
+            <br>
+            <a href="http://www.dofus.com/{{ app.request.getLocale() }}">Site officiel</a><br>
+            <a href="http://forum.dofus.com/{{ app.request.getLocale() }}">Forum officiel</a>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h3><span class="glyphicon glyphicon-pushpin"></span> Partenaires</h3>
+          <p>
+            <a href="http://www.dofusmotion.com/">Dofusmotion</a><br>
+            <a href="http://dofus2.org/">Dofus2</a><br>
+            <a href="http://kuri-magazine.fr/">Kuri Magazine</a><br>
+            <a href="http://www.chomp42.com/">Chomp42</a><br>
+            <a href="http://lytrix.fr/">Lytrix</a><br>
+            <a href="http://www.dofastuces.fr/">Dofastuces</a><br>
+            <a href="http://the-pure-hearts.e-monsite.com/">The pure hearts</a><br>
+            <a href="http://www.youtube.com/user/Capitemflam/">Capitemflam</a><br>
+            <a href="http://fr.twitch.tv/colerykke_tv">Colerykke</a>
+
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h3><span class="glyphicon glyphicon-user"></span> L'équipe</h3>
+          <p>
+            <a href="https://twitter.com/Dofawa_fr">Skarwild</a><br>
+            <a href="https://twitter.com/EnerGetick_">Ener-Getick</a><br>
+            <a href="http://exter-n.fr">Exter-n</a><br>
+            <a href="https://twitter.com/monodof">Menthosaire</a><br>
+            <a href="https://twitter.com/Mansot06">Mansot</a><br>
+          </p>
+        </div>
+      </div>
+      {# Copyright #}
+      <div class="row">
+        <div class="col-md-12">
+          <h3><span class="glyphicon glyphicon-copyright-mark"></span> Dofawa</h3>
+          <p>Dofawa.fr est un fan site non-officiel sans aucun lien avec Ankama. Dofawa © 2014. Tous droits réservés. Conditions d'utilisation - Mentions Légales</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup-overlay"></div>
+
+  {% block popups %}
+  {% endblock %}
+
+  {# Publicité #}
+  <div id="recup_publicity">
+    <script defer async type='text/javascript'>
+      document.MAX_ct0 ='';
+      var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+      var m3_r = Math.floor(Math.random()*99999999999);
+      document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+      document.write ("zoneid=120565");document.write("&amp;nodis=1");
+      document.write ('&amp;cb=' + m3_r);
+      if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+      document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+      document.write ("&amp;loc=" + escape(window.location));
+      if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+      if (document.context) document.write ("&context=" + escape(document.context));
+      if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+        document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+      }
+      if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+      document.write ("'></scr"+"ipt>");
+
+      var element = document.querySelector('#recup_publicity');
+      var element2 = document.querySelector('#selectorpublicity');
+
+      element2.appendChild(element);
+
+
+    </script>
+  </div>
+</body>
+</html>

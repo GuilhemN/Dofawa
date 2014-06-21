@@ -19,10 +19,7 @@ class DefaultController extends Controller
 			$article->setMessage(preg_replace('/<img(.*?)>/', '', $content));
 		}
 
-		if($type =='')
-			return $this->render('DofMainBundle:Home:index.html.twig', array('articles'=>$articles));
-		else
-			return $this->render('::bootstraplayout.html.twig', array('articles'=>$articles));
+		return $this->render('DofMainBundle:Home:index.html.twig', array('articles'=>$articles));
 
 	}
 }

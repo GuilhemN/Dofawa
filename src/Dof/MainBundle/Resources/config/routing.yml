@@ -1,7 +1,3 @@
 dof_main_homepage:
     pattern:  /
     defaults: { _controller: DofMainBundle:Default:index }
-
-dof_bootstrap_homepage:
-    pattern:  /btsp
-    defaults: { _controller: DofMainBundle:Default:index, type: 'btsp' }
