@@ -41,9 +41,24 @@ class UserRepository extends EntityRepository
     * @return integer
     */
     public function countTotal(){
-    	return $this->createQueryBuilder('a')
-		 ->select('COUNT(a)')
-		 ->getQuery()
-		 ->getSingleScalarResult();
+      return $this->createQueryBuilder('a')
+     ->select('COUNT(a)')
+     ->getQuery()
+     ->getSingleScalarResult();
+    }
+
+    /**
+    * Count all users
+    *
+    * @return integer
+    */
+    public function deleteById(int $id){
+      $this->createQueryBuilder('a')
+      ->remove()
+      ->field('id')->equals($id)
+      ->getQuery()
+      ->execute();
+
+      return $this;
     }
 }

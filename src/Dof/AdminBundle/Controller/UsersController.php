@@ -8,7 +8,8 @@ class UsersController extends Controller
 {
 	public function indexAction($page)
 	{
-		if (!$this->get('security.context')->isGranted('ROLE_UPDATE_USERS')) throw new AccessDeniedException(__FILE__);
+		//Vérifie les roles
+		$this->canAccess();
 
 		$maxUsers = 30;
 		$users_count = $this->getDoctrine()
@@ -29,5 +30,19 @@ class UsersController extends Controller
 			'users' => $users,
 			'pagination' => $pagination
 			));
+	}
+
+	function deleteAction($id){
+		//Vérifie les roles
+		$this->canAccess();
+
+		$this->getDoctrine()
+		->getRepository('DofUserBundle:User')
+		->deleteById($id);
+	}
+
+	private function canAccess(){
+		if (!$this->get('security.context')->isGranted('ROLE_UPDATE_USERS')) 
+			throw new AccessDeniedException(__FILE__);
 	}
 }
