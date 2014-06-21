@@ -1,1 +1,11 @@
 {% extends 'DofAdminBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+	{{ parent()}}
+	<li>Liste des utilisateurs</li>
+{% endblock %}
+
+{% block body %}
+    {% include 'DofMainBundle:Default:pagination.html.twig' %}
+    {% include 'DofMainBundle:Default:pagination.html.twig' %}
+{% endblock %}
