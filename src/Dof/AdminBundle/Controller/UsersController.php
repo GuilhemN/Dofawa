@@ -8,7 +8,7 @@ class UsersController extends Controller
 {
     public function indexAction($page)
     {
-    	if (!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) throw new AccessDeniedException();
+    	if (!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) throw new AccessDeniedException(__FILE__);
 
         return $this->render('DofAdminBundle:Users:index.html.twig');
     }
