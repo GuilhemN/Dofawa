@@ -61,12 +61,12 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/dofmain/images/flag/' ~ app.request.getLocale() ~ '.png') }}" alt="" /><b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="{{ path(app.request.get('_route'),
-                app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) ) }}">
-                English
-              </a></li>
-              <li><a href="{{ path(app.request.get('_route'),
                 app.request.attributes.get('_route_params')|merge({'_locale': 'fr'}) ) }}">
                 Français
+              </a></li>
+              <li><a href="{{ path(app.request.get('_route'),
+                app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) ) }}">
+                English
               </a></li>
               <li><a href="{{ path(app.request.get('_route'),
                 app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) }}">
@@ -198,7 +198,7 @@
     <div class="row">
       {# Colonne principale, à gauche #}
       <div class="col-sm-7 col-lg-8 nopadding" itemscope itemtype="http://schema.org/mainContentOfPage">
-        <section class="col-xs-12 col-sm-11 content-box nopadding marginbottom">
+        <section class="col-xs-12 col-sm-11 content-box nopadding">
           <header>
             <ol class="breadcrumb" itemscope itemtype="http://schema.org/breadcrumb">
               {% block breadcrumb %}
@@ -215,6 +215,7 @@
           </div>
           {% endblock modelbody %}
           
+          <div class="marginbottom"></div>
           {# page spéciale #}
           {% block differentdisplay %}
           {% endblock %}
