@@ -53,7 +53,8 @@ class UserRepository extends EntityRepository
     * @return integer
     */
     public function deleteById($id){
-      $query = $this->_em->createQuery('DELETE DofUserBundle:User u WHERE u.id = :id', [ 'id' => $id ]);
+      $query = $this->_em->createQuery('DELETE DofUserBundle:User u WHERE u.id = :id');
+      $query->setParameter('id', $id);
 
       return $query->getResult();
     }
