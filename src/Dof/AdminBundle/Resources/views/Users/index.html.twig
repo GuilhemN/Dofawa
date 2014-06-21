@@ -18,7 +18,8 @@
 				<th>#</th>
 				<th>Pseudo</th>
 				<th>Email</th>
-				<th>Admin</th>
+				<th class="hidden-md hidden-xs">Admin</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,14 +28,16 @@
 				<td>{{ user.id }}</td>
 				<td>{{ user.username }}</td>
 				<td>{{ user.email}}</td>
-				<td>
+				<td class="hidden-md hidden-xs">
 					{% if user.hasRole('ROLE_SUPER_ADMIN') %}
 						Super-Admin
 					{% elseif user.hasRole('ROLE_ADMIN')%}
 						Admin
-					{% else %}
-						x
 					{% endif %}
+				</td>
+				<td>
+					<span class="glyphicon glyphicon-pencil"></span> 
+					<span class="glyphicon glyphicon-remove"></span>
 				</td>
 			</tr>
 			{% endfor %}
