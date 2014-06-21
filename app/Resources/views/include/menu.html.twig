@@ -1,0 +1,145 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ path('dof_main_homepage') }}">Dofawa</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+
+        {# Languages switcher #}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/dofmain/images/flag/' ~ app.request.getLocale() ~ '.png') }}" alt="" /><b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path(app.request.get('_route'),
+              app.request.attributes.get('_route_params')|merge({'_locale': 'fr'}) ) }}">
+              Français
+            </a></li>
+            <li><a href="{{ path(app.request.get('_route'),
+              app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) ) }}">
+              English
+            </a></li>
+            <li><a href="{{ path(app.request.get('_route'),
+              app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) }}">
+              Español
+            </a></li>
+            <li><a href="{{ path(app.request.get('_route'),
+              app.request.attributes.get('_route_params')|merge({'_locale': 'de'}) ) }}">
+              Deutsch
+            </a></li>
+          </ul>
+        </li>
+
+        {# Nav #}
+        <li {% if app.request.get('_route') == 'dof_main_homepage' %}class="active"{% endif %}>
+          <a href="{{ path('dof_main_homepage') }}">
+            {{ 'menu_haut.home' | trans()}}
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Objets <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Panoplies</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Items</li>
+            <li><a href="#">Equipements</a></li>
+            <li><a href="#">Armes</a></li>
+            <li><a href="#">Familiers</a></li>
+            <li><a href="#">Ressources</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Univers <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Quêtes</a></li>
+            <li><a href="#">Tutoriels</a></li>
+            <li><a href="#">Donjons</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outils <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">Stuffs</li>
+            {% if app.user is not null %}
+            <li><a href="#">Mes builds</a></li>
+            {% endif %}
+            <li><a href="#">Recherche de build</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Divers</li>
+            <li><a href="#">Les guildes</a></li>
+            <li><a href="#">Calculateurs</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Créations des joueurs</li>
+            <li><a href="#">Fan-art</a></li>
+            <li><a href="#">Skins</a></li>
+          </ul>
+        </li>
+        {# Menu Admin #}
+        {% if isGranted('ROLE_MENU_ADMIN') %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            {% if isGranted('ROLE_UPDATE_USERS') %}
+            <li class="dropdown-header">Utilisateurs</li>
+            <li><a href="{{ path('dof_admin_users_homepage') }}">Tous</a></li>
+            {% endif %}
+            <li class="divider"></li>
+            <li class="dropdown-header">Divers</li>
+            <li><a href="#">Les guildes</a></li>
+            <li><a href="#">Calculateurs</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Créations des joueurs</li>
+            <li><a href="#">Fan-art</a></li>
+            <li><a href="#">Skins</a></li>
+          </ul>
+        </li>
+
+        {% endif %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {# Si non-connecté #}
+        {% if app.user is null %}
+        <li class="dropdown" id="menuLogin">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+          <div class="dropdown-menu" style="padding:17px;">
+            {{ render(controller('DofUserBundle:Security:modulelogin', { 'module': 'module' })) }}
+            {# Lien d'inscription #}
+            <div class="visible-sm">
+              <br>
+              <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+            </div>
+          </div>
+        </li>
+        <li class="hidden-sm"><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+        {% else %}
+        {# Menu utilisateur #}
+        <li class="dropdown" id="menuLogin">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ app.user.username }}</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('dof_profile_userpage', {'name_user': app.user.getUsername()}) }}">
+                {{ 'mine'|trans({}, 'profile') }}
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Messagerie
+              </a>
+            </li>
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
