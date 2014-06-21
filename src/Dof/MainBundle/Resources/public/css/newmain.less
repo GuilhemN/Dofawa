@@ -48,7 +48,7 @@
 //GENERIQUE
 
 .setrules(@rules, @name) {
-	@selector: ~@name;
+	@selector: ~"@name";
 	.@{selector}{
 		@rules();
 	}
