@@ -63,23 +63,28 @@
 	}	
 }
 .responsive(@selector) {
+	@prexs: ~'.xs-';
+	@presm: ~'.sm-';
+	@premd: ~'.md-';
+	@prelg: ~'.lg-';
+
 	@media (max-width: @screen-xs-max) {
-		.xs-@{selector}{
+		@{prexs}@{selector}{
 			.@{selector};
 		}
 	}
 	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-		.sm-@{selector}{
+		@{presm}@{selector}{
 			.@{selector};
 		}
 	}
 	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-		.md-@{selector}{
+		@{premd}@{selector}{
 			.@{selector};
 		}
 	}
 	@media (min-width: @screen-lg-min) {
-		.lg-@{selector}{
+		@{prelg}@{selector}{
 			.@{selector};
 		}
 	}
