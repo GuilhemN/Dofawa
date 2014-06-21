@@ -81,7 +81,7 @@
         </li>
         {# Menu Admin #}
         {% if is_granted('ROLE_MENU_ADMIN') %}
-        <li class="dropdown">
+        <li class="dropdown {% if app.request.get('_route') starts with 'dof_admin' %}active{% endif %}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
           <ul class="dropdown-menu">
             {% if is_granted('ROLE_UPDATE_USERS') %}
