@@ -52,7 +52,7 @@ class UserRepository extends EntityRepository
     *
     * @return integer
     */
-    public function deleteById(int $id){
+    public function deleteById($id){
       $this->createQueryBuilder('a')
       ->remove()
       ->field('id')->equals($id)
