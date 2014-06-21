@@ -48,26 +48,27 @@
 //GENERIQUE
 
 .setrules(@rules, @name) {
-	.@{name}{
+	@selector: ~@name;
+	.@{selector}{
 		@rules();
 	}
 	@media (max-width: @screen-xs-max) {
-		.xs-@{name}{
+		.xs-@{selector}{
 			@rules();
 		}
 	}
 	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-		.sm-@{name}{
+		.sm-@{selector}{
 			@rules();
 		}
 	}
 	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-		.md-@{name}{
+		.md-@{selector}{
 			@rules();
 		}
 	}
 	@media (min-width: @screen-lg-min) {
-		.lg-@{name}{
+		.lg-@{selector}{
 			@rules();
 		}
 	}
