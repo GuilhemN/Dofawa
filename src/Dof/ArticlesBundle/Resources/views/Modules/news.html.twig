@@ -1,19 +1,13 @@
-<div class="breadcrumb">
+<header>
   {{trad | trans({}) }}
-</div>
-
-<div class="contenu ulstyle">
-  <ul>
+</header>
+<div class="content">
+  <div class="list-group">
     {% for article in articles %}
-    <a href="/quetes/astrub/-manger-pour-tous-957.html" title="{{article.titre}}">
-      <li>
-        {{article.titre | striptags | slice(0, 40) }}
-        {% if  article.titre | length > 40 %}
-        ...
-        {% endif  %}
-      </li>
+    <a class="list-group-item" href="#" title="{{article.titre}}">
+      {{article.titre | striptags | slice(0, 40) }}
     </a>
     {% endfor %}
-  </ul>
-  
+  </div>
+
 </div>
