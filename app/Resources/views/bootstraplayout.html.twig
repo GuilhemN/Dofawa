@@ -193,25 +193,31 @@
   <div class="container" style="margin-top: 60px;">
     <div class="row">
       {# Colonne principale, à gauche #}
-      <div class="col-sm-7">
-        <section class="row content-box">
-          <header>
-            <ol class="breadcrumb">
-              <li>Accueil</li>
-            </ol>
-          </header>
-          {# Contenu principal #}
-          <div class="content">
-          </div>
-        </section>
+      <div class="col-sm-8">
+        <div class="col-sm-11">
+          <section class="row content-box">
+            <header>
+              <ol class="breadcrumb">
+                <li>Accueil</li>
+              </ol>
+            </header>
+            {# Contenu principal #}
+            <div class="content">
+              Mon contenu
+            </div>
+          </section>
+        </div>
+        {# offset #}
+        <div class="col-sm-1 hidden-xm"></div>
       </div>
 
       {# Colonne de droite (pub + bonus) #}
-      <section class="col-sm-4 col-sm-offset-1 content-box">
+      <section class="col-sm-4 content-box">
         <header>
           Publicité
         </header>
         <div class="content">
+          Ma pub
         </div>
       </div>
     </div>
