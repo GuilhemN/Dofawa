@@ -33,4 +33,16 @@ class UserRepository extends EntityRepository
 	     
 	    return new Paginator($q);
     }
+
+    /**
+    * Count all users
+    *
+    * @return integer
+    */
+    public function countTotal(){
+    	return $this->createQueryBuilder('a')
+		 ->select('COUNT(a)')
+		 ->getQuery()
+		 ->getSingleScalarResult();
+    }
 }

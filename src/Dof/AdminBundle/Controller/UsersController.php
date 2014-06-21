@@ -13,8 +13,8 @@ class UsersController extends Controller
 		$maxUsers = 30;
 		$users_count = $this->getDoctrine()
 		->getRepository('DofUserBundle:User')
-		->countPublishedTotal();
-		
+		->countTotal();
+
 		$pagination = array(
 			'page' => $page,
 			'route' => 'dof_admin_users_homepage',
