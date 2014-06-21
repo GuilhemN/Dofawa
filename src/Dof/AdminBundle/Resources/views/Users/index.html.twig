@@ -1,11 +1,46 @@
 {% extends 'DofAdminBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-	{{ parent()}}
-	<li>Liste des utilisateurs</li>
+{{ parent()}}
+<li>Liste des utilisateurs</li>
 {% endblock %}
 
 {% block body %}
-    {% include 'DofMainBundle:Default:pagination.html.twig' %}
-    {% include 'DofMainBundle:Default:pagination.html.twig' %}
+{% include 'DofMainBundle:Default:pagination.html.twig' %}
+
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">Liste des utilisateurs</div>
+	<!-- Table -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Pseudo</th>
+				<th>Email</th>
+				<th>Admin</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}	
+			<tr>
+				<td>{{ user.id }}</td>
+				<td>{{ user.username }}</td>
+				<td>{{ user.email}}</td>
+				<td>
+					{% if user.hasRole('ROLE_SUPER_ADMIN') %}
+						Super-Admin
+					{% elseif user.hasRole('ROLE_ADMIN')%}
+						Admin
+					{% else %}
+						x
+					{% endif %}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+{% include 'DofMainBundle:Default:pagination.html.twig' %}
 {% endblock %}

@@ -22,11 +22,11 @@ class UsersController extends Controller
 			'route_params' => array()
 			);
 
-		$articles = $this->getDoctrine()->getRepository('DofUserBundle:User')
+		$users = $this->getDoctrine()->getRepository('DofUserBundle:User')
 		->getList($page, $maxUsers);
 
 		return $this->render('DofAdminBundle:Users:index.html.twig', array(
-			'articles' => $articles,
+			'users' => $users,
 			'pagination' => $pagination
 			));
 	}
