@@ -32,7 +32,7 @@
 				</td>
 				<td>
 					<span class="glyphicon glyphicon-pencil pointer"></span> 
-					<span class="glyphicon glyphicon-remove pointer deletion" data-href="{{ path('dof_admin_users_delete', { "id": user.id }) }}" data-description="{{ user.username }}"></span>
+					<span class="glyphicon glyphicon-remove pointer deletion" data-url="{{ path('dof_admin_users_delete', { "id": user.id }) }}" data-description="{{ user.username }}"></span>
 				</td>
 			</tr>
 			{% endfor %}
