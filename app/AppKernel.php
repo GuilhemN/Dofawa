@@ -16,22 +16,24 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Dof\UserBundle\DofUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
+            new JMS\TranslationBundle\JMSTranslationBundle(),
+
+            new XN\DataBundle\XNDataBundle(),
+            new XN\UtilityBundle\XNUtilityBundle(),
+            new SymfonyExtender\TranslationsBundle\SymfonyExtenderTranslationsBundle(),
+
+            new Dof\UserBundle\DofUserBundle(),
             new Dof\ArticlesBundle\DofArticlesBundle(),
             new Dof\ItemsBundle\DofItemsBundle(),
             new Dof\MainBundle\DofMainBundle(),
             new Dof\ArtBundle\DofArtBundle(),
-            new XN\DataBundle\XNDataBundle(),
-            new XN\UtilityBundle\XNUtilityBundle(),
-            new SymfonyExtender\TranslationsBundle\SymfonyExtenderTranslationsBundle(),
-            
-            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
-            new JMS\TranslationBundle\JMSTranslationBundle(),
             new Dof\MapBundle\DofMapBundle(),
             new Dof\GraphicsBundle\DofGraphicsBundle(),
             new Dof\AdminBundle\DofAdminBundle(),
+            new Dof\CharactersBundle\DofCharactersBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
