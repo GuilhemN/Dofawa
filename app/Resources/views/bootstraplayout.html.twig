@@ -154,9 +154,14 @@
               <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
               <div class="dropdown-menu" style="padding:17px;">
                 {{ render(controller('DofUserBundle:Security:modulelogin', { 'module': 'module' })) }}
+                {# Lien d'inscription #}
+                <div class="visible-sm">
+                  <br><br>
+                  <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                </div>
               </div>
             </li>
-            <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+            <li class="hidden-sm"><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
             {% else %}
             <li class="dropdown" id="menuLogin">
               <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ app.user.username }}</a>
@@ -189,10 +194,12 @@
     <div class="row">
       <div class="col-sm-7 col-lg-offset-1">
         <section class="row content">
+          <header class="breadcrumb">
+          </header>
         </section>
       </div>
-      <div class="col-sm-4">
-      right
+      <section class="col-sm-4 content">
+        right
       </div>
     </div>
 
