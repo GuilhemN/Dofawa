@@ -63,6 +63,7 @@
 	}	
 }
 .responsive(@selector) {
+	@pre: ~'.';
 	@prexs: ~'.xs-';
 	@presm: ~'.sm-';
 	@premd: ~'.md-';
@@ -70,22 +71,22 @@
 
 	@media (max-width: @screen-xs-max) {
 		@{prexs}@{selector}{
-			.@{selector};
+			@{pre}@{selector};
 		}
 	}
 	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 		@{presm}@{selector}{
-			.@{selector};
+			@{pre}@{selector};
 		}
 	}
 	@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
 		@{premd}@{selector}{
-			.@{selector};
+			@{pre}@{selector};
 		}
 	}
 	@media (min-width: @screen-lg-min) {
 		@{prelg}@{selector}{
-			.@{selector};
+			@{pre}@{selector};
 		}
 	}
 }
