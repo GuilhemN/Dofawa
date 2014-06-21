@@ -1,3 +1,7 @@
+dof_admin:
+    resource: "@DofAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 #dof_graphics:
 #    resource: "@DofGraphicsBundle/Resources/config/routing.yml"
 #    prefix:   /

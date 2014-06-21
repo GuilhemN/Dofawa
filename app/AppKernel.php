@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Dof\MapBundle\DofMapBundle(),
             new Dof\GraphicsBundle\DofGraphicsBundle(),
+            new Dof\AdminBundle\DofAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,5 @@
+dof_admin_users_homepage:
+    pattern:  /{page}
+    defaults: { _controller: DofAdminBundle:Users:index, page: 1}
+    requirements:
+    	page: \d+
