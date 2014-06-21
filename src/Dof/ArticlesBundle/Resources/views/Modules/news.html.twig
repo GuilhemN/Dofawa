@@ -2,7 +2,7 @@
   {{trad | trans({}) }}
 </header>
 <div class="content nopadding">
-  <div class="list-group">
+  <div class="list-group nopadding">
     {% for article in articles %}
     <a class="list-group-item" href="#" title="{{article.titre}}">
       {{article.titre | striptags | slice(0, 40) }}
