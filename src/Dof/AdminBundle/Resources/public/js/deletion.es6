@@ -7,5 +7,6 @@ $(function () {
 	$('.deletion').on('click', function (ev) {
 		ev.preventDefault();
 		ajaxDelete(this.getAttribute('data-url'), this.getAttribute('data-description'));
+		this.parentNode.parentNode.delete();
 	});
 });

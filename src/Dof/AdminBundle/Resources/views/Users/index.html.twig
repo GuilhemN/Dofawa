@@ -12,8 +12,8 @@
 			<tr>
 				<th>#</th>
 				<th>Pseudo</th>
-				<th class="hidden-xs">Email</th>
-				<th class="hidden-sm hidden-xs">Admin</th>
+				<th class="hidden-xs hidden-sm">Email</th>
+				<th class="hidden-xs hidden-sm">Admin</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -22,7 +22,7 @@
 			<tr>
 				<td>{{ user.id }}</td>
 				<td>{{ user.username }}</td>
-				<td class="hidden-xs">{{ user.email}}</td>
+				<td class="hidden-xs hidden-sm">{{ user.email}}</td>
 				<td class="hidden-sm hidden-xs">
 					{% if user.hasRole('ROLE_SUPER_ADMIN') %}
 						Super-Admin
