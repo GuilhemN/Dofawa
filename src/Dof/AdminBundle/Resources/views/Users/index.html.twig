@@ -1,9 +1,4 @@
-{% extends 'DofAdminBundle::layout.html.twig' %}
-
-{% block breadcrumb %}
-{{ parent()}}
-<li>Liste des utilisateurs</li>
-{% endblock %}
+{% extends 'DofAdminBundle:Users:layout.html.twig' %}
 
 {% block body %}
 {% include 'DofMainBundle:Default:pagination.html.twig' %}
@@ -17,8 +12,8 @@
 			<tr>
 				<th>#</th>
 				<th>Pseudo</th>
-				<th>Email</th>
-				<th class="hidden-md hidden-xs">Admin</th>
+				<th class="hidden-xs">Email</th>
+				<th class="hidden-sm hidden-xs">Admin</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -27,8 +22,8 @@
 			<tr>
 				<td>{{ user.id }}</td>
 				<td>{{ user.username }}</td>
-				<td>{{ user.email}}</td>
-				<td class="hidden-md hidden-xs">
+				<td class="hidden-xs">{{ user.email}}</td>
+				<td class="hidden-sm hidden-xs">
 					{% if user.hasRole('ROLE_SUPER_ADMIN') %}
 						Super-Admin
 					{% elseif user.hasRole('ROLE_ADMIN')%}
@@ -36,8 +31,8 @@
 					{% endif %}
 				</td>
 				<td>
-					<span class="glyphicon glyphicon-pencil"></span> 
-					<span class="glyphicon glyphicon-remove"></span>
+					<span class="glyphicon glyphicon-pencil pointer"></span> 
+					<span class="glyphicon glyphicon-remove pointer deletion" data-href="{{ path('dof_admin_users_delete', { "id": user.id }) }}" data-description="{{ user.username }}"></span>
 				</td>
 			</tr>
 			{% endfor %}

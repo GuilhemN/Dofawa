@@ -3,3 +3,9 @@ dof_admin_users_homepage:
     defaults: { _controller: DofAdminBundle:Users:index, page: 1}
     requirements:
         page: \d+
+
+dof_admin_users_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: DofAdminBundle:Users:delete}
+    requirements:
+        _method: DELETE
