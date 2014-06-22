@@ -6,9 +6,7 @@
 {% endblock %}
 
 {% block body %}
-<span class="form editbtn">
-	<a class="btn" href="">{{ 'edit' | trans({}, 'generalTrans') }}</a>
-</span>
+
 <div class="col-md-12">
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -34,7 +32,7 @@
 	{# Edition du profil #}
 	<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">{{ 'edit' | trans({}, 'generalTrans') }}</a>
 	{# Changement de mot de passe #}
-	<a href="{{ path('fos_user_change_password') }}" class="btn btn-default">{{ 'change_password.submit'}}</a>
+	<a href="{{ path('fos_user_change_password') }}" class="btn btn-default">{{ 'change_password.submit' | trans({}, 'FOSUserBundle')}}</a>
 {% endif %}
 
 {% endblock %}
