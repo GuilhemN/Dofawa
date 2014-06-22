@@ -65,7 +65,3 @@ fos_user_change_password:
 fos_js_routing:
      resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
      options: { i18n: false }
-
-CCDNForumForumBundle:
-    resource: "@CCDNForumForumBundle/Resources/config/routing.yml"
-    options: { i18n: false }
