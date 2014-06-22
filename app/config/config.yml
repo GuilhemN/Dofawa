@@ -78,6 +78,7 @@ doctrine:
             Symfony\Component\Security\Core\User\UserInterface: Dof\UserBundle\Entity\User
         entity_managers:
             default:
+                auto_mapping: true
                 mappings:
                     CCDNForumForumBundle:
                         mapping:              true
