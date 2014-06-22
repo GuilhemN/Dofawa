@@ -21,8 +21,7 @@ class ProfileAdminFormType extends BaseForm {
     	parent::buildUserForm($builder, $options);
 
         $builder
-            ->add('otherForm', new BaseForm())
-            ->add('point', null, array('label' => 'inputs.point', 'translation_domain' => 'profile'))
+        ->add('point', null, array('label' => 'inputs.point', 'translation_domain' => 'profile'))
         ;
     }
 
