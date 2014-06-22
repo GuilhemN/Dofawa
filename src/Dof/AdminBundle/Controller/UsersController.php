@@ -59,7 +59,7 @@ class UsersController extends Controller
 		//Vérifie les roles
 		$this->canAccess();
 
-		return $this->render('DofAdminBundle:Users:edit', array('user' => $user));
+		return $this->render('DofAdminBundle:Users:edit.html.twig', array('user' => $user));
 
 	}
 
