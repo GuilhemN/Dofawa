@@ -3,6 +3,10 @@ namespace Dof\UserBundle\Form\Type;
 
 use Dof\UserBundle\Form\Type\ProfileFormType as BaseForm;
 
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
 class ProfileAdminFormType extends BaseForm {
 
 	private $class;
