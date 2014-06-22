@@ -7,16 +7,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProfileAdminFormType extends AbstractType {
+class ProfileAdminFormType extends BaseForm {
 
 	private $class;
 
 	public function __construct($class = 'Dof\UserBundle\Entity\User'){
+		parent::__construct($class);
 		$this->class = $class;
 	}
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
     {
+    	parent::buildUserForm($builder, $options);
+
         $builder
             ->add('otherForm', new BaseForm())
             ->add('point', null, array('label' => 'inputs.point', 'translation_domain' => 'profile'))
