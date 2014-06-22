@@ -1,4 +1,4 @@
-objects: "Object|objects"
+objects: "Object|Objects"
 sets: "Set|Sets"
 resources:
     main: "Resource|Resources"

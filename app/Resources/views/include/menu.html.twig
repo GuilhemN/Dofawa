@@ -126,21 +126,41 @@
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ app.user.username }}</a>
           <ul class="dropdown-menu">
             <li>
-              <a href="{{ path('fos_user_security_logout') }}">
-                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-              </a>
+              <div class="navbar-login">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <p class="text-center">
+                      <span class="glyphicon glyphicon-user icon-size"></span>
+                    </p>
+                  </div>
+                  <div class="col-lg-8">
+                    <p class="text-left"><strong>{{ app.user.username }}</strong></p>
+                    <p class="text-left small">{{ app.user.email }}</p>
+                    <p class="text-left">
+                      <a href="{{ path('dof_profile_userpage', {'name_user': app.user.getUsername()}) }}" class="btn btn-primary btn-block btn-sm">
+                        {{ 'mine'|trans({}, 'profile') }}
+                      </a>
+                      <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block btn-sm">{{ 'edit' | trans({}, 'generalTrans') }}</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </li>
+            <li class="divider"></li>
             <li>
-              <a href="{{ path('dof_profile_userpage', {'name_user': app.user.getUsername()}) }}">
-                {{ 'mine'|trans({}, 'profile') }}
-              </a>
+              <div class="navbar-login navbar-login-session">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <p>
+                      <a href="{{ path('dof_profile_userpage', {'name_user': app.user.getUsername()}) }}" class="btn btn-danger btn-block">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </li>
-            <li>
-              <a href="#">
-                Messagerie
-              </a>
-            </li>
-          </div>
+          </ul>
         </li>
         {% endif %}
       </ul>
