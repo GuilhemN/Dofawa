@@ -6,9 +6,11 @@
 {% endblock %}
 
 {% block body %}
-	<h3>otherForm</h3>
-	<div class="form">
-	    {{ form_row(form.otherForm.field_name) }}
-	</div>
-	{{ form_rest(form) }}
+	<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+	    {{ form_widget(form) }}
+	    <div>
+	        <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+	    </div>
+	</form>
+
 {% endblock %}
