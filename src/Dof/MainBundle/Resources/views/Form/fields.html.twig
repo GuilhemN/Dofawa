@@ -1,0 +1,13 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_widget_compound %}
+{% spaceless %}
+    <div>
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_widget_compound %}
