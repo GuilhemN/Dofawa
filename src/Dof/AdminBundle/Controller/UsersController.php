@@ -73,6 +73,9 @@ class UsersController extends Controller
 		    $em->persist($user);
 		    // Étape 2 : On « flush » tout ce qui a été persisté avant
 		    $em->flush();
+
+		    // Retour à la page admin des users
+		    return $this->container->get('router')->generate('dof_admin_users_homepage');
 	    }
 
         return $this->container->get('templating')->renderResponse(
