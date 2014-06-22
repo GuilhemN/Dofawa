@@ -4,7 +4,10 @@ namespace Dof\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 
-class UsersController extends Controller
+//Json response
+use XN\UtilityBundle\AjaxControllerTrait;
+
+class UsersController extends Controller implements AjaxControllerTrait
 {
 	public function indexAction($page)
 	{
@@ -36,9 +39,11 @@ class UsersController extends Controller
 		//Vérifie les roles
 		$this->canAccess();
 
-		$this->getDoctrine()
+		$result = $this->getDoctrine()
 		->getRepository('DofUserBundle:User')
 		->deleteById($id);
+
+		$this->createJsonResponse($result);
 	}
 
 	private function canAccess(){
