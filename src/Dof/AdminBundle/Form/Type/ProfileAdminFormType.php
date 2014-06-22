@@ -30,5 +30,13 @@ class ProfileAdminFormType extends AbstractType {
     {
         return 'dofadmin_user_profile';
     }
+    
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => $this->class,
+            'intention'  => 'profile',
+        ));
+    }
 
 }
