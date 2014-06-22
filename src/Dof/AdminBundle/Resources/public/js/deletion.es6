@@ -5,10 +5,11 @@ if (yield dialogConfirm('Voulez-vous vraiment supprimer ' + description + ' ?'))
 
 
 		var el = e.parentNode.parentNode;
-		console.log(el);
 		el.parentNode.removeChild(el);
     } catch (err) {
-        // do something with the request error
+    	$('#errorpanel').append('<div class="alert alert-danger">'+
+	      '<strong>Erreur !</strong> '+ description + ' n\'a pas pu être supprimé. Ceci peut-être dû à une erreur réseau ou du serveur.'
+    		+'</div>');
     }
 });
 
