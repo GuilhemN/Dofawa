@@ -1,3 +1,8 @@
+objects: "Object|objects"
+sets: "Set|Sets"
+resources:
+    main: "Resource|Resources"
+
 weapons:
     main: "Weapon|Weapons"
 
@@ -25,3 +30,8 @@ equipments:
     hat: "Hat|Hats"
     cloak: "Cloack|Cloacks"
     backpack: "Backpack|Backpacks"
+
+animals:
+    main: "Animal|Animals"
+
+    pets: "Pet|Pets"

@@ -1,8 +1,8 @@
 # Desc: /admin/users/delete/{id}
-dof_admin_users_delete: '/admin/users/delete/{id}'   # FIXME
+dof_admin_users_delete: '/admin/usuarios/delete/{id}'   # FIXME
 
 # Desc: /admin/users/edit/{id}
-dof_admin_users_edit: '/admin/users/edit/{id}'   # FIXME
+dof_admin_users_edit: '/admin/usuarios/edit/{id}'   # FIXME
 
 # Desc: /admin/users/{page}
 dof_admin_users_homepage: '/admin/users/{page}'   # FIXME
@@ -17,28 +17,28 @@ dof_items_homepage: '/items/hello/{name}'   # FIXME
 dof_main_homepage: /   # FIXME
 
 # Desc: /profile/show/{name_user}
-dof_profile_userpage: '/profile/show/{name_user}'   # FIXME
+dof_profile_userpage: '/perfil/show/{name_user}'   # FIXME
 
 # Desc: /profile/change-password
-fos_user_change_password: /profile/change-password   # FIXME
+fos_user_change_password: /perfil/change-password   # FIXME
 
 # Desc: /profile/edit
-fos_user_profile_edit: /profile/edit   # FIXME
+fos_user_profile_edit: /perfil/editar   # FIXME
 
 # Desc: /profile/
-fos_user_profile_show: /profile/   # FIXME
+fos_user_profile_show: /perfil/   # FIXME
 
 # Desc: /register/check-email
-fos_user_registration_check_email: /register/check-email   # FIXME
+fos_user_registration_check_email: /registrar/check-email   # FIXME
 
 # Desc: /register/confirm/{token}
-fos_user_registration_confirm: '/register/confirm/{token}'   # FIXME
+fos_user_registration_confirm: '/registrar/confirm/{token}'   # FIXME
 
 # Desc: /register/confirmed
-fos_user_registration_confirmed: /register/confirmed   # FIXME
+fos_user_registration_confirmed: /registrar/confirmed   # FIXME
 
 # Desc: /register/
-fos_user_registration_register: /register/   # FIXME
+fos_user_registration_register: /registrar/   # FIXME
 
 # Desc: /resetting/check-email
 fos_user_resetting_check_email: /resetting/check-email   # FIXME

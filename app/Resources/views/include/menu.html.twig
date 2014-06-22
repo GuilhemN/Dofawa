@@ -32,6 +32,14 @@
               app.request.attributes.get('_route_params')|merge({'_locale': 'de'}) ) }}">
               Deutsch
             </a></li>
+            <li><a href="{{ path(app.request.get('_route'),
+              app.request.attributes.get('_route_params')|merge({'_locale': 'it'}) ) }}">
+              Italiano
+            </a></li>
+            <li><a href="{{ path(app.request.get('_route'),
+              app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) ) }}">
+              Ру́сский
+            </a></li>
           </ul>
         </li>
 
@@ -42,15 +50,15 @@
           </a>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Objets <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'objects' | transchoice(2, {}, 'type_item') }} <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Panoplies</a></li>
+            <li><a href="#">{{ 'sets' | transchoice(2, {}, 'type_item') }}</a></li>
             <li class="divider"></li>
             <li class="dropdown-header">Items</li>
-            <li><a href="#">Equipements</a></li>
-            <li><a href="#">Armes</a></li>
-            <li><a href="#">Familiers</a></li>
-            <li><a href="#">Ressources</a></li>
+            <li><a href="#">{{ 'equipments.main' | transchoice(2, {}, 'type_item') }}</a></li>
+            <li><a href="#">{{ 'weapons.main' | transchoice(2, {}, 'type_item') }}</a></li>
+            <li><a href="#">{{ 'animals.main' | transchoice(2, {}, 'type_item') }}</a></li>
+            <li><a href="#">{{ 'resources.main' | transchoice(2, {}, 'type_item') }}</a></li>
           </ul>
         </li>
         <li class="dropdown">
