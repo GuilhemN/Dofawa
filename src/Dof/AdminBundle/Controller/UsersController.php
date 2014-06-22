@@ -66,7 +66,7 @@ class UsersController extends Controller
 
         return $this->container->get('templating')->renderResponse(
             'DofAdminBundle:Users:edit.html.twig',
-            array('form' => $form->createView())
+            array('form' => $form->createView(), 'user' => $user)
         );
 
 	}
