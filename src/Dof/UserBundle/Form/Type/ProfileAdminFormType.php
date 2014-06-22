@@ -30,4 +30,9 @@ class ProfileAdminFormType extends BaseForm {
         ;
     }
 
+    public function getName()
+    {
+        return 'dofadmin_user_profile';
+    }
+
 }
