@@ -17,7 +17,9 @@ parameters:
         de:
             - en
             - fr
-    #language_fallbacks_by_domain:
+    language_fallbacks_by_domain:
+        routes:
+            en: []
         #price:
         #    fr:
         #        - ue
