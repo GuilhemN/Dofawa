@@ -59,15 +59,7 @@ class UsersController extends Controller
 		//Vérifie les roles
 		$this->canAccess();
 
-        $form = $this->container->get('dof_admin.users.profile.form');
-        $formHandler = $this->container->get('fos_user.profile.form.handler');
-
-        $process = $formHandler->process($user);
-        if ($process) {
-            $this->setFlash('fos_user_success', 'profile.flash.updated');
-
-            return new RedirectResponse($this->getRedirectionUrl($user));
-        }
+        $form = $this->container->get('dof_admin.users.profile.form.type');
 
         return $this->container->get('templating')->renderResponse(
             'FOSUserBundle:Profile:edit.html.'.$this->container->getParameter('fos_user.template.engine'),
