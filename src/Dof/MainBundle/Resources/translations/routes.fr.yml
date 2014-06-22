@@ -1,0 +1,62 @@
+# Desc: /admin/users/delete/{id}
+dof_admin_users_delete: '/admin/utilisateurs/supprimer/{id}'   # FIXME
+
+# Desc: /admin/users/edit/{id}
+dof_admin_users_edit: '/admin/utilisateurs/editer/{id}'   # FIXME
+
+# Desc: /admin/users/{page}
+dof_admin_users_homepage: '/admin/utilisateurs/{page}'   # FIXME
+
+# Desc: /news/
+dof_articles_homepage: /news/   # FIXME
+
+# Desc: /items/hello/{name}
+dof_items_homepage: '/items/hello/{name}'   # FIXME
+
+# Desc: /
+dof_main_homepage: /   # FIXME
+
+# Desc: /profile/show/{name_user}
+dof_profile_userpage: '/profil/voir/{name_user}'   # FIXME
+
+# Desc: /profile/change-password
+fos_user_change_password: /profil/modifier-password   # FIXME
+
+# Desc: /profile/edit
+fos_user_profile_edit: /profil/editer   # FIXME
+
+# Desc: /profile/
+fos_user_profile_show: /profil/   # FIXME
+
+# Desc: /register/check-email
+fos_user_registration_check_email: /inscription/verif-email   # FIXME
+
+# Desc: /register/confirm/{token}
+fos_user_registration_confirm: '/inscription/confirmation/{token}'   # FIXME
+
+# Desc: /register/confirmed
+fos_user_registration_confirmed: /inscription/confirmation   # FIXME
+
+# Desc: /register/
+fos_user_registration_register: /inscription/   # FIXME
+
+# Desc: /resetting/check-email
+fos_user_resetting_check_email: /resetting/check-email   # FIXME
+
+# Desc: /resetting/request
+fos_user_resetting_request: /resetting/requete   # FIXME
+
+# Desc: /resetting/reset/{token}
+fos_user_resetting_reset: '/resetting/reset/{token}'   # FIXME
+
+# Desc: /resetting/send-email
+fos_user_resetting_send_email: /resetting/envoi-email   # FIXME
+
+# Desc: /login_check
+fos_user_security_check: /test_connexion   # FIXME
+
+# Desc: /login
+fos_user_security_login: /connexion   # FIXME
+
+# Desc: /logout
+fos_user_security_logout: /deconnexion   # FIXME

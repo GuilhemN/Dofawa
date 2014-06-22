@@ -13,7 +13,7 @@
         <default key="_controller">FOSUserBundle:Profile:edit</default>
     </route>
 
-    <route id="dof_profile_userpage" pattern="/{name_user}">
+    <route id="dof_profile_userpage" pattern="/show/{name_user}">
         <default key="_controller">DofUserBundle:Profile:userpage</default>
     </route>
 

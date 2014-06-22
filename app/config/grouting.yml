@@ -1,6 +1,0 @@
-dof_general_access:
-    resource: "routing.yml"
-    prefix: /{_locale}
-    requirements:
-       _locale: (fr|en|es|de|ru|it)?
-    defaults: { _locale: fr}
