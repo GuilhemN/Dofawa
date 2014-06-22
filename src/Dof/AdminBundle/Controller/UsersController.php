@@ -60,7 +60,7 @@ class UsersController extends Controller
 		$this->canAccess();
 
         $form = $this->container->get('dof_admin.users.profile.form');
-        $formHandler = $this->container->get('dof_admin.users.profile.form.handler');
+        $formHandler = $this->container->get('fos_user.profile.form.handler');
 
         $process = $formHandler->process($user);
         if ($process) {
