@@ -7,8 +7,11 @@ use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 //Json response
 use XN\UtilityBundle\AjaxControllerTrait;
 
-class UsersController extends Controller implements AjaxControllerTrait
+class UsersController extends Controller 
 {
+
+	use AjaxControllerTrait;
+
 	public function indexAction($page)
 	{
 		//Vérifie les roles
