@@ -3,7 +3,9 @@ if (yield dialogConfirm('Voulez-vous vraiment supprimer ' + description + ' ?'))
 	 try {
         var { data: response } = yield ajax({ url: url, type: 'DELETE' });
 
+
 		var el = e.parentNode.parentNode;
+		console.log(el);
 		el.parentNode.removeChild(el);
     } catch (err) {
         // do something with the request error
