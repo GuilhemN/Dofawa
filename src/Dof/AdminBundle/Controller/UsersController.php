@@ -46,7 +46,7 @@ class UsersController extends Controller
 		->getRepository('DofUserBundle:User')
 		->deleteById($id);
 
-		$this->createJsonResponse($result);
+		return $this->createJsonResponse($result);
 	}
 
 	private function canAccess(){
