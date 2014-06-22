@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new CCDNForum\ForumBundle\CCDNForumForumBundle(),
 
             new XN\DataBundle\XNDataBundle(),
             new XN\UtilityBundle\XNUtilityBundle(),
