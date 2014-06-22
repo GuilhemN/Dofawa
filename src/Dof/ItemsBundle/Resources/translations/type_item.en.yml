@@ -1,4 +1,5 @@
-objects: "Object|Objects"
+encyclopedia: Encyclopedia
+
 sets: "Set|Sets"
 resources:
     main: "Resource|Resources"
