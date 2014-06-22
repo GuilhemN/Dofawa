@@ -8,9 +8,8 @@
 {% block body %}
 {% if app.user is not null and app.user.id == user.id %}
 <span class="form editbtn">
-	<a class="btn" href="{{ path('fos_user_profile_edit') }}">{{ 'edit' | trans({}, 'generalTrans') }}</a>
+	<a class="btn" href="">{{ 'edit' | trans({}, 'generalTrans') }}</a>
 </span>
-{% endif %}
 <div class="col-md-12">
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -31,4 +30,10 @@
 		</div><!--/panel-body-->
 	</div><!--/panel-->
 </div>
+
+{# Edition du profil #}
+<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">{{ 'edit' | trans({}, 'generalTrans') }}</a>
+{# Changement de mot de passe #}
+<a href="{{ path('fos_user_change_password') }}" class="btn btn-default">{{ 'change_password.submit'}}</a>
+{% endif %}
 {% endblock %}
