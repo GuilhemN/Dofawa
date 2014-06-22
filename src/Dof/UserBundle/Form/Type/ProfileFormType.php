@@ -25,7 +25,7 @@ class ProfileFormType extends BaseForm
     /**
      * @param string $class The User class name
      */
-    public function __construct($class)
+    public function __construct($class = 'Dof\UserBundle\Entity\User')
     {
         $this->class = $class;
 
