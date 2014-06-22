@@ -62,7 +62,7 @@ class UsersController extends Controller
         $form = $this->container->get('dof_admin.users.profile.form.type');
 
         return $this->container->get('templating')->renderResponse(
-            'FOSUserBundle:Profile:edit.html.'.$this->container->getParameter('fos_user.template.engine'),
+            'DofAdminBundle:Users:edit.html.twig',
             array('form' => $form->createView())
         );
 
