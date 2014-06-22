@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 //Json response
 use XN\UtilityBundle\AjaxControllerTrait;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\UserBundle\Entity\User;
 
 class UsersController extends Controller 
