@@ -7,9 +7,10 @@ if (yield dialogConfirm('Voulez-vous vraiment supprimer ' + description + ' ?'))
 		var el = e.parentNode.parentNode;
 		el.parentNode.removeChild(el);
     } catch (err) {
-    	$('#errorpanel').append('<div class="alert alert-danger">'+
-	      '<strong>Erreur !</strong> '+ description + ' n\'a pas pu être supprimé. Ceci peut-être dû à une erreur réseau ou du serveur.'
-    		+'</div>');
+    	$('#errorpanel').append('<div class="alert alert-danger alert-dismissable">'+
+    		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+
+	      	'<strong>Erreur !</strong> '+ description + ' n\'a pas pu être supprimé. Ceci peut-être dû à une erreur réseau ou du serveur.'+
+    		'</div>');
     }
 });
 
