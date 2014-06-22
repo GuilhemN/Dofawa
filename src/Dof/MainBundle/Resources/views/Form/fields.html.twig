@@ -1,13 +1,34 @@
 {% extends 'form_div_layout.html.twig' %}
 
-{% block form_widget_compound %}
+{# Affichage des erreurs #}
+{% block form_errors %}
 {% spaceless %}
-    <div>
-        {% if form.parent is empty %}
-            {{ form_errors(form) }}
-        {% endif %}
-        {{ block('form_rows') }}
-        {{ form_rest(form) }}
-    </div>
+    {% if errors|length > 0 %}
+        {% for error in errors %}
+        <div class="alert alert-warning alert-dismissable">
+	      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	      <strong>Erreur !</strong> {{ error.message }}
+	    </div>
+        {% endfor %}
+    {% endif %}
 {% endspaceless %}
-{% endblock form_widget_compound %}
+{% endblock form_errors %}
+
+{# Champ individuel #}
+{% block form_row %}
+{% spaceless %}
+	<div class="form-group">
+		{{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+	</div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{# champs #}
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" class="form-control" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endspaceless %}
+{% endblock form_widget_simple %}
