@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 //Json response
 use XN\UtilityBundle\AjaxControllerTrait;
 
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\UserBundle\Entity\User;
 
@@ -63,6 +64,16 @@ class UsersController extends Controller
 		$this->canAccess();
  
 	    $form = $this->createForm(new AdminFormType(), $user);
+
+	    $form->handleRequest($request);
+
+	    if ($form->isValid()) {
+	    	$em = $this->getDoctrine()->getManager();
+	    	// Étape 1 : On « persiste » l'entité
+		    $em->persist($user);
+		    // Étape 2 : On « flush » tout ce qui a été persisté avant
+		    $em->flush();
+	    }
 
         return $this->container->get('templating')->renderResponse(
             'DofAdminBundle:Users:edit.html.twig',
