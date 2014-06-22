@@ -4,10 +4,9 @@ namespace Dof\UserBundle\Form\Type;
 use Dof\UserBundle\Form\Type\ProfileFormType as BaseForm;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormBuilder;
 
-class ProfileAdminFormType extends BaseForm {
+class ProfileAdminFormType extends AbstractType {
 
 	private $class;
 
@@ -17,15 +16,12 @@ class ProfileAdminFormType extends BaseForm {
     public function __construct($class)
     {
         $this->class = $class;
-
-        parent::__construct($class);
     }
 
-	public function buildForm(FormBuilderInterface $builder, array $options)
+	public function buildForm(FormBuilder $builder, array $options)
     {
-        parent::buildUserForm($builder, $options);
-
         $builder
+            ->add('otherForm', new BaseForm())
             ->add('point', null, array('label' => 'inputs.point', 'translation_domain' => 'profile'))
         ;
     }
