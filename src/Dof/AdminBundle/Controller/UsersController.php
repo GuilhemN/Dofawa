@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 //Json response
 use XN\UtilityBundle\AjaxControllerTrait;
 
+use Dof\UserBundle\Entity\User;
+
 class UsersController extends Controller 
 {
 
@@ -47,6 +49,17 @@ class UsersController extends Controller
 		->deleteById($id);
 
 		return $this->createJsonResponse($result);
+	}
+
+	/**
+	 * @ParamConverter("user", options={"mapping": {"id": "id"}})
+	 */
+	function editAction(User $user){
+		//Vérifie les roles
+		$this->canAccess();
+
+		return $this->render('DofAdminBundle:Users:edit', array('user' => $user));
+
 	}
 
 	private function canAccess(){

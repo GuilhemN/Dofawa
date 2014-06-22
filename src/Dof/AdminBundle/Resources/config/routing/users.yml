@@ -9,3 +9,9 @@ dof_admin_users_delete:
     defaults: { _controller: DofAdminBundle:Users:delete}
     requirements:
         _method: DELETE
+
+dof_admin_users_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: DofAdminBundle:Users:edit}
+    requirements:
+        id: \d+

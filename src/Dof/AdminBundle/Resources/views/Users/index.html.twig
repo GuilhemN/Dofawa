@@ -34,7 +34,7 @@
 					{% endif %}
 				</td>
 				<td>
-					<span class="glyphicon glyphicon-pencil pointer"></span> 
+					<a href="{{ path('dof_admin_users_edit', {"id": user.id}) }}"><span class="glyphicon glyphicon-pencil pointer"></span></a> 
 					<span class="glyphicon glyphicon-remove pointer deletion" data-url="{{ path('dof_admin_users_delete', { "id": user.id }) }}" data-description="{{ user.username }}"></span>
 				</td>
 			</tr>
