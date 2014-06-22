@@ -5,6 +5,7 @@ use Dof\UserBundle\Form\Type\ProfileFormType as BaseForm;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ProfileAdminFormType extends AbstractType {
 
@@ -30,7 +31,7 @@ class ProfileAdminFormType extends AbstractType {
     {
         return 'dofadmin_user_profile';
     }
-    
+
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
