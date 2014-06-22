@@ -59,7 +59,7 @@ class UsersController extends Controller
 	/**
 	 * @ParamConverter("user", options={"mapping": {"id": "id"}})
 	 */
-	function editAction(User $user){
+	function editAction(User $user, Request $request){
 		//Vérifie les roles
 		$this->canAccess();
  
