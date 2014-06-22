@@ -56,6 +56,6 @@ class UserRepository extends EntityRepository
       $query = $this->_em->createQuery('DELETE DofUserBundle:User u WHERE u.id = :id');
       $query->setParameter('id', $id);
 
-      return $query->getResult();
+      return $query->execute();
     }
 }
