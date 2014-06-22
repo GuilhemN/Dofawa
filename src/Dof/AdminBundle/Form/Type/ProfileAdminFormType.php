@@ -4,7 +4,7 @@ namespace Dof\AdminBundle\Form\Type;
 use Dof\UserBundle\Form\Type\ProfileFormType as BaseForm;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderFormBuilderInterface;
 
 class ProfileAdminFormType extends AbstractType {
 
@@ -18,7 +18,7 @@ class ProfileAdminFormType extends AbstractType {
         $this->class = $class;
     }
 
-	public function buildForm(FormBuilder $builder, array $options)
+	public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('otherForm', new BaseForm())
