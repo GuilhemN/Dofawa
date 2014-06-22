@@ -9,16 +9,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ProfileAdminFormType extends AbstractType {
 
-	private $class;
-
-    /**
-     * @param string $class The User class name
-     */
-    public function __construct($class)
-    {
-        $this->class = $class;
-    }
-
 	public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -35,8 +25,7 @@ class ProfileAdminFormType extends AbstractType {
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => $this->class,
-            'intention'  => 'profile',
+	        'data_class' => 'Dof\UserBundle\Entity\User',
         ));
     }
 

@@ -10,6 +10,9 @@ use XN\UtilityBundle\AjaxControllerTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\UserBundle\Entity\User;
 
+use Dof\AdminBundle\Form\Type\ProfileAdminFormType as AdminFormType;
+
+
 class UsersController extends Controller 
 {
 
@@ -58,8 +61,8 @@ class UsersController extends Controller
 	function editAction(User $user){
 		//Vérifie les roles
 		$this->canAccess();
-
-        $form = $this->container->get('dof_admin.users.profile.form.type');
+ 
+	    $form = $this->createForm(new AdminFormType(), $user);
 
         return $this->container->get('templating')->renderResponse(
             'DofAdminBundle:Users:edit.html.twig',
