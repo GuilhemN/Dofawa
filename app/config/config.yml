@@ -37,9 +37,6 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         csrf_serv: "@form.csrf_provider"
-    form:
-        resources:
-            - 'DofMainBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
