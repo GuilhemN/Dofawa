@@ -20,7 +20,7 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
-            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
 
             new XN\DataBundle\XNDataBundle(),
             new XN\UtilityBundle\XNUtilityBundle(),
