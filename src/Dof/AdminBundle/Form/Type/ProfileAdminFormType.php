@@ -1,5 +1,5 @@
 <?php 
-namespace Dof\UserBundle\Form\Type;
+namespace Dof\AdminBundle\Form\Type;
 
 use Dof\UserBundle\Form\Type\ProfileFormType as BaseForm;
 
