@@ -3,6 +3,8 @@ namespace Dof\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 //Json response
 use XN\UtilityBundle\AjaxControllerTrait;
@@ -58,11 +60,24 @@ class UsersController extends Controller
 	/**
 	 * @ParamConverter("user", options={"mapping": {"id": "id"}})
 	 */
-	function editAction(User $user){
+	function editAction(User $user, Request $request){
 		//Vérifie les roles
 		$this->canAccess();
  
 	    $form = $this->createForm(new AdminFormType(), $user);
+
+	    $form->handleRequest($request);
+
+	    if ($form->isValid()) {
+	    	$em = $this->getDoctrine()->getManager();
+	    	// Étape 1 : On « persiste » l'entité
+		    $em->persist($user);
+		    // Étape 2 : On « flush » tout ce qui a été persisté avant
+		    $em->flush();
+
+		    // Retour à la page admin des users
+		   	return new RedirectResponse($this->container->get('router')->generate('dof_admin_users_homepage'));
+	    }
 
         return $this->container->get('templating')->renderResponse(
             'DofAdminBundle:Users:edit.html.twig',
