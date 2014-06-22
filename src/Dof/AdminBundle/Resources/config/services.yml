@@ -3,12 +3,12 @@ services:
         class: Symfony\Component\Form\Form
         factory_method: createNamed
         factory_service: form.factory
-        arguments: ['%fos_user.profile.form.name%', '%dof_admin.user.profile.form.type%', null, { validation_groups: '%fos_user.profile.form.validation_groups%' }]
+        arguments: ['%fos_user.profile.form.name%', 'dofadmin_user_profile', null, { validation_groups: '%fos_user.profile.form.validation_groups%' }]
 
     dof_admin.users.profile.form.type:
         class: Dof\UserBundle\Form\Type\ProfileAdminFormType
         tags:
-            - { name: form.type, alias: fos_user_profile }
+            - { name: form.type, alias: dofadmin_user_profile }
         arguments: ['%fos_user.model.user.class%']
 
     dof_admin.users.profile.form.handler.default:
