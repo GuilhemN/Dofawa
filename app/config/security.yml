@@ -27,6 +27,8 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     role_hierarchy:
-        ROLE_ADMIN:        ['ROLE_USER', 'ROLE_MENU_ADMIN', 'ROLE_AD_FREE']
-        ROLE_SUPER_ADMIN:  ['ROLE_ADMIN', 'ROLE_UPDATE_USERS']
+        ROLE_ADMIN:        ['ROLE_USER', 'ROLE_MENU_ADMIN', 'ROLE_PREMIUM']
+        ROLE_BETA:         ['ROLE_STYLIST_BETA']
+        ROLE_PREMIUM:      ['ROLE_AD_FREE', 'ROLE_BETA']
         ROLE_STYLIST_BETA: ['ROLE_STYLIST']
+        ROLE_SUPER_ADMIN:  ['ROLE_ADMIN', 'ROLE_UPDATE_USERS']
