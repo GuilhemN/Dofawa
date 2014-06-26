@@ -11,7 +11,7 @@ class SkinnedEquipmentTemplateRepository extends EquipmentTemplateRepository
     {
         $skins = array();
         foreach ($this->createQueryBuilder('e')
-            ->where('s.skin IN (:skinIds)')
+            ->where('e.skin IN (:skinIds)')
             ->setParameter('skinIds', $skinIds)
             ->getQuery()
             ->getResult() as $skin)
