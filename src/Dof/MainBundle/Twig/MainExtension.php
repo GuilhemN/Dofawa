@@ -11,7 +11,7 @@ class MainExtension extends \Twig_Extension
     }
 
     public function dechex($dec, $limiter = true){
-      $hex = str_pad(dechex($code & 16777215), 6, '0', STR_PAD_LEFT);
+      $hex = str_pad(dechex($dec & 16777215), 6, '0', STR_PAD_LEFT);
 
       if($limiter)
         return '#'.$hex;
