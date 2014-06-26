@@ -19,4 +19,11 @@ class EntityLookTransforms
         }
         return null;
     }
+
+    public static function locateAnimalFromPC(EntityLook $look)
+    {
+        if ($look->getClassId() === 2 && $look->getIndex() === 0)
+            return $look->getParent();
+        return $look->getSubEntity(1, 0);
+    }
 }

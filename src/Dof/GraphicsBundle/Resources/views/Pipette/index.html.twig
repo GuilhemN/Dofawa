@@ -8,40 +8,95 @@
 <br />
 <br />
 {% for result in results %}
-{% if result.look is not null %}
+{% if result.entityLook is not null %}
   <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">{{ result.address }}</div>
+      <div class="panel-heading"><a href="{{ result.address }}" target="_blank">{{ result.address }}</a></div>
       <div class="panel-body">
         <p>Voici les infos de cette page perso :</p>
       </div>
 
       <!-- Table -->
       <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Value</th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
-            <td>Classe</td>
+            <th>Classe</th>
             <td>
-              {% if result.breed is empty %}
-                Non définie
+              {% if result.bpcLook.breed is null %}
+                Inconnue
               {% else %}
-                {{ result.breed }}
+                {{ result.bpcLook.breed.getName(locales()) }}
               {% endif %}</td>
           </tr>
-          {% for key, color in result.colors %}
           <tr>
-            <td>Couleur {{ key }}</td>
+            <th>Sexe</th>
             <td>
-              <svg height="26" width="26" style="vertical-align:middle">
+              {% if result.bpcLook.gender is null %}
+                Inconnu
+              {% elseif result.bpcLook.gender == 0 %}
+                Masculin
+              {% elseif result.bpcLook.gender == 1 %}
+                Féminin
+              {% else %}
+                {# Ne devrait jamais passer par ici #}
+                Inconnu (c'est peut-être un escargot !)
+              {% endif %}</td>
+          </tr>
+          <tr>
+            <th>{% if result.bpcLook.hat is null %}Chapeau{% else %}{{ result.bpcLook.hat.type.getName(locales()) }}{% endif %}</th>
+            <td>
+              {% if result.bpcLook.hat is null %}
+                Inconnu
+              {% else %}
+                {{ result.bpcLook.hat.getName(locales()) }}
+              {% endif %}</td>
+          </tr>
+          <tr>
+            <th>{% if result.bpcLook.cloak is null %}Cape{% else %}{{ result.bpcLook.cloak.type.getName(locales()) }}{% endif %}</th>
+            <td>
+              {% if result.bpcLook.cloak is null %}
+                Inconnue
+              {% else %}
+                {{ result.bpcLook.cloak.getName(locales()) }}
+              {% endif %}</td>
+          </tr>
+          <tr>
+            <th>{% if result.bpcLook.shield is null %}Bouclier{% else %}{{ result.bpcLook.shield.type.getName(locales()) }}{% endif %}</th>
+            <td>
+              {% if result.bpcLook.shield is null %}
+                Inconnu
+              {% else %}
+                {{ result.bpcLook.shield.getName(locales()) }}
+              {% endif %}</td>
+          </tr>
+          <tr>
+            <th>{% if result.bpcLook.weapon is null %}Arme{% else %}{{ result.bpcLook.weapon.type.getName(locales()) }}{% endif %}</th>
+            <td>
+              {% if result.bpcLook.weapon is null %}
+                Inconnue
+              {% else %}
+                {{ result.bpcLook.weapon.getName(locales()) }}
+              {% endif %}</td>
+          </tr>
+          <tr>
+            <th>{% if result.bpcLook.animal is null %}Animal{% else %}{{ result.bpcLook.animal.type.getName(locales()) }}{% endif %}</th>
+            <td>
+              {% if result.bpcLook.animal is null %}
+                Inconnu
+              {% else %}
+                {{ result.bpcLook.animal.getName(locales()) }}
+              {% endif %}</td>
+          </tr>
+          {% for key, color in result.bpcLook.colors %}
+          <tr>
+            <th>{% if result.bpcLook.breed is null %}{{ ('generic.slot' ~ key)|trans({ }, 'color_slots') }}{% else %}{{ [ result.bpcLook.breed.slug ~ result.bpcLook.gender ~ '.slot' ~ key, result.bpcLook.breed.slug ~ '.slot' ~ key, 'generic.slot' ~ key ]|trans({ }, 'color_slots') }}{% endif %}</th>
+            <td>
+
+              {#<svg height="26" width="26" style="vertical-align:middle">
                 <rect x="0" y="0" width="26" height="26" rx="5" ry="5" style="fill:#45423a;"></rect>
                 <rect x="2.5" y="2.5" width="21" height="21" rx="3" ry="3" style="fill:{{ color | dechex }};"></rect>
-              </svg>
+            </svg>#}
+                <span class="color-patch" style="background: {{ color|dechex }};"></span>
               {{ color | dechex }}
             </td>
           </tr>
@@ -50,8 +105,8 @@
       </table>
     </div>
 <!--
-Code du look
-<div>{{ result.look.format(true) }}</div>
+Code du look :
+{{ result.entityLook.format(true) }}
 -->
 {% else %}
 <div class="error">Une erreur s'est produite !</div>

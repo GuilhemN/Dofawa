@@ -1,7 +1,7 @@
 encyclopedia: Encyclopédie
 
 sets: "Panoplie|Panoplies"
-resources: 
+resources:
     main: "Ressource|Ressources"
 
 weapons:
@@ -36,3 +36,6 @@ animals:
     main: "Animal|Animaux"
 
     pets: "Familier|Familiers"
+
+dragoturkey:
+    chameleon: "Dragodinde caméléone|Dragodindes caméléones"

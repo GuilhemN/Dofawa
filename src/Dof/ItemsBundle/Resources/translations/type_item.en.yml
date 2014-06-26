@@ -29,10 +29,13 @@ equipments:
     boots: Boots
     shield: "Shield|Shields"
     hat: "Hat|Hats"
-    cloak: "Cloack|Cloacks"
+    cloak: "Cloak|Cloaks"
     backpack: "Backpack|Backpacks"
 
 animals:
     main: "Animal|Animals"
 
     pets: "Pet|Pets"
+
+dragoturkey:
+    chameleon: "Chameleon Dragoturkey|Chameleon Dragoturkeys"

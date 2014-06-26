@@ -1,7 +1,15 @@
 parameters:
-#    dof_graphics.example.class: Dof\GraphicsBundle\Example
+    dof_graphics.bpcl_identifier.class: Dof\GraphicsBundle\BPCLIdentifier
+    dof_graphics.living_item_factory.class: Dof\GraphicsBundle\LivingItemFactory
+    dof_graphics.chameleon_dragoturkey.class: Dof\GraphicsBundle\ChameleonDragoturkey
 
 services:
-#    dof_graphics.example:
-#        class: %dof_graphics.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    dof_graphics.bpcl_identifier:
+        class: %dof_graphics.bpcl_identifier.class%
+        arguments: [@doctrine.orm.default_entity_manager, @dof_graphics.living_item_factory]
+    dof_graphics.living_item_factory:
+        class: %dof_graphics.living_item_factory.class%
+        arguments: [@doctrine.orm.default_entity_manager]
+    dof_graphics.chameleon_dragoturkey:
+        class: %dof_graphics.chameleon_dragoturkey.class%
+        arguments: [@translator]

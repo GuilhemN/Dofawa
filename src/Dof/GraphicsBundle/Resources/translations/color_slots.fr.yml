@@ -1,0 +1,19 @@
+generic:
+    slot1: "Peau"
+    slot2: "Cheveux"
+    slot3: "Vêtements 1"
+    slot4: "Vêtements 2"
+    slot5: "Vêtements 3"
+    slot6: "Couleur 6"
+    slot7: "Blason de guilde"
+    slot8: "Symbole de guilde"
+    slot9: "Blason d'alliance"
+    slot10: "Symbole d'alliance"
+
+feca1:
+    slot3: "Haut"
+    slot4: "Jupe"
+    slot5: "Ceinture et bottes"
+
+eniripsa:
+    slot5: "Ailes"
