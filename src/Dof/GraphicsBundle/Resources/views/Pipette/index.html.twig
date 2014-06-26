@@ -37,7 +37,7 @@
           {% for key, color in result.colors %}
           <tr>
             <td>Couleur {{ key }}</td>
-            <td>{{ color }}</td>
+            <td>{{ color | dechex }}</td>
           </tr>
           {% endfor %}
         </tbody>
