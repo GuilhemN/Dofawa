@@ -37,7 +37,13 @@
           {% for key, color in result.colors %}
           <tr>
             <td>Couleur {{ key }}</td>
-            <td>{{ color | dechex }}</td>
+            <td>
+              <svg height="26" width="26" style="vertical-align:middle">
+                <rect x="0" y="0" width="26" height="26" rx="5" ry="5" style="fill:#45423a;"></rect>
+                <rect x="2.5" y="2.5" width="21" height="21" rx="3" ry="3" style="fill:{{ color | dechex }};"></rect>
+              </svg>
+              {{ color | dechex }}
+            </td>
           </tr>
           {% endfor %}
         </tbody>
