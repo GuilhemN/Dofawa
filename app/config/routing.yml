@@ -6,9 +6,9 @@ dof_admin:
     resource: "@DofAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
 
-#dof_graphics:
-#    resource: "@DofGraphicsBundle/Resources/config/routing.yml"
-#    prefix:   /graphics
+dof_graphics:
+    resource: "@DofGraphicsBundle/Resources/config/routing.yml"
+    prefix:   /graphics
 
 #dof_map:
 #    resource: "@DofMapBundle/Resources/config/routing.yml"
