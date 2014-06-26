@@ -5,6 +5,8 @@
 <label>Adresse de la page perso : <input name="addresses[]" /></label>
 <input type="submit" value="C'est parti !" />
 </form>
+<br />
+<br />
 {% for result in results %}
 {% if result.look is not null %}
   <div class="panel panel-default">
@@ -32,14 +34,12 @@
                 {{ result.breed }}
               {% endif %}</td>
           </tr>
+          {% for key, color in result.colors %}
           <tr>
-            <td>2</td>
-            <td>Jacob</td>
+            <td>Couleur {{ key }}</td>
+            <td>{{ color }}</td>
           </tr>
-          <tr>
-            <td>3</td>
-            <td>Larry</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
