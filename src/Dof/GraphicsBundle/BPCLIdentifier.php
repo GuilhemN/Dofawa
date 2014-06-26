@@ -61,7 +61,7 @@ class BPCLIdentifier
         foreach ($entityLooks as $key => $look) {
             if ($look !== null) {
                 $basicPCLooks[$key] = new BasicPCLook();
-                $skins += array_flip($result->look->getSkins());
+                $skins += array_flip($look->getSkins());
                 $aniLook = EntityLookTransforms::locateAnimalFromPC($look);
                 if ($aniLook !== null) {
                     $animalLooks[$key] = $aniLook;
