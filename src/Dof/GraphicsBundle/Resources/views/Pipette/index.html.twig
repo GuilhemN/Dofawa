@@ -1,7 +1,7 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-<form action="{{ path('dof_graphics_pipette_process') }}">
+<form action="{{ path('dof_graphics_pipette_process') }}" method="POST">
 <label>Adresse de la page perso : <input name="address[]" /></label>
 <input type="submit" value="C'est parti !" />
 </form>
