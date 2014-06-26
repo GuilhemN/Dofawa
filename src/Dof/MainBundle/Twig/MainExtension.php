@@ -6,7 +6,7 @@ class MainExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('dechex', array($this, 'dechex')));
+            new \Twig_SimpleFilter('dechex', array($this, 'dechex')),
             new \Twig_SimpleFilter('truncatehtml', array($this, 'truncateHtmlFilter')));
     }
 
