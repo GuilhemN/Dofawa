@@ -7,13 +7,42 @@
 </form>
 {% for result in results %}
 {% if result.look is not null %}
-  <div class="well well-lg">
-    {% if result.breed is empty %}
-      Classe non définie ou inconnu
-    {% else %}
-      {{ result.breed }}
-    {% endif %}
-  </div>
+  <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">{{ result.address }}</div>
+      <div class="panel-body">
+        <p>Voici les infos de cette page perso :</p>
+      </div>
+
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Classe</td>
+            <td>
+              {% if result.breed is empty %}
+                Non définie
+              {% else %}
+                {{ result.breed }}
+              {% endif %}</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jacob</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Larry</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
 <div>{{ result.look.format(true) }}</div>
 {% else %}
