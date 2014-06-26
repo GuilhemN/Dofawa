@@ -46,7 +46,7 @@ class PipetteController extends Controller
                 'unknowns' => [ ],
                 'colors' => ($look === null) ? [ ] : $look->getColors()
             ];
-        }, $req->request->get('addresses'));
+        }, $req->request->has('addresses') ? $req->request->get('addresses') : [ ]);
         $skins = array();
         foreach ($results as $result)
             if ($result->look !== null)

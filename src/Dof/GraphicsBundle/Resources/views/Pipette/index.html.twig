@@ -2,7 +2,7 @@
 
 {% block body %}
 <form action="{{ path('dof_graphics_pipette_process') }}" method="POST">
-<label>Adresse de la page perso : <input name="address[]" /></label>
+<label>Adresse de la page perso : <input name="addresses[]" /></label>
 <input type="submit" value="C'est parti !" />
 </form>
 {% for result in results %}
