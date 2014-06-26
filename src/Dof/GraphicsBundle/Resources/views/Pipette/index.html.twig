@@ -7,6 +7,14 @@
 </form>
 {% for result in results %}
 {% if result.look is not null %}
+  <div class="well well-lg">
+    {% if result.breed is empty %}
+      Classe non définie ou inconnu
+    {% else %}
+      {{ result.breed }}
+    {% endif %}
+  </div>
+
 <div>{{ result.look.format(true) }}</div>
 {% else %}
 <div class="error">Une erreur s'est produite !</div>
