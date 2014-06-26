@@ -24,7 +24,7 @@
   <script type="text/javascript" src="{{ asset('bundles/xnutility/js/utlcat.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('bundles/dofmain/js/bootstrap.min.js') }}"></script>
 
-  <script defer type="text/javascript" src="http://c.ad6media.fr/l.js"></script> 
+  <script defer type="text/javascript" src="http://c.ad6media.fr/l.js"></script>
 
   {% block js %}
   {% endblock %}
@@ -70,7 +70,7 @@
             <div class="clearfix"></div>
           </div>
           {% endblock modelbody %}
-          
+
           <div class="marginbottom"></div>
           {# page spéciale #}
           {% block differentdisplay %}
@@ -83,6 +83,7 @@
       <div class="col-sm-5 col-lg-4 content-box">
         {# Colonne de droite (pub + bonus) #}
         <section class="row content-box">
+          {% if not is_granted('ROLE_AD_FREE') %}
           <header>
             Publicité
           </header>
@@ -91,6 +92,7 @@
             <div id="selectorpublicity" style="text-align: center;">
             </div>
           </div>
+          {% endif %}
           {{ render(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'news'})) }}
           {{ render(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'tutoriels'})) }}
         </section>

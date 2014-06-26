@@ -2,7 +2,7 @@
 namespace Dof\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -15,7 +15,7 @@ use Dof\UserBundle\Entity\User;
 use Dof\AdminBundle\Form\Type\ProfileAdminFormType as AdminFormType;
 
 
-class UsersController extends Controller 
+class UsersController extends Controller
 {
 
 	use AjaxControllerTrait;
@@ -63,7 +63,7 @@ class UsersController extends Controller
 	function editAction(User $user, Request $request){
 		//Vérifie les roles
 		$this->canAccess();
- 
+
 	    $form = $this->createForm(new AdminFormType(), $user);
 
 	    $form->handleRequest($request);
@@ -87,7 +87,7 @@ class UsersController extends Controller
 	}
 
 	private function canAccess(){
-		if (!$this->get('security.context')->isGranted('ROLE_UPDATE_USERS')) 
-			throw new AccessDeniedException(__FILE__);
+		if (!$this->get('security.context')->isGranted('ROLE_UPDATE_USERS'))
+			throw new AccessDeniedException();
 	}
 }

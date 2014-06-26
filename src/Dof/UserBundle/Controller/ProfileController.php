@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Dof\UserBundle\Controller;
 
@@ -13,7 +13,7 @@ use Dof\UserBundle\Entity\User;
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 use FOS\UserBundle\Model\UserInterface;
 
-use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProfileController extends BaseController
 {
@@ -32,7 +32,7 @@ class ProfileController extends BaseController
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+            throw new AccessDeniedException();
         }
 
         return $this->container->get('templating')->renderResponse('DofUserBundle:Profile:index.html.twig', array('user' => $user));

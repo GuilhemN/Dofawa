@@ -1,0 +1,15 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+<form action="{{ path('dof_graphics_pipette_process') }}">
+<label>Adresse de la page perso : <input name="address[]" /></label>
+<input type="submit" value="C'est parti !" />
+</form>
+{% for result in results %}
+{% if result.look is not null %}
+<div>{{ result.look.format(true) }}</div>
+{% else %}
+<div class="error">Une erreur s'est produite !</div>
+{% endif %}
+{% endfor %}
+{% endblock %}

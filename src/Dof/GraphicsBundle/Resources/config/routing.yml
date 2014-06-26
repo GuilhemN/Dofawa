@@ -1,3 +1,8 @@
-dof_graphics_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: DofGraphicsBundle:Default:index }
+dof_graphics_pipette_process:
+    pattern:  /pipette
+    defaults: { _controller: DofGraphicsBundle:Pipette:process }
+    requirements: { _method: POST }
+
+dof_graphics_pipette:
+    pattern:  /pipette
+    defaults: { _controller: DofGraphicsBundle:Pipette:index }

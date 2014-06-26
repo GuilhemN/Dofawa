@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class FaceRepository extends EntityRepository
 {
+    public function findBySkinIds(array $skinIds)
+    {
+        $skins = array();
+        foreach ($this->createQueryBuilder('f')
+            ->where('f.id IN (:skinIds)')
+            ->setParameter('skinIds', $skinIds)
+            ->getQuery()
+            ->getResult() as $skin)
+            $skins[$skin->getId()] = $skin;
+        ksort($skins);
+        return $skins;
+    }
 }
