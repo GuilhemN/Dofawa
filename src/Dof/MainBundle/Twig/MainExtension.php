@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Dof\MainBundle\Twig;
 
 class MainExtension extends \Twig_Extension
@@ -6,8 +6,19 @@ class MainExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
+            new \Twig_SimpleFilter('dechex', array($this, 'dechex')),
+            );
             new \Twig_SimpleFilter('truncatehtml', array($this, 'truncateHtmlFilter')),
             );
+    }
+
+    public function dechex($dec, $limiter = true){
+      $hex = str_pad(dechex($code & 16777215), 6, '0', STR_PAD_LEFT);
+
+      if($limiter)
+        return '#'.$hex;
+      else
+        return $hex;
     }
 
     public function truncateHtmlFilter($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true) {
