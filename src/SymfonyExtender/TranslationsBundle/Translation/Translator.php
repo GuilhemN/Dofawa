@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator as BaseTranslator;
 use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use XN\UtiltiyBundle\ArrayUtility;
+use XN\UtilityBundle\ArrayUtility;
 
 class Translator extends BaseTranslator {
 
