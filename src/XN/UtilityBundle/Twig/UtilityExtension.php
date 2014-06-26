@@ -14,14 +14,15 @@ class UtilityExtension extends \Twig_Extension
     {
         $this->container = $container;
     }
-    
+
 	public function getFunctions()
 	{
 		return array(
 			new \Twig_SimpleFunction('es6asset', [ $this, 'es6asset' ]),
+			new \Twig_SimpleFunction('locales', [ $this->container->get('translator'), 'getLocales' ])
 		);
 	}
-	
+
 	public function getFilters()
 	{
 		return array(
@@ -38,7 +39,7 @@ class UtilityExtension extends \Twig_Extension
 	{
 		return 'xn.utility.twig_extension';
 	}
-	
+
 	public function es6asset($path, $packageName = null)
     {
     	$req = $this->container->get('request_stack')->getCurrentRequest();
