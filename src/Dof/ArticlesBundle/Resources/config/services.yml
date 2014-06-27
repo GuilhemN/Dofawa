@@ -1,9 +1,9 @@
 parameters:
-    dof_articles.profile.form.class: Dof\ArticlesBundle\Form\Type\ArticleFormType
+    dof_articles.article.form.class: Dof\ArticlesBundle\Form\Type\ArticleFormType
 
 services:
     dof_articles.profile.form.type:
-        class: %dof_user.profile.form.class%
+        class: %dof_articles.article.form.class%
         arguments: ["@request_stack"]
         tags:
             - { name: form.type, alias: dof_articles_main }
