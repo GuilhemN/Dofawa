@@ -28,7 +28,7 @@ class ArticlesController extends Controller
     public function editAction(Articles $article)
     {
 
-      if (!$this->get('security.context')->isGranted('ROLE_USER_FULL'))
+      if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
         throw new AccessDeniedException();
 
       $form = $this->createForm('dof_articles_main', $article);
