@@ -28,7 +28,7 @@ class ArticlesRepository extends EntityRepository
 			 ->setMaxResults( $maxresults );
 
 		$result = $qb->getQuery()
-	  						 ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../bin/cache/'))
+	  						 ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
 								 ->useResultCache(true, 3600, 'findArticlesWithLimits'.$firstresult.'-'.$maxresults)
 								 ->getResult();
 

@@ -17,6 +17,9 @@ class ModulesController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$articles = $em->getRepository('DofArticlesBundle:Articles')->findArticlesWithLimits(true, 0, 11);
 
-        return $this->render('DofArticlesBundle:Modules:news.html.twig', array('articles' => $articles, 'trad'=>$trad));
+        return $this->render('DofArticlesBundle:Modules:news.html.twig', array(
+          'articles' => $articles,
+          'trad' => $trad
+        ));
     }
 }
