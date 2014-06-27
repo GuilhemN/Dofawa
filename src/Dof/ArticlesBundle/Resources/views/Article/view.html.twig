@@ -1,4 +1,9 @@
-{% extends '::layout.html.twig' %}
+{% extends 'DofArticlesBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+  {{ parent() }}
+  <li>{{ article.titre }}</li>
+{% endblock %}
 
 {% block body %}
   {{ article.message | raw }}
