@@ -60,9 +60,8 @@ class Translator extends BaseTranslator {
             }
         }
 
-        if(!empty($id))
-          return strtr($id[0], $parameters);
-        return $id;
+        foreach($id as $id1)
+          return strtr($id1, $parameters);
     }
     /**
      * {@inheritdoc}
