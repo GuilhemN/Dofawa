@@ -32,7 +32,7 @@ class ArticleFormType extends AbstractType
       $builder
         ->add('name', null, array('label' => 'article.name', 'translation_domain' => 'entity'))
         ->add('description', 'email', array('label' => 'article.description', 'translation_domain' => 'entity'))
-        ->add('categorie', null, array('label' => 'article.categorie', 'translation_domain' => 'entity'))
+        ->add('category', null, array('label' => 'article.category', 'translation_domain' => 'entity'))
         ->add('keys', null, array('label' => 'article.keys', 'translation_domain' => 'entity'))
       ;
     }
