@@ -34,8 +34,6 @@ class ArticleFormType
     {
 
       $builder
-        ->setAction($this->requestStack->getMasterRequest()->getPathInfo())
-        ->setMethod('POST')
         ->add('name', null, array('label' => 'article.name', 'translation_domain' => 'entity'))
         ->add('description', 'email', array('label' => 'article.description', 'translation_domain' => 'entity'))
         ->add('categorie', null, array('label' => 'article.categorie', 'translation_domain' => 'entity'))
