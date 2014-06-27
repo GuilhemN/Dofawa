@@ -2,9 +2,9 @@
 
 {% block breadcrumb %}
   {{ parent() }}
-  <li>{{ article.titre }}</li>
+  <li>{{ article.getName(locales()) }}</li>
 {% endblock %}
 
 {% block body %}
-  {{ article.message | raw }}
+  {{ article.getDescription(locales()) | raw }}
 {% endblock %}
