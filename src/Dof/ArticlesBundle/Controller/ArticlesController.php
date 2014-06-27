@@ -4,6 +4,7 @@ namespace Dof\ArticlesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ArticlesBundle\Entity\Articles;
