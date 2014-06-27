@@ -9,13 +9,13 @@ class DefaultController extends Controller
 	public function indexAction($type = '')
 	{
 		$u = $this->get('security.context')->getToken()->getUser();
-
+		$translator = $this->get('translator');
 
 		$em = $this->getDoctrine()->getManager();
 		$articles = $em->getRepository('DofArticlesBundle:Articles')->findArticlesWithLimits(true);
 
 		foreach ($articles as $k => &$article) {
-			$content = $article->getMessage();
+			$content = $article->getDescription($translator->getLocales());
 			$article->setMessage(preg_replace('/<img(.*?)>/', '', $content));
 		}
 
