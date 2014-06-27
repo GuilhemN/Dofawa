@@ -6,5 +6,11 @@
 {% endblock %}
 
 {% block body %}
-  {{ form(form) }}
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST">
+  {{ form_widget(form) }}
+  <div>
+      <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+  </div>
+</form>
+
 {% endblock %}
