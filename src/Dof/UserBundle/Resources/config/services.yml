@@ -1,9 +1,9 @@
 parameters:
-#    dof_user.example.class: Dof\UserBundle\Example
+    dof_user.profile.form.class: Dof\UserBundle\Form\Type\ProfileFormType
 
 services:
     dof_user.profile.form.type:
-        class: Dof\UserBundle\Form\Type\ProfileFormType
+        class: %dof_user.profile.form.class%
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: dof_user_profile }

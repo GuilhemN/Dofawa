@@ -21,14 +21,25 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "fos_user_security_login", role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "fos_user_security_check", role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     role_hierarchy:
-        ROLE_ADMIN:        ['ROLE_USER', 'ROLE_MENU_ADMIN', 'ROLE_PREMIUM']
+        # User
+        IS_AUTHENTICATED_REMEMBERED: ['ROLE_USER']
+        IS_AUTHENTICATED_FULLY: ['ROLE_USER_FULL']
+
+        # Spéciaux
+        ROLE_STYLIST_BETA: ['ROLE_STYLIST']
         ROLE_BETA:         ['ROLE_STYLIST_BETA']
         ROLE_PREMIUM:      ['ROLE_AD_FREE', 'ROLE_BETA']
-        ROLE_STYLIST_BETA: ['ROLE_STYLIST']
+
+        # Articles
+        ROLE_REDACTOR: ['ROLE_REDACTOR_EDIT']
+        ROLE_REDACTOR_FULL: ['ROLE_REDACTOR_EDIT']
+
+        # Admin du site
+        ROLE_ADMIN:        ['ROLE_MENU_ADMIN', 'ROLE_PREMIUM']
         ROLE_SUPER_ADMIN:  ['ROLE_ADMIN', 'ROLE_UPDATE_USERS']

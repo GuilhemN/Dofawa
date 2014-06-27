@@ -38,9 +38,9 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * @var string
      *
-     * @ORM\Column(name="cles", type="string", length=150)
+     * @ORM\Column(name="keys", type="string", length=150)
      */
-    private $cles;
+    private $keys;
 
     /**
      * @var integer
@@ -52,9 +52,9 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * @var string
      *
-     * @ORM\Column(name="categorie", type="string", length=150)
+     * @ORM\Column(name="category", type="string", length=150)
      */
-    private $categorie;
+    private $category;
 
     /**
      * @var integer
@@ -82,26 +82,26 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Set cles
+     * Set keys
      *
-     * @param string $cles
+     * @param string $keys
      * @return Articles
      */
-    public function setCles($cles)
+    public function setKeys($keys)
     {
-        $this->cles = $cles;
+        $this->keys = $keys;
 
         return $this;
     }
 
     /**
-     * Get cles
+     * Get keys
      *
      * @return string
      */
-    public function getCles()
+    public function getKeys()
     {
-        return $this->cles;
+        return $this->keys;
     }
 
     /**
@@ -151,26 +151,26 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Set categorie
+     * Set category
      *
-     * @param string $categorie
+     * @param string $category
      * @return Articles
      */
-    public function setCategorie($categorie)
+    public function setCategory($category)
     {
-        $this->categorie = $categorie;
+        $this->category = $category;
 
         return $this;
     }
 
     /**
-     * Get categorie
+     * Get category
      *
      * @return string
      */
-    public function getCategorie()
+    public function getCategory()
     {
-        return $this->categorie;
+        return $this->category;
     }
 
     /**
@@ -221,6 +221,6 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
 
     public function __toString()
     {
-        return $this->titre;
+        return $this->getName();
     }
 }

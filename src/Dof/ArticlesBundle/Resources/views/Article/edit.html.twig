@@ -1,0 +1,10 @@
+{% extends 'DofArticlesBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+  {{ parent() }}
+  <li>Editer {{ article.getName(locales())}}</li>
+{% endblock %}
+
+{% block body %}
+  {{ form(form) }}
+{% endblock %}

@@ -19,4 +19,22 @@ class ArticlesController extends Controller
         'article' => $article
       ));
     }
+
+
+      /**
+       * @ParamConverter("articles", options={"mapping": {"id": "id"}})
+       */
+    public function editAction(Articles $article)
+    {
+
+      if (!$this->get('security.context')->isGranted('ROLE_USER_FULL'))
+        throw new AccessDeniedException();
+
+      $form = $this->createForm('dof_articles_main', $article);
+
+      return $this->render('DofArticlesBundle:Article:edit.html.twig', array(
+        'article' => $article,
+        'form' => $form->createView()
+      ));
+    }
 }

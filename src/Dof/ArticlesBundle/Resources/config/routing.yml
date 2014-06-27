@@ -3,3 +3,9 @@ dof_articles_view:
     defaults: { _controller: DofArticlesBundle:Articles:view }
     requirements:
       id: \d+
+
+dof_articles_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: DofArticlesBundle:Articles:edit }
+    requirements:
+      id: \d+

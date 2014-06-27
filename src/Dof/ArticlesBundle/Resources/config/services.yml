@@ -1,7 +1,9 @@
 parameters:
-#    dof_news.example.class: Dof\NewsBundle\Example
+    dof_articles.profile.form.class: Dof\ArticlesBundle\Form\Type\ArticleFormType
 
 services:
-#    dof_news.example:
-#        class: %dof_news.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    dof_articles.profile.form.type:
+        class: %dof_user.profile.form.class%
+        arguments: [@request]
+        tags:
+            - { name: form.type, alias: dof_articles_main }
