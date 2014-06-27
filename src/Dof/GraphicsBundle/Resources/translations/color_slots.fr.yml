@@ -17,3 +17,7 @@ feca1:
 
 eniripsa:
     slot5: "Ailes"
+
+eniripsa0:
+    slot3: "Gilet"
+    slot4: "Pantalon"
