@@ -14,24 +14,24 @@ class ArticlesRepository extends EntityRepository
 {
 	public function findArticlesWithLimits($is_news = false, $firstresult = 0, $maxresults=10)
 	{
+		if($is_news)
+			$boolean=1;
+		else
+	    $boolean=0;
 
-	    if($is_news)
-	    	$boolean=1;
-	    else
-	    	$boolean=0;
-	    $qb = $this->createQueryBuilder('a');
+		$qb = $this->createQueryBuilder('a');
 
-	    $qb->add('where', 'a.news= :boolean')
-	       ->add('orderBy', 'a.createdAt DESC, a.id DESC')
-	       ->setParameter('boolean', $boolean)
-		   ->setFirstResult( $firstresult )
-		   ->setMaxResults( $maxresults );
+		$qb->add('where', 'a.news= :boolean')
+	  	 ->add('orderBy', 'a.createdAt DESC, a.id DESC')
+			 ->setParameter('boolean', $boolean)
+			 ->setFirstResult( $firstresult )
+			 ->setMaxResults( $maxresults );
 
-	    $result = $qb->getQuery()
-	    			 ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../bin/cache/'))
-					 ->useResultCache(true, 3600, 'findArticlesWithLimits'.$firstresult.'-'.$maxresults)
-					 ->getResult();
+		$result = $qb->getQuery()
+	  						 ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../bin/cache/'))
+								 ->useResultCache(true, 3600, 'findArticlesWithLimits'.$firstresult.'-'.$maxresults)
+								 ->getResult();
 
-	    return $result;
+	  return $result;
 	}
 }
