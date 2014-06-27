@@ -11,10 +11,11 @@
 
 namespace Dof\ArticlesBundle\Form\Type;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ArticleFormType
+class ArticleFormType extends AbstractType
 {
 
     public function __construct() { }

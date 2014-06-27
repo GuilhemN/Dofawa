@@ -27,10 +27,6 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     role_hierarchy:
-        # User
-        IS_AUTHENTICATED_REMEMBERED: ['ROLE_USER']
-        IS_AUTHENTICATED_FULLY: ['ROLE_USER_FULL']
-
         # Spéciaux
         ROLE_STYLIST_BETA: ['ROLE_STYLIST']
         ROLE_BETA:         ['ROLE_STYLIST_BETA']
@@ -41,5 +37,5 @@ security:
         ROLE_REDACTOR_FULL: ['ROLE_REDACTOR_EDIT']
 
         # Admin du site
-        ROLE_ADMIN:        ['ROLE_MENU_ADMIN', 'ROLE_PREMIUM']
+        ROLE_ADMIN:        ['ROLE_MENU_ADMIN', 'ROLE_PREMIUM', 'ROLE_USER']
         ROLE_SUPER_ADMIN:  ['ROLE_ADMIN', 'ROLE_UPDATE_USERS']
