@@ -1,5 +1,5 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
-  {{ article.message | row }}
+  {{ article.message | raw }}
 {% endblock %}
