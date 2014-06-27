@@ -14,14 +14,14 @@ namespace Dof\ArticlesBundle\Form\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class ArticleFormType
 {
     private $request;
 
-    public function __construct(Request $request) {
-      $this->request = $request;
+    public function __construct(RequestStack $requestStack) {
+      $this->requestStack = $requestStack;
     }
 
     /**
@@ -34,7 +34,7 @@ class ArticleFormType
     {
 
       $builder
-        ->setAction($this->request->getPathInfo())
+        ->setAction($this->requestStack->getMasterRequest()->getPathInfo())
         ->setMethod('POST')
         ->add('name', null, array('label' => 'article.name', 'translation_domain' => 'entity'))
         ->add('description', 'email', array('label' => 'article.description', 'translation_domain' => 'entity'))
