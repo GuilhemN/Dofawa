@@ -16,7 +16,7 @@ class DefaultController extends Controller
 
 		foreach ($articles as $k => &$article) {
 			$content = $article->getDescription($translator->getLocales());
-			$article->setMessage(preg_replace('/<img(.*?)>/', '', $content));
+			$article->setDescription(preg_replace('/<img(.*?)>/', '', $content), $translator->getLocales());
 		}
 
 		return $this->render('DofMainBundle:Home:index.html.twig', array('articles'=>$articles));
