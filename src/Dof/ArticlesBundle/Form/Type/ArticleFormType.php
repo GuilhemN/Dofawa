@@ -26,7 +26,7 @@ class ArticleFormType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
-    protected function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
       $builder
