@@ -4,6 +4,5 @@ parameters:
 services:
     dof_articles.profile.form.type:
         class: %dof_articles.article.form.class%
-        arguments: ["@request_stack"]
         tags:
             - { name: form.type, alias: dof_articles_main }

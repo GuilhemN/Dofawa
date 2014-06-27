@@ -14,15 +14,10 @@ namespace Dof\ArticlesBundle\Form\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Symfony\Component\HttpFoundation\RequestStack;
-
 class ArticleFormType
 {
-    private $request;
 
-    public function __construct(RequestStack $requestStack) {
-      $this->requestStack = $requestStack;
-    }
+    public function __construct() { }
 
     /**
      * Builds the embedded form representing the article.
