@@ -3,25 +3,7 @@
 		<div class="caption">
 			<h3>{{ article.getName(locales()) }}</h3>
 			<p>{{ article.getDescription(locales()) | truncatehtml('200')|raw}}</p>
-			<p><a href="{{ path('dof_articles_view', { 'id' : article.id })}}" class="btn btn-primary" role="button">See</a></p>
+			<p><a href="{{ path('dof_articles_view', { 'id' : article.id }) }}" class="btn btn-primary" role="button">See</a></p>
 		</div>
 	</div>
 </div>
-{#
-<article class="wblock3">
-	<div class="breadcrumb">
-		<h1>
-			<a href="">
-				{{ article.titre }}
-			</a>
-		</h1>
-		par toto,
-		le {{ article.createdAt|date('d/m/Y') }}.
-	</div>
-	<div class="contenu padding">
-		<div class="imgarticle">
-		</div>
-		{{ article.message| truncatehtml('200')|raw}}
-	</div>
-</article>
-#}
