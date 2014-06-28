@@ -1,3 +1,5 @@
+# Thanks to Edroc and Amane !
+
 generic:
     slot1: "Peau"
     slot2: "Cheveux"
@@ -10,14 +12,158 @@ generic:
     slot9: "Blason d'alliance"
     slot10: "Symbole d'alliance"
 
+feca0:
+    slot3: "Tunique"
+    slot4: "Pantalon"
+    slot5: "Bottes"
+
 feca1:
-    slot3: "Haut"
+    slot3: "Débardeur"
     slot4: "Jupe"
     slot5: "Ceinture et bottes"
+
+osamodas:
+    slot4: "Brassards et chaussettes"
+
+osamodas0:
+    slot3: "Tunique"
+    slot5: "Symbole d'Osamodas"
+
+osamodas1:
+    slot3: "Top"
+    slot5: "Béret"
+
+enutrof:
+    slot3: "Tunique"
+    slot5: "Sac"
+
+enutrof0:
+    slot4: "Chaussettes"
+
+enutrof1:
+    slot4: "Tablier"
+
+sram0:
+    slot1: "Squelette"
+    slot2: "Capuche"
+    slot3: "Foulard et cape"
+    slot4: "Gants"
+    slot5: "Short"
+
+sram1:
+    slot3: "Soutien-gorge et pagne"
+    slot4: "Capuche, brassards et chaussettes"
+    slot5: "Tête de mort"
+
+xelor:
+    slot1: "Bandelettes"
+    slot5: "Bottes"
+
+xelor0:
+    slot3: "Tunique"
+    slot4: "Étoile"
+
+xelor1:
+    slot3: "Capuche et pagne"
+    slot4: "Top"
+
+ecaflip:
+    slot1: "Pelage"
+
+ecaflip0:
+    slot3: "Pantalon"
+    slot4: "Pagne"
+    slot5: "Patte d'Ecaflip"
+
+ecaflip1:
+    slot3: "Soutien-gorge"
+    slot4: "Mini-short"
+    slot5: "Chaussettes"
 
 eniripsa:
     slot5: "Ailes"
 
 eniripsa0:
+    # slot3: "Veste" <- Edroc
     slot3: "Gilet"
     slot4: "Pantalon"
+
+eniripsa1:
+    slot3: "Soutien-gorge et jupe"
+    slot4: "Brassards et chaussettes"
+
+iop:
+    slot3: "Tunique"
+    slot5: "Bottes"
+
+iop0:
+    slot4: "Pantalon"
+
+iop1:
+    slot4: "Croix"
+
+cra0:
+    slot3: "Tunique"
+    slot4: "Bottes et gants"
+    slot5: "Épaulettes"
+
+cra1:
+    slot3: "Jupe"
+    slot4: "Soutien-gorge"
+    slot5: "Bottes et gants"
+
+sadida:
+    slot5: "Déco chaussettes"
+
+sadida0:
+    slot3: "Pagne"
+    slot4: "Chaussettes"
+
+sadida1:
+    slot3: "Soutien-gorge et pagne"
+    slot4: "Brassards et chaussettes"
+
+sacrieur:
+    slot5: "Rond du bandeau"
+
+sacrieur0:
+    slot3: "Bandeau"
+    slot4: "Pantalon"
+
+sacrieur1:
+    slot3: "Pantalon"
+    slot4: "Top"
+
+pandawa:
+    slot1: "Pelage 1"
+    slot2: "Pelage 2"
+    slot4: "Cordes"
+
+pandawa0:
+    slot3: "Collier"
+    slot5: "Pantalon"
+
+pandawa1:
+    slot3: "Robe"
+    slot5: "Finition sandales"
+
+roublard:
+    slot3: "Tunique"
+
+roublard0:
+    slot4: "Bottes et gants"
+    slot5: "Tête de mort"
+
+roublard1:
+    slot4: "Bottes"
+    slot5: "Bandeau"
+
+zobal:
+    slot3: "Tunique"
+    slot4: "Cordes"
+    slot5: "Masque"
+
+steamer:
+    slot3: "Pantalon"
+    slot4: "Gants"
+    slot5: "Armure haute"
