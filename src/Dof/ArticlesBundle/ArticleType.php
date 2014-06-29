@@ -1,6 +1,6 @@
 <?php
 
-namespace Dof\ItemsBundle;
+namespace Dof\ArticlesBundle;
 
 class ArticleType
 {
