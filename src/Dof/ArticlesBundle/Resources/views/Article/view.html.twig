@@ -6,7 +6,18 @@
 {% endblock %}
 
 {% block body %}
-<div class="well well-lg">
-  {{ article.getDescription(locales()) | raw }}
-</div>
+<article itemscope itemtype="http://schema.org/Article">
+  <div class="page-header">
+    <h1>
+      <span itemprop="name">{{ article.getName(locales()) }}</span>
+      <small>
+        <time itemprop="dateCreated" datetime="{{ article.createdAt | date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
+      </small>
+    </h1>
+    By <a href="{{ path('dof_profile_userpage', {'name_user' : article.creator.username}) }}">{{ article.creator.username }}</a>
+  </div>
+  <div class="well well-lg" itemprop="articleBody">
+    {{ article.getDescription(locales()) | raw }}
+  </div>
+</article>
 {% endblock %}
