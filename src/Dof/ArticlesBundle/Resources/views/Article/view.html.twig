@@ -6,11 +6,16 @@
 {% endblock %}
 
 {% block body %}
-<article>
+<article itemscope itemtype="http://schema.org/Article">
   <div class="page-header">
-    <h1>{{ article.getName(locales()) }} <small>{{ article.creator.username }}</small></h1>
+    <h1>
+      <span itemprop="name">{{ article.getName(locales()) }}</span>
+      <small>
+        <time itemprop="dateCreated" datetime="{{ article.createdAt | |date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
+      </small>
+    </h1>
   </div>
-  <div class="well well-lg">
+  <div class="well well-lg" itemprop="articleBody">
     {{ article.getDescription(locales()) | raw }}
   </div>
 </article>
