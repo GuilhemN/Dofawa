@@ -25,7 +25,7 @@ class ArticlesController extends Controller
       /**
        * @ParamConverter("article", options={"mapping": {"id": "id"}})
        */
-    public function editAction(Articles $article)
+    public function editAction(Article $article)
     {
 
       if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))

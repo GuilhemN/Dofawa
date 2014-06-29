@@ -47,7 +47,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
      *
      * @ORM\Column(name="validation", type="integer")
      */
-    private $validation;
+    private $published;
 
     /**
      * @var string
@@ -105,26 +105,26 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set validation
+     * Set published
      *
-     * @param integer $validation
+     * @param integer $published
      * @return Article
      */
-    public function setValidation($validation)
+    public function setPublished($published)
     {
-        $this->validation = $validation;
+        $this->published = $published;
 
         return $this;
     }
 
     /**
-     * Get validation
+     * Get published
      *
      * @return integer
      */
-    public function getValidation()
+    public function getPublished()
     {
-        return $this->validation;
+        return $this->published;
     }
 
     /**
