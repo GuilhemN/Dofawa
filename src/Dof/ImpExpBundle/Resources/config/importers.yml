@@ -1,0 +1,6 @@
+services:
+    dof_imp_exp.importer.item_sets:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemSetImporter
+        arguments: [ @database_connection, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_sets }

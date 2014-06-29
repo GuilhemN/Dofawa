@@ -1,0 +1,6 @@
+parameters:
+    dof_imp_exp.import_manager.class: Dof\ImpExpBundle\ImportManager
+
+services:
+    dof_imp_exp.import_manager:
+        class: %dof_imp_exp.import_manager.class%
