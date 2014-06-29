@@ -45,7 +45,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * @var integer
      *
-     * @ORM\Column(name="validation", type="integer")
+     * @ORM\Column(name="validation", type="boolean")
      */
     private $published;
 
