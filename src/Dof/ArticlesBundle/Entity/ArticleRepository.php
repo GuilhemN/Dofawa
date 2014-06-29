@@ -23,7 +23,7 @@ class ArticleRepository extends EntityRepository
 
 		$qb = $this->createQueryBuilder('a');
 
-		$qb->add('where', 'a.type '.$operator.' '.ArticleType::News)
+		$qb->add('where', 'a.type '.$operator.' '.ArticleType::NEWS)
 	  	 ->add('orderBy', 'a.createdAt DESC, a.id DESC')
 			 //->setParameter('boolean', $boolean)
 			 ->setFirstResult( $firstresult )
