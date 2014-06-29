@@ -14,7 +14,7 @@ class ModulesController extends Controller
 
     	$trad='menuright.'.$type;
 
-      if($type == $news)
+      if($type == 'news')
         $boolean = true;
       else
         $boolean = false;
