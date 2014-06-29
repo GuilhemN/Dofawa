@@ -4,6 +4,8 @@ namespace Dof\ArticlesBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Dof\ArticlesBundle\ArticlesType;
+
 /**
  * ArticlesRepository
  *
@@ -21,7 +23,7 @@ class ArticlesRepository extends EntityRepository
 
 		$qb = $this->createQueryBuilder('a');
 
-		$qb->add('where', 'a.type '.$operator.' 4')
+		$qb->add('where', 'a.type '.$operator.' '.ArticlesType::News)
 	  	 ->add('orderBy', 'a.createdAt DESC, a.id DESC')
 			 //->setParameter('boolean', $boolean)
 			 ->setFirstResult( $firstresult )
