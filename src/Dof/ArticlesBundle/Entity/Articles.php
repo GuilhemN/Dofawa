@@ -179,9 +179,9 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
      * @param integer $news
      * @return Articles
      */
-    public function setNews($news)
+    public function setType($type)
     {
-        $this->news = $news;
+        $this->news = $type;
 
         return $this;
     }
@@ -191,9 +191,9 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
      *
      * @return integer
      */
-    public function getNews()
+    public function getType()
     {
-        return $this->news;
+        return $this->type;
     }
 
     /**
