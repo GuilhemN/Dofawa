@@ -6,7 +6,12 @@
 {% endblock %}
 
 {% block body %}
-<div class="well well-lg">
-  {{ article.getDescription(locales()) | raw }}
-</div>
+<article>
+  <div class="page-header">
+    <h1>{{ article.getName(locales()) }} <small>{{ article.creator.username }}</small></h1>
+  </div>
+  <div class="well well-lg">
+    {{ article.getDescription(locales()) | raw }}
+  </div>
+</article>
 {% endblock %}
