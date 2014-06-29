@@ -15,15 +15,15 @@ class ArticlesRepository extends EntityRepository
 	public function findArticlesWithLimits($is_news = false, $firstresult = 0, $maxresults=10)
 	{
 		if($is_news)
-			$boolean=1;
+			$operator = ' = ';
 		else
-	    $boolean=0;
+			$operator = ' != ';
 
 		$qb = $this->createQueryBuilder('a');
 
-		$qb->add('where', 'a.news= :boolean')
+		$qb->add('where', 'a.type '.$operator.' 4')
 	  	 ->add('orderBy', 'a.createdAt DESC, a.id DESC')
-			 ->setParameter('boolean', $boolean)
+			 //->setParameter('boolean', $boolean)
 			 ->setFirstResult( $firstresult )
 			 ->setMaxResults( $maxresults );
 

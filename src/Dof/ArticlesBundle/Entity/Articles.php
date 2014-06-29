@@ -59,7 +59,7 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * @var integer
      *
-     * @ORM\Column(name="news", type="integer")
+     * @ORM\Column(name="type", type="integer")
      */
     private $type;
 

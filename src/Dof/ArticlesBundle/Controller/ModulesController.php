@@ -14,8 +14,13 @@ class ModulesController extends Controller
 
     	$trad='menuright.'.$type;
 
+      if($type == $news)
+        $boolean = true;
+      else
+        $boolean = false;
+
     	$em = $this->getDoctrine()->getManager();
-    	$articles = $em->getRepository('DofArticlesBundle:Articles')->findArticlesWithLimits(true, 0, 11);
+    	$articles = $em->getRepository('DofArticlesBundle:Articles')->findArticlesWithLimits($boolean, 0, 11);
 
         return $this->render('DofArticlesBundle:Modules:news.html.twig', array(
           'articles' => $articles,
