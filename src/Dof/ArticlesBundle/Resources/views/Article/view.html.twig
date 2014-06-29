@@ -14,6 +14,7 @@
         <time itemprop="dateCreated" datetime="{{ article.createdAt | |date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
       </small>
     </h1>
+    By <a href="{{ path('dof_profile_userpage', {'name_user' : article.creator.username}) }}">{{ article.creator.username }}</a>
   </div>
   <div class="well well-lg" itemprop="articleBody">
     {{ article.getDescription(locales()) | raw }}
