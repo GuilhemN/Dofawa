@@ -20,7 +20,7 @@ class ModulesController extends Controller
         $boolean = false;
 
     	$em = $this->getDoctrine()->getManager();
-    	$articles = $em->getRepository('DofArticlesBundle:Articles')->findArticlesWithLimits($boolean, 0, 11);
+    	$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits($boolean, 0, 11);
 
         return $this->render('DofArticlesBundle:Modules:news.html.twig', array(
           'articles' => $articles,

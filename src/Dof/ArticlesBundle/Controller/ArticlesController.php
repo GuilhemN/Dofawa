@@ -7,12 +7,12 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Dof\ArticlesBundle\Entity\Articles;
+use Dof\ArticlesBundle\Entity\Article;
 
 class ArticlesController extends Controller
 {
   /**
-   * @ParamConverter("articles", options={"mapping": {"id": "id"}})
+   * @ParamConverter("article", options={"mapping": {"id": "id"}})
    */
     public function viewAction(Articles $article)
     {
@@ -23,7 +23,7 @@ class ArticlesController extends Controller
 
 
       /**
-       * @ParamConverter("articles", options={"mapping": {"id": "id"}})
+       * @ParamConverter("article", options={"mapping": {"id": "id"}})
        */
     public function editAction(Articles $article)
     {

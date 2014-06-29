@@ -12,7 +12,7 @@ class DefaultController extends Controller
 		$translator = $this->get('translator');
 
 		$em = $this->getDoctrine()->getManager();
-		$articles = $em->getRepository('DofArticlesBundle:Articles')->findArticlesWithLimits(true);
+		$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits(true);
 
 		foreach ($articles as $k => &$article) {
 			$content = $article->getDescription($translator->getLocales());
