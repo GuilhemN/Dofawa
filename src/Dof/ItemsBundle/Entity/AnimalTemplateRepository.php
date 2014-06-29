@@ -14,8 +14,12 @@ class AnimalTemplateRepository extends EquipmentTemplateRepository
             ->where('a.bone IN (:boneIds)')
             ->setParameter('boneIds', $boneIds)
             ->getQuery()
-            ->getResult() as $bone)
-            $bones[$bone->getId()] = $bone;
+            ->getResult() as $bone) {
+            $id = $bone->getId();
+            if (!isset($bones[$id]))
+                $bones[$id] = [ ];
+            $bones[$id][] = $bone;
+        }
         ksort($bones);
         return $bones;
     }

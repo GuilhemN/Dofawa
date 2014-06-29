@@ -14,10 +14,24 @@ trait ReleaseBoundTrait
     private $release;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="preliminary", type="boolean")
+     */
+    private $preliminary;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="deprecated", type="boolean")
+     */
+    private $deprecated;
+
+    /**
      * Set release
      *
      * @param string $release
-     * @return ItemTemplate
+     * @return object
      */
     public function setRelease($release)
     {
@@ -34,5 +48,71 @@ trait ReleaseBoundTrait
     public function getRelease()
     {
         return $this->release;
+    }
+
+    /**
+     * Set preliminary
+     *
+     * @param boolean $preliminary
+     * @return object
+     */
+    public function setPreliminary($preliminary)
+    {
+        $this->preliminary = $preliminary;
+
+        return $this;
+    }
+
+    /**
+     * Get preliminary
+     *
+     * @return boolean
+     */
+    public function getPreliminary()
+    {
+        return $this->preliminary;
+    }
+
+    /**
+     * Get preliminary
+     *
+     * @return boolean
+     */
+    public function isPreliminary()
+    {
+        return $this->preliminary;
+    }
+
+    /**
+     * Set deprecated
+     *
+     * @param boolean $deprecated
+     * @return object
+     */
+    public function setDeprecated($deprecated)
+    {
+        $this->deprecated = $deprecated;
+
+        return $this;
+    }
+
+    /**
+     * Get deprecated
+     *
+     * @return boolean
+     */
+    public function getDeprecated()
+    {
+        return $this->deprecated;
+    }
+
+    /**
+     * Get deprecated
+     *
+     * @return boolean
+     */
+    public function isDeprecated()
+    {
+        return $this->deprecated;
     }
 }

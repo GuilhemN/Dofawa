@@ -18,9 +18,9 @@ class GenerateCharacteristicCodeCommand extends ContainerAwareCommand
 	{
 		$this
 			->setName('generate:dof:characteristic')
-			->setDescription('Generate characteristic-specific code');
+			->setDescription('Generates characteristic-specific code');
 	}
-	
+
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$fixes = [
@@ -28,10 +28,10 @@ class GenerateCharacteristicCodeCommand extends ContainerAwareCommand
 			'power-traps' => 'trap-power',
 			'reflects-damage' => 'reflected-damage'
 		];
-		
-		$db = $this->getContainer()->get('doctrine.dbal.default_connection');
+
+		$db = $this->getContainer()->get('database_connection');
 		$twig = $this->getContainer()->get('twig');
-		
+
 		$stmt = $db->prepare(<<<'EOQ'
 SELECT idesc.value description, o.id, o.characteristic, o.bonusType FROM dofus2.D2O_Effect o
 JOIN dofus2.D2I_en idesc ON o.descriptionId = idesc.id
@@ -67,21 +67,21 @@ EOQ
 		foreach ($chara as &$row)
 			if (isset($fixes[$row['slug']]))
 				$row['slug'] = $fixes[$row['slug']];
-		
+
 		$context = [ 'characteristics' => $chara ];
-		
+
 		self::generate($twig, 'ItemsBundle:CharacteristicsMetadata', $context);
 		self::generate($twig, 'ItemsBundle:CharacteristicsTrait', $context);
 		self::generate($twig, 'ItemsBundle:CharacteristicsRangeTrait', $context);
 	}
-	
+
 	private static function generate(Twig_Environment $twig, $elementName, $context)
 	{
 		$tpl = $twig->loadTemplate('DofGeneratorBundle:' . $elementName . '.php.twig');
 		$element = $tpl->render($context);
 		file_put_contents(dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . strtr($elementName, [ ':' => DIRECTORY_SEPARATOR ]) . '.php', $element);
 	}
-	
+
 	private static function slugify($fxDesc)
 	{
 		$fxDesc = str_replace('#1{~1~2 to }#2', '{{ value }}', $fxDesc);
