@@ -2,7 +2,7 @@
 
 namespace Dof\ItemsBundle;
 
-class ArticlesType
+class ArticleType
 {
   const NONE = 0;
   const TUTORIAL = 1;
