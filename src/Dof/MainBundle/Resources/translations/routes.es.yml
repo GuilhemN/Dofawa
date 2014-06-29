@@ -5,7 +5,7 @@ dof_admin_users_delete: '/admin/usuarios/delete/{id}'   # FIXME
 dof_admin_users_edit: '/admin/usuarios/edit/{id}'   # FIXME
 
 # Desc: /admin/users/{page}
-dof_admin_users_homepage: '/admin/users/{page}'   # FIXME
+dof_admin_users_homepage: '/admin/usuarios/{page}'   # FIXME
 
 # Desc: /news/
 dof_articles_homepage: /news/   # FIXME
