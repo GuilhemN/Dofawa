@@ -2,7 +2,9 @@
 
 namespace Dof\ItemsBundle;
 
-class AnimalColorizationType
+use XN\UtilityBundle\Enum;
+
+class AnimalColorizationType extends Enum
 {
 	const NONE = 0;
 	const COLORS = 1;
@@ -13,6 +15,6 @@ class AnimalColorizationType
 
 	public static function isValid($type)
 	{
-		return $type >= 0 && $type <= 3;
+		return $type >= 0 & $type <= 3;
 	}
 }

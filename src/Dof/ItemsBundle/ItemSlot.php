@@ -2,7 +2,9 @@
 
 namespace Dof\ItemsBundle;
 
-class ItemSlot
+use XN\UtilityBundle\Enum;
+
+class ItemSlot extends Enum
 {
 	const AMULET = 1;
 	const WEAPON = 2;
@@ -31,6 +33,6 @@ class ItemSlot
 
 	public static function isValid($itemSlot)
 	{
-		return $itemSlot >= 1 && $itemSlot <= 23;
+		return $itemSlot >= 1 & $itemSlot <= 23;
 	}
 }

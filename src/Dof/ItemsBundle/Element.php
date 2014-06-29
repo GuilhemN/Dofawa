@@ -2,7 +2,9 @@
 
 namespace Dof\ItemsBundle;
 
-class Element
+use XN\UtilityBundle\Enum;
+
+class Element extends Enum
 {
 	const NEUTRAL = 0;
 	const EARTH = 1;
@@ -16,6 +18,6 @@ class Element
 
 	public static function isValid($element)
 	{
-		return $element >= 0 && $element <= 6;
+		return $element >= 0 & $element <= 6;
 	}
 }

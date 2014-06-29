@@ -1,8 +1,10 @@
 <?php
 
-namespace Dof\ItemsBundle;
+namespace Dof\ArticlesBundle;
 
-class ArticlesType
+use XN\UtilityBundle\Enum;
+
+class ArticleType extends Enum
 {
   const NONE = 0;
   const TUTORIAL = 1;
@@ -14,6 +16,6 @@ class ArticlesType
 
   public static function isValid($type)
   {
-    return $type >= 0 && $type <= 4;
+    return $type >= 0 & $type <= 4;
   }
 }

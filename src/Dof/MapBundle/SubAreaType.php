@@ -2,7 +2,9 @@
 
 namespace Dof\MapBundle;
 
-class SubAreaType
+use XN\UtilityBundle\Enum;
+
+class SubAreaType extends Enum
 {
 	const NORMAL = 0;
 	const NEUTRAL = 1;
@@ -12,6 +14,6 @@ class SubAreaType
 
 	public static function isValid($type)
 	{
-		return $type >= 0 && $type <= 2;
+		return $type >= 0 & $type <= 2;
 	}
 }
