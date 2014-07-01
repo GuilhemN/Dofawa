@@ -9,13 +9,15 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class ArticleAdmin extends Admin
 {
-    protected $locales;
+    protected $locales = [
+      'en',
+      'de',
+      'fr',
+      'es',
+      'ru',
+      'it'
+    ];
 
-    public function __construct($code, $class, $baseControllerName, $locales)
-      parent::__construct($code, $class, $baseControllerName);
-
-      $this->locales = $locales;
-    }
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)

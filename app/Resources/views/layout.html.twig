@@ -18,14 +18,9 @@
 
   <meta name="KEYWORDS" content="dofus ,astuces, quêtes, donjon, dofus build , tutoriels dofus , calculateur dofus, secrets, solutions, dofus tutoriels , donjons dofus , succès dofus, dofus fan site , astuces kamas , dofus frigost , dofus 2.0, élevage dofus, builds dofus, avatars dofus" />
 
-
-  <link rel="alternate" hreflang="fr" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'fr'}) ) }}" />
-  <link rel="alternate" hreflang="en" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) ) }}" />
-  <link rel="alternate" hreflang="es" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) }}" />
-  <link rel="alternate" hreflang="de" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'de'}) ) }}" />
-  <link rel="alternate" hreflang="it" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'it'}) ) }}" />
-  <link rel="alternate" hreflang="ru" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) ) }}" />
-
+  {% for locale in locales %}
+    <link rel="alternate" hreflang="{{ locale }}" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': {{ locale }}}) ) }}" />
+  {% endfor %}
   <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
   <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
   <script type="text/javascript" src="{{ asset('bundles/xnutility/js/jquery-2.1.1.min.js') }}"></script>
