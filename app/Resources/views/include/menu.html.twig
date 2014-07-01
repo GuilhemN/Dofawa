@@ -94,6 +94,7 @@
         <li class="dropdown {% if app.request.get('_route') starts with 'dof_admin_' %}active{% endif %}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
           <ul class="dropdown-menu">
+            <li><a href="{{ path('sonata_admin_dashboard')}}">Tableau de bord</a></li>
             {% if is_granted('ROLE_UPDATE_USERS') %}
             <li class="dropdown-header">Utilisateurs</li>
             <li {% if app.request.get('_route') == 'dof_admin_users_homepage' %}class="active"{% endif %}>
