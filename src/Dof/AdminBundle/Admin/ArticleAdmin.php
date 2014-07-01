@@ -13,9 +13,17 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text', array('label' => 'Post Title'))
+            ->add('nameFr', 'text', array('label' => 'Fr Title'))
+            ->add('nameEn', 'text', array('label' => 'En Title'))
+            ->add('nameDe', 'text', array('label' => 'De Title'))
+            ->add('nameEs', 'text', array('label' => 'Es Title'))
+            ->add('nameIt', 'text', array('label' => 'It Title'))
+            ->add('namePt', 'text', array('label' => 'Pt Title'))
+            ->add('nameJp', 'text', array('label' => 'Jp Title'))
+            ->add('nameRu', 'text', array('label' => 'Ru Title'))
+
             ->add('creator', 'entity', array('class' => 'Acme\DemoBundle\Entity\User'))
-            ->add('description') //if no type is specified, SonataAdminBundle tries to guess it
+            ->add('descriptionFr') //if no type is specified, SonataAdminBundle tries to guess it
         ;
     }
 
