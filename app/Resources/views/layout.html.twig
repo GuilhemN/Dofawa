@@ -19,7 +19,7 @@
   <meta name="KEYWORDS" content="dofus ,astuces, quêtes, donjon, dofus build , tutoriels dofus , calculateur dofus, secrets, solutions, dofus tutoriels , donjons dofus , succès dofus, dofus fan site , astuces kamas , dofus frigost , dofus 2.0, élevage dofus, builds dofus, avatars dofus" />
 
   {% for locale in locales %}
-    <link rel="alternate" hreflang="{{ locale }}" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': {{ locale }}}) ) }}" />
+    <link rel="alternate" hreflang="{{ locale }}" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale }) ) }}" />
   {% endfor %}
   <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
   <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
