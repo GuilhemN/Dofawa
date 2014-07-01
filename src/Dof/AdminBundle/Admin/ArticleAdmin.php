@@ -9,22 +9,25 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class ArticleAdmin extends Admin
 {
+    protected $locales;
+
+    public function __construct($code, $class, $baseControllerName, $locales)
+      parent::__construct($code, $class, $baseControllerName);
+
+      $this->locales = $locales;
+    }
+
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('nameFr', 'text', array('label' => 'Fr Title'))
-            ->add('nameEn', 'text', array('label' => 'En Title'))
-            ->add('nameDe', 'text', array('label' => 'De Title'))
-            ->add('nameEs', 'text', array('label' => 'Es Title'))
-            ->add('nameIt', 'text', array('label' => 'It Title'))
-            ->add('namePt', 'text', array('label' => 'Pt Title'))
-            ->add('nameJp', 'text', array('label' => 'Jp Title'))
-            ->add('nameRu', 'text', array('label' => 'Ru Title'))
+          ->add('creator', 'entity', array('class' => 'Dof\UserBundle\Entity\User'))
 
-            ->add('creator', 'entity', array('class' => 'Dof\UserBundle\Entity\User'))
-            ->add('descriptionFr') //if no type is specified, SonataAdminBundle tries to guess it
-        ;
+        foreach($this->locales as $locale)
+          $formMapper
+              ->add('name'.ucfirst($locale))
+              ->add('description'.ucfirst($locale))
+          ;
     }
 
     // Fields to be shown on filter forms

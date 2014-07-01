@@ -18,3 +18,4 @@ services:
             - ~
             - Dof\ArticlesBundle\Entity\Article
             - ~
+            - %locales%
