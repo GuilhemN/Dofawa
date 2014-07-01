@@ -4,3 +4,17 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: dofadmin_users_profile }
+
+services:
+    sonata.admin.article:
+        class: Dof\AdminBundle\Admin\ArticleAdmin
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "dof.admin.group.content"
+              label: "dof.admin.model.article"
+              label_catalogue: "DofArticlesBundle"
+        arguments:
+            - ~
+            - Dof\ArticlesBundle\Entity\Article
+            - ~
