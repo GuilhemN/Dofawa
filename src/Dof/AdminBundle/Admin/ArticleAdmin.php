@@ -24,6 +24,7 @@ class ArticleAdmin extends Admin
     {
         $formMapper
           ->add('creator', 'entity', array('class' => 'Dof\UserBundle\Entity\User'))
+        ;
 
         foreach($this->locales as $locale)
           $formMapper
