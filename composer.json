@@ -23,7 +23,9 @@
         "patchwork/utf8": "1.1.*",
     	  "friendsofsymfony/jsrouting-bundle": "1.5.*",
         "jms/i18n-routing-bundle": "dev-master",
-        "mopa/bootstrap-bundle": "dev-master"
+        "mopa/bootstrap-bundle": "dev-master",
+        "sonata-project/admin-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
