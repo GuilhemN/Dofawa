@@ -7,14 +7,14 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Dof\ArticlesBundle\Entity\Articles;
+use Dof\ArticlesBundle\Entity\Article;
 
 class ArticlesController extends Controller
 {
   /**
-   * @ParamConverter("articles", options={"mapping": {"id": "id"}})
+   * @ParamConverter("article", options={"mapping": {"id": "id"}})
    */
-    public function viewAction(Articles $article)
+    public function viewAction(Article $article)
     {
       return $this->render('DofArticlesBundle:Article:view.html.twig', array(
         'article' => $article
@@ -23,9 +23,9 @@ class ArticlesController extends Controller
 
 
       /**
-       * @ParamConverter("articles", options={"mapping": {"id": "id"}})
+       * @ParamConverter("article", options={"mapping": {"id": "id"}})
        */
-    public function editAction(Articles $article)
+    public function editAction(Article $article)
     {
 
       if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))

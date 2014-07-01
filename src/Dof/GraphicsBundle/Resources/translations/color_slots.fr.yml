@@ -84,8 +84,7 @@ eniripsa:
     slot5: "Ailes"
 
 eniripsa0:
-    # slot3: "Veste" <- Edroc
-    slot3: "Gilet"
+    slot3: "Veston"
     slot4: "Pantalon"
 
 eniripsa1:

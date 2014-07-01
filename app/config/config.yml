@@ -45,13 +45,13 @@ assetic:
     bundles:        [ FOSUserBundle, DofUserBundle ]
     #java: /usr/bin/java
     filters:
-       cssrewrite: ~
-       lessphp:
-           # Formatter options: compressed, lessjs, classic
-           formatter: "compressed"
-           preserve_comments: false
-           presets:
-               my_variable: "#000"
+        cssrewrite: ~
+        lessphp:
+            # Formatter options: compressed, lessjs, classic
+            formatter: "compressed"
+            preserve_comments: false
+            presets:
+                my_variable: "#000"
         #closure:
         #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
         #yui_css:

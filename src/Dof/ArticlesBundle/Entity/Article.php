@@ -17,12 +17,12 @@ use XN\DataBundle\LocalizedNameTrait;
 use XN\DataBundle\LocalizedDescriptionTrait;
 
 /**
- * Articles
+ * Article
  *
  * @ORM\Table(name="dof_articles")
- * @ORM\Entity(repositoryClass="Dof\ArticlesBundle\Entity\ArticlesRepository")
+ * @ORM\Entity(repositoryClass="Dof\ArticlesBundle\Entity\ArticleRepository")
  */
-class Articles implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
+class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
 {
     /**
      * @var integer
@@ -45,9 +45,9 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * @var integer
      *
-     * @ORM\Column(name="validation", type="integer")
+     * @ORM\Column(name="validation", type="boolean")
      */
-    private $validation;
+    private $published;
 
     /**
      * @var string
@@ -59,9 +59,9 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * @var integer
      *
-     * @ORM\Column(name="news", type="integer")
+     * @ORM\Column(name="type", type="integer")
      */
-    private $news;
+    private $type;
 
     /**
      * @var string
@@ -85,7 +85,7 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
      * Set keys
      *
      * @param string $keys
-     * @return Articles
+     * @return Article
      */
     public function setKeys($keys)
     {
@@ -105,33 +105,33 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Set validation
+     * Set published
      *
-     * @param integer $validation
-     * @return Articles
+     * @param integer $published
+     * @return Article
      */
-    public function setValidation($validation)
+    public function setPublished($published)
     {
-        $this->validation = $validation;
+        $this->published = $published;
 
         return $this;
     }
 
     /**
-     * Get validation
+     * Get published
      *
      * @return integer
      */
-    public function getValidation()
+    public function getPublished()
     {
-        return $this->validation;
+        return $this->published;
     }
 
     /**
      * Set mail
      *
      * @param string $mail
-     * @return Articles
+     * @return Article
      */
     public function setMail($mail)
     {
@@ -154,7 +154,7 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
      * Set category
      *
      * @param string $category
-     * @return Articles
+     * @return Article
      */
     public function setCategory($category)
     {
@@ -177,11 +177,11 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
      * Set news
      *
      * @param integer $news
-     * @return Articles
+     * @return Article
      */
-    public function setNews($news)
+    public function setType($type)
     {
-        $this->news = $news;
+        $this->news = $type;
 
         return $this;
     }
@@ -191,16 +191,16 @@ class Articles implements IdentifiableInterface, TimestampableInterface, Sluggab
      *
      * @return integer
      */
-    public function getNews()
+    public function getType()
     {
-        return $this->news;
+        return $this->type;
     }
 
     /**
      * Set journal
      *
      * @param string $journal
-     * @return Articles
+     * @return Article
      */
     public function setJournal($journal)
     {

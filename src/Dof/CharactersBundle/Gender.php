@@ -2,7 +2,9 @@
 
 namespace Dof\CharactersBundle;
 
-class Gender
+use XN\UtilityBundle\Enum;
+
+class Gender extends Enum
 {
     const MALE = 0;
     const FEMALE = 1;
@@ -11,6 +13,6 @@ class Gender
 
     public static function isValid($gender)
     {
-        return $gender >= 0 && $gender <= 1;
+        return $gender >= 0 & $gender <= 1;
     }
 }

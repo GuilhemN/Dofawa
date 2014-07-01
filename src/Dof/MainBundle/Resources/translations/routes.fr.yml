@@ -1,44 +1,44 @@
 # Desc: /admin/users/delete/{id}
-dof_admin_users_delete: '/admin/utilisateurs/supprimer/{id}'   # FIXME
+dof_admin_users_delete: '/admin/utilisateurs/supprimer/{id}'
 
 # Desc: /admin/users/edit/{id}
-dof_admin_users_edit: '/admin/utilisateurs/editer/{id}'   # FIXME
+dof_admin_users_edit: '/admin/utilisateurs/editer/{id}'
 
 # Desc: /admin/users/{page}
-dof_admin_users_homepage: '/admin/utilisateurs/{page}'   # FIXME
+dof_admin_users_homepage: '/admin/utilisateurs/{page}'
 
 # Desc: /news/
-dof_articles_homepage: /news/   # FIXME
+dof_articles_homepage: /news/
 
 # Desc: /items/hello/{name}
-dof_items_homepage: '/items/hello/{name}'   # FIXME
+dof_items_homepage: '/items/hello/{name}'
 
 # Desc: /
-dof_main_homepage: /   # FIXME
+dof_main_homepage: /
 
 # Desc: /profile/show/{name_user}
-dof_profile_userpage: '/profil/voir/{name_user}'   # FIXME
+dof_profile_userpage: '/profil/voir/{name_user}'
 
 # Desc: /profile/change-password
-fos_user_change_password: /profil/modifier-password   # FIXME
+fos_user_change_password: /profil/modifier-password
 
 # Desc: /profile/edit
-fos_user_profile_edit: /profil/editer   # FIXME
+fos_user_profile_edit: /profil/editer
 
 # Desc: /profile/
-fos_user_profile_show: /profil/   # FIXME
+fos_user_profile_show: /profil/
 
 # Desc: /register/check-email
-fos_user_registration_check_email: /inscription/verif-email   # FIXME
+fos_user_registration_check_email: /inscription/verif-email
 
 # Desc: /register/confirm/{token}
-fos_user_registration_confirm: '/inscription/confirmation/{token}'   # FIXME
+fos_user_registration_confirm: '/inscription/confirmation/{token}'
 
 # Desc: /register/confirmed
-fos_user_registration_confirmed: /inscription/confirmation   # FIXME
+fos_user_registration_confirmed: /inscription/confirmation
 
 # Desc: /register/
-fos_user_registration_register: /inscription/   # FIXME
+fos_user_registration_register: /inscription/
 
 # Desc: /resetting/check-email
 fos_user_resetting_check_email: /resetting/check-email   # FIXME
@@ -53,10 +53,10 @@ fos_user_resetting_reset: '/resetting/reset/{token}'   # FIXME
 fos_user_resetting_send_email: /resetting/envoi-email   # FIXME
 
 # Desc: /login_check
-fos_user_security_check: /test_connexion   # FIXME
+fos_user_security_check: /test_connexion
 
 # Desc: /login
-fos_user_security_login: /connexion   # FIXME
+fos_user_security_login: /connexion
 
 # Desc: /logout
-fos_user_security_logout: /deconnexion   # FIXME
+fos_user_security_logout: /deconnexion

@@ -182,13 +182,6 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $visible;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="preliminary", type="boolean")
-     */
-    private $preliminary;
-
-    /**
      * @var Job
      *
      * @ORM\ManyToOne(targetEntity="Job", inversedBy="gatherableItems")
@@ -234,7 +227,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -584,13 +577,13 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     /**
      * Get level
      *
-     * @return integer 
+     * @return integer
      */
     public function getLevel()
     {
         return $this->level;
     }
-    
+
     /**
      * Set weight
      *
@@ -705,7 +698,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     {
         return $this->effects;
     }
-    
+
     /**
      * Add components
      *
@@ -812,39 +805,6 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set preliminary
-     *
-     * @param boolean $preliminary
-     * @return ItemTemplate
-     */
-    public function setPreliminary($preliminary)
-    {
-        $this->preliminary = $preliminary;
-
-        return $this;
-    }
-
-    /**
-     * Get preliminary
-     *
-     * @return boolean
-     */
-    public function getPreliminary()
-    {
-        return $this->preliminary;
-    }
-
-    /**
-     * Get preliminary
-     *
-     * @return boolean
-     */
-    public function isPreliminary()
-    {
-        return $this->preliminary;
-    }
-
-    /**
      * Set gatheringJob
      *
      * @param Job $gatheringJob
@@ -889,7 +849,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     {
         return $this->gatheringJobMinLevel;
     }
-    
+
     /**
      * Set craftingJob
      *

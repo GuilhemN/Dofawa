@@ -2,7 +2,9 @@
 
 namespace Dof\CharactersBundle;
 
-class BaseCharacteristic
+use XN\UtilityBundle\Enum;
+
+class BaseCharacteristic extends Enum
 {
     const VITALITY = 0;
     const WISDOM = 1;
@@ -15,6 +17,6 @@ class BaseCharacteristic
 
     public static function isValid($characteristic)
     {
-        return $characteristic >= 0 && $characteristic <= 5;
+        return $characteristic >= 0 & $characteristic <= 5;
     }
 }

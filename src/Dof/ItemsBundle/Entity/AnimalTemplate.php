@@ -19,7 +19,7 @@ class AnimalTemplate extends EquipmentTemplate
     /**
      * @var integer
      *
-     * @ORM\Column(name="bone", type="integer", nullable=true)
+     * @ORM\Column(name="bone", type="integer", nullable=true, unique=false)
      */
     private $bone;
 
@@ -103,7 +103,7 @@ class AnimalTemplate extends EquipmentTemplate
     {
         return $this->colorizationType;
     }
-    
+
     /**
      * Set favoriteAreaBonus
      *
