@@ -31,7 +31,7 @@ class ArticleAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
+            ->add('nameFr')
             ->add('creator')
         ;
     }
@@ -40,7 +40,7 @@ class ArticleAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
+            ->addIdentifier('nameFr')
             ->add('slug')
             ->add('creator')
         ;
