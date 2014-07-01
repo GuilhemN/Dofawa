@@ -22,7 +22,7 @@ class ArticleAdmin extends Admin
             ->add('nameJp', 'text', array('label' => 'Jp Title'))
             ->add('nameRu', 'text', array('label' => 'Ru Title'))
 
-            ->add('creator', 'entity', array('class' => 'Acme\DemoBundle\Entity\User'))
+            ->add('creator', 'entity', array('class' => 'Dof\UserBundle\Entity\User'))
             ->add('descriptionFr') //if no type is specified, SonataAdminBundle tries to guess it
         ;
     }
