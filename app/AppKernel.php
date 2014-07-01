@@ -26,6 +26,13 @@ class AppKernel extends Kernel
             new XN\UtilityBundle\XNUtilityBundle(),
             new SymfonyExtender\TranslationsBundle\SymfonyExtenderTranslationsBundle(),
 
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+
             new Dof\UserBundle\DofUserBundle(),
             new Dof\ArticlesBundle\DofArticlesBundle(),
             new Dof\ItemsBundle\DofItemsBundle(),
