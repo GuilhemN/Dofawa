@@ -25,6 +25,7 @@ security:
         - { path: "fos_user_security_check", role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ZONE_ADMIN }
 
     role_hierarchy:
         # Spéciaux
@@ -33,9 +34,9 @@ security:
         ROLE_PREMIUM:      ['ROLE_AD_FREE', 'ROLE_BETA']
 
         # Articles
-        ROLE_REDACTOR: ['ROLE_REDACTOR_EDIT']
-        ROLE_REDACTOR_FULL: ['ROLE_REDACTOR_EDIT']
+        ROLE_REDACTOR: ['ROLE_REDACTOR_EDIT', 'ROLE_ZONE_ADMIN']
+        ROLE_REDACTOR_FULL: ['ROLE_REDACTOR_EDIT', 'ROLE_ZONE_ADMIN']
 
         # Admin du site
-        ROLE_ADMIN:        ['ROLE_MENU_ADMIN', 'ROLE_PREMIUM', 'ROLE_USER']
+        ROLE_ADMIN:        ['ROLE_ZONE_ADMIN', 'ROLE_PREMIUM', 'ROLE_USER']
         ROLE_SUPER_ADMIN:  ['ROLE_ADMIN', 'ROLE_UPDATE_USERS']
