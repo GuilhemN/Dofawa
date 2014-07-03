@@ -122,6 +122,7 @@ sonata_admin:
         acl_user_manager: fos_user.user_manager # Name of the user manager service used to retrieve ACL users
         information:
             EDIT: EDIT
+            FEDIT: EDITFULL
             LIST: LIST
             CREATE: CREATE
             VIEW: VIEW
@@ -129,6 +130,13 @@ sonata_admin:
             EXPORT: EXPORT
             OPERATOR: OPERATOR
             MASTER: MASTER
+
+            GUEST:    [VIEW, LIST]
+            STAFF:    [EDIT, LIST, CREATE]
+            EDITOR:   [OPERATOR, EXPORT]
+            FEDITOR:  [FEDIT]
+            ADMIN:    [MASTER]
+
         # the DELETE admin permission means the user is allowed to batch delete objects
         admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
         # permission related to the objects
