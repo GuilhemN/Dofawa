@@ -1,5 +1,15 @@
 services:
-    sonata.admin.articles:
+    sonata.admin.user:
+        class: Dof\AdminBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Users", label: "Utilisateurs" }
+        arguments:
+            - ~
+            - Dof\UserBundle\Entity\User
+        calls:
+            - [ setTranslationDomain, [DofUserBundle]]
+
+    sonata.admin.article:
         class: Dof\AdminBundle\Admin\ArticleAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Content", label: "Articles" }

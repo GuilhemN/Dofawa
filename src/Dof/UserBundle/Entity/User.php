@@ -87,13 +87,6 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     /**
      * @var string
      *
-     * @ORM\Column(name="grade", type="string", length=100, nullable=true)
-     */
-    private $grade=null;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="commentaire", type="text", nullable=true)
      */
     private $commentaire=null;
@@ -335,29 +328,6 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     public function getNbvisite()
     {
         return $this->nbvisite;
-    }
-
-    /**
-     * Set grade
-     *
-     * @param string $grade
-     * @return User
-     */
-    public function setGrade($grade)
-    {
-        $this->grade = $grade;
-
-        return $this;
-    }
-
-    /**
-     * Get grade
-     *
-     * @return string
-     */
-    public function getGrade()
-    {
-        return $this->grade;
     }
 
     /**

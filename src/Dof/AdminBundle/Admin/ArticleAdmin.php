@@ -12,9 +12,9 @@ use Dof\ArticlesBundle\ArticleType;
 class ArticleAdmin extends Admin
 {
     protected $locales = [
+      'fr',
       'en',
       'de',
-      'fr',
       'es',
       'ru',
       'it'
