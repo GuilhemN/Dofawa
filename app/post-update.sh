@@ -10,8 +10,9 @@ mkdir -p app/cache
 
 composer install
 
-app/console cache:clear -e dev
+app/console cache:clear -e dev &
 app/console cache:clear -e prod
+wait "$!"
 
 app/console doctrine:schema:update --dump-sql
 app/console doctrine:schema:update --force
