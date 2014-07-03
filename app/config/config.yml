@@ -97,6 +97,9 @@ fos_user:
         form:
             type: dof_user_profile
 
+fos_message:
+    db_driver: orm
+
 mopa_bootstrap:
     form: ~  # Adds twig form theme  support
 
