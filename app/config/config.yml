@@ -131,12 +131,6 @@ sonata_admin:
             OPERATOR: OPERATOR
             MASTER: MASTER
 
-            GUEST:    [VIEW, LIST]
-            STAFF:    [EDIT, LIST, CREATE]
-            EDITOR:   [OPERATOR, EXPORT]
-            FEDITOR:  [FEDIT]
-            ADMIN:    [MASTER]
-
         # the DELETE admin permission means the user is allowed to batch delete objects
         admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
         # permission related to the objects
