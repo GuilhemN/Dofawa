@@ -14,13 +14,15 @@ use XN\DataBundle\SluggableTrait;
 use XN\DataBundle\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
+use FOS\MessageBundle\Model\ParticipantInterface;
+
 /**
  * User
  *
  * @ORM\Table(name="dof_user")
  * @ORM\Entity(repositoryClass="Dof\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, MinorColumnsInterface
+class User extends BaseUser implements ParticipantInterface, IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, MinorColumnsInterface
 {
     /**
      * @var integer
@@ -121,13 +123,13 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
      * Set point
      *
@@ -144,7 +146,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get point
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoint()
     {
@@ -167,7 +169,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get avatar
      *
-     * @return string 
+     * @return string
      */
     public function getAvatar()
     {
@@ -190,7 +192,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get groupe
      *
-     * @return string 
+     * @return string
      */
     public function getGroupe()
     {
@@ -213,7 +215,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get confirme
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getConfirme()
     {
@@ -236,7 +238,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get guilde
      *
-     * @return string 
+     * @return string
      */
     public function getGuilde()
     {
@@ -259,7 +261,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get lieu
      *
-     * @return string 
+     * @return string
      */
     public function getLieu()
     {
@@ -282,7 +284,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get site
      *
-     * @return string 
+     * @return string
      */
     public function getSite()
     {
@@ -305,7 +307,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get born
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBorn()
     {
@@ -328,7 +330,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get nbvisite
      *
-     * @return integer 
+     * @return integer
      */
     public function getNbvisite()
     {
@@ -351,7 +353,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get grade
      *
-     * @return string 
+     * @return string
      */
     public function getGrade()
     {
@@ -374,7 +376,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get commentaire
      *
-     * @return string 
+     * @return string
      */
     public function getCommentaire()
     {
@@ -397,7 +399,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get presentation
      *
-     * @return string 
+     * @return string
      */
     public function getPresentation()
     {
@@ -420,7 +422,7 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get horaires
      *
-     * @return string 
+     * @return string
      */
     public function getHoraires()
     {
@@ -443,13 +445,13 @@ class User extends BaseUser implements IdentifiableInterface, TimestampableInter
     /**
      * Get differentpseudo
      *
-     * @return string 
+     * @return string
      */
     public function getDifferentpseudo()
     {
         return $this->differentpseudo;
     }
-    
+
     public function getMinorColumns()
     {
         return array('lastLogin', 'nbvisite');

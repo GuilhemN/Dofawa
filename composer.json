@@ -29,7 +29,8 @@
         "sonata-project/block-bundle": "dev-master",
         "sonata-project/jquery-bundle": "dev-master",
         "knplabs/knp-menu": "2.0.*@dev",
-        "knplabs/knp-menu-bundle": "2.0.*@dev"
+        "knplabs/knp-menu-bundle": "2.0.*@dev",
+        "friendsofsymfony/message-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

@@ -6,6 +6,6 @@ services:
         arguments:
             - ~
             - Dof\ArticlesBundle\Entity\Article
-            - ~
+            - DofAdminBundle:CRUDOwn
         calls:
             - [ setTranslationDomain, [DofArticlesBundle]]
