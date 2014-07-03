@@ -29,12 +29,18 @@ class PipetteController extends Controller
         $results = array_map(function ($url) {
             try {
                 $scraper = new CharacterPageScraper($url);
+                $name = $scraper->getName();
+                $serverName = $scraper->getServerName();
                 $look = EntityLookTransforms::locatePC($scraper->getEntityLook());
             } catch (\Exception $e) {
+                $name = null;
+                $serverName = null;
                 $look = null;
             }
             return (object)[
                 'address' => $url,
+                'name' => $name,
+                'serverName' => $serverName,
                 'entityLook' => $look,
                 'bpcLook' => null
             ];

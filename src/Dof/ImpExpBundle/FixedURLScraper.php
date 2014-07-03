@@ -2,10 +2,8 @@
 
 namespace Dof\ImpExpBundle;
 
-abstract class FixedURLScraper
+abstract class FixedURLScraper extends URLScraper
 {
-    protected $contents;
-
     protected function __construct()
     {
         $this->contents = file_get_contents(static::URL);
@@ -19,8 +17,8 @@ abstract class FixedURLScraper
         return $inst;
     }
 
-    public function getContents()
+    public function getURL()
     {
-        return $this->contents;
+        return static::URL;
     }
 }

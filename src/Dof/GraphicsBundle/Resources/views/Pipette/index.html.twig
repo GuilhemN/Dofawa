@@ -11,7 +11,10 @@
 {% if result.entityLook is not null %}
   <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading"><a href="{{ result.address }}" target="_blank">{{ result.address }}</a></div>
+      <div class="panel-heading">
+        <strong>{{ result.name }}</strong> ({{ result.serverName }})<br />
+        <a href="{{ result.address }}" target="_blank">{{ result.address }}</a>
+      </div>
       <div class="panel-body">
         <p>Voici les infos de cette page perso :</p>
       </div>
