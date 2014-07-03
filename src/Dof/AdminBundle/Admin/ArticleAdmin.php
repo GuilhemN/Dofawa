@@ -56,7 +56,7 @@ class ArticleAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('nameFr')
+            ->addIdentifier('nameFr')
             ->add('slug')
             ->add('owner')
         ;
