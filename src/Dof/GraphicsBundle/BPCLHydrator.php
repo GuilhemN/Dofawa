@@ -39,10 +39,10 @@ class BPCLHydrator
 
     public function postLoad(LifecycleEventArgs $args)
     {
-		$ent = $args->getObject();
+		$ent = $args->getEntity();
         if ($ent instanceof BasicPCLook) {
             $this->initialize();
-            $ent->translateRelations($args->getObjectManager(), $this->livingItemFactory, $this->chameleonDragoturkey);
+            $ent->translateRelations($args->getEntityManager(), $this->livingItemFactory, $this->chameleonDragoturkey);
         }
     }
 }

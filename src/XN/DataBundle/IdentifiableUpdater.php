@@ -10,15 +10,15 @@ class IdentifiableUpdater
 	 * @var IdentifierGeneratorInterface
 	 */
 	private $idgen;
-
+	
 	public function __construct(IdentifierGeneratorInterface $idgen)
 	{
 		$this->idgen = $idgen;
 	}
-
+	
 	public function prePersist(LifecycleEventArgs $args)
 	{
-		$ent = $args->getObject();
+		$ent = $args->getEntity();
 		if ($ent instanceof IdentifiableInterface && $ent->getId() === null) {
 			$id = $this->idgen->generate();
 			if (count($id) == 0)

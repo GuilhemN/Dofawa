@@ -10,20 +10,20 @@ use \DateTime;
 class TimestampableUpdater
 {
 	use MajorColumnsListenerTrait;
-
+	
 	public function prePersist(LifecycleEventArgs $args)
 	{
-		$ent = $args->getObject();
+		$ent = $args->getEntity();
 		if ($ent instanceof TimestampableInterface) {
 			$ent->setUpdatedAt(new DateTime('now'));
 			if ($ent->getCreatedAt() === null)
 				$ent->setCreatedAt($ent->getUpdatedAt());
 		}
 	}
-
+	
 	public function onFlush(OnFlushEventArgs $args)
 	{
-		$em = $args->getObjectManager();
+		$em = $args->getEntityManager();
 		$uow = $em->getUnitOfWork();
 		$mds = array();
 		$updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow) {

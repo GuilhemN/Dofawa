@@ -10,22 +10,22 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 class OwnableUpdater
 {
 	use MajorColumnsListenerTrait;
-
+	
 	/**
 	 * @var ContainerInterface
 	 */
 	private $di;
-
+	
 	public function __construct(ContainerInterface $di)
 	{
 		$this->di = $di;
 	}
-
+	
 	public function prePersist(LifecycleEventArgs $args)
 	{
 		$token = $this->di->get('security.context')->getToken();
 		$user = ($token !== null) ? $token->getUser() : null;
-		$ent = $args->getObject();
+		$ent = $args->getEntity();
 		if ($ent instanceof OwnableInterface) {
 			$ent->setUpdater($user);
 			if ($ent->getCreator() === null)
@@ -34,12 +34,12 @@ class OwnableUpdater
 				$ent->setOwner($ent->getUpdater());
 		}
 	}
-
+	
 	public function onFlush(OnFlushEventArgs $args)
 	{
 		$token = $this->di->get('security.context')->getToken();
 		$user = ($token !== null) ? $token->getUser() : null;
-		$em = $args->getObjectManager();
+		$em = $args->getEntityManager();
 		$uow = $em->getUnitOfWork();
 		$mds = array();
 		$updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $user) {
