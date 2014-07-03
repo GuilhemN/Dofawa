@@ -38,7 +38,7 @@ class ArticleAdmin extends Admin
     {
         $datagridMapper
             ->add('nameFr')
-            ->add('creator')
+            ->add('owner')
         ;
     }
 
@@ -48,7 +48,7 @@ class ArticleAdmin extends Admin
         $listMapper
             ->addIdentifier('nameFr')
             ->add('slug')
-            ->add('creator')
+            ->add('owner')
         ;
     }
 }
