@@ -6,6 +6,8 @@ services:
         arguments:
             - ~
             - Dof\UserBundle\Entity\User
+            - ~
+
         calls:
             - [ setTranslationDomain, [DofUserBundle]]
 
