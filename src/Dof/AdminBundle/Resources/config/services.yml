@@ -15,7 +15,6 @@ services:
               label: "dof.admin.model.article"
               label_catalogue: "DofArticlesBundle"
         arguments:
-            - ~
+            - sonata.admin.article
             - Dof\ArticlesBundle\Entity\Article
             - ~
-            - %locales%
