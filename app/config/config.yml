@@ -99,6 +99,8 @@ fos_user:
 
 fos_message:
     db_driver: orm
+    thread_class: Dof\MessageBundle\Entity\Thread
+    message_class: Dof\MessageBundle\Entity\Message
 
 mopa_bootstrap:
     form: ~  # Adds twig form theme  support

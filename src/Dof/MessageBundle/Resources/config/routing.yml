@@ -1,0 +1,3 @@
+dof_message_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: DofMessageBundle:Default:index }

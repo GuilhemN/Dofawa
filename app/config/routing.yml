@@ -1,3 +1,7 @@
+dof_message:
+    resource: "@DofMessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 #dof_characters:
 #    resource: "@DofCharactersBundle/Resources/config/routing.yml"
 #    prefix:   /characters
