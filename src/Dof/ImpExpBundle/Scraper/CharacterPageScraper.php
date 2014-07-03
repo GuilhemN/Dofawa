@@ -20,7 +20,7 @@ class CharacterPageScraper extends URLFamilyScraper
             $doc = $this->getContentsAsHTMLDocument();
             $this->name = false;
             if ($doc !== null) {
-                foreach ($doc->getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'h1') as $h1) {
+                foreach ($doc->getElementsByTagName('h1') as $h1) {
                     $this->name = '';
                     foreach ($h1->childNodes as $cld)
                         if ($cld->nodeType == XML_TEXT_NODE)
@@ -40,7 +40,7 @@ class CharacterPageScraper extends URLFamilyScraper
             $doc = $this->getContentsAsHTMLDocument();
             $this->serverName = false;
             if ($doc !== null) {
-                foreach ($doc->getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'span') as $span) {
+                foreach ($doc->getElementsByTagName('span') as $span) {
                     if (strpos(' ' . $span->getAttribute('class') . ' ', ' ak-directories-server-name ') === false)
                         continue;
                     $this->serverName = '';
