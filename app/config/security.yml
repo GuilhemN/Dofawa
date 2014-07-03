@@ -46,8 +46,6 @@ security:
 
         # Admin du site
         ROLE_ADMIN:
-            - ROLE_SONATA_ADMIN
-        ROLE_ADMIN:
             - ROLE_ZONE_ADMIN
             - ROLE_PREMIUM
             - ROLE_USER
