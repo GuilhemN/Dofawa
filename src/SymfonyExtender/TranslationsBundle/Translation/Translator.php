@@ -28,6 +28,7 @@ class Translator extends BaseTranslator {
     }
 
     public function trans($id, array $parameters = array(), $domain = 'messages', $locale = null) {
+        $parameters = (array) $parameters;
         if ($locale === null)
             $locale = $this->getLocale();
 
@@ -70,6 +71,7 @@ class Translator extends BaseTranslator {
      */
     public function transChoice($id, $number, array $parameters = array(), $domain = null, $locale = null)
     {
+        $parameters = (array) $parameters;
         if (null === $locale) {
             $locale = $this->getLocale();
         }
