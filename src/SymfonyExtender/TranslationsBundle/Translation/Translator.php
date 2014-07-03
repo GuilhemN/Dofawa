@@ -102,7 +102,7 @@ class Translator extends BaseTranslator {
         //Si les fallbacks générals sont renseignés
         if (is_array($this->language_fallbacks)) {
             foreach ($id as $id1) {
-                $return = $this->searchfallbacks($this->language_fallbacks, $id1, $domain, $parameters, $locale, 'transchoice', $number);
+                $return = $this->searchfallbacks($this->language_fallbacks, $id1, $parameters, $domain, $locale, 'transchoice', $number);
 
                 if ($return)
                     return $return;
