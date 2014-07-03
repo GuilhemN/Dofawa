@@ -13,8 +13,6 @@ class UserAdmin extends Admin
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $typeValues = array_flip(ArticleType::getValues());
-
         $formMapper
           ->add('username')
           ->add('email')
