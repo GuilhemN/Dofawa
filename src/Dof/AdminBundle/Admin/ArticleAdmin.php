@@ -23,7 +23,7 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-          ->add('creator', 'entity', array('class' => 'Dof\UserBundle\Entity\User'))
+          ->add('creator')
         ;
 
         foreach($this->locales as $locale)
