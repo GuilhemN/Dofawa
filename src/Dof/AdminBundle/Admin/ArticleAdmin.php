@@ -35,7 +35,7 @@ class ArticleAdmin extends Admin
             'choices'   => array(
                 '0'   => 'Non',
                 '1' => 'Oui',
-            ))
+            )))
         ;
 
 
