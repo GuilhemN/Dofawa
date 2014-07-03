@@ -122,7 +122,7 @@ sonata_admin:
         acl_user_manager: fos_user.user_manager # Name of the user manager service used to retrieve ACL users
         information:
             EDIT: EDIT
-            FEDIT: EDITFULL
+            EDITFULL: EDITFULL
             LIST: LIST
             CREATE: CREATE
             VIEW: VIEW
