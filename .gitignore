@@ -20,3 +20,7 @@ sftp-config*
 
 # Eclipse
 .project
+
+# Temporary (build etc.) files
+tmp/*
+!tmp/.gitkeep
