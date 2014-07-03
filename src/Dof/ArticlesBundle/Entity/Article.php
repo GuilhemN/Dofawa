@@ -128,29 +128,6 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set mail
-     *
-     * @param string $mail
-     * @return Article
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
      * Set category
      *
      * @param string $category
@@ -221,6 +198,6 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->getNameFr();
     }
 }
