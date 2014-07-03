@@ -1,5 +1,5 @@
 TRACEUR = /usr/local/bin/traceur
-CLOSURE = /usr/bin/java -jar /var/lib/closure-compiler/compiler.jar
+CLOSURE = app/memoclosure.sh
 LESSC = /usr/local/bin/lessc
 CSSMIN = /usr/local/bin/cssmin
 GZIP = /bin/gzip
@@ -9,7 +9,7 @@ SED = /bin/sed
 TRUE = /bin/true
 
 TRFLAGS =
-CLFLAGS = --language_in ECMASCRIPT5
+CLFLAGS =
 LCFLAGS =
 CMFLAGS =
 GZFLAGS = -9 -n
