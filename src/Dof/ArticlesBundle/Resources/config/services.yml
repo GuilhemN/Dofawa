@@ -2,11 +2,6 @@ parameters:
     dof_articles.article.form.class: Dof\ArticlesBundle\Form\Type\ArticleFormType
 
 services:
-    sonata.user.admin:
-        class: Sonata\UserBundle\Admin\Entity\UserAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: protalk_user, label: User }
-        arguments: [null, Dof\UserBundle\Entity\User, null]
     dof_articles.profile.form.type:
         class: %dof_articles.article.form.class%
         tags:
