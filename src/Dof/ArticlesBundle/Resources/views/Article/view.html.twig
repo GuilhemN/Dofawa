@@ -6,18 +6,24 @@
 {% endblock %}
 
 {% block body %}
-<article itemscope itemtype="http://schema.org/Article">
-  <div class="page-header">
-    <h1>
-      <span itemprop="name">{{ article.getName(locales()) }}</span>
-      <small>
-        <time itemprop="dateCreated" datetime="{{ article.createdAt | date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
-      </small>
-    </h1>
-    By <a href="{{ path('dof_profile_userpage', {'name_user' : article.owner.slug}) }}">{{ article.owner.username }}</a>
-  </div>
-  <div class="well well-lg" itemprop="articleBody">
-    {{ article.getDescription(locales()) | raw }}
-  </div>
-</article>
+  {% if is_granted('ROLE_REDACTOR_FULL') or is_granted('ROLE_REDACTOR') and article.owner.id = app.user.id %}
+  <a href="btn btn-primary" href="{{ path('admin_dof_articles_article_edit', { 'id': article.id }) }}">
+    Editer
+  </a>
+  {% endif %}
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <div class="page-header">
+      <h1>
+        <span itemprop="name">{{ article.getName(locales()) }}</span>
+        <small>
+          <time itemprop="dateCreated" datetime="{{ article.createdAt | date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
+        </small>
+      </h1>
+      By <a href="{{ path('dof_profile_userpage', {'name_user' : article.owner.slug}) }}">{{ article.owner.username }}</a>
+    </div>
+    <div class="well well-lg" itemprop="articleBody">
+      {{ article.getDescription(locales()) | raw }}
+    </div>
+  </article>
 {% endblock %}

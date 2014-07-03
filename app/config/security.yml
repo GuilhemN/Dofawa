@@ -49,5 +49,6 @@ security:
             - ROLE_ZONE_ADMIN
             - ROLE_PREMIUM
             - ROLE_USER
+            - ROLE_REDACTOR_FULL
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
