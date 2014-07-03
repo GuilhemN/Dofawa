@@ -32,9 +32,9 @@ class ArticleAdmin extends Admin
           ->add('category')
           ->add('type', 'choice', array('choices' => $typeValues))
           ->add('published', 'choice', array(
-            'choices'   => array(
-                '0'   => 'Non',
-                '1' => 'Oui',
+            'choices' => array(
+                '0' => 'Non',
+                '1' => 'Oui'
             )))
         ;
 
