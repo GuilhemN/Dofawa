@@ -32,7 +32,7 @@ class CRUDOwnController extends BaseController{
       }
 
       if (false === $this->admin->isGranted('EDITFULL', $object)
-        or ($object->getCreator() && $object->getOwner()) != $this->get('security.context')->getToken()->getUser()) {
+        && ($object->getCreator().getId() && $object->getOwner().getId()) != $this->get('security.context')->getToken()->getUser().getId()) {
           throw new AccessDeniedException();
       }
 
