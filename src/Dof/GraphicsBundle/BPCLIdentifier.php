@@ -22,30 +22,40 @@ class BPCLIdentifier
      * @var SkinnedEquipmentTemplateRepository
      */
     private $skinnedEquipmentTemplates;
+
     /**
      * @var AnimalTemplateRepository
      */
     private $animalTemplates;
+
     /**
      * @var BreedRepository
      */
     private $breeds;
+
     /**
      * @var FaceRepository
      */
     private $faces;
+
     /**
      * @var LivingItemFactory
      */
     private $livingItemFactory;
 
-    public function __construct(ObjectManager $dm, LivingItemFactory $livingItemFactory)
+    /**
+     * @var ChameleonDragoturkey
+     */
+    private $chameleonDragoturkey;
+
+    public function __construct(ObjectManager $dm, LivingItemFactory $livingItemFactory, ChameleonDragoturkey $chameleonDragoturkey)
     {
         $this->skinnedEquipmentTemplates = $dm->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
         $this->animalTemplates = $dm->getRepository('DofItemsBundle:AnimalTemplate');
         $this->breeds = $dm->getRepository('DofCharactersBundle:Breed');
         $this->faces = $dm->getRepository('DofCharactersBundle:Face');
         $this->livingItemFactory = $livingItemFactory;
+        $this->chameleonDragoturkey = $chameleonDragoturkey;
     }
 
     public function identify($entityLooks)

@@ -4,8 +4,8 @@ namespace Dof\GraphicsBundle;
 
 use XN\DataBundle\SluggableUpdater;
 
-use Dof\ItemsBundle\ItemTemplate;
-use Dof\ItemsBundle\ItemType;
+use Dof\ItemsBundle\Entity\ItemTemplate;
+use Dof\ItemsBundle\Entity\ItemType;
 
 class LivingItem
 {

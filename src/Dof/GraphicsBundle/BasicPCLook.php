@@ -2,30 +2,106 @@
 
 namespace Dof\GraphicsBundle;
 
+use Doctrine\ORM\Mapping as ORM;
+
+use Doctrine\Common\Persistence\ObjectManager;
+
 use Dof\CharactersBundle\Entity\Breed;
 use Dof\CharactersBundle\Entity\Face;
+use Dof\ItemsBundle\Entity\AnimalTemplate;
 use Dof\ItemsBundle\Entity\WeaponTemplate;
 use Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate;
 use Dof\ItemsBundle\AnimalColorizationType;
 use Dof\CharactersBundle\Gender;
 
+/**
+ * @ORM\MappedSuperclass
+ */
 class BasicPCLook
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\CharactersBundle\Entity\Breed")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
     private $breed;
+
+    /**
+     * @ORM\Column(name="gender", type="integer")
+     */
     private $gender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\CharactersBundle\Entity\Face")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
     private $face;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\WeaponTemplate")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
     private $weapon;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
     private $shield;
+
     private $hat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $dbHat;
+
+    /**
+     * @ORM\Column(name="hat_level", type="integer", nullable=true)
+     */
+    private $hatLevel;
+
     private $cloak;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $dbCloak;
+
+    /**
+     * @ORM\Column(name="cloak_level", type="integer", nullable=true)
+     */
+    private $cloakLevel;
+
+    /**
+     * @ORM\Column(name="extra_skins", type="json_array")
+     */
     private $extraSkins;
+
     private $animal;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\AnimalTemplate")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $dbAnimal;
+
+    /**
+     * @ORM\Column(name="animal_is_chameleon_dragoturkey", type="boolean")
+     */
+    private $animalIsChameleonDragoturkey;
+
+    /**
+     * @ORM\Column(name="colors", type="json_array")
+     */
     private $colors;
 
     public function __construct()
     {
         $this->extraSkins = array();
         $this->colors = array();
+        $this->animalIsChameleonDragoturkey = false;
     }
 
     public function setBreed(Breed $breed = null)
@@ -81,6 +157,16 @@ class BasicPCLook
     public function setHat($hat = null)
     {
         $this->hat = $hat;
+        if ($hat instanceof SkinnedEquipmentTemplate) {
+            $this->dbHat = $hat;
+            $this->hatLevel = null;
+        } elseif ($hat instanceof LivingItem) {
+            $this->dbHat = $hat->getTemplate();
+            $this->hatLevel = $hat->getLevel();
+        } else {
+            $this->dbHat = null;
+            $this->hatLevel = null;
+        }
         return $this;
     }
     public function getHat()
@@ -91,6 +177,16 @@ class BasicPCLook
     public function setCloak($cloak = null)
     {
         $this->cloak = $cloak;
+        if ($cloak instanceof SkinnedEquipmentTemplate) {
+            $this->dbCloak = $cloak;
+            $this->cloakLevel = null;
+        } elseif ($cloak instanceof LivingItem) {
+            $this->dbCloak = $cloak->getTemplate();
+            $this->cloakLevel = $cloak->getLevel();
+        } else {
+            $this->dbCloak = null;
+            $this->cloakLevel = null;
+        }
         return $this;
     }
     public function getCloak()
@@ -123,6 +219,11 @@ class BasicPCLook
     public function setAnimal($animal = null)
     {
         $this->animal = $animal;
+        if ($animal instanceof AnimalTemplate)
+            $this->dbAnimal = $animal;
+        else
+            $this->dbAnimal = null;
+        $this->animalIsChameleonDragoturkey = $animal instanceof ChameleonDragoturkey;
         return $this;
     }
     public function getAnimal()
@@ -213,5 +314,21 @@ class BasicPCLook
                 $pcLook->setSubEntity(1, 0, $aniLook);
         }
         return $pcLook;
+    }
+
+    public function translateRelations(ObjectManager $dm, LivingItemFactory $livingItemFactory, ChameleonDragoturkey $chameleonDragoturkey)
+    {
+        if ($this->hatLevel !== null)
+            $this->hat = $livingItemFactory->createFromTemplateAndLevel($this->dbHat, $this->hatLevel);
+        else
+            $this->hat = $this->dbHat;
+        if ($this->cloakLevel !== null)
+            $this->cloak = $livingItemFactory->createFromTemplateAndLevel($this->dbCloak, $this->cloakLevel);
+        else
+            $this->cloak = $this->dbCloak;
+        if ($this->animalIsChameleonDragoturkey)
+            $this->animal = $chameleonDragoturkey;
+        if ($this->dbAnimal !== null)
+            $this->animal = $this->dbAnimal;
     }
 }

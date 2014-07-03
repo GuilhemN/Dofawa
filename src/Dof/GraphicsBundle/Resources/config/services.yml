@@ -1,12 +1,18 @@
 parameters:
+    dof_graphics.bpcl_hydrator.class: Dof\GraphicsBundle\BPCLHydrator
     dof_graphics.bpcl_identifier.class: Dof\GraphicsBundle\BPCLIdentifier
     dof_graphics.living_item_factory.class: Dof\GraphicsBundle\LivingItemFactory
     dof_graphics.chameleon_dragoturkey.class: Dof\GraphicsBundle\ChameleonDragoturkey
 
 services:
+    dof_graphics.bpcl_hydrator:
+        class: %dof_graphics.bpcl_hydrator.class%
+        arguments: [@service_container]
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
     dof_graphics.bpcl_identifier:
         class: %dof_graphics.bpcl_identifier.class%
-        arguments: [@doctrine.orm.default_entity_manager, @dof_graphics.living_item_factory]
+        arguments: [@doctrine.orm.default_entity_manager, @dof_graphics.living_item_factory, @dof_graphics.chameleon_dragoturkey]
     dof_graphics.living_item_factory:
         class: %dof_graphics.living_item_factory.class%
         arguments: [@doctrine.orm.default_entity_manager]

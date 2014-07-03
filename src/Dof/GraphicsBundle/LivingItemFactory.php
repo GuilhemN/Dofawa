@@ -4,8 +4,9 @@ namespace Dof\GraphicsBundle;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Dof\ItemsBundle\ItemTemplateRepository;
-use Dof\ItemsBundle\ItemTypeRepository;
+use Dof\ItemsBundle\Entity\ItemTemplate;
+use Dof\ItemsBundle\Entity\ItemTemplateRepository;
+use Dof\ItemsBundle\Entity\ItemTypeRepository;
 
 class LivingItemFactory
 {
@@ -40,5 +41,11 @@ class LivingItemFactory
             if ($skin >= $bskin + 1 && $skin <= $bskin + 20)
                 return new LivingItem($this->itemTemplates->find($id), $this->itemTypes->find($types[$id]), $skin - $bskin);
         return null;
+    }
+
+    public function createFromTemplateAndLevel(ItemTemplate $template, $level)
+    {
+        $types = LivingItem::getTypes();
+        return new LivingItem($template, $this->itemTypes->find($types[$template->getId()]), $level);
     }
 }
