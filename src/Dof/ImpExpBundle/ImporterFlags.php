@@ -2,7 +2,7 @@
 
 namespace Dof\ImpExpBundle;
 
-use XN\UtiliyBundle\FlagsEnum;
+use XN\UtilityBundle\FlagsEnum;
 
 class ImporterFlags extends FlagsEnum
 {

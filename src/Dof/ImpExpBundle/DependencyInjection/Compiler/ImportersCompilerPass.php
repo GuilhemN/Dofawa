@@ -21,7 +21,7 @@ class ImportersCompilerPass implements CompilerPassInterface
                 $definition->addMethodCall('registerDataSet', [
                     $attributes['provides'],
                     new Reference($id),
-                    isset($attributes['requires']) ? (array)$attributes['requires'] : [ ]
+                    isset($attributes['requires']) ? explode(' ', $attributes['requires']) : [ ]
                 ]);
     }
 }

@@ -5,8 +5,8 @@ namespace Dof\ImpExpBundle;
 abstract class URLScraper
 {
     protected $contents;
-    protected $contentsAsHTMLDocument;
-    protected $contentsAsXMLDocument;
+    private $contentsAsHTMLDocument;
+    private $contentsAsXMLDocument;
 
     public abstract function getURL();
     public function getContents()

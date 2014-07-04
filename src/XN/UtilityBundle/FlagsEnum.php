@@ -11,7 +11,7 @@ abstract class FlagsEnum extends Enum
         $name = array_map('trim', explode(',', $name));
         $values = static::getValues();
         $value = 0;
-        for ($name as $part) {
+        foreach ($name as $part) {
             if (!isset($values[$name]))
                 return null;
             $value |= $values[$name];

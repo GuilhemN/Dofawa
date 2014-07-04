@@ -5,6 +5,10 @@ imports:
 
 parameters:
   locales: [en, de, fr, es, ru, it]
+  current_release_number: '2.20'
+  beta_release_number: '2.21'
+  current_release_database: dofus2
+  beta_release_database: dofus2beta
 
 jms_i18n_routing:
     default_locale: en
