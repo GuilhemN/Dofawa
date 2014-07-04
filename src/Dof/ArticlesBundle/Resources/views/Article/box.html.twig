@@ -3,7 +3,7 @@
 		<div class="caption">
 			<h3>{{ article.getName(locales()) }}</h3>
 			<p>{{ article.getDescription(locales()) | truncatehtml('200')|raw}}</p>
-			<p><a href="{{ path('dof_articles_view', { 'id' : article.id }) }}" class="btn btn-primary" role="button">See</a></p>
+			<p><a href="{{ path('dof_articles_view', { 'slug' : article.slug }) }}" class="btn btn-primary" role="button">See</a></p>
 		</div>
 	</div>
 </div>

@@ -3,6 +3,7 @@ parameters:
     dof_graphics.bpcl_identifier.class: Dof\GraphicsBundle\BPCLIdentifier
     dof_graphics.living_item_factory.class: Dof\GraphicsBundle\LivingItemFactory
     dof_graphics.chameleon_dragoturkey.class: Dof\GraphicsBundle\ChameleonDragoturkey
+    dof_graphics.form.type.character_look.class: Dof\GraphicsBundle\Form\Type\CharacterLookType
 
 services:
     dof_graphics.bpcl_hydrator:
@@ -19,3 +20,10 @@ services:
     dof_graphics.chameleon_dragoturkey:
         class: %dof_graphics.chameleon_dragoturkey.class%
         arguments: [@translator]
+
+    # FORMS
+    dof_graphics.form.type.character_look:
+        class: %dof_graphics.form.type.character_look.class%
+        tags:
+            - { name: form.type, alias: character_look }
+        arguments: [@security.context]

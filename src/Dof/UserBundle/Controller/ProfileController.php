@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ProfileController extends BaseController
 {
 	/**
-	 * @ParamConverter("user", options={"mapping": {"name_user": "slug"}})
+	 * @ParamConverter("user", options={"mapping": {"slug": "slug"}})
 	 */
     public function userpageAction(User $user)
     {

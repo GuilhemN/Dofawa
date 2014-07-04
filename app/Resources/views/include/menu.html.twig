@@ -132,7 +132,7 @@
                     <p class="text-left"><strong>{{ app.user.username }}</strong></p>
                     <p class="text-left small">{{ app.user.email }}</p>
                     <p class="text-left">
-                      <a href="{{ path('dof_profile_userpage', {'name_user': app.user.getUsername()}) }}" class="btn btn-primary btn-block btn-sm">
+                      <a href="{{ path('dof_profile_userpage', {'slug': app.user.slug }) }}" class="btn btn-primary btn-block btn-sm">
                         {{ 'mine'|trans({}, 'profile') }}
                       </a>
                       <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block btn-sm">{{ 'edit' | trans({}, 'generalTrans') }}</a>

@@ -1,5 +1,5 @@
 dof_articles_view:
-    pattern:  /{id}
+    pattern:  /{slug}
     defaults: { _controller: DofArticlesBundle:Articles:view }
     requirements:
       id: \d+

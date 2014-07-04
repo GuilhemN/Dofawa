@@ -16,8 +16,8 @@ dof_items_homepage: '/items/hello/{name}'
 # Desc: /
 dof_main_homepage: /
 
-# Desc: /profile/show/{name_user}
-dof_profile_userpage: '/profil/voir/{name_user}'
+# Desc: /profile/show/{slug}
+dof_profile_userpage: '/profil/voir/{slug}'
 
 # Desc: /profile/change-password
 fos_user_change_password: /profil/modifier-password

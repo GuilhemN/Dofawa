@@ -1,0 +1,15 @@
+{% extends 'DofGraphicsBundle:CharacterLook:layout.html.twig' %}
+
+{% block breadcrumb %}
+  {{ parent() }}
+  <li>Création d'un Skin</li>
+{% endblock %}
+
+{% block body %}
+  <form action="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')) }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+      {{ form_widget(form) }}
+      <div>
+          <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+      </div>
+  </form>
+{% endblock %}
