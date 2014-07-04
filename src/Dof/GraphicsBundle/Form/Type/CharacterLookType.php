@@ -54,7 +54,7 @@ class CharacterLookType extends AbstractType
             ->add('colors', 'collection', array(
                 // ces options sont passées à chaque champ
                 'options'  => array(
-                    'required'  => true,
+                    'required'  => false,
                     //'attr'      => array('class' => 'email-box')
                 ),
             ))
