@@ -58,10 +58,10 @@ class BPCLIdentifier
         $this->chameleonDragoturkey = $chameleonDragoturkey;
     }
 
-    public function identify($entityLooks)
+    public function identify($entityLooks, $basicPCLooks0 = null)
     {
         if (!is_array($entityLooks)) {
-            $retval = $this->identify([ $entityLooks ]);
+            $retval = $this->identify([ $entityLooks ], ($basicPCLooks0 === null) ? [ new BasicPCLook() ] : [ $BasicPCLooks0 ]);
             return $retval[0];
         }
         $animalLooks = array();
@@ -70,7 +70,7 @@ class BPCLIdentifier
         $bones = array();
         foreach ($entityLooks as $key => $look) {
             if ($look !== null) {
-                $basicPCLooks[$key] = new BasicPCLook();
+                $basicPCLooks[$key] = ($basicPCLooks0 === null || !isset($basicPCLooks0[$key])) ? new BasicPCLook() : $basicPCLooks0[$key];
                 $skins += array_flip($look->getSkins());
                 $aniLook = EntityLookTransforms::locateAnimalFromPC($look);
                 if ($aniLook !== null) {

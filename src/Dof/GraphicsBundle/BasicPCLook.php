@@ -23,79 +23,79 @@ class BasicPCLook
      * @ORM\ManyToOne(targetEntity="Dof\CharactersBundle\Entity\Breed")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $breed;
+    protected $breed;
 
     /**
      * @ORM\Column(name="gender", type="integer")
      */
-    private $gender;
+    protected $gender;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\CharactersBundle\Entity\Face")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $face;
+    protected $face;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\WeaponTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $weapon;
+    protected $weapon;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $shield;
+    protected $shield;
 
-    private $hat;
+    protected $hat;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $dbHat;
+    protected $dbHat;
 
     /**
      * @ORM\Column(name="hat_level", type="integer", nullable=true)
      */
-    private $hatLevel;
+    protected $hatLevel;
 
-    private $cloak;
+    protected $cloak;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $dbCloak;
+    protected $dbCloak;
 
     /**
      * @ORM\Column(name="cloak_level", type="integer", nullable=true)
      */
-    private $cloakLevel;
+    protected $cloakLevel;
 
     /**
      * @ORM\Column(name="extra_skins", type="json_array")
      */
-    private $extraSkins;
+    protected $extraSkins;
 
-    private $animal;
+    protected $animal;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\AnimalTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $dbAnimal;
+    protected $dbAnimal;
 
     /**
      * @ORM\Column(name="animal_is_chameleon_dragoturkey", type="boolean")
      */
-    private $animalIsChameleonDragoturkey;
+    protected $animalIsChameleonDragoturkey;
 
     /**
      * @ORM\Column(name="colors", type="json_array")
      */
-    private $colors;
+    protected $colors;
 
     public function __construct()
     {
@@ -330,5 +330,25 @@ class BasicPCLook
             $this->animal = $chameleonDragoturkey;
         if ($this->dbAnimal !== null)
             $this->animal = $this->dbAnimal;
+    }
+
+    public function copyFrom(BasicPCLook $look)
+    {
+        $this->breed = $look->breed;
+        $this->gender = $look->gender;
+        $this->face = $look->face;
+        $this->weapon = $look->weapon;
+        $this->shield = $look->shield;
+        $this->hat = $look->hat;
+        $this->dbHat = $look->dbHat;
+        $this->hatLevel = $look->hatLevel;
+        $this->cloak = $look->cloak;
+        $this->dbCloak = $look->dbCloak;
+        $this->cloakLevel = $look->cloakLevel;
+        $this->extraSkins = $look->extraSkins;
+        $this->animal = $look->animal;
+        $this->dbAnimal = $look->dbAnimal;
+        $this->animalIsChameleonDragoturkey = $look->animalIsChameleonDragoturkey;
+        $this->colors = $look->colors;
     }
 }

@@ -12,8 +12,6 @@ use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
 use XN\DataBundle\SluggableInterface;
 use XN\DataBundle\SluggableTrait;
-use XN\DataBundle\OwnableInterface;
-use Dof\UserBundle\OwnableTrait;
 
 use XN\DataBundle\LocalizedNameTrait;
 
@@ -23,7 +21,7 @@ use XN\DataBundle\LocalizedNameTrait;
  * @ORM\Table(name="dof_jobs")
  * @ORM\Entity(repositoryClass="JobRepository")
  */
-class Job implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
+class Job implements IdentifiableInterface, TimestampableInterface, SluggableInterface
 {
     /**
      * @var integer
@@ -33,7 +31,7 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait, LocalizedNameTrait;
+    use TimestampableTrait, SluggableTrait, LocalizedNameTrait;
 
     /**
      * @var Collection
@@ -71,7 +69,7 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

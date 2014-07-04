@@ -12,8 +12,6 @@ use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
 use XN\DataBundle\SluggableInterface;
 use XN\DataBundle\SluggableTrait;
-use XN\DataBundle\OwnableInterface;
-use Dof\UserBundle\OwnableTrait;
 
 use XN\DataBundle\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
@@ -24,7 +22,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_item_sets")
  * @ORM\Entity(repositoryClass="ItemSetRepository")
  */
-class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
+class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface
 {
     /**
      * @var integer
@@ -34,7 +32,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait, ReleaseBoundTrait, LocalizedNameTrait;
+    use TimestampableTrait, SluggableTrait, ReleaseBoundTrait, LocalizedNameTrait;
 
     /**
      * @var Collection
@@ -60,7 +58,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      * Set id
      *
      * @param integer $id
-     * @return ItemSet 
+     * @return ItemSet
      */
     public function setId($id)
     {
@@ -72,7 +70,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -114,7 +112,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         return $this->items;
     }
-    
+
     /**
      * Set combinations
      *

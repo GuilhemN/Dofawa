@@ -12,8 +12,6 @@ use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
 use XN\DataBundle\SluggableInterface;
 use XN\DataBundle\SluggableTrait;
-use XN\DataBundle\OwnableInterface;
-use Dof\UserBundle\OwnableTrait;
 
 use XN\DataBundle\LocalizedNameTrait;
 use XN\DataBundle\LocalizedDescriptionTrait;
@@ -28,7 +26,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
  */
-class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
+class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface
 {
     /**
      * @var integer
@@ -38,7 +36,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
+    use TimestampableTrait, SluggableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
     /**
      * @var ItemType

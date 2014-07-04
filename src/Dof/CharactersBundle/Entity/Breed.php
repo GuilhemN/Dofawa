@@ -12,8 +12,6 @@ use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
 use XN\DataBundle\SluggableInterface;
 use XN\DataBundle\SluggableTrait;
-use XN\DataBundle\OwnableInterface;
-use Dof\UserBundle\OwnableTrait;
 
 use XN\DataBundle\LocalizedNameTrait;
 use XN\DataBundle\LocalizedDescriptionTrait;
@@ -36,7 +34,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
+    use TimestampableTrait, SluggableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
     /**
      * @var string

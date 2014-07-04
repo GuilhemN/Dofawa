@@ -12,8 +12,6 @@ use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
 use XN\DataBundle\SluggableInterface;
 use XN\DataBundle\SluggableTrait;
-use XN\DataBundle\OwnableInterface;
-use Dof\UserBundle\OwnableTrait;
 
 use XN\DataBundle\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
@@ -34,7 +32,7 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait, ReleaseBoundTrait, LocalizedNameTrait;
+    use TimestampableTrait, SluggableTrait, ReleaseBoundTrait, LocalizedNameTrait;
 
     /**
      * @var Area
@@ -102,7 +100,7 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -246,7 +244,7 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         return $this->level;
     }
-    
+
     /**
      * Set type
      *
