@@ -10,7 +10,7 @@ use Dof\GraphicsBundle\Entity\CharacterLook;
 
 class CharacterLookController extends Controller
 {
-    public function createAction()
+    public function createAction(Request $request)
     {
         if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))
             throw new AccessDeniedException();
