@@ -28,7 +28,8 @@ security:
         - { path: ^/admin/, role: ROLE_ZONE_ADMIN }
 
     role_hierarchy:
-        ROLE_ZONE_ADMIN: ['ROLE_SONATA_ADMIN']
+        ROLE_ZONE_ADMIN:
+            - ROLE_SONATA_ADMIN
         # Zone admin SONATA
         ROLE_REDACTOR_EDIT:
             - ROLE_SONATA_ADMIN_ARTICLE_LIST
