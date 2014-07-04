@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Dof\GraphicsBundle\Entity\CharacterLook;
 
-class PipetteController extends Controller
+class CharacterLookController extends Controller
 {
     public function createAction()
     {
