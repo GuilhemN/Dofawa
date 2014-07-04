@@ -19,7 +19,8 @@ class UtilityExtension extends \Twig_Extension
 	{
 		return array(
 			new \Twig_SimpleFunction('es6asset', [ $this, 'es6asset' ]),
-			new \Twig_SimpleFunction('locales', [ $this->container->get('translator'), 'getLocales' ])
+			new \Twig_SimpleFunction('locales', [ $this->container->get('translator'), 'getLocales' ]),
+			new \Twig_SimpleFunction('once', [ $this, 'once' ]),
 		);
 	}
 
@@ -49,4 +50,15 @@ class UtilityExtension extends \Twig_Extension
     		$path = strtr($path, array('.js' => '.es6'));
         return $this->container->get('templating.helper.assets')->getUrl($path, $packageName);
     }
+
+	public function once($key)
+	{
+		static $keys = null;
+		if ($keys === null)
+			$keys = array();
+		if (isset($keys[$key]))
+			return false;
+		$keys[$key] = $key;
+		return true;
+	}
 }

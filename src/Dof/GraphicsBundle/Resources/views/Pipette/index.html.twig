@@ -12,6 +12,9 @@
   <div class="panel panel-default">
       <!-- Default panel contents -->
       <div class="panel-heading">
+        <div class="pull-right">
+            {% include 'DofGraphicsBundle:Component:renderer.html.twig' with { look: result.entityLook } only %}
+        </div>
         <strong>{{ result.name }}</strong> ({{ result.serverName }})<br />
         <a href="{{ result.address }}" target="_blank">{{ result.address }}</a>
       </div>
