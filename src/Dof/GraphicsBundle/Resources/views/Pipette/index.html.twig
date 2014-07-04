@@ -13,7 +13,7 @@
       <!-- Default panel contents -->
       <div class="panel-heading">
         <div class="pull-right">
-            {% include 'DofGraphicsBundle:Component:renderer.html.twig' with { look: result.entityLook } only %}
+            {% include 'DofGraphicsBundle:Component:renderer.html.twig' with { look: result.entityLook, direction: 3 } only %}
         </div>
         <strong>{{ result.name }}</strong> ({{ result.serverName }})<br />
         <a href="{{ result.address }}" target="_blank">{{ result.address }}</a>
