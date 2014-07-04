@@ -103,6 +103,16 @@ class CharacterLook extends BasicPCLook implements IdentifiableInterface, Timest
         return $this->publiclyVisible;
     }
 
+    /**
+     * Get publiclyVisible
+     *
+     * @return boolean
+     */
+    public function isPubliclyVisible()
+    {
+        return $this->publiclyVisible;
+    }
+
     public function __toString()
     {
         return $this->name;

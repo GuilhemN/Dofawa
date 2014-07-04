@@ -1,0 +1,14 @@
+{#
+Usage :
+
+{% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
+    'look': some EntityLook (default new EntityLook('{666}')),
+    'focus': 'full' or 'face' ... may accept other values but not guaranteed (default 'full'),
+    'direction': 0 through 7 (default 1),
+    'width': some positive integer (default 130),
+    'height': some positive integer (default 200)
+} only %}
+
+All variables are optional
+#}
+<img src="http://staticns.ankama.com/dofus/renderer/look/{% if look is defined %}{{ look.format()|bin2hex }}{% else %}7b3636367d{% endif %}/{% if focus is defined %}{{ focus }}{% else %}full{% endif %}/{% if direction is defined %}{{ direction }}{% else %}1{% endif %}/{% if width is defined %}{{ width }}{% else %}130{% endif %}_{% if height is defined %}{{ height }}{% else %}200{% endif %}-0.png" width="{% if width is defined %}{{ width }}{% else %}130{% endif %}" height="{% if height is defined %}{{ height }}{% else %}200{% endif %}" alt="Personnage" />

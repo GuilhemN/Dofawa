@@ -32,6 +32,8 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFilter('pluralize', [ self::INFLECTOR_CLASS, 'pluralize' ]),
 			new \Twig_SimpleFilter('singularize', [ self::INFLECTOR_CLASS, 'singularize' ]),
 			new \Twig_SimpleFilter('slugify', [ self::SLUGGABLE_UPDATER_CLASS, 'slugify' ]),
+			new \Twig_SimpleFilter('bin2hex', 'bin2hex'),
+			new \Twig_SimpleFilter('hex2bin', 'hex2bin'),
 		);
 	}
 
