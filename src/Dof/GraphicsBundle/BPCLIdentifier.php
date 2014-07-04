@@ -8,10 +8,10 @@ use Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate;
 use Dof\ItemsBundle\Entity\SkinnedEquipmentTemplateRepository;
 use Dof\ItemsBundle\Entity\AnimalTemplate;
 use Dof\ItemsBundle\Entity\AnimalTemplateRepository;
-use Dof\ItemsBundle\Entity\Breed;
-use Dof\ItemsBundle\Entity\BreedRepository;
-use Dof\ItemsBundle\Entity\Face;
-use Dof\ItemsBundle\Entity\FaceRepository;
+use Dof\CharactersBundle\Entity\Breed;
+use Dof\CharactersBundle\Entity\BreedRepository;
+use Dof\CharactersBundle\Entity\Face;
+use Dof\CharactersBundle\Entity\FaceRepository;
 
 use Dof\ItemsBundle\ItemSlot;
 use Dof\CharactersBundle\Gender;
