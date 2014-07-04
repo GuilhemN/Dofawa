@@ -8,7 +8,7 @@ dof_graphics_pipette:
     defaults: { _controller: DofGraphicsBundle:Pipette:index }
 
 dof_graphics_renderer_look:
-    pattern: /dofus/renderer/look/{look}/{focus}/{direction}/{width}_{height}-{padding}.png
+    pattern: /render/{look}/{focus}/{direction}/{width}_{height}-{padding}.png
     defaults: { _controller: DofGraphicsBundle:Renderer:look }
     requirements:
         _method: GET

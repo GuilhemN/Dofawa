@@ -49,6 +49,15 @@
               {% endif %}</td>
           </tr>
           <tr>
+            <th>Visage</th>
+            <td>
+              {% if result.bpcLook.face is null %}
+                Inconnu
+              {% else %}
+                {{ result.bpcLook.face.getName(locales()) }}
+              {% endif %}</td>
+          </tr>
+          <tr>
             <th>{% if result.bpcLook.hat is null %}Chapeau{% else %}{{ result.bpcLook.hat.type.getName(locales()) }}{% endif %}</th>
             <td>
               {% if result.bpcLook.hat is null %}

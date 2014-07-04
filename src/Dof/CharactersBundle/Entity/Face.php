@@ -25,7 +25,12 @@ class Face implements IdentifiableInterface
      */
     private $id;
 
-    use LocalizedNameTrait;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="label", type="string")
+     */
+    private $label;
 
     /**
      * @var Breed
@@ -41,6 +46,13 @@ class Face implements IdentifiableInterface
      * @ORM\Column(name="gender", type="integer")
      */
     private $gender;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="order_", type="integer")
+     */
+    private $order;
 
     /**
      * Set id
@@ -63,6 +75,29 @@ class Face implements IdentifiableInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     * @return Face
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 
     /**
@@ -111,8 +146,31 @@ class Face implements IdentifiableInterface
         return $this->gender;
     }
 
+    /**
+     * Set order
+     *
+     * @param integer $order
+     * @return Face
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return integer
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
     public function __toString()
     {
-        return $this->nameFr;
+        return $this->label;
     }
 }

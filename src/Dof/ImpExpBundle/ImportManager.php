@@ -89,8 +89,9 @@ class ImportManager
             throw new \Exception("Circular reference involving data set \"" . $dataSet . "\"");
         $importer['checking'] = true;
         try {
-            foreach ($importer['requirements'] as $requirement)
-                $this->checkImport($requirement);
+            if ($this->withRequirements)
+                foreach ($importer['requirements'] as $requirement)
+                    $this->checkImport($requirement);
         } catch (\Exception $e) {
             $importer['checking'] = false;
             throw $e;
@@ -105,8 +106,9 @@ class ImportManager
         $importer =& $this->importers[$dataSet];
         if ($importer['imported'])
             return;
-        foreach ($importer['requirements'] as $requirement)
-            $this->realImport($requirement, $flags, $output, $progress);
+        if ($this->withRequirements)
+            foreach ($importer['requirements'] as $requirement)
+                $this->realImport($requirement, $flags, $output, $progress);
         if ($output !== null && $output->getVerbosity() >= OutputInterface::VERBOSITY_NORMAL)
             $output->writeln('Importing data set <comment>' . $dataSet . '</comment> ...');
         if ($this->runImporters)

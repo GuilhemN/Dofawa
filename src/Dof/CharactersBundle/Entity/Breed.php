@@ -229,6 +229,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="Face", mappedBy="breed")
+     * @ORM\OrderBy({ "gender" = "ASC", "order" = "ASC", "id" = "ASC" })
      */
     private $faces;
 
@@ -236,6 +237,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="SoftCap", mappedBy="breed")
+     * @ORM\OrderBy({ "characteristic" = "ASC", "min" = "ASC", "id" = "ASC" })
      */
     private $softCaps;
 

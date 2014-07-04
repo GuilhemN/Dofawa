@@ -1,13 +1,34 @@
 services:
-    dof_imp_exp.importer.item_sets:
-        class: Dof\ImpExpBundle\Importer\GameData\ItemSetImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: item_sets }
-            - { name: dof_imp_exp.importer, provides: beta_item_sets, requires: item_sets }
+    # DofCharactersBundle:Breed
     dof_imp_exp.importer.breeds:
         class: Dof\ImpExpBundle\Importer\GameData\BreedImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
             - { name: dof_imp_exp.importer, provides: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breeds, requires: breeds }
+    dof_imp_exp.importer.breed_default_colors:
+        class: Dof\ImpExpBundle\Importer\GameData\BreedDefaultColorsImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: breed_default_colors, requires: breeds }
+            - { name: dof_imp_exp.importer, provides: beta_breed_default_colors, requires: beta_breeds }
+    dof_imp_exp.importer.breed_lodef_skins:
+        class: Dof\ImpExpBundle\Importer\GameData\BreedLodefSkinsImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: breed_lodef_skins, requires: breeds }
+            - { name: dof_imp_exp.importer, provides: beta_breed_lodef_skins, requires: beta_breeds }
+    # DofCharactersBundle:Face
+    dof_imp_exp.importer.faces:
+        class: Dof\ImpExpBundle\Importer\GameData\FaceImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: faces, requires: breeds }
+            - { name: dof_imp_exp.importer, provides: beta_faces, requires: beta_breeds }
+    # DofItemsBundle:ItemSet
+    dof_imp_exp.importer.item_sets:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemSetImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_sets }
+            - { name: dof_imp_exp.importer, provides: beta_item_sets, requires: item_sets }

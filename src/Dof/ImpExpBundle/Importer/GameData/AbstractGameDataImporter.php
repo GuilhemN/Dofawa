@@ -32,15 +32,19 @@ abstract class AbstractGameDataImporter implements ImporterInterface
     {
         switch ($dataSet) {
             case static::CURRENT_DATA_SET:
+                $db = $this->gd->getCurrentReleaseDatabase();
+                if ($db === null)
+                    return;
                 $beta = false;
                 $release = $this->gd->getCurrentReleaseNumber();
-                $db = $this->gd->getCurrentReleaseDatabase();
                 $locales = $this->gd->getCurrentReleaseLocales();
                 break;
             case static::BETA_DATA_SET:
+                $db = $this->gd->getBetaReleaseDatabase();
+                if ($db === null)
+                    return;
                 $beta = true;
                 $release = $this->gd->getBetaReleaseNumber();
-                $db = $this->gd->getBetaReleaseDatabase();
                 $locales = $this->gd->getBetaReleaseLocales();
                 break;
             default:
