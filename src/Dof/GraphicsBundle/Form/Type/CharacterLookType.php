@@ -31,7 +31,7 @@ class CharacterLookType extends AbstractType
 
             if (!$entity || null === $entity->getId() // Si nouveau
                 or $this->securityContext->isGranted('ROLE_STYLIST_ADMIN') // Si admin
-                or ($this->securityContext->isGranted('ROLE_STYLIST_ADMIN') && // Si styliste et propriétaire
+                or ($this->securityContext->isGranted('ROLE_STYLIST') && // Si styliste et propriétaire
                     $this->securityContext->getToken()->getUser()->getId()
                     == $entity->getOwner()->getId())
               ) {
