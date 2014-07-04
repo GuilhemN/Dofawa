@@ -26,7 +26,7 @@ class SoftCap implements IdentifiableInterface
     /**
      * @var Breed
      *
-     * @ORM\ManyToOne(targetEntity="Breed", inversedBy="faces")
+     * @ORM\ManyToOne(targetEntity="Breed", inversedBy="softCaps")
      * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     private $breed;

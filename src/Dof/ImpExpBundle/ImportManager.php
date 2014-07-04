@@ -106,7 +106,7 @@ class ImportManager
         if ($importer['imported'])
             return;
         foreach ($importer['requirements'] as $requirement)
-            $this->realImport($requirement);
+            $this->realImport($requirement, $flags, $output, $progress);
         if ($output !== null && $output->getVerbosity() >= OutputInterface::VERBOSITY_NORMAL)
             $output->writeln('Importing data set <comment>' . $dataSet . '</comment> ...');
         if ($this->runImporters)
