@@ -16,8 +16,8 @@ dof_items_homepage: '/items/hello/{name}'   # FIXME
 # Desc: /
 dof_main_homepage: /   # FIXME
 
-# Desc: /profile/show/{name_user}
-dof_profile_userpage: '/perfil/show/{name_user}'   # FIXME
+# Desc: /profile/show/{slug}
+dof_profile_userpage: '/perfil/show/{slug}'   # FIXME
 
 # Desc: /profile/change-password
 fos_user_change_password: /perfil/change-password   # FIXME
