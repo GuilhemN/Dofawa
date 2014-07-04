@@ -22,4 +22,4 @@ dof_graphics_renderer_look:
 
 dof_graphics_skins_add:
     pattern:  /skins/create
-    defaults: { _controller: DofGraphicsBundle:CL:create }
+    defaults: { _controller: DofGraphicsBundle:CharacterLook:create }
