@@ -12,7 +12,7 @@ use Dof\ArticlesBundle\Entity\Article;
 class ArticlesController extends Controller
 {
   /**
-   * @ParamConverter("article", options={"mapping": {"id": "id"}})
+   * @ParamConverter("article", options={"mapping": {"slug": "slug"}})
    */
     public function viewAction(Article $article)
     {

@@ -19,3 +19,7 @@ dof_graphics_renderer_look:
         height: [1-9][0-9]*
         padding: 0|[1-9][0-9]*
     options: { i18n: false }
+
+dof_graphics_skins_add:
+    pattern:  /skins/create
+    defaults: { _controller: DofGraphicsBundle:CL:create }

@@ -5,6 +5,7 @@ namespace Dof\ImpExpBundle\Scraper;
 use Dof\ImpExpBundle\CharacterPageScraper as BaseScraper;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+// CPS = Character Page Scraper
 class FullCPS extends BaseScraper
 {
     const URL_FAMILY_REGEX = '~^http://www\.dofus\.com/[0-9a-z-]+/([0-9a-z-]+/[0-9a-z-]+/[0-9a-z-]+/[0-9a-z-]+/[0-9a-z-]+)(/[0-9a-z-]+)?$~';
@@ -30,7 +31,7 @@ class FullCPS extends BaseScraper
                         continue;
 
                     $data = $span->getAttribute('data-hasqtip');
-                    $data = preg_match('~^linker_item_([0-9]+)$~', $data, $matches));
+                    preg_match('~^linker_item_([0-9]+)$~', $data, $matches));
 
                     $idsItems[] = $matches[1];
                 }
