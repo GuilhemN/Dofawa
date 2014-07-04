@@ -32,7 +32,7 @@ class CharacterLookType extends AbstractType
                 or ($this->securityContext->isGranted('ROLE_STYLIST_ADMIN') && // Si styliste et propriétaire
                     $this->securityContext->getToken()->getUser()->getId()
                     == $entity->getOwner()->getId())
-              )) {
+              ) {
                 $form->add('publiclyVisible');
             }
         });
