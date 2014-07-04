@@ -330,6 +330,7 @@ class BasicPCLook
             $this->animal = $chameleonDragoturkey;
         if ($this->dbAnimal !== null)
             $this->animal = $this->dbAnimal;
+        return $this;
     }
 
     public function copyFrom(BasicPCLook $look)
@@ -350,5 +351,6 @@ class BasicPCLook
         $this->dbAnimal = $look->dbAnimal;
         $this->animalIsChameleonDragoturkey = $look->animalIsChameleonDragoturkey;
         $this->colors = $look->colors;
+        return $this;
     }
 }

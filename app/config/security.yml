@@ -36,13 +36,24 @@ security:
             - ROLE_SONATA_ADMIN_ARTICLE_EDIT
 
         # Spéciaux
-        ROLE_STYLIST_BETA: ['ROLE_STYLIST']
-        ROLE_BETA:         ['ROLE_STYLIST_BETA']
-        ROLE_PREMIUM:      ['ROLE_AD_FREE', 'ROLE_BETA']
+        ROLE_STYLIST_BETA:
+            - ROLE_STYLIST
+            - ROLE_BETA_ANY
+        ROLE_STYLIST_ADMIN:
+            - ROLE_STYLIST_BETA
+        ROLE_BETA:
+            - ROLE_STYLIST_BETA
+        ROLE_PREMIUM:
+            - ROLE_AD_FREE
+            - ROLE_BETA
 
         # Articles
-        ROLE_REDACTOR: ['ROLE_REDACTOR_EDIT', 'ROLE_ZONE_ADMIN']
-        ROLE_REDACTOR_FULL: ['ROLE_REDACTOR', 'ROLE_SONATA_ADMIN_ARTICLE_EDITFULL']
+        ROLE_REDACTOR:
+            - ROLE_REDACTOR_EDIT
+            - ROLE_ZONE_ADMIN
+        ROLE_REDACTOR_FULL:
+            - ROLE_REDACTOR
+            - ROLE_SONATA_ADMIN_ARTICLE_EDITFULL
 
         # Admin du site
         ROLE_ADMIN:
@@ -50,5 +61,6 @@ security:
             - ROLE_PREMIUM
             - ROLE_USER
             - ROLE_REDACTOR_FULL
+            - ROLE_STYLIST_ADMIN
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
