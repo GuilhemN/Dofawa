@@ -42,7 +42,7 @@ class CharacterLookType extends AbstractType
         $builder
             ->add('breed')
             ->add('gender', 'choice', array(
-                  'choices'   => Gender::getValues(),
+                  'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
               ))
             ->add('face')
