@@ -6,3 +6,16 @@ dof_graphics_pipette_process:
 dof_graphics_pipette:
     pattern:  /pipette
     defaults: { _controller: DofGraphicsBundle:Pipette:index }
+
+dof_graphics_renderer_look:
+    pattern: /dofus/renderer/look/{look}/{focus}/{direction}/{width}_{height}-{padding}.png
+    defaults: { _controller: DofGraphicsBundle:Renderer:look }
+    requirements:
+        _method: GET
+        look: (?:[0-9a-f]{2})+
+        focus: [0-9a-z]+
+        direction: [0-7]
+        width: [1-9][0-9]*
+        height: [1-9][0-9]*
+        padding: 0|[1-9][0-9]*
+    options: { i18n: false }

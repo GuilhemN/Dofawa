@@ -11,4 +11,10 @@ Usage :
 
 All variables are optional
 #}
-<img src="http://staticns.ankama.com/dofus/renderer/look/{% if look is defined %}{{ look.format()|bin2hex }}{% else %}7b3636367d{% endif %}/{% if focus is defined %}{{ focus }}{% else %}full{% endif %}/{% if direction is defined %}{{ direction }}{% else %}1{% endif %}/{% if width is defined %}{{ width }}{% else %}130{% endif %}_{% if height is defined %}{{ height }}{% else %}200{% endif %}-0.png" width="{% if width is defined %}{{ width }}{% else %}130{% endif %}" height="{% if height is defined %}{{ height }}{% else %}200{% endif %}" alt="Personnage" />
+<img src="{{ path('dof_graphics_renderer_look', {
+    look: (look is defined) ? (look.format()|bin2hex) : '7b3636367d',
+    focus: (focus is defined) ? focus : 'full',
+    direction: (direction is defined) ? direction : 1,
+    width: (width is defined) ? width : 130,
+    height: (height is defined) ? height: 200
+}) }}" width="{% if width is defined %}{{ width }}{% else %}130{% endif %}" height="{% if height is defined %}{{ height }}{% else %}200{% endif %}" alt="Personnage" />
