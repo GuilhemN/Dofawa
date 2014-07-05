@@ -46,3 +46,17 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: item_set_effects, requires: item_sets }
             - { name: dof_imp_exp.importer, provides: beta_item_set_effects, requires: beta_item_sets }
+    # DofItemsBundle:ItemType
+    dof_imp_exp.importer.item_types:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemTypeImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_types }
+            - { name: dof_imp_exp.importer, provides: beta_item_types, requires: item_types }
+    # DofItemsBundle:ItemTemplate and subclasses
+    dof_imp_exp.importer.item_templates:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemTemplateImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_templates, requires: 'item_sets item_types' }
+            - { name: dof_imp_exp.importer, provides: beta_item_templates, requires: 'item_templates beta_item_sets beta_item_types' }

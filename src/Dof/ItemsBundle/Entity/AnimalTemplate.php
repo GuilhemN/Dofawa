@@ -26,7 +26,7 @@ class AnimalTemplate extends EquipmentTemplate
     /**
      * @var integer
      *
-     * @ORM\Column(name="colorization_type", type="integer")
+     * @ORM\Column(name="colorization_type", type="integer", nullable=true)
      */
     private $colorizationType;
 
@@ -48,7 +48,7 @@ class AnimalTemplate extends EquipmentTemplate
     /**
      * @var integer
      *
-     * @ORM\Column(name="size", type="integer")
+     * @ORM\Column(name="size", type="integer", nullable=true)
      */
     private $size;
 
