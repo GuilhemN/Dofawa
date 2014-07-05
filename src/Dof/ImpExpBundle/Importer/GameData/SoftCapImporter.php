@@ -8,6 +8,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\CharactersBundle\Entity\SoftCap;
 use Dof\CharactersBundle\BaseCharacteristic;
 
+use Dof\ImpExpBundle\CollectionSynchronizationHelper;
+
 class SoftCapImporter extends AbstractGameDataImporter
 {
     const CURRENT_DATA_SET = 'breed_soft_caps';
@@ -62,32 +64,16 @@ class SoftCapImporter extends AbstractGameDataImporter
             $breed = $breedRepo->find($breed);
             if ($breed === null || ($breed->isPreliminary() ^ $beta))
                 continue;
-            $breedCaps = iterator_to_array($breed->getSoftCaps());
-            $subLen = count($subcaps);
-            $brdLen = count($breedCaps);
-            $minLen = min($subLen, $brdLen);
-            $i = 0;
-            for (; $i < $minLen; ++$i) {
-                $row = $subcaps[$i];
-                $cap = $breedCaps[$i];
-                $cap->setCharacteristic($row['chara']);
-                $cap->setMin($row['min']);
-                $cap->setCost($row['cost']);
-                $cap->setGain($row['gain']);
-                $this->dm->persist($cap);
-            }
-            for (; $i < $subLen; ++$i) {
-                $row = $subcaps[$i];
+            CollectionSynchronizationHelper::synchronize($this->dm, $breed->getSoftCaps()->toArray(), $subcaps, function () use ($breed) {
                 $cap = new SoftCap();
                 $cap->setBreed($breed);
+                return $cap;
+            }, function ($cap, $row) {
                 $cap->setCharacteristic($row['chara']);
                 $cap->setMin($row['min']);
                 $cap->setCost($row['cost']);
                 $cap->setGain($row['gain']);
-                $this->dm->persist($cap);
-            }
-            for (; $i < $brdLen; ++$i)
-                $this->dm->remove($breedCaps[$i]);
+            });
         }
     }
 }

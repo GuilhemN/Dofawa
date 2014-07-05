@@ -86,7 +86,7 @@ trait CharacteristicsTrait
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="range", type="integer")
+	 * @ORM\Column(name="range_", type="integer")
 	 */
 	protected $range;
 
@@ -310,7 +310,7 @@ trait CharacteristicsTrait
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="lock", type="integer")
+	 * @ORM\Column(name="lock_", type="integer")
 	 */
 	protected $lock;
 
@@ -402,7 +402,7 @@ trait CharacteristicsTrait
 		$this->vitality = $vitality;
 		return $this;
 	}
-	
+
 	/**
 	 * Get vitality
 	 *
@@ -424,7 +424,7 @@ trait CharacteristicsTrait
 		$this->strength = $strength;
 		return $this;
 	}
-	
+
 	/**
 	 * Get strength
 	 *
@@ -446,7 +446,7 @@ trait CharacteristicsTrait
 		$this->intelligence = $intelligence;
 		return $this;
 	}
-	
+
 	/**
 	 * Get intelligence
 	 *
@@ -468,7 +468,7 @@ trait CharacteristicsTrait
 		$this->chance = $chance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get chance
 	 *
@@ -490,7 +490,7 @@ trait CharacteristicsTrait
 		$this->agility = $agility;
 		return $this;
 	}
-	
+
 	/**
 	 * Get agility
 	 *
@@ -512,7 +512,7 @@ trait CharacteristicsTrait
 		$this->wisdom = $wisdom;
 		return $this;
 	}
-	
+
 	/**
 	 * Get wisdom
 	 *
@@ -534,7 +534,7 @@ trait CharacteristicsTrait
 		$this->power = $power;
 		return $this;
 	}
-	
+
 	/**
 	 * Get power
 	 *
@@ -556,7 +556,7 @@ trait CharacteristicsTrait
 		$this->criticalHits = $criticalHits;
 		return $this;
 	}
-	
+
 	/**
 	 * Get criticalHits
 	 *
@@ -578,7 +578,7 @@ trait CharacteristicsTrait
 		$this->ap = $ap;
 		return $this;
 	}
-	
+
 	/**
 	 * Get ap
 	 *
@@ -600,7 +600,7 @@ trait CharacteristicsTrait
 		$this->mp = $mp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get mp
 	 *
@@ -622,7 +622,7 @@ trait CharacteristicsTrait
 		$this->range = $range;
 		return $this;
 	}
-	
+
 	/**
 	 * Get range
 	 *
@@ -644,7 +644,7 @@ trait CharacteristicsTrait
 		$this->summons = $summons;
 		return $this;
 	}
-	
+
 	/**
 	 * Get summons
 	 *
@@ -666,7 +666,7 @@ trait CharacteristicsTrait
 		$this->damage = $damage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get damage
 	 *
@@ -688,7 +688,7 @@ trait CharacteristicsTrait
 		$this->neutralDamage = $neutralDamage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get neutralDamage
 	 *
@@ -710,7 +710,7 @@ trait CharacteristicsTrait
 		$this->earthDamage = $earthDamage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get earthDamage
 	 *
@@ -732,7 +732,7 @@ trait CharacteristicsTrait
 		$this->fireDamage = $fireDamage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get fireDamage
 	 *
@@ -754,7 +754,7 @@ trait CharacteristicsTrait
 		$this->waterDamage = $waterDamage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get waterDamage
 	 *
@@ -776,7 +776,7 @@ trait CharacteristicsTrait
 		$this->airDamage = $airDamage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get airDamage
 	 *
@@ -798,7 +798,7 @@ trait CharacteristicsTrait
 		$this->heals = $heals;
 		return $this;
 	}
-	
+
 	/**
 	 * Get heals
 	 *
@@ -820,7 +820,7 @@ trait CharacteristicsTrait
 		$this->prospecting = $prospecting;
 		return $this;
 	}
-	
+
 	/**
 	 * Get prospecting
 	 *
@@ -842,7 +842,7 @@ trait CharacteristicsTrait
 		$this->initiative = $initiative;
 		return $this;
 	}
-	
+
 	/**
 	 * Get initiative
 	 *
@@ -864,7 +864,7 @@ trait CharacteristicsTrait
 		$this->reflectedDamage = $reflectedDamage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get reflectedDamage
 	 *
@@ -886,7 +886,7 @@ trait CharacteristicsTrait
 		$this->percentNeutralResistance = $percentNeutralResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentNeutralResistance
 	 *
@@ -908,7 +908,7 @@ trait CharacteristicsTrait
 		$this->percentEarthResistance = $percentEarthResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentEarthResistance
 	 *
@@ -930,7 +930,7 @@ trait CharacteristicsTrait
 		$this->percentFireResistance = $percentFireResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentFireResistance
 	 *
@@ -952,7 +952,7 @@ trait CharacteristicsTrait
 		$this->percentWaterResistance = $percentWaterResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentWaterResistance
 	 *
@@ -974,7 +974,7 @@ trait CharacteristicsTrait
 		$this->percentAirResistance = $percentAirResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentAirResistance
 	 *
@@ -996,7 +996,7 @@ trait CharacteristicsTrait
 		$this->neutralResistance = $neutralResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get neutralResistance
 	 *
@@ -1018,7 +1018,7 @@ trait CharacteristicsTrait
 		$this->earthResistance = $earthResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get earthResistance
 	 *
@@ -1040,7 +1040,7 @@ trait CharacteristicsTrait
 		$this->fireResistance = $fireResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get fireResistance
 	 *
@@ -1062,7 +1062,7 @@ trait CharacteristicsTrait
 		$this->waterResistance = $waterResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get waterResistance
 	 *
@@ -1084,7 +1084,7 @@ trait CharacteristicsTrait
 		$this->airResistance = $airResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get airResistance
 	 *
@@ -1106,7 +1106,7 @@ trait CharacteristicsTrait
 		$this->percentNeutralResistanceInPvp = $percentNeutralResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentNeutralResistanceInPvp
 	 *
@@ -1128,7 +1128,7 @@ trait CharacteristicsTrait
 		$this->percentEarthResistanceInPvp = $percentEarthResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentEarthResistanceInPvp
 	 *
@@ -1150,7 +1150,7 @@ trait CharacteristicsTrait
 		$this->percentFireResistanceInPvp = $percentFireResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentFireResistanceInPvp
 	 *
@@ -1172,7 +1172,7 @@ trait CharacteristicsTrait
 		$this->percentWaterResistanceInPvp = $percentWaterResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentWaterResistanceInPvp
 	 *
@@ -1194,7 +1194,7 @@ trait CharacteristicsTrait
 		$this->percentAirResistanceInPvp = $percentAirResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get percentAirResistanceInPvp
 	 *
@@ -1216,7 +1216,7 @@ trait CharacteristicsTrait
 		$this->neutralResistanceInPvp = $neutralResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get neutralResistanceInPvp
 	 *
@@ -1238,7 +1238,7 @@ trait CharacteristicsTrait
 		$this->earthResistanceInPvp = $earthResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get earthResistanceInPvp
 	 *
@@ -1260,7 +1260,7 @@ trait CharacteristicsTrait
 		$this->fireResistanceInPvp = $fireResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get fireResistanceInPvp
 	 *
@@ -1282,7 +1282,7 @@ trait CharacteristicsTrait
 		$this->waterResistanceInPvp = $waterResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get waterResistanceInPvp
 	 *
@@ -1304,7 +1304,7 @@ trait CharacteristicsTrait
 		$this->airResistanceInPvp = $airResistanceInPvp;
 		return $this;
 	}
-	
+
 	/**
 	 * Get airResistanceInPvp
 	 *
@@ -1326,7 +1326,7 @@ trait CharacteristicsTrait
 		$this->lock = $lock;
 		return $this;
 	}
-	
+
 	/**
 	 * Get lock
 	 *
@@ -1348,7 +1348,7 @@ trait CharacteristicsTrait
 		$this->dodge = $dodge;
 		return $this;
 	}
-	
+
 	/**
 	 * Get dodge
 	 *
@@ -1370,7 +1370,7 @@ trait CharacteristicsTrait
 		$this->apReduction = $apReduction;
 		return $this;
 	}
-	
+
 	/**
 	 * Get apReduction
 	 *
@@ -1392,7 +1392,7 @@ trait CharacteristicsTrait
 		$this->mpReduction = $mpReduction;
 		return $this;
 	}
-	
+
 	/**
 	 * Get mpReduction
 	 *
@@ -1414,7 +1414,7 @@ trait CharacteristicsTrait
 		$this->apLossResistance = $apLossResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get apLossResistance
 	 *
@@ -1436,7 +1436,7 @@ trait CharacteristicsTrait
 		$this->mpLossResistance = $mpLossResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get mpLossResistance
 	 *
@@ -1458,7 +1458,7 @@ trait CharacteristicsTrait
 		$this->criticalDamage = $criticalDamage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get criticalDamage
 	 *
@@ -1480,7 +1480,7 @@ trait CharacteristicsTrait
 		$this->criticalResistance = $criticalResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get criticalResistance
 	 *
@@ -1502,7 +1502,7 @@ trait CharacteristicsTrait
 		$this->pushbackDamage = $pushbackDamage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get pushbackDamage
 	 *
@@ -1524,7 +1524,7 @@ trait CharacteristicsTrait
 		$this->pushbackResistance = $pushbackResistance;
 		return $this;
 	}
-	
+
 	/**
 	 * Get pushbackResistance
 	 *
@@ -1546,7 +1546,7 @@ trait CharacteristicsTrait
 		$this->trapPower = $trapPower;
 		return $this;
 	}
-	
+
 	/**
 	 * Get trapPower
 	 *
@@ -1568,7 +1568,7 @@ trait CharacteristicsTrait
 		$this->trapDamage = $trapDamage;
 		return $this;
 	}
-	
+
 	/**
 	 * Get trapDamage
 	 *
@@ -1578,7 +1578,7 @@ trait CharacteristicsTrait
 	{
 		return $this->trapDamage;
 	}
-	
+
 	/**
 	 * Set all characteristics
 	 *

@@ -49,6 +49,7 @@ class ItemSetCombination implements IdentifiableInterface
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="ItemSetEffect", mappedBy="combination")
+     * @ORM\OrderBy({ "order" = "ASC", "id" = "ASC" })
      */
     private $effects;
 
@@ -60,7 +61,7 @@ class ItemSetCombination implements IdentifiableInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

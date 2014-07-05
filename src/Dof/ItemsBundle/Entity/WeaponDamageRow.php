@@ -36,7 +36,7 @@ class WeaponDamageRow implements IdentifiableInterface
     /**
      * @var integer
      *
-     * @ORM\Column(name="order", type="integer")
+     * @ORM\Column(name="order_", type="integer")
      */
     private $order;
 
@@ -71,7 +71,7 @@ class WeaponDamageRow implements IdentifiableInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -94,7 +94,7 @@ class WeaponDamageRow implements IdentifiableInterface
     /**
      * Get weapon
      *
-     * @return WeaponTemplate 
+     * @return WeaponTemplate
      */
     public function getWeapon()
     {
@@ -117,7 +117,7 @@ class WeaponDamageRow implements IdentifiableInterface
     /**
      * Get order
      *
-     * @return integer 
+     * @return integer
      */
     public function getOrder()
     {
@@ -140,7 +140,7 @@ class WeaponDamageRow implements IdentifiableInterface
     /**
      * Get element
      *
-     * @return integer 
+     * @return integer
      */
     public function getElement()
     {
@@ -163,7 +163,7 @@ class WeaponDamageRow implements IdentifiableInterface
     /**
      * Get min
      *
-     * @return integer 
+     * @return integer
      */
     public function getMin()
     {
@@ -186,7 +186,7 @@ class WeaponDamageRow implements IdentifiableInterface
     /**
      * Get max
      *
-     * @return integer 
+     * @return integer
      */
     public function getMax()
     {
@@ -209,7 +209,7 @@ class WeaponDamageRow implements IdentifiableInterface
     /**
      * Get leech
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getLeech()
     {
@@ -219,7 +219,7 @@ class WeaponDamageRow implements IdentifiableInterface
     /**
      * Get leech
      *
-     * @return boolean 
+     * @return boolean
      */
     public function isLeech()
     {

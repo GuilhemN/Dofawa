@@ -18,7 +18,7 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
 	 * @var Collection
 	 *
 	 * @ORM\OneToMany(targetEntity="Dof\ItemsBundle\Entity\WeaponDamageRow", mappedBy="weapon")
-	 * @ORM\OrderBy({ "order" = "ASC" })
+     * @ORM\OrderBy({ "order" = "ASC", "id" = "ASC" })
 	 */
 	private $damageRows;
 
@@ -355,7 +355,7 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
         $this->maxCastRange = $castRange['max'];
         return $this;
     }
-    
+
     /**
      * Get cast range
      *

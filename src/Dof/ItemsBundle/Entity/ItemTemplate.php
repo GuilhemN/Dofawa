@@ -155,6 +155,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="ItemTemplateEffect", mappedBy="item")
+     * @ORM\OrderBy({ "order" = "ASC", "id" = "ASC" })
      */
     private $effects;
 
