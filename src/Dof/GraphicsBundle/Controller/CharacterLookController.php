@@ -33,7 +33,7 @@ class CharacterLookController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            if(!$this->getUser()->isGranted('ROLE_STYLIST'))
+            if(!$this->get('security.context')->isGranted('ROLE_STYLIST'))
                 $cl->setPubliclyVisible(0);
 
             $em = $this->getDoctrine()->getManager();
