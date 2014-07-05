@@ -5,8 +5,6 @@ namespace Dof\ImpExpBundle\Importer\GameData;
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Dof\ImpExpBundle\ImporterFlags;
-
 class BreedLodefSkinsImporter extends AbstractGameDataImporter
 {
     const CURRENT_DATA_SET = 'breed_lodef_skins';
@@ -14,7 +12,6 @@ class BreedLodefSkinsImporter extends AbstractGameDataImporter
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
-        $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         $mappings = [ ];
         $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_SkinMapping o');
         foreach ($stmt->fetchAll() as $row) {
@@ -36,8 +33,5 @@ class BreedLodefSkinsImporter extends AbstractGameDataImporter
                 $this->dm->persist($breed);
             }
         }
-        if ($write)
-            $this->dm->flush();
-        $this->dm->clear();
     }
 }

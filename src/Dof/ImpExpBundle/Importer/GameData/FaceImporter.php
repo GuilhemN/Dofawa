@@ -5,19 +5,16 @@ namespace Dof\ImpExpBundle\Importer\GameData;
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Dof\ImpExpBundle\ImporterFlags;
-
 use Dof\CharactersBundle\Entity\Face;
 use Dof\GraphicsBundle\EntityLook;
 
 class FaceImporter extends AbstractGameDataImporter
 {
-    const CURRENT_DATA_SET = 'faces';
-    const BETA_DATA_SET = 'beta_faces';
+    const CURRENT_DATA_SET = 'breed_faces';
+    const BETA_DATA_SET = 'beta_breed_faces';
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
-        $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Head o');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -38,8 +35,5 @@ class FaceImporter extends AbstractGameDataImporter
             $face->setGender($row['gender']);
             $this->dm->persist($face);
         }
-        if ($write)
-            $this->dm->flush();
-        $this->dm->clear();
     }
 }

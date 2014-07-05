@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\ImpExpBundle\GameDataProvider;
 use Dof\ImpExpBundle\ImporterInterface;
+use Dof\ImpExpBundle\ImporterFlags;
 
 abstract class AbstractGameDataImporter implements ImporterInterface
 {
@@ -51,7 +52,11 @@ abstract class AbstractGameDataImporter implements ImporterInterface
                 return;
         }
         $conn = $this->gd->getConnection();
+        $this->dm->clear();
         $this->doImport($conn, $beta, $release, $db, $locales, $flags, $output, $progress);
+        if (($flags & ImporterFlags::DRY_RUN) == 0)
+            $this->dm->flush();
+        $this->dm->clear();
     }
     protected abstract function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null);
 

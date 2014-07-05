@@ -19,12 +19,19 @@ services:
             - { name: dof_imp_exp.importer, provides: breed_lodef_skins, requires: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breed_lodef_skins, requires: beta_breeds }
     # DofCharactersBundle:Face
-    dof_imp_exp.importer.faces:
+    dof_imp_exp.importer.breed_faces:
         class: Dof\ImpExpBundle\Importer\GameData\FaceImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
-            - { name: dof_imp_exp.importer, provides: faces, requires: breeds }
-            - { name: dof_imp_exp.importer, provides: beta_faces, requires: beta_breeds }
+            - { name: dof_imp_exp.importer, provides: breed_faces, requires: breeds }
+            - { name: dof_imp_exp.importer, provides: beta_breed_faces, requires: beta_breeds }
+    # DofCharactersBundle:SoftCap
+    dof_imp_exp.importer.breed_soft_caps:
+        class: Dof\ImpExpBundle\Importer\GameData\SoftCapImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: breed_soft_caps, requires: breeds }
+            - { name: dof_imp_exp.importer, provides: beta_breed_soft_caps, requires: beta_breeds }
     # DofItemsBundle:ItemSet
     dof_imp_exp.importer.item_sets:
         class: Dof\ImpExpBundle\Importer\GameData\ItemSetImporter
