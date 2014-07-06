@@ -21,6 +21,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('es6asset', [ $this, 'es6asset' ]),
 			new \Twig_SimpleFunction('locales', [ $this->container->get('translator'), 'getLocales' ]),
 			new \Twig_SimpleFunction('once', [ $this, 'once' ]),
+			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
 		);
 	}
 
@@ -44,12 +45,12 @@ class UtilityExtension extends \Twig_Extension
 	}
 
 	public function es6asset($path, $packageName = null)
-    {
+  {
     	$req = $this->container->get('request_stack')->getCurrentRequest();
     	if ($req && $req->cookies->get('has-es6') == '1')
     		$path = strtr($path, array('.js' => '.es6'));
         return $this->container->get('templating.helper.assets')->getUrl($path, $packageName);
-    }
+  }
 
 	public function once($key)
 	{
@@ -60,5 +61,17 @@ class UtilityExtension extends \Twig_Extension
 			return false;
 		$keys[$key] = $key;
 		return true;
+	}
+
+	public function isCurrentPage($route)
+	{
+			$req = $this->container->get('request_stack')->getCurrentRequest();
+
+			$currentRoute = $req->attributes->get('_route');
+
+			if($currentRoute == $route)
+				return 'class="active"';
+			else
+				return false;
 	}
 }

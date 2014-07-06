@@ -410,7 +410,7 @@
 
 @nav-tabs-link-hover-border-color:          @gray-lighter;
 
-@nav-tabs-active-link-hover-bg:             @body-bg;
+@nav-tabs-active-link-hover-bg:             #E7E7E7;
 @nav-tabs-active-link-hover-color:          @gray;
 @nav-tabs-active-link-hover-border-color:   #ddd;
 
