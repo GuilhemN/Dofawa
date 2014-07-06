@@ -46,7 +46,7 @@
         </li>
 
         {# Nav #}
-        <li {% if app.request.get('_route') == 'dof_main_homepage' %}class="active"{% endif %}>
+        <li {{ is_current_page('dof_main_homepage') }}>
           <a href="{{ path('dof_main_homepage') }}">
             {{ 'menu_haut.home' | trans()}}
           </a>
