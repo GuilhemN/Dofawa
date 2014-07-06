@@ -1,6 +1,7 @@
 parameters:
     xn.data.identifiable_updater.class: XN\DataBundle\IdentifiableUpdater
     xn.data.ownable_updater.class: XN\DataBundle\OwnableUpdater
+    xn.data.localized_origin_updater.class: XN\DataBundle\LocalizedOriginUpdater
     xn.data.sluggable_updater.class: XN\DataBundle\SluggableUpdater
     xn.data.timestampable_updater.class: XN\DataBundle\TimestampableUpdater
 
@@ -14,6 +15,13 @@ services:
     xn.data.ownable_updater:
         class:     "%xn.data.ownable_updater.class%"
         arguments: [ "@service_container" ]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: onFlush }
+
+    xn.data.localized_origin_updater:
+        class:     "%xn.data.localized_origin_updater.class%"
+        arguments: [ "@service_container", "@request_stack" ]
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }
