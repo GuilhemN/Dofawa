@@ -60,3 +60,8 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: item_templates, requires: 'item_sets item_types' }
             - { name: dof_imp_exp.importer, provides: beta_item_templates, requires: 'item_templates beta_item_sets beta_item_types' }
+    dof_imp_exp.importer.item_template_skins:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemTemplateSkinImporter
+        arguments: [ "http://exter-n.fr/dofus/its.json", @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_template_skins, requires: item_templates }
