@@ -30,6 +30,8 @@ class ItemTemplateImporter extends AbstractGameDataImporter
         $typeRepo = $this->dm->getRepository('DofItemsBundle:ItemType');
         $setRepo = $this->dm->getRepository('DofItemsBundle:ItemSet');
         $repo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
+        $rowsProcessed = 0;
+        $entsPersisted = 0;
         foreach ($all as $row) {
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
@@ -78,6 +80,13 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                     $tpl->setTargetCriteria(($row['criteriaTarget'] === 'null') ? null : $row['criteriaTarget']);
                 }
                 $this->dm->persist($tpl);
+                ++$entsPersisted;
+            }
+            ++$rowsProcessed;
+            if (($rowsProcessed % 300) == 0 && $entsPersisted > 0) {
+                $this->dm->flush();
+                $this->dm->clear();
+                $entsPersisted = 0;
             }
         }
     }
