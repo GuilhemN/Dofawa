@@ -1,5 +1,5 @@
 parameters:
-    dof_articles.article.form.class: Dof\ArticlesBundle\Form\Type\ArticleType
+    dof_articles.article.form.class: Dof\ArticlesBundle\Form\ArticleType
 
 services:
     dof_articles.profile.form.type:

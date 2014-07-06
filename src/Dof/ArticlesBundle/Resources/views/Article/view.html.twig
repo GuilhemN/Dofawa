@@ -10,6 +10,10 @@
   <a class="btn btn-primary" href="{{ path('admin_dof_articles_article_edit', { 'id': article.id }) }}">
     Editer
   </a>
+  {% elseif is_granted('IS_AUTHENTICATED_FULLY') %}
+  <a class="btn btn-primary" href="{{ path('dof_articles_edit', {'id' : article.id }) }}">
+    Editer
+  </a>
   {% endif %}
 
   <article itemscope itemtype="http://schema.org/Article">
