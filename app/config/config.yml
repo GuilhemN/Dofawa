@@ -139,3 +139,11 @@ sonata_admin:
 
     options:
         pager_links:    15     # pager max links to display
+
+braincrafted_bootstrap:
+    less_filter: none
+    auto_configure:
+        assetic: false
+        twig: true
+        knp_menu: false
+        knp_paginator: false
