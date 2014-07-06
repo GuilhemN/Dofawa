@@ -1,4 +1,4 @@
-<table>
+<table class="table">
 
     <thead>
         <tr>
@@ -15,7 +15,7 @@
 
     {% if threads %}
         {% for thread in threads %}
-            <tr>
+            <tr class="panel panel-default">
                 <td>
                     <a href="{{ url('fos_message_thread_view', {'threadId': thread.id}) }}">
                         {{ thread.subject }}
