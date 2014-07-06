@@ -6,7 +6,7 @@
 
 {% for message in thread.messages %}
     <div class="messenger_thread_message panel panel-primary">
-        <div class="messenger_thread_message_info">
+        <div class="messenger_thread_message_info panel-heading">
             {% trans with {'%sender%': message.sender|e, '%date%': message.createdAt|date} from 'FOSMessageBundle' %}message_info{% endtrans %}
         </div>
 
