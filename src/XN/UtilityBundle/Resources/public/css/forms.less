@@ -19,8 +19,18 @@ form, .form {
 		line-height: 16px;
 		font-family: Helvetica, sans-serif;
 		font-size: 100%;
-		width: 100%;
-		min-height: 32px;
+		&:not([type="checkbox"]){
+			width: 100%;
+			min-height: 32px;
+
+			+ input{
+				width: 50%;
+				
+				+ input{
+					width: 33%;
+				}
+			}
+		}
 	}
 	input, textarea, select {
 		&:hover, &:focus {
