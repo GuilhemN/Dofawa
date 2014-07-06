@@ -100,6 +100,9 @@ fos_user:
     profile:
         form:
             type: dof_user_profile
+    registration:
+        form:
+            type: dof_user_registration
 
 fos_message:
     db_driver: orm
@@ -147,3 +150,8 @@ braincrafted_bootstrap:
         twig: true
         knp_menu: false
         knp_paginator: false
+
+ewz_recaptcha:
+    public_key:   6Lc4ZfYSAAAAAG10vxtJkhBO0xCcPfqm9fAT_Qg8
+    private_key:  6Lc4ZfYSAAAAAD5Bg-xjfAlFmZBFUeqgJEJqGGmC
+    locale_key:   %kernel.default_locale%

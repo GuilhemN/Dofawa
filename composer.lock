@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "112f7dc76a4fa137c0e65129cf12381f",
+    "hash": "38c2e7b33004cd862382d4420f3896d8",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -688,6 +688,48 @@
                 "orm"
             ],
             "time": "2014-06-10 11:49:08"
+        },
+        {
+            "name": "excelwebzone/recaptcha-bundle",
+            "version": "dev-master",
+            "target-dir": "EWZ/Bundle/RecaptchaBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/excelwebzone/EWZRecaptchaBundle.git",
+                "reference": "d821a4f0f1661e7c79c68be6bf65f6b07b237cc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/excelwebzone/EWZRecaptchaBundle/zipball/d821a4f0f1661e7c79c68be6bf65f6b07b237cc5",
+                "reference": "d821a4f0f1661e7c79c68be6bf65f6b07b237cc5",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": "~2.4"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "EWZ\\Bundle\\RecaptchaBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael H. Arieli",
+                    "email": "excelwebzone@gmail.com",
+                    "homepage": "http://excelwebzone.com/"
+                }
+            ],
+            "description": "This bundle provides easy reCAPTCHA form field integration",
+            "homepage": "https://github.com/excelwebzone/EWZRecaptchaBundle",
+            "keywords": [
+                "recaptcha"
+            ],
+            "time": "2014-06-20 16:46:18"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -2663,7 +2705,8 @@
         "sonata-project/jquery-bundle": 20,
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
-        "friendsofsymfony/message-bundle": 20
+        "friendsofsymfony/message-bundle": 20,
+        "excelwebzone/recaptcha-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
 
             new XN\DataBundle\XNDataBundle(),
             new XN\UtilityBundle\XNUtilityBundle(),
