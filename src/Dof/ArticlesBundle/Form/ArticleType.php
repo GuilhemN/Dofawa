@@ -32,6 +32,7 @@ class ArticleType extends AbstractType
             ->add('category')
             ->add('type', 'choice', [ 'choices' => array_flip(ArticleEnum::getValues())])
             ->add('description' . $req->getLocale(), 'textarea')
+            ->add('submit', 'submit')
         ;
     }
 
