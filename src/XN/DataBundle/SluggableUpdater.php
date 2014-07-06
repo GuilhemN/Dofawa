@@ -26,19 +26,19 @@ class SluggableUpdater
 			if (!$slug)
 				throw new \Exception('Empty slug source !');
 			$em = $args->getEntityManager();
-			$repo = $em->getRepository(get_class($ent));
-			if (!$this->tryAssignSlug($ent, $slug, $repo, $em) &&
-				!$this->tryAssignSlug($ent, $slug . '-bis', $repo, $em) &&
-				!$this->tryAssignSlug($ent, $slug . '-ter', $repo, $em))
-				for ($i = 4; !$this->tryAssignSlug($ent, $slug . '-' . $i, $repo, $em); ++$i) { }
+			$entRCN = $this->getEntityRootClass($ent, $em);
+			$repo = $em->getRepository($entRCN);
+			if (!$this->tryAssignSlug($ent, $slug, $repo, $entRCN, $em) &&
+				!$this->tryAssignSlug($ent, $slug . '-bis', $repo, $entRCN, $em) &&
+				!$this->tryAssignSlug($ent, $slug . '-ter', $repo, $entRCN, $em))
+				for ($i = 4; !$this->tryAssignSlug($ent, $slug . '-' . $i, $repo, $entRCN, $em); ++$i) { }
 		}
 	}
 
-	private function tryAssignSlug(SluggableInterface $ent, $slug, EntityRepository $repo, ObjectManager $dm)
+	private function tryAssignSlug(SluggableInterface $ent, $slug, EntityRepository $repo, $entRCN, ObjectManager $dm)
 	{
 		if ($repo->findOneBy([ 'slug' => $slug ]) !== null)
 			return false;
-		$entRCN = $this->getEntityRootClass($ent, $dm);
 		foreach ($dm->getUnitOfWork()->getScheduledEntityInsertions() as $ent2)
 			if ($ent2 instanceof SluggableInterface && $this->getEntityRootClass($ent2, $dm) == $entRCN && $ent2->getSlug() == $slug)
 				return false;
@@ -51,7 +51,6 @@ class SluggableUpdater
 		if (!isset($this->rootClasses[$cls])) {
 			$meta = $dm->getClassMetadata($cls);
 			$this->rootClasses[$cls] = $meta->rootEntityName;
-			echo $cls . ' -> ' . $meta->rootEntityName . PHP_EOL;
 		}
 		return $this->rootClasses[$cls];
 	}
