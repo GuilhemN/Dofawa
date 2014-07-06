@@ -32,7 +32,7 @@ class ItemTemplateImporter extends AbstractGameDataImporter
         $repo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
         $rowsProcessed = 0;
         if ($output && $progress)
-            $progess->start($output, count($all));
+            $progress->start($output, count($all));
         foreach ($all as $row) {
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
@@ -91,6 +91,6 @@ class ItemTemplateImporter extends AbstractGameDataImporter
             }
         }
         if ($output && $progress)
-            $progess->finish();
+            $progress->finish();
     }
 }
