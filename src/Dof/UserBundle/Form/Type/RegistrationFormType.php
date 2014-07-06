@@ -17,6 +17,7 @@ use Symfony\Component\Security\Core\Validator\Constraint\UserPassword as OldUser
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseForm;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\True;
 
 class RegistrationFormType extends BaseForm
 {
