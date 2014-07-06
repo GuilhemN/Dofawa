@@ -7,16 +7,16 @@
 
 
     {% block breadcrumb %}
-        {{ parent() }} / 
+        {{ parent() }} /
         {% trans from 'FOSMessageBundle' %}messenger{% endtrans %}
     {% endblock %}
 
 {% block body %}
-        <ul>
-            <a class="btn btn-primary" href="{{ url('fos_message_inbox') }}">{% trans from 'FOSMessageBundle' %}inbox{% endtrans %}</a>
-            <a class="btn btn-primary" href="{{ url('fos_message_sent') }}">{% trans from 'FOSMessageBundle' %}sent{% endtrans %}</a>
-            <a class="btn btn-primary" href="{{ url('fos_message_deleted') }}">{% trans from 'FOSMessageBundle' %}deleted{% endtrans %}</a>
-        </ul>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="{{ url('fos_message_inbox') }}">{% trans from 'FOSMessageBundle' %}inbox{% endtrans %}</a></li>
+      <li><a href="{{ path('fos_message_inbox') }}">{% trans from 'FOSMessageBundle' %}sent{% endtrans %}</a></li>
+      <li><a href="{{ path('fos_message_deleted') }}">{% trans from 'FOSMessageBundle' %}deleted{% endtrans %}</a></li>
+    </ul>
 
     {% block fos_message_content %}
     {% endblock %}

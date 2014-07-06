@@ -91,7 +91,7 @@
         </li>
         {# Menu Admin #}
         {% if is_granted('ROLE_ZONE_ADMIN') %}
-        <li><a href="{{ path('sonata_admin_dashboard') }}">Admin <b class="caret"></b></a></li>
+        <li><a href="{{ path('sonata_admin_dashboard') }}">Admin</a></li>
         {% endif %}
       </ul>
       <ul class="nav navbar-nav navbar-right">
