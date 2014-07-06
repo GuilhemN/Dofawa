@@ -30,6 +30,17 @@ class CharacterLookController extends Controller
         ));
         $form = $this->createForm('character_look', $cl);
 
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            if(!$this->get('security.context')->isGranted('ROLE_STYLIST'))
+                $cl->setPubliclyVisible(0);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cl);
+            $em->flush();
+        }
+
         return $this->render('DofGraphicsBundle:CharacterLook:create.html.twig', [
             'form' => $form->createView()
         ]);
