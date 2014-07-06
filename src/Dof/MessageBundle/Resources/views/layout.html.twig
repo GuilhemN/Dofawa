@@ -7,12 +7,12 @@
 
 
     {% block breadcrumb %}
-        {{ parent() }} / 
+        {{ parent() }} /
         {% trans from 'FOSMessageBundle' %}messenger{% endtrans %}
     {% endblock %}
 
 {% block body %}
-        <a class="btn btn-primary" href="{{ url('fos_message_inbox') }}">{% trans from 'FOSMessageBundle' %}inbox{% endtrans %}</a>
+    <ul class="nav nav-tabs" role="tablist">
       <li {{ is_current_page('fos_message_inbox') | raw }}><a href="{{ url('fos_message_inbox') }}">{% trans from 'FOSMessageBundle' %}inbox{% endtrans %}</a></li>
       <li {{ is_current_page('fos_message_sent') | raw }}><a href="{{ path('fos_message_sent') }}">{% trans from 'FOSMessageBundle' %}sent{% endtrans %}</a></li>
       <li {{ is_current_page('fos_message_deleted') | raw }}><a href="{{ path('fos_message_deleted') }}">{% trans from 'FOSMessageBundle' %}deleted{% endtrans %}</a></li>
