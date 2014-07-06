@@ -19,6 +19,8 @@ form, .form {
 		line-height: 16px;
 		font-family: Helvetica, sans-serif;
 		font-size: 100%;
+		width: 100%;
+		min-height: 32px;
 	}
 	input, textarea, select {
 		&:hover, &:focus {
@@ -67,7 +69,9 @@ form, .form {
 		}
 	}
 	textarea {
-		resize: none;
+		max-width: 100%;
+		min-width: 100%;
+		min-height: 100px;
 	}
 	input[type="button"], input[type="submit"], input[type="reset"], button, .btn {
 		background-color: @buttonColor;
