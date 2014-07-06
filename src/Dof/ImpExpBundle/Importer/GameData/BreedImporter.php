@@ -65,8 +65,5 @@ class BreedImporter extends AbstractGameDataImporter
                 $this->dm->persist($breed);
             }
         }
-        if ($write)
-            $this->dm->flush();
-        $this->dm->clear();
     }
 }

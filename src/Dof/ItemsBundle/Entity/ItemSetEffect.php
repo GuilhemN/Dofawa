@@ -34,7 +34,7 @@ class ItemSetEffect implements IdentifiableInterface
     /**
      * @var integer
      *
-     * @ORM\Column(name="order", type="integer")
+     * @ORM\Column(name="order_", type="integer")
      */
     private $order;
 
@@ -69,7 +69,7 @@ class ItemSetEffect implements IdentifiableInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -190,7 +190,7 @@ class ItemSetEffect implements IdentifiableInterface
     {
         return $this->param2;
     }
-    
+
     /**
      * Set param3
      *

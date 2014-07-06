@@ -19,12 +19,19 @@ services:
             - { name: dof_imp_exp.importer, provides: breed_lodef_skins, requires: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breed_lodef_skins, requires: beta_breeds }
     # DofCharactersBundle:Face
-    dof_imp_exp.importer.faces:
+    dof_imp_exp.importer.breed_faces:
         class: Dof\ImpExpBundle\Importer\GameData\FaceImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
-            - { name: dof_imp_exp.importer, provides: faces, requires: breeds }
-            - { name: dof_imp_exp.importer, provides: beta_faces, requires: beta_breeds }
+            - { name: dof_imp_exp.importer, provides: breed_faces, requires: breeds }
+            - { name: dof_imp_exp.importer, provides: beta_breed_faces, requires: beta_breeds }
+    # DofCharactersBundle:SoftCap
+    dof_imp_exp.importer.breed_soft_caps:
+        class: Dof\ImpExpBundle\Importer\GameData\SoftCapImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: breed_soft_caps, requires: breeds }
+            - { name: dof_imp_exp.importer, provides: beta_breed_soft_caps, requires: beta_breeds }
     # DofItemsBundle:ItemSet
     dof_imp_exp.importer.item_sets:
         class: Dof\ImpExpBundle\Importer\GameData\ItemSetImporter
@@ -32,3 +39,29 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: item_sets }
             - { name: dof_imp_exp.importer, provides: beta_item_sets, requires: item_sets }
+    # DofItemsBundle:ItemSetCombination, DofItemsBundle:ItemSetEffect
+    dof_imp_exp.importer.item_set_effects:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemSetEffectImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_set_effects, requires: item_sets }
+            - { name: dof_imp_exp.importer, provides: beta_item_set_effects, requires: beta_item_sets }
+    # DofItemsBundle:ItemType
+    dof_imp_exp.importer.item_types:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemTypeImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_types }
+            - { name: dof_imp_exp.importer, provides: beta_item_types, requires: item_types }
+    # DofItemsBundle:ItemTemplate and subclasses
+    dof_imp_exp.importer.item_templates:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemTemplateImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_templates, requires: 'item_sets item_types' }
+            - { name: dof_imp_exp.importer, provides: beta_item_templates, requires: 'item_templates beta_item_sets beta_item_types' }
+    dof_imp_exp.importer.item_template_skins:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemTemplateSkinImporter
+        arguments: [ "http://exter-n.fr/dofus/its.json", @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_template_skins, requires: item_templates }

@@ -20,7 +20,7 @@ trait CharacteristicsTrait
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="{{ chara.slug|camelize|tableize }}", type="integer")
+	 * @ORM\Column(name="{{ chara.slug|camelize|tableize }}{% if chara.slug in [ 'range', 'lock' ] %}_{% endif %}", type="integer")
 	 */
 	protected ${{ chara.slug|camelize }};
 {% endfor %}
@@ -40,7 +40,7 @@ trait CharacteristicsTrait
 		$this->{{ chara.slug|camelize }} = ${{ chara.slug|camelize }};
 		return $this;
 	}
-	
+
 	/**
 	 * Get {{ chara.slug|camelize }}
 	 *
@@ -51,7 +51,7 @@ trait CharacteristicsTrait
 		return $this->{{ chara.slug|camelize }};
 	}
 {% endfor %}
-	
+
 	/**
 	 * Set all characteristics
 	 *

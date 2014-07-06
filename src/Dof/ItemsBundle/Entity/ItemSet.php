@@ -45,6 +45,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="ItemSetCombination", mappedBy="set")
+     * @ORM\OrderBy({ "itemCount" = "ASC", "id" = "ASC" })
      */
     private $combinations;
 
@@ -114,14 +115,27 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set combinations
+     * Add combinations
      *
      * @param ItemSetCombination $combinations
      * @return ItemSet
      */
-    public function setCombinations(ItemSetCombination $combinations)
+    public function addCombination(ItemSetCombination $combinations)
     {
-        $this->combinations = $combinations;
+        $this->combinations[] = $combinations;
+
+        return $this;
+    }
+
+    /**
+     * Remove combinations
+     *
+     * @param ItemSetCombination $combinations
+     * @return ItemSet
+     */
+    public function removeCombination(ItemSetCombination $combinations)
+    {
+        $this->combinations->removeElement($combinations);
 
         return $this;
     }

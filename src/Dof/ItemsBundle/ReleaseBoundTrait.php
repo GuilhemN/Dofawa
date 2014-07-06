@@ -9,7 +9,7 @@ trait ReleaseBoundTrait
     /**
      * @var string
      *
-     * @ORM\Column(name="release_number", type="string", length=15, nullable=true)
+     * @ORM\Column(name="release_", type="string", length=15, nullable=true)
      */
     private $release;
 

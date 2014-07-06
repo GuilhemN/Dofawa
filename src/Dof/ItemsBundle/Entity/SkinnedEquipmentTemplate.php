@@ -14,7 +14,7 @@ class SkinnedEquipmentTemplate extends EquipmentTemplate
     /**
      * @var integer
      *
-     * @ORM\Column(name="skin", type="integer", nullable=true, unique=true)
+     * @ORM\Column(name="skin", type="integer", nullable=true, unique=false)
      */
     private $skin;
 

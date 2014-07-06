@@ -46,7 +46,7 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * @var string
      *
-     * @ORM\Column(name="effect_area", type="string", length=31)
+     * @ORM\Column(name="effect_area", type="string", length=31, nullable=true)
      */
     private $effectArea;
 
@@ -78,7 +78,7 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -101,7 +101,7 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * Get slot
      *
-     * @return integer 
+     * @return integer
      */
     public function getSlot()
     {
@@ -124,7 +124,7 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * Get effectArea
      *
-     * @return string 
+     * @return string
      */
     public function getEffectArea()
     {
