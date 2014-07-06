@@ -15,7 +15,7 @@ class SkinnedEquipmentTemplateRepository extends EquipmentTemplateRepository
             ->setParameter('skinIds', $skinIds)
             ->getQuery()
             ->getResult() as $skin)
-            $skins[$skin->getId()] = $skin;
+            $skins[$skin->getSkin()] = $skin;
         ksort($skins);
         return $skins;
     }
