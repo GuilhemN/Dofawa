@@ -31,7 +31,7 @@ class ArticlesController extends Controller
       if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
         throw new AccessDeniedException();
 
-      $form = $this->createForm('dof_articles_main', $article);
+      $form = $this->createForm('dof_articlesbundle_article', $article);
 
       return $this->render('DofArticlesBundle:Article:edit.html.twig', array(
         'article' => $article,

@@ -6,4 +6,4 @@ services:
         class: %dof_articles.article.form.class%
         arguments: ["@request_stack"]
         tags:
-            - { name: form.type, alias: dof_articles_main }
+            - { name: form.type, alias: dof_articlesbundle_article }
