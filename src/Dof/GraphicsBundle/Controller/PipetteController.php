@@ -11,6 +11,8 @@ use Dof\ImpExpBundle\Scraper\CharacterPageScraper;
 use Dof\GraphicsBundle\EntityLook;
 use Dof\GraphicsBundle\EntityLookTransforms;
 
+use Dof\GraphicsBundle\Entity\CharacterLook;
+
 class PipetteController extends Controller
 {
     public function indexAction()
@@ -53,4 +55,23 @@ class PipetteController extends Controller
             'results' => $results
         ]);
     }
+
+	public function addToGalleryAction(Request $req)
+	{
+        if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))
+            throw new AccessDeniedException();
+		$name = $req->request->get('name');
+		$look = new EntityLook($req->request->get('look'));
+		$cl = new CharacterLook();
+		$this->get('dof_graphics.bpcl_identifier')->identify($look, $cl);
+		$cl->setName($name);
+		$cl->setPubliclyVisible(false);
+		$dm = $this->getDoctrine()->getManager();
+		$dm->persist($cl);
+		$dm->flush();
+		// FIXME : dummy route/parameter names as the route doesn't exist atm
+		return $this->redirect($this->get('router')->generate('dof_graphics_skins_edit', [
+			'id' => $cl->getId()
+		]));
+	}
 }

@@ -17,6 +17,11 @@
         </div>
         <strong>{{ result.name }}</strong> ({{ result.serverName }})<br />
         <a href="{{ result.address }}" target="_blank">{{ result.address }}</a>
+		<form action="{{ path('dof_graphics_skins_add_from_pipette') }}" method="POST">
+		<input type="hidden" name="name" value="{{ result.name }} ({{ result.serverName }})" />
+		<input type="hidden" name="look" value="{{ result.entityLook }}" />
+		<input type="submit" value="Ajouter à ma galerie" />
+		</form>
       </div>
       <div class="panel-body">
         <p>Voici les infos de cette page perso :</p>

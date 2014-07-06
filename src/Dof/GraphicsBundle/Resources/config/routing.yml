@@ -20,6 +20,16 @@ dof_graphics_renderer_look:
         padding: '0|[1-9][0-9]*'
     options: { i18n: false }
 
+dof_graphics_skins_add_from_pipette:
+    pattern: /skins/add-from-pipette
+    defaults: { _controller: DofGraphicsBundle:Pipette:addToGallery }
+    requirements: { _method: POST }
+
 dof_graphics_skins_create:
     pattern:  /skins/create
     defaults: { _controller: DofGraphicsBundle:CharacterLook:create }
+
+#dof_graphics_skins_edit:
+#    pattern:  /skins/{id}/edit
+#    defaults: { _controller: DofGraphicsBundle:CharacterLook:edit }
+#    requirements: { id: \d+ }

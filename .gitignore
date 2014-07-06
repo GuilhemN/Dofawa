@@ -21,6 +21,9 @@ sftp-config*
 # Eclipse
 .project
 
+# Vim
+.*.swp
+
 # Temporary (build etc.) files
 tmp/*
 !tmp/.gitkeep

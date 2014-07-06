@@ -17,8 +17,10 @@ wait "$!"
 app/console doctrine:schema:update --dump-sql
 app/console doctrine:schema:update --force
 
-chown -R www-data:www-data app/cache
-chown -R www-data:www-data app/logs
-chown -R www-data:www-data bin/cache
+if [ "$(id -u)" == 0 ]; then
+	chown -R www-data:www-data app/cache
+	chown -R www-data:www-data app/logs
+	chown -R www-data:www-data bin/cache
+fi
 
 app/console assets:install

@@ -61,7 +61,7 @@ class BPCLIdentifier
     public function identify($entityLooks, $basicPCLooks0 = null)
     {
         if (!is_array($entityLooks)) {
-            $retval = $this->identify([ $entityLooks ], ($basicPCLooks0 === null) ? [ new BasicPCLook() ] : [ $BasicPCLooks0 ]);
+            $retval = $this->identify([ $entityLooks ], ($basicPCLooks0 === null) ? [ new BasicPCLook() ] : [ $basicPCLooks0 ]);
             return $retval[0];
         }
         $animalLooks = array();
