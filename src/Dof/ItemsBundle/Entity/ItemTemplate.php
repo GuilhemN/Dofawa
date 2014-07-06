@@ -20,7 +20,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
 /**
  * ItemTemplate
  *
- * @ORM\Table(name="dof_item_templates")
+ * @ORM\Table(name="dof_item_templates", indexes={ @ORM\Index(name="IX_item_skin", columns={ "skin" }), @ORM\Index(name="IX_item_bone", columns={ "bone" }) })
  * @ORM\Entity(repositoryClass="ItemTemplateRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="class", type="string")
