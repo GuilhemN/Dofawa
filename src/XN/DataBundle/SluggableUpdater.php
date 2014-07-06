@@ -51,6 +51,7 @@ class SluggableUpdater
 		if (!isset($this->rootClasses[$cls])) {
 			$meta = $dm->getClassMetadata($cls);
 			$this->rootClasses[$cls] = $meta->rootEntityName;
+			echo $cls . ' -> ' . $meta->rootEntityName . PHP_EOL;
 		}
 		return $this->rootClasses[$cls];
 	}
