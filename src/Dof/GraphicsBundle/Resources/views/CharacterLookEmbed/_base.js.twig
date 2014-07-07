@@ -1,0 +1,90 @@
+(function () {
+	"use strict";
+	var thisScriptNode;
+	if (document.readyState == "loading") {
+		var scripts = document.getElementsByTagName("script");
+		thisScriptNode = scripts[scripts.length - 1];
+	} else
+		thisScriptNode = null;
+	var setAttributes = function (element, attrs) {
+		var keys = Object.getOwnPropertyNames(attrs);
+		for (var i = 0; i < keys.length; ++i)
+			element.setAttribute(keys[i], attrs[keys[i]]);
+	};
+	var setProperties = function (target, source) {
+		for (var i in source) {
+			if (typeof target[i] == 'object' && typeof source[i] == 'object')
+				setProperties(target[i], source[i]);
+			else
+				target[i] = source[i];
+		}
+	};
+	var addEventListeners = function (element, listeners, capture) {
+		var keys = Object.getOwnPropertyNames(listeners);
+		for (var i = 0; i < keys.length; ++i) {
+			var listener = listeners[keys[i]];
+			var events = keys[i].split(/\s+/g);
+			for (var j = 0; j < events.length; ++j)
+				if (events[j])
+					element.addEventListener(events[j], listener, capture);
+		}
+	};
+	var removeEventListeners = function (element, listeners, capture) {
+		var keys = Object.getOwnPropertyNames(listeners);
+		for (var i = 0; i < keys.length; ++i) {
+			var listener = listeners[keys[i]];
+			var events = keys[i].split(/\s+/g);
+			for (var j = 0; j < events.length; ++j)
+				if (events[j])
+					element.removeEventListener(events[j], listener, capture);
+		}
+	};
+	var appendChildren = function (element, children) {
+		if (Object.prototype.toString.call(children) != "[object Array]")
+			children = [ children ];
+		for (var i = 0; i < children.length; ++i) {
+			var child = children[i];
+			if (Object.prototype.toString.call(child) == "[object String]")
+				child = createText(child.valueOf());
+			element.appendChild(child);
+		}
+	};
+	var createElement = function (name, attrs, props, events, children) {
+		var element = document.createElement(name);
+		if (attrs)
+			setAttributes(element, attrs);
+		if (props)
+			setProperties(element, props);
+		if (events)
+			addEventListeners(element, events, false);
+		if (children)
+			appendChildren(element, children);
+		return element;
+	};
+	var createText = function (value) {
+		return document.createTextNode(value);
+	};
+	var renderNode = function (node) {
+		var refNode;
+		var parNode = document.getElementById('dofawa-skin-embed-{{ look.slug }}');
+		if (!parNode) {
+			if (!thisScriptNode)
+				return;
+			refNode = thisScriptNode;
+			parNode = thisScriptNode.parentNode;
+		}
+		parNode.insertBefore((typeof node == 'string') ? createText(node) : node, refNode);
+	};
+	var useStyleSheet = function (href) {
+		var link = createElement('link', { rel: "stylesheet", type: "text/css", href: href });
+		href = link.href;
+		var links = document.querySelectorAll('link[rel="stylesheet"][type="text/css"]');
+		for (var i = links.length; i-- > 0; ) {
+			if (links[i].href == href)
+				return;
+		}
+		document.head.appendChild(link);
+	};
+	{% block body %}
+	{% endblock %}
+})();

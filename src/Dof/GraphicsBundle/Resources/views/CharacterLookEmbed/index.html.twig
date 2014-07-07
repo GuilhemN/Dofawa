@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ look.name }} - Dofawa</title>
+</head>
+<body class="dofawa-skin-embed-standalone">
+<script type="text/javascript" src="{{ path('dof_graphics_skins_embed', { slug: look.slug, theme: theme, format: 'js' }) ~ (app.request.queryString ? ('?' ~  app.request.queryString) : '') }}"></script>
+</body>
+</html>

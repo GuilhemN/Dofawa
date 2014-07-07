@@ -1,0 +1,142 @@
+@-webkit-keyframes dofawa-skin-embed-flipcard-enter-flip {
+	from { -webkit-transform: translateZ(0) rotateY(180deg); }
+	50% { -webkit-transform: translateZ(130px) rotateY(270deg); }
+	to { -webkit-transform: translateZ(0) rotateY(360deg); }
+}
+@keyframes dofawa-skin-embed-flipcard-enter-flip {
+	from { transform: translateZ(0) rotateY(180deg); }
+	50% { transform: translateZ(130px) rotateY(270deg); }
+	to { transform: translateZ(0) rotateY(360deg); }
+}
+@-webkit-keyframes dofawa-skin-embed-flipcard-exit-flip {
+	from { -webkit-transform: translateZ(0) rotateY(0deg); }
+	50% { -webkit-transform: translateZ(130px) rotateY(90deg); }
+	to { -webkit-transform: translateZ(0) rotateY(180deg); }
+}
+@keyframes dofawa-skin-embed-flipcard-exit-flip {
+	from { transform: translateZ(0) rotateY(0deg); }
+	50% { transform: translateZ(130px) rotateY(90deg); }
+	to { transform: translateZ(0) rotateY(180deg); }
+}
+
+.dofawa-skin-embed-standalone {
+	background: transparent;
+	width: 300px;
+	height: 540px;
+	line-height: 540px;
+	text-align: center;
+	margin: 0;
+}
+.dofawa-skin-embed-flipcard {
+	display: inline-block;
+	vertical-align: middle;
+	opacity: 1 !important;
+	position: relative !important;
+	width: 260px;
+	height: 400px;
+	border-radius: 2px;
+	-webkit-perspective: 1040px;
+	perspective: 1040px;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.dofawa-skin-embed-flipcard-recto, .dofawa-skin-embed-flipcard-verso {
+	position: absolute;
+	width: 260px;
+	height: 400px;
+	box-sizing: border-box;
+	background: white;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	border-radius: 2px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 2px 5px rgba(0, 0, 0, 0.26);
+	transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+	:hover > & {
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.19), 0 8px 17px rgba(0, 0, 0, 0.2);
+	}
+}
+.dofawa-skin-embed-flipcard-recto {
+	line-height: 400px;
+	text-align: center;
+	> img {
+		vertical-align: middle;
+	}
+	-webkit-transform: translateZ(0) rotateY(0deg);
+	transform: translateZ(0) rotateY(0deg);
+	.flipped > & {
+		-webkit-transform: translateZ(0) rotateY(180deg);
+		transform: translateZ(0) rotateY(180deg);
+		-webkit-animation: dofawa-skin-embed-flipcard-exit-flip 0.42s ease-in-out;
+		animation: dofawa-skin-embed-flipcard-exit-flip 0.42s ease-in-out;
+	}
+	.unflipped > & {
+		-webkit-animation: dofawa-skin-embed-flipcard-enter-flip 0.42s ease-in-out;
+		animation: dofawa-skin-embed-flipcard-enter-flip 0.42s ease-in-out;
+	}
+	background-image: url(../images/flipcard-recto.png);
+	background-size: cover;
+}
+.dofawa-skin-embed-flipcard-verso {
+	padding: 4px 8px;
+	-webkit-transform: translateZ(0) rotateY(180deg);
+	transform: translateZ(0) rotateY(180deg);
+	.flipped > & {
+		-webkit-transform: translateZ(0) rotateY(360deg);
+		transform: translateZ(0) rotateY(360deg);
+		-webkit-animation: dofawa-skin-embed-flipcard-enter-flip 0.42s ease-in-out;
+		animation: dofawa-skin-embed-flipcard-enter-flip 0.42s ease-in-out;
+	}
+	.unflipped > & {
+		-webkit-animation: dofawa-skin-embed-flipcard-exit-flip 0.42s ease-in-out;
+		animation: dofawa-skin-embed-flipcard-exit-flip 0.42s ease-in-out;
+	}
+	table {
+		width: 100%;
+		border-spacing: 0;
+		border: 0 none;
+		display: block;
+	}
+	tbody {
+		display: block;
+		width: 100%;
+	}
+	tr {
+		width: 100%;
+		display: block;
+		overflow: hidden;
+	}
+	th, td {
+		font-family: Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 9pt;
+		padding: 4px;
+		display: inline-block;
+		white-space: nowrap;
+		line-height: 16px;
+	}
+	th {
+		font-weight: bold;
+		float: left;
+		cursor: default;
+	}
+	td {
+		font-weight: normal;
+		float: right;
+	}
+	tr + tr {
+		border-top: 1px solid silver;
+	}
+}
+.dofawa-skin-embed-flipcard-color-patch {
+	display: inline-block;
+	border: 1px solid #808080;
+	width: 16px;
+	height: 16px;
+	border-radius: 4px;
+	vertical-align: middle;
+	background-color: #FFF;
+	background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%), linear-gradient(-45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.25) 75%), linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.25) 75%);
+	background-size: 16px 16px;
+	background-position: 0px 8px, 0px 0px, 8px 0px, 8px 8px;
+}

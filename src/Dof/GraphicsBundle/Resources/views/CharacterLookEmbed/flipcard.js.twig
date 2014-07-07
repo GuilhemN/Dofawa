@@ -1,0 +1,110 @@
+{% extends 'DofGraphicsBundle:CharacterLookEmbed:_base.js.twig' %}
+
+{% block body %}
+useStyleSheet("{{ app.request.schemeAndHttpHost ~ asset('bundles/dofgraphics/css/flipcard.min.css') }}");
+var stopPropagation = function (ev) {
+	try { ev.stopPropagation(); } catch (e) { }
+	try { ev.cancelBubble = true; } catch (e) { }
+};
+var card, recto, verso;
+renderNode(card = createElement('div', null, {
+	className: 'dofawa-skin-embed-flipcard',
+	style: { opacity: 0, position: 'absolute' }
+}, {
+	click: function (ev) {
+		var clsList = card.className.split(/\s+/);
+		for (var i = 0; i < clsList.length; ++i)
+			if (!clsList[i])
+				clsList.splice(i--, 1);
+		for (var i = 0; i < clsList.length; ++i) {
+			if (clsList[i] == 'flipped') {
+				clsList.splice(i, 1, 'unflipped');
+				card.className = clsList.join(' ');
+				return;
+			} else if (clsList[i] == 'unflipped') {
+				clsList.splice(i, 1, 'flipped');
+				card.className = clsList.join(' ');
+				return;
+			}
+		}
+		clsList.push('flipped');
+		card.className = clsList.join(' ');
+	}
+}, [
+	recto = createElement('div', null, { className: 'dofawa-skin-embed-flipcard-recto' }, null, [
+		{% include 'DofGraphicsBundle:Component:renderer.js.twig' with {
+			'look': look.toEntityLook(),
+			'focus': 'full',
+			'direction': 1,
+			'width': 247,
+			'height': 380
+		} only %}
+	]),
+	verso = createElement('div', null, { className: 'dofawa-skin-embed-flipcard-verso' }, null, [
+		createElement('table', null, null, null, [
+			createElement('tbody', null, null, null, [
+				{% if look.breed is not null %}
+				createElement('tr', null, null, null, [
+					createElement('th', null, null, null, 'Classe'),
+					createElement('td', null, null, { click: stopPropagation }, '{{ look.breed.getName(locales()) }}')
+				]),
+				{% endif %}
+				{% if look.gender is not null %}
+				createElement('tr', null, null, null, [
+					createElement('th', null, null, null, 'Sexe'),
+					createElement('td', null, null, { click: stopPropagation }, '{{ (look.gender == 0) ? 'Masculin' : ((look.gender == 1) ? 'Féminin' : 'Autre') }}')
+				]),
+				{% endif %}
+				{% if look.face is not null %}
+				createElement('tr', null, null, null, [
+					createElement('th', null, null, null, 'Visage'),
+					createElement('td', null, null, { click: stopPropagation }, '{{ look.face.label }}')
+				]),
+				{% endif %}
+				{% if look.hat is not null %}
+				createElement('tr', null, null, null, [
+					createElement('th', null, null, null, '{{ look.hat.type.getName(locales()) }}'),
+					createElement('td', null, null, { click: stopPropagation }, '{{ look.hat.getName(locales()) }}')
+				]),
+				{% endif %}
+				{% if look.cloak is not null %}
+				createElement('tr', null, null, null, [
+					createElement('th', null, null, null, '{{ look.cloak.type.getName(locales()) }}'),
+					createElement('td', null, null, { click: stopPropagation }, '{{ look.cloak.getName(locales()) }}')
+				]),
+				{% endif %}
+				{% if look.shield is not null %}
+				createElement('tr', null, null, null, [
+					createElement('th', null, null, null, '{{ look.shield.type.getName(locales()) }}'),
+					createElement('td', null, null, { click: stopPropagation }, '{{ look.shield.getName(locales()) }}')
+				]),
+				{% endif %}
+				{% if look.weapon is not null %}
+				createElement('tr', null, null, null, [
+					createElement('th', null, null, null, '{{ look.weapon.type.getName(locales()) }}'),
+					createElement('td', null, null, { click: stopPropagation }, '{{ look.weapon.getName(locales()) }}')
+				]),
+				{% endif %}
+				{% if look.animal is not null %}
+				createElement('tr', null, null, null, [
+					createElement('th', null, null, null, '{{ look.animal.type.getName(locales()) }}'),
+					createElement('td', null, null, { click: stopPropagation }, '{{ look.animal.getName(locales()) }}')
+				]),
+				{% endif %}
+				{% for index, color in look.colors if color is not null %}
+				createElement('tr', null, null, null, [
+					createElement('th', null, null, null, '{% if look.breed is null %}{{ ('generic.slot' ~ index)|trans({ }, 'color_slots') }}{% else %}{{ [ look.breed.slug ~ look.gender ~ '.slot' ~ index, look.breed.slug ~ '.slot' ~ index, 'generic.slot' ~ index ]|trans({ }, 'color_slots') }}{% endif %}'),
+					createElement('td', null, null, { click: stopPropagation }, [
+						'{{ color|dechex }} ',
+						createElement('span', null, {
+							className: 'dofawa-skin-embed-flipcard-color-patch',
+							style: { background: '{{ color|dechex }}' }
+						})
+					])
+				]),
+				{% endfor %}
+			])
+		])
+	])
+]));
+{% endblock %}

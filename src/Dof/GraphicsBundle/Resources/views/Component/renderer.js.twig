@@ -1,0 +1,26 @@
+{#
+Usage :
+
+{% include 'DofGraphicsBundle:Component:renderer.js.twig' with {
+    'look': some EntityLook (default new EntityLook('{666}')),
+    'focus': 'full' or 'face' ... may accept other values but not guaranteed (default 'full'),
+    'direction': 0 through 7 (default 1),
+    'width': some positive integer (default 130),
+    'height': some positive integer (default 200)
+} only %}
+
+All variables are optional
+#}
+createElement('img', {
+	src: "{{ app.request.schemeAndHttpHost ~ path('dof_graphics_renderer_look', {
+		look: (look is defined) ? (look.format()|bin2hex) : '7b3636367d',
+		focus: (focus is defined) ? focus : 'full',
+		direction: (direction is defined) ? direction : 1,
+		width: (width is defined) ? width : 130,
+		height: (height is defined) ? height: 200,
+		padding: 0
+	}) }}",
+	width: "{% if width is defined %}{{ width }}{% else %}130{% endif %}",
+	height: "{% if height is defined %}{{ height }}{% else %}200{% endif %}",
+	alt: "Personnage"
+})
