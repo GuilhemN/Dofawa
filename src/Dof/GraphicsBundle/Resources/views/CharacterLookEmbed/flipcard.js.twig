@@ -1,6 +1,7 @@
 {% extends 'DofGraphicsBundle:CharacterLookEmbed:_base.js.twig' %}
 
 {% block body %}
+{% autoescape 'js' %}
 useStyleSheet("{{ app.request.schemeAndHttpHost ~ asset('bundles/dofgraphics/css/flipcard.min.css') }}");
 var stopPropagation = function (ev) {
 	try { ev.stopPropagation(); } catch (e) { }
@@ -107,4 +108,5 @@ renderNode(card = createElement('div', null, {
 		])
 	])
 ]));
+{% endautoescape %}
 {% endblock %}
