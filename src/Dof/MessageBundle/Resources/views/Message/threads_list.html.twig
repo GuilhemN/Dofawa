@@ -4,7 +4,7 @@
         <tr class="panel-heading">
             <th>{% trans from 'FOSMessageBundle' %}subject{% endtrans %}</th>
             <th>{% trans from 'FOSMessageBundle' %}starter{% endtrans %}</th>
-            <th>{% trans from 'FOSMessageBundle' %}startdate{% endtrans %}</th>
+            <th class="hidden-xs">{% trans from 'FOSMessageBundle' %}startdate{% endtrans %}</th>
             <th class="hidden-xs hidden-sm hidden-md">{% trans from 'FOSMessageBundle' %}messages{% endtrans %}</th>
             <th>{% trans from 'FOSMessageBundle' %}last_message{% endtrans %}</th>
             <th>{% trans from 'FOSMessageBundle' %}actions{% endtrans %}</th>
@@ -28,7 +28,7 @@
                 <td>
                     {{ thread.createdBy }}
                 </td>
-                <td>
+                <td class="hidden-xs">
                     {{ thread.createdAt|date }}
                 </td>
                 <td class="hidden-xs hidden-sm hidden-md">
