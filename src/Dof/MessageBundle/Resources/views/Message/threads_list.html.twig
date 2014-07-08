@@ -5,7 +5,7 @@
             <th>{% trans from 'FOSMessageBundle' %}subject{% endtrans %}</th>
             <th>{% trans from 'FOSMessageBundle' %}starter{% endtrans %}</th>
             <th>{% trans from 'FOSMessageBundle' %}startdate{% endtrans %}</th>
-            <th>{% trans from 'FOSMessageBundle' %}messages{% endtrans %}</th>
+            <th class="hidden-xs">{% trans from 'FOSMessageBundle' %}messages{% endtrans %}</th>
             <th>{% trans from 'FOSMessageBundle' %}last_message{% endtrans %}</th>
             <th>{% trans from 'FOSMessageBundle' %}actions{% endtrans %}</th>
         </tr>
@@ -31,7 +31,7 @@
                 <td>
                     {{ thread.createdAt|date }}
                 </td>
-                <td>
+                <td class="hidden-xs">
                     {{ thread.messages|length }}
                 </td>
                 <td>
