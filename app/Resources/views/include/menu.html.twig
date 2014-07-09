@@ -129,7 +129,10 @@
                       <a href="{{ path('dof_profile_userpage', {'slug': app.user.slug }) }}" class="btn btn-primary btn-block btn-sm">
                         {{ 'mine'|trans({}, 'profile') }}
                       </a>
-                      <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block btn-sm">{{ 'edit' | trans({}, 'generalTrans') }}</a>
+                      <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block btn-sm">
+                        {{ 'edit' | trans({}, 'generalTrans') }}
+                      </a>
+                      {{ render(controller('DofMessageBundle:NewMess:index')) }}
                     </p>
                   </div>
                 </div>
