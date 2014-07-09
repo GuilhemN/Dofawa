@@ -133,7 +133,7 @@
                         {{ 'edit' | trans({}, 'generalTrans') }}
                       </a>
                       <a href=\"{{ path('fos_message_inbox') }}\">
-                        {{ render(controller('DofMessageBundle:NewMess:index', { 'route' : app.request.attributes.get('_route') })) }}
+                        {{ render(controller('DofMessageBundle:NewMessages:menu', { 'route' : app.request.attributes.get('_route') })) }}
                       </a>
                     </p>
                   </div>

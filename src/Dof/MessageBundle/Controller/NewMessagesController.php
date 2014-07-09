@@ -5,9 +5,9 @@ namespace Dof\MessageBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class NewMessController extends Controller
+class NewMessagesController extends Controller
 {
-	public function indexAction($route)
+	public function menuAction($route)
 	{
 		$session = $this->get('session');
 
@@ -27,12 +27,11 @@ class NewMessController extends Controller
 				$countNews = 0;
 
 			// Sauvegarde en session
-			$session->set('message/hasNew',true);
-			$session->set('message/timestamp',time());
-			$session->set('message/countNews',$countNews);
+			$session->set('message/hasNew', true);
+			$session->set('message/timestamp', time());
+			$session->set('message/countNews', $countNews);
 		}
 
-		$response = "<span class=\"glyphicon glyphicon-envelope\"></span> Messages <span class=\"badge\">".$countNews."</span>";
-		return new Response($response);
+		return $this->render('DofMessageBundle:NewMessages:menu.html.twig', array('count' => $countNews));
 	}
 }
