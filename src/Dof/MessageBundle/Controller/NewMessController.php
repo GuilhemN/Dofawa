@@ -18,8 +18,11 @@ class NewMessController extends Controller
 		$user = $this->get('security.context')->getToken()->getUser();
 		$now = time();
 		
+		$routeName = $this->get('request')->get('_route');
+
+		echo $routeName; # TODO
 		// MàJ
-		if (($now - $timestamp) > 60 && !$hasNew){
+		if ((($now - $timestamp) > 60 && !$hasNew) || preg_match('~^fos_message~', $routeName)){
 			$repository = $this->getDoctrine()->getRepository('DofMessageBundle:MessageMetadata');
 			$countNews = count($repository->findBy(array('participant' => $user, 'isRead' => false)));
 
