@@ -15,13 +15,13 @@ class NewMessController extends Controller
 		$hasNew = $session->get('message/hasNew');
 		$countNews = $session->get('message/countNews');
 
-		$idUser = $this->get('security.context')->getToken()->getUser()->getId();
+		$user = $this->get('security.context')->getToken()->getUser();
 		$now = time();
 		
 		// MàJ
 		if (($now - $timestamp) > 60 && !$hasNew){
 			$repository = $this->getDoctrine()->getRepository('DofMessageBundle:MessageMetadata');
-			$countNews = $repository->findBy(array('participant_id' => $idUser, 'is_read' => false))->count();
+			$countNews = $repository->findBy(array('participant' => $user, 'is_read' => false))->count();
 
 			if ($countNews <=0)
 				$countNews = 0;
