@@ -15,20 +15,7 @@ class CharacterLookController extends Controller
         if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))
             throw new AccessDeniedException();
 
-        $cl = new CharacterLook();
-        $cl->setColors(array(
-          '1'=>'',
-          '2'=>'',
-          '3'=>'',
-          '4'=>'',
-          '5'=>'',
-          '6'=>'',
-          '7'=>'',
-          '8'=>'',
-          '9'=>'',
-          '10'=>''
-        ));
-        $form = $this->createForm('character_look', $cl);
+        $form = $this->createForm('character_look');
 
         return $this->render('DofGraphicsBundle:CharacterLook:create.html.twig', [
             'form' => $form->createView()
