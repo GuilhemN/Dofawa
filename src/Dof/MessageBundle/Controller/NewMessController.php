@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class NewMessController extends Controller
 {
-	public function indexAction()
+	public function indexAction($route)
 	{
 		$session = $this->get('session');
 
@@ -17,12 +17,9 @@ class NewMessController extends Controller
 
 		$user = $this->get('security.context')->getToken()->getUser();
 		$now = time();
-		
-		$routeName = $this->get('request')->get('_route');
 
-		echo $routeName; # TODO
 		// MàJ
-		if ((($now - $timestamp) > 60 && !$hasNew) || preg_match('~^fos_message~', $routeName)){
+		if ((($now - $timestamp) > 60 && !$hasNew) || preg_match('~^fos_message~', $route)){
 			$repository = $this->getDoctrine()->getRepository('DofMessageBundle:MessageMetadata');
 			$countNews = count($repository->findBy(array('participant' => $user, 'isRead' => false)));
 
