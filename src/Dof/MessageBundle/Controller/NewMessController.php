@@ -32,7 +32,7 @@ class NewMessController extends Controller
 			$session->set('message/countNews',$countNews);
 		}
 
-		$response = '<span class="glyphicon glyphicon-envelope"></span> Messages <span class="badge">'.$countNews.'</span>';
+		$response = '<a href="{{ path(\'fos_message_inbox\') }}"><span class="glyphicon glyphicon-envelope"></span> Messages <span class="badge">'.$countNews.'</span></a>';
 		return new Response($response);
 	}
 }
