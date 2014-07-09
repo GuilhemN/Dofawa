@@ -132,7 +132,9 @@
                       <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block btn-sm">
                         {{ 'edit' | trans({}, 'generalTrans') }}
                       </a>
-                      {{ render(controller('DofMessageBundle:NewMess:index', { 'route' : app.request.attributes.get('_route') })) }}
+                      <a href=\"{{ path('fos_message_inbox') }}\">
+                        {{ render(controller('DofMessageBundle:NewMess:index', { 'route' : app.request.attributes.get('_route') })) }}
+                      </a>
                     </p>
                   </div>
                 </div>
