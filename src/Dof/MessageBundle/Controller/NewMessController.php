@@ -21,7 +21,7 @@ class NewMessController extends Controller
 		// MàJ
 		if (($now - $timestamp) > 60 && !$hasNew){
 			$repository = $this->getDoctrine()->getRepository('DofMessageBundle:MessageMetadata');
-			$countNews = $repository->findBy(array('participant' => $user, 'is_read' => false))->count();
+			$countNews = $repository->findBy(array('participant' => $user, 'isRead' => false))->count();
 
 			if ($countNews <=0)
 				$countNews = 0;
