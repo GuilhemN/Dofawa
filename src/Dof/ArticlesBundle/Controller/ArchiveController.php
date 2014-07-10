@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ArchiveController extends Controller
 {
-	public function indexAction($type = '')
+	public function archiveAction()
 	{
 		$u = $this->get('security.context')->getToken()->getUser();
 		$translator = $this->get('translator');
