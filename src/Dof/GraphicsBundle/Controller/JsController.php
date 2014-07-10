@@ -23,6 +23,9 @@ class JsController extends Controller
         $items['animal'] = $animal->hasBone('json', $locale);
         $items['weapon'] = $weapon->hasBone('json', $locale);
 
+        print_r($items);
+        die();
+        
         foreach($items as $k => $v){
             foreach($v as $val){
                 $nitems[$k] = array('id' => $val['id'], 'text' => $val['name'.ucfirst($locale)]);
