@@ -11,5 +11,5 @@ dof_articles_edit:
       id: \d+
 
 dof_articles_archive:
-    pattern:  /archive/
+    pattern:  /
     defaults: { _controller: DofArticlesBundle:Archive:archive }
