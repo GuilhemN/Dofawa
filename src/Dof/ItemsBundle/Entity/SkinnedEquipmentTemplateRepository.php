@@ -23,7 +23,7 @@ class SkinnedEquipmentTemplateRepository extends EquipmentTemplateRepository
     public function findBySlot($slot) {
         return $this
                   ->createQueryBuilder('se')
-                  ->select(array('id', 'name_fr'))
+                  ->select(array('se.id', 'se.name_fr'))
                   ->join('se.type', 't')
                   ->where('t.slot = :slot AND se.skin IS NOT NULL')
                   ->getQuery()

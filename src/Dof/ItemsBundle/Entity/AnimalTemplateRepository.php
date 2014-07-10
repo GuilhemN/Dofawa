@@ -29,7 +29,7 @@ class AnimalTemplateRepository extends EquipmentTemplateRepository
         $req = $this->createQueryBuilder('a');
 
         return $req
-            ->select(array('id', 'name_fr'))
+            ->select(array('a.id', 'a.name_fr'))
             ->where('a.bone IS NOT NULL')
             ->getQuery()
             ->getResult()
