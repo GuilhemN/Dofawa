@@ -12,11 +12,11 @@ class JsController extends Controller
 
 
         $skinned = $this->getDoctrine()->getEntityManager()
-                        ->getRepository('DofItemBundle:SkinnedEquipment');
+                        ->getRepository('DofItemsBundle:SkinnedEquipment');
         $animal  = $this->getDoctrine()->getEntityManager()
-                        ->getRepository('DofItemBundle:AnimalTemplate');
+                        ->getRepository('DofItemsBundle:AnimalTemplate');
         $weapon  = $this->getDoctrine()->getEntityManager()
-                        ->getRepository('DofItemBundle:WeaponTemplate');
+                        ->getRepository('DofItemsBundle:WeaponTemplate');
 
         $items['shield'] = $repository->findBySlot(7);
         $items['hat']    = $skinned->findBySlot(10);
