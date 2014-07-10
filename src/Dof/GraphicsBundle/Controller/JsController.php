@@ -11,11 +11,11 @@ class JsController extends Controller
         $locale = $this->get('request')->getLocale();
 
 
-        $skinned = $this->getDoctrine()->getEntityManager()
+        $skinned = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
-        $animal  = $this->getDoctrine()->getEntityManager()
+        $animal  = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:AnimalTemplate');
-        $weapon  = $this->getDoctrine()->getEntityManager()
+        $weapon  = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:WeaponTemplate');
 
         $items['shield'] = $skinned->findBySlot(7);

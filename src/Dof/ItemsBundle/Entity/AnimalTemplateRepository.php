@@ -29,7 +29,7 @@ class AnimalTemplateRepository extends EquipmentTemplateRepository
         $req = $this->createQueryBuilder('a');
 
         if($format == 'json')
-          $req->select(array('id', 'name_' . $locale));
+          $req->select(array('a.id', 'a.name_' . $locale));
 
         $req
             ->where('a.bone IS NOT NULL')
