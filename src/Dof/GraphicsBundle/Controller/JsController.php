@@ -12,7 +12,7 @@ class JsController extends Controller
 
 
         $skinned = $this->getDoctrine()->getEntityManager()
-                        ->getRepository('DofItemsBundle:SkinnedEquipment');
+                        ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
         $animal  = $this->getDoctrine()->getEntityManager()
                         ->getRepository('DofItemsBundle:AnimalTemplate');
         $weapon  = $this->getDoctrine()->getEntityManager()
