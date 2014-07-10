@@ -17,11 +17,11 @@ class JsController extends Controller
         $weapon  = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:WeaponTemplate');
 
-        $items['shield'] = $skinned->findBySlot(7);
-        $items['hat']    = $skinned->findBySlot(10);
-        $items['cloak']  = $skinned->findBySlot(11);
-        $items['animal'] = $animal->hasBone();
-        $items['weapon'] = $weapon->hasBone();
+        $items['shield'] = $skinned->findBySlot(7, $locale);
+        $items['hat']    = $skinned->findBySlot(10, $locale);
+        $items['cloak']  = $skinned->findBySlot(11, $locale);
+        $items['animal'] = $animal->hasBone('json', $locale);
+        $items['weapon'] = $weapon->hasBone('json', $locale);
 
         foreach($items as $k => $v){
             foreach($v as $val){

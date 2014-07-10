@@ -25,11 +25,13 @@ class AnimalTemplateRepository extends EquipmentTemplateRepository
     }
 
 
-    public function hasBone($format = 'normal') {
+    public function hasBone($format = 'normal', $locale = 'fr') {
         $req = $this->createQueryBuilder('a');
 
-        return $req
-            ->select(array('a.id', 'a.name_fr'))
+        if($format == 'json')
+          $req->select(array('a.id', 'a.name' . ucfirst($locale));
+
+        $req
             ->where('a.bone IS NOT NULL')
             ->getQuery()
             ->getResult()
