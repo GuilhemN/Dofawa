@@ -10,6 +10,6 @@ dof_articles_edit:
     requirements:
       id: \d+
 
-dof_articles_edit:
+dof_articles_archive:
     pattern:  /archive/
     defaults: { _controller: DofArticlesBundle:Archive:archive }
