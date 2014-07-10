@@ -45,12 +45,12 @@ class CharacterLookType extends AbstractType
                   'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
               ))
-            ->add('face', null, array('required' => false))
-            ->add('weapon', null, array('required' => false))
-            ->add('shield', null, array('required' => false))
-            ->add('hat', null, array('required' => false))
-            ->add('cloak', null, array('required' => false))
-            ->add('animal', null, array('required' => false))
+            ->add('face', 'text', array('required' => false))
+            ->add('weapon', 'text', array('required' => false))
+            ->add('shield', 'text', array('required' => false))
+            ->add('hat', 'text', array('required' => false))
+            ->add('cloak', 'text', array('required' => false))
+            ->add('animal', 'text', array('required' => false))
             ->add('colors', 'collection', array(
                 // ces options sont passées à chaque champ
                 'options'  => array(
