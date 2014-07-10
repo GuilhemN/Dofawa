@@ -8,13 +8,10 @@ namespace Dof\ItemsBundle\Entity;
 class WeaponTemplateRepository extends SkinnedEquipmentTemplateRepository
 {
 
-    public function hasBone($format = 'normal', $locale = 'fr') {
+    public function hasBone($format = 'normal') {
         $req = $this->createQueryBuilder('w');
 
-        if($format == 'json')
-          $req->select(array('w.id', 'w.name_'.$locale));
-
-        $req
+        return $req
             ->where('w.bone IS NOT NULL')
             ->getQuery()
             ->getResult()

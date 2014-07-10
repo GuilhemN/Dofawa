@@ -10,7 +10,6 @@ class JsController extends Controller
     {
         $locale = $this->get('request')->getLocale();
 
-
         $skinned = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
         $animal  = $this->getDoctrine()->getManager()
@@ -21,8 +20,8 @@ class JsController extends Controller
         $items['shield'] = $skinned->findBySlot(7);
         $items['hat']    = $skinned->findBySlot(10);
         $items['cloak']  = $skinned->findBySlot(11);
-        $items['animal'] = $animal->hasBone('json', $locale);
-        $items['weapon'] = $weapon->hasBone('json', $locale);
+        $items['animal'] = $animal->hasBone();
+        $items['weapon'] = $weapon->hasBone();
 
         foreach($items as $k => $v){
             foreach($v as $val){
