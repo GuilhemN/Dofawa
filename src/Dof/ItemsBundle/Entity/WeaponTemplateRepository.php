@@ -12,7 +12,7 @@ class WeaponTemplateRepository extends SkinnedEquipmentTemplateRepository
         $req = $this->createQueryBuilder('w');
 
         return $req
-            ->where('w.bone IS NOT NULL')
+            ->where('w.skin IS NOT NULL')
             ->getQuery()
             ->getResult()
         ;
