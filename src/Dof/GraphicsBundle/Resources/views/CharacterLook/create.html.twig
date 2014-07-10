@@ -1,10 +1,15 @@
 {% extends 'DofGraphicsBundle:CharacterLook:layout.html.twig' %}
 
+{% block js %}
+  {{ parent() }}
+  <script type="text/javascript" src="{{ path('dof_graphics_skins_js') }}"></script>
+{% endblock %}
+
 {% block breadcrumb %}
   {{ parent() }}
   <li>Création d'un Skin</li>
 {% endblock %}
 
 {% block body %}
-  {{ form(form) }}
+  {{ form(form, { 'style': 'horizontal' }) }}
 {% endblock %}

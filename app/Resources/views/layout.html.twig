@@ -24,16 +24,8 @@
   {% for locale in locales %}
   <link rel="alternate" hreflang="{{ locale }}" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale }) ) }}" />
   {% endfor %}
-  <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-  <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/jquery-2.1.1.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/utlcat.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/dofmain/js/bootstrap.min.js') }}"></script>
 
   <script defer type="text/javascript" src="http://c.ad6media.fr/l.js"></script>
-
-  {% block js %}
-  {% endblock %}
 
   <script type="text/javascript" defer async>
 
@@ -161,6 +153,17 @@
   {% block popups %}
   {% endblock %}
 
+
+  <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+  <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/jquery-2.1.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/utlcat.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/dofmain/js/bootstrap.min.js') }}"></script>
+
+  {% block js %}
+  {% endblock %}
+
+  
   {% if not is_granted('ROLE_AD_FREE') %}
   {# Publicité #}
   <div id="recup_publicity">
