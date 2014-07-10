@@ -19,4 +19,17 @@ class SkinnedEquipmentTemplateRepository extends EquipmentTemplateRepository
         ksort($skins);
         return $skins;
     }
+
+    public function findBySlot($slot, $locale) {
+        return $this
+                  ->createQueryBuilder('se')
+                  ->select(array('se.id', 'se.name' . ucfirst($locale)))
+                  ->join('se.type', 't')
+                  ->where('t.slot = :slot AND se.skin IS NOT NULL')
+                  ->getQuery()
+                  ->setParameter('slot', $slot)
+                  ->getResult()
+              ;
+    }
+
 }

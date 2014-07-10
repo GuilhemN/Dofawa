@@ -42,3 +42,7 @@ dof_graphics_skins_embed:
         slug: '[0-9a-z-]+'
         theme: '[a-z-]+'
         format: html|js
+
+dof_graphics_skins_js:
+    pattern:  /skins/data.js
+    defaults: { _controller: DofGraphicsBundle:Js:characterLook }

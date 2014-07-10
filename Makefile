@@ -58,7 +58,7 @@ all: comp
 src/XN/UtilityBundle/Resources/public/css/utlcat.css: $(shell bash -c "echo src/XN/UtilityBundle/Resources/public/css/{utility,forms,lists,popups}.css")
 	cat $^ > $@
 
-src/XN/UtilityBundle/Resources/public/js/utlcat.js: $(shell bash -c "echo src/XN/UtilityBundle/Resources/public/js/{compat,traceur-runtime,async-primitives,utility,forms,lists,popups}.js")
+src/XN/UtilityBundle/Resources/public/js/utlcat.js: $(shell bash -c "echo src/XN/UtilityBundle/Resources/public/js/{select2,compat,traceur-runtime,async-primitives,utility,forms,lists,popups}.js")
 	cat $^ > $@
 
 # The same as above, bith with minification

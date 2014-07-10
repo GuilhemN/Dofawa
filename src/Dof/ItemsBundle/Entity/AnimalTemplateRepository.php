@@ -23,4 +23,18 @@ class AnimalTemplateRepository extends EquipmentTemplateRepository
         ksort($bones);
         return $bones;
     }
+
+
+    public function hasBone($format = 'normal', $locale = 'fr') {
+        $req = $this->createQueryBuilder('a');
+
+        if($format == 'json')
+          $req->select(array('a.id', 'a.name' . ucfirst($locale)));
+
+        $req
+            ->where('a.bone IS NOT NULL')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
