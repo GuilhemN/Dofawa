@@ -18,7 +18,7 @@ class JsController extends Controller
         $weapon  = $this->getDoctrine()->getEntityManager()
                         ->getRepository('DofItemsBundle:WeaponTemplate');
 
-        $items['shield'] = $repository->findBySlot(7);
+        $items['shield'] = $skinned->findBySlot(7);
         $items['hat']    = $skinned->findBySlot(10);
         $items['cloak']  = $skinned->findBySlot(11);
         $items['animal'] = $animal->hasBone('json', $locale);
