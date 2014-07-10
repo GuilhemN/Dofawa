@@ -25,7 +25,7 @@ class JsController extends Controller
 
         foreach($items as $k => $v){
             foreach($v as $val){
-                $nitems[$k] = array('id' => $val['id'], 'text' => $val['name_'.$locale]);
+                $nitems[$k] = array('id' => $val['id'], 'text' => $val['name'.ucfirst($locale)]);
             }
         }
 
