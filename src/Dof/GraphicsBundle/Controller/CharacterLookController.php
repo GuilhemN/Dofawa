@@ -60,19 +60,19 @@ class CharacterLookController extends Controller
             $item = $skinned->findById($form[$name]);
 
             if(!empty($item) && $item[0]->getType()->getSlot() == $slot && $item[0]->getSkin() > 0)
-                $lg->{'set'.ucfirst($name)}($item[0]);
+                $cl->{'set'.ucfirst($name)}($item[0]);
         }
 
         // Liage Arme
         $item = $weapon->findById($form['weapon']);
         if(!empty($item) && $item[0]->getSkin() > 0)
-            $lg->setWeapon($item[0]);
+            $cl->setWeapon($item[0]);
 
         // Liage Familier
         $item = $animal->findById($form['animal']);
 
         if(!empty($item) && $item[0]->getBone() > 0)
-            $lg->setAnimal($item[0]);
+            $cl->setAnimal($item[0]);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($cl);
