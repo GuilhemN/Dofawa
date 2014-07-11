@@ -35,7 +35,7 @@ class CharacterLookType extends AbstractType
                     $this->securityContext->getToken()->getUser()->getId()
                     == $entity->getOwner()->getId())
               ) {
-                $form->add('publiclyVisible');
+                $form->add('publiclyVisible', 'boolean');
             }
         });
 
@@ -45,7 +45,7 @@ class CharacterLookType extends AbstractType
                   'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
               ))
-            ->add('face', 'text', array('required' => false))
+            ->add('face', null, array('required' => false))
             ->add('weapon', 'text', array('required' => false))
             ->add('shield', 'text', array('required' => false))
             ->add('hat', 'text', array('required' => false))
@@ -58,6 +58,7 @@ class CharacterLookType extends AbstractType
                     //'attr'      => array('class' => 'email-box')
                 ),
             ))
+            ->add('submit', 'submit')
         ;
     }
 
