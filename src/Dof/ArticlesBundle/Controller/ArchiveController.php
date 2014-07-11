@@ -19,7 +19,7 @@ class ArchiveController extends Controller
 		$firstresult = $lastresult - 14;
 
 		$em = $this->getDoctrine()->getManager();
-		$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits(true, $firstresult, $lastresult));
+		$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits(true, $firstresult, $lastresult);
 
 		foreach ($articles as $k => &$article) {
 			$content = $article->getDescription($translator->getLocales());
