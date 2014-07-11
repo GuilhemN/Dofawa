@@ -1,6 +1,6 @@
 <ul class="pagination">
     {# Retour au début/précédent #}
-    {% if pagination.page>1 %}
+    {% if pagination.page > 1 %}
     <li><a href="{{ path(pagination.route,
         pagination.route_params|merge({'page': 1})) }}">&laquo;&laquo;</a></li>
     <li><a href="{{ path(pagination.route,
@@ -8,14 +8,14 @@
     {% endif %}
 
     {#display p numbers only from p-4 to p+4 but don't go <1 or >pages_count#}
-    {% for p in range(max(pagination.page-4, 1),
-        min(pagination.page+4, pagination.pages_count)) %}
+    {% for p in range(max(pagination.page - 4, 1),
+        min(pagination.page + 4, pagination.pages_count)) %}
     <li{% if p == pagination.page %} class="active"{% endif %}><a href="{{ path(pagination.route,
         pagination.route_params|merge({'page': p})) }}">{{ p }}</a></li>
     {% endfor %}
 
     {# Suivant / Saut vers la fin #}
-    {% if pagination.page<pagination.pages_count %}
+    {% if pagination.page < pagination.pages_count %}
     <li><a href="{{ path(pagination.route,
         pagination.route_params|merge({'page': pagination.page+1})) }}">&raquo;</a></li>
     <li><a href="{{ path(pagination.route,
