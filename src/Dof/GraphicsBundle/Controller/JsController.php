@@ -28,7 +28,7 @@ class JsController extends Controller
         }
 
         return $this->render('DofGraphicsBundle:Js:characterLook.js.twig', [
-            'weapons' => $nWeapons
+            'weapons' => json_encode($nWeapons)
         ]);
     }
 }
