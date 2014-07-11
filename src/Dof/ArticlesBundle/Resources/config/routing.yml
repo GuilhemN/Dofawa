@@ -11,5 +11,7 @@ dof_articles_edit:
       id: \d+
 
 dof_articles_archive:
-    pattern:  /
+    pattern:  /page{page}
     defaults: { _controller: DofArticlesBundle:Archive:archive }
+    requirements:
+      nbpage: \d+
