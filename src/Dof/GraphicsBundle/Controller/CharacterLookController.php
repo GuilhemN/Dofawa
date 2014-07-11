@@ -33,16 +33,57 @@ class CharacterLookController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            if(!$this->get('security.context')->isGranted('ROLE_STYLIST'))
-                $cl->setPubliclyVisible(0);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($cl);
-            $em->flush();
+            $this->handler($request, $cl);
         }
 
         return $this->render('DofGraphicsBundle:CharacterLook:create.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    protected function handler($request, $cl){
+        if(!$this->get('security.context')->isGranted('ROLE_STYLIST'))
+            $cl->setPubliclyVisible(0);
+
+        $form = $request->request->get('character_look');
+
+        $skinned = $this->getDoctrine()->getManager()
+                        ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
+        $animal  = $this->getDoctrine()->getManager()
+                        ->getRepository('DofItemsBundle:AnimalTemplate');
+        $weapon  = $this->getDoctrine()->getManager()
+                        ->getRepository('DofItemsBundle:WeaponTemplate');
+
+        // Vérif et liage cape, coiffe et bouclier
+        $skinnedItems = ['shield' => 7, 'hat' => 10, 'cloak' => 11];
+        foreach($skinnedItems as $name => $slot){
+            $item = $skinned->findById($form[$name]);
+
+            if(!empty($item) && $item[0]->getType()->getSlot() == $slot && $item[0]->getSkin() > 0)
+                $cl->{'set'.ucfirst($name)}($item[0]);
+        }
+
+        // Liage Arme
+        $item = $weapon->findById($form['weapon']);
+        if(!empty($item) && $item[0]->getSkin() > 0)
+            $cl->setWeapon($item[0]);
+
+        // Liage Familier
+        $item = $animal->findById($form['animal']);
+
+        if(!empty($item) && $item[0]->getBone() > 0)
+            $cl->setAnimal($item[0]);
+
+        // Couleurs en décimal
+        $colors = $cl->getColors();
+        foreach($colors as &$color){
+          $color = hexdec($color);
+        }
+
+        $cl->setColors($colors);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($cl);
+        $em->flush();
     }
 }

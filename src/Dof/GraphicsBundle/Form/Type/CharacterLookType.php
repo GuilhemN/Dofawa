@@ -23,6 +23,7 @@ class CharacterLookType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $entity = $builder->getData();
         $builder->add('name');
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
@@ -35,7 +36,7 @@ class CharacterLookType extends AbstractType
                     $this->securityContext->getToken()->getUser()->getId()
                     == $entity->getOwner()->getId())
               ) {
-                $form->add('publiclyVisible');
+                $form->add('publiclyVisible', 'checkbox', array('required' => false));
             }
         });
 
@@ -45,12 +46,12 @@ class CharacterLookType extends AbstractType
                   'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
               ))
-            ->add('face', 'text', array('required' => false))
-            ->add('weapon', 'text', array('required' => false))
-            ->add('shield', 'text', array('required' => false))
-            ->add('hat', 'text', array('required' => false))
-            ->add('cloak', 'text', array('required' => false))
-            ->add('animal', 'text', array('required' => false))
+            ->add('face', null, array('required' => false))
+            ->add('weapon', 'text', array('required' => false, 'mapped' => false))
+            ->add('shield', 'text', array('required' => false, 'mapped' => false))
+            ->add('hat', 'text', array('required' => false, 'mapped' => false))
+            ->add('cloak', 'text', array('required' => false, 'mapped' => false))
+            ->add('animal', 'text', array('required' => false, 'mapped' => false))
             ->add('colors', 'collection', array(
                 // ces options sont passées à chaque champ
                 'options'  => array(
@@ -58,6 +59,7 @@ class CharacterLookType extends AbstractType
                     //'attr'      => array('class' => 'email-box')
                 ),
             ))
+            ->add('submit', 'submit')
         ;
     }
 
