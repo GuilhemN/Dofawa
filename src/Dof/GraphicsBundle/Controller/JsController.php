@@ -17,22 +17,11 @@ class JsController extends Controller
         $weapon  = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:WeaponTemplate');
 
-        $shields = $skinned->findBySlot(7, $locale);
-        $hats    = $skinned->findBySlot(10, $locale);
-        $cloaks  = $skinned->findBySlot(11, $locale);
-        $animals = $animal->hasBone('json', $locale);
-        $weapons = $weapon->hasBone('json', $locale);
-
-        $typeItems = array('shields', 'hats', 'cloaks', 'animals', 'weapons');
-
-        foreach($typeItems as $type){
-            $$type = (array) array();
-            $fitems[$type] = array();
-            foreach($$type as $singular)
-              $fitems[$type][] = ['id' => $singular['id'], 'text' => $singular['name'.ucfirst($locale)]];
-
-            $items[$type] = json_encode($fitems[$type], true);
-        }
+        $items['shields'] = $skinned->findBySlot(7, $locale);
+        $items['hats']    = $skinned->findBySlot(10, $locale);
+        $items['cloaks']  = $skinned->findBySlot(11, $locale);
+        $items['animals'] = $animal->hasBone('json', $locale);
+        $items['weapons'] = $weapon->hasBone('json', $locale);
 
         return $this->render('DofGraphicsBundle:Js:characterLook.js.twig', [
             'items' => $items
