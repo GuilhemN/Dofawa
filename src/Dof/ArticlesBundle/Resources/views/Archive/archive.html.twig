@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body %}
+{% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 <ul class="list-group">
   {% for article in articles %}
       <li class="list-group-item"><a href="{{ path('dof_articles_view', { 'slug' : article.slug }) }}">{{ article.getName(locales()) }}</a><span class="badge hidden-sm hidden-md">le {{ article.createdAt | date("d/m/Y") }}</span></li>
