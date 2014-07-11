@@ -23,6 +23,7 @@ class CharacterLookType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $entity = $builder->getData();
         $builder->add('name');
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
@@ -46,11 +47,11 @@ class CharacterLookType extends AbstractType
                   'required'  => true,
               ))
             ->add('face', null, array('required' => false))
-            ->add('weapon', 'text', array('required' => false))
-            ->add('shield', 'text', array('required' => false))
-            ->add('hat', 'text', array('required' => false))
-            ->add('cloak', 'text', array('required' => false))
-            ->add('animal', 'text', array('required' => false))
+            ->add('weapon', 'text', array('required' => false, 'mapped' => false))
+            ->add('shield', 'text', array('required' => false, 'mapped' => false))
+            ->add('hat', 'text', array('required' => false, 'mapped' => false))
+            ->add('cloak', 'text', array('required' => false, 'mapped' => false))
+            ->add('animal', 'text', array('required' => false, 'mapped' => false))
             ->add('colors', 'collection', array(
                 // ces options sont passées à chaque champ
                 'options'  => array(
