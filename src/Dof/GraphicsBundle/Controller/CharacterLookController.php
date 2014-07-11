@@ -56,24 +56,23 @@ class CharacterLookController extends Controller
 
         // Vérif et liage cape, coiffe et bouclier
         $skinnedItems = ['shield' => 7, 'hat' => 10, 'cloak' => 11];
-        foreach($skinnedItems as $item => $slot){
-            $item = $skinned->findById($form[$item]);
+        foreach($skinnedItems as $name => $slot){
+            $item = $skinned->findById($form[$name]);
 
-            var_dump($item);
-            if(!empty($item) && $item->getSlot() == $slot && $item->getSkin() > 0)
-                $lg->{'set'.ucfirst($item)}($item);
+            if(!empty($item) && $item[0]->getSlot() == $slot && $item[0]->getSkin() > 0)
+                $lg->{'set'.ucfirst($name)}($item[0]);
         }
 
         // Liage Arme
         $item = $weapon->findById($form['weapon']);
-        if(!empty($item) && $item->getSkin() > 0)
-            $lg->setWeapon($item);
+        if(!empty($item) && $item[0]->getSkin() > 0)
+            $lg->setWeapon($item[0]);
 
         // Liage Familier
         $item = $animal->findById($form['animal']);
 
-        if(!empty($item) && $item->getBone() > 0)
-            $lg->setAnimal($item);
+        if(!empty($item) && $item[0]->getBone() > 0)
+            $lg->setAnimal($item[0]);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($cl);
