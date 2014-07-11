@@ -35,7 +35,7 @@ class CharacterLookType extends AbstractType
                     $this->securityContext->getToken()->getUser()->getId()
                     == $entity->getOwner()->getId())
               ) {
-                $form->add('publiclyVisible', 'checkbox');
+                $form->add('publiclyVisible', 'checkbox', array('required' => false));
             }
         });
 
