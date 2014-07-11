@@ -59,19 +59,24 @@ class CharacterLookController extends Controller
         foreach($skinnedItems as $item => $slot){
             $id = (int) $data[$item];
             $item = $skinned->findById($id);
+            $notempty = $item->getSkin();
 
-            if(!empty($item) && $item->getSlot() == $slot && !empty($item->getSkin()))
+            if(!empty($item) && $item->getSlot() == $slot && !empty($notempty))
                 $lg->{'set'.ucfirst($item)}($item);
         }
 
         // Liage Arme
         $item = $weapon->findById($data['weapon']);
-        if(!empty($item) && !empty($item->getSkin()))
+        $notempty = $item->getSkin();
+
+        if(!empty($item) && !empty($notempty))
             $lg->setWeapon($item);
 
         // Liage Familier
         $item = $animal->findById($data['animal']);
-        if(!empty($item) && !empty($item->getBone()))
+        $notempty = $item->getBone();
+
+        if(!empty($item) && !empty($notempty))
             $lg->setAnimal($item);
 
         $em = $this->getDoctrine()->getManager();
