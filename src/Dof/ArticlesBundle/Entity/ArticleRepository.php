@@ -37,4 +37,16 @@ class ArticleRepository extends EntityRepository
 
 	  return $result;
 	}
+
+	/**
+    * Count all article
+    *
+    * @return integer
+    */
+    public function countTotal(){
+      return $this->createQueryBuilder('a')
+     ->select('COUNT(angel)')
+     ->getQuery()
+     ->getSingleScalarResult();
+    }
 }
