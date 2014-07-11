@@ -1,8 +1,13 @@
 {% extends 'DofGraphicsBundle:CharacterLook:layout.html.twig' %}
 
+{% block style %}
+  {% include 'DofMainBundle::color.css.html.twig' %}
+{% endblock %}
+
 {% block js %}
   {{ parent() }}
   <script type="text/javascript" src="{{ path('dof_graphics_skins_js') }}"></script>
+  {% include 'DofMainBundle::color.js.html.twig' %}
   <script type="text/javascript">
     $(function(){
         $('#character_look_colors_1 #character_look_colors_2 character_look_colors_3 character_look_colors_4 character_look_colors_5 character_look_colors_6 character_look_colors_7 character_look_colors_8 character_look_colors_9 character_look_colors_10').colpick({
@@ -28,5 +33,3 @@
 {% block body %}
   {{ form(form, { 'style': 'horizontal' }) }}
 {% endblock %}
-
-{% include 'DofMainBundle::color.html.twig' %}
