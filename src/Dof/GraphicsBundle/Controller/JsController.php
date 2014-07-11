@@ -29,7 +29,7 @@ class JsController extends Controller
             $$type = (array) array();
             $fitems[$type] = array();
             foreach($$type as $singular)
-              $fitems[$type][] = ['id' => $singular['id'], 'text' => $singular['name'.ucfirst($locale)]]]
+              $fitems[$type][] = ['id' => $singular['id'], 'text' => $singular['name'.ucfirst($locale)]];
 
             $items[$type] = json_encode($fitem[$type], true);
         }
