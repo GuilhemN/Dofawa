@@ -1,8 +1,6 @@
 dof_articles_view:
     pattern:  /view/{slug}
     defaults: { _controller: DofArticlesBundle:Articles:view }
-    requirements:
-      id: \d+
 
 dof_articles_edit:
     pattern:  /edit/{id}
@@ -11,7 +9,7 @@ dof_articles_edit:
       id: \d+
 
 dof_articles_archive:
-    pattern:  /page{page}
-    defaults: { _controller: DofArticlesBundle:Archive:archive }
+    pattern:  /{page}
+    defaults: { _controller: DofArticlesBundle:Archive:archive, page: 1 }
     requirements:
-      nbpage: \d+
+      page: \d+
