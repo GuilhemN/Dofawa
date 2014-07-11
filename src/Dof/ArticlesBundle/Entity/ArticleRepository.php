@@ -45,7 +45,7 @@ class ArticleRepository extends EntityRepository
     */
     public function countTotal(){
       return $this->createQueryBuilder('a')
-     ->select('COUNT(angel)')
+     ->select('COUNT(a)')
      ->getQuery()
      ->getSingleScalarResult();
     }
