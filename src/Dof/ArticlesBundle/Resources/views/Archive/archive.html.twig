@@ -8,7 +8,7 @@
 {% block body %}
 <ul class="list-group">
   {% for article in articles %}
-      <li class="list-group-item">{{ article.getName(locales()) }} le {{ article.createdAt | date("d/m/Y") }}</li>
+      <li class="list-group-item"><a href="{{ path('dof_articles_view', { 'slug' : article.slug }) }}">{{ article.getName(locales()) }}</a><span class="badge">le {{ article.createdAt | date("d/m/Y") }}</span></li>
   {% else %}
       <li>Pas (encore !) d'articles</li>
   {% endfor %}
