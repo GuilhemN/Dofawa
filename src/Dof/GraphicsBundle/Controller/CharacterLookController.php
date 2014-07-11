@@ -46,9 +46,7 @@ class CharacterLookController extends Controller
             $cl->setPubliclyVisible(0);
 
         $form = $request->request->get('character_look');
-        var_dump($form);
-        die();
-        
+
         $skinned = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
         $animal  = $this->getDoctrine()->getManager()
@@ -59,8 +57,7 @@ class CharacterLookController extends Controller
         // Vérif et liage cape, coiffe et bouclier
         $skinnedItems = ['shield' => 7, 'hat' => 10, 'cloak' => 11];
         foreach($skinnedItems as $item => $slot){
-            $id = (int) $form[$item];
-            $item = $skinned->findById($id);
+            $item = $skinned->findById($form[$item]);
 
             if(!empty($item) && $item->getSlot() == $slot && $item->getSkin() > 0)
                 $lg->{'set'.ucfirst($item)}($item);
