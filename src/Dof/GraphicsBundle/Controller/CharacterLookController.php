@@ -64,7 +64,8 @@ class CharacterLookController extends Controller
 
         // Liage Arme
         $item = $weapon->findById($request->request->get('weapon'));
-
+        var_dump($item);
+        die();
         if(!empty($item) && $item->getSkin() > 0)
             $lg->setWeapon($item);
 
