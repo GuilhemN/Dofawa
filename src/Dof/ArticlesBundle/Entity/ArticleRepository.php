@@ -43,9 +43,10 @@ class ArticleRepository extends EntityRepository
     *
     * @return integer
     */
-    public function countTotal(){
+    public function countTotalNews(){
       return $this->createQueryBuilder('a')
      ->select('COUNT(a)')
+		 ->where('a.published=1 and a.type = '.ArticleType::NEWS)
      ->getQuery()
      ->getSingleScalarResult();
     }
