@@ -33,7 +33,7 @@ class CharacterLookController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->handler($form, $cl)
+            $this->handler($form, $cl);
         }
 
         return $this->render('DofGraphicsBundle:CharacterLook:create.html.twig', [
