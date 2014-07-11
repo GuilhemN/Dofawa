@@ -23,14 +23,8 @@ class JsController extends Controller
         $animal = $animal->hasBone('json', $locale);
         $weapons = $weapon->hasBone('json', $locale);
 
-        print_r($weapons);
-        die();
-        
-        foreach($weapons as $weapon)
-            $nWeapons[] = array('id' => $weapon->getId(), 'text' => $weapon->{'getName'.ucfirst($locale)}());
-
         return $this->render('DofGraphicsBundle:Js:characterLook.js.twig', [
-            'weapons' => $nWeapons
+            'weapons' => $weapons
         ]);
     }
 }
