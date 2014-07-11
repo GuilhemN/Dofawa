@@ -47,11 +47,11 @@ class CharacterLookType extends AbstractType
                   'required'  => true,
               ))
             ->add('face', null, array('required' => false))
-            ->add('weapon', 'text', array('required' => false, 'mapped' => false, "label"=>false))
-            ->add('shield', 'text', array('required' => false, 'mapped' => false, "label"=>false))
-            ->add('hat', 'text', array('required' => false, 'mapped' => false, "label"=>false))
-            ->add('cloak', 'text', array('required' => false, 'mapped' => false, "label"=>false))
-            ->add('animal', 'text', array('required' => false, 'mapped' => false, "label"=>false))
+            ->add('weapon', 'text', array('required' => false, 'mapped' => false))
+            ->add('shield', 'text', array('required' => false, 'mapped' => false))
+            ->add('hat', 'text', array('required' => false, 'mapped' => false))
+            ->add('cloak', 'text', array('required' => false, 'mapped' => false))
+            ->add('animal', 'text', array('required' => false, 'mapped' => false))
             ->add('colors', 'collection', array(
                 // ces options sont passées à chaque champ
                 'options'  => array(

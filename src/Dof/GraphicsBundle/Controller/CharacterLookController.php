@@ -45,6 +45,7 @@ class CharacterLookController extends Controller
         if(!$this->get('security.context')->isGranted('ROLE_STYLIST'))
             $cl->setPubliclyVisible(0);
 
+        $form = $request->request->get('character_look');
         $skinned = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
         $animal  = $this->getDoctrine()->getManager()
@@ -55,7 +56,7 @@ class CharacterLookController extends Controller
         // Vérif et liage cape, coiffe et bouclier
         $skinnedItems = ['shield' => 7, 'hat' => 10, 'cloak' => 11];
         foreach($skinnedItems as $item => $slot){
-            $id = (int) $request->request->get($item);
+            $id = (int) $form[$item];
             $item = $skinned->findById($id);
 
             if(!empty($item) && $item->getSlot() == $slot && $item->getSkin() > 0)
@@ -63,14 +64,14 @@ class CharacterLookController extends Controller
         }
 
         // Liage Arme
-        $item = $weapon->findById($request->request->get('weapon'));
+        $item = $weapon->findById($form['weapon']);
         var_dump($item);
         die();
         if(!empty($item) && $item->getSkin() > 0)
             $lg->setWeapon($item);
 
         // Liage Familier
-        $item = $animal->findById($request->request->get('animal'));
+        $item = $animal->findById($form['animal']);
 
         if(!empty($item) && $item->getBone() > 0)
             $lg->setAnimal($item);
