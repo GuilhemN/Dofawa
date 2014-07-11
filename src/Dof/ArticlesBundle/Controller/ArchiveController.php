@@ -26,7 +26,18 @@ class ArchiveController extends Controller
 			$article->setDescription(preg_replace('/<img(.*?)>/', '', $content), $translator->getLocales());
 		}
 
-		return $this->render('DofArticlesBundle:Archive:archive.html.twig', array('articles'=>$articles, 'page'=>$page));
+		$article_count = $this->getDoctrine()->getRepository('DofArticlesBundle:Article')->countTotal();
+		$maxArticle = 15;
+
+		$pagination = array(
+   			'page' => $page,
+   			'route' => 'dof_articles_archive',
+  			'pages_count' => ceil($article_count / $maxArticle),
+   			'route_params' => array()
+   		);
+
+		return $this->render('DofArticlesBundle:Archive:archive.html.twig', array('articles'=>$articles, 'page'=>$page,
+			'pagination' => $pagination));
 
 	}
 }

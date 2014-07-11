@@ -13,13 +13,5 @@
       <li>Pas (encore !) d'articles</li>
   {% endfor %}
 </ul>
-<ul class="pagination">
-  <li><a href="{{ path('dof_articles_archive', { 'page' : "$page-1" }) }}">&laquo;</a></li>
-
-  {% for i in 0..$page %}
-    <li><a href="{{ path('dof_articles_archive', { 'page' : "{{i}}" }) }}">{{i}}</a></li>
-  {% endfor %}
-
-  <li><a href="{{ path('dof_articles_archive', { 'page' : "$page+1" }) }}">&raquo;</a></li>
-</ul>
+{% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 {% endblock %}
