@@ -26,9 +26,7 @@ class JsController extends Controller
         foreach($weapons as $weapon){
           $nWeapons[] = ['id' => $weapon['id'], 'text' => $weapon['name'.ucfirst($locale)]];
         }
-
-        print_r($nWeapons);
-        die();
+        
         return $this->render('DofGraphicsBundle:Js:characterLook.js.twig', [
             'weapons' => json_encode($nWeapons)
         ]);
