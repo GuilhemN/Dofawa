@@ -1,3 +1,14 @@
-$("#character_look_weapon").select2({
-  data: {{ items.weapons | json_encode() | raw }}
+function format(item) { return item.name{{ app.request.locale | capitalize }}; }
+
+var shield = {{ items.shields | json_encode() | raw }};
+var hat = {{ items.hats | json_encode() | raw }};
+var cloak = {{ items.cloaks | json_encode() | raw }};
+var animal = {{ items.animals | json_encode() | raw }};
+var weapon = {{ items.weapons | json_encode() | raw }};
+
+{% for type in types %}
+$("#character_look_{{ type }}").select2({
+    data:{ results: {{ type }}, text: 'name{{ app.request.locale | capitalize }}' },
+    formatSelection: format,
+    formatResult: format
 });
