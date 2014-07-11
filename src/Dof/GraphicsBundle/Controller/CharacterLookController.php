@@ -33,7 +33,7 @@ class CharacterLookController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->handler($form, $cl);
+            $this->handler($request, $cl);
         }
 
         return $this->render('DofGraphicsBundle:CharacterLook:create.html.twig', [
@@ -41,11 +41,9 @@ class CharacterLookController extends Controller
         ]);
     }
 
-    protected function handler($form, $cl){
+    protected function handler($request, $cl){
         if(!$this->get('security.context')->isGranted('ROLE_STYLIST'))
             $cl->setPubliclyVisible(0);
-
-        $data = $form->getData();
 
         $skinned = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
@@ -57,7 +55,7 @@ class CharacterLookController extends Controller
         // Vérif et liage cape, coiffe et bouclier
         $skinnedItems = ['shield' => 7, 'hat' => 10, 'cloak' => 11];
         foreach($skinnedItems as $item => $slot){
-            $id = (int) $data[$item];
+            $id = (int) $request->request->get($item);
             $item = $skinned->findById($id);
             $notempty = $item->getSkin();
 
@@ -66,14 +64,14 @@ class CharacterLookController extends Controller
         }
 
         // Liage Arme
-        $item = $weapon->findById($data['weapon']);
+        $item = $weapon->findById($request->request->get('weapon'));
         $notempty = $item->getSkin();
 
         if(!empty($item) && !empty($notempty))
             $lg->setWeapon($item);
 
         // Liage Familier
-        $item = $animal->findById($data['animal']);
+        $item = $animal->findById($request->request->get('animal'));
         $notempty = $item->getBone();
 
         if(!empty($item) && !empty($notempty))
