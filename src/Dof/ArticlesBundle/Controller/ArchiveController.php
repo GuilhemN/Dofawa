@@ -16,7 +16,7 @@ class ArchiveController extends Controller
 
 		// 15 results per page
 		$lastresult = 15 * $page;
-		$firstresult = $lastresult - 14;
+		$firstresult = $lastresult - 15;
 
 		$em = $this->getDoctrine()->getManager();
 		$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits(true, $firstresult, $lastresult);
