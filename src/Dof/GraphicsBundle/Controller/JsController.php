@@ -17,19 +17,25 @@ class JsController extends Controller
         $weapon  = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:WeaponTemplate');
 
-        $shield = $skinned->findBySlot(7, $locale);
-        $hat    = $skinned->findBySlot(10, $locale);
-        $cloak  = $skinned->findBySlot(11, $locale);
-        $animal = $animal->hasBone('json', $locale);
+        $shields = $skinned->findBySlot(7, $locale);
+        $hats    = $skinned->findBySlot(10, $locale);
+        $cloaks  = $skinned->findBySlot(11, $locale);
+        $animals = $animal->hasBone('json', $locale);
         $weapons = $weapon->hasBone('json', $locale);
 
-        $nWeapons = array();
-        foreach($weapons as $weapon){
-          $nWeapons[] = ['id' => $weapon['id'], 'text' => $weapon['name'.ucfirst($locale)]];
+        $typeItems = array('shields', 'hats', 'cloaks', 'animals', 'weapons');
+
+        foreach($typeItems as $type){
+            $$type = (array) array();
+            $fitems[$type] = array();
+            foreach($$type as $singular)
+              $fitems[$type][] = ['id' => $singular['id'], 'text' => $singular['name'.ucfirst($locale)]]]
+
+            $items[$type] = json_encode($fitem[$type], true);
         }
 
         return $this->render('DofGraphicsBundle:Js:characterLook.js.twig', [
-            'weapons' => json_encode($nWeapons, true)
+            'items' => $items
         ]);
     }
 }

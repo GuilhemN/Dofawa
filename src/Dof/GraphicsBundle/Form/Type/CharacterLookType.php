@@ -46,7 +46,7 @@ class CharacterLookType extends AbstractType
                   'required'  => true,
               ))
             ->add('face', 'text', array('required' => false))
-            ->add('weapon', 'hidden', array('required' => false))
+            ->add('weapon', 'text', array('required' => false))
             ->add('shield', 'text', array('required' => false))
             ->add('hat', 'text', array('required' => false))
             ->add('cloak', 'text', array('required' => false))
