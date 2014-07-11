@@ -59,7 +59,7 @@ class CharacterLookController extends Controller
         foreach($skinnedItems as $name => $slot){
             $item = $skinned->findById($form[$name]);
 
-            if(!empty($item) && $item[0]->getSlot() == $slot && $item[0]->getSkin() > 0)
+            if(!empty($item) && $item[0]->getType()->getSlot() == $slot && $item[0]->getSkin() > 0)
                 $lg->{'set'.ucfirst($name)}($item[0]);
         }
 
