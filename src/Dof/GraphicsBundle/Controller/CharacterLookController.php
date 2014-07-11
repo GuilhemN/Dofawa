@@ -46,6 +46,9 @@ class CharacterLookController extends Controller
             $cl->setPubliclyVisible(0);
 
         $form = $request->request->get('character_look');
+        var_dump($form);
+        die();
+        
         $skinned = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
         $animal  = $this->getDoctrine()->getManager()
@@ -65,8 +68,6 @@ class CharacterLookController extends Controller
 
         // Liage Arme
         $item = $weapon->findById($form['weapon']);
-        var_dump($item);
-        die();
         if(!empty($item) && $item->getSkin() > 0)
             $lg->setWeapon($item);
 
