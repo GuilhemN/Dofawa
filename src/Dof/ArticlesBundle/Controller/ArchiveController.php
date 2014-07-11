@@ -8,6 +8,9 @@ class ArchiveController extends Controller
 {
 	public function archiveAction($page)
 	{
+		 if ($page < 1) {
+    		throw new \InvalidArgumentException('L\'argument $page ne peut être inférieur à 1 (valeur : "'.$page.'").');
+    	}
 		$u = $this->get('security.context')->getToken()->getUser();
 		$translator = $this->get('translator');
 
@@ -16,7 +19,7 @@ class ArchiveController extends Controller
 		$firstresult = $lastresult - 14;
 
 		$em = $this->getDoctrine()->getManager();
-		$articles = $em->getRepository('DofArticlesBundle:Article')->setFirstResult($firstresult)->setMaxResults($lastresult);
+		$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits(true, $firstresult, $lastresult));
 
 		foreach ($articles as $k => &$article) {
 			$content = $article->getDescription($translator->getLocales());
