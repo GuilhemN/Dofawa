@@ -31,7 +31,7 @@ class JsController extends Controller
             foreach($$type as $singular)
               $fitems[$type][] = ['id' => $singular['id'], 'text' => $singular['name'.ucfirst($locale)]];
 
-            $items[$type] = json_encode($fitem[$type], true);
+            $items[$type] = json_encode($fitems[$type], true);
         }
 
         return $this->render('DofGraphicsBundle:Js:characterLook.js.twig', [
