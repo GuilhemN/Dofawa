@@ -74,6 +74,14 @@ class CharacterLookController extends Controller
         if(!empty($item) && $item[0]->getBone() > 0)
             $cl->setAnimal($item[0]);
 
+        // Couleurs en décimal
+        $colors = $cl->getColors();
+        foreach($colors as &$color){
+          $color = hexdec($color);
+        }
+
+        $cl->setColors($colors);
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($cl);
         $em->flush();
