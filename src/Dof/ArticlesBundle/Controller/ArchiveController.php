@@ -26,7 +26,7 @@ class ArchiveController extends Controller
 			$article->setDescription(preg_replace('/<img(.*?)>/', '', $content), $translator->getLocales());
 		}
 
-		$article_count = $this->getDoctrine()->getRepository('DofArticlesBundle:Article')->countTotal();
+		$article_count = $this->getDoctrine()->getRepository('DofArticlesBundle:Article')->countTotal(true);
 		$maxArticle = 15;
 
 		$pagination = array(
