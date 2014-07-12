@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 use Dof\CharactersBundle\Gender;
+use Dof\GraphicsBundle\LivingItem;
 
 class CharacterLookType extends AbstractType
 {
@@ -51,9 +52,15 @@ class CharacterLookType extends AbstractType
         if($shield = $entity->getShield() != null)
             $shield = $shield->getId();
         if($hat = $entity->getHat() != null)
-            $hat = $hat->getId();
+            if($hat instanceOf LivingItem)
+                $hat = $hat->getTemplate()->getId().'/'.$hat->getLevel();
+            else
+                $hat = $hat->getId();
         if($cloak = $entity->getCloak() != null)
-            $cloak = $cloak->getId();
+            if($cloak instanceOf LivingItem)
+                $cloak = $cloak->getTemplate()->getId().'/'.$cloak->getLevel();
+            else
+                $cloak = $cloak->getId();
         if($animal = $entity->getAnimal() != null)
             $animal = $animal->getId();
 
