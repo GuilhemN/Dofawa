@@ -11,7 +11,7 @@ use Dof\GraphicsBundle\Entity\CharacterLook;
 class CharacterLookEmbedController extends Controller
 {
 	/**
-	 * @ParamConverter("user", options={"mapping": {"slug": "slug"}})
+	 * @ParamConverter("CharacterLook", options={"mapping": {"slug": "slug"}})
 	 */
 	public function dispatchAction(CharacterLook $look, $theme, $format)
 	{

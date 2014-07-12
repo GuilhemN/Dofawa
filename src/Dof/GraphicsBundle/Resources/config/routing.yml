@@ -29,11 +29,11 @@ dof_graphics_skins_create:
     pattern:  /skins/create
     defaults: { _controller: DofGraphicsBundle:CharacterLook:create }
 
-#dof_graphics_skins_edit:
-#    pattern:  /skins/{slug}/edit
-#    defaults: { _controller: DofGraphicsBundle:CharacterLook:edit }
-#    requirements:
-#        slug: '[0-9a-z-]+'
+dof_graphics_skins_edit:
+    pattern:  /skins/{slug}/edit
+    defaults: { _controller: DofGraphicsBundle:CharacterLook:edit }
+    requirements:
+        slug: '[0-9a-z-]+'
 
 dof_graphics_skins_embed:
     pattern:  /skins/{slug}/embed/{theme}.{format}
