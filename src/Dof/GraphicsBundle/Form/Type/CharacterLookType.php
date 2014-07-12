@@ -60,13 +60,14 @@ class CharacterLookType extends AbstractType
                 'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
                 'required' => true,
                 'mapped' => false,
+                'data' => $entity->getFace()->getLabel(),
                 'translation_domain' => 'face'
               ))
-            ->add('weapon', 'text', array('required' => false, 'mapped' => false))
-            ->add('shield', 'text', array('required' => false, 'mapped' => false))
-            ->add('hat', 'text', array('required' => false, 'mapped' => false))
-            ->add('cloak', 'text', array('required' => false, 'mapped' => false))
-            ->add('animal', 'text', array('required' => false, 'mapped' => false))
+            ->add('weapon', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getWeapon()->getId()))
+            ->add('shield', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getShield()->getId()))
+            ->add('hat', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getHat()->getId()))
+            ->add('cloak', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getCloak()->getId()))
+            ->add('animal', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getAnimal()->getId()))
             ->add('colors', 'collection', array(
                 'options'  => array(
                     'required'  => false,
