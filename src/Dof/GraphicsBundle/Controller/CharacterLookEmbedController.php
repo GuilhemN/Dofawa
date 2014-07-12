@@ -3,7 +3,7 @@
 namespace Dof\GraphicsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\GraphicsBundle\Entity\CharacterLook;
@@ -21,8 +21,9 @@ class CharacterLookEmbedController extends Controller
 			case 'html':
 				return $this->render('DofGraphicsBundle:CharacterLookEmbed:index.html.twig', [ 'look' => $look, 'theme' => $theme ]);
 			case 'js':
-				$this->get('response')->headers->set('Content-Type', 'application/javascript; charset=UTF-8');
-				return $this->render('DofGraphicsBundle:CharacterLookEmbed:' . $theme . '.js.twig', [ 'look' => $look ]);
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/javascript');
+				return $this->render('DofGraphicsBundle:CharacterLookEmbed:' . $theme . '.js.twig', [ 'look' => $look ], $response);
 			default:
 				throw $this->createNotFoundException();
 		}

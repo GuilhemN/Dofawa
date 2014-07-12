@@ -3,16 +3,15 @@
 namespace Dof\GraphicsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Dof\ItemsBundle\ItemSlot;
+use Symfony\Component\HttpFoundation\Response;
 
+use Dof\ItemsBundle\ItemSlot;
 use Dof\GraphicsBundle\LivingItem;
 
 class JsController extends Controller
 {
     public function characterLookAction()
     {
-        $this->get('response')->headers->set('Content-Type', 'application/javascript; charset=UTF-8');
-
         $locale = $this->get('request')->getLocale();
 
         $itemTemplate = $this->getDoctrine()->getManager()
@@ -50,10 +49,14 @@ class JsController extends Controller
             }
         }
 
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/javascript');
         return $this->render('DofGraphicsBundle:Js:characterLook.js.twig', [
             'items' => $items,
             'types' => array_keys($items)
-        ]);
+        ],
+        $response);
     }
 
     private function rangeLItem(array &$array, $item){

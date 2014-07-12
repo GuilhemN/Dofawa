@@ -4,7 +4,6 @@ namespace Dof\GraphicsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Dof\GraphicsBundle\Entity\CharacterLook;
@@ -38,16 +37,14 @@ class CharacterLookController extends Controller
         if ($form->isValid()) {
             $cl = $this->handler($request, $cl);
 
-            return new RedirectResponse($this->getCLUrl($cl));
+            return $this->redirect($this->getCLUrl($cl));
         }
 
-        return $this->render('DofGraphicsBundle:CharacterLook:create.html.twig', [
-            'form' => $form->createView()
-        ]);
+        return $this->render('DofGraphicsBundle:CharacterLook:create.html.twig', ['form' => $form->createView()]);
     }
 
     protected function getCLUrl($cl){
-        $this->get('router')->generate('dof_graphics_skins_embed', array('slug' => $cl->getSlug()));
+        $this->generateUrl('dof_graphics_skins_embed', array('slug' => $cl->getSlug()));
     }
 
     protected function handler($request, $cl){
