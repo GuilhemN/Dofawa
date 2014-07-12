@@ -37,7 +37,7 @@ dof_graphics_skins_create:
 
 dof_graphics_skins_embed:
     pattern:  /skins/{slug}/embed/{theme}.{format}
-    defaults: { _controller: DofGraphicsBundle:CharacterLookEmbed:dispatch }
+    defaults: { _controller: DofGraphicsBundle:CharacterLookEmbed:dispatch, format: html }
     requirements:
         slug: '[0-9a-z-]+'
         theme: '[a-z-]+'
