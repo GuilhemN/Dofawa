@@ -46,6 +46,10 @@ twig:
     globals:
         csrf_serv: "@form.csrf_provider"
         locales: %locales%
+    form:
+        resources:
+            - DofMainBundle:Form:fields.html.twig
+
 
 # Assetic Configuration
 assetic:
@@ -147,7 +151,7 @@ braincrafted_bootstrap:
     less_filter: none
     auto_configure:
         assetic: false
-        twig: true
+        twig: false
         knp_menu: false
         knp_paginator: false
 
