@@ -45,6 +45,18 @@ class CharacterLookType extends AbstractType
         });
 
         $entity = $builder->getData();
+
+        if($weapon = $entity->getWeapon() != null)
+            $weapon = $weapon->getId();
+        if($shield = $entity->getShield() != null)
+            $shield = $shield->getId();
+        if($hat = $entity->getHat() != null)
+            $hat = $hat->getId();
+        if($cloak = $entity->getCloak() != null)
+            $cloak = $cloak->getId();
+        if($animal = $entity->getAnimal() != null)
+            $animal = $animal->getId();
+
         $builder
             ->add('name', null, array('label' => 'name', 'translation_domain' => 'generalTrans'))
             ->add('breed', null, array('label' => 'breed', 'property' => $fieldName, 'translation_domain' => 'breed'))
@@ -63,11 +75,11 @@ class CharacterLookType extends AbstractType
                 'data' => $entity->getFace()->getLabel(),
                 'translation_domain' => 'face'
               ))
-            ->add('weapon', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getWeapon()->getId()))
-            ->add('shield', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getShield()->getId()))
-            ->add('hat', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getHat()->getId()))
-            ->add('cloak', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getCloak()->getId()))
-            ->add('animal', 'text', array('required' => false, 'mapped' => false, 'data' => $entity->getAnimal()->getId()))
+            ->add('weapon', 'text', array('required' => false, 'mapped' => false, 'data' => $weapon))
+            ->add('shield', 'text', array('required' => false, 'mapped' => false, 'data' => $shield))
+            ->add('hat', 'text', array('required' => false, 'mapped' => false, 'data' => $hat))
+            ->add('cloak', 'text', array('required' => false, 'mapped' => false, 'data' => $cloak))
+            ->add('animal', 'text', array('required' => false, 'mapped' => false, 'data' => $animal))
             ->add('colors', 'collection', array(
                 'options'  => array(
                     'required'  => false,
