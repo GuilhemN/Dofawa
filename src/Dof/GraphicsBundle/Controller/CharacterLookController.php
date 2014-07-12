@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Dof\GraphicsBundle\Entity\CharacterLook;
 use Dof\ItemsBundle\ItemSlot;
-use Dof\ItemsBundle\LivingItem;
+use Dof\GraphicsBundle\LivingItem;
 
 class CharacterLookController extends Controller
 {
