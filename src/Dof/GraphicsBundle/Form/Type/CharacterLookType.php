@@ -47,7 +47,11 @@ class CharacterLookType extends AbstractType
                   'required'  => true,
                   'expanded'  => true,
               ))
-            ->add('face', 'choice', array('choices' => array('I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'), 'required' => true, 'mapped' => false))
+            ->add('face', 'choice', array(
+                'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'), 
+                'required' => true,
+                'mapped' => false
+              ))
             ->add('weapon', 'text', array('required' => false, 'mapped' => false))
             ->add('shield', 'text', array('required' => false, 'mapped' => false))
             ->add('hat', 'text', array('required' => false, 'mapped' => false))
