@@ -21,7 +21,7 @@ class CharacterLookEmbedController extends Controller
 			case 'html':
 				return $this->render('DofGraphicsBundle:CharacterLookEmbed:index.html.twig', [ 'look' => $look, 'theme' => $theme ]);
 			case 'js':
-				$this->getResponse()->setContentType('application/javascript; charset=UTF-8');
+				$this->get('response')->headers->set('Content-Type', 'application/javascript; charset=UTF-8');
 				return $this->render('DofGraphicsBundle:CharacterLookEmbed:' . $theme . '.js.twig', [ 'look' => $look ]);
 			default:
 				throw $this->createNotFoundException();
