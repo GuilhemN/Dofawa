@@ -53,6 +53,8 @@ class CharacterLookController extends Controller
                         ->getRepository('DofItemsBundle:AnimalTemplate');
         $weapon  = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:WeaponTemplate');
+        $face  = $this->getDoctrine()->getManager()
+                        ->getRepository('DofCharactersBundle:Face');
 
         // Vérif et liage cape, coiffe et bouclier
         $skinnedItems = ['shield' => 7, 'hat' => 10, 'cloak' => 11];
@@ -77,10 +79,14 @@ class CharacterLookController extends Controller
         // Couleurs en décimal
         $colors = $cl->getColors();
         foreach($colors as &$color){
-          $color = hexdec($color);
+          $color = hexdec($color); # TODO : créer une validation sur le formulaire + erreur
         }
 
         $cl->setColors($colors);
+
+        // Recherche de la face
+        $face = $face->findForCharacterLook($cl->getBreed(), $cl->getGender(), $form['face'])
+        $cl->setFace($face);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($cl);

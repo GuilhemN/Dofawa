@@ -24,4 +24,20 @@ class FaceRepository extends EntityRepository
         ksort($skins);
         return $skins;
     }
+
+    public function findForCharacterLook(Breed $breed, $gender, $label) {
+        if(!Gender::isValid($gender))
+          $gender = Gender::MALE;
+
+        return $this
+                  ->createQueryBuilder('fa')
+                  ->select(array('fa.*'))
+                  ->where('fa.breed = :breed AND fa.gender = :gender and fa.label = :label')
+                  ->getQuery()
+                  ->setParameter('breed', $breed)
+                  ->setParameter('gender', $gender)
+                  ->setParameter('label', $label)
+                  ->getResult()
+              ;
+    }
 }
