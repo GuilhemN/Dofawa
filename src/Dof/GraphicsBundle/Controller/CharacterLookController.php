@@ -79,10 +79,10 @@ class CharacterLookController extends Controller
               $cuType = $typeLI[$item[0]->getId()];
 
               // Si Obvijevans
-              if(!empty($params[1]) && !empty($cuType) && $item[0]->getType->getSlot() == ItemSlot::LIVING_ITEM)
+              if(!empty($params[1]) && !empty($cuType) && $item[0]->getType()->getSlot() == ItemSlot::LIVING_ITEM)
                   $cl->{'set'.ucfirst($name)}($livingItemFactory->createFromTemplateAndLevel($item[0], $params[1]));
               // Si item normal
-              elseif($item[0]->getType()->getSlot() == constant('ItemSlot::'.$slotConst) && $item[0]->getSkin() > 0)
+              elseif($item[0]->getType()->getSlot() == constant('ItemSlot::' . $slotConst) && $item[0]->getSkin() > 0)
                   $cl->{'set'.ucfirst($name)}($item[0]);
             }
         }
