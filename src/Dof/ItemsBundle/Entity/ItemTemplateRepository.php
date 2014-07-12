@@ -12,4 +12,28 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemTemplateRepository extends EntityRepository
 {
+    public function findByIdWithType($id) {
+        return $this
+                  ->createQueryBuilder('it')
+                  ->join('it.type', 't')
+                  ->where('it.id = :id')
+                  ->getQuery()
+                  ->setParameter('id', $id)
+                  ->getArrayResult();
+              ;
+    }
+
+    public function findBySlot($slot, $locale) {
+        return $this
+                  ->createQueryBuilder('se')
+                  ->select(array('se.id', 'se.name' . ucfirst($locale)) . ' as name')
+                  ->join('se.type', 't')
+                  ->where('t.slot = :slot')
+                  ->getQuery()
+                  ->setParameter('slot', $slot)
+                  ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
+                  ->useResultCache(true, 3600)
+                  ->getArrayResult();
+              ;
+    }
 }

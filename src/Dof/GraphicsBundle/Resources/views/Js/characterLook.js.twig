@@ -8,7 +8,7 @@ var weapon = {{ items.weapon | json_encode() | raw }};
 
 {% for type in types %}
 $("#character_look_{{ type }}").select2({
-    data:{ results: {{ type }}, text: 'name{{ app.request.locale | capitalize }}' },
+    data:{ results: {{ type }}, text: 'name' },
     formatSelection: format,
     formatResult: format
 });

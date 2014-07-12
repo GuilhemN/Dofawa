@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Dof\GraphicsBundle\Entity\CharacterLook;
+use Dof\ItemsBundle\ItemSlot;
+use Dof\ItemsBundle\LivingItem;
 
 class CharacterLookController extends Controller
 {
@@ -47,22 +49,38 @@ class CharacterLookController extends Controller
 
         $form = $request->request->get('character_look');
 
-        $skinned = $this->getDoctrine()->getManager()
-                        ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
+        $itemTemplate = $this->getDoctrine()->getManager()
+                        ->getRepository('DofItemsBundle:ItemTemplate');
         $animal  = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:AnimalTemplate');
         $weapon  = $this->getDoctrine()->getManager()
                         ->getRepository('DofItemsBundle:WeaponTemplate');
         $face  = $this->getDoctrine()->getManager()
                         ->getRepository('DofCharactersBundle:Face');
+        $livingItemFactory = $this->get('dof_graphics.living_item_factory');
 
         // Vérif et liage cape, coiffe et bouclier
-        $skinnedItems = ['shield' => 7, 'hat' => 10, 'cloak' => 11];
-        foreach($skinnedItems as $name => $slot){
-            $item = $skinned->findById($form[$name]);
+        $skinnedItems = ['shield', 'hat', 'cloak'];
+        $typeLI = LivingItem::getTypes();
 
-            if(!empty($item) && $item[0]->getType()->getSlot() == $slot && $item[0]->getSkin() > 0)
-                $cl->{'set'.ucfirst($name)}($item[0]);
+        foreach($skinnedItems as $name){
+            $params = explode('/', $form[$name]);
+            $slotConst = strtoupper($name);
+
+            // Récupération en bdd de l'item
+            $item = $itemTemplate->findByIdWithType($params[0]);
+
+            // Si l'item existe
+            if(!empty($item[0])){
+              $cuType = $typeLI[$item[0]->getId()];
+
+              // Si Obvijevans
+              if(!empty($params[1]) && !empty($cuType) && $item[0]->getType->getSlot() == ItemSlot::LIVING_ITEM)
+                  $cl->{'set'.ucfirst($name)}($livingItemFactory->createFromTemplateAndLevel($item[0], $params[1]));
+              // Si item normal
+              elseif($item[0]->getType()->getSlot() == ItemSlot::$slotConst && $item[0]->getSkin() > 0)
+                  $cl->{'set'.ucfirst($name)}($item[0]);
+            }
         }
 
         // Liage Arme
@@ -92,6 +110,7 @@ class CharacterLookController extends Controller
         $faceResult = $face->findForCharacterLook($cl->getBreed(), $cl->getGender(), $form['face']);
         $cl->setFace($faceResult[0]);
 
+        // Sauvegarde en bdd
         $em = $this->getDoctrine()->getManager();
         $em->persist($cl);
         $em->flush();
