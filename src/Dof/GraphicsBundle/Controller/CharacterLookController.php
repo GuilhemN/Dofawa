@@ -44,7 +44,7 @@ class CharacterLookController extends Controller
     }
 
     protected function getCLUrl($cl){
-        $this->generateUrl('dof_graphics_skins_embed', array('slug' => $cl->getSlug()));
+        return $this->generateUrl('dof_graphics_skins_embed', array('slug' => $cl->getSlug()));
     }
 
     protected function handler($request, $cl){
