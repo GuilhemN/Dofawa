@@ -19,7 +19,7 @@ class ItemTemplateRepository extends EntityRepository
                   ->where('it.id = :id')
                   ->getQuery()
                   ->setParameter('id', $id)
-                  ->getArrayResult();
+                  ->getResult();
               ;
     }
 
