@@ -85,8 +85,8 @@ class CharacterLookController extends Controller
         $cl->setColors($colors);
 
         // Recherche de la face
-        $face = $face->findForCharacterLook($cl->getBreed(), $cl->getGender(), $form['face']);
-        $cl->setFace($face);
+        $faceResult = $face->findForCharacterLook($cl->getBreed(), $cl->getGender(), $form['face']);
+        $cl->setFace($faceResult[0]);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($cl);
