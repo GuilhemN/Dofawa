@@ -46,7 +46,7 @@ renderNode(card = createElement('div', null, {
 			createElement('tbody', null, null, null, [
 				{% if look.breed is not null %}
 				createElement('tr', null, null, null, [
-					createElement('th', null, null, null, 'Classe'),
+					createElement('th', null, null, null, '{{ 'breed' | trans({}, 'breed') }}'),
 					createElement('td', null, null, { click: stopPropagation }, '{{ look.breed.getName(locales()) }}')
 				]),
 				{% endif %}
@@ -58,7 +58,7 @@ renderNode(card = createElement('div', null, {
 				{% endif %}
 				{% if look.face is not null %}
 				createElement('tr', null, null, null, [
-					createElement('th', null, null, null, 'Visage'),
+					createElement('th', null, null, null, '{{ 'face' | trans({}, 'face')}}'),
 					createElement('td', null, null, { click: stopPropagation }, '{{ look.face.label }}')
 				]),
 				{% endif %}

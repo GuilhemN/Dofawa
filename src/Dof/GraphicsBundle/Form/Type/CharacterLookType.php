@@ -29,8 +29,6 @@ class CharacterLookType extends AbstractType
         $request = $this->requestStack->getCurrentRequest();
         $fieldName = 'name'.ucfirst($request->getLocale());
 
-        $entity = $builder->getData();
-        $builder->add('name');
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
             $entity = $event->getData();
@@ -46,8 +44,10 @@ class CharacterLookType extends AbstractType
             }
         });
 
+        $entity = $builder->getData();
         $builder
-            ->add('breed', null, array('property' => $fieldName))
+            ->add('name', null, array('translation_domain' => 'generalTrans'))
+            ->add('breed', null, array('property' => $fieldName, 'translation_domain' => 'breed'))
             ->add('gender', 'choice', array(
                   'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
@@ -57,7 +57,8 @@ class CharacterLookType extends AbstractType
             ->add('face', 'choice', array(
                 'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
                 'required' => true,
-                'mapped' => false
+                'mapped' => false,
+                'translation_domain' => 'face'
               ))
             ->add('weapon', 'text', array('required' => false, 'mapped' => false))
             ->add('shield', 'text', array('required' => false, 'mapped' => false))
