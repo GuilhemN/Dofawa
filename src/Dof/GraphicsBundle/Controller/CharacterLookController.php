@@ -71,10 +71,14 @@ class CharacterLookController extends Controller
             $cl->setWeapon($item[0]);
 
         // Liage Familier
-        $item = $animal->findById($form['animal']);
+        if($form['animal'] == 'chameleon')
+            $cl->setAnimal($chameleonDrago = $this->get('dof_graphics.chameleon_dragoturkey'));
+        else{
+            $item = $animal->findById($form['animal']);
 
-        if(!empty($item) && $item[0]->getBone() > 0)
-            $cl->setAnimal($item[0]);
+            if(!empty($item) && $item[0]->getBone() > 0)
+                $cl->setAnimal($item[0]);
+        }
 
         // Couleurs en décimal
         $colors = $cl->getColors();

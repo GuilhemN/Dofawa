@@ -20,8 +20,11 @@ class ChameleonDragoturkey
         $this->translator = $translator;
     }
 
-    public function getName($locale)
+    public function getName($locale = null)
     {
+        if($locale === null)
+            $locale = $translator->getLocales();
+        
         return $this->translator->transChoice('dragoturkey.chameleon', 1, [ ], 'type_item', $locale);
     }
 
