@@ -14,7 +14,7 @@ class WeaponTemplateRepository extends SkinnedEquipmentTemplateRepository
           $req->select(array('w.id', 'w.name' . ucfirst($locale)));
 
         return $req
-            ->where('w.skin IS NOT NULL')
+            ->where('w.skin IS NOT NULL and w.ethereal = 0')
             ->getQuery()
             ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
             ->useResultCache(true, 3600)
