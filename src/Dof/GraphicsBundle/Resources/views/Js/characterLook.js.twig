@@ -1,4 +1,4 @@
-function format(item) { return item.name{{ app.request.locale | capitalize }}; }
+function format(item) { return item.name; }
 
 var shield = {{ items.shield | json_encode() | raw }};
 var hat = {{ items.hat | json_encode() | raw }};
