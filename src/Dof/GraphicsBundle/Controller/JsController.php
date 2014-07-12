@@ -23,7 +23,7 @@ class JsController extends Controller
         $items['hat']      = $skinned->findBySlot(10, $locale);
         $items['cloak']    = $skinned->findBySlot(11, $locale);
         $items['animal']   = $animal->hasBone('json', $locale);
-        $items['animal'][] = array('id' => 'chameleon', 'text' => $chameleonDrago->getName());
+        $items['animal'][] = array('id' => 'chameleon', 'name'.ucfirst($locale) => $chameleonDrago->getName());
 
         $items['weapon'] = $weapon->hasSkin('json', $locale);
 
