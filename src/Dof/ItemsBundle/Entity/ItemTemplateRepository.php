@@ -26,7 +26,7 @@ class ItemTemplateRepository extends EntityRepository
     public function findBySlot($slot, $locale) {
         return $this
                   ->createQueryBuilder('se')
-                  ->select(array('se.id', 'se.name' . ucfirst($locale)) . ' as name')
+                  ->select(array('se.id', 'se.name' . ucfirst($locale) . ' as name'))
                   ->join('se.type', 't')
                   ->where('t.slot = :slot')
                   ->getQuery()
