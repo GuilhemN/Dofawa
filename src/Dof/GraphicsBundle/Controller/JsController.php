@@ -11,6 +11,8 @@ class JsController extends Controller
 {
     public function characterLookAction()
     {
+        $this->getResponse()->setContentType('application/javascript; charset=UTF-8');
+
         $locale = $this->get('request')->getLocale();
 
         $itemTemplate = $this->getDoctrine()->getManager()
