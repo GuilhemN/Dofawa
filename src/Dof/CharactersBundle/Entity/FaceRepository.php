@@ -3,6 +3,7 @@
 namespace Dof\CharactersBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Dof\CharactersBundle\Gender;
 
 /**
  * FaceRepository
