@@ -1,0 +1,5 @@
+gender: "Sexe"
+
+MALE: "Masculin"
+FEMALE: "Féminin"
+OTHER: "Autre"

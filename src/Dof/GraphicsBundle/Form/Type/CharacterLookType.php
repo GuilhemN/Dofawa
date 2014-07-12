@@ -9,20 +9,26 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 use Dof\CharactersBundle\Gender;
 
 class CharacterLookType extends AbstractType
 {
     protected $securityContext;
+    protected $requestStack;
 
-    public function __construct(SecurityContextInterface $securityContext)
+    public function __construct(SecurityContextInterface $securityContext, RequestStack $requestStack)
     {
         $this->securityContext = $securityContext;
+        $this->requestStack = $requestStack;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $request = $this->requestStack->getCurrentRequest();
+        $fieldName = 'name'.ucfirst($request->getLocale());
+
         $entity = $builder->getData();
         $builder->add('name');
 
@@ -41,14 +47,15 @@ class CharacterLookType extends AbstractType
         });
 
         $builder
-            ->add('breed')
+            ->add('breed', null, array('property' => $fieldName))
             ->add('gender', 'choice', array(
                   'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
                   'expanded'  => true,
+                  'translation_domain' => 'gender'
               ))
             ->add('face', 'choice', array(
-                'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'), 
+                'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
                 'required' => true,
                 'mapped' => false
               ))

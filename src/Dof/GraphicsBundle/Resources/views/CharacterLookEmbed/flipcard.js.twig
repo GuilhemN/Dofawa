@@ -52,8 +52,8 @@ renderNode(card = createElement('div', null, {
 				{% endif %}
 				{% if look.gender is not null %}
 				createElement('tr', null, null, null, [
-					createElement('th', null, null, null, 'Sexe'),
-					createElement('td', null, null, { click: stopPropagation }, '{{ (look.gender == 0) ? 'Masculin' : ((look.gender == 1) ? 'Féminin' : 'Autre') }}')
+					createElement('th', null, null, null, {{ 'gender' | trans({}, 'gender')}}),
+					createElement('td', null, null, { click: stopPropagation }, '{{ (look.gender == 0) ? 'MALE' | trans({}, 'gender') : ((look.gender == 1) ? 'FEMALE' | trans({}, 'gender') : 'OTHER' | trans({}, 'gender')) }}')
 				]),
 				{% endif %}
 				{% if look.face is not null %}
