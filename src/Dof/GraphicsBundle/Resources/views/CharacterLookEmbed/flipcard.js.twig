@@ -107,11 +107,10 @@ renderNode(card = createElement('div', null, {
 				{% if app.user == look.creator %}
 				createElement('tr', null, null, null, [
 					createElement('td', null, null, { click: stopPropagation }, [
-						null,
 						createElement('a', null, {
 							className: 'dofawa-skin-link-edit',
 							href: '{{ app.request.schemeAndHttpHost ~ path('dof_graphics_skins_edit', {'slug': look.slug}) | raw }}'},
-							null, '{{ 'edit' | trans({}, 'generalTrans')}}'
+							null, ['{{ 'edit' | trans({}, 'generalTrans')}}']
 						)
 					])
 				]),
