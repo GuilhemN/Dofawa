@@ -46,15 +46,17 @@ class CharacterLookType extends AbstractType
 
         $entity = $builder->getData();
         $builder
-            ->add('name', null, array('translation_domain' => 'generalTrans'))
-            ->add('breed', null, array('property' => $fieldName, 'translation_domain' => 'breed'))
+            ->add('name', null, array('label' => 'name', 'translation_domain' => 'generalTrans'))
+            ->add('breed', null, array('label' => 'breed', 'property' => $fieldName, 'translation_domain' => 'breed'))
             ->add('gender', 'choice', array(
+                  'gender' => 'name',
                   'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
                   'expanded'  => true,
                   'translation_domain' => 'gender'
               ))
             ->add('face', 'choice', array(
+                'label' => 'face', 
                 'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
                 'required' => true,
                 'mapped' => false,
