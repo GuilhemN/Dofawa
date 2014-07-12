@@ -49,14 +49,14 @@ class CharacterLookType extends AbstractType
             ->add('name', null, array('label' => 'name', 'translation_domain' => 'generalTrans'))
             ->add('breed', null, array('label' => 'breed', 'property' => $fieldName, 'translation_domain' => 'breed'))
             ->add('gender', 'choice', array(
-                  'gender' => 'name',
+                  'label' => 'gender',
                   'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
                   'expanded'  => true,
                   'translation_domain' => 'gender'
               ))
             ->add('face', 'choice', array(
-                'label' => 'face', 
+                'label' => 'face',
                 'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
                 'required' => true,
                 'mapped' => false,
