@@ -45,6 +45,7 @@ class CharacterLookType extends AbstractType
             ->add('gender', 'choice', array(
                   'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
+                  'expanded'  => true,
               ))
             ->add('face', null, array('required' => false))
             ->add('weapon', 'text', array('required' => false, 'mapped' => false))
