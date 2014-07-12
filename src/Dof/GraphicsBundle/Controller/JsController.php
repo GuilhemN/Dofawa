@@ -42,9 +42,9 @@ class JsController extends Controller
             $type = $typeLI[$lItem['id']];
             if(!empty($type))
                 if($type == 16) // Coiffe
-                    $this->rangeLItem($item['hat'], $lItem);
+                    $this->rangeLItem($items['hat'], $lItem);
                 elseif($type == 17) // Cape
-                    $this->rangeLItem($item['cloak'], $lItem);
+                    $this->rangeLItem($items['cloak'], $lItem);
         }
 
         return $this->render('DofGraphicsBundle:Js:characterLook.js.twig', [
