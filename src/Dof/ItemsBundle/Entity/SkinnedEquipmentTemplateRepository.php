@@ -28,7 +28,9 @@ class SkinnedEquipmentTemplateRepository extends EquipmentTemplateRepository
                   ->where('t.slot = :slot AND se.skin IS NOT NULL')
                   ->getQuery()
                   ->setParameter('slot', $slot)
-                  ->getResult()
+                  ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
+                  ->useResultCache(true, 3600)
+                  ->getArrayResult();
               ;
     }
 

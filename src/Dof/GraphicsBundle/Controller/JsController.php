@@ -21,7 +21,7 @@ class JsController extends Controller
         $items['hat']    = $skinned->findBySlot(10, $locale);
         $items['cloak']  = $skinned->findBySlot(11, $locale);
         $items['animal'] = $animal->hasBone('json', $locale);
-        $items['weapon'] = $weapon->hasBone('json', $locale);
+        $items['weapon'] = $weapon->hasSkin('json', $locale);
 
         return $this->render('DofGraphicsBundle:Js:characterLook.js.twig', [
             'items' => $items,

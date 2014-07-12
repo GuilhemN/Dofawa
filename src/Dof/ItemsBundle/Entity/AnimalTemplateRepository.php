@@ -34,7 +34,9 @@ class AnimalTemplateRepository extends EquipmentTemplateRepository
         $req
             ->where('a.bone IS NOT NULL')
             ->getQuery()
-            ->getResult()
+            ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
+            ->useResultCache(true, 3600)
+            ->getArrayResult();
         ;
     }
 }

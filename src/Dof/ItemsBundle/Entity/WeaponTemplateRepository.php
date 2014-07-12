@@ -7,7 +7,7 @@ namespace Dof\ItemsBundle\Entity;
  */
 class WeaponTemplateRepository extends SkinnedEquipmentTemplateRepository
 {
-    public function hasBone($format = 'normal', $locale = 'fr') {
+    public function hasSkin($format = 'normal', $locale = 'fr') {
         $req = $this->createQueryBuilder('w');
 
         if($format == 'json')
@@ -16,7 +16,9 @@ class WeaponTemplateRepository extends SkinnedEquipmentTemplateRepository
         return $req
             ->where('w.skin IS NOT NULL')
             ->getQuery()
-            ->getResult()
+            ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
+            ->useResultCache(true, 3600)
+            ->getArrayResult();
         ;
     }
 }
