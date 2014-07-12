@@ -5,7 +5,7 @@ namespace Dof\GraphicsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Dof\ItemsBundle\ItemSlot;
 
-use Dof\ItemsBundle\LivingItem;
+use Dof\GraphicsBundle\LivingItem;
 
 class JsController extends Controller
 {
