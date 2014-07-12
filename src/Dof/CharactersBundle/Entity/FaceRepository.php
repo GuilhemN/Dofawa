@@ -32,7 +32,6 @@ class FaceRepository extends EntityRepository
 
         return $this
                   ->createQueryBuilder('fa')
-                  ->select(array('fa.*'))
                   ->where('fa.breed = :breed AND fa.gender = :gender and fa.label = :label')
                   ->getQuery()
                   ->setParameter('breed', $breed)
