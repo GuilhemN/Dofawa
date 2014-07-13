@@ -70,17 +70,16 @@ class JsController extends Controller
                         ->getRepository('DofItemsBundle:WeaponTemplate')
                         ->findRelation();
 
-        foreach($breeds as &$k => &$v){
-            $k = $v['id'];
-            unset($v['id']);
+        foreach($breeds as $v){
+            $nBreeds[$v['id']] = $v['slug'];
         }
-        
+
         $response = new Response();
         $response->headers->set('Content-Type', 'application/javascript');
         return $this->render('DofGraphicsBundle:Js:colorSlots.js.twig', [
             'translation' => $translation,
             'translation_fr' => $translationFr,
-            'breeds' => $breeds,
+            'breeds' => $nBreeds,
         ],
         $response);
     }
