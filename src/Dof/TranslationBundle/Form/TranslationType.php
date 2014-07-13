@@ -26,7 +26,7 @@ class TranslationType extends AbstractType
 
         $builder
             ->add('label', null, array( 'disabled' => true ))
-            ->add('nameFr', null, array( 'data' => $this->translator->trans($entity->getLabel(), $entity->getDomain(), 'fr'), 'disabled' => true, 'mapped' => false ))
+            ->add('nameFr', null, array( 'data' => $this->translator->trans($entity->getLabel(), array(), $entity->getDomain(), 'fr'), 'disabled' => true, 'mapped' => false ))
             ->add('translation')
         ;
     }
