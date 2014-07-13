@@ -153,4 +153,14 @@ class Translator extends BaseTranslator {
             return array_merge([ $locale ], self::getForLocale($this->language_fallbacks, $locale));
         return [ $locale ];
     }
+
+    public function getCatalogue($domain, $locale = null){
+        if($locale === null)
+            $locale = $this->getLocale();
+        
+        if (!isset($this->catalogues[$locale]))
+            $this->loadCatalogue($locale);
+
+        return $this->catalogues[$locale]->all($domain);
+    }
 }

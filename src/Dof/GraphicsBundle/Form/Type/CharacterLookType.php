@@ -73,8 +73,8 @@ class CharacterLookType extends AbstractType
         if(($face = $entity->getFace()) !== null)
             $face = $face->getLabel();
         $builder
-            ->add('name', null, array('label' => $this->translator->trans('name', [], 'generalTrans')))
-            ->add('breed', null, array('label' => $this->translator->trans('breed', [], 'breed'), 'property' => $fieldName))
+            ->add('name', null, array('label' => $this->translator->trans('name', [], 'generalTrans'), 'required' => true))
+            ->add('breed', null, array('label' => $this->translator->trans('breed', [], 'breed'), 'property' => $fieldName, 'required' => true))
             ->add('gender', 'choice', array(
                   'label' => 'gender',
                   'choices'   => array_flip(Gender::getValues()),
@@ -93,7 +93,7 @@ class CharacterLookType extends AbstractType
             ->add('shield', 'text', array('label' => $this->translator->transChoice('equipments.shield', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $shield))
             ->add('hat', 'text', array('label' => $this->translator->transChoice('equipments.hat', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $hat))
             ->add('cloak', 'text', array('label' => $this->translator->transChoice('equipments.cloak', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $cloak))
-            ->add('animal', 'text', array('label' => $this->translator->transChoice('animal.main', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $animal))
+            ->add('animal', 'text', array('label' => $this->translator->transChoice('animals.main', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $animal))
             ->add('colors', 'collection', array(
                 'options'  => array(
                     'required'  => false,

@@ -59,6 +59,21 @@ class JsController extends Controller
         $response);
     }
 
+    public function colorSlotsAction(){
+        $translator = $this->get('translator');
+
+        $translation = $translator->getCatalogue('color_slots');
+        $translationFr = $translator->getCatalogue('color_slots', 'fr');
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/javascript');
+        return $this->render('DofGraphicsBundle:Js:colorSlots.js.twig', [
+            'translation' => $translation,
+            'translation_fr' => $translationFr,
+        ],
+        $response);
+    }
+
     private function rangeLItem(array &$array, $item){
         foreach (range(1, 20) as $i) {
             $array[] = array(

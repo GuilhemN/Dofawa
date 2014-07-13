@@ -6,23 +6,8 @@
 
 {% block js %}
   {{ parent() }}
-  <script type="text/javascript" src="{{ path('dof_graphics_skins_js') }}"></script>
   {% include 'DofMainBundle::color.js.html.twig' %}
-  <script type="text/javascript">
-    $(function(){
-        $('#character_look_colors_1, #character_look_colors_2, #character_look_colors_3, #character_look_colors_4, #character_look_colors_5, #character_look_colors_6, #character_look_colors_7, #character_look_colors_8, #character_look_colors_9, #character_look_colors_10').colpick({
-        	layout:'hex',
-        	submit:0,
-        	onChange:function(hsb,hex,rgb,el,bySetColor) {
-        		$(el).css('border-color','#'+hex);
-        		// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
-        		if(!bySetColor) $(el).val(hex);
-        	}
-        }).keyup(function(){
-        	$(this).colpickSetColor(this.value);
-        }).trigger('keyup');
-    });
-  </script>
+  <script type="text/javascript" src="{{ path('dof_graphics_skins_js') }}"></script>
 {% endblock %}
 
 {% block breadcrumb %}
