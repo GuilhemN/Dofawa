@@ -67,7 +67,7 @@ class JsController extends Controller
 
 
         $breeds  = $this->getDoctrine()->getManager()
-                        ->getRepository('DofItemsBundle:WeaponTemplate')
+                        ->getRepository('DofCharactersBundle:Breed')
                         ->findRelation();
 
         foreach($breeds as $v){
