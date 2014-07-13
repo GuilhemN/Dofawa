@@ -3,6 +3,12 @@ slots_fr = {{ translation_fr | json_encode() | raw}};
 
 breeds = {{ breeds | json_encode() | raw }};
 
+var elems = document.querySelectorAll("#character_look_breed, [name='character_look[gender]']");
+for (var i = 0; i < elems.length; i++) {
+  var el = elems[i];
+  el.onchange = updateSlotsName;
+}
+
 function updateSlotsName(){
   var els = document.querySelectorAll('[for^="character_look_colors_"]');
 
@@ -45,6 +51,7 @@ updateSlotsName();
 
 
 $(function(){
+
     $('#character_look_colors_1, #character_look_colors_2, #character_look_colors_3, #character_look_colors_4, #character_look_colors_5, #character_look_colors_6, #character_look_colors_7, #character_look_colors_8, #character_look_colors_9, #character_look_colors_10').colpick({
       layout:'hex',
       submit:0,
