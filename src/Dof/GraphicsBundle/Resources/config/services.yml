@@ -26,4 +26,4 @@ services:
         class: %dof_graphics.form.type.character_look.class%
         tags:
             - { name: form.type, alias: character_look }
-        arguments: [@security.context, "@request_stack"]
+        arguments: ['@service_container']

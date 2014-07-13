@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -16,13 +17,18 @@ use Dof\GraphicsBundle\LivingItem;
 
 class CharacterLookType extends AbstractType
 {
+    protected $container;
+
     protected $securityContext;
     protected $requestStack;
+    protected $translator;
 
-    public function __construct(SecurityContextInterface $securityContext, RequestStack $requestStack)
+    public function __construct(ContainerInterface $container)
     {
-        $this->securityContext = $securityContext;
-        $this->requestStack = $requestStack;
+        $this->container = $container;
+        $this->securityContext = $this->container->get('security.context');
+        $this->requestStack = $this->container->get('request_stack');
+        $this->translator = $this->container->get('translator');
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -67,8 +73,8 @@ class CharacterLookType extends AbstractType
         if(($face = $entity->getFace()) !== null)
             $face = $face->getLabel();
         $builder
-            ->add('name', null, array('label' => 'name', 'translation_domain' => 'generalTrans'))
-            ->add('breed', null, array('label' => 'breed', 'property' => $fieldName, 'translation_domain' => 'breed'))
+            ->add('name', null, array('label' => $this->translator->trans('name', [], 'generalTrans')))
+            ->add('breed', null, array('label' => $this->translator->trans('breed', [], 'breed'), 'property' => $fieldName))
             ->add('gender', 'choice', array(
                   'label' => 'gender',
                   'choices'   => array_flip(Gender::getValues()),
@@ -77,18 +83,17 @@ class CharacterLookType extends AbstractType
                   'translation_domain' => 'gender'
               ))
             ->add('face', 'choice', array(
-                'label' => 'face',
+                'label' => $this->translator->trans('face', [], 'face'),
                 'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
                 'required' => true,
                 'mapped' => false,
-                'data' => $face,
-                'translation_domain' => 'face'
+                'data' => $face
               ))
-            ->add('weapon', 'text', array('label' => 'weapons.main', 'required' => false, 'mapped' => false, 'data' => $weapon, 'translation_domain' => 'type_item'))
-            ->add('shield', 'text', array('label' => 'equipments.shield', 'required' => false, 'mapped' => false, 'data' => $shield, 'translation_domain' => 'type_item'))
-            ->add('hat', 'text', array('label' => 'equipments.hat', 'required' => false, 'mapped' => false, 'data' => $hat, 'translation_domain' => 'type_item'))
-            ->add('cloak', 'text', array('label' => 'equipments.cloak', 'required' => false, 'mapped' => false, 'data' => $cloak, 'translation_domain' => 'type_item'))
-            ->add('animal', 'text', array('label' => 'animal.main', 'required' => false, 'mapped' => false, 'data' => $animal, 'translation_domain' => 'type_item'))
+            ->add('weapon', 'text', array('label' => $this->translator->transChoice('weapons.main', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $weapon))
+            ->add('shield', 'text', array('label' => $this->translator->transChoice('equipments.shield', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $shield))
+            ->add('hat', 'text', array('label' => $this->translator->transChoice('equipments.hat', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $hat))
+            ->add('cloak', 'text', array('label' => $this->translator->transChoice('equipments.cloak', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $cloak))
+            ->add('animal', 'text', array('label' => $this->translator->transChoice('animal.main', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $animal))
             ->add('colors', 'collection', array(
                 'options'  => array(
                     'required'  => false,
