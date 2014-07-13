@@ -25,8 +25,9 @@
   <link rel="alternate" hreflang="{{ locale }}" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale }) ) }}" />
   {% endfor %}
 
+  {% if not is_granted('ROLE_AD_FREE') %}
   <script defer type="text/javascript" src="http://c.ad6media.fr/l.js"></script>
-
+  {% endif %}
   <script type="text/javascript" defer async>
 
     var _gaq = _gaq || [];
@@ -163,7 +164,7 @@
   {% block js %}
   {% endblock %}
 
-  
+
   {% if not is_granted('ROLE_AD_FREE') %}
   {# Publicité #}
   <div id="recup_publicity">
