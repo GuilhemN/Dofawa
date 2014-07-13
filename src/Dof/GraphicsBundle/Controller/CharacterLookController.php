@@ -54,10 +54,10 @@ class CharacterLookController extends Controller
             throw new AccessDeniedException();
 
         $colors = $look->getColors();
-        foreach($colors as $k => &$color)
-            $color = str_pad(dechex($color), 6, '0', STR_PAD_LEFT);
+        foreach($colors as $k => $color)
+            $newColors[$k] = str_pad(dechex($color), 6, '0', STR_PAD_LEFT);
 
-        $look->setColors($colors);
+        $look->setColors($newColors);
 
         $form = $this->createForm('character_look', $look);
 
