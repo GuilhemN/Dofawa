@@ -19,7 +19,7 @@ class UtilityExtension extends \Twig_Extension
 	{
 		return array(
 			new \Twig_SimpleFunction('es6asset', [ $this, 'es6asset' ]),
-			new \Twig_SimpleFunction('issetTrans', $this->container->get('translator'), 'has' ]),
+			new \Twig_SimpleFunction('issetTrans', [$this->container->get('translator'), 'has' ]),
 			new \Twig_SimpleFunction('locales', [ $this->container->get('translator'), 'getLocales' ]),
 			new \Twig_SimpleFunction('once', [ $this, 'once' ]),
 			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
