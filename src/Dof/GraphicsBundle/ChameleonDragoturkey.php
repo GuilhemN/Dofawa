@@ -3,10 +3,11 @@
 namespace Dof\GraphicsBundle;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Doctrine\ORM\EntityManager;
 
 use XN\DataBundle\SluggableUpdater;
-
 use Dof\ItemsBundle\AnimalColorizationType;
+use Dof\ItemsBundle\ItemSlot;
 
 class ChameleonDragoturkey
 {
@@ -15,9 +16,13 @@ class ChameleonDragoturkey
      */
     private $translator;
 
-    public function __construct(Translator $translator)
+    private $em;
+    private $type;
+
+    public function __construct(Translator $translator, EntityManager $em)
     {
         $this->translator = $translator;
+        $this->em = $em;
     }
 
     public function getName($locale = null)
@@ -26,6 +31,13 @@ class ChameleonDragoturkey
             $locale = $this->translator->getLocale();
 
         return $this->translator->transChoice('dragoturkey.chameleon', 1, [ ], 'type_item', $locale);
+    }
+
+    public function getType(){
+      if (empty($this->type))
+          $this->type = $this->em->getRepository('DofItemsBundle:ItemType')->findBySlot(ItemSlot::MOUNT);
+
+      return $this->type;
     }
 
     public function getBone()

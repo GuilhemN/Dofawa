@@ -19,7 +19,7 @@ services:
         arguments: [@doctrine.orm.default_entity_manager]
     dof_graphics.chameleon_dragoturkey:
         class: %dof_graphics.chameleon_dragoturkey.class%
-        arguments: [@translator]
+        arguments: [@translator, @doctrine.orm.entity_manager]
 
     # FORMS
     dof_graphics.form.type.character_look:
