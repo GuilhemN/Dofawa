@@ -21,8 +21,7 @@ class TranslationController extends Controller
 
     private function domainExclude(){
         return array(
-            'FOSUserBundle',
-            'validators'
+            'FOSUserBundle'
         );
     }
 }
