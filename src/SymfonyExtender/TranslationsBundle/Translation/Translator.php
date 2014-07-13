@@ -161,7 +161,10 @@ class Translator extends BaseTranslator {
         if (!isset($this->catalogues[$locale]))
             $this->loadCatalogue($locale);
 
-        return $this->catalogues[$locale]->all($domain);
+        if($domain === null)
+            return $this->catalogues[$locale]->all();
+        else
+            return $this->catalogues[$locale]->all($domain);
     }
 
     public function getDomains($locale = null){
