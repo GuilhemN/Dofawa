@@ -35,7 +35,7 @@ class ChameleonDragoturkey
 
     public function getType(){
       if (empty($this->type))
-          $this->type = $this->em->getRepository('DofItemsBundle:ItemType')->findBySlot(ItemSlot::MOUNT);
+          $this->type = $this->em->getRepository('DofItemsBundle:ItemType')->findBySlot(ItemSlot::MOUNT)[0];
 
       return $this->type;
     }
