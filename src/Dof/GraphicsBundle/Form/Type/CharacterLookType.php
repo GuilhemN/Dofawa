@@ -46,11 +46,11 @@ class CharacterLookType extends AbstractType
 
         $entity = $builder->getData();
 
-        if($weapon = $entity->getWeapon() !== null)
+        if(($weapon = $entity->getWeapon()) !== null)
             $weapon = $weapon->getId();
-        if($shield = $entity->getShield() !== null)
+        if(($shield = $entity->getShield()) !== null)
             $shield = $shield->getId();
-        if($hat = $entity->getHat() !== null){
+        if(($hat = $entity->getHat()) !== null){
             var_dump($hat);
             die();
             if($hat instanceOf LivingItem)
@@ -58,14 +58,14 @@ class CharacterLookType extends AbstractType
             else
                 $hat = $hat->getId();
         }
-        if($cloak = $entity->getCloak() !== null)
+        if(($cloak = $entity->getCloak()) !== null)
             if($cloak instanceOf LivingItem)
                 $cloak = $cloak->getTemplate()->getId().'/'.$cloak->getLevel();
             else
                 $cloak = $cloak->getId();
-        if($animal = $entity->getAnimal() !== null)
+        if(($animal = $entity->getAnimal()) !== null)
             $animal = $animal->getId();
-        if($face = $entity->getFace() !== null)
+        if(($face = $entity->getFace()) !== null)
             $face = $face->getLabel();
         $builder
             ->add('name', null, array('label' => 'name', 'translation_domain' => 'generalTrans'))
