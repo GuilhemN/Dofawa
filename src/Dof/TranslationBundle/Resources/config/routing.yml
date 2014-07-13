@@ -6,3 +6,6 @@ dof_translation_homepage:
 
 dof_translation_create:
     path: /{tLocale}/{domain}/{label}/create
+    defaults: { _controller: DofTranslationBundle:Translation:create }
+    requirements:
+        tLocale: '[a-z]{2}'
