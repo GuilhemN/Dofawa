@@ -6,6 +6,8 @@ function updateSlotsName(){
   for (var i = 0; i < els.length; i++) {
       var el = els[i];
       var id = el.parentNode.id.match(/_([0-9]+)$/);
+      console.log(el);
+      console.log(id);
 
       if (typeof slots['generic.slot'+id] != 'undefined') {
           el.innerHTML = slots['generic.slot'+id];
@@ -13,6 +15,8 @@ function updateSlotsName(){
       else if (typeof slots_fr['generic.slot'+id] != 'undefined') {
           el.innerHTML = slots_fr['generic.slot'+id];
       }
+
+      console.log('------------------');
   }
 }
 
