@@ -13,6 +13,9 @@ class TranslationController extends Controller
         $baseCatalogue = $translator->getCatalogue('fr');
         $currentCatalogue = $translator->getCatalogue($tLocale);
 
+        print_r($baseCatalogue);
+        print_r($currentCatalogue);
+
         return $this->render('DofTranslationBundle:Translation:locale.html.twig', array(
           'baseCatalogue' => $baseCatalogue,
           'currentCatalogue' => $currentCatalogue,
