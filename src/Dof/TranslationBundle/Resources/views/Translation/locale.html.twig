@@ -28,7 +28,7 @@
         <tbody>
           {% for domain, messages in baseCatalogue %}
               {% for key, message in messages %}
-                {% if !issetTrans(key, '', locale) %}
+                {% if issetTrans(key, '', locale) == false %}
                   <tr>
                     <td>1</td>
                     <td>{{ key }}</td>
