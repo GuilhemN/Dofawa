@@ -6,8 +6,9 @@
 
 {% block js %}
   {{ parent() }}
-  {% include 'DofMainBundle::color.js.html.twig' %}
   <script type="text/javascript" src="{{ path('dof_graphics_skins_js') }}"></script>
+  {% include 'DofMainBundle::color.js.html.twig' %}
+  <script type="text/javascript" src="{{ path('dof_graphics_skins_colors_js') }}"></script>
 {% endblock %}
 
 {% block breadcrumb %}

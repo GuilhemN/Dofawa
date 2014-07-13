@@ -46,3 +46,7 @@ dof_graphics_skins_embed:
 dof_graphics_skins_js:
     pattern:  /skins/data.js
     defaults: { _controller: DofGraphicsBundle:Js:characterLook }
+
+dof_graphics_skins_colors_js:
+    pattern:  /skins/colors.js
+    defaults: { _controller: DofGraphicsBundle:Js:colorSlots }
