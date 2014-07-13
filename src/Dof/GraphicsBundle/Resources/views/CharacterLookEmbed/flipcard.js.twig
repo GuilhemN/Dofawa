@@ -104,7 +104,7 @@ renderNode(card = createElement('div', null, {
 					])
 				]),
 				{% endfor %}
-				{% if app.user == look.creator %}
+				{% if app.user == look.creator or is_granted('ROLE_STYLIST_ADMIN')%}
 				createElement('tr', null, null, null, [
 					createElement('td', null, null, { click: stopPropagation }, [
 						createElement('a', null, {
