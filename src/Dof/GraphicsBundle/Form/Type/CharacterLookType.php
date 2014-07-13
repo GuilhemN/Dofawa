@@ -51,8 +51,6 @@ class CharacterLookType extends AbstractType
         if(($shield = $entity->getShield()) !== null)
             $shield = $shield->getId();
         if(($hat = $entity->getHat()) !== null){
-            var_dump($hat);
-            die();
             if($hat instanceOf LivingItem)
                 $hat = $hat->getTemplate()->getId().'/'.$hat->getLevel();
             else
