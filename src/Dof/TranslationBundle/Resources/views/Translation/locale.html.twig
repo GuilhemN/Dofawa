@@ -8,7 +8,14 @@
 {% endblock %}
 
 {% block body %}
-<div class="panel panel-default">
+    {% for flashMessage in app.session.flashbag.get('translations') %}
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span></button>
+          {{ flashMessage | trans() }}
+        </div>
+    {% endfor %}
+    <div class="panel panel-default">
       <!-- Default panel contents -->
       <div class="panel-heading">Traductions dans la locale {{ locale }}</div>
       <div class="panel-body">
