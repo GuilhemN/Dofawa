@@ -1,13 +1,38 @@
 slots = {{ translation | json_encode() | raw}};
 slots_fr = {{ translation_fr | json_encode() | raw}};
 
+breeds = {{ breeds | json_encode() | raw }};
+
 function updateSlotsName(){
   var els = document.querySelectorAll('[for^="character_look_colors_"]');
+
+  var gender = $( "[name='character_look[gender]']" ).val();
+  var breed_id = $( "#character_look_breed" ).val();
+  var breed = breeds[breed_id];
+
   for (var i = 0; i < els.length; i++) {
       var el = els[i];
-      var id = el.parentNode.id.match(/_([0-9]+)$/);
+      var id = el.getAttribute('for').match(/_([0-9]+)$/);
+      id = id[1];
 
-      if (typeof slots['generic.slot'+id] != 'undefined') {
+      el.setAttribute('class', 'control-label col-lg-3');
+
+      var input = document.querySelector('[for="character_look_colors_'+id+'"] ~ div');
+      input.setAttribute('class', 'col-lg-9')
+
+      if (typeof slots[breed+gender'.slot'+id] != 'undefined') {
+          el.innerHTML = slots[breed+gender'.slot'+id];
+      }
+      else if (typeof slots_fr[breed+gender'.slot'+id] != 'undefined') {
+          el.innerHTML = slots_fr[breed+gender'.slot'+id];
+      }
+      else if (typeof slots[breed'.slot'+id] != 'undefined') {
+          el.innerHTML = slots[breed'.slot'+id];
+      }
+      else if (typeof slots_fr[breed'.slot'+id] != 'undefined') {
+          el.innerHTML = slots_fr[breed'.slot'+id];
+      }
+      else if (typeof slots['generic.slot'+id] != 'undefined') {
           el.innerHTML = slots['generic.slot'+id];
       }
       else if (typeof slots_fr['generic.slot'+id] != 'undefined') {

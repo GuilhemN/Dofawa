@@ -32,4 +32,15 @@ class BreedRepository extends EntityRepository
         ksort($skins);
         return $skins;
     }
+    
+    public function findRelation() {
+        return $this
+                  ->createQueryBuilder('b')
+                  ->select(array('b.id', 'b.slug'))
+                  ->getQuery()
+                  ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
+                  ->useResultCache(true, 3600)
+                  ->getArrayResult();
+              ;
+    }
 }
