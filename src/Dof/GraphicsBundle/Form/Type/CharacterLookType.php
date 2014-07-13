@@ -84,11 +84,11 @@ class CharacterLookType extends AbstractType
                 'data' => $face,
                 'translation_domain' => 'face'
               ))
-            ->add('weapon', 'text', array('required' => false, 'mapped' => false, 'data' => $weapon))
-            ->add('shield', 'text', array('required' => false, 'mapped' => false, 'data' => $shield))
-            ->add('hat', 'text', array('required' => false, 'mapped' => false, 'data' => $hat))
-            ->add('cloak', 'text', array('required' => false, 'mapped' => false, 'data' => $cloak))
-            ->add('animal', 'text', array('required' => false, 'mapped' => false, 'data' => $animal))
+            ->add('weapon', 'text', array('label' => 'weapons.main', 'required' => false, 'mapped' => false, 'data' => $weapon, 'translation_domain' => 'type_item'))
+            ->add('shield', 'text', array('label' => 'equipments.shield', 'required' => false, 'mapped' => false, 'data' => $shield, 'translation_domain' => 'type_item'))
+            ->add('hat', 'text', array('label' => 'equipments.hat', 'required' => false, 'mapped' => false, 'data' => $hat, 'translation_domain' => 'type_item'))
+            ->add('cloak', 'text', array('label' => 'equipments.cloak', 'required' => false, 'mapped' => false, 'data' => $cloak, 'translation_domain' => 'type_item'))
+            ->add('animal', 'text', array('label' => 'animal.main', 'required' => false, 'mapped' => false, 'data' => $animal, 'translation_domain' => 'type_item'))
             ->add('colors', 'collection', array(
                 'options'  => array(
                     'required'  => false,
