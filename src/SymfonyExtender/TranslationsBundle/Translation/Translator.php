@@ -173,8 +173,8 @@ class Translator extends BaseTranslator {
 
         return $this->catalogues[$locale]->getDomains();
     }
-    
-    public function isset($id, $domain = 'messages', $locale = null){
+
+    public function has($id, $domain = 'messages', $locale = null){
         if($locale === null)
             $locale = $this->getLocale();
 
