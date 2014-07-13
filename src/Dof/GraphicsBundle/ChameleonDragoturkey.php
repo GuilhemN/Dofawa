@@ -24,14 +24,19 @@ class ChameleonDragoturkey
         $this->translator = $translator;
         $this->em = $em;
     }
-
+    public static function getId(){
+      static $id = null;
+      if ($id === null)
+          $id = 'chameleon';
+      return $id;
+    }
     public function getName($locale = null)
     {
         if($locale === null)
             $locale = $this->translator->getLocale();
 
         $locale = (array) $locale;
-        
+
         if(is_array($locale))
             foreach($locale as $l)
                 return $this->translator->transChoice('dragoturkey.chameleon', 1, [ ], 'type_item', $l);

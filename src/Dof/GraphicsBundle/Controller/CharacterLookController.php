@@ -122,8 +122,9 @@ class CharacterLookController extends Controller
             $look->setWeapon($item[0]);
 
         // Liage Familier
-        if($form['animal'] == 'chameleon')
-            $look->setAnimal($chameleonDrago = $this->get('dof_graphics.chameleon_dragoturkey'));
+        $chameleonDrago = $this->get('dof_graphics.chameleon_dragoturkey');
+        if($form['animal'] == $chameleonDrago->getId())
+            $look->setAnimal($chameleonDrago);
         else{
             $item = $animal->findById($form['animal']);
 
