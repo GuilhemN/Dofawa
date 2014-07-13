@@ -2,7 +2,7 @@
 
 {% block breadcrumb %}
     {{ parent() }}
-    <li>Créer une traduction</li>
+    <li>{{ 'create' | trans({}, 'DofTranslateBundle')}}</li>
 {% endblock %}
 
 {% block body %}

@@ -1,5 +1,7 @@
 {% extends 'DofTranslationBundle::layout.html.twig' %}
 
+{% trans_default_domain "DofTranslationBundle" %}
+
 {% block breadcrumb %}
     {{ parent() }}
     <li>{{ locale | capitalize }}</li>
@@ -21,9 +23,9 @@
             <th>#</th>
             <th>Nom Fr</th>
             {#<th>Nom {{ locale }}</th>#}
-            <th class="hidden-sm">Domaine</th>
+            <th class="hidden-sm">{{ 'domain' | trans() }}</th>
             {% if app.user is not null %}
-            <th>Action</th>
+            <th>Actions</th>
             {% endif %}
           </tr>
         </thead>
@@ -40,8 +42,8 @@
                     {% if app.user is not null %}
                     <td>
                         <a class="btn btn-sm btn-default" href="{{ path('dof_translation_create', {'tLocale': locale, 'domain': domain, 'label': key}) }}">
-                            <i class="glyphicon glyphicon-remove"></i>
-                            Translate
+                            <i class="glyphicon glyphicon-globe"></i>
+                            {{ 'translate' | trans() }}
                         </a>
                     </td>
                     {% endif %}

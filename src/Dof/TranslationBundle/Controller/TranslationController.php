@@ -39,7 +39,7 @@ class TranslationController extends Controller
 
         $form = $this->createForm('dof_translation', $translation);
 
-        return $this->render('DofTranslationBundle:Translation:create.html.twig', ['form' => $form->createView()]);
+        return $this->render('DofTranslationBundle:Translation:create.html.twig', ['locale' => $tLocale, 'form' => $form->createView()]);
     }
 
     private function domainExclude(){
