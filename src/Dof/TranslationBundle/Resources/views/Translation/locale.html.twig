@@ -25,16 +25,17 @@
           </tr>
         </thead>
         <tbody>
+          {% set i = 1 %}
           {% for domain, messages in baseCatalogue %}
               {% for key, message in messages %}
                 {% if issetTrans(key, domain, locale) == false and domain not in excludes %}
-                  {% set i++ %}
                   <tr>
                     <td>{{ i }}</td>
                     <td>{{ message }}</td>
                     {#<td>{{ key | trans({}, domain, locale) }}</td>#}
                     <td class="hidden-sm">{{ domain }}</td>
                   </tr>
+                  {% set i = i + 1 %}
                 {% endif %}
               {% endfor %}
           {% endfor %}
