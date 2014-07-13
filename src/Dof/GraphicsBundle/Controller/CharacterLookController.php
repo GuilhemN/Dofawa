@@ -52,13 +52,13 @@ class CharacterLookController extends Controller
     {
         if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))
             throw new AccessDeniedException();
-        $colors = $look->getColor();
+        $colors = $look->getColors();
 
         foreach($colors as &$color)
             $color = str_pad(dechex($color), 6, '0', STR_PAD_LEFT);
 
         $look->setColors($colors);
-        
+
         $form = $this->createForm('character_look', $look);
 
         $form->handleRequest($request);
