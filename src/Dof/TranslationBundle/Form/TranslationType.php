@@ -35,6 +35,6 @@ class TranslationType extends AbstractType
      */
     public function getName()
     {
-        return 'dof_translationbundle_translation';
+        return 'dof_translation';
     }
 }
