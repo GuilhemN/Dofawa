@@ -29,6 +29,8 @@ class ChameleonDragoturkey
     {
         if($locale === null)
             $locale = $this->translator->getLocale();
+        elseif(is_array($locale))
+            $locale = array_slice($locale, 0, 1);
 
         return $this->translator->transChoice('dragoturkey.chameleon', 1, [ ], 'type_item', $locale);
     }
