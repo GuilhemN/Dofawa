@@ -46,7 +46,7 @@ class CharacterLookController extends Controller
 
 
    /**
-    * @ParamConverter("CharacterLook", options={"mapping": {"slug": "slug"}})
+    * @ParamConverter("look", options={"mapping": {"slug": "slug"}})
     */
     public function editAction(Request $request, CharacterLook $look)
     {
@@ -54,10 +54,11 @@ class CharacterLookController extends Controller
             throw new AccessDeniedException();
 
         $colors = $look->getColors();
-        foreach($colors as $k => $color)
-            $newColors[$k] = str_pad(dechex($color), 6, '0', STR_PAD_LEFT);
+        foreach($colors as &$color){
+          $color = dechex($color);
+        }
 
-        $look->setColors($newColors);
+        $look->setColors($colors);
 
         $form = $this->createForm('character_look', $look);
 
