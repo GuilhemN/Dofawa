@@ -2,7 +2,7 @@ services:
     sonata.admin.user:
         class: Dof\AdminBundle\Admin\UserAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Users", label: "Utilisateurs" }
+            - { name: sonata.admin, manager_type: orm, group: "Utilisateurs", label: "Utilisateurs" }
         arguments:
             - ~
             - Dof\UserBundle\Entity\User
@@ -14,7 +14,7 @@ services:
     sonata.admin.article:
         class: Dof\AdminBundle\Admin\ArticleAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Articles" }
+            - { name: sonata.admin, manager_type: orm, group: "Contenu", label: "Articles" }
         arguments:
             - ~
             - Dof\ArticlesBundle\Entity\Article
@@ -26,4 +26,4 @@ services:
         class: Dof\AdminBundle\Admin\TranslationAdmin
         arguments: [~, Dof\TranslationBundle\Entity\Translation, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: Translation}
+            - {name: sonata.admin, manager_type: orm, group: Contenu, label: Traductions}

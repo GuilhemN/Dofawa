@@ -22,6 +22,7 @@ class TranslationAdmin extends Admin
             ->add('domain')
             ->add('locale')
             ->add('published')
+            ->add('owner')
         ;
     }
 
@@ -37,6 +38,7 @@ class TranslationAdmin extends Admin
             ->add('domain')
             ->add('locale')
             ->add('published')
+            ->add('owner')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -53,6 +55,7 @@ class TranslationAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('owner')
             ->add('label')
             ->add('translation')
             ->add('domain')
@@ -68,6 +71,7 @@ class TranslationAdmin extends Admin
     {
         $showMapper
             ->add('id')
+            ->add('owner')
             ->add('label')
             ->add('translation')
             ->add('domain')
