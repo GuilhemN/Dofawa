@@ -11,12 +11,18 @@ class TranslationController extends Controller
         $translator = $this->get('translator');
 
         $baseCatalogue = $translator->getCatalogue(null, 'fr');
-        $currentCatalogue = $translator->getCatalogue(null, $tLocale);
 
         return $this->render('DofTranslationBundle:Translation:locale.html.twig', array(
           'baseCatalogue' => $baseCatalogue,
-          'currentCatalogue' => $currentCatalogue,
-          'locale' => $tLocale
+          'locale' => $tLocale,
+          'excludes' => $this->domainExclude()
         ));
+    }
+
+    private function domainExclude(){
+        return array(
+            'FOSUserBundle',
+            'validators'
+        );
     }
 }
