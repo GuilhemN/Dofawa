@@ -10,7 +10,7 @@ class TranslationController extends Controller
     {
         $translator = $this->get('translator');
 
-        $baseCatalogue = $translator->getCatalogue('fr');
+        $baseCatalogue = $translator->getCatalogue(null, 'fr');
         $currentCatalogue = $translator->getCatalogue($tLocale);
 
         var_dump($baseCatalogue);
