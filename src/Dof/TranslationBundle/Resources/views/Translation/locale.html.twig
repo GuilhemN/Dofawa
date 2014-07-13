@@ -19,10 +19,9 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Label</th>
             <th>Nom Fr</th>
             <th>Nom {{ locale }}</th>
-            <th>Domaine</th>
+            <th class="hidden-sm">Domaine</th>
           </tr>
         </thead>
         <tbody>
@@ -31,10 +30,9 @@
                 {% if issetTrans(key, domain, locale) == false and domain not in excludes %}
                   <tr>
                     <td>1</td>
-                    <td>{{ key }}</td>
                     <td>{{ message }}</td>
                     <td>{{ key | trans({}, domain, locale) }}</td>
-                    <td>{{ domain }}</td>
+                    <td class="hidden-sm">{{ domain }}</td>
                   </tr>
                 {% endif %}
               {% endfor %}
