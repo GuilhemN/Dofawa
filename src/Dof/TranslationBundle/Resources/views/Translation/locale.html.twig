@@ -28,13 +28,15 @@
         <tbody>
           {% for domain, messages in baseCatalogue %}
               {% for key, message in messages %}
-                <tr>
-                  <td>1</td>
-                  <td>{{ key }}</td>
-                  <td>{{ message }}</td>
-                  <td>{{ key | trans({}, locale, domain) }}</td>
-                  <td>{{ domain}}</td>
-                </tr>
+                {% if !issetTrans(key, '', locale)}
+                  <tr>
+                    <td>1</td>
+                    <td>{{ key }}</td>
+                    <td>{{ message }}</td>
+                    <td>{{ key | trans({}, domain, locale) }}</td>
+                    <td>{{ domain }}</td>
+                  </tr>
+                {% endif %}
               {% endfor %}
           {% endfor %}
         </tbody>
