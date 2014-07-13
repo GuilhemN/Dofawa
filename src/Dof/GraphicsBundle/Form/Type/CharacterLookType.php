@@ -9,8 +9,6 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 use Dof\CharactersBundle\Gender;
 use Dof\GraphicsBundle\LivingItem;

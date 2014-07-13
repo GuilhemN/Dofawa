@@ -5,17 +5,28 @@ namespace Dof\TranslationBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class TranslationType extends AbstractType
 {
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+        $this->translator = $this->container->get('translator');
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $entity = $builder->getData();
+
         $builder
-            ->add('label')
+            ->add('label', null, array( 'disabled' => true ))
+            ->add('nameFr', null, array( 'data' => $this->translator->trans($entity->getLabel(), $entity->getDomain(), 'fr'), 'disabled' => true, 'mapped' => false ))
             ->add('translation')
         ;
     }
