@@ -20,23 +20,23 @@ function updateSlotsName(){
       var input = document.querySelector('[for="character_look_colors_'+id+'"] ~ div');
       input.setAttribute('class', 'col-lg-9')
 
-      if (typeof slots[breed+gender'.slot'+id] != 'undefined') {
-          el.innerHTML = slots[breed+gender'.slot'+id];
+      if (typeof slots[breed + gender + '.slot' + id] != 'undefined') {
+          el.innerHTML = slots[breed + gender + '.slot' + id];
       }
-      else if (typeof slots_fr[breed+gender'.slot'+id] != 'undefined') {
-          el.innerHTML = slots_fr[breed+gender'.slot'+id];
+      else if (typeof slots_fr[breed + gender + '.slot' + id] != 'undefined') {
+          el.innerHTML = slots_fr[breed + gender + '.slot' + id];
       }
-      else if (typeof slots[breed'.slot'+id] != 'undefined') {
-          el.innerHTML = slots[breed'.slot'+id];
+      else if (typeof slots[breed + '.slot' + id] != 'undefined') {
+          el.innerHTML = slots[breed + '.slot' + id];
       }
-      else if (typeof slots_fr[breed'.slot'+id] != 'undefined') {
-          el.innerHTML = slots_fr[breed'.slot'+id];
+      else if (typeof slots_fr[breed + '.slot' + id] != 'undefined') {
+          el.innerHTML = slots_fr[breed + '.slot' + id];
       }
-      else if (typeof slots['generic.slot'+id] != 'undefined') {
-          el.innerHTML = slots['generic.slot'+id];
+      else if (typeof slots['generic.slot' + id] != 'undefined') {
+          el.innerHTML = slots['generic.slot' + id];
       }
-      else if (typeof slots_fr['generic.slot'+id] != 'undefined') {
-          el.innerHTML = slots_fr['generic.slot'+id];
+      else if (typeof slots_fr['generic.slot' + id] != 'undefined') {
+          el.innerHTML = slots_fr['generic.slot' + id];
       }
   }
 }
