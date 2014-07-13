@@ -39,7 +39,7 @@
                     <td class="hidden-sm">{{ domain }}</td>
                     {% if app.user is not null %}
                     <td>
-                        <a class="btn btn-sm btn-default" href="{{ path('dof_translation_create', {'tLocale': locale, 'domain': domain, 'label': label}) }}">
+                        <a class="btn btn-sm btn-default" href="{{ path('dof_translation_create', {'tLocale': locale, 'domain': domain, 'label': key}) }}">
                             <i class="glyphicon glyphicon-remove"></i>
                             Translate
                         </a>
