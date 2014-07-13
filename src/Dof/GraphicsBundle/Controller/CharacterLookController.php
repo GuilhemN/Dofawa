@@ -53,7 +53,7 @@ class CharacterLookController extends Controller
         $securityContext = $this->get('security.context');
         if (!$securityContext->isGranted('ROLE_STYLIST_BETA'))
             throw new AccessDeniedException();
-        if(!$securityContext->isGranted('ROLE_STYLIST_ADMIN') and $look->getCreator() != $securityContext->getToken->getUser())
+        if(!$securityContext->isGranted('ROLE_STYLIST_ADMIN') and $look->getCreator() != $securityContext->getToken()->getUser())
             throw new AccessDeniedException();
 
         $colors = $look->getColors();
