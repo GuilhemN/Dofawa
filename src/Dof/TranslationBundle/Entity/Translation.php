@@ -4,14 +4,23 @@ namespace Dof\TranslationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\DataBundle\IdentifiableInterface;
+use XN\DataBundle\TimestampableInterface;
+use XN\DataBundle\TimestampableTrait;
+use XN\DataBundle\OwnableInterface;
+use Dof\UserBundle\OwnableTrait;
+
 /**
  * Translation
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Dof\TranslationBundle\Entity\TranslationRepository")
  */
-class Translation
+class Translation implements IdentifiableInterface, TimestampableInterface, OwnableInterface
 {
+
+    use TimestampableTrait, OwnableTrait;
+
     /**
      * @var integer
      *
@@ -41,6 +50,20 @@ class Translation
      * @ORM\Column(name="domain", type="string", length=255)
      */
     private $domain;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="locale", type="string", length=2)
+     */
+    private $locale;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="published", type="boolean", nullable=true)
+     */
+    private $published;
 
 
     /**
@@ -120,5 +143,51 @@ class Translation
     public function getDomain()
     {
         return $this->domain;
+    }
+
+    /**
+     * Set locale
+     *
+     * @param string $locale
+     * @return Translation
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * Set published
+     *
+     * @param string $published
+     * @return Translation
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return string
+     */
+    public function getPublished()
+    {
+        return $this->published;
     }
 }

@@ -72,7 +72,7 @@ class CharacterLookController extends Controller
             return $this->redirect($this->getCLUrl($look));
         }
 
-        return $this->render('DofGraphicsBundle:CharacterLook:create.html.twig', ['form' => $form->createView()]);
+        return $this->render('DofGraphicsBundle:CharacterLook:edit.html.twig', ['form' => $form->createView()]);
     }
 
     protected function getCLUrl($look){

@@ -1,0 +1,10 @@
+{% extends 'DofTranslationBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>Créer une traduction</li>
+{% endblock %}
+
+{% block body %}
+    {{ form(form, { 'style': 'horizontal' }) }}
+{% endblock %}

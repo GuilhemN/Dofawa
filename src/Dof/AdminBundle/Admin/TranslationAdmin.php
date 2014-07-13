@@ -17,9 +17,11 @@ class TranslationAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('domain')
             ->add('label')
             ->add('translation')
+            ->add('domain')
+            ->add('locale')
+            ->add('published')
         ;
     }
 
@@ -30,9 +32,11 @@ class TranslationAdmin extends Admin
     {
         $listMapper
             ->add('id')
-            ->add('domain')
             ->add('label')
             ->add('translation')
+            ->add('domain')
+            ->add('locale')
+            ->add('published')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -49,9 +53,11 @@ class TranslationAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('domain')
             ->add('label')
             ->add('translation')
+            ->add('domain')
+            ->add('locale')
+            ->add('published')
         ;
     }
 
@@ -62,9 +68,11 @@ class TranslationAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('domain')
             ->add('label')
             ->add('translation')
+            ->add('domain')
+            ->add('locale')
+            ->add('published')
         ;
     }
 }

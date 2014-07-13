@@ -1,7 +1,14 @@
 parameters:
-#    dof_translation.example.class: Dof\TranslationBundle\Example
+    dof_translation.form.type.translation.class: Dof\TranslationBundle\Form\TranslationType
 
 services:
 #    dof_translation.example:
 #        class: %dof_translation.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+# FORMS
+dof_translation.form.type.translation:
+class: %dof_translation.form.type.translation.class%
+tags:
+    - { name: form.type, alias: dof_translation }
+arguments: ['@service_container']

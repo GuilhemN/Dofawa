@@ -3,6 +3,9 @@
 namespace Dof\TranslationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
+use Dof\TranslationBundle\Entity\Translation;
 
 class TranslationController extends Controller
 {
@@ -17,6 +20,26 @@ class TranslationController extends Controller
           'locale' => $tLocale,
           'excludes' => $this->domainExclude()
         ));
+    }
+
+    public function createAction($tLocale, $domain, $label){
+        $user = $this->get('security.context')->getToken()->getUser();
+        $translator = $this->get('translator');
+
+        if($user == null or !$translator->has($label, $domain, 'fr'))
+            throw new AccessDeniedException();
+
+        $translation = new Translation();
+
+        $translation
+          ->setLabel($label)
+          ->setdomain($domain)
+          ->setLocale($tLocale)
+        ;
+
+        $form = $this->createForm('dof_translation', $translation);
+
+        $this->render('DofTranslationBundle:Translation:create.html.twig', ['form' => $form->createView()]);
     }
 
     private function domainExclude(){
