@@ -303,6 +303,7 @@ class BasicPCLook
                     break;
             }
             if ($this->animal->isMount()) {
+				$pcLook->setBone(2);
                 foreach ($this->animal->getSkins() as $skin)
                     $aniLook->addSkin($skin);
                 if ($this->animal->getColorizationType() === AnimalColorizationType::COLORS)
