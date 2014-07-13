@@ -50,7 +50,10 @@ class CharacterLookController extends Controller
     */
     public function editAction(Request $request, CharacterLook $look)
     {
-        if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))
+        $securityContext = $this->get('security.context');
+        if (!$securityContext->isGranted('ROLE_STYLIST_BETA'))
+            throw new AccessDeniedException();
+        if(!$securityContext->isGranted('ROLE_STYLIST_ADMIN') and $look->getCreator() != $securityContext->getToken->getUser())
             throw new AccessDeniedException();
 
         $colors = $look->getColors();
