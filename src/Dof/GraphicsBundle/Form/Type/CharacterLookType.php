@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 use Dof\CharactersBundle\Gender;
+use Dof\GraphicsBundle\LivingItem;
 
 class CharacterLookType extends AbstractType
 {
