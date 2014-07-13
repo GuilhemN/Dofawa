@@ -28,8 +28,9 @@
           {% for domain, messages in baseCatalogue %}
               {% for key, message in messages %}
                 {% if issetTrans(key, domain, locale) == false and domain not in excludes %}
+                  {% set i++ %}
                   <tr>
-                    <td>1</td>
+                    <td>{{ i }}</td>
                     <td>{{ message }}</td>
                     {#<td>{{ key | trans({}, domain, locale) }}</td>#}
                     <td class="hidden-sm">{{ domain }}</td>
