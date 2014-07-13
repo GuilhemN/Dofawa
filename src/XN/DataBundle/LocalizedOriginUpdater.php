@@ -26,7 +26,7 @@ class LocalizedOriginUpdater
 
   public function prePersist(LifecycleEventArgs $args)
   {
-    $locale = $this->rs->getCurrentRequest()->getLocale();
+    $locale = $this->di->get('translator')->getLocale();
 
     $ent = $args->getEntity();
     if ($ent instanceof LocalizedOriginInterface) {
@@ -38,7 +38,7 @@ class LocalizedOriginUpdater
 
   public function onFlush(OnFlushEventArgs $args)
   {
-    $locale = $this->rs->getCurrentRequest()->getLocale();
+    $locale = $this->di->get('translator')->getLocale();
 
     $em = $args->getEntityManager();
     $uow = $em->getUnitOfWork();
