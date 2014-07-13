@@ -1,3 +1,7 @@
+dof_translation:
+    resource: "@DofTranslationBundle/Resources/config/routing.yml"
+    prefix:   /translations
+
 #dof_message:
 #    resource: "@DofMessageBundle/Resources/config/routing.yml"
 #    prefix:   /

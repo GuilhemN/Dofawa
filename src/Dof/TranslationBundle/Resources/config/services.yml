@@ -1,0 +1,7 @@
+parameters:
+#    dof_translation.example.class: Dof\TranslationBundle\Example
+
+services:
+#    dof_translation.example:
+#        class: %dof_translation.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

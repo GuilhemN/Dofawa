@@ -154,13 +154,34 @@ class Translator extends BaseTranslator {
         return [ $locale ];
     }
 
-    public function getCatalogue($domain, $locale = null){
+    public function getCatalogue($domain = null, $locale = null){
         if($locale === null)
             $locale = $this->getLocale();
-        
+
         if (!isset($this->catalogues[$locale]))
             $this->loadCatalogue($locale);
 
         return $this->catalogues[$locale]->all($domain);
+    }
+
+    public function getDomains($locale = null){
+        if($locale === null)
+            $locale = $this->getLocale();
+
+        if (!isset($this->catalogues[$locale]))
+            $this->loadCatalogue($locale);
+
+        return $this->catalogues[$locale]->getDomains();
+    }
+    
+    public function isset($id, $domain = 'messages', $locale = null){
+        if($locale === null)
+            $locale = $this->getLocale();
+
+        if (!isset($this->catalogues[$locale]))
+            $this->loadCatalogue($locale);
+
+        return $this->catalogues[$locale]->has($id, $domain);
+
     }
 }

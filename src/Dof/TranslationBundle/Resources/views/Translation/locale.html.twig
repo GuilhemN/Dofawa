@@ -1,0 +1,43 @@
+{% extends 'DofTranslationBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ locale | capitalize }}</li>
+{% endblock %}
+
+{% block body %}
+<div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Traductions dans la locale {{ locale }}</div>
+      <div class="panel-body">
+        {#<p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+          #}
+      </div>
+
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Label</th>
+            <th>Nom Fr</th>
+            <th>Nom {{ locale }}</th>
+            <th>Domaine</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for domain, messages in baseCatalogue %}
+              {% for key, message in messages %}
+                <tr>
+                  <td>1</td>
+                  <td>{{ key }}</td>
+                  <td>{{ message }}</td>
+                  <td>{{ key | trans({}, locale, domain) }}</td>
+                  <td>{{ domain}}</td>
+                </tr>
+              {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

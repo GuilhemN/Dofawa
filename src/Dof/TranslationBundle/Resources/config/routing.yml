@@ -1,0 +1,5 @@
+dof_translation_homepage:
+    path: /{tLocale}
+    defaults: { _controller: DofTranslationBundle:Translation:locale }
+    requirements:
+        tLocale: [a-z]{2}

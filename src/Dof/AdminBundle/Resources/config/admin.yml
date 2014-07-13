@@ -21,3 +21,9 @@ services:
             - DofAdminBundle:CRUDOwn
         calls:
             - [ setTranslationDomain, [DofArticlesBundle]]
+
+    dof_admin.translation:
+        class: Dof\AdminBundle\Admin\TranslationAdmin
+        arguments: [~, Dof\TranslationBundle\Entity\Translation, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Translation}
