@@ -7,6 +7,8 @@ $(function () {
     var slice = Array.prototype.slice;
     var reFlipcard = /\[dofawa-([a-z-]+)(?: ([0-9a-z= -]*))?\]([0-9a-z-]+)\[\/dofawa-\1\]/g;
     var reSlugToken = /\{slug\}/g;
+    var reTrim = /^\s+|\s+$/g;
+    var reWhiteSpace = /\s+/g;
     var walk = function () {
         var children = slice.call(this.childNodes);
         for (var i = 0; i < children.length; ++i)
@@ -36,13 +38,20 @@ $(function () {
                 node.className = 'dofawa-insertion-point';
                 node.style.display = 'inline-block';
                 if (match[1] in DOFAWA_PATTERNS) {
+                    var params = match[2].replace(reTrim, '').split(reWhiteSpace);
+                    for (var i = params.length; i-- > 0; )
+                        if (!params[i] || params[i] == 'insertion-point' || params[i].length >= 16 && params[i].substring(0, 16) == 'insertion-point-')
+                            params.splice(i, 1);
+                    params.push('insertion-point=dofawa-insertion-point-' + dipSerial);
+                    params = '?' + params.join('&');
                     var scriptNode = document.createElement('script');
                     scriptNode.type = 'text/javascript';
-                    scriptNode.src = DOFAWA_ROOT + DOFAWA_PATTERNS[match[1]].replace(reSlugToken, match[3]);
+                    scriptNode.src = DOFAWA_ROOT + DOFAWA_PATTERNS[match[1]].replace(reSlugToken, match[3]) + params;
                     scriptNode.async = true;
                     scriptNode.defer = true;
                     document.head.appendChild(scriptNode);
                 } else {
+                    node.className += ' dofawa-insertion-point-error';
                     node.style.border = '1px dashed red';
                     node.style.padding = '0 4px';
                     node.style.borderRadius = '4px';
