@@ -41,6 +41,7 @@
 	transform: translateZ(0);
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
+	cursor: pointer;
 }
 .dofawa-skin-embed-flipcard-recto, .dofawa-skin-embed-flipcard-verso {
 	position: absolute;
@@ -77,6 +78,7 @@
 	}
 	background-image: url(../images/flipcard-recto.png);
 	background-size: cover;
+	padding: 10px 0;
 }
 .dofawa-skin-embed-flipcard-verso {
 	padding: 4px 8px;
@@ -97,15 +99,18 @@
 		border-spacing: 0;
 		border: 0 none;
 		display: block;
+		background: transparent;
 	}
 	tbody {
 		display: block;
 		width: 100%;
+		background: transparent;
 	}
 	tr {
 		width: 100%;
 		display: block;
 		overflow: hidden;
+		background: transparent;
 	}
 	th, td {
 		font-family: Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -114,15 +119,19 @@
 		display: inline-block;
 		white-space: nowrap;
 		line-height: 16px;
+		height: auto;
+		background: transparent;
+		color: black;
 	}
 	th {
 		font-weight: bold;
 		float: left;
-		cursor: default;
+		cursor: pointer;
 	}
 	td {
 		font-weight: normal;
 		float: right;
+		cursor: text;
 	}
 	tr + tr {
 		border-top: 1px solid #F0F0F0;
@@ -139,4 +148,60 @@
 	background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%), linear-gradient(-45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.25) 75%), linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.25) 75%);
 	background-size: 16px 16px;
 	background-position: 0px 8px, 0px 0px, 8px 0px, 8px 8px;
+}
+
+.dofawa-skin-embed-flipcard-recto-white {
+	background-color: white;
+	background-image: none;
+}
+.dofawa-skin-embed-flipcard-verso-white {
+	background-color: white;
+	th, td {
+		color: black;
+	}
+	tr + tr {
+		border-top-color: #F0F0F0;
+	}
+}
+
+.dofawa-skin-embed-flipcard-recto-black {
+	background-color: #202020;
+	background-image: none;
+}
+.dofawa-skin-embed-flipcard-verso-black {
+	background-color: #202020;
+	th, td {
+		color: white;
+	}
+	tr + tr {
+		border-top-color: #404040;
+	}
+}
+
+.dofawa-skin-embed-flipcard-recto-dofus1 {
+	background-color: #DEDABE;
+	background-image: none;
+}
+.dofawa-skin-embed-flipcard-verso-dofus1 {
+	background-color: #DEDABE;
+	th, td {
+		color: #514A3C;
+	}
+	tr + tr {
+		border-top-color: #B4AC8D;
+	}
+}
+
+.dofawa-skin-embed-flipcard-recto-transparent {
+	background-color: transparent;
+	background-image: none;
+}
+.dofawa-skin-embed-flipcard-verso-transparent {
+	background-color: transparent;
+	th, td {
+		color: inherit;
+	}
+	tr + tr {
+		border-top-color: transparent;
+	}
 }

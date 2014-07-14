@@ -32,7 +32,7 @@ renderNode(card = createElement('div', null, {
 		card.className = clsList.join(' ');
 	}
 }, [
-	recto = createElement('div', null, { className: 'dofawa-skin-embed-flipcard-recto' }, null, [
+	recto = createElement('div', null, { className: 'dofawa-skin-embed-flipcard-recto{% if app.request.query.has('recto-theme') %} dofawa-skin-embed-flipcard-recto-{{ app.request.query.get('recto-theme') }}{% endif %}' }, null, [
 		{% include 'DofGraphicsBundle:Component:renderer.js.twig' with {
 			'look': look.toEntityLook(),
 			'focus': 'full',
@@ -41,7 +41,7 @@ renderNode(card = createElement('div', null, {
 			'height': 380
 		} only %}
 	]),
-	verso = createElement('div', null, { className: 'dofawa-skin-embed-flipcard-verso' }, null, [
+	verso = createElement('div', null, { className: 'dofawa-skin-embed-flipcard-verso{% if app.request.query.has('verso-theme') %} dofawa-skin-embed-flipcard-verso-{{ app.request.query.get('verso-theme') }}{% endif %}' }, null, [
 		createElement('table', null, null, null, [
 			createElement('tbody', null, null, null, [
 				{% if look.breed is not null %}

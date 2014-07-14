@@ -1,3 +1,4 @@
+{% autoescape 'js' %}
 (function () {
 	"use strict";
 	var thisScriptNode;
@@ -66,7 +67,7 @@
 	};
 	var renderNode = function (node) {
 		var refNode;
-		var parNode = document.getElementById('dofawa-skin-embed-{{ look.slug }}');
+		var parNode = document.getElementById('{% if app.request.query.has('insertion-point') %}{{ app.request.query.get('insertion-point') }}{% else %}dofawa-skin-embed-{{ look.slug }}{% endif %}');
 		if (!parNode) {
 			if (!thisScriptNode)
 				return;
@@ -88,3 +89,4 @@
 	{% block body %}
 	{% endblock %}
 })();
+{% endautoescape %}
