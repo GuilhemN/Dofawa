@@ -39,9 +39,9 @@ $(function () {
                 node.style.display = 'inline-block';
                 if (match[1] in DOFAWA_PATTERNS) {
                     var params = match[2].replace(reTrim, '').split(reWhiteSpace);
-                    for (var i = params.length; i-- > 0; )
-                        if (!params[i] || params[i] == 'insertion-point' || params[i].length >= 16 && params[i].substring(0, 16) == 'insertion-point-')
-                            params.splice(i, 1);
+                    for (var j = params.length; j-- > 0; )
+                        if (!params[j] || params[j] == 'insertion-point' || params[j].length >= 16 && params[j].substring(0, 16) == 'insertion-point-')
+                            params.splice(j, 1);
                     params.push('insertion-point=dofawa-insertion-point-' + dipSerial);
                     params = '?' + params.join('&');
                     var scriptNode = document.createElement('script');
