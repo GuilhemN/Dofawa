@@ -41,6 +41,7 @@
 	transform: translateZ(0);
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
+	cursor: pointer;
 }
 .dofawa-skin-embed-flipcard-recto, .dofawa-skin-embed-flipcard-verso {
 	position: absolute;
@@ -97,15 +98,18 @@
 		border-spacing: 0;
 		border: 0 none;
 		display: block;
+		background: transparent;
 	}
 	tbody {
 		display: block;
 		width: 100%;
+		background: transparent;
 	}
 	tr {
 		width: 100%;
 		display: block;
 		overflow: hidden;
+		background: transparent;
 	}
 	th, td {
 		font-family: Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -116,6 +120,7 @@
 		line-height: 16px;
 		height: auto;
 		background: transparent;
+		color: black;
 	}
 	th {
 		font-weight: bold;
@@ -141,4 +146,14 @@
 	background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%), linear-gradient(-45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.25) 75%), linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.25) 75%);
 	background-size: 16px 16px;
 	background-position: 0px 8px, 0px 0px, 8px 0px, 8px 8px;
+}
+
+.dofawa-skin-embed-flipcard-verso-theme-black {
+	background-color: #202020;
+	th, td {
+		color: white;
+	}
+	tr + tr {
+		border-top-color: #404040;
+	}
 }
