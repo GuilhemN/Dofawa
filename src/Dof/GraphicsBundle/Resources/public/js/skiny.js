@@ -38,7 +38,7 @@ $(function () {
                 node.className = 'dofawa-insertion-point';
                 node.style.display = 'inline-block';
                 if (match[1] in DOFAWA_PATTERNS) {
-                    var params = match[2].replace(reTrim, '').split(reWhiteSpace);
+                    var params = match[2] ? match[2].replace(reTrim, '').split(reWhiteSpace) : [ ];
                     for (var j = params.length; j-- > 0; )
                         if (!params[j] || params[j] == 'insertion-point' || params[j].length >= 16 && params[j].substring(0, 16) == 'insertion-point=')
                             params.splice(j, 1);
