@@ -28,7 +28,7 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Nom Fr</th>
+            <th>Nom</th>
             {#<th>Nom {{ locale }}</th>#}
             <th class="hidden-sm">{{ 'domain' | trans() }}</th>
             {% if app.user is not null %}
@@ -43,7 +43,7 @@
                 {% if issetTrans(key, domain, locale) == false and domain not in excludes %}
                   <tr>
                     <td>{{ i }}</td>
-                    <td>{{ message | raw }}</td>
+                    <td>{{ key | trans() }}</td>
                     {#<td>{{ key | trans({}, domain, locale) }}</td>#}
                     <td class="hidden-sm">{{ domain }}</td>
                     {% if app.user is not null %}
