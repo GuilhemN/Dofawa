@@ -43,14 +43,14 @@
                 {% if issetTrans(key, domain, locale) == false and domain not in excludes %}
                   <tr>
                     <td>{{ i }}</td>
-                    <td>{{ message }}</td>
+                    <td>{{ message | raw }}</td>
                     {#<td>{{ key | trans({}, domain, locale) }}</td>#}
                     <td class="hidden-sm">{{ domain }}</td>
                     {% if app.user is not null %}
                     <td>
                         <a class="btn btn-sm btn-default" href="{{ path('dof_translation_create', {'tLocale': locale, 'domain': domain, 'label': key}) }}">
                             <i class="glyphicon glyphicon-globe"></i>
-                            {{ 'translate' | trans() | raw}}
+                            {{ 'translate' | trans() | raw }}
                         </a>
                     </td>
                     {% endif %}
