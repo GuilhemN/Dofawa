@@ -48,9 +48,9 @@
                     <td class="hidden-sm">{{ domain }}</td>
                     {% if app.user is not null %}
                     <td>
-                        <a class="btn btn-sm btn-default" href="">
+                        <a class="btn btn-sm btn-default" href="{{ path('dof_translation_create', {'tLocale': locale, 'domain': domain, 'label': key}) }}">
                             <i class="glyphicon glyphicon-globe"></i>
-                            {{ 'translate' | trans() }}
+                            {{ 'translate' | trans() | raw}}
                         </a>
                     </td>
                     {% endif %}
