@@ -32,4 +32,4 @@ services:
         class: Dof\AdminBundle\Admin\CharacterLookAdmin
         arguments: [~, Dof\GraphicsBundle\Entity\CharacterLook, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Content, label: CharacterLook}
+            - {name: sonata.admin, manager_type: orm, group: Contenu, label: CharacterLook}

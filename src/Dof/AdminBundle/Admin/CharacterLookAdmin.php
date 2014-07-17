@@ -52,7 +52,6 @@ class CharacterLookAdmin extends Admin
             ->add('id')
             ->add('name')
             ->add('publiclyVisible')
-            ->add('colors')
         ;
     }
 
