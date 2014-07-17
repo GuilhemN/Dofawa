@@ -43,7 +43,7 @@
                 {% if issetTrans(key, domain, locale) == false and domain not in excludes %}
                   <tr>
                     <td>{{ i }}</td>
-                    <td>{{ key | trans() }}</td>
+                    <td>{{ key | trans({}, domain) }}</td>
                     {#<td>{{ key | trans({}, domain, locale) }}</td>#}
                     <td class="hidden-sm">{{ domain }}</td>
                     {% if app.user is not null %}
