@@ -28,7 +28,8 @@ dof_graphics_skins_add_from_pipette:
 dof_graphics_skins_list:
     pattern:  /skins/{page}
     defaults: { _controller: DofGraphicsBundle:CharacterLook:list, page: 1 }
-    page: \d+
+    requirements:
+        page: \d+
 
 dof_graphics_skins_create:
     pattern:  /skins/create
