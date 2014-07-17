@@ -23,7 +23,7 @@ class CharacterLookController extends Controller
 		$looksPerPage = 15;
 		$firstResult = ($page - 1) * $looksPerPage;
 
-		if($firstResult > $countArticles)
+		if($firstResult > $countLooks)
             throw $this->createNotFoundException('This page does not exist.');
 
 		$looks = $repository->findLooks($firstResult, $looksPerPage);
