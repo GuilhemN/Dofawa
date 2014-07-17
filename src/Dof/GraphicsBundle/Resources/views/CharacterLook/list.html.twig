@@ -3,10 +3,11 @@
 {% block body %}
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 
+    <div class="row">
     {% for look in looks %}
-        <div id="dofawa-skin-embed-{{ look.slug}}"></div>
+        <div id="dofawa-skin-embed-{{ look.slug}}" class="col-lg-6"></div>
         <script type="text/javascript" src="{{ path('dof_graphics_skins_embed', { 'slug' : look.slug, 'format': 'js'}) }}"></script>
     {% endfor %}
-
+    </div>
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 {% endblock %}
