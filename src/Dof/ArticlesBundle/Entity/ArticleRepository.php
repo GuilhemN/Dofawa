@@ -23,19 +23,18 @@ class ArticleRepository extends EntityRepository
 
 		$qb = $this->createQueryBuilder('a');
 
-		$qb->add('where', 'a.type'.$operator.ArticleType::NEWS .
-					' and a.published=1')
-	  	 ->add('orderBy', 'a.createdAt DESC, a.id DESC')
-			 //->setParameter('boolean', $boolean)
-			 ->setFirstResult( $firstresult )
-			 ->setMaxResults( $maxresults );
+		$qb
+			->add('where', 'a.type'.$operator.ArticleType::NEWS .
+				' and a.published=1')
+	  		->add('orderBy', 'a.createdAt DESC, a.id DESC')
+			->setFirstResult( $firstresult )
+			->setMaxResults( $maxresults );
 
-		$result = $qb->getQuery()
-	  						 ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
-								 ->useResultCache(true, 3600, 'findArticlesWithLimits'.$firstresult.'-'.$maxresults)
-								 ->getResult();
-
-	  return $result;
+		return = $qb
+			->getQuery()
+			->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
+			->useResultCache(true, 3600, 'findArticlesWithLimits'.$firstresult.'-'.$maxresults)
+			->getResult();
 	}
 
 	/**
@@ -44,15 +43,15 @@ class ArticleRepository extends EntityRepository
     * @return integer
     */
     public function countTotal($is_news = false){
-			if($is_news)
-				$operator = ' = ';
-			else
-				$operator = ' != ';
+		if($is_news)
+			$operator = ' = ';
+		else
+			$operator = ' != ';
 
-      return $this->createQueryBuilder('a')
-     ->select('COUNT(a)')
-		 ->where('a.published=1 and a.type ' . $operator . ArticleType::NEWS)
-     ->getQuery()
-     ->getSingleScalarResult();
+		return $this->createQueryBuilder('a')
+		    ->select('COUNT(a)')
+			->where('a.published=1 and a.type ' . $operator . ArticleType::NEWS)
+		    ->getQuery()
+		    ->getSingleScalarResult();
     }
 }

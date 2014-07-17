@@ -13,6 +13,36 @@ use Dof\GraphicsBundle\LivingItem;
 
 class CharacterLookController extends Controller
 {
+	public function listAction($page)
+	{
+		$translator = $this->get('translator');
+        $repository = $this->getDoctrine()->getRepository('DofGraphicsBundle:CharacterLook');
+		$countLooks =  $repository->countTotal(true);
+
+		// 15 results per page
+		$looksPerPage = 15;
+		$firstResult = ($page - 1) * $articlePerPage;
+
+		if($firstResult > $countArticles)
+            throw $this->createNotFoundException('This page does not exist.');
+
+		$looks = $repository->findLooks($firstResult, $looksPerPage);
+
+		$pagination = array(
+   			'page' => $page,
+   			'route' => 'dof_graphics_skins_list',
+  			'pages_count' => ceil($countLooks / $looksPerPage),
+   			'route_params' => array()
+   		);
+
+		return $this->render('DofGraphicsBundle:CharacterLook:list.html.twig', array(
+			'looks' => $looks,
+			'page' => $page,
+			'pagination' => $pagination
+		));
+
+	}
+
     public function createAction(Request $request)
     {
         if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))

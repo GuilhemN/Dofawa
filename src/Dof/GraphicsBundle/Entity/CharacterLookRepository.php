@@ -12,4 +12,44 @@ use Doctrine\ORM\EntityRepository;
  */
 class CharacterLookRepository extends EntityRepository
 {
+    public function findLooks($firstresult = 0, $maxresults=10, $public = true, $allFields = false)
+	{
+        if($allFields)
+            $select = 'l';
+        else
+            $select = 'l.slug, l.name';
+
+		if($public)
+			$where = ' l.publiclyVisible=1 ';
+
+		$qb = $this
+            ->createQueryBuilder('l')
+            ->select($select)
+            ->add('where', $where)
+    	  	->add('orderBy', 'a.updatedAt')
+    	    ->setFirstResult( $firstresult )
+    		->setMaxResults( $maxresults );
+
+		return $qb
+            ->getQuery()
+			->getResult();
+	}
+
+	/**
+    * Count all Looks
+    *
+    * @return integer
+    */
+    public function countTotal($public = true){
+
+		if($public)
+			$where = ' l.publiclyVisible=1 ';
+
+        return $this
+            ->createQueryBuilder('l')
+            ->select('COUNT(l)')
+            ->where($where)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

@@ -25,6 +25,11 @@ dof_graphics_skins_add_from_pipette:
     defaults: { _controller: DofGraphicsBundle:Pipette:addToGallery }
     requirements: { _method: POST }
 
+dof_graphics_skins_list:
+    pattern:  /skins/{page}
+    defaults: { _controller: DofGraphicsBundle:CharacterLook:list, page: 1 }
+    page: \d+
+
 dof_graphics_skins_create:
     pattern:  /skins/create
     defaults: { _controller: DofGraphicsBundle:CharacterLook:create }

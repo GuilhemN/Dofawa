@@ -1,0 +1,11 @@
+{% extends 'DofGraphicsBundle:CharacterLook:form.html.twig' %}
+
+{% block body %}
+    {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+
+    {% for look in looks %}
+        <script type="text/javascript" src="{{ path('dof_graphics_skins_embed', { 'slug' : look.slug }) }}"></script>
+    {% endfor %}
+
+    {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+{% endblock %}
