@@ -4,6 +4,7 @@
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 
     {% for look in looks %}
+        <div id="dofawa-skin-embed-{{ look.slug}}"></div>
         <script type="text/javascript" src="{{ path('dof_graphics_skins_embed', { 'slug' : look.slug }) }}"></script>
     {% endfor %}
 
