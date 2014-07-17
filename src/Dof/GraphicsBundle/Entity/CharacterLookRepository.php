@@ -26,7 +26,7 @@ class CharacterLookRepository extends EntityRepository
             ->createQueryBuilder('l')
             ->select($select)
             ->add('where', $where)
-    	  	->add('orderBy', 'a.updatedAt')
+    	  	->add('orderBy', 'l.updatedAt')
     	    ->setFirstResult( $firstresult )
     		->setMaxResults( $maxresults );
 
