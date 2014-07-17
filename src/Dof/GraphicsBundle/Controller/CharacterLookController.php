@@ -21,7 +21,7 @@ class CharacterLookController extends Controller
 
 		// 15 results per page
 		$looksPerPage = 15;
-		$firstResult = ($page - 1) * $articlePerPage;
+		$firstResult = ($page - 1) * $looksPerPage;
 
 		if($firstResult > $countArticles)
             throw $this->createNotFoundException('This page does not exist.');
