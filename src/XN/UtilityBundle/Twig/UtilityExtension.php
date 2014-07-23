@@ -23,6 +23,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('locales', [ $this->container->get('translator'), 'getLocales' ]),
 			new \Twig_SimpleFunction('once', [ $this, 'once' ]),
 			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
+			new \Twig_SimpleFunction('region', [ $this, 'getRegion' ]),
 		);
 	}
 
@@ -74,5 +75,9 @@ class UtilityExtension extends \Twig_Extension
 				return 'class="active"';
 			else
 				return false;
+	}
+
+	public function getRegion($locale, $in){
+		return locale_get_display_region($locale, $in);
 	}
 }
