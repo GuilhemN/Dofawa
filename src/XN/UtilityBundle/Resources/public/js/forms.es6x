@@ -1,9 +1,11 @@
+/** @jsx JSXDOM */
+
 var formHooks = { };
 var formScriptControls = { };
 
 function isThisSubformPA(form) {
 	return function () {
-		var closest = jQuery(this).closest('form, .subform');
+		var closest = jQuery(this).closest('form, .form, .subform');
 		return closest.length == 1 && closest[0] === form;
 	};
 }
@@ -33,8 +35,8 @@ function setReadOnly(form, ro) {
 			this.removeAttribute('data-readonly');
 		}
 	});
-	jQuery('.modify', form).filter(isThisSubform)[ro ? 'removeClass' : 'addClass']('hidden');
-	jQuery('.stop-modify, input[type="submit"], input[type="reset"]', form).filter(isThisSubform)[ro ? 'addClass' : 'removeClass']('hidden');
+	jQuery('.modify, .visible-when-rdonly', form).filter(isThisSubform)[ro ? 'removeClass' : 'addClass']('hidden');
+	jQuery('.stop-modify, input[type="submit"], input[type="reset"], .hidden-when-rdonly', form).filter(isThisSubform)[ro ? 'addClass' : 'removeClass']('hidden');
 	if (ro)
 		jQuery('.subform', form).each(function () { setReadOnly(this, true); });
 }
@@ -189,7 +191,7 @@ function setupForm(form) {
 					return;
 				var method = (this.hasAttribute('data-method') ? this.getAttribute('data-method') : this.method).toUpperCase();
 				if (method == 'DELETE') {
-					if (!(yield dialogConfirm([ 'Voulez-vous vraiment supprimer ' + (this.hasAttribute('data-this-object') ? this.getAttribute('data-this-object') : 'cet objet') + ' ?', mkNode('br'), 'Cette opération est irréversible !' ], 'Suppression', 'Oui, supprimer', 'Non')))
+					if (!(yield dialogConfirm([ 'Voulez-vous vraiment supprimer ' + (this.hasAttribute('data-this-object') ? this.getAttribute('data-this-object') : 'cet objet') + ' ?', <br />, 'Cette opération est irréversible !' ], 'Suppression', 'Oui, supprimer', 'Non')))
 						return;
 				}
 				if (hooks.preSubmit && hooks.preSubmit.call(this) === false)
@@ -198,9 +200,9 @@ function setupForm(form) {
 					setReadOnly(this, true);
 				var $this = jQuery(this);
 				$this.addClass('submitting');
-				var data, jqXHR;
+				var data;
 				try {
-					var { data, jqXHR } = yield ajax({
+					data = yield ajax({
 						url: this.action,
 						data: JSON.stringify(yield exportData(this)),
 					    contentType: 'application/json; charset=utf-8',
@@ -213,21 +215,21 @@ function setupForm(form) {
 					return;
 				}
 				$this.removeClass('submitting');
-				switch (jqXHR.status) {
+				switch (data.jqXHR.status) {
 				case 200:
 					var action = this.action;
 					jQuery('form').each(function () {
 						if (this.action == action)
-							importData(this, data);
+							importData(this, data.data);
 					});
 					break;
 				case 201:
-					this.action = jqXHR.getResponseHeader('Location');
-					importData(this, data);
+					this.action = data.jqXHR.getResponseHeader('Location');
+					importData(this, data.data);
 					break;
 				}
 				if (hooks.postSubmit)
-					hooks.postSubmit.call(this, true, jqXHR, data);
+					hooks.postSubmit.call(this, true, data.jqXHR, data.data);
 			});
 		}
 		return false;
@@ -235,11 +237,13 @@ function setupForm(form) {
 		validate(this, false, true);
 	});
 
-	$form.filter('form, .subform').each(function () {
+	$form.filter('form, .form, .subform').each(function () {
 		var isThisSubform = isThisSubformPA(this);
+		jQuery('.visible-when-rdonly', this).filter(isThisSubform).addClass('hidden');
 		var $modify = jQuery('.modify', this).filter(isThisSubform);
 		if (!$modify.length)
 			return;
+		$modify.addClass('hidden');
 		setReadOnly(this, true);
 		$modify.on('click', bind(function () {
 			setReadOnly(this, false);
@@ -332,11 +336,33 @@ function setupForm(form) {
 		});
 		$field.on('change', showPreview);
 		showPreview.call($field[0]);
+		this.refresh = bind(showPreview, $field[0]);
+		this.cleanup = bind(function () {
+			$field.off('change', showPreview);
+
+			$this.attr('style', defaultStyle);
+			$this.attr('src', defaultSource);
+			$this.attr('width', defaultWidth);
+			$this.attr('height', defaultHeight);
+
+			if (currentImage && 'cleanup' in currentImage)
+				currentImage.cleanup();
+			currentImage = null;
+
+			this.cleanup = function () { };
+		}, this);
 	});
+	$form.each(function () {
+		var doubles = jQuery('label input ~ input, label select ~ select, label textarea ~ textarea, label input ~ select, label input ~ textarea, label select ~ input, label select ~ textarea, label textarea ~ input, label textarea ~ select', this);
+		if (doubles.length > 0) {
+			doubles.css('outline', '5px solid red');
+			console.warn("ON NE MET PAS 2 INPUTS, SELECTS OU TEXTAREAS DANS LE MÊME LABEL !!!!! (form ID : " + this.id + ")");
+		}
+	})
 }
 
 jQuery(function () {
-	setupForm(jQuery('form, .subform'));
+	setupForm(jQuery('form, .form, .subform'));
 });
 
 var exportData = wrapAsync(function* exportData(form, data) {
@@ -355,22 +381,26 @@ var exportData = wrapAsync(function* exportData(form, data) {
 			switch ((this.hasAttribute('type') ? this.getAttribute('type') : 'text').toLowerCase()) {
 			case 'text':
 			case 'password':
-				setProperty(data, this.name, this.value);
-				break;
+			case 'tel':
+			case 'url':
+			case 'email':
+			case 'search':
+			case 'time':
 			case 'hidden':
 				if (jQuery(this).hasClass('json'))
-					setProperty(data, this.name, JSON.parse(this.value));
+					setProperty(data, this.name, JSON.parse(this.value || ''));
 				else
-					setProperty(data, this.name, this.value);
+					setProperty(data, this.name, this.value || '');
 				break;
 			case 'number':
+			case 'range':
 				var numVal;
 				if (this.value.length == 0)
 					numVal = null;
 				else
 					numVal = parseFloat(this.value);
 				if (numVal != numVal)
-					numVal = this.value;
+					numVal = this.value || '';
 				setProperty(data, this.name, numVal);
 				break;
 			case 'radio':
@@ -394,24 +424,47 @@ var exportData = wrapAsync(function* exportData(form, data) {
 						if (idx < 0)
 							array.splice(~idx, 0, this.value);
 					}
+				} else if (jQuery(this).hasClass('bitfield')) {
+					var value = this.value;
+					var invert = value.length > 0 && (value.charAt(0) == '~' || value.charAt(0) == '!');
+					if (this.checked ^ invert) {
+						value = parseInt(invert ? value.substring(1) : value);
+						setProperty(data, name, hasProperty(data, name) ? (getProperty(data, name) | value) : value);
+					} else if (!hasProperty(data, name))
+						setProperty(data, name, 0);
 				} else
 					setProperty(data, name, this.checked);
 				break;
 			case 'date':
 				var date;
-				if (this.type == 'date')
-					date = new Date(this.value);
-				else
-					date = parseLocaleDate(this.value);
-				setProperty(data, this.name, date.toISOString());
+				if (this.value) {
+					if (this.type == 'date') {
+						date = this.value.split(/-/g);
+						--date[1];
+						date = applyCtorCompat(Date, date);
+					} else
+						date = parseLocaleDate(this.value);
+				} else
+					date = null;
+				var dateStr = date ? (padString('' + date.getFullYear(), 4, '0', true) + '-' + padString('' + (date.getMonth() + 1), 2, '0', true) + '-' + padString('' + date.getDate(), 2, '0', true) + 'T00:00:00.000Z') : null;
+				setProperty(data, this.name, dateStr);
 				break;
 			case 'datetime-local':
 				var date;
-				if (this.type == 'datetime-local')
-					date = new Date(this.value);
+				if (this.value) {
+					if (this.type == 'datetime-local')
+						date = parseDate(this.value);
+					else
+						date = parseLocaleDate(this.value);
+				} else
+					date = null;
+				setProperty(data, this.name, date ? date.toISOString() : null);
+				break;
+			case 'color':
+				if (this.value)
+					setProperty(data, this.name, parseInt(this.value.substring(1), 16) & 16777215);
 				else
-					date = parseLocaleDate(this.value);
-				setProperty(data, this.name, date.toISOString());
+					setProperty(data, this.name, null);
 				break;
 			case 'button':
 			case 'submit':
@@ -435,9 +488,9 @@ var exportData = wrapAsync(function* exportData(form, data) {
 			break;
 		case 'textarea':
 			if (jQuery(this).hasClass('json'))
-				setProperty(data, this.name, JSON.parse(this.value));
+				setProperty(data, this.name, JSON.parse(this.value || ''));
 			else
-				setProperty(data, this.name, this.value);
+				setProperty(data, this.name, this.value || '');
 			break;
 		}
 	});
@@ -453,9 +506,9 @@ var exportData = wrapAsync(function* exportData(form, data) {
 					continue;
 				if ('getValue' in control) {
 					value = control.getValue();
-					if (isThenable(value)) {
-						joiner.add(remap(function (value) { setProperty(data, name, value); }, value));
-					} else
+					if (isThenable(value))
+						joiner.add(remap((function (name) { return function (value) { setProperty(data, name, value); }; })(name), value));
+					else
 						setProperty(data, name, value);
 				} else if ('value' in control)
 					setProperty(data, name, control.value);
@@ -482,11 +535,11 @@ var importData = wrapAsync(function* importData(form, data, force) {
 			switch ((this.hasAttribute('type') ? this.getAttribute('type') : 'text').toLowerCase()) {
 			case 'text':
 			case 'password':
-				if (hasProperty(data, this.name) && getProperty(data, this.name) !== null)
-					this.value = getProperty(data, this.name);
-				else if (force)
-					this.value = '';
-				break;
+			case 'tel':
+			case 'url':
+			case 'email':
+			case 'search':
+			case 'time':
 			case 'hidden':
 				if (hasProperty(data, this.name) && getProperty(data, this.name) !== null) {
 					if (jQuery(this).hasClass('json'))
@@ -497,10 +550,11 @@ var importData = wrapAsync(function* importData(form, data, force) {
 					this.value = jQuery(this).hasClass('json') ? 'null' : '';
 				break;
 			case 'number':
+			case 'range':
 				if (hasProperty(data, this.name) && getProperty(data, this.name) !== null)
 					this.value = getProperty(data, this.name);
 				else if (force)
-					this.value = this.hasAttribute('min') ? this.getAttribute('min') : 0;
+					this.value = '';
 				break;
 			case 'radio':
 				if (hasProperty(data, this.name))
@@ -517,6 +571,14 @@ var importData = wrapAsync(function* importData(form, data, force) {
 						this.checked = getProperty(data, name).indexOf(this.value) >= 0;
 					else if (force)
 						this.checked = false;
+				} else if (jQuery(this).hasClass('bitfield')) {
+					var value = this.value;
+					var invert = value.length > 0 && (value.charAt(0) == '~' || value.charAt(0) == '!');
+					var field = hasProperty(data, name) ? (getProperty(data, name) | 0) : 0;
+					value = parseInt(invert ? value.substring(1) : value);
+					if (invert)
+						field = ~field;
+					this.checked = (field & value) == value;
 				} else if (hasProperty(data, name))
 					this.checked = parseBoolean(getProperty(data, name));
 				else if (force)
@@ -524,27 +586,35 @@ var importData = wrapAsync(function* importData(form, data, force) {
 				break;
 			case 'date':
 				if (hasProperty(data, this.name) && getProperty(data, this.name) !== null) {
-					var date = getProperty(data, this.name);
-					if (typeof date != 'object')
-						date = new Date(date);
-					if (this.type == 'date')
-						this.value = date.toISOString().substring(0, 10);
+					var date = parseDate(getProperty(data, this.name), false);
+					if (!date)
+						this.value = '';
+					else if (this.type == 'date')
+						this.value = padString('' + date.getFullYear(), 4, '0', true) + '-' + padString('' + (date.getMonth() + 1), 2, '0', true) + '-' + padString('' + date.getDate(), 2, '0', true);
 					else
-						this.value = date.toLocaleDateString();
+						this.value = localeDate(date, false);
 				} else if (force)
 					this.value = '';
 				break;
 			case 'datetime-local':
 				if (hasProperty(data, this.name) && getProperty(data, this.name) !== null) {
-					var date = getProperty(data, this.name);
-					if (typeof date != 'object')
-						date = new Date(date);
-					if (this.type == 'date')
+					var date = parseDate(getProperty(data, this.name));
+					if (!date)
+						this.value = '';
+					else if (this.type == 'date')
 						this.value = date.toISOString().substring(0, 19);
 					else
-						this.value = date.toLocaleString();
+						this.value = localeDate(date, true);
 				} else if (force)
 					this.value = '';
+				break;
+			case 'color':
+				if (hasProperty(data, this.name) && getProperty(data, this.name) !== null) {
+					var color = getProperty(data, this.name);
+					color = padString(parseInt(color).toString(16).toUpperCase(), 6, '0', true);
+					this.value = '#' + color.substring(color.length - 6);
+				} else if (force)
+					this.value = '#000000';
 				break;
 			case 'button':
 			case 'submit':
@@ -567,7 +637,7 @@ var importData = wrapAsync(function* importData(form, data, force) {
 			if (hasProperty(data, this.name) && getProperty(data, this.name) !== null)
 				this.value = getProperty(data, this.name);
 			else if (force)
-				this.selectedIndex = -1;
+					this.selectedIndex = parseBoolean(this.getAttribute('data-default-to-first')) ? 0 : -1;
 			break;
 		case 'textarea':
 			if (hasProperty(data, this.name) && getProperty(data, this.name) !== null)
@@ -578,17 +648,23 @@ var importData = wrapAsync(function* importData(form, data, force) {
 		}
 	});
 	jQuery('.output[data-name]', $form).each(function () {
-		var value = getProperty(data, this.getAttribute('data-name'));
-		if (typeof value == 'undefined')
-			setTextContent(this, '');
-		else {
-			switch (this.getAttribute('data-type')) {
+		var name = this.getAttribute('data-name');
+		if (!hasProperty(data, name) && !force)
+			return;
+		var value = getProperty(data, name);
+		var format = this.hasAttribute('data-format') ? this.getAttribute('data-format') : null;
+		switch (format) {
+			case 'json':
+				setTextContent(this, JSON.stringify(value));
+				break;
+			case 'date':
+				setTextContent(this, (value == null) ? '' : prettyDate(parseDate(value, false)));
+				break;
+			case 'html':
+				this.innerHTML = (value == null) ? '' : ('' + value);
+				break;
 			default:
-				if (typeof value == 'object')
-					setTextContent(this, JSON.stringify(value));
-				else
-					setTextContent(this, value);
-			}
+				setTextContent(this, (value == null) ? '' : ('' + value));
 		}
 	});
 	jQuery('.tree ul', $form).reverse().each(function () {
@@ -684,4 +760,46 @@ var bindToEntity = wrapAsync(function* bindToEntity(form, url, init, force, data
 		return callHook(this, 'postBind', url, init, force, true, data);
 	});
 	return data;
+});
+
+var post = wrapAsync(function* post(url, fields) {
+	var submitComplete = barrier(true);
+	submitComplete.counter = Infinity;
+	var tmpFrame = <iframe onload={ submitComplete.inlineHandlerCode } style={ { display: "none" } } />;
+	document.body.appendChild(tmpFrame);
+	var win;
+	while ((win = tmpFrame.contentWindow) === null)
+		yield sleep(0);
+	var form = win.document.createElement('form');
+	form.action = toAbsoluteURL(url);
+	form.method = "POST";
+	var hasFiles = false;
+	for (var name in fields) {
+		var field = fields[name];
+		var field2;
+		if (typeof field == 'string') {
+			field2 = win.document.createElement('input');
+			field2.value = field;
+		} else {
+			if (field.type == 'file')
+				hasFiles = true;
+			field2 = win.document.importNode(field, true);
+		}
+		field2.name = name;
+		field2.disabled = false;
+		form.appendChild(field2);
+	}
+	form.enctype = hasFiles ? 'multipart/form-data' : 'application/x-www-form-urlencoded';
+	win.document.body.appendChild(form);
+	submitComplete.counter = 1;
+	form.submit();
+	yield submitComplete.promise;
+	var text = getTextContent(tmpFrame.contentWindow.document.body);
+	document.body.removeChild(tmpFrame);
+	try {
+		return JSON.parse(text);
+	} catch (e) {
+		e.rawData = text;
+		throw e;
+	}
 });

@@ -1,3 +1,4 @@
+JSX = /usr/local/bin/jsx
 TRACEUR = /usr/local/bin/traceur
 CLOSURE = app/memoclosure.sh
 LESSC = /usr/local/bin/lessc
@@ -8,6 +9,8 @@ LN = /bin/ln
 SED = /bin/sed
 TRUE = /bin/true
 
+JX6FLAGS = --harmony
+JXFLAGS =
 TRFLAGS =
 CLFLAGS =
 LCFLAGS =
@@ -19,8 +22,13 @@ LNFLAGS = -f -s
 # Our LESS input file(s)
 LESS = $(shell find src -type f -name '*.less')
 
+# Our JSX and JSX-Harmony input file(s)
+JSX = $(shell find src -type f -name '*.jsx')
+ES6X = $(shell find src -type f -name '*.es6x')
+
 # Our Harmony/ES6 input file(s)
-ES6 = $(shell find src -type f -name '*.es6')
+ES6O = $(ES6X:.es6x=.es6)
+ES6 = $(ES6O) $(shell find src -type f -name '*.es6')
 
 # Our miscellaneous input files (fonts, icons, ...)
 MISC =
@@ -29,7 +37,7 @@ MISC =
 CSS = $(LESS:.less=.css) src/XN/UtilityBundle/Resources/public/css/utlcat.css
 
 # Our JS list (replaces .es6 with .js in the list)
-JS = $(ES6:.es6=.js) src/XN/UtilityBundle/Resources/public/js/utlcat.js
+JS = $(ES6:.es6=.js) $(JSX:.jsx=.js) src/XN/UtilityBundle/Resources/public/js/utlcat.js
 
 # Our pre-existing or already generated non-minified file(s)
 CSS_PRE = $(shell find src -type f -name '*.css' ! -name '*.min.css')
@@ -58,13 +66,21 @@ all: comp
 src/XN/UtilityBundle/Resources/public/css/utlcat.css: $(shell bash -c "echo src/XN/UtilityBundle/Resources/public/css/{utility,forms,lists,popups}.css")
 	cat $^ > $@
 
-src/XN/UtilityBundle/Resources/public/js/utlcat.js: $(shell bash -c "echo src/XN/UtilityBundle/Resources/public/js/{select2,compat,traceur-runtime,async-primitives,utility,forms,lists,popups}.js")
+src/XN/UtilityBundle/Resources/public/js/utlcat.js: $(shell bash -c "echo src/XN/UtilityBundle/Resources/public/js/{compat,jsxdom,traceur-runtime,async-primitives,select2,utility,forms,lists,popups}.js")
 	cat $^ > $@
 
-# The same as above, bith with minification
+# The same as above, but with minification
 %.min.css: %.css
 	$(CSSMIN) $(CMFLAGS) $< > $@
 	$(SED) -i -e 's/calc(\([^)+-]\+\)\([+-]\)\([^)]\+\))/calc(\1 \2 \3)/g' $@
+
+# Translate from .es6x to .es6
+%.es6: %.es6x
+	$(JSX) $(JX6FLAGS) < $< > $@
+
+# Translate from .jsx to .js
+%.js: %.jsx
+	$(JSX) $(JXFLAGS) < $< > $@
 
 # Translate from .es6 to .js
 %.js: %.es6
@@ -102,7 +118,7 @@ misc-comp: $(MISC_GZ)
 
 # Clean up everything we can possibly have made
 clean:
-	$(RM) $(RMFLAGS) $(CSS) $(JS) $(CSS_MIN) $(JS_MIN) $(CSS_GZ) $(JS_GZ)
+	$(RM) $(RMFLAGS) $(CSS) $(JS) $(ES6O) $(CSS_MIN) $(JS_MIN) $(CSS_GZ) $(JS_GZ)
 
 # These can never be valid targets (because we have folders with these names)
 .PHONY: clean all dist comp js css js-dist css-dist css-comp js-comp misc-comp

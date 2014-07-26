@@ -1,7 +1,9 @@
+/** @jsx JSXDOM */
+
 (function () {
 	var preventUserHidePopup = true;
 	var hideResolve = null, hideReject = null;
-	
+
 	this.hidePopup = function hidePopup(useCancelSemantics) {
 		var previousResolve = hideResolve, previousReject = hideReject;
 		jQuery('#popup-overlay').removeClass('visible');
@@ -17,7 +19,7 @@
 				previousResolve(undefined);
 		}
 	}
-	
+
 	this.showPopup = function showPopup(id, preventCancel) {
 		var previousReject = hideReject;
 		jQuery('#popup-overlay').addClass('visible');
@@ -31,16 +33,18 @@
 		if (previousReject)
 			previousReject(new Error('Opération annulée'));
 		id.focus();
-		return new Promise(function (resolve, reject) {
+		var cancel, prom = new Promise(function (resolve, reject) {
 			hideResolve = resolve;
 			hideReject = reject;
-			this.cancel = function () {
+			cancel = function () {
 				if (hideReject === reject)
 					hidePopup(true);
 			};
 		});
+		prom.cancel = cancel;
+		return prom;
 	}
-	
+
 	jQuery(function () {
 		jQuery(document).on('keypress', function (e) {
 			if (e.keyCode == 27 && !preventUserHidePopup)
@@ -57,64 +61,56 @@
 }).call(window);
 
 var dialog = wrapAsync(function* dialog(options) {
-	var node = mkNode('form', null, {
-		id: 'task-dialog',
-		className: 'measuring popup'
-	}, null, {
-		'submit': function () { return false; }
-	});
+	var node = <form id="task-dialog" class="measuring popup" onsubmit={ constant(false) } />;
 	if ('className' in options)
 		node.className += ' ' + options;
 	if ('title' in options)
-		node.appendChild(mkNode('h2', null, null, cArray(options.title)));
+		node.appendChild(<h2>{ cArray(options.title) }</h2>);
 	if ('label' in options)
-		cArray(options.label).forEach(function (part) { node.appendChild(mkNode('p', null, null, cArray(part))); });
+		cArray(options.label).forEach(function (part) { node.appendChild(<p>{ cArray(part) }</p>); });
 	if ('fields' in options) {
 		options.fields.forEach(function (field) {
 			var htField, first = false;
 			switch (field.type) {
 			case 'select':
 				var selectedIndex = -1;
-				htField = mkNode('select', {
-					'name': field.name
-				}, ('className' in field) ? {
-					className: field.className
-				} : null, field.options.map(function (option, i) {
+				htField = <select name={ field.name } class={ field.className }>{ field.options.map(function (option, i) {
 					if (option.selected && selectedIndex == -1)
 						selectedIndex = i;
 					return new Option(option.text, option.value);
-				}));
+				}) }</select>;
 				htField.selectedIndex = selectedIndex;
+				break;
+			case 'textarea':
+				htField = <textarea name={ field.name } class={ field.className } />;
+				if ('value' in field)
+					htField.value = field.value;
 				break;
 			case 'radio':
 			case 'checkbox':
-				htField = mkNode('input', {
-					'type': field.type,
-					'name': field.name,
-					'value': ('value' in field) ? field.value : ''
-				}, ('className' in field) ? {
-					className: field.className,
-					checked: cBoolean(field.checked)
-				} : {
-					checked: cBoolean(field.checked)
-				});
+				htField = <input type={ field.type } name={ field.name } value={ field.value } class={ field.className } />;
+				htField.checked = cBoolean(field.checked);
 				first = true;
 				break;
+			case 'custom':
+				htField = field.node;
+				if ('labelAfter' in field)
+					first = field.labelAfter;
+				break;
+			case 'output':
+				htField = <span class={ ('className' in field) ? ('output ' + field.className) : 'output' } data-name={ field.name }>{ field.value }</span>;
+				break;
 			default:
-				htField = mkNode('input', {
-					'type': ('type' in field) ? field.type : 'text',
-					'name': field.name,
-					'value': ('value' in field) ? field.value : ''
-				}, ('className' in field) ? {
-					className: field.className
-				} : null);
+				htField = <input type={ ('type' in field) ? field.type : 'text' } name={ field.name } value={ field.value } class={ field.className } />;
 				break;
 			}
+			if ('prepare' in field)
+				field.prepare(htField);
 			if ('label' in field) {
-				var labelSpan = mkNode('span', null, null, cArray(field.label));
-				htField = mkNode('label', null, null, first ? [ htField, labelSpan ] : [ labelSpan, htField ]);
+				var labelSpan = <span>{ field.label }</span>;
+				htField = <label>{ first ? [ htField, labelSpan ] : [ labelSpan, htField ] }</label>;
 			} else {
-				if (!first)
+				if (!first && htField.nodeName.toLowerCase() == 'input')
 					jQuery(htField).addClass('block');
 			}
 			node.appendChild(htField);
@@ -131,19 +127,12 @@ var dialog = wrapAsync(function* dialog(options) {
 			else if (isArray(button))
 				button = { block: true, label: button };
 			if (('block' in button) ? button.block : isArray(button.label)) {
-				htButton = mkNode('button', null, {
-					className: 'block' + (('className' in button) ? (' ' + button.className) : '')
-				}, button.label);
+				htButton = <button class={ 'block' + (('className' in button) ? (' ' + button.className) : '') }>{ button.label }</button>;
 				node.appendChild(htButton);
 			} else {
-				htButton = mkNode('input', {
-					'type': 'button',
-					'value': button.label
-				}, ('className' in button) ? { className: button.className } : null);
+				htButton = <input type="button" value={ button.label } class={ button.className } />;
 				if (btnRow === null) {
-					btnRow = mkNode('div', null, {
-						className: 'buttons'
-					});
+					btnRow = <div class="buttons" />;
 					node.appendChild(btnRow);
 				} else
 					btnRow.appendChild(mkText(' '));
@@ -176,9 +165,9 @@ var dialog = wrapAsync(function* dialog(options) {
 		proms.push(revalue(('timeoutButton' in options) ? options.timeoutButton : cancelButton, sleep(options.timeout)));
 	if ('scriptControls' in options)
 		formScriptControls['task-dialog'] = options.scriptControls;
-	if ('data' in options)
-		yield importData(node, options.data);
 	document.body.appendChild(node);
+	if ('data' in options)
+		yield importData(node, options.data, ('forceImport' in options) ? options.forceImport : false);
 	var dim;
 	while ((dim = Dimension.fromElement(node)).isEmpty())
 		yield sleep(0);
@@ -195,12 +184,12 @@ var dialog = wrapAsync(function* dialog(options) {
 	node.style.height = dim.height + 'px';
 	node.style.marginLeft = '-' + (dim.width >> 1) + 'px';
 	node.style.marginTop = '-' + (dim.height >> 1) + 'px';
-	node.className = node.className.replace(/^measuring /, "");
-	var waitClose;
-	proms.push(new Promise(function (resolve, reject) {
+	jQuery(node).removeClass('measuring');
+	var waitClose, wcProm, wcCancel;
+	proms.push(wcProm = new Promise(function (resolve, reject) {
 		waitClose = runAsync.call(this, function* () {
 			var popup = showPopup(node, options.preventCancel);
-			this.cancel = popup.cancel;
+			wcCancel = popup.cancel;
 			try {
 				yield popup;
 			} catch (e) {
@@ -211,6 +200,7 @@ var dialog = wrapAsync(function* dialog(options) {
 			document.body.removeChild(node);
 		});
 	}));
+	wcProm.cancel = wcCancel;
 	var button = yield race(proms);
 	yield waitClose;
 	return exportData(node, { button: button });
@@ -279,44 +269,3 @@ function dialogPrompt(label, defaultText, title, okLabel, cancelLabel, className
 		return null;
 	}, dialog(options));
 }
-
-dialog.test = function () {
-	return dialog({
-		label: [
-			'Votre session a expiré.',
-			'Veuillez vous reconnecter.'
-		],
-		title: 'Session expirée',
-		buttons: [
-			{
-				value: true,
-				label: [
-					'Se reconnecter',
-					mkNode('br'),
-					'Lorem ipsum dolor sit amet'
-				],
-				block: true
-			}, {
-				value: false,
-				label: 'Annuler',
-				block: false
-			}
-		],
-		defaultButton: true,
-		cancelButton: false,
-		fields: [
-			{
-				name: 'username',
-				label: 'Nom d\'utilisateur'
-			}, {
-				name: 'password',
-				type: 'password',
-				label: 'Mot de passe'
-			}, {
-				name: 'remember_me',
-				type: 'checkbox',
-				label: 'Se souvenir de moi'
-			}
-		]
-	}).log();
-};
