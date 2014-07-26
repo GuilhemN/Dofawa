@@ -200,7 +200,7 @@ function setupForm(form) {
 				$this.addClass('submitting');
 				var data, jqXHR;
 				try {
-					{ data, jqXHR } = yield ajax({
+					var { data, jqXHR } = yield ajax({
 						url: this.action,
 						data: JSON.stringify(yield exportData(this)),
 					    contentType: 'application/json; charset=utf-8',

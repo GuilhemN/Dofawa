@@ -1,11 +1,17 @@
-@CHARSET "UTF-8";
+@import 'mixins.less';
 
-form {
+@masterColor: #34C924;
+
+@fieldColor: @masterColor;
+@buttonColor: #F6BD34;
+@busyIndicatorColor: @masterColor;
+
+form, .form {
 	overflow: hidden;
-	input, textarea, select, button {
+	input, textarea, select, button, .btn {
 		border: 1px solid #808080;
 		border: 1px solid rgba(0, 0, 0, 0.5);
-		padding: 4px 8px;
+		padding: 1px 8px;
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) inset;
 		box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -16,9 +22,9 @@ form {
 	}
 	input, textarea, select {
 		&:hover, &:focus {
-			border: 1px solid #F9CB89;
-			border: 1px solid rgba(242, 149, 18, 0.5);
-			box-shadow: 0 1px 3px rgba(242, 149, 18, 0.3) inset;
+			border: 1px solid lighten(@fieldColor, 50%);
+			border: 1px solid fadeout(@fieldColor, 50%);
+			box-shadow: 0 1px 3px fadeout(@fieldColor, 70%) inset;
 			outline: 0 none;
 		}
 		&[readonly] {
@@ -31,8 +37,11 @@ form {
 			color: rgba(0, 0, 0, 0.5);
 		}
 	}
-	input {
+	input, .btn {
 		height: 26px;
+		border-radius: 2px;
+		padding: 0px 12px;
+
 		&[type="file"] {
 			height: auto;
 		}
@@ -58,19 +67,30 @@ form {
 		}
 	}
 	textarea {
-		resize: none;
+		max-width: 100%;
+		min-width: 100%;
+		min-height: 100px;
 	}
-	input[type="button"], input[type="submit"], input[type="reset"], button {
-		background-color: #F29512;
+	input[type="button"], input[type="submit"], input[type="reset"], button, .btn {
+		background-color: @buttonColor;
 		box-shadow: none;
 		border: 1px solid #808080;
 		border: 1px solid rgba(0, 0, 0, 0.5);
-		color: white;
+		color: black;
 		font-weight: bold;
-		width: 120px;
-		padding: 4px 8px;
-		float: right;
+
+		//Limit the width
+		width: 100%;
+		max-width: 120px;
+
 		margin-top: 4px;
+
+		//FOR .btn
+		text-decoration: none;
+		text-align: center;
+		display: block;
+		border-radius: 4px;
+
 		&.mini {
 			width: 40px;
 		}
@@ -135,10 +155,10 @@ form {
 		}
 	}
 	&.loading {
-		.busy-indicator(#F29512, 'Chargement ...');
+		.busy-indicator(@busyIndicatorColor, 'Chargement ...', 40px);
 	}
 	&.submitting {
-		.busy-indicator(#F29512, 'Enregistrement ...');
+		.busy-indicator(@busyIndicatorColor, 'Enregistrement ...', 40px);
 	}
 	&.loading, &.submitting {
 		&.ajax[data-method="DELETE"]:before {

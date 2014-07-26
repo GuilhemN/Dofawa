@@ -20,3 +20,13 @@ sftp-config*
 
 # Eclipse
 .project
+
+# Vim
+.*.swp
+
+# Temporary (build etc.) files
+tmp/*
+!tmp/.gitkeep
+
+# Private files
+src/Dof/ImpExpBundle/Command/TestCommand.php

@@ -157,7 +157,8 @@ function inject(into, params) {
 		var result = createSimilar(into);
 		var names = Object.keys(into);
 		var numnames = names.length;
-		for (var i = 0; i < numnames; ++i)
+		for (var i = 0; i <
+ numnames; ++i)
 			result[names[i]] = inject(into[names[i]], params);
 		return result;
 	}
@@ -235,7 +236,7 @@ var measureStrings = wrapAsync(function* measureStrings(clazz, strings) {
 		document.body.appendChild(el);
 		return el;
 	});
-	while (els.some(function (el) { return Dimension.fromElement(el).isEmpty(); }))Ì
+	while (els.some(function (el) { return Dimension.fromElement(el).isEmpty(); }))
 		yield sleep(0);
 	return els.map(function (el) {
 		var dim = Dimension.fromElement(el);

@@ -1,4 +1,10 @@
-@CHARSET "UTF-8";
+@import 'mixins.less';
+
+@masterColor: #34C924;
+
+@fieldColor: @masterColor;
+@selectedItemColor: @masterColor;
+@busyIndicatorColor: @masterColor;
 
 .nested-list {
 	overflow: hidden;
@@ -69,13 +75,13 @@
 		padding: 2px;
 	}
 	> input:hover, > input:focus {
-		border: 1px solid #F9CB89;
-		border: 1px solid rgba(242, 149, 18, 0.5);
-		box-shadow: 0 1px 3px rgba(242, 149, 18, 0.3) inset;
+		border: 1px solid lighten(@fieldColor, 50%);
+		border: 1px solid fadeout(@fieldColor, 50%);
+		box-shadow: 0 1px 3px fadeout(@fieldColor, 70%) inset;
 		outline: 0 none;
 	}
 	&.loading > div {
-		.busy-indicator(#F29512, 'Chargement ...');
+		.busy-indicator(@busyIndicatorColor, 'Chargement ...', 40px);
 	}
 }
 
@@ -110,15 +116,15 @@
 			text-overflow: ellipsis;
 			&:hover {
 				&, &.even {
-					background-color: #FCDFB7;
-					background-color: rgba(242, 149, 18, 0.3);
+					background-color: lighten(@selectedItemColor, 70%);
+					background-color: fadeout(@selectedItemColor, 70%);
 					font-weight: bold;
 				}
 			}
 			&.selected {
 				&, &:hover {
 					&, &.even {
-						background-color: #F29512;
+						background-color: @selectedItemColor;
 						font-weight: bold;
 					}
 				}
