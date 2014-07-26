@@ -266,6 +266,11 @@ function setupForm(form) {
 		updateParentCheckbox($li.closest('ul'));
 	});
 
+	jQuery('textarea', $form).on('keypress', function (ev) {
+		if (ev.ctrlKey && ev.keyCode == 13)
+			jQuery(this).closest('form').trigger('submit');
+	});
+
 	jQuery('[data-filter-selector]', $form).each(function () {
 		var currentFilter = this.value;
 		jQuery(this).on('keyup paste change', delayAndLimit(bind(function () {
