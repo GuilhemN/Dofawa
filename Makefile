@@ -1,4 +1,4 @@
-JSX = /usr/local/bin/jsx
+JSXC = /usr/local/bin/jsx
 TRACEUR = /usr/local/bin/traceur
 CLOSURE = app/memoclosure.sh
 LESSC = /usr/local/bin/lessc
@@ -76,11 +76,11 @@ src/XN/UtilityBundle/Resources/public/js/utlcat.js: $(shell bash -c "echo src/XN
 
 # Translate from .es6x to .es6
 %.es6: %.es6x
-	$(JSX) $(JX6FLAGS) < $< > $@
+	$(JSXC) $(JX6FLAGS) < $< > $@
 
 # Translate from .jsx to .js
 %.js: %.jsx
-	$(JSX) $(JXFLAGS) < $< > $@
+	$(JSXC) $(JXFLAGS) < $< > $@
 
 # Translate from .es6 to .js
 %.js: %.es6

@@ -1,4 +1,4 @@
-/£** @jsx JSXDOM */
+/** @jsx JSXDOM */
 
 dialog.test = function () {
 	return dialog({
