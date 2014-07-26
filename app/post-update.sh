@@ -8,7 +8,7 @@ mkdir -p bin/cache
 rm -rf app/cache
 mkdir -p app/cache
 
-composer install --no-scripts
+composer install -o --no-scripts
 
 app/console cache:clear -e dev &
 app/console cache:clear -e prod
