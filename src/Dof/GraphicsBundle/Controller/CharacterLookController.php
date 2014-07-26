@@ -140,7 +140,10 @@ class CharacterLookController extends Controller
             if(!empty($item[0])){
               $cuType = $typeLI[$item[0]->getId()];
 
-							echo (constant('ItemSlot::' . $slotConst));
+							echo $slotConst;
+							echo (ItemSlot::getValue($slotConst));
+							echo '<br>';
+
               // Si Obvijevans
               if(!empty($params[1]) && !empty($cuType) && $item[0]->getType()->getSlot() == ItemSlot::LIVING_ITEM)
                   $look->{'set'.ucfirst($name)}($livingItemFactory->createFromTemplateAndLevel($item[0], $params[1]));
