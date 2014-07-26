@@ -54,7 +54,7 @@ class OwnableUpdater
 				$md = $em->getClassMetadata($clazz);
 				$mds[$clazz] = $md;
 			}
-			$uow->computeChangeSet($md, $ent);
+			$uow->recomputeSingleEntityChangeSet($md, $ent);
 		}
 	}
 }
