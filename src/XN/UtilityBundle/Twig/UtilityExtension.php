@@ -18,8 +18,10 @@ class UtilityExtension extends \Twig_Extension
 	public function getFunctions()
 	{
 		return array(
-			new \Twig_SimpleFunction('es6asset', [ $this, 'es6asset' ]),
+			new \Twig_SimpleFunction('es6_asset', [ $this, 'es6Asset' ]),
+			/** @deprecated Doesn't respect naming conventions, see isset_trans */
 			new \Twig_SimpleFunction('issetTrans', [$this->container->get('translator'), 'has' ]),
+			new \Twig_SimpleFunction('isset_trans', [$this->container->get('translator'), 'has' ]),
 			new \Twig_SimpleFunction('locales', [ $this->container->get('translator'), 'getLocales' ]),
 			new \Twig_SimpleFunction('once', [ $this, 'once' ]),
 			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
@@ -46,7 +48,7 @@ class UtilityExtension extends \Twig_Extension
 		return 'xn.utility.twig_extension';
 	}
 
-	public function es6asset($path, $packageName = null)
+	public function es6Asset($path, $packageName = null)
   {
     	$req = $this->container->get('request_stack')->getCurrentRequest();
     	if ($req && $req->cookies->get('has-es6') == '1')

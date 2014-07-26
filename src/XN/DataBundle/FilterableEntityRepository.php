@@ -12,7 +12,7 @@ abstract class FilterableEntityRepository extends EntityRepository
 	{
 		return $this->addFilter($this->createQueryBuilder($alias), $req, $alias);
 	}
-	
+
 	public function addFilter(QueryBuilder $qb, Request $req, $alias = null)
 	{
 		if ($alias === null)
@@ -27,14 +27,29 @@ abstract class FilterableEntityRepository extends EntityRepository
 		}
 		return $qb;
 	}
-	
+
 	public function getAlias(QueryBuilder $qb)
 	{
-		// TODO
+		$en = $this->getEntityName();
+		$cn = $this->getClassName();
+		foreach ($qb->getDQLPart('from') as $from)
+			if ($from->getFrom() == $en || $from->getFrom() == $cn)
+				return $from->getAlias();
 		return null;
 	}
-	
+	public function getJoinAlias(QueryBuilder $qb, $root, $relation)
+	{
+		$joins = $qb->getDQLPart('join');
+		if (!isset($joins[$root]))
+			return null;
+		$relation = $root . '.' . $relation;
+		foreach ($joins[$root] as $join)
+			if ($join->getJoin() == $relation)
+				return $join->getAlias();
+		return null;
+	}
+
 	protected abstract function getFilterableExpr(QueryBuilder $qb, $alias);
-	
+
 	public abstract function orderByText(QueryBuilder $qb, $alias = null);
 }
