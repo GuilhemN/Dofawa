@@ -1,0 +1,42 @@
+/£** @jsx JSXDOM */
+
+dialog.test = function () {
+	return dialog({
+		label: [
+			'Votre session a expiré.',
+			'Veuillez vous reconnecter.'
+		],
+		title: 'Session expirée',
+		buttons: [
+			{
+				value: true,
+				label: [
+					'Se reconnecter',
+					<br />,
+					'Lorem ipsum dolor sit amet'
+				],
+				block: true
+			}, {
+				value: false,
+				label: 'Annuler',
+				block: false
+			}
+		],
+		defaultButton: true,
+		cancelButton: false,
+		fields: [
+			{
+				name: 'username',
+				label: 'Nom d\'utilisateur'
+			}, {
+				name: 'password',
+				type: 'password',
+				label: 'Mot de passe'
+			}, {
+				name: 'remember_me',
+				type: 'checkbox',
+				label: 'Se souvenir de moi'
+			}
+		]
+	}).log();
+};

@@ -3,7 +3,8 @@ if (typeof Promise == 'undefined') {
 	function Promise(fn) {
 		var defer = jQuery.Deferred();
 		var prom = defer.promise();
-		fn.call(prom, defer.resolve, defer.reject);
+		fn.call(undefined, defer.resolve, defer.reject);
+		prom.log = Promise.prototype.log;
 		return prom;
 	}
 }
@@ -81,7 +82,7 @@ function isThenable(x) {
 function runAsync(taskGen) {
 	if (typeof taskGen == 'function')
 		taskGen = taskGen.apply(this, Array.prototype.slice.call(arguments, 1));
-	return new Promise(function (resolve, reject) {
+	var cancel, prom = new Promise(function (resolve, reject) {
 		var done = false, canceled = false, current = null, cookie = 0;
 		var go = function (action, toSend) {
 			var myCookie = ++cookie;
@@ -124,7 +125,7 @@ function runAsync(taskGen) {
 			var value = result.value;
 			return go('next', value);
 		};
-		this.cancel = function () {
+		cancel = function () {
 			if (canceled || done)
 				return;
 			canceled = true;
@@ -139,6 +140,8 @@ function runAsync(taskGen) {
 		};
 		go('next');
 	});
+	prom.cancel = cancel;
+	return prom;
 }
 
 // Convertit une fonction génératrice en fonction asynchrone
@@ -156,18 +159,21 @@ function wrapAsync(genFn, returnValue) {
 
 // Modifie la valeur d'une Promise
 function revalue(value, prom, noCancel) {
-	return new Promise(function (resolve, reject) {
+	var cancel, prom2 = new Promise(function (resolve, reject) {
 		if (!noCancel && 'cancel' in prom)
-			this.cancel = function () { prom.cancel(); };
+			cancel = function () { prom.cancel(); };
 		prom.then(function () { resolve(value); }, reject);
 	});
+	if (!noCancel && 'cancel' in prom)
+		prom2.cancel = cancel;
+	return prom2;
 }
 
 // Modifie la valeur d'une Promise en utilisant une fonction
 function remap(fn, prom, noCancel) {
-	return new Promise(function (resolve, reject) {
+	var cancel, prom2 = new Promise(function (resolve, reject) {
 		if (!noCancel && 'cancel' in prom)
-			this.cancel = function () { prom.cancel(); };
+			cancel = function () { prom.cancel(); };
 		prom.then(function (value) {
 			try {
 				resolve(fn(value));
@@ -176,14 +182,17 @@ function remap(fn, prom, noCancel) {
 			}
 		}, reject);
 	});
+	if (!noCancel && 'cancel' in prom)
+		prom2.cancel = cancel;
+	return prom2;
 }
 
 // Combine un tableau de Promises en Promise de tableau
 function all(proms, noCancel) {
-	return new Promise(function (resolve, reject) {
-		var first = true, cancel;
+	var cancel, prom = new Promise(function (resolve, reject) {
+		var first = true;
 		if (!noCancel)
-			this.cancel = cancel = function () {
+			cancel = function () {
 				if (!first)
 					return;
 				first = false;
@@ -214,16 +223,19 @@ function all(proms, noCancel) {
 		if (missing == 0)
 			resolve(values);
 	});
+	if (!noCancel)
+		prom.cancel = cancel;
+	return prom;
 };
 
 // Crée une Promise dont la valeur sera celle de la première Promise résolue
 function race(proms, noCancel) {
 	if (!proms.length)
 		return new Promise(function () { });
-	return new Promise(function (resolve, reject) {
-		var first = true, cancel;
+	var cancel, prom = new Promise(function (resolve, reject) {
+		var first = true;
 		if (!noCancel)
-			this.cancel = cancel = function () {
+			cancel = function () {
 				if (!first)
 					return;
 				first = false;
@@ -251,12 +263,14 @@ function race(proms, noCancel) {
 			}
 		}
 	});
+	prom.cancel = cancel;
+	return prom;
 };
 
 // Lance une requête AJAX
 function ajax(params) {
 	var jqXHR = jQuery.ajax(params);
-	return new Promise(function (resolve, reject) {
+	var cancel, prom = new Promise(function (resolve, reject) {
 		jqXHR.then(function (data, textStatus, jqXHR) {
 			resolve({ data: data, textStatus: textStatus, jqXHR: jqXHR });
 		}, function (jqXHR, textStatus, errorThrown) {
@@ -266,30 +280,34 @@ function ajax(params) {
 			e.errorThrown = errorThrown;
 			reject(e);
 		});
-		this.cancel = function () {
+		cancel = function () {
 			jqXHR.abort();
 			reject(new Error('Opération annulée'));
 		};
-		this.jqXHR = jqXHR;
 	});
+	prom.cancel = cancel;
+	prom.jqXHR = jqXHR;
+	return prom;
 }
 
 // Attend un délai
 function sleep(msec) {
-	return new Promise(function (resolve, reject) {
+	var cancel, prom = new Promise(function (resolve, reject) {
 		var timer = setTimeout(function () {
 			resolve();
 		}, msec);
-		this.cancel = function () {
+		cancel = function () {
 			clearTimeout(timer);
 			reject(new Error('Opération annulée'));
-		}
+		};
 	});
+	prom.cancel = cancel;
+	return prom;
 }
 
 // Limite le temps alloué à la résolution d'une Promise
 function timeout(prom, msec, noCancel) {
-	return new Promise(function (resolve, reject) {
+	var cancel, prom2 = new Promise(function (resolve, reject) {
 		var timer = setTimeout(function () {
 			reject(new Error('Délai d\'attente de l\'opération dépassé'));
 			if (!noCancel && 'cancel' in prom)
@@ -302,13 +320,23 @@ function timeout(prom, msec, noCancel) {
 			clearTimeout(timer);
 			reject(reason);
 		});
+		if (!noCancel && 'cancel' in prom) {
+			cancel = function () {
+				clearTimeout(timer);
+				prom.cancel();
+				reject(new Error('Opération annulée'));
+			};
+		}
 	});
+	if (!noCancel && 'cancel' in prom)
+		prom2.cancel = cancel;
+	return prom2;
 }
 
 // Attend un évènement HTML
 function wait(obj, ev, predicate) {
 	var $obj = jQuery(obj);
-	return new Promise(function (resolve, reject) {
+	var cancel, prom = new Promise(function (resolve, reject) {
 		var callback = predicate ? function (e) {
 			if (predicate(e)) {
 				$obj.off(ev, callback);
@@ -318,12 +346,14 @@ function wait(obj, ev, predicate) {
 			$obj.off(ev, callback);
 			resolve(e);
 		};
-		this.cancel = function () {
+		cancel = function () {
 			$obj.off(ev, callback);
 			reject(new Error('Opération annulée'));
 		};
 		$obj.on(ev, callback);
 	});
+	prom.cancel = cancel;
+	return prom;
 }
 
 // Récupère une image depuis le serveur, un blob, ou un champ fichier
@@ -333,6 +363,8 @@ function getImage(url) {
 		if (typeof url == 'object') {
 			if (url instanceof Image)
 				return Promise.resolve(url);
+			if (url == window)
+				return Promise.reject(new Error("URL ou objet requis"));
 			if ('files' in url) {
 				if (url.files.length == 0)
 					return Promise.reject(new Error("Ce champ ne contient aucun fichier"));
@@ -343,7 +375,7 @@ function getImage(url) {
 				addCleanup = true;
 			}
 		}
-		return new Promise(function (resolve, reject) {
+		var cancel, prom = new Promise(function (resolve, reject) {
 			var img = new Image();
 			var $img = jQuery(img);
 			var load = function () {
@@ -370,6 +402,47 @@ function getImage(url) {
 			if (addCleanup)
 				img.cleanup = function () { URL.revokeObjectURL(url); };
 		});
+		prom.cancel = cancel;
+		return prom;
 	} else
 		return Promise.reject(new Error("URL ou objet requis"));
+}
+
+function barrier(named, noCancel) {
+	var cancel, open;
+	var bo = {
+		promise: null,
+		open: null,
+		counter: 1
+	};
+	bo.open = function (value) {
+		if (--bo.counter == 0)
+			open(value);
+	};
+	if (named) {
+		bo.name = 'barrier$open$' + luid();
+		bo.inlineHandlerCode = bo.name + '(event);';
+	}
+	bo.promise = new Promise(function (resolve, reject) {
+		open = named ? function (value) {
+			try {
+				delete window[bo.name];
+			} catch (e) { }
+			resolve(value);
+		} : resolve;
+		if (!noCancel)
+			cancel = named ? function () {
+				try {
+					delete window[name];
+				} catch (e) { }
+				reject(new Error('Opération annulée'));
+			} : function () {
+				reject(new Error('Opération annulée'));
+			};
+	});
+	if (!noCancel)
+		bo.promise.cancel = cancel;
+	if (named)
+		window[bo.name] = bo.open;
+	return bo;
 }

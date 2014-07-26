@@ -24,6 +24,13 @@ function noop() { }
 // Fonction qui renvoie son paramètre
 function identity() { }
 
+// Crée une fonction qui renvoie une valeur constante
+function constant(value) {
+	return function () {
+		return value;
+	}
+}
+
 // Pourquoi c'est pas en standard ?!
 jQuery.fn.reverse = Array.prototype.reverse;
 
@@ -103,6 +110,7 @@ function mkText(value) {
 }
 
 // Raccourci pour document.createElement + .setAttribute + ...
+/** @deprecated Utiliser JSXDOM */
 function mkNode(node, attrs, props, children, events) {
 	if (typeof node == 'string')
 		node = document.createElement(node);
@@ -157,8 +165,7 @@ function inject(into, params) {
 		var result = createSimilar(into);
 		var names = Object.keys(into);
 		var numnames = names.length;
-		for (var i = 0; i <
- numnames; ++i)
+		for (var i = 0; i < numnames; ++i)
 			result[names[i]] = inject(into[names[i]], params);
 		return result;
 	}
@@ -314,11 +321,11 @@ if ('textContent' in testSpan) {
 	getTextContent = function (elem) {
 		return elem.textContent;
 	};
-	setTextContent = function (elem, text) {
+	setTextContent = function (elem, text, elem2) {
 		if (elem.textContent == text)
 			return;
 		elem.textContent = text;
-		updateTitle(elem, text);
+		updateTitle(elem, text, elem2);
 	};
 } else {
 	getTextContent = function (elem) {
@@ -329,27 +336,29 @@ if ('textContent' in testSpan) {
 			text.push(getTextContent(cld));
 		return text.join('');
 	};
-	setTextContent = function (elem, text) {
+	setTextContent = function (elem, text, elem2) {
 		if (getTextContent(elem) == text)
 			return;
 		clearChildNodes(elem);
 		elem.appendChild(document.createTextNode(text));
-		updateTitle(elem, text);
+		updateTitle(elem, text, elem2);
 	};
 }
 
 // Ajoute si nécessaire une info-bulle à l'élément
-var updateTitle = wrapAsync(function* updateTitle(elem, text) {
-	var cls = elem.getAttribute('data-measure-class');
+var updateTitle = wrapAsync(function* updateTitle(elem, text, elem2) {
+	if (typeof elem2 == 'undefined')
+		elem2 = elem;
+	var cls = elem2.getAttribute('data-measure-class');
 	if (!cls)
 		return;
 	if (typeof text == 'undefined')
 		text = getTextContent(elem);
 	var dim = (yield measureStrings(cls, [ text ]))[0];
 	if (dim.width > elem.offsetWidth)
-		elem.title = text;
+		elem2.title = text;
 	else
-		elem.title = '';
+		elem2.title = '';
 });
 
 // Met un mot au singulier
@@ -400,8 +409,8 @@ function selectPage(page) {
 	var $page = jQuery(page);
 	if (!$page.length)
 		return false;
-	jQuery('> .selected', $page.parent()).removeClass('selected');
-	$page.addClass('selected');
+	jQuery('> .selected', $page.parent()).removeClass('selected').addClass('unselected');
+	$page.addClass('selected').removeClass('unselected');
 	return true;
 }
 
@@ -453,26 +462,65 @@ function parseBoolean(val) {
 var parseBool = parseBoolean;
 
 // Convertit une valeur en date
-function parseDate(val) {
+var reISODate = /^(\d{4,})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{3}))?)?(?:Z|([+-])(\d{2}):?(\d{2}))?$/i;
+function parseDate(val, withTZ) {
+	if (val == null || val == '')
+		return null;
 	if (val instanceof Date)
 		return val;
-	return new Date(val);
+	var expl = reISODate.exec(val);
+	if (!expl)
+		return new Date(val);
+	expl = expl.slice(1).filter(function (val) { return val != null && val != ''; }).map(function (val) {
+		if (val == 'Z' || val == '+' || val == '-')
+			return val;
+		return parseInt(val);
+	});
+	--expl[1];
+	var tz = 0;
+	if (expl.length > 2 && expl[expl.length - 3] == '+') {
+		tz = -(expl[expl.length - 2] * 60 + expl[expl.length - 1]);
+		expl.length -= 3;
+	} else if (expl.length > 2 && expl[expl.length - 3] == '-') {
+		tz = (expl[expl.length - 2] * 60 + expl[expl.length - 1]);
+		expl.length -= 3;
+	}
+	var dt = applyCtorCompat(Date, expl);
+	if (withTZ !== false)
+		dt.setTime(dt.getTime() + (tz - dt.getTimezoneOffset()) * 60000);
+	return dt;
 }
 
 // Convertit une valeur localisée en date
 var reLocaleDate = /^([012]?[0-9]|3[01])\/(0?[0-9]|1[0-2])\/(\d+)(?:[ -]([01]?[0-9]|2[0-3]):([0-5]?[0-9])(?::([0-5]?[0-9]|60))?)?$/i;
 function parseLocaleDate(val) {
+	if (val == null || val == '')
+		return null;
 	if (val instanceof Date)
 		return val;
 	var expl = reLocaleDate.exec(val);
 	if (!expl)
-		return null;
-	expl = expl.slice(1).filter(function (val) { return typeof val != 'undefined'; }).map(function (val) { return parseInt(val); });
+		return parseDate(val);
+	expl = expl.slice(1).filter(function (val) { return val != null && val != ''; }).map(function (val) { return parseInt(val); });
 	var year = expl[2];
+	if (year < 70)
+		year += 2000;
+	else if (year < 100)
+		year += 1900;
+	else if (year < 1000)
+		year += 1000;
 	expl[2] = expl[0];
 	expl[0] = year;
 	--expl[1];
 	return applyCtorCompat(Date, expl);
+}
+
+// Convertit une date en texte
+function localeDate(val, withTime) {
+	var ds = padString("" + val.getDate(), 2, "0", true) + "/" + padString("" + (val.getMonth() + 1), 2, "0", true) + "/" + padString("" + val.getFullYear(), 4, "0", true);
+	if (!withTime)
+		return ds;
+	return ds + " " + padString("" + val.getHours(), 2, "0", true) + ":" + padString("" + val.getMinutes(), 2, "0", true) + ":" + padString("" + val.getSeconds(), 2, "0", true);
 }
 
 // Découpe le chemin d'accès à une propriété profonde (syntaxes a[b] et a.b acceptées)
@@ -557,10 +605,244 @@ function isNumeric(val) {
 	return reNumeric.test(val);
 }
 
+// Génère des identifiants uniques dans le scope de la page en cours
+var luid = (function () {
+	var counter = 0;
+	return function () {
+		return ++counter;
+	};
+})();
+
+// Répète une chaîne
+function repeatString(str, times) {
+	if (times <= 0)
+		return '';
+	var rpt = '';
+	for (;;) {
+		if ((times & 1) == 1)
+			rpt += str;
+		times >>>= 1;
+		if (times == 0)
+			break;
+		str += str;
+	}
+	return rpt;
+}
+
+// Complète une chaîne jusqu'à la longueur voulue
+function padString(str, length, pad, left) {
+	if (str.length >= length)
+		return str;
+	if (typeof pad == 'undefined')
+		pad = ' ';
+	else if (pad.length > 1)
+		pad = pad.charAt(0);
+	pad = repeatString(pad, length - str.length);
+	return left ? (pad + str) : (str + pad);
+}
+
+// Formate une date
+var prettyDate = (function () {
+	var months = [ 'janv.', 'fév.', 'mars', 'avril', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.' ];
+	return function (date, withTime) {
+		date = parseDate(date);
+		var str = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+		if (withTime)
+			str += ' ' + padString('' + date.getHour()  , 2, '0', true)
+					+  ':' + padString('' + date.getMinute(), 2, '0', true)
+					+  ':' + padString('' + date.getSecond(), 2, '0', true);
+		return str;
+	};
+})();
+
+// Formate un mois
+var prettyMonth = (function () {
+	var months = [ 'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre' ];
+	return function (date) {
+		return months[date.getMonth()] + ' ' + date.getFullYear();
+	};
+})();
+
+// Récupère le jour d'une date
+function day(date) {
+	if (typeof date == 'string')
+		date = parseDate(date, false);
+	if (typeof endDate == 'object')
+		date = date.getTime();
+	date = new Date(date);
+	date.setHours(0);
+	date.setMinutes(0);
+	date.setSeconds(0);
+	date.setMilliseconds(0);
+	return date;
+}
+
+// Énumère les jours entre deux dates
+function listDaysBetween(startDate, endDate) {
+	if (typeof startDate == 'string')
+		startDate = parseDate(startDate);
+	if (typeof startDate == 'object')
+		startDate = startDate.getTime();
+	if (typeof endDate == 'string')
+		endDate = parseDate(endDate);
+	if (typeof endDate == 'object')
+		endDate = endDate.getTime();
+	var dt = new Date(startDate);
+	dt.setHours(0);
+	dt.setMinutes(0);
+	dt.setSeconds(0);
+	dt.setMilliseconds(0);
+	var days = [ ];
+	while (dt.getTime() <= endDate) {
+		days.push(new Date(dt.getTime()));
+		dt.setDate(dt.getDate() + 1);
+	}
+	return days;
+}
+
+// Récupère le premier jour du mois
+function firstDayOfMonth(date) {
+	if (typeof date == 'string')
+		date = parseDate(date);
+	if (typeof date == 'object')
+		date = date.getTime();
+	var dt = new Date(date);
+	dt.setDate(1);
+	dt.setHours(0);
+	dt.setMinutes(0);
+	dt.setSeconds(0);
+	dt.setMilliseconds(0);
+	return dt;
+}
+
+// Récupère le dernier jour du mois
+function lastDayOfMonth(date) {
+	if (typeof date == 'string')
+		date = parseDate(date);
+	if (typeof date == 'object')
+		date = date.getTime();
+	var dt = new Date(date);
+	dt.setDate(1);
+	dt.setHours(0);
+	dt.setMinutes(0);
+	dt.setSeconds(0);
+	dt.setMilliseconds(0);
+	dt.setMonth(dt.getMonth() + 1);
+	dt.setDate(dt.getDate() - 1);
+	return dt;
+}
+
+// Compare deux tableaux, élément à élément
+function rowValueCompare(lhs, rhs) {
+	var len = Math.min(lhs.length, rhs.length);
+	for (var i = 0; i < len; ++i) {
+		if (lhs[i] < rhs[i])
+			return -1;
+		else if (lhs[i] > rhs[i])
+			return 1;
+	}
+	if (lhs.length > len)
+		return 1;
+	else if (rhs.length > len)
+		return -1;
+	return 0;
+}
+function createRowValueComparer(compare) {
+	if (!compare)
+		return rowValueCompare;
+	return function (lhs, rhs) {
+		var len = Math.min(lhs.length, rhs.length);
+		for (var i = 0; i < len; ++i) {
+			var comparison = compare(lhs[i], rhs[i]);
+			if (comparison != 0)
+				return comparison;
+		}
+		if (lhs.length > len)
+			return 1;
+		else if (rhs.length > len)
+			return -1;
+		return 0;
+	}
+}
+
+// Représente un ensemble de valeurs triées et uniques
+function Set() {
+	this.values = [ ];
+	this.size = 0;
+	this.comparer = null;
+}
+Set.prototype.clear = function () {
+	this.values.length = 0;
+	this.size = 0;
+};
+Set.prototype.add = function (value) {
+	var i = binarySearch(this.values, value, this.comparer);
+	if (i >= 0)
+		return false;
+	this.values.splice(~i, 0, value);
+	++this.size;
+	return true;
+};
+Set.prototype.has = function (value) {
+	return binarySearch(this.values, value, this.comparer) >= 0;
+};
+Set.prototype.contains = Set.prototype.has;
+Set.prototype.remove = function (value) {
+	var i = binarySearch(this.values, value, this.comparer);
+	if (i < 0)
+		return false;
+	this.values.splice(i, 1);
+	--this.size;
+	return true;
+};
+Set.prototype.forEach = function (fn) {
+	if (arguments.length >= 2)
+		return this.values.forEach(fn, arguments[1]);
+	else
+		return this.values.forEach(fn);
+};
+Set.prototype.toArray = function () {
+	return this.values.slice();
+};
+
+// Copie une tranche de tableau (fonctionne même si target === source)
+function alCopy(target, trgOffset, source, srcOffset, length) {
+	if (isArray(trgOffset)) {
+		source = trgOffset;
+		trgOffset = 0;
+	}
+	if (srcOffset == null)
+		srcOffset = 0;
+	if (length == null)
+		length = source.length - srcOffset;
+	if (target === source && trgOffset == srcOffset || length == 0)
+		return;
+	if (target === source && trgOffset > srcOffset) {
+		for (var i = length; i-- > 0; )
+			target[trgOffset + i] = source[srcOffset + i];
+	} else {
+		for (var i = 0; i < length; ++i)
+			target[trgOffset + i] = source[srcOffset + i];
+	}
+	return target;
+}
+
+// Comme Array.prototype.splice mais pas que pour les tableaux, et prend un tableau de valeurs non-éclaté
+function alSplice(target, offset, length, values) {
+	var tlen = target.length;
+    if (length == null)
+        length = tlen - offset;
+    else
+        alCopy(target, offset + values.length, target, offset + length);
+    alCopy(target, offset, values, 0);
+    target.length = tlen + values.length - length;
+}
+
 jQuery(function () {
 	jQuery('.tab-strip').on('mousemove', function (ev) {
 		var rc = Rectangle.fromElement(this);
-		var x = (ev.pageX - rc.x - 16) / (rc.width - 32);
+		var fix = Math.max(0, (document.documentElement.offsetWidth - document.body.offsetWidth) >> 1);
+		var x = (ev.pageX - fix - rc.x - 16) / (rc.width - 32);
 		if (x < 0)
 			x = 0;
 		else if (x > 1)
@@ -581,4 +863,10 @@ jQuery(function () {
 			selectPage(selection);
 		});
 	});
+	jQuery('.not-implemented').on('click', function (ev) {
+		dialogAlert('Cette fonctionnalité n\'est pas encore disponible.');
+		try { ev.stopPropagation(); } catch (e) { }
+		try { ev.preventDefault(); } catch (e) { }
+	});
+	jQuery('.multipage > :not(.selected)').addClass('unselected');
 });

@@ -1,3 +1,5 @@
+/** @jsx JSXDOM */
+
 function AbstractList() {
 	throw new Error('Cette classe est abstraite et ne peut être instanciée directement.');
 }
@@ -11,53 +13,56 @@ AbstractList.prototype.setSource = function (source, noRefresh) {
 	this.source = source;
 	if (!noRefresh) {
 		this.clear();
-		this.refresh();
+		return this.refresh();
 	}
 };
 
 AbstractList.prototype.clear = notImplemented;
 AbstractList.prototype.refresh = notImplemented;
 
-function FilterableList(elem, source) {
+function FilterableList(elem, source, listElem) {
 	if (typeof elem === 'string')
 		elem = elById(elem);
-	else if (elem === null) {
-		elem = mkNode('div', null, {
-			className: 'composite-list'
-		}, [
-			mkNode('h2'),
-			mkNode('div', null, null, [
-				mkNode('ul')
-			]),
-			mkNode('input')
-		]);
-	}
+	else if (elem === null)
+		elem = <div class="composite-list"><h2 /><div><ul /></div><input /></div>;
 	this.root = elem;
 	this.header = jQuery('h2', elem)[0];
-	this.list = jQuery('ul', elem)[0];
+	this.list = listElem ? listElem : jQuery('ul', elem)[0];
 	this.filter = jQuery('input:not([type]), input[type="text"]', elem)[0];
-	this.header.setAttribute('data-measure-class', 'composite-list-header');
-	this.filter.placeholder = 'Filtre ...';
+	if (this.header)
+		this.header.setAttribute('data-measure-class', 'composite-list-header');
+	if (this.filter)
+		this.filter.placeholder = 'Filtre ...';
 	this.source = source;
+	this.selectionType = FilterableList.SELECTION_SINGLE;
 	this.selectedValue = null;
 	this.selectedItem = null;
 	this.selectedIndex = null;
-	this.currentFilter = this.filter.value;
+	this.selectedValues = [ ];
+	this.selectedItems = [ ];
+	this.selectedIndices = [ ];
+	this.currentFilter = this.filter ? this.filter.value : '';
 	this.acceptCookie = 0;
+	this.acceptedData = [ ];
 	this.onSelectionChange = null;
 	this.onSelectionNoChange = null;
 	this.onElementClick = bind(this.onElementClick, this);
-	jQuery(this.filter).on('keyup paste change', delayAndLimit(bind(function () {
-		if (this.filter.value != this.currentFilter) {
-			this.currentFilter = this.filter.value;
-			this.refresh();
-		}
-	}, this), 300));
+	if (this.filter)
+		jQuery(this.filter).on('keyup paste change', delayAndLimit(bind(function () {
+			if (this.filter.value != this.currentFilter) {
+				this.currentFilter = this.filter.value;
+				this.refresh();
+			}
+		}, this), 300));
 	this.refresh();
 }
 
 FilterableList.prototype = Object.create(AbstractList.prototype);
 FilterableList.prototype.constructor = FilterableList;
+
+FilterableList.SELECTION_NONE = 0;
+FilterableList.SELECTION_SINGLE = 1;
+//FilterableList.SELECTION_MULTIPLE = 2;
 
 FilterableList.prototype.getTitle = function () {
 	return getTextContent(this.header);
@@ -67,7 +72,13 @@ FilterableList.prototype.setTitle = function (title) {
 };
 
 FilterableList.prototype.onElementClick = function (ev) {
+	if (this.selectionType == FilterableList.SELECTION_NONE)
+		return;
 	var target = ev.target ? ev.target : ev.srcElement;
+	while (target && !target.hasAttribute('data-value'))
+		target = target.parentNode;
+	if (!target)
+		return;
 	var newSel = target.getAttribute('data-value');
 	var selChg = newSel !== this.selectedValue;
 	this.selectedValue = newSel;
@@ -119,24 +130,22 @@ FilterableList.prototype.refresh = wrapAsync(function* () {
 	}
 	if (acceptCookie !== this.acceptCookie)
 		return;
+	this.acceptedData = data;
 	$root.removeClass('loading');
+	this.redisplay();
+});
+FilterableList.prototype.redisplay = function () {
+	var data = this.acceptedData;
 	this.selectedItem = null;
 	this.selectedIndex = null;
 	for (var i = 0; i < data.length; ++i) {
 		var cld = this.list.children[i];
 		if (!cld) {
-			cld = mkNode('li', {
-				'data-index': i,
-				'data-measure-class': 'composite-list-item'
-			}, {
-				className: (i & 1) ? 'even' : 'odd'
-			}, null, {
-				click: this.onElementClick
-			});
+			cld = this.makeElement(i);
 			this.list.appendChild(cld);
 		}
 		cld.setAttribute('data-value', data[i].value);
-		setTextContent(cld, data[i].text);
+		this.renderElement(cld, data[i]);
 		if (data[i].value == this.selectedValue) {
 			jQuery(cld).addClass('selected');
 			this.selectedItem = cld;
@@ -145,29 +154,22 @@ FilterableList.prototype.refresh = wrapAsync(function* () {
 			jQuery(cld).removeClass('selected');
 	}
 	rmLastChildren(this.list, this.list.children.length - data.length);
-});
+};
+FilterableList.prototype.makeElement = function (idx) {
+	var cld = <li data-index={ idx } data-measure-class="composite-list-item" class={ (idx & 1) ? 'even' : 'odd' } onclick={ this.onElementClick } />;
+	this.initializeElement(cld);
+	return cld;
+};
+FilterableList.prototype.initializeElement = noop;
+FilterableList.prototype.renderElement = function (htNode, data) {
+	setTextContent(htNode, data.text);
+};
 
 function PartitionedList(elem, source) {
 	if (typeof elem === 'string')
 		elem = elById(elem);
-	else if (elem === null) {
-		elem = mkNode('div', null, {
-			className: 'partitioned-list'
-		}, [
-			mkNode('ul'),
-			mkNode('div', null, null, [
-				mkNode('input', {
-					type: 'button',
-					value: '>>'
-				}),
-				mkNode('input', {
-					type: 'button',
-					value: '<<'
-				})
-			]),
-			mkNode('ul')
-		]);
-	}
+	else if (elem === null)
+		elem = <div class="partitioned-list"><ul /><div><input type="button" value=">>" /><input type="button" value="<<" /></div><ul /></div>;
 	this.root = elem;
 	var lists = jQuery('ul', elem);
 	this.leftList = lists[0];
@@ -177,6 +179,7 @@ function PartitionedList(elem, source) {
 	this.removeButton = buttons[1];
 	this.value = [ ];
 	this.source = source;
+	this.valueType = PartitionedList.TYPE_UNORDERED;
 	this.leftSelectedValue = null;
 	this.leftSelectedItem = null;
 	this.leftSelectedIndex = null;
@@ -186,6 +189,8 @@ function PartitionedList(elem, source) {
 	this.acceptCookie = 0;
 	this.acceptedData = [ ];
 	this.onElementClick = bind(this.onElementClick, this);
+	this.onElementDragStart = bind(this.onElementDragStart, this);
+	this.onElementDrop = bind(this.onElementDrop, this);
 	jQuery(this.addButton).on('click', bind(function () {
 		if (this.leftSelectedValue === null)
 			return;
@@ -195,20 +200,29 @@ function PartitionedList(elem, source) {
 		this.redisplay();
 	}, this));
 	jQuery(this.removeButton).on('click', bind(function () {
-		if (this.rightSelectedValue === null)
+		if (this.rightSelectedIndex === null)
 			return;
-		var idx = this.value.indexOf(this.rightSelectedValue);
-		if (idx >= 0)
-			this.value.splice(idx, 1);
+		if (this.valueType == PartitionedList.VALUE_UNORDERED) {
+			var idx = this.value.indexOf(this.rightSelectedValue);
+			if (idx >= 0)
+				this.value.splice(idx, 1);
+		} else
+			this.value.splice(this.rightSelectedIndex, 1);
 		this.leftSelectedValue = this.rightSelectedValue;
 		this.rightSelectedValue = null;
 		this.redisplay();
 	}, this));
+	lists.on('dragover', function () { return false; });
+	lists.on('drop', this.onElementDrop);
 	this.refresh();
 }
 
 PartitionedList.prototype = Object.create(AbstractList.prototype);
 PartitionedList.prototype.constructor = PartitionedList;
+
+PartitionedList.VALUE_UNORDERED = 0;
+PartitionedList.VALUE_ORDERED = 1;
+PartitionedList.VALUE_ORDERED_MULTIPLE = 2;
 
 PartitionedList.prototype.getValue = function () {
 	return this.value;
@@ -223,6 +237,10 @@ PartitionedList.prototype.setValue = function (value) {
 
 PartitionedList.prototype.onElementClick = function (ev) {
 	var target = ev.target ? ev.target : ev.srcElement;
+	while (target && !target.hasAttribute('data-value'))
+		target = target.parentNode;
+	if (!target)
+		return;
 	var newSel = target.getAttribute('data-value');
 	var inValue = target.parentNode == this.rightList;
 	var side = inValue ? 'right' : 'left';
@@ -233,6 +251,73 @@ PartitionedList.prototype.onElementClick = function (ev) {
 		jQuery(this[side + 'SelectedItem']).removeClass('selected');
 	jQuery(target).addClass('selected');
 	this[side + 'SelectedItem'] = target;
+};
+PartitionedList.prototype.onElementDragStart = function (ev) {
+	var target = ev.target ? ev.target : ev.srcElement;
+	while (target && !target.hasAttribute('data-value'))
+		target = target.parentNode;
+	if (!target)
+		return;
+	try {
+		ev.originalEvent.dataTransfer.setData('Text', JSON.stringify({
+			side: target.getAttribute('data-side'),
+			index: parseInt(target.getAttribute('data-index')),
+			value: target.getAttribute('data-value')
+		}));
+	} catch (e) { }
+};
+PartitionedList.prototype.onElementDrop = function (ev) {
+	var target = ev.target ? ev.target : ev.srcElement;
+	while (target && !target.hasAttribute('data-value') && target != this.rightList && target != this.leftList)
+		target = target.parentNode;
+	if (!target)
+		return false;
+	var srcData;
+	try {
+		srcData = JSON.parse(ev.originalEvent.dataTransfer.getData('Text'));
+	} catch (e) {
+		return false;
+	}
+	if (!srcData)
+		return false;
+	var trgData;
+	if (target == this.rightList)
+		trgData = { side: 'right', index: target.children.length };
+	else if (target == this.leftList)
+		trgData = { side: 'left', index: target.children.length };
+	else
+		trgData = { side: target.getAttribute('data-side'), index: parseInt(target.getAttribute('data-index')) };
+	try {
+		switch (srcData.side + trgData.side) {
+		case 'leftright':
+			if (this.valueType == PartitionedList.VALUE_UNORDERED)
+				this.value.push(srcData.value);
+			else
+				this.value.splice(trgData.index, 0, srcData.value);
+			this.redisplay();
+			break;
+		case 'rightleft':
+			if (this.valueType == PartitionedList.VALUE_UNORDERED) {
+				var idx = this.value.indexOf(srcData.value);
+				if (idx >= 0)
+					this.value.splice(idx, 1);
+			} else
+				this.value.splice(srcData.index, 1);
+			this.redisplay();
+			break;
+		case 'rightright':
+			if (this.valueType != PartitionedList.VALUE_UNORDERED) {
+				this.value.splice(srcData.index, 1);
+				this.value.splice(Math.min(this.value.length, trgData.index), 0, srcData.value);
+				this.redisplay();
+			}
+			break;
+			// case 'leftleft': noop(); break;
+		}
+	} catch (e) {
+		console.error(e);
+	}
+	return false;
 };
 
 PartitionedList.prototype.clear = function () {
@@ -265,31 +350,31 @@ PartitionedList.prototype.refresh = wrapAsync(function* () {
 	this.redisplay();
 });
 PartitionedList.prototype.redisplay = function () {
-	var data = this.acceptedData;
+	var data = this.acceptedData, indices = { };
 	this.leftSelectedItem = null;
 	this.leftSelectedIndex = null;
 	this.rightSelectedItem = null;
 	this.rightSelectedIndex = null;
 	var lCount = 0, rCount = 0;
 	for (var i = 0; i < data.length; ++i) {
+		indices[data[i].value] = i;
 		var inValue = this.value.indexOf(data[i].value) >= 0;
+		if (inValue) {
+			if (this.valueType == PartitionedList.VALUE_ORDERED)
+				continue;
+			else if (this.valueType == PartitionedList.VALUE_ORDERED_MULTIPLE)
+				inValue = false;
+		}
 		var side = inValue ? 'right' : 'left';
 		var j = inValue ? rCount++ : lCount++;
 		var cld = this[side + 'List'].children[j];
 		if (!cld) {
-			cld = mkNode('li', {
-				'data-index': j,
-				'data-measure-class': 'composite-list-item'
-			}, {
-				className: (j & 1) ? 'even' : 'odd'
-			}, null, {
-				click: this.onElementClick
-			});
+			cld = this.makeElement(j, inValue);
 			this[side + 'List'].appendChild(cld);
 		}
 		cld.setAttribute('data-logical-index', i);
 		cld.setAttribute('data-value', data[i].value);
-		setTextContent(cld, data[i].text);
+		this.renderElement(cld, data[i], inValue);
 		if (data[i].value == this[side + 'SelectedValue']) {
 			jQuery(cld).addClass('selected');
 			this[side + 'SelectedItem'] = cld;
@@ -297,8 +382,37 @@ PartitionedList.prototype.redisplay = function () {
 		} else
 			jQuery(cld).removeClass('selected');
 	}
+	if (this.valueType != PartitionedList.VALUE_UNORDERED) {
+		rCount = this.value.length;
+		for (var j = 0; j < rCount; ++j) {
+			var i = indices[this.value[j]];
+			var cld = this.rightList.children[j];
+			if (!cld) {
+				cld = this.makeElement(j, true);
+				this.rightList.appendChild(cld);
+			}
+			cld.setAttribute('data-logical-index', i);
+			cld.setAttribute('data-value', this.value[j]);
+			this.renderElement(cld, data[i], true);
+			if (j == this.rightSelectedIndex) {
+				jQuery(cld).addClass('selected');
+				this.rightSelectedItem = cld;
+				this.rightSelectedValue = this.value[j];
+			} else
+				jQuery(cld).removeClass('selected');
+		}
+	}
 	rmLastChildren(this.leftList, this.leftList.children.length - lCount);
 	rmLastChildren(this.rightList, this.rightList.children.length - rCount);
+};
+PartitionedList.prototype.makeElement = function (idx, inValue) {
+	var cld = <li data-side={ inValue ? 'right' : 'left' } data-index={ idx } data-measure-class="composite-list-item" class={ (idx & 1) ? 'even' : 'odd' } draggable="true" onclick={ this.onElementClick } ondragstart={ this.onElementDragStart } />;
+	this.initializeElement(cld, inValue);
+	return cld;
+};
+PartitionedList.prototype.initializeElement = noop;
+PartitionedList.prototype.renderElement = function (htNode, data, inValue) {
+	setTextContent(htNode, data.text);
 };
 
 function StaticDataSource(data) {
