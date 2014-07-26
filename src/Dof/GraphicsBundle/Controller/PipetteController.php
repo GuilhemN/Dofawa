@@ -71,7 +71,7 @@ class PipetteController extends Controller
 		$dm->flush();
 		// FIXME : dummy route/parameter names as the route doesn't exist atm
 		return $this->redirect($this->get('router')->generate('dof_graphics_skins_edit', [
-			'id' => $cl->getId()
+			'slug' => $cl->getSlug()
 		]));
 	}
 }
