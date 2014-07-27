@@ -12,6 +12,16 @@ var get = wrapAsync(function* get(url) {
 	return (yield ajax({ url: url, type: 'GET' })).data;
 });
 
+// Dépose un objet sur le serveur
+function put(url, obj) {
+	return ajax({ url: url, data: JSON.stringify(obj), contentType: 'application/json; charset=utf-8', type: 'PUT' });
+}
+
+// Supprime un objet du serveur
+function remove(url, obj) {
+	return ajax({ url: url, type: 'DELETE' });
+}
+
 // Fonction qui lève une exception "Pas implémenté", à définir pour les méthodes abstraites ou semi-abstraites
 // (pour connaître facilement la liste des méthodes abstraites d'une classe à la lecture de son code)
 function notImplemented() {
