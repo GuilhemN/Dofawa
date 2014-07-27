@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 <head>
   <meta charset="utf-8">
@@ -12,7 +12,7 @@
 
   {% block style %}
   {% endblock %}
-
+  
   <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
   <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
 
@@ -48,7 +48,7 @@
   {% include 'include/menu.html.twig' %}
 
   {# Contenu principal #}
-  <div class="container" style="margin-top: 60px;">
+  <div class="container sm-autowidth" style="margin-top: 60px;">
     <div class="row">
       {# Colonne principale, à gauche #}
       <div class="col-sm-7 col-lg-8 nopadding" itemscope itemtype="http://schema.org/mainContentOfPage">
