@@ -111,6 +111,9 @@
         <li class="hidden-sm"><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
         {% else %}
         {# Menu utilisateur #}
+        <li>
+          {{ render(controller('DofMessageBundle:NewMessages:menu', { 'route' : app.request.attributes.get('_route') })) }}
+        </li>
         <li class="dropdown" id="menuLogin">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ app.user.username }}</a>
           <ul class="dropdown-menu">
@@ -132,7 +135,6 @@
                       <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block btn-sm">
                         {{ 'edit' | trans({}, 'generalTrans') }}
                       </a>
-                      {{ render(controller('DofMessageBundle:NewMessages:menu', { 'route' : app.request.attributes.get('_route') })) }}
                     </p>
                   </div>
                 </div>
