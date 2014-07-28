@@ -12,7 +12,7 @@
 
   {% block style %}
   {% endblock %}
-  
+
   <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
   <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
 
@@ -65,6 +65,7 @@
           {% block modelbody %}
           <div class="content">
             {% block body %}
+              {{ content | default }}
             {% endblock body %}
             <div class="clearfix"></div>
           </div>
