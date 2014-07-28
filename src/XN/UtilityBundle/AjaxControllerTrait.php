@@ -6,11 +6,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait AjaxControllerTrait
 {
-	public function createAdaptedResponse(array $params, $status = 200, $headers = array()){
+	public function createAdaptedResponse(array $params, $view = null, $status = 200, $headers = array()){
+		if($view === null)
+			$view = '::layout.html.twig';
+
 		if($this->get('request')->isXmlHttpRequest())
 			return $this->createJsonResponse($params, $status, $headers);
 		else
-			return $this->render('::layout.html.twig', $params);
+			return $this->render($view, $params);
 	}
 
 	public function createJsonResponse($data = null, $status = 200, $headers = array())
