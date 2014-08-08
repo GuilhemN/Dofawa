@@ -20,7 +20,11 @@ abstract class Level2AjaxFormController extends Controller
         $this->preFetch($l1id, $l2id);
         $this->unlockSession();
         $dm = $this->getDoctrine()->getManager();
-        $ent = $dm->getRepository(static::ENTITY_NAME)->find($l2id);
+        $repo = $dm->getRepository(static::ENTITY_NAME);
+        if (static::USE_SLUG)
+            $ent = $repo->findOneBy([ 'slug' => $l2id ]);
+        else
+            $ent = $repo->find($l2id);
         if ($ent === null)
             throw $this->createNotFoundException();
         $this->checkParents($dm, $l1id, $l2id, $ent);
@@ -38,10 +42,17 @@ abstract class Level2AjaxFormController extends Controller
         if ($l2id === 'new')
             $ent = $this->createEntity($req, $dm, $l1id, 'new');
         else {
-            $ent = $dm->getRepository(static::ENTITY_NAME)->find($l2id);
+            $repo = $dm->getRepository(static::ENTITY_NAME);
+            if (static::USE_SLUG)
+                $ent = $repo->findOneBy([ 'slug' => $l2id ]);
+            else
+                $ent = $repo->find($l2id);
             if ($ent === null) {
                 $ent = $this->createEntity($req, $dm, $l1id, $l2id);
-                $ent->setId($l2id);
+                if (static::USE_SLUG)
+                    $ent->setSlug($l2id);
+                else
+                    $ent->setId($l2id);
             } else
                 $this->checkParents($dm, $l1id, $l2id, $ent);
         }
@@ -52,7 +63,7 @@ abstract class Level2AjaxFormController extends Controller
         $dm->flush();
         $data = $ent->exportData();
         if ($l1id === 'new') {
-            $location = $this->get('router')->generate(static::ROUTE_NAME, [ 'l1id' => $l1id, 'l2id' => $ent->getId() ], true);
+            $location = $this->get('router')->generate(static::ROUTE_NAME, [ 'l1id' => $l1id, 'l2id' => static::USE_SLUG ? $ent->getSlug() : $ent->getId() ], true);
             $this->postStore($req, $dm, $l1id, $l2id, $ent);
             return $this->createJsonResponse($data, 201, [
                 'Location' => $location
@@ -68,7 +79,11 @@ abstract class Level2AjaxFormController extends Controller
         $this->preDelete($l1id, $l2id);
         $this->unlockSession();
         $dm = $this->getDoctrine()->getManager();
-        $ent = $dm->getRepository(static::ENTITY_NAME)->find($l2id);
+        $repo = $dm->getRepository(static::ENTITY_NAME);
+        if (static::USE_SLUG)
+            $ent = $repo->findOneBy([ 'slug' => $l2id ]);
+        else
+            $ent = $repo->find($l2id);
         if ($ent === null)
             throw $this->createNotFoundException();
         $this->checkParents($dm, $l1id, $l2id, $ent);

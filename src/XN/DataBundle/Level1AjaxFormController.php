@@ -20,7 +20,11 @@ abstract class Level1AjaxFormController extends Controller
         $this->preFetch($l1id);
         $this->unlockSession();
         $dm = $this->getDoctrine()->getManager();
-        $ent = $dm->getRepository(static::ENTITY_NAME)->find($l1id);
+        $repo = $dm->getRepository(static::ENTITY_NAME);
+        if (static::USE_SLUG)
+            $ent = $repo->findOneBy([ 'slug' => $l1id ]);
+        else
+            $ent = $repo->find($l1id);
         if ($ent === null)
             throw $this->createNotFoundException();
         $this->inFetch($dm, $l1id, $ent);
@@ -37,10 +41,17 @@ abstract class Level1AjaxFormController extends Controller
         if ($l1id === 'new')
             $ent = $this->createEntity($req, $dm, 'new');
         else {
-            $ent = $dm->getRepository(static::ENTITY_NAME)->find($l1id);
+            $repo = $dm->getRepository(static::ENTITY_NAME);
+            if (static::USE_SLUG)
+                $ent = $repo->findOneBy([ 'slug' => $l1id ]);
+            else
+                $ent = $repo->find($l1id);
             if ($ent === null) {
                 $ent = $this->createEntity($req, $dm, $l1id);
-                $ent->setId($l1id);
+                if (static::USE_SLUG)
+                    $ent->setSlug($l1id);
+                else
+                    $ent->setId($l1id);
             }
         }
         $this->inStorePreImport($req, $dm, $l1id, $ent);
@@ -50,7 +61,7 @@ abstract class Level1AjaxFormController extends Controller
         $dm->flush();
         $data = $ent->exportData();
         if ($l1id === 'new') {
-            $location = $this->get('router')->generate(static::ROUTE_NAME, [ 'l1id' => $ent->getId() ], true);
+            $location = $this->get('router')->generate(static::ROUTE_NAME, [ 'l1id' => static::USE_SLUG ? $ent->getSlug() : $ent->getId() ], true);
             $this->postStore($req, $dm, $l1id, $ent);
             return $this->createJsonResponse($data, 201, [
                 'Location' => $location
@@ -66,7 +77,11 @@ abstract class Level1AjaxFormController extends Controller
         $this->preDelete($l1id);
         $this->unlockSession();
         $dm = $this->getDoctrine()->getManager();
-        $ent = $dm->getRepository(static::ENTITY_NAME)->find($l1id);
+        $repo = $dm->getRepository(static::ENTITY_NAME);
+        if (static::USE_SLUG)
+            $ent = $repo->findOneBy([ 'slug' => $l1id ]);
+        else
+            $ent = $repo->find($l1id);
         if ($ent === null)
             throw $this->createNotFoundException();
         $this->inDelete($dm, $l1id, $ent);

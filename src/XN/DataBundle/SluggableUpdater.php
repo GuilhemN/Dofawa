@@ -37,6 +37,8 @@ class SluggableUpdater
 
 	private function tryAssignSlug(SluggableInterface $ent, $slug, EntityRepository $repo, $entRCN, ObjectManager $dm)
 	{
+		if (self::isReservedSlug($slug))
+			return false;
 		if ($repo->findOneBy([ 'slug' => $slug ]) !== null)
 			return false;
 		foreach ($dm->getUnitOfWork()->getScheduledEntityInsertions() as $ent2)
@@ -62,5 +64,24 @@ class SluggableUpdater
 		$str = preg_replace('/[^a-z0-9-]+/', '-', $str);
 		$str = trim($str, '-');
 		return $str;
+	}
+	public static function getReservedSlugs()
+	{
+		static $rslugs = null;
+		if ($rslugs === null)
+			$rslugs = [
+				'any',
+				'new'
+			];
+		return $rslugs;
+	}
+	public static function isReservedSlug($slug)
+	{
+		static $rslugs = null;
+		if ($rslugs === null) {
+			$rslugs = array_flip(self::getReservedSlugs());
+			ksort($rslugs);
+		}
+		return isset($rslugs[$slug]);
 	}
 }
