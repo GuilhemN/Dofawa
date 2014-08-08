@@ -8,7 +8,11 @@ mkdir -p bin/cache
 rm -rf app/cache
 mkdir -p app/cache
 
-composer install -o --no-scripts
+if [ "$1" == --dev ]; then
+	composer install --no-scripts
+else
+	composer install -o --no-scripts
+fi
 
 app/console cache:clear -e dev &
 app/console cache:clear -e prod
@@ -23,4 +27,8 @@ if [ "$(id -u)" == 0 ]; then
 	chown -R www-data:www-data bin/cache
 fi
 
-app/console assets:install
+if [ "$1" == --dev ]; then
+	app/console assets:install --symlink --relative
+else
+	app/console assets:install
+fi
