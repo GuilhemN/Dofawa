@@ -6,14 +6,24 @@ use Doctrine\ORM\Mapping as ORM;
 
 use Dof\CharactersBundle\Entity\Breed;
 
+use XN\DataBundle\IdentifiableInterface;
+use XN\DataBundle\TimestampableInterface;
+use XN\DataBundle\TimestampableTrait;
+use XN\DataBundle\SluggableInterface;
+use XN\DataBundle\SluggableTrait;
+use XN\DataBundle\OwnableInterface;
+use Dof\UserBundle\OwnableTrait;
+
 /**
  * PlayerCharacter
  *
  * @ORM\Table(name="dof_build_playercharacter")
  * @ORM\Entity(repositoryClass="Dof\BuildBundle\Entity\PlayerCharacterRepository")
  */
-class PlayerCharacter
+class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
 {
+    use TimestampableTrait, SluggableTrait, OwnableTrait;
+
     /**
      * @var integer
      *
@@ -106,7 +116,7 @@ class PlayerCharacter
         $this->breed = $breed;
         return $this;
     }
-    
+
     public function getBreed()
     {
         return $this->breed;
