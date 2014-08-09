@@ -16,12 +16,12 @@ use Dof\BuildBundle\Entity\Item;
 /**
  * Stuff
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_build_stuff")
  * @ORM\Entity(repositoryClass="Dof\BuildBundle\Entity\StuffRepository")
  */
 class Stuff implements IdentifiableInterface, TimestampableInterface
 {
-    use TimestampableInterface;
+    use TimestampableTrait;
 
     /**
      * @var integer
