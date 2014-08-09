@@ -9,7 +9,7 @@ use XN\DataBundle\IdentifiableInterface;
 use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
 
-use Dof\BuildBundle\Stuff;
+use Dof\BuildBundle\Entity\Stuff;
 
 /**
  * Item
