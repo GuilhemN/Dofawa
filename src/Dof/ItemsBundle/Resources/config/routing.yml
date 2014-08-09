@@ -2,18 +2,18 @@ dof_items_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: DofItemsBundle:Default:index }
 
-dof_items_itemtemplate:
-    pattern:  /json/item-template/{l1id}.json
+dof_items_json_itemtemplate:
+    pattern:  /json/item-template/{l1id}/data.json
     defaults: { _controller: DofItemsBundle:ItemTemplateForm:fetch }
     requirements: { _method: GET, l1id: '[0-9a-z-]+' }
     options:  { expose: true }
 
-dof_items_itemtemplate_store:
-    pattern:  /json/item-template/{l1id}.json
+dof_items_json_itemtemplate_store:
+    pattern:  /json/item-template/{l1id}/data.json
     defaults: { _controller: DofItemsBundle:ItemTemplateForm:fetch }
     requirements: { _method: PUT, l1id: '[0-9a-z-]+' }
 
-dof_items_itemtemplate_delete:
-    pattern:  /json/item-template/{l1id}.json
+dof_items_json_itemtemplate_delete:
+    pattern:  /json/item-template/{l1id}/data.json
     defaults: { _controller: DofItemsBundle:ItemTemplateForm:fetch }
     requirements: { _method: DELETE, l1id: '[0-9a-z-]+' }

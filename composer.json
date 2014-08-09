@@ -32,7 +32,11 @@
         "friendsofsymfony/message-bundle": "dev-master",
         "braincrafted/bootstrap-bundle": "~2.0",
         "excelwebzone/recaptcha-bundle": "dev-master",
-        "symfony/icu": "1.0.*"
+        "symfony/icu": "1.0.*",
+        "knplabs/knp-snappy": "dev-master",
+        "knplabs/knp-snappy-bundle": "dev-master",
+        "h4cc/wkhtmltopdf-amd64": "dev-master",
+        "h4cc/wkhtmltoimage-amd64": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

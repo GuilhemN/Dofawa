@@ -12,7 +12,7 @@ use XN\DataBundle\Level1AjaxFormController;
 class ItemTemplateFormController extends Level1AjaxFormController
 {
     const ENTITY_NAME = 'DofItemsBundle:ItemTemplate';
-    const ROUTE_NAME = 'dof_items_itemtemplate';
+    const ROUTE_NAME = 'dof_items_json_itemtemplate';
     const USE_SLUG = true;
 
     protected function preStore(Request $req, $l1id)
