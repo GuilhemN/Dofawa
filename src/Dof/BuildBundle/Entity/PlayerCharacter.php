@@ -111,7 +111,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
         return $this->level;
     }
 
-    public function setBreed(Breed $breed = null)
+    public function setBreed(Breed $breed)
     {
         $this->breed = $breed;
         return $this;

@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use XN\DataBundle\IdentifiableInterface;
 use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
+use XN\DataBundle\SluggableInterface;
+use XN\DataBundle\SluggableTrait;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,9 +21,9 @@ use Dof\BuildBundle\Entity\Item;
  * @ORM\Table(name="dof_build_stuff")
  * @ORM\Entity(repositoryClass="Dof\BuildBundle\Entity\StuffRepository")
  */
-class Stuff implements IdentifiableInterface, TimestampableInterface
+class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, SluggableTrait;
 
     /**
      * @var integer
@@ -119,5 +121,10 @@ class Stuff implements IdentifiableInterface, TimestampableInterface
     public function getItems()
     {
         return $this->items;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }
