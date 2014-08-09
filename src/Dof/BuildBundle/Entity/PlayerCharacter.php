@@ -121,4 +121,9 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     {
         return $this->breed;
     }
+
+    public function __toString()
+    {
+      return $this->getName();
+    }
 }
