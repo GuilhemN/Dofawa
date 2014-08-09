@@ -2,6 +2,8 @@
 
 namespace Dof\ItemsBundle\Entity;
 
+use Doctrine\Common\Persistence\ObjectManager;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,4 +49,18 @@ class SkinnedEquipmentTemplate extends EquipmentTemplate
     }
 
 	public function isSkinned() { return true; }
+    public function getClassId() { return 'skinned'; }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return parent::exportData($full, $locale) + ($full ? [
+            'skin' => $this->skin
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        if (parent::importField($key, $value, $dm, $locale))
+            return true;
+        return false;
+    }
 }

@@ -4,6 +4,7 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\ObjectManager;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -465,8 +466,6 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
         return $this->diagonalCast;
     }
 
-	public function isWeapon() { return true; }
-
     public function canMage()
     {
         if (!$this->isEnhanceable())
@@ -474,6 +473,33 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
         foreach ($this->damageRows as $row)
             if ($row->canMage())
                 return true;
+        return false;
+    }
+
+	public function isWeapon() { return true; }
+	public function getClassId() { return 'weapon'; }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return parent::exportData($full, $locale) + ($full ? [
+            'damageRows' => array_map(function ($ent) { return $ent->exportData(false); }, $this->damageRows->toArray()),
+            'twoHanded' => $this->twoHanded,
+            'ethereal' => $this->ethereal,
+            'criticalHitBonus' => $this->criticalHitBonus,
+            'criticalHitDenominator' => $this->criticalHitDenominator,
+            'maxCastsPerTurn' => $this->maxCastsPerTurn,
+            'apCost' => $this->apCost,
+            'minCastRange' => $this->minCastRange,
+            'maxCastRange' => $this->maxCastRange,
+            'sightCast' => $this->sightCast,
+            'lineCast' => $this->lineCast,
+            'diagonalCast' => $this->diagonalCast
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        if (parent::importField($key, $value, $dm, $locale))
+            return true;
         return false;
     }
 }

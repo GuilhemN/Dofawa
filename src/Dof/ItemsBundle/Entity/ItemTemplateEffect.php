@@ -3,7 +3,10 @@
 namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Persistence\ObjectManager;
 
+use XN\DataBundle\ExportableInterface;
+use XN\DataBundle\ImportableTrait;
 use XN\DataBundle\IdentifiableInterface;
 
 /**
@@ -12,7 +15,7 @@ use XN\DataBundle\IdentifiableInterface;
  * @ORM\Table(name="dof_item_template_effects")
  * @ORM\Entity(repositoryClass="ItemTemplateEffectRepository")
  */
-class ItemTemplateEffect implements IdentifiableInterface
+class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface
 {
     /**
      * @var integer
@@ -22,6 +25,8 @@ class ItemTemplateEffect implements IdentifiableInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    use ImportableTrait;
 
     /**
      * @var ItemTemplate
@@ -212,5 +217,22 @@ class ItemTemplateEffect implements IdentifiableInterface
     public function getParam3()
     {
         return $this->param3;
+    }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return [
+            'type' => $this->type,
+            'param1' => $this->param1,
+            'param2' => $this->param2,
+            'param3' => $this->param3
+        ] + ($full ? [
+            'item' => $this->item->exportData(false),
+            'order' => $this->order
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        return false;
     }
 }

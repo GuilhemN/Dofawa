@@ -4,6 +4,7 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\ObjectManager;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,7 +37,7 @@ class PetTemplate extends AnimalTemplate
 		$this->foodTypes = new ArrayCollection();
 		$this->foodItems = new ArrayCollection();
 	}
-	
+
     /**
      * Add foodTypes
      *
@@ -110,4 +111,18 @@ class PetTemplate extends AnimalTemplate
     }
 
 	public function isPet() { return true; }
+	public function getClassId() { return 'pet'; }
+
+
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return parent::exportData($full, $locale);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        if (parent::importField($key, $value, $dm, $locale))
+            return true;
+        return false;
+    }
 }

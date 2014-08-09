@@ -2,6 +2,8 @@
 
 namespace Dof\ItemsBundle\Entity;
 
+use Doctrine\Common\Persistence\ObjectManager;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -142,7 +144,7 @@ class UseableItemTemplate extends ItemTemplate
     {
         return $this->targetable;
     }
-    
+
     /**
      * Set targetCriteria
      *
@@ -167,4 +169,21 @@ class UseableItemTemplate extends ItemTemplate
     }
 
 	public function isUseable() { return true; }
+    public function getClassId() { return 'useable'; }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return parent::exportData($full, $locale) + ($full ? [
+            'useableOnSelf' => $this->useableOnSelf,
+            'useableOnOthers' => $this->useableOnOthers,
+            'targetable' => $this->targetable,
+            'targetCriteria' => $this->targetCriteria
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        if (parent::importField($key, $value, $dm, $locale))
+            return true;
+        return false;
+    }
 }

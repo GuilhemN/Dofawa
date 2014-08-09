@@ -3,7 +3,10 @@
 namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Persistence\ObjectManager;
 
+use XN\DataBundle\ExportableInterface;
+use XN\DataBundle\ImportableTrait;
 use XN\DataBundle\IdentifiableInterface;
 
 use Dof\ItemsBundle\Element;
@@ -14,7 +17,7 @@ use Dof\ItemsBundle\Element;
  * @ORM\Table(name="dof_weapon_damage_rows")
  * @ORM\Entity(repositoryClass="WeaponDamageRowRepository")
  */
-class WeaponDamageRow implements IdentifiableInterface
+class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
 {
 	/**
      * @var integer
@@ -24,6 +27,8 @@ class WeaponDamageRow implements IdentifiableInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    use ImportableTrait;
 
     /**
      * @var WeaponTemplate
@@ -230,4 +235,21 @@ class WeaponDamageRow implements IdentifiableInterface
     {
         return $this->element == Element::NEUTRAL && !$this->leech;
     }
-}
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return [
+            'element' => $this->element,
+            'min' => $this->min,
+            'max' => $this->max,
+            'leech' => $this->leech
+        ] + ($full ? [
+            'weapon' => $this->weapon->exportData(false),
+            'order' => $this->order
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        return false;
+    }
+}

@@ -4,9 +4,12 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\ObjectManager;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\DataBundle\ExportableInterface;
+use XN\DataBundle\ImportableTrait;
 use XN\DataBundle\IdentifiableInterface;
 use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
@@ -26,7 +29,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
  */
-class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface
 {
     /**
      * @var integer
@@ -36,7 +39,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
     /**
      * @var ItemType
@@ -884,4 +887,32 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function isPet() { return false; }
     public function isMount() { return false; }
     public function isUseable() { return false; }
+    public function getClassId() { return 'item'; }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return $this->exportTimestampableData($full) + $this->exportSluggableData($full) + [
+            'name' => $this->getName($locale),
+            'type' => $this->type->exportData(false),
+            'level' => $this->level,
+            'class' => $this->getClassId()
+        ] + ($full ? [
+            'description' => $this->getDescription($locale),
+            'obtainment' => $this->getObtainment($locale),
+            'iconRelativePath' => $this->iconRelativePath,
+            'dominantColor' => $this->dominantColor,
+            'criteria' => $this->criteria,
+            'weight' => $this->weight,
+            'tradeable' => $this->tradeable,
+            'npcPrice' => $this->npcPrice,
+            'effects' => array_map(function ($ent) { return $ent->exportData(false); }, $this->effects->toArray()),
+            'release' => $this->release,
+            'preliminary' => $this->preliminary,
+            'deprecated' => $this->deprecated
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        return false;
+    }
 }

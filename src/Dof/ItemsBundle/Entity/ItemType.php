@@ -4,9 +4,12 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\ObjectManager;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\DataBundle\ExportableInterface;
+use XN\DataBundle\ImportableTrait;
 use XN\DataBundle\IdentifiableInterface;
 use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
@@ -24,7 +27,7 @@ use Dof\ItemsBundle\ItemTemplateFactory;
  * @ORM\Table(name="dof_item_types")
  * @ORM\Entity(repositoryClass="ItemTypeRepository")
  */
-class ItemType implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class ItemType implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface
 {
     /**
      * @var integer
@@ -34,7 +37,7 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ReleaseBoundTrait, LocalizedNameTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait;
 
     /**
      * @var integer
@@ -179,5 +182,22 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     public function __toString()
     {
         return $this->nameFr;
+    }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return $this->exportTimestampableData($full) + $this->exportSluggableData($full) + [
+            'name' => $this->getName($locale),
+            'slot' => $this->slot
+        ] + ($full ? [
+            'effectArea' => $this->effectArea,
+            'release' => $this->release,
+            'preliminary' => $this->preliminary,
+            'deprecated' => $this->deprecated
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        return false;
     }
 }

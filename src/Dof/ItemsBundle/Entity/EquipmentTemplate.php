@@ -2,6 +2,8 @@
 
 namespace Dof\ItemsBundle\Entity;
 
+use Doctrine\Common\Persistence\ObjectManager;
+
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\ItemsBundle\CharacteristicsRangeTrait;
@@ -67,7 +69,7 @@ class EquipmentTemplate extends ItemTemplate
     {
         return $this->enhanceable;
     }
-    
+
     /**
      * Set set
      *
@@ -92,4 +94,20 @@ class EquipmentTemplate extends ItemTemplate
     }
 
 	public function isEquipment() { return true; }
+	public function getClassId() { return 'equip'; }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return parent::exportData($full, $locale) + ($full ? [
+            'enhanceable' => $this->enhanceable,
+            'set' => ($this->set === null) ? null : $this->set->exportData(false),
+            'characteristics' => $this->getCharacteristics()
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        if (parent::importField($key, $value, $dm, $locale))
+            return true;
+        return false;
+    }
 }

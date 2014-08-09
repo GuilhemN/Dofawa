@@ -4,9 +4,12 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\ObjectManager;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\DataBundle\ExportableInterface;
+use XN\DataBundle\ImportableTrait;
 use XN\DataBundle\IdentifiableInterface;
 use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
@@ -22,7 +25,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_item_sets")
  * @ORM\Entity(repositoryClass="ItemSetRepository")
  */
-class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface
 {
     /**
      * @var integer
@@ -32,7 +35,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ReleaseBoundTrait, LocalizedNameTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait;
 
     /**
      * @var Collection
@@ -153,5 +156,21 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function __toString()
     {
         return $this->nameFr;
+    }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return $this->exportTimestampableData($full) + $this->exportSluggableData($full) + [
+            'name' => $this->getName($locale)
+        ] + ($full ? [
+            'items' => array_map(function ($ent) { return $ent->exportData(false); }, $this->items->toArray()),
+            'release' => $this->release,
+            'preliminary' => $this->preliminary,
+            'deprecated' => $this->deprecated
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        return false;
     }
 }

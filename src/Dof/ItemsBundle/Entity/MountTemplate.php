@@ -2,6 +2,8 @@
 
 namespace Dof\ItemsBundle\Entity;
 
+use Doctrine\Common\Persistence\ObjectManager;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,7 +54,7 @@ class MountTemplate extends AnimalTemplate
     {
         return $this->skins;
     }
-    
+
     /**
      * Set colors
      *
@@ -77,4 +79,19 @@ class MountTemplate extends AnimalTemplate
     }
 
 	public function isMount() { return true; }
+    public function getClassId() { return 'mount'; }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return parent::exportData($full, $locale) + ($full ? [
+            'skins' => $this->skins,
+            'colors' => $this->colors
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        if (parent::importField($key, $value, $dm, $locale))
+            return true;
+        return false;
+    }
 }

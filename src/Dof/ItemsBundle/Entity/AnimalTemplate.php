@@ -4,6 +4,7 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\ObjectManager;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -181,10 +182,27 @@ class AnimalTemplate extends EquipmentTemplate
      *
      * @return Collection
      */
+
     public function getFavoriteAreas()
     {
         return $this->favoriteAreas;
     }
 
 	public function isAnimal() { return true; }
-}
+    public function getClassId() { return 'animal'; }
+
+    public function exportData($full = true, $locale = 'fr')
+    {
+        return parent::exportData($full, $locale) + ($full ? [
+            'bone' => $this->bone,
+            'colorizationType' => $this->colorizationType,
+            'size' => $this->size
+        ] : [ ]);
+    }
+    protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
+    {
+        if (parent::importField($key, $value, $dm, $locale))
+            return true;
+        return false;
+    }
+}
