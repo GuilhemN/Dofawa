@@ -8,10 +8,14 @@ use Doctrine\Common\Collections\Collection;
 use XN\DataBundle\IdentifiableInterface;
 use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
+use XN\DataBundle\SluggableInterface;
+use XN\DataBundle\SluggableTrait;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Item;
+use Dof\GraphicsBundle\Entity\BuildLook;
 
 /**
  * Stuff
@@ -19,9 +23,9 @@ use Dof\BuildBundle\Entity\Item;
  * @ORM\Table(name="dof_build_stuff")
  * @ORM\Entity(repositoryClass="Dof\BuildBundle\Entity\StuffRepository")
  */
-class Stuff implements IdentifiableInterface, TimestampableInterface
+class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, SluggableTrait;
 
     /**
      * @var integer
@@ -40,11 +44,22 @@ class Stuff implements IdentifiableInterface, TimestampableInterface
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Dof\BuildBundle\Entity\PlayerCharacter")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $character;
+
+    /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Item", mappedBy="stuff")
      */
     private $items;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Dof\GraphicsBundle\Entity\BuildLook")
+     */
+    private $look;
 
     public function __construct()
     {
@@ -86,6 +101,29 @@ class Stuff implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
+     * Set character
+     *
+     * @param PlayerCharacter $character
+     * @return Stuff
+     */
+    public function setCharacter(PlayerCharacter $character)
+    {
+        $this->character = $character;
+
+        return $this;
+    }
+
+    /**
+     * Get character
+     *
+     * @return PlayerCharacter
+     */
+    public function getCharacter()
+    {
+        return $this->character;
+    }
+
+    /**
      * Add items
      *
      * @param Item $items
@@ -119,5 +157,33 @@ class Stuff implements IdentifiableInterface, TimestampableInterface
     public function getItems()
     {
         return $this->items;
+    }
+
+    /**
+     * Set look
+     *
+     * @param BuildLook $look
+     * @return Stuff
+     */
+    public function setLook(BuildLook $look)
+    {
+        $this->look = $look;
+
+        return $this;
+    }
+
+    /**
+     * Get look
+     *
+     * @return BuildLook
+     */
+    public function getLook()
+    {
+        return $this->look;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

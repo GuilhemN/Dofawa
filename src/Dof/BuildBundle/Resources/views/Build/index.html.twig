@@ -1,0 +1,29 @@
+{% extends '::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>Builds</li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        {% for character in characters %}
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="holder.js/300x300" alt="{{ character.name }}">
+                <div class="caption">
+                    <h3>{{ character.name }}</h3>
+                    <p>Niveau {{ character.level }}</p>
+                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="well">
+        <div class="page-header">
+            <h1>Créer un nouveau personnage</h1>
+        </div>
+        {{ form(form, { 'style': 'horizontal' }) }}
+    </div>
+{% endblock %}

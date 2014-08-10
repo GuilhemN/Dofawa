@@ -10,6 +10,7 @@ use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
 
 use Dof\BuildBundle\Entity\Stuff;
+use Dof\ItemsBundle\Entity\ItemTemplate;
 
 /**
  * Item
@@ -37,6 +38,14 @@ class Item implements IdentifiableInterface, TimestampableInterface
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $stuff;
+
+    /**
+     * @var Stuff
+     *
+     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate", inversedBy="buildItems")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $itemTemplate;
 
 
     /**
@@ -70,5 +79,28 @@ class Item implements IdentifiableInterface, TimestampableInterface
     public function getStuff()
     {
         return $this->stuff;
+    }
+
+    /**
+     * Set itemTemplate
+     *
+     * @param ItemTemplate $itemTemplate
+     * @return Item
+     */
+    public function setItemTemplate(ItemTemplate $itemTemplate)
+    {
+        $this->itemTemplate = $itemTemplate;
+
+        return $this;
+    }
+
+    /**
+     * Get itemTemplate
+     *
+     * @return ItemTemplate
+     */
+    public function getItemTemplate()
+    {
+        return $this->itemTemplate;
     }
 }

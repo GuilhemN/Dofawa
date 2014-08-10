@@ -4,8 +4,6 @@ namespace Dof\BuildBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Dof\CharactersBundle\Entity\Breed;
-
 use XN\DataBundle\IdentifiableInterface;
 use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
@@ -13,6 +11,9 @@ use XN\DataBundle\SluggableInterface;
 use XN\DataBundle\SluggableTrait;
 use XN\DataBundle\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
+
+use Dof\CharactersBundle\Entity\Breed;
+use Dof\BuildBundle\Entity\Stuff;
 
 /**
  * PlayerCharacter
@@ -47,13 +48,18 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
      */
     private $level;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="Dof\CharactersBundle\Entity\Breed")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $breed;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="character")
+     */
+    private $stuffs;
 
     /**
      * Get id
@@ -111,7 +117,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
         return $this->level;
     }
 
-    public function setBreed(Breed $breed = null)
+    public function setBreed(Breed $breed)
     {
         $this->breed = $breed;
         return $this;
@@ -120,6 +126,42 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     public function getBreed()
     {
         return $this->breed;
+    }
+
+    /**
+     * Add stuffs
+     *
+     * @param Stuff $stuffs
+     * @return PlayerCharacter
+     */
+    public function addStuff(Stuff $stuffs)
+    {
+        $this->stuffs[] = $stuffs;
+
+        return $this;
+    }
+
+    /**
+     * Remove stuffs
+     *
+     * @param Stuff $stuffs
+     * @return PlayerCharacter
+     */
+    public function removeStuff(Stuff $stuffs)
+    {
+        $this->stuffs->removeElement($stuffs);
+
+        return $this;
+    }
+
+    /**
+     * Get stuffs
+     *
+     * @return Collection
+     */
+    public function getStuffs()
+    {
+        return $this->stuffs;
     }
 
     public function __toString()

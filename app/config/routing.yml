@@ -1,6 +1,6 @@
-#dof_build:
-#    resource: "@DofBuildBundle/Resources/config/routing.yml"
-#    prefix:   /
+dof_build:
+    resource: "@DofBuildBundle/Resources/config/routing.yml"
+    prefix:   /build
 
 dof_translation:
     resource: "@DofTranslationBundle/Resources/config/routing.yml"
