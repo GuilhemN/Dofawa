@@ -4,7 +4,6 @@ namespace Dof\BuildBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Dof\BuildBundle\Form\PlayerCharacterType;
 use Dof\BuildBundle\Entity\PlayerCharacter;
 
 class BuildController extends Controller
@@ -19,7 +18,7 @@ class BuildController extends Controller
         $em = $this->getDoctrine()->getManager();
         $characters = $em->getRepository('DofBuildBundle:PlayerCharacter')->findByOwner($user);
 
-        $form = $this->createForm(new PlayerCharacterType(), new PlayerCharacter());
+        $form = $this->createForm('dof_buildbundle_playercharacter', new PlayerCharacter());
         $form->handleRequest($this->get('request'));
 
         if($form->isValid()){

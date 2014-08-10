@@ -1,7 +1,9 @@
 parameters:
-#    dof_build.example.class: Dof\BuildBundle\Example
+    dof_build.playerCharacter.form.class: Dof\ArticlesBundle\Form\PlayerCharacterType
 
 services:
-#    dof_build.example:
-#        class: %dof_build.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    dof_build.playerCharacter.form.type:
+        class: %dof_build.playerCharacter.form.class%
+        arguments: []
+        tags:
+            - { name: form.type, alias: dof_buildbundle_playercharacter }
