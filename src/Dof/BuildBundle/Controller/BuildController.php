@@ -28,6 +28,6 @@ class BuildController extends Controller
             $em->flush();
         }
 
-        return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView(())));
+        return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
 }
