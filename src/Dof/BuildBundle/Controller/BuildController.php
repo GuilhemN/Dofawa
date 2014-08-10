@@ -11,7 +11,7 @@ class BuildController extends Controller
     public function indexAction()
     {
         if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            return $this->createAccessDeniedException();
+            throw $this->createAccessDeniedException();
 
         $user = $this->getUser();
 
