@@ -10,7 +10,7 @@ class BuildController extends Controller
 {
     public function indexAction()
     {
-        if($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             $this->createAccessDeniedException();
 
         $user = $this->getUser();
