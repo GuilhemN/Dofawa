@@ -14,6 +14,9 @@ use XN\DataBundle\SluggableTrait;
 use XN\DataBundle\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
+use Dof\CharactersBundle\Entity\Breed;
+use Dof\BuildBundle\Entity\Stuff;
+
 /**
  * PlayerCharacter
  *
@@ -47,13 +50,18 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
      */
     private $level;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="Dof\CharactersBundle\Entity\Breed")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $breed;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="character")
+     */
+    private $stuffs;
 
     /**
      * Get id
@@ -120,6 +128,42 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     public function getBreed()
     {
         return $this->breed;
+    }
+    
+    /**
+     * Add stuffs
+     *
+     * @param Stuff $stuffs
+     * @return PlayerCharacter
+     */
+    public function addStuff(Stuff $stuffs)
+    {
+        $this->stuffs[] = $stuffs;
+
+        return $this;
+    }
+
+    /**
+     * Remove stuffs
+     *
+     * @param Stuff $stuffs
+     * @return PlayerCharacter
+     */
+    public function removeStuff(Stuff $stuffs)
+    {
+        $this->stuffs->removeElement($stuffs);
+
+        return $this;
+    }
+
+    /**
+     * Get stuffs
+     *
+     * @return Collection
+     */
+    public function getStuffs()
+    {
+        return $this->stuffs;
     }
 
     public function __toString()

@@ -13,6 +13,7 @@ use XN\DataBundle\SluggableTrait;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Item;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
@@ -43,9 +44,15 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Dof\BuildBundle\Entity\PlayerCharacter")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $character;
+
+    /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Item", mappedBy="stuff")
      */
     private $items;
 
@@ -91,6 +98,29 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set character
+     *
+     * @param PlayerCharacter $character
+     * @return Stuff
+     */
+    public function setCharacter(PlayerCharacter $character)
+    {
+        $this->character = $character;
+
+        return $this;
+    }
+
+    /**
+     * Get character
+     *
+     * @return PlayerCharacter
+     */
+    public function getCharacter()
+    {
+        return $this->character;
     }
 
     /**
