@@ -20,7 +20,7 @@ class PlayerCharacterType extends AbstractType
             ->add('name')
             ->add('level')
             ->add('breed')
-            ->add('look')
+            ->add('stuff')
             ->add('submit', 'submit')
         ;
     }
