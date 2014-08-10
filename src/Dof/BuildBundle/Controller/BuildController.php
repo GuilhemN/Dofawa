@@ -10,10 +10,10 @@ class BuildController extends Controller
 {
     public function indexAction()
     {
-        $user = $this->getUser();
-
-        if(empty($user))
+        if($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             $this->createAccessDeniedException();
+
+        $user = $this->getUser();
 
         $em = $this->getDoctrine()->getManager();
         $characters = $em->getRepository('DofBuildBundle:PlayerCharacter')->findByOwner($user);
