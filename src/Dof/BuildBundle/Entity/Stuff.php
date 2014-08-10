@@ -14,6 +14,7 @@ use XN\DataBundle\SluggableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\BuildBundle\Entity\Item;
+use Dof\GraphicsBundle\Entity\BuildLook;
 
 /**
  * Stuff
@@ -47,6 +48,11 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
      * @ORM\OneToMany(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate", mappedBy="type")
      */
     private $items;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Dof\GraphicsBundle\Entity\BuildLook")
+     */
+    private $look;
 
     public function __construct()
     {
@@ -121,6 +127,29 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getItems()
     {
         return $this->items;
+    }
+
+    /**
+     * Set look
+     *
+     * @param BuildLook $look
+     * @return Stuff
+     */
+    public function setLook(BuildLook $look)
+    {
+        $this->look = $look;
+
+        return $this;
+    }
+
+    /**
+     * Get look
+     *
+     * @return BuildLook
+     */
+    public function getLook()
+    {
+        return $this->look;
     }
 
     public function __toString()

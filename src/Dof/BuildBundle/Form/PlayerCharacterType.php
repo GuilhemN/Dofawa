@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class PlayerCharacterType extends AbstractType
 {
     public function __construct() {}
-        
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -20,6 +20,8 @@ class PlayerCharacterType extends AbstractType
             ->add('name')
             ->add('level')
             ->add('breed')
+            ->add('look')
+            ->add('submit', 'submit')
         ;
     }
 
