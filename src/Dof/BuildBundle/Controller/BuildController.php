@@ -12,7 +12,7 @@ class BuildController extends Controller
     {
         $user = $this->getUser();
 
-        if(!empty($user))
+        if(empty($user))
             $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();

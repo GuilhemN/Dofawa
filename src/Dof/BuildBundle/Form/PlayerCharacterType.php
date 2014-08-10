@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PlayerCharacterType extends AbstractType
 {
+    public function __construct() {}
+        
     /**
      * @param FormBuilderInterface $builder
      * @param array $options

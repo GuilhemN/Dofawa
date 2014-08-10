@@ -4,6 +4,5 @@ parameters:
 services:
     dof_build.playerCharacter.form.type:
         class: %dof_build.playerCharacter.form.class%
-        arguments: []
         tags:
             - { name: form.type, alias: dof_buildbundle_playercharacter }
