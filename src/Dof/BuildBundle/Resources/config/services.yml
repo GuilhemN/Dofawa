@@ -1,8 +1,8 @@
 parameters:
-    dof_build.playerCharacter.form.class: Dof\ArticlesBundle\Form\PlayerCharacterType
+  dof_build.playerCharacter.form.class: Dof\ArticlesBundle\Form\PlayerCharacterType
 
 services:
-    dof_build.playerCharacter.form.type:
-        class: %dof_build.playerCharacter.form.class%
-        tags:
-            - { name: form.type, alias: dof_buildbundle_playercharacter }
+  dof_build.playerCharacter.form.type:
+    class: %dof_build.playerCharacter.form.class%
+    tags:
+      - { name: form.type, alias: dof_buildbundle_playercharacter }
