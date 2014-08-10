@@ -1,0 +1,445 @@
+/** @jsx JSXDOM */
+
+$(function () {
+
+    class Characteristic {
+        constructor(key, name, defaultWeight, defaultColor) {
+            this.key = key;
+            this.name = name;
+            this.defaultWeight = defaultWeight;
+            this.defaultColor = defaultColor;
+            this.visible = false;
+            if ('localStorage' in window) {
+                this.weight = parseInt(localStorage.getItem('dof/qdiag/chara/' + key + '/weight'), 10);
+                if (this.weight != this.weight)
+                    this.weight = this.defaultWeight;
+                this.color = parseInt(localStorage.getItem('dof/qdiag/chara/' + key + '/color'), 10);
+                if (this.color != this.color)
+                    this.color = this.defaultColor;
+                this.disabled = parseBoolean(localStorage.getItem('dof/qdiag/chara/' + key + '/disabled'));
+            } else {
+                this.weight = defaultWeight;
+                this.color = defaultColor;
+                this.disabled = false;
+            }
+        }
+        setWeight(weight) {
+            this.weight = weight;
+            if ('localStorage' in window) {
+                if (weight != this.defaultWeight)
+                    localStorage.setItem('dof/qdiag/chara/' + this.key + '/weight', weight.toString(10));
+                else
+                    localStorage.removeItem('dof/qdiag/chara/' + this.key + '/weight');
+            }
+        }
+        setColor(color) {
+            this.color = color;
+            if ('localStorage' in window) {
+                if (color != this.defaultColor)
+                    localStorage.setItem('dof/qdiag/chara/' + this.key + '/color', color.toString(10));
+                else
+                    localStorage.removeItem('dof/qdiag/chara/' + this.key + '/color');
+            }
+        }
+        setDisabled(disabled) {
+            this.disabled = disabled;
+            if ('localStorage' in window) {
+                if (disabled)
+                    localStorage.setItem('dof/qdiag/chara/' + this.key + '/disabled', 'true');
+                else
+                    localStorage.removeItem('dof/qdiag/chara/' + this.key + '/disabled');
+            }
+        }
+        reset() {
+            this.setWeight(this.defaultWeight);
+            this.setColor(this.defaultColor);
+            this.setDisabled(false);
+        }
+    }
+
+    var characteristics = [
+        new Characteristic('vitality', 'Vitalité', 0.25, 0xFF1E1E),
+        new Characteristic('strength', 'Force', 1, 0x815633),
+        new Characteristic('intelligence', 'Intelligence', 1, 0xD13800),
+        new Characteristic('chance', 'Chance', 1, 0x398A89),
+        new Characteristic('agility', 'Agilité', 1, 0x2B6F2D),
+        new Characteristic('wisdom', 'Sagesse', 3, 0x330066),
+        new Characteristic('power', 'Puissance', 2, 0),
+        new Characteristic('criticalHits', 'Coups Critiques', 30, 0),
+        new Characteristic('ap', 'PA', 100, 0xECA90E),
+        new Characteristic('mp', 'PM', 90, 0x99CC00),
+        new Characteristic('range', 'PO', 51, 0x26B58D),
+        new Characteristic('summons', 'Invocations', 30, 0xFD890B),
+        new Characteristic('damage', 'Dommages', 20, 0),
+        new Characteristic('neutralDamage', 'Dommages Neutre', 5, 0x000000),
+        new Characteristic('earthDamage', 'Dommages Terre', 5, 0x815633),
+        new Characteristic('fireDamage', 'Dommages Feu', 5, 0xD13800),
+        new Characteristic('waterDamage', 'Dommages Eau', 5, 0x398A89),
+        new Characteristic('airDamage', 'Dommages Air', 5, 0x2B6F2D),
+        new Characteristic('heals', 'Soins', 20, 0xFF1E1E),
+        new Characteristic('prospecting', 'Prospection', 3, 0x0098FF),
+        new Characteristic('initiative', 'Initiative', 0.1, 0x660066),
+        new Characteristic('reflectedDamage', 'Dommages Retournés', 30, 0),
+        new Characteristic('percentNeutralResistance', '% Résistance Neutre', 6, 0x000000),
+        new Characteristic('percentEarthResistance', '% Résistance Terre', 6, 0x815633),
+        new Characteristic('percentFireResistance', '% Résistance Feu', 6, 0xD13800),
+        new Characteristic('percentWaterResistance', '% Résistance Eau', 6, 0x398A89),
+        new Characteristic('percentAirResistance', '% Résistance Air', 6, 0x2B6F2D),
+        new Characteristic('neutralResistance', 'Résistance Neutre', 2, 0x000000),
+        new Characteristic('earthResistance', 'Résistance Terre', 2, 0x815633),
+        new Characteristic('fireResistance', 'Résistance Feu', 2, 0xD13800),
+        new Characteristic('waterResistance', 'Résistance Eau', 2, 0x398A89),
+        new Characteristic('airResistance', 'Résistance Air', 2, 0x2B6F2D),
+        new Characteristic('percentNeutralResistanceInPvp', '% Résistance Neutre (JcJ)', 6, 0x000000),
+        new Characteristic('percentEarthResistanceInPvp', '% Résistance Terre (JcJ)', 6, 0x815633),
+        new Characteristic('percentFireResistanceInPvp', '% Résistance Feu (JcJ)', 6, 0xD13800),
+        new Characteristic('percentWaterResistanceInPvp', '% Résistance Eau (JcJ)', 6, 0x398A89),
+        new Characteristic('percentAirResistanceInPvp', '% Résistance Air (JcJ)', 6, 0x2B6F2D),
+        new Characteristic('neutralResistanceInPvp', 'Résistance Neutre (JcJ)', 2, 0x000000),
+        new Characteristic('earthResistanceInPvp', 'Résistance Terre (JcJ)', 2, 0x815633),
+        new Characteristic('fireResistanceInPvp', 'Résistance Feu (JcJ)', 2, 0xD13800),
+        new Characteristic('waterResistanceInPvp', 'Résistance Eau (JcJ)', 2, 0x398A89),
+        new Characteristic('airResistanceInPvp', 'Résistance Air (JcJ)', 2, 0x2B6F2D),
+        new Characteristic('lock', 'Tacle', 4, 0xB3CB20),
+        new Characteristic('dodge', 'Fuite', 4, 0xB3CB20),
+        new Characteristic('apReduction', 'Retrait PA', 7, 0xECA90E),
+        new Characteristic('mpReduction', 'Retrait PM', 7, 0x99CC00),
+        new Characteristic('apLossResistance', 'Esquive PA', 7, 0xECA90E),
+        new Characteristic('mpLossResistance', 'Esquive PM', 7, 0x99CC00),
+        new Characteristic('criticalDamage', 'Dommages Critiques', 5, 0),
+        new Characteristic('criticalResistance', 'Résistance Critiques', 2, 0),
+        new Characteristic('pushbackDamage', 'Dommages Poussée', 5, 0),
+        new Characteristic('pushbackResistance', 'Résistance Poussée', 2, 0),
+        new Characteristic('trapPower', 'Puissance Pièges', 2, 0),
+        new Characteristic('trapDamage', 'Dommages Pièges', 15, 0)
+    ];
+    var characteristicsByKey = { };
+    characteristics.forEach(function (chara) {
+        characteristicsByKey[chara.key] = chara;
+    });
+
+    var defaultQualityFactor = 0.85;
+    if ('localStorage' in window) {
+        defaultQualityFactor = parseFloat(localStorage.getItem('dof/prefs/defaultQualityFactor', 'true'));
+        if (defaultQualityFactor != defaultQualityFactor)
+            defaultQualityFactor = 0.85;
+    }
+
+    var items = [ ];
+
+    var QDiagDataSource = {
+        isImmediate: false,
+        baseSource: new ProjectionDataSource(new AjaxDataSource({
+            url: Routing.generate('dof_items_json_itemtemplate_searchequipment'),
+            data: { filter: AjaxDataSource.filterMarker }
+        }), function (row) {
+            return { text: row.name, value: row.slug };
+        }),
+        getData: function (filter) {
+            if (filter.trim().length < 3)
+                return Promise.resolve([ ]);
+            return this.baseSource.getData(filter);
+        }
+    };
+
+    function generateRgba(rgb, a) {
+        if (a >= 1)
+            return '#' + padString(rgb.toString(16), 6, '0', true);
+        return 'rgba(' + ((rgb & 0xFF0000) >> 16) + ', ' + ((rgb & 0xFF00) >> 8) + ', ' + (rgb & 0xFF) + ', ' + Math.max(a, 0) + ')';
+    }
+    function generateRedGreenMix(ratio) {
+        ratio = Math.max(0, Math.min(1, ratio));
+        var red = Math.round(255 * Math.pow(1 - ratio, 1 / 2.2));
+        var green = Math.round(255 * Math.pow(ratio * 0.3021, 1 / 2.2));
+        return generateRgba((red << 16) | (green << 8), 1);
+    }
+    /*function generateLinearGradient(color, max, value) {
+        if (value < 0)
+            return 'transparent';
+        color = generateRgba(color, 0.15);
+        if (value >= max)
+            return color;
+        var ratio = (value * 100 / max).toFixed(2);
+        return 'linear-gradient(to right, ' + color + ', ' + color + ' ' + ratio + '%, transparent ' + ratio + '%, transparent)';
+    }*/
+    function generateLinearGradientEx(color, max, value) {
+        if (value < 0)
+            return 'transparent';
+        var color2 = generateRgba(color, 0.3);
+        color = generateRgba(color, 0.15);
+        if (value >= max)
+            return 'linear-gradient(to right, ' + color + ', ' + color + ' 85%, ' + color2 + ' 85%, ' + color2 + ')';
+        var ratio = (value * 100 / max).toFixed(2);
+        if (value >= max * 0.85)
+            return 'linear-gradient(to right, ' + color + ', ' + color + ' 85%, ' + color2 + ' 85%, ' + color2 + ' ' + ratio + '%, transparent ' + ratio + '%, transparent)';
+        return 'linear-gradient(to right, ' + color + ', ' + color + ' ' + ratio + '%, transparent ' + ratio + '%, transparent)';
+    }
+
+    function updateCharacteristics() {
+        var visibleFlags = characteristics.map(function (chara) {
+            return chara.visible ? '1' : '0';
+        }).join('');
+        characteristics.forEach(function (chara) {
+            chara.visible = false;
+        });
+        items.forEach(function (item) {
+            for (var key in item.characteristics) {
+                var range = item.characteristics[key];
+                if (range && (range.min || range.max || range.value || range.force))
+                    characteristicsByKey[key].visible = true;
+            }
+        });
+        characteristics.forEach(function (chara) {
+            $(chara.enablerNode)[chara.visible ? 'removeClass' : 'addClass']('hidden');
+        });
+        return characteristics.map(function (chara) {
+            return chara.visible ? '1' : '0';
+        }).join('') != visibleFlags;
+    }
+    function updateDiagrams() {
+        items.forEach(updateDiagram);
+        //$(generatePdfButton)[(items.length > 0) ? 'removeClass' : 'addClass']('hidden');
+    }
+    function updateDiagram(item) {
+        var node = item.diagramNode;
+        setTextContent($('.name', node)[0], item.name);
+        setTextContent($('.level', node)[0], item.level);
+        var subform = $('.subform', node)[0];
+        clearChildNodes(subform);
+        characteristics.forEach(function (chara) {
+            var range = item.characteristics[chara.key];
+            if (chara.visible && !chara.disabled && (range.min || range.max || range.value || range.force)) {
+                var redrawTimer = null;
+                var listItem;
+                var onchange = function () {
+                    var value = parseInt(this.value, 10);
+                    if (value != value)
+                        value = Math.round(range.min + (range.max - range.min) * defaultQualityFactor);
+                    if (range.value != value) {
+                        range.value = value;
+                        listItem.style.background = generateLinearGradientEx(chara.color, range.max - range.min, range.value - range.min);
+                        if (redrawTimer != null)
+                            clearTimeout(redrawTimer);
+                        redrawTimer = setTimeout(function () {
+                            redrawTimer = null;
+                            redrawDiagram(item);
+                        }, 300);
+                    }
+                };
+                var removeLink = range.force ? <a href="#" class="pull-right" onclick={ function () {
+                    range.force = false;
+                    range.value = range.min + Math.round((range.max - range.min) * defaultQualityFactor);
+                    if (updateCharacteristics())
+                        updateDiagrams();
+                    else
+                        updateDiagram(item);
+                    return false;
+                } }><span class="glyphicon glyphicon-minus-sign"></span> Supprimer</a> : null;
+                listItem = <li style={ { background: generateLinearGradientEx(chara.color, range.max - range.min, range.value - range.min) } }>{ removeLink }<label>
+                        <input type="number" name={ 'items[' + item.serial + '][characteristics][' + chara.key + ']' } value={ range.value } step="1" min={ Math.min(range.min, 0) } max={ Math.max(range.max, Math.floor(101 / chara.defaultWeight)) }
+                            onchange={ onchange } onkeyup={ onchange } onblur={ onchange } /> <span>{ chara.name }<br />({ (range.min == range.max) ? ("" + range.min) : (range.min + ' à ' + range.max) })</span>
+                    </label></li>;
+                subform.appendChild(listItem);
+            }
+        });
+        var exoticSelect = <select class="block">{ characteristics.filter(function (chara) {
+            var range = item.characteristics[chara.key];
+            return !chara.disabled && !range.min && !range.max && !range.value && !range.force;
+        }).map(function (chara) {
+            return new Option(chara.name, chara.key);
+        }) }</select>;
+        subform.appendChild(<li>Caractéristiques exotiques :{ exoticSelect }<input type="button" value="Ajouter" onclick={ function () {
+            if (exoticSelect.selectedIndex >= 0) {
+                item.characteristics[exoticSelect.value].force = true;
+                if (updateCharacteristics())
+                    updateDiagrams();
+                else
+                    updateDiagram(item);
+            }
+        } } /></li>);
+        setTimeout(function () {
+            redrawDiagram(item);
+        }, 300);
+    }
+    var HA_LEFT = 22, HA_TOP = 0, HA_WIDTH = 347, HA_HEIGHT = 180, HA_GRAD_LENGTH = 10;
+    var HA_BOTTOM = HA_TOP + HA_HEIGHT, HA_RIGHT = HA_LEFT + HA_WIDTH;
+    var HA_Y_0 = HA_BOTTOM - Math.round(HA_HEIGHT * 0.25);
+    var HA_Y_1 = HA_BOTTOM - Math.round(HA_HEIGHT * 0.75);
+    var HA_Y_0_85 = HA_BOTTOM - Math.round(HA_HEIGHT * 0.675);
+    var GLOBAL_BAR_COLORS = [
+        generateRedGreenMix(0.25),
+        generateRedGreenMix(0.5),
+        generateRedGreenMix(0.75),
+        generateRedGreenMix(1),
+        'black'
+    ];
+    function redrawDiagram(item) {
+        var container = $('.diagram-container', item.diagramNode)[0];
+        clearChildNodes(container);
+        var bars = [ ];
+        var totalMin = 0, totalValue = 0, totalMax = 0, totalWeight = 0;
+        var barCount = 0;
+        characteristics.forEach(function (chara) {
+            if (!chara.visible || chara.disabled)
+                return;
+            var range = item.characteristics[chara.key];
+            if (!range.min && !range.max && !range.value && !range.force) {
+                bars.push(null);
+                ++barCount;
+                return;
+            }
+            bars.push({
+                text: chara.name,
+                color: chara.color,
+                value: (range.max == range.min) ? ((range.value > range.max) ? Infinity : ((range.value == range.max) ? 1 : -Infinity)) : ((range.value - range.min) / (range.max - range.min)),
+                width: 1
+            });
+            ++barCount;
+            totalMin += chara.weight * range.min;
+            totalValue += chara.weight * range.value;
+            totalMax += chara.weight * range.max;
+            totalWeight += chara.weight;
+        });
+        bars.push({
+            text: "Global",
+            color: GLOBAL_BAR_COLORS,
+            value: (totalMax == totalMin) ? ((totalValue > totalMax) ? Infinity : ((totalValue == totalMax) ? 1 : -Infinity)) : ((totalValue - totalMin) / (totalMax - totalMin)),
+            width: 2
+        });
+        barCount += 2;
+        var paper = Raphael(container, 370, 300);
+        var barWidth = HA_WIDTH / barCount;
+        var frame = bars[0] ? [
+            "M " + HA_LEFT + "," + HA_TOP + " v " + (HA_HEIGHT + HA_GRAD_LENGTH - (HA_GRAD_LENGTH >> 1)),
+            "M " + HA_LEFT + "," + HA_BOTTOM + " h " + HA_WIDTH
+        ] : [
+            "M " + HA_LEFT + "," + HA_TOP + " v " + HA_HEIGHT + " h " + HA_WIDTH
+        ];
+        for (var i = 0, j = 0; i < bars.length; ++i) {
+            var bar = bars[i];
+            if (bar) {
+                var x = HA_LEFT + j * barWidth + 2;
+                var width = bar.width * barWidth - 3;
+                var color = (typeof bar.color == 'number') ? [
+                    generateRgba(bar.color, 0.25),
+                    generateRgba(bar.color, 0.5),
+                    generateRgba(bar.color, 0.75),
+                    generateRgba(bar.color, 1),
+                    generateRgba(bar.color, 1)
+                ] : bar.color;
+                width = Math.round(x + width);
+                x = Math.round(x);
+                width -= x;
+                if (bar.value > -0.5) {
+                    var height = Math.round((Math.min(0, bar.value) + 0.5) * HA_HEIGHT * 0.5);
+                    if (height > 0)
+                        paper.rect(x, HA_BOTTOM - height, width, height).attr({ 'stroke-width': 0, fill: color[0] });
+                }
+                if (bar.value > 0) {
+                    var height = Math.round(Math.min(0.85, bar.value) * HA_HEIGHT * 0.5);
+                    if (height > 0)
+                        paper.rect(x, HA_Y_0 - height, width, height).attr({ 'stroke-width': 0, fill: color[1] });
+                }
+                if (bar.value > 0.85) {
+                    var height = Math.round((Math.min(1, bar.value) - 0.85) * HA_HEIGHT * 0.5);
+                    if (height > 0)
+                        paper.rect(x, HA_Y_0_85 - height, width, height).attr({ 'stroke-width': 0, fill: color[2] });
+                }
+                if (bar.value > 1) {
+                    var height = Math.round((Math.min(1.5, bar.value) - 1) * HA_HEIGHT * 0.5);
+                    if (height > 0)
+                        paper.rect(x, HA_Y_1 - height, width, height).attr({ 'stroke-width': 0, fill: color[3] });
+                }
+                var centerX = HA_LEFT + (j + 0.5 * bar.width) * barWidth;
+                paper.rect(x, HA_BOTTOM + 2, width, 16).attr({
+                    fill: generateRedGreenMix(bar.value),
+                    'stroke-width': 0
+                });
+                paper.text(centerX, HA_BOTTOM + 10, Math.round(Math.max(0, Math.min(1, bar.value)) * 20)).attr({
+                    fill: 'white',
+                    'font-size': Math.min(12, Math.round(bar.width * barWidth * 0.5)) + 'px'
+                });
+                paper.text(0, 0, bar.text).attr({
+                    'text-anchor': 'end',
+                    fill: color[4],
+                    'font-size': Math.min(12, Math.round(bar.width * barWidth * 0.5)) + 'px'
+                }).transform([ 'm', Math.SQRT1_2, -Math.SQRT1_2, Math.SQRT1_2, Math.SQRT1_2, centerX, HA_BOTTOM + 25 ]);
+                j += bar.width;
+            } else
+                ++j;
+            if (bar || bars[i + 1])
+                frame.push("M " + Math.round(HA_LEFT + j * barWidth) + "," + (HA_BOTTOM - (HA_GRAD_LENGTH >> 1)) + " v " + HA_GRAD_LENGTH);
+        }
+        paper.text(HA_LEFT - 1, HA_Y_1, 'Max').attr({
+            'text-anchor': 'end'
+        });
+        paper.text(HA_LEFT - 1, HA_Y_0_85, '85%').attr({
+            'text-anchor': 'end'
+        });
+        paper.text(HA_LEFT - 1, HA_Y_0, 'Min').attr({
+            'text-anchor': 'end'
+        });
+        paper.path(frame.join(' ')).attr({ stroke: 'gray' }).transform([ 'm', 1, 0, 0, 1, 0.5, 0.5 ]);
+    }
+
+    var itemList = new FilterableList('qdiag-item-list', QDiagDataSource);
+    var charaList = elById('qdiag-chara-list');
+    characteristics.forEach(function (chara) {
+        var checkBox = <input type="checkbox" name={ 'characteristics[' + chara.key + ']' } onclick={ function () {
+            chara.setDisabled(!this.checked);
+            updateDiagrams();
+        } } />;
+        checkBox.checked = !chara.disabled;
+        chara.enablerNode = <li class={ chara.visible ? '' : 'hidden' }><label style={ { color: generateRgba(chara.color, 1) } }>{ checkBox } { chara.name }</label></li>;
+        charaList.appendChild(chara.enablerNode);
+    });
+    var diagramsNode = elById('qdiag-diagrams');
+    var generatePdfButton = elById('qdiag-generate-pdf');
+
+    $('#qdiag-item-add').on('click', function () {
+        runAsync(function* () {
+            var serial = luid();
+            var item = null, cancel = false;
+            var diagramNode = <div class="qdiag-container clearfix loading"><a class="pull-right" href="#" onclick={ function () {
+                if (diagramNode.parentNode)
+                    diagramNode.parentNode.removeChild(diagramNode);
+                cancel = true;
+                var pos;
+                if (item && (pos = items.indexOf(item)) >= 0) {
+                    items.splice(pos, 1);
+                    if (updateCharacteristics())
+                        updateDiagrams();
+                }
+                return false;
+            } }><span class="glyphicon glyphicon-minus-sign"></span> Supprimer</a><div><span class="name">Chargement ...</span> (Niv. <span class="level">0</span>)</div><input type="hidden" name={ 'items[' + serial + '][slug]' } value={ itemList.selectedValue } /><ul class="subform col-lg-5" /><div class="diagram-container col-lg-7" /></div>;
+            diagramsNode.appendChild(diagramNode);
+            try {
+                item = yield get(Routing.generate('dof_items_json_itemtemplate', { l1id: itemList.selectedValue }));
+            } catch (e) {
+                if (diagramNode.parentNode)
+                    diagramNode.parentNode.removeChild(diagramNode);
+            }
+            if (cancel)
+                return;
+            $(diagramNode).removeClass('loading');
+            item.diagramNode = diagramNode;
+            item.serial = serial;
+            for (var key in item.characteristics) {
+                var chara = item.characteristics[key];
+                chara.value = chara.min + Math.round((chara.max - chara.min) * defaultQualityFactor);
+                chara.force = false;
+            }
+            items.push(item);
+            if (updateCharacteristics())
+                updateDiagrams();
+        });
+        return false;
+    });
+    $('#qdiag-chara-reset').on('click', function () {
+        characteristics.forEach(function (chara) {
+            chara.reset();
+            $('input', chara.enablerNode)[0].checked = true;
+        });
+        updateDiagrams();
+    });
+});

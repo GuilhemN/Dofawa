@@ -1,0 +1,39 @@
+{% extends "::layout.html.twig" %}
+
+{% block style %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/dofitems/css/quality-diagram.min.css') }}" />
+{% endblock %}
+
+{% block breadcrumb %}
+{{ parent() }}
+<li><a href="{{ path('dof_items_index') }}">Items</a></li>
+<li><a href="{{ path('dof_items_qualitydiagram') }}">Diagramme de qualité</a></li>
+{% endblock %}
+
+{% block body %}
+<noscript><div class="alert alert-danger"><strong>Erreur :</strong> Cet outil nécessite que JavaScript soit supporté par votre navigateur, et activé.</div></noscript>
+<div class="alert alert-info"><strong>À propos :</strong> Cet outil permet d'estimer la qualité d'un ou de plusieurs objets et de leur attribuer une note allant de 0 (jet minimum ou inférieur) à 20 (jet maximum ou supérieur), en fonction des caractéristiques que vous souhaitez. Il peut être utilisé, par exemple, pour estimer la qualité de vos objets, comparer ceux de l'hôtel de vente avant d'acheter, ou estimer la difficulté d'une forgemagie (à l'aide du palier des 85%).</div>
+<form method="POST" action="{{ path('dof_items_qualitydiagram_pdf') }}" target="_blank">
+<div class="clearfix">
+    <div class="col-lg-6">
+        <h4>Objets</h4>
+        <div class="composite-list" id="qdiag-item-list"><input placeholder="Recherche ..." /><div><ul></ul></div></div>
+        <a id="qdiag-item-add" href="#"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter</a>
+    </div>
+    <div class="col-lg-6">
+        <h4>Caractéristiques</h4>
+        <ul id="qdiag-chara-list"></ul>
+        <input type="button" class="block" id="qdiag-chara-reset" value="Réinitialiser" />
+    </div>
+</div>
+<div id="qdiag-diagrams" class="clearfix"></div>
+<input id="qdiag-generate-pdf" type="submit" class="hidden" value="Version imprimable" />
+</form>
+{% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script type="text/javascript" src="{{ asset('bundles/xnutility/js/raphael.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/dofitems/js/quality-diagram.js') }}"></script>
+{% endblock %}

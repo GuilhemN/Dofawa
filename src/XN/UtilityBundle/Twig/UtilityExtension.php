@@ -19,6 +19,8 @@ class UtilityExtension extends \Twig_Extension
 	{
 		return array(
 			new \Twig_SimpleFunction('es6_asset', [ $this, 'es6Asset' ]),
+			new \Twig_SimpleFunction('asset_data', [ $this, 'assetData' ]),
+			new \Twig_SimpleFunction('inline_asset', [ $this, 'inlineAsset' ]),
 			/** @deprecated Doesn't respect naming conventions, see isset_trans */
 			new \Twig_SimpleFunction('issetTrans', [$this->container->get('translator'), 'has' ]),
 			new \Twig_SimpleFunction('isset_trans', [$this->container->get('translator'), 'has' ]),
@@ -49,12 +51,26 @@ class UtilityExtension extends \Twig_Extension
 	}
 
 	public function es6Asset($path, $packageName = null)
-  {
+	{
     	$req = $this->container->get('request_stack')->getCurrentRequest();
     	if ($req && $req->cookies->get('has-es6') == '1')
     		$path = strtr($path, array('.js' => '.es6'));
         return $this->container->get('templating.helper.assets')->getUrl($path, $packageName);
-  }
+	}
+
+    private function assetPath($path)
+    {
+        // FIXME : Maybe there's a cleaner way ?
+        return dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $path);
+    }
+    public function assetData($path, $mime)
+    {
+        return 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($this->assetPath($path)));
+    }
+    public function inlineAsset($path)
+    {
+        return file_get_contents($this->assetPath($path));
+    }
 
 	public function once($key)
 	{
@@ -69,14 +85,14 @@ class UtilityExtension extends \Twig_Extension
 
 	public function isCurrentPage($route)
 	{
-			$req = $this->container->get('request_stack')->getCurrentRequest();
+		$req = $this->container->get('request_stack')->getCurrentRequest();
 
-			$currentRoute = $req->attributes->get('_route');
+		$currentRoute = $req->attributes->get('_route');
 
-			if($currentRoute == $route)
-				return 'class="active"';
-			else
-				return false;
+		if($currentRoute == $route)
+			return 'class="active"';
+		else
+			return false;
 	}
 
 	public function getRegion($locale, $in){

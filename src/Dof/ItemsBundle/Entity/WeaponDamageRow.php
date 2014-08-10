@@ -244,7 +244,7 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
             'max' => $this->max,
             'leech' => $this->leech
         ] + ($full ? [
-            'weapon' => $this->weapon->exportData(false),
+            'weapon' => $this->weapon->exportData(false, $locale),
             'order' => $this->order
         ] : [ ]);
     }
@@ -252,4 +252,4 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     {
         return false;
     }
-}
+}

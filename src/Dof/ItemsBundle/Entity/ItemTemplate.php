@@ -893,7 +893,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     {
         return $this->exportTimestampableData($full) + $this->exportSluggableData($full) + [
             'name' => $this->getName($locale),
-            'type' => $this->type->exportData(false),
+            'type' => $this->type->exportData(false, $locale),
             'level' => $this->level,
             'class' => $this->getClassId()
         ] + ($full ? [
@@ -905,7 +905,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
             'weight' => $this->weight,
             'tradeable' => $this->tradeable,
             'npcPrice' => $this->npcPrice,
-            'effects' => array_map(function ($ent) { return $ent->exportData(false); }, $this->effects->toArray()),
+            'effects' => array_map(function ($ent) use ($locale) { return $ent->exportData(false, $locale); }, $this->effects->toArray()),
             'release' => $this->release,
             'preliminary' => $this->preliminary,
             'deprecated' => $this->deprecated

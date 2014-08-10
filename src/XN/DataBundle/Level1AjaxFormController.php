@@ -28,7 +28,7 @@ abstract class Level1AjaxFormController extends Controller
         if ($ent === null)
             throw $this->createNotFoundException();
         $this->inFetch($dm, $l1id, $ent);
-        $data = $ent->exportData();
+        $data = $ent->exportData(true, $this->get('translator')->getLocale());
         $this->postFetch($dm, $l1id, $ent);
         return $this->createJsonResponse($data);
     }
@@ -54,12 +54,13 @@ abstract class Level1AjaxFormController extends Controller
                     $ent->setId($l1id);
             }
         }
+        $locale = $this->get('translator')->getLocale();
         $this->inStorePreImport($req, $dm, $l1id, $ent);
-        $ent->importData($req->request, $dm);
+        $ent->importData($req->request, $dm, $locale);
         $this->inStorePostImport($req, $dm, $l1id, $ent);
         $dm->persist($ent);
         $dm->flush();
-        $data = $ent->exportData();
+        $data = $ent->exportData(true, $locale);
         if ($l1id === 'new') {
             $location = $this->get('router')->generate(static::ROUTE_NAME, [ 'l1id' => static::USE_SLUG ? $ent->getSlug() : $ent->getId() ], true);
             $this->postStore($req, $dm, $l1id, $ent);

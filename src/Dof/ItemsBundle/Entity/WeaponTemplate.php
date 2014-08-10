@@ -482,7 +482,7 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
     public function exportData($full = true, $locale = 'fr')
     {
         return parent::exportData($full, $locale) + ($full ? [
-            'damageRows' => array_map(function ($ent) { return $ent->exportData(false); }, $this->damageRows->toArray()),
+            'damageRows' => array_map(function ($ent) use ($locale) { return $ent->exportData(false, $locale); }, $this->damageRows->toArray()),
             'twoHanded' => $this->twoHanded,
             'ethereal' => $this->ethereal,
             'criticalHitBonus' => $this->criticalHitBonus,

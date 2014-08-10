@@ -227,7 +227,7 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface
             'param2' => $this->param2,
             'param3' => $this->param3
         ] + ($full ? [
-            'item' => $this->item->exportData(false),
+            'item' => $this->item->exportData(false, $locale),
             'order' => $this->order
         ] : [ ]);
     }

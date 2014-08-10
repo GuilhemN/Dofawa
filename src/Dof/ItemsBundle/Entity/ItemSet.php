@@ -95,7 +95,8 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Remove items
+     * Re
+move items
      *
      * @param EquipmentTemplate $items
      * @return ItemSet
@@ -163,7 +164,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
         return $this->exportTimestampableData($full) + $this->exportSluggableData($full) + [
             'name' => $this->getName($locale)
         ] + ($full ? [
-            'items' => array_map(function ($ent) { return $ent->exportData(false); }, $this->items->toArray()),
+            'items' => array_map(function ($ent) use ($locale) { return $ent->exportData(false, $locale); }, $this->items->toArray()),
             'release' => $this->release,
             'preliminary' => $this->preliminary,
             'deprecated' => $this->deprecated

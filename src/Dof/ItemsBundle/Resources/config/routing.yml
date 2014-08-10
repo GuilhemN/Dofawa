@@ -1,19 +1,34 @@
-dof_items_homepage:
-    pattern:  /hello/{name}
+dof_items_index:
+    pattern:  /
     defaults: { _controller: DofItemsBundle:Default:index }
 
 dof_items_json_itemtemplate:
     pattern:  /json/item-template/{l1id}/data.json
-    defaults: { _controller: DofItemsBundle:ItemTemplateForm:fetch }
+    defaults: { _controller: DofItemsBundle:ItemTemplateAjax:fetch }
     requirements: { _method: GET, l1id: '[0-9a-z-]+' }
     options:  { expose: true }
 
 dof_items_json_itemtemplate_store:
     pattern:  /json/item-template/{l1id}/data.json
-    defaults: { _controller: DofItemsBundle:ItemTemplateForm:fetch }
+    defaults: { _controller: DofItemsBundle:ItemTemplateAjax:fetch }
     requirements: { _method: PUT, l1id: '[0-9a-z-]+' }
 
 dof_items_json_itemtemplate_delete:
     pattern:  /json/item-template/{l1id}/data.json
-    defaults: { _controller: DofItemsBundle:ItemTemplateForm:fetch }
+    defaults: { _controller: DofItemsBundle:ItemTemplateAjax:fetch }
     requirements: { _method: DELETE, l1id: '[0-9a-z-]+' }
+
+dof_items_json_itemtemplate_searchequipment:
+    pattern:  /json/item-template/search-equipment.json
+    defaults: { _controller: DofItemsBundle:ItemTemplateAjax:searchEquipment }
+    requirements: { _method: GET }
+    options:  { expose: true }
+
+dof_items_qualitydiagram:
+    pattern:  /quality-diagram
+    defaults: { _controller: DofItemsBundle:QualityDiagram:index }
+
+dof_items_qualitydiagram_pdf:
+    pattern:  /quality-diagram.pdf
+    defaults: { _controller: DofItemsBundle:QualityDiagram:pdf }
+    requirements: { _method: POST }

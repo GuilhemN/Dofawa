@@ -100,7 +100,7 @@ class EquipmentTemplate extends ItemTemplate
     {
         return parent::exportData($full, $locale) + ($full ? [
             'enhanceable' => $this->enhanceable,
-            'set' => ($this->set === null) ? null : $this->set->exportData(false),
+            'set' => ($this->set === null) ? null : $this->set->exportData(false, $locale),
             'characteristics' => $this->getCharacteristics()
         ] : [ ]);
     }
