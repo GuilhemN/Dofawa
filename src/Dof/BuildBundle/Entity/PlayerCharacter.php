@@ -4,8 +4,6 @@ namespace Dof\BuildBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Dof\CharactersBundle\Entity\Breed;
-
 use XN\DataBundle\IdentifiableInterface;
 use XN\DataBundle\TimestampableInterface;
 use XN\DataBundle\TimestampableTrait;
@@ -129,7 +127,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     {
         return $this->breed;
     }
-    
+
     /**
      * Add stuffs
      *
