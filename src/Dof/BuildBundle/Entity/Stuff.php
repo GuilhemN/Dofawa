@@ -44,7 +44,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\BuildBundle\Entity\PlayerCharacter")
+     * @ORM\ManyToOne(targetEntity="Dof\BuildBundle\Entity\PlayerCharacter", inversedBy="stuffs")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $character;
