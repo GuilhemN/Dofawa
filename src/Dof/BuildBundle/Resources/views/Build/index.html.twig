@@ -11,7 +11,7 @@
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
-                    'look': character.stuffs.next().look
+                    'look': character.stuffs[0].look
                 } only %}
                 <img src="holder.js/300x300" alt="{{ character.name }}">
                 <div class="caption">
