@@ -24,13 +24,13 @@ class BuildController extends Controller
         $form->handleRequest($this->get('request'));
 
         if($form->isValid()){
-            $form = $this->get('request')->request->get('dof_buildbundle_playercharacter');
-
             $faces = $em->getRepository('Dof\CharactersBundle\Entity\Face');
 
             $character = $form->getData();
             $stuff = new Stuff();
             $look = new BuildLook();
+
+            $form = $this->get('request')->request->get('dof_buildbundle_playercharacter');
 
             $breed = $character->getBreed();
 
