@@ -35,7 +35,7 @@ class BuildController extends Controller
             $breed = $character->getBreed();
 
             // Récupération du bon visage
-            $face = $faces->getOneBy(array('breed' => $breed, 'label' => $form['face'], 'gender' => $form['gender']));
+            $face = $faces->findOneBy(array('breed' => $breed, 'label' => $form['face'], 'gender' => $form['gender']));
 
             // Apparence du 1er personnage
             $look->setColors($breed->{'get'.strtolower(ucfirst($form['gender'])).'DefaultColors'}());
