@@ -45,7 +45,7 @@ class BuildController extends Controller
             $look->setFace($face);
 
             // Relations
-            $character->setStuff($stuff);
+            $character->addStuff($stuff);
             $stuff->setCharacter($character);
 
             $stuff->setLook($look);
