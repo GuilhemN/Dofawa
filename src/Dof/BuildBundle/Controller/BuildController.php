@@ -8,6 +8,8 @@ use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
+use Dof\CharactersBundle\Gender;
+
 class BuildController extends Controller
 {
     public function indexAction()
@@ -38,7 +40,7 @@ class BuildController extends Controller
             $face = $faces->findOneBy(array('breed' => $breed, 'label' => $form['face'], 'gender' => $form['gender']));
 
             // Apparence du 1er personnage
-            $look->setColors($breed->{'get'.strtolower(ucfirst($form['gender'])).'DefaultColors'}());
+            $look->setColors($breed->{'get'.strtolower(ucfirst(Gender::getName($form['gender']))).'DefaultColors'}());
             $look->setBreed($breed);
             $look->setFace($face);
 
