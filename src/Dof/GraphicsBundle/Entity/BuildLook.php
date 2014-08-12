@@ -10,7 +10,7 @@ use Dof\BuildBundle\Entity\Stuff;
 /**
  * BuildLook
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_build_look")
  * @ORM\Entity(repositoryClass="Dof\GraphicsBundle\Entity\BuildLookRepository")
  */
 class BuildLook extends BasicPCLook

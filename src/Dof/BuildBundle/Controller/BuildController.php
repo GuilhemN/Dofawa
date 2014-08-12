@@ -5,6 +5,8 @@ namespace Dof\BuildBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Dof\BuildBundle\Entity\PlayerCharacter;
+use Dof\BuildBundle\Entity\Stuff;
+use Dof\GraphicsBundle\Entity\BuildLook;
 
 class BuildController extends Controller
 {
@@ -22,7 +24,35 @@ class BuildController extends Controller
         $form->handleRequest($this->get('request'));
 
         if($form->isValid()){
-            $em->persist($form->getData());
+            $form = $this->get('request')->request->get('dof_buildbundle_playercharacter');
+
+            $faces = $em->getRepository('Dof\CharactersBundle\Entity\Face');
+
+            $character = $form->getData();
+            $stuff = new Stuff();
+            $look = new BuildLook();
+
+            $breed = $character->getBreed();
+
+            // Récupération du bon visage
+            $face = $face->getOneBy(array('breed' => $breed, 'label' => $form['face'], 'gender' => $form['gender']));
+
+            // Apparence du 1er personnage
+            $look->setColors($breed->{'get'.strtolower(ucfirst($form['gender'])).'DefaultColors'}());
+            $look->setBreed($breed);
+            $look->setFace($face);
+
+            // Relations
+            $character->setStuff($stuff);
+            $stuff->setCharacter($character);
+
+            $stuff->setLook($look);
+            $look->setStuff($stuff);
+
+            // Persistance
+            $em->persist($character);
+            $em->persist($stuff);
+            $em->persist($look);
 
             $em->flush();
         }

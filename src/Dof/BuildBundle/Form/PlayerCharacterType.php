@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Dof\CharactersBundle\Gender;
+
 class PlayerCharacterType extends AbstractType
 {
     public function __construct() {}
@@ -20,7 +22,21 @@ class PlayerCharacterType extends AbstractType
             ->add('name')
             ->add('level')
             ->add('breed')
-            ->add('stuff')
+            ->add('gender', 'choice', array(
+                  'label' => 'gender',
+                  'choices'   => array_flip(Gender::getValues()),
+                  'required'  => true,
+                  'expanded'  => true,
+                  'mapped' => false,
+                  'translation_domain' => 'gender'
+              ))
+            ->add('face', 'choice', array(
+                'label' => 'face',
+                'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
+                'required' => true,
+                'mapped' => false,
+                'translation_domain' => 'face'
+              ))
             ->add('submit', 'submit')
         ;
     }
