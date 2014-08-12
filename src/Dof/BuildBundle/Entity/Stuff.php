@@ -57,7 +57,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $items;
 
     /**
-     * @ORM\OneToOne(targetEntity="Dof\GraphicsBundle\Entity\BuildLook")
+     * @ORM\OneToOne(targetEntity="Dof\GraphicsBundle\Entity\BuildLook", inversedBy="stuff")
      */
     private $look;
 
