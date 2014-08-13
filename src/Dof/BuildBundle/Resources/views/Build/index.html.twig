@@ -12,7 +12,7 @@
             <div class="thumbnail">
                 {% for stuff in character.stuffs %}
                     {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
-                        'look': stuff.look
+                        'look': stuff.look.toEntityLook()
                     } only %}
                 {% endfor %}
                 <img src="holder.js/300x300" alt="{{ character.name }}">
