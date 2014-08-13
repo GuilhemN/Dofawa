@@ -11,7 +11,7 @@ class ArchiveController extends Controller
 		$translator = $this->get('translator');
 
 		$repository = $this->getDoctrine()->getRepository('DofArticlesBundle:Article');
-		$coutArticles = $repository->countTotal(true);
+		$countArticles = $repository->countTotal(true);
 		$articlesPerPage = 15;
 		$firstResult = ($page - 1) * $articlePerPage;
 
