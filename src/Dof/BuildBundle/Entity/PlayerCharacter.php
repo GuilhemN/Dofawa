@@ -3,6 +3,7 @@
 namespace Dof\BuildBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
@@ -44,7 +45,13 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     /**
      * @var integer
      *
-     * @ORM\Column(name="level", type="integer", nullable=false)
+     * @ORM\Column(name="level", type="integer", nullable=false)1
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 200,
+     *      minMessage = "Le level doit être compris entre 1 et 200.",
+     *      maxMessage = "Le level doit être compris entre 1 et 200."
+     * )
      */
     private $level;
 
