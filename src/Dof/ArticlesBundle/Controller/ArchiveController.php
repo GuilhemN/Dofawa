@@ -13,7 +13,7 @@ class ArchiveController extends Controller
 		$repository = $this->getDoctrine()->getRepository('DofArticlesBundle:Article');
 		$countArticles = $repository->countTotal(true);
 		$articlesPerPage = 15;
-		$firstResult = ($page - 1) * $articlePerPage;
+		$firstResult = ($page - 1) * $articlesPerPage;
 
 		if($firstResult > $countArticles)
             throw $this->createNotFoundException('This page does not exist.');
@@ -29,7 +29,7 @@ class ArchiveController extends Controller
 		$pagination = array(
    			'page' => $page,
    			'route' => 'dof_articles_archive',
-  			'pages_count' => ceil($coutArticles / $articlesPerPage),
+  			'pages_count' => ceil($countArticles / $articlesPerPage),
    			'route_params' => array()
    		);
 
