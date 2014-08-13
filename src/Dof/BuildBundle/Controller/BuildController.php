@@ -32,18 +32,18 @@ class BuildController extends Controller
             $stuff = new Stuff();
             $look = new BuildLook();
 
-            $form = $this->get('request')->request->get('dof_buildbundle_playercharacter');
+            $dform = $this->get('request')->request->get('dof_buildbundle_playercharacter');
 
             $breed = $character->getBreed();
 
             // Récupération du bon visage
-            $face = $faces->findOneBy(array('breed' => $breed, 'label' => $form['face'], 'gender' => $form['gender']));
+            $face = $faces->findOneBy(array('breed' => $breed, 'label' => $dform['face'], 'gender' => $dform['gender']));
 
             // Apparence du 1er personnage
-            $look->setColors($breed->{'get'.strtolower(ucfirst(Gender::getName($form['gender']))).'DefaultColors'}());
+            $look->setColors($breed->{'get'.strtolower(ucfirst(Gender::getName($dform['gender']))).'DefaultColors'}());
             $look->setBreed($breed);
             $look->setFace($face);
-            $look->setGender($form['gender']);
+            $look->setGender($dform['gender']);
 
             // Ajout d'un nom au premier stuff
             $stuff->setName('1er Stuff');
