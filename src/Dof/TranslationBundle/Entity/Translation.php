@@ -4,10 +4,10 @@ namespace Dof\TranslationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use XN\DataBundle\IdentifiableInterface;
-use XN\DataBundle\TimestampableInterface;
-use XN\DataBundle\TimestampableTrait;
-use XN\DataBundle\OwnableInterface;
+use XN\Persistence\IdentifiableInterface;
+use XN\Metadata\TimestampableInterface;
+use XN\Metadata\TimestampableTrait;
+use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
 /**

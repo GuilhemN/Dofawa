@@ -8,16 +8,16 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use XN\DataBundle\ExportableInterface;
-use XN\DataBundle\ImportableTrait;
-use XN\DataBundle\IdentifiableInterface;
-use XN\DataBundle\TimestampableInterface;
-use XN\DataBundle\TimestampableTrait;
-use XN\DataBundle\SluggableInterface;
-use XN\DataBundle\SluggableTrait;
+use XN\Rest\ExportableInterface;
+use XN\Rest\ImportableTrait;
+use XN\Persistence\IdentifiableInterface;
+use XN\Metadata\TimestampableInterface;
+use XN\Metadata\TimestampableTrait;
+use XN\Metadata\SluggableInterface;
+use XN\Metadata\SluggableTrait;
 
-use XN\DataBundle\LocalizedNameTrait;
-use XN\DataBundle\LocalizedDescriptionTrait;
+use XN\L10n\LocalizedNameTrait;
+use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
 use Dof\BuildBundle\Entity\Item;

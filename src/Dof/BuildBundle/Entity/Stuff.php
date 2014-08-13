@@ -5,11 +5,11 @@ namespace Dof\BuildBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-use XN\DataBundle\IdentifiableInterface;
-use XN\DataBundle\TimestampableInterface;
-use XN\DataBundle\TimestampableTrait;
-use XN\DataBundle\SluggableInterface;
-use XN\DataBundle\SluggableTrait;
+use XN\Persistence\IdentifiableInterface;
+use XN\Metadata\TimestampableInterface;
+use XN\Metadata\TimestampableTrait;
+use XN\Metadata\SluggableInterface;
+use XN\Metadata\SluggableTrait;
 
 use Doctrine\ORM\Mapping as ORM;
 

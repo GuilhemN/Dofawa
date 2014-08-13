@@ -5,8 +5,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class UtilityExtension extends \Twig_Extension
 {
-	const INFLECTOR_CLASS = 'Doctrine\Common\Inflector\Inflector';
-	const SLUGGABLE_UPDATER_CLASS = 'XN\DataBundle\SluggableUpdater';
+	const INFLECTOR_CLASS = 'XN\Common\Inflector';
 
     private $container;
 
@@ -22,8 +21,8 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('asset_data', [ $this, 'assetData' ]),
 			new \Twig_SimpleFunction('inline_asset', [ $this, 'inlineAsset' ]),
 			/** @deprecated Doesn't respect naming conventions, see isset_trans */
-			new \Twig_SimpleFunction('issetTrans', [$this->container->get('translator'), 'has' ]),
-			new \Twig_SimpleFunction('isset_trans', [$this->container->get('translator'), 'has' ]),
+			new \Twig_SimpleFunction('issetTrans', [ $this->container->get('translator'), 'has' ]),
+			new \Twig_SimpleFunction('isset_trans', [ $this->container->get('translator'), 'has' ]),
 			new \Twig_SimpleFunction('locales', [ $this->container->get('translator'), 'getLocales' ]),
 			new \Twig_SimpleFunction('once', [ $this, 'once' ]),
 			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
@@ -39,7 +38,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFilter('camelize', [ self::INFLECTOR_CLASS, 'camelize' ]),
 			new \Twig_SimpleFilter('pluralize', [ self::INFLECTOR_CLASS, 'pluralize' ]),
 			new \Twig_SimpleFilter('singularize', [ self::INFLECTOR_CLASS, 'singularize' ]),
-			new \Twig_SimpleFilter('slugify', [ self::SLUGGABLE_UPDATER_CLASS, 'slugify' ]),
+			new \Twig_SimpleFilter('slugify', [ self::INFLECTOR_CLASS, 'slugify' ]),
 			new \Twig_SimpleFilter('bin2hex', 'bin2hex'),
 			new \Twig_SimpleFilter('hex2bin', 'hex2bin'),
 		);
@@ -95,7 +94,8 @@ class UtilityExtension extends \Twig_Extension
 			return false;
 	}
 
-	public function getRegion($locale, $in){
+	public function getRegion($locale, $in)
+	{
 		return locale_get_display_region($locale, $in);
 	}
 }

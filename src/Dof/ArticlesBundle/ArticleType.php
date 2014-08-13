@@ -2,7 +2,7 @@
 
 namespace Dof\ArticlesBundle;
 
-use XN\UtilityBundle\Enum;
+use XN\Common\Enum;
 
 class ArticleType extends Enum
 {

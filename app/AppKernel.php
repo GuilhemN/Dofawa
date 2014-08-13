@@ -24,7 +24,6 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
 
-            new XN\DataBundle\XNDataBundle(),
             new XN\UtilityBundle\XNUtilityBundle(),
             new SymfonyExtender\TranslationsBundle\SymfonyExtenderTranslationsBundle(),
 

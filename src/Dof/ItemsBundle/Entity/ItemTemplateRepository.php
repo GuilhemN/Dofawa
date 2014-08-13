@@ -2,7 +2,7 @@
 
 namespace Dof\ItemsBundle\Entity;
 
-use XN\DataBundle\FilterableEntityRepository;
+use XN\Rest\FilterableEntityRepository;
 
 use Doctrine\ORM\QueryBuilder;
 

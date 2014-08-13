@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\ItemsBundle\Entity\ItemTemplateEffect;
 use Dof\ItemsBundle\Entity\WeaponDamageRow;
 
-use Dof\ImpExpBundle\CollectionSynchronizationHelper;
+use XN\Persistence\CollectionSynchronizationHelper;
 
 use Dof\ItemsBundle\EffectListHelper;
 

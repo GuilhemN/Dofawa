@@ -5,9 +5,9 @@ namespace Dof\ItemsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use XN\DataBundle\ExportableInterface;
-use XN\DataBundle\ImportableTrait;
-use XN\DataBundle\IdentifiableInterface;
+use XN\Rest\ExportableInterface;
+use XN\Rest\ImportableTrait;
+use XN\Persistence\IdentifiableInterface;
 
 use Dof\ItemsBundle\Element;
 

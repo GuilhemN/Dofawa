@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use PDO;
 use Twig_Environment;
 
-use XN\DataBundle\SluggableUpdater;
+use XN\Common\Inflector;
 
 class GenerateCharacteristicCodeCommand extends ContainerAwareCommand
 {
@@ -89,6 +89,6 @@ EOQ
 		$fxDesc = str_replace('-{{ value }}', '{{ value }}', $fxDesc);
 		$fxDesc = str_replace('{{ value }}', '', $fxDesc);
 		$fxDesc = str_replace('%', ' Percent ', $fxDesc);
-		return SluggableUpdater::slugify($fxDesc);
+		return Inflector::slugify($fxDesc);
 	}
 }
