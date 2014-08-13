@@ -39,7 +39,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
@@ -57,7 +57,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $items;
 
     /**
-     * @ORM\OneToOne(targetEntity="Dof\GraphicsBundle\Entity\BuildLook", inversedBy="stuff")
+     * @ORM\OneToOne(targetEntity="Dof\GraphicsBundle\Entity\BuildLook", inversedBy="stuff", nullable=false)
      */
     private $look;
 

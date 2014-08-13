@@ -43,6 +43,7 @@ class BuildController extends Controller
             $look->setColors($breed->{'get'.strtolower(ucfirst(Gender::getName($form['gender']))).'DefaultColors'}());
             $look->setBreed($breed);
             $look->setFace($face);
+            $look->setGender($gender);
 
             // Ajout d'un nom au premier stuff
             $stuff->setName('1er Stuff');

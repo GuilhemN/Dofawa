@@ -37,14 +37,14 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="level", type="integer")
+     * @ORM\Column(name="level", type="integer", nullable=false)
      */
     private $level;
 
