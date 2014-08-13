@@ -2,7 +2,7 @@
 
 namespace Dof\CharactersBundle;
 
-use XN\UtilityBundle\Enum;
+use XN\Common\Enum;
 
 class Gender extends Enum
 {

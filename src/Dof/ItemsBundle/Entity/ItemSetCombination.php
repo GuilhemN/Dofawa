@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use XN\DataBundle\IdentifiableInterface;
+use XN\Persistence\IdentifiableInterface;
 
 use Dof\ItemsBundle\CharacteristicsTrait;
 

@@ -5,7 +5,7 @@ namespace Dof\GraphicsBundle;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Doctrine\ORM\EntityManager;
 
-use XN\DataBundle\SluggableUpdater;
+use XN\Common\Inflector;
 use Dof\ItemsBundle\AnimalColorizationType;
 use Dof\ItemsBundle\ItemSlot;
 
@@ -89,6 +89,6 @@ class ChameleonDragoturkey
 
     public function getSlug()
     {
-        return SluggableUpdater::slugify($this->__toString());
+        return Inflector::slugify($this->__toString());
     }
 }

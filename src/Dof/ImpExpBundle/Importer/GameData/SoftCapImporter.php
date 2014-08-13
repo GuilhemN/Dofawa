@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\CharactersBundle\Entity\SoftCap;
 use Dof\CharactersBundle\BaseCharacteristic;
 
-use Dof\ImpExpBundle\CollectionSynchronizationHelper;
+use XN\Persistence\CollectionSynchronizationHelper;
 
 class SoftCapImporter extends AbstractGameDataImporter
 {

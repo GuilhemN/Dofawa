@@ -4,7 +4,7 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use XN\DataBundle\IdentifiableInterface;
+use XN\Persistence\IdentifiableInterface;
 
 /**
  * ItemComponent

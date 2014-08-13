@@ -2,7 +2,7 @@
 
 namespace Dof\MapBundle;
 
-use XN\UtilityBundle\Enum;
+use XN\Common\Enum;
 
 class SubAreaType extends Enum
 {

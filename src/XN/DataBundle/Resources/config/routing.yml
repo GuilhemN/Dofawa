@@ -1,3 +1,0 @@
-xn_data_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: XNDataBundle:Default:index }

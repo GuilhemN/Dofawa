@@ -2,7 +2,7 @@
 
 namespace Dof\ItemsBundle;
 
-use XN\UtilityBundle\Enum;
+use XN\Common\Enum;
 
 class Element extends Enum
 {

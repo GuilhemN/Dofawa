@@ -5,9 +5,9 @@ namespace Dof\BuildBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\ItemsBundle\CharacteristicsRangeTrait;
-use XN\DataBundle\IdentifiableInterface;
-use XN\DataBundle\TimestampableInterface;
-use XN\DataBundle\TimestampableTrait;
+use XN\Persistence\IdentifiableInterface;
+use XN\Metadata\TimestampableInterface;
+use XN\Metadata\TimestampableTrait;
 
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\ItemsBundle\Entity\ItemTemplate;

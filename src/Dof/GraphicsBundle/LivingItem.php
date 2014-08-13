@@ -2,7 +2,7 @@
 
 namespace Dof\GraphicsBundle;
 
-use XN\DataBundle\SluggableUpdater;
+use XN\Common\Inflector;
 
 use Dof\ItemsBundle\Entity\ItemTemplate;
 use Dof\ItemsBundle\Entity\ItemType;
@@ -67,7 +67,7 @@ class LivingItem
 
     public function getSlug()
     {
-        return SluggableUpdater::slugify($this->__toString());
+        return Inflector::slugify($this->__toString());
     }
 
     public function isEquipment() { return true; }
