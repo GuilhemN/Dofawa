@@ -44,6 +44,9 @@ class BuildController extends Controller
             $look->setBreed($breed);
             $look->setFace($face);
 
+            // Ajout d'un nom au premier stuff
+            $stuff->setName('1er Stuff');
+
             // Relations
             $character->addStuff($stuff);
             $stuff->setCharacter($character);

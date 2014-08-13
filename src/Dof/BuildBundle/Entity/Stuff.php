@@ -184,7 +184,6 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     public function __toString()
     {
-        var_dump($this->getName());
-        return $this->name;
+        return $this->getName();
     }
 }
