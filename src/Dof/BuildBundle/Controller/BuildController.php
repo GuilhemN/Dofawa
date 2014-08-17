@@ -20,7 +20,7 @@ class BuildController extends Controller
         $user = $this->getUser();
 
         $em = $this->getDoctrine()->getManager();
-        $characters = $em->getRepository('DofBuildBundle:PlayerCharacter')->findByOwner($user);
+        $characters = $em->getRepository('DofBuildBundle:PlayerCharacter')->findByUser($user);
 
         $form = $this->createForm('dof_buildbundle_playercharacter', new PlayerCharacter());
         $form->handleRequest($this->get('request'));
@@ -65,4 +65,6 @@ class BuildController extends Controller
 
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
+
+    function showAction()
 }

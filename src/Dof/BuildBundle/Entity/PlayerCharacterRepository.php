@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class PlayerCharacterRepository extends EntityRepository
 {
+    public function findByUser($user) {
+        return $this
+                  ->createQueryBuilder('pc')
+                  ->select(array('pc', 's', 'l'))
+                  ->join('pc.stuff', 's')
+                  ->join('s.look', 'l')
+                  ->where('pc.owner=:user')
+                  ->getQuery()
+                  ->setParameter('user', $user)
+                  ->getResult();
+              ;
+    }
 }
