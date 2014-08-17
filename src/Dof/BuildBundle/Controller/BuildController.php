@@ -66,5 +66,7 @@ class BuildController extends Controller
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
 
-    function showAction()
+    function showAction(){
+        
+    }
 }
