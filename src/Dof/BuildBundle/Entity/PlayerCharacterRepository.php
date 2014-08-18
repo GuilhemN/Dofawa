@@ -28,8 +28,7 @@ class PlayerCharacterRepository extends EntityRepository
     public function findForShow($user, $perso) {
         return $this
                   ->createQueryBuilder('pc')
-                  ->select(array('pc', 'l'))
-                  ->join('s.look', 'l')
+                  ->select(array('pc'))
                   ->where('pc.owner.slug=:user and pc.slug=:perso')
                   ->getQuery()
                   ->setParameter('user', $user)
