@@ -4,7 +4,7 @@ dof_build_homepage:
 
 dof_build_show:
     path:     /{user}/{character}/{stuff}
-    defaults: { _controller: DofBuildBundle:Build:index }
+    defaults: { _controller: DofBuildBundle:Build:show }
     requirements:
         user: '[0-9a-z-]+'
         character: '[0-9a-z-]+'
