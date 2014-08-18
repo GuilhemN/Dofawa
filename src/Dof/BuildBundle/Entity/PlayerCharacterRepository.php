@@ -29,7 +29,7 @@ class PlayerCharacterRepository extends EntityRepository
         return $this
                   ->createQueryBuilder('pc')
                   ->select(array('pc'))
-                  ->where('pc.owner.slug=:user and pc.slug=:perso')
+                  ->where('pc.owner.slug = :user and pc.slug = :perso')
                   ->getQuery()
                   ->setParameter('user', $user)
                   ->setParameter('perso', $perso)
