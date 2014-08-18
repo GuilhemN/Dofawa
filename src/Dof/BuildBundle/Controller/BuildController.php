@@ -66,11 +66,11 @@ class BuildController extends Controller
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
 
-    public function showAction($user, $perso, $stuff){
+    public function showAction($user, $character, $stuff){
         $em = $this->getDoctrine()->getManager();
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
-        $perso = $persoR->findForShow($user, $perso);
+        $perso = $persoR->findForShow($user, $character);
         if(empty($perso))
             throw $this->createNotFoundException();
 

@@ -16,7 +16,7 @@
                 <div class="caption">
                     <h3>{{ character.name }}</h3>
                     <p>Niveau {{ character.level }}</p>
-                    <p><a href="{{ path('dof_build_show', {'user': character.owner.slug, 'perso': character.slug, 'stuff': character.stuffs[0].slug}) }}" class="btn btn-primary" role="button">See</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    <p><a href="{{ path('dof_build_show', {'user': character.owner.slug, 'character': character.slug, 'stuff': character.stuffs[0].slug}) }}" class="btn btn-primary" role="button">See</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
                 </div>
             </div>
         </div>
