@@ -47,6 +47,13 @@ class Item implements IdentifiableInterface, TimestampableInterface
      */
     private $itemTemplate;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="slot", type="integer")
+     */
+    private $slot;
+
 
     /**
      * Get id
@@ -102,5 +109,29 @@ class Item implements IdentifiableInterface, TimestampableInterface
     public function getItemTemplate()
     {
         return $this->itemTemplate;
+    }
+
+    /**
+     * Dof\BuildBundle\BuildSlot
+     * Set slot
+     *
+     * @param integer $slot
+     * @return Item
+     */
+    public function setSlot($slot)
+    {
+        $this->slot = $slot;
+
+        return $this;
+    }
+
+    /**
+     * Get slot
+     *
+     * @return integer
+     */
+    public function getSlot()
+    {
+        return $this->slot;
     }
 }
