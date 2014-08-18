@@ -16,7 +16,7 @@ class PlayerCharacterRepository extends EntityRepository
         return $this
                   ->createQueryBuilder('pc')
                   ->select(array('pc', 's', 'l'))
-                  ->join('pc.stuff', 's')
+                  ->join('pc.stuffs', 's')
                   ->join('s.look', 'l')
                   ->where('pc.owner=:user')
                   ->getQuery()
