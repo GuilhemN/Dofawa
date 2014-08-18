@@ -21,6 +21,7 @@ class PlayerCharacterType extends AbstractType
         $builder
             ->add('name')
             ->add('level', null, array(
+                'data' => '1',
                 'attr' => array('min' => '1', 'max' => '200', 'step' => '1'))
             )
             ->add('breed')

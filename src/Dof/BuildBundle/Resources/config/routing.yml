@@ -1,3 +1,11 @@
 dof_build_homepage:
     path:     /
     defaults: { _controller: DofBuildBundle:Build:index }
+
+dof_build_show:
+    path:     /{user}/{character}/{stuff}
+    defaults: { _controller: DofBuildBundle:Build:index }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
