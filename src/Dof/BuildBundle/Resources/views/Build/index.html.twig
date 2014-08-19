@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block body %}
-    {% autoescape 'html' %}
     <div class="row">
         {% for character in characters %}
         <div class="col-sm-6 col-md-4">
@@ -29,5 +28,4 @@
         </div>
         {{ form(form, { 'style': 'horizontal' }) }}
     </div>
-    {% endautoescape %}
 {% endblock %}
