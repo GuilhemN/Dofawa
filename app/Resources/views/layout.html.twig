@@ -65,9 +65,7 @@
           {% block modelbody %}
           <div class="content">
             {% block body %}
-                {% autoescape %}
-                    {{ bodyContent | default }}
-                {% endautoescape %}
+              {{ bodyContent | default }}
             {% endblock body %}
             <div class="clearfix"></div>
           </div>
