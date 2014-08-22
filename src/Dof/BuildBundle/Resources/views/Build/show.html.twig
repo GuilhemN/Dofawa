@@ -1,7 +1,6 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
-{% autoescape %}
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><strong>{{ perso.name }}</strong>, niveau {{ perso.level }}</h3>
@@ -10,5 +9,4 @@
         Panel content
     </div>
 </div>
-{% endautoescape %}
 {% endblock %}
