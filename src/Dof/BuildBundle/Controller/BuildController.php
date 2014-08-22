@@ -3,6 +3,7 @@
 namespace Dof\BuildBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
