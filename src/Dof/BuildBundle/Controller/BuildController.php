@@ -66,7 +66,10 @@ class BuildController extends Controller
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
 
-    public function showAction($user, $character, $stuff){
+    /**
+     * @ParamConverter("post", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
+     */
+    public function showAction($user, $character, Stuff $stuff){
         $em = $this->getDoctrine()->getManager();
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
@@ -74,6 +77,6 @@ class BuildController extends Controller
         if(empty($perso))
             throw $this->createNotFoundException();
 
-        return $this->render('DofBuildBundle:Build:show.html.twig', ['perso' => $perso]);
+        return $this->render('DofBuildBundle:Build:show.html.twig', ['perso' => $perso, 'stuff' => $stuff]);
     }
 }

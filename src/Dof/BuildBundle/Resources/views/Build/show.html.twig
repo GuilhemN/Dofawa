@@ -7,7 +7,9 @@
         <h3 class="panel-title"><strong>{{ perso.name }}</strong>, niveau {{ perso.level }}</h3>
     </div>
     <div class="panel-body">
-        Panel content
+        {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
+            'look': stuff.look.toEntityLook()
+        } only %}
     </div>
 </div>
 {% endautoescape %}
