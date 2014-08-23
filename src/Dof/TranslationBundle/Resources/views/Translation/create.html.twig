@@ -6,5 +6,7 @@
 {% endblock %}
 
 {% block body %}
+{% autoescape  %}
     {{ form(form, { 'style': 'horizontal' }) }}
+{% endautoescape %}
 {% endblock %}
