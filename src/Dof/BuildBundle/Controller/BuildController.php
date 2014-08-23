@@ -78,6 +78,8 @@ class BuildController extends Controller
         if(empty($perso))
             throw $this->createNotFoundException();
 
+        $stuff->setLook($stuff->getLook()->setBreed($perso->getBreed()));
+
         return $this->render('DofBuildBundle:Build:show.html.twig', ['perso' => $perso, 'stuff' => $stuff]);
     }
 }

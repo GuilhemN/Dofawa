@@ -20,8 +20,6 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('es6_asset', [ $this, 'es6Asset' ]),
 			new \Twig_SimpleFunction('asset_data', [ $this, 'assetData' ]),
 			new \Twig_SimpleFunction('inline_asset', [ $this, 'inlineAsset' ]),
-			/** @deprecated Doesn't respect naming conventions, see isset_trans */
-			new \Twig_SimpleFunction('issetTrans', [ $this->container->get('translator'), 'has' ]),
 			new \Twig_SimpleFunction('isset_trans', [ $this->container->get('translator'), 'has' ]),
 			new \Twig_SimpleFunction('locales', [ $this->container->get('translator'), 'getLocales' ]),
 			new \Twig_SimpleFunction('once', [ $this, 'once' ]),
