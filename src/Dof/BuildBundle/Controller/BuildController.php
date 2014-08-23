@@ -68,7 +68,7 @@ class BuildController extends Controller
     }
 
     /**
-     * @ParamConverter("post", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
+     * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
      */
     public function showAction($user, $character, Stuff $stuff){
         $em = $this->getDoctrine()->getManager();
