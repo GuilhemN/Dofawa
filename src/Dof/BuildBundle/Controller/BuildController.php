@@ -75,6 +75,7 @@ class BuildController extends Controller
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
         $perso = $persoR->findForShow($user, $character);
+        
         if(empty($perso))
             throw $this->createNotFoundException();
 
