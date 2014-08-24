@@ -1,1 +1,56 @@
 level: level %level%
+
+vitality: Vitality
+strength: Strength
+intelligence: Intelligence
+chance: Chance
+agility: Agility
+wisdom: Wisdom
+power: Power
+criticalHits: Critical Hits
+ap: AP
+mp: MP
+range: Range
+summons: Summons
+damage: Damage
+neutralDamage: Neutral Damage
+earthDamage: Earth Damage
+fireDamage: Fire Damage
+waterDamage: Water Damage
+airDamage: Air Damage
+heals: Heals
+prospecting: Prospecting
+initiative: Initiative
+reflectedDamage: Reflected Damage
+percentNeutralResistance: % Neutral Resistance
+percentEarthResistance: % Earth Resistance
+percentFireResistance: % Fire Resistance
+percentWaterResistance: % Water Resistance
+percentAirResistance: % Air Resistance
+neutralResistance: Neutral Resistance
+earthResistance: Earth Resistance
+fireResistance: Fire Resistance
+waterResistance: Water Resistance
+airResistance: Air Resistance
+percentNeutralResistanceInPvp: % Neutral Resistance in PvP
+percentEarthResistanceInPvp: % Earth Resistance in PvP
+percentFireResistanceInPvp: % Fire Resistance in PvP
+percentWaterResistanceInPvp: % Water Resistance in PvP
+percentAirResistanceInPvp: % Air Resistance in PvP
+neutralResistanceInPvp: Neutral Resistance in PvP
+earthResistanceInPvp: Earth Resistance in PvP
+fireResistanceInPvp: Fire Resistance in PvP
+waterResistanceInPvp: Water Resistance in PvP
+airResistanceInPvp: Air Resistance in PvP
+lock: Lock
+dodge: Dodge
+apReduction: AP Reduction
+mpReduction: MP Reduction
+apLossResistance: AP Loss Resistance
+mpLossResistance: MP Loss Resistance
+criticalDamage: Critical Damage
+criticalResistance: Critical Resistance
+pushbackDamage: Pushback Damage
+pushbackResistance: Pushback Resistance
+trapPower: Trap Power
+trapDamage: Trap Damage
