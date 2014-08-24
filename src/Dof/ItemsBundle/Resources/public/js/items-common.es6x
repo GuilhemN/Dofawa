@@ -1,0 +1,134 @@
+/** @jsx JSXDOM */
+
+var itemsFeatureKey = (function () {
+	var allScripts = document.getElementsByTagName("script");
+	var thisScript = allScripts[allScripts.length - 1];
+	var tsUrl = thisScript.getAttribute('src');
+	var hashPos = tsUrl.indexOf('#');
+	if (hashPos >= 0)
+		return tsUrl.substring(hashPos + 1);
+	return 'items';
+})();
+
+class Characteristic {
+	constructor(key, name, defaultWeight, defaultColor) {
+		this.key = key;
+		this.name = name;
+		this.defaultWeight = defaultWeight;
+		this.defaultColor = defaultColor;
+		this.visible = false;
+		if ('localStorage' in window) {
+			this.weight = parseInt(localStorage.getItem('dof/' + itemsFeatureKey + '/chara/' + key + '/weight'), 10);
+			if (this.weight != this.weight)
+				this.weight = this.defaultWeight;
+			this.color = parseInt(localStorage.getItem('dof/' + itemsFeatureKey + '/chara/' + key + '/color'), 10);
+			if (this.color != this.color)
+				this.color = this.defaultColor;
+			this.disabled = parseBoolean(localStorage.getItem('dof/' + itemsFeatureKey + '/chara/' + key + '/disabled'));
+		} else {
+			this.weight = defaultWeight;
+			this.color = defaultColor;
+			this.disabled = false;
+		}
+	}
+	setWeight(weight) {
+		this.weight = weight;
+		if ('localStorage' in window) {
+			if (weight != this.defaultWeight)
+				localStorage.setItem('dof/' + itemsFeatureKey + '/chara/' + this.key + '/weight', weight.toString(10));
+			else
+				localStorage.removeItem('dof/' + itemsFeatureKey + '/chara/' + this.key + '/weight');
+		}
+	}
+	setColor(color) {
+		this.color = color;
+		if ('localStorage' in window) {
+			if (color != this.defaultColor)
+				localStorage.setItem('dof/' + itemsFeatureKey + '/chara/' + this.key + '/color', color.toString(10));
+			else
+				localStorage.removeItem('dof/' + itemsFeatureKey + '/chara/' + this.key + '/color');
+		}
+	}
+	setDisabled(disabled) {
+		this.disabled = disabled;
+		if ('localStorage' in window) {
+			if (disabled)
+				localStorage.setItem('dof/' + itemsFeatureKey + '/chara/' + this.key + '/disabled', 'true');
+			else
+				localStorage.removeItem('dof/' + itemsFeatureKey + '/chara/' + this.key + '/disabled');
+		}
+	}
+	reset() {
+		this.setWeight(this.defaultWeight);
+		this.setColor(this.defaultColor);
+		this.setDisabled(false);
+	}
+}
+
+var characteristics = [
+	new Characteristic('vitality', 'Vitalité', 0.25, 0xFF1E1E),
+	new Characteristic('strength', 'Force', 1, 0x815633),
+	new Characteristic('intelligence', 'Intelligence', 1, 0xD13800),
+	new Characteristic('chance', 'Chance', 1, 0x398A89),
+	new Characteristic('agility', 'Agilité', 1, 0x2B6F2D),
+	new Characteristic('wisdom', 'Sagesse', 3, 0x330066),
+	new Characteristic('power', 'Puissance', 2, 0),
+	new Characteristic('criticalHits', 'Coups Critiques', 30, 0),
+	new Characteristic('ap', 'PA', 100, 0xECA90E),
+	new Characteristic('mp', 'PM', 90, 0x99CC00),
+	new Characteristic('range', 'PO', 51, 0x26B58D),
+	new Characteristic('summons', 'Invocations', 30, 0xFD890B),
+	new Characteristic('damage', 'Dommages', 20, 0),
+	new Characteristic('neutralDamage', 'Dommages Neutre', 5, 0x000000),
+	new Characteristic('earthDamage', 'Dommages Terre', 5, 0x815633),
+	new Characteristic('fireDamage', 'Dommages Feu', 5, 0xD13800),
+	new Characteristic('waterDamage', 'Dommages Eau', 5, 0x398A89),
+	new Characteristic('airDamage', 'Dommages Air', 5, 0x2B6F2D),
+	new Characteristic('heals', 'Soins', 20, 0xFF1E1E),
+	new Characteristic('prospecting', 'Prospection', 3, 0x0098FF),
+	new Characteristic('initiative', 'Initiative', 0.1, 0x660066),
+	new Characteristic('reflectedDamage', 'Dommages Retournés', 30, 0),
+	new Characteristic('percentNeutralResistance', '% Résistance Neutre', 6, 0x000000),
+	new Characteristic('percentEarthResistance', '% Résistance Terre', 6, 0x815633),
+	new Characteristic('percentFireResistance', '% Résistance Feu', 6, 0xD13800),
+	new Characteristic('percentWaterResistance', '% Résistance Eau', 6, 0x398A89),
+	new Characteristic('percentAirResistance', '% Résistance Air', 6, 0x2B6F2D),
+	new Characteristic('neutralResistance', 'Résistance Neutre', 2, 0x000000),
+	new Characteristic('earthResistance', 'Résistance Terre', 2, 0x815633),
+	new Characteristic('fireResistance', 'Résistance Feu', 2, 0xD13800),
+	new Characteristic('waterResistance', 'Résistance Eau', 2, 0x398A89),
+	new Characteristic('airResistance', 'Résistance Air', 2, 0x2B6F2D),
+	new Characteristic('percentNeutralResistanceInPvp', '% Résistance Neutre (JcJ)', 6, 0x000000),
+	new Characteristic('percentEarthResistanceInPvp', '% Résistance Terre (JcJ)', 6, 0x815633),
+	new Characteristic('percentFireResistanceInPvp', '% Résistance Feu (JcJ)', 6, 0xD13800),
+	new Characteristic('percentWaterResistanceInPvp', '% Résistance Eau (JcJ)', 6, 0x398A89),
+	new Characteristic('percentAirResistanceInPvp', '% Résistance Air (JcJ)', 6, 0x2B6F2D),
+	new Characteristic('neutralResistanceInPvp', 'Résistance Neutre (JcJ)', 2, 0x000000),
+	new Characteristic('earthResistanceInPvp', 'Résistance Terre (JcJ)', 2, 0x815633),
+	new Characteristic('fireResistanceInPvp', 'Résistance Feu (JcJ)', 2, 0xD13800),
+	new Characteristic('waterResistanceInPvp', 'Résistance Eau (JcJ)', 2, 0x398A89),
+	new Characteristic('airResistanceInPvp', 'Résistance Air (JcJ)', 2, 0x2B6F2D),
+	new Characteristic('lock', 'Tacle', 4, 0xB3CB20),
+	new Characteristic('dodge', 'Fuite', 4, 0xB3CB20),
+	new Characteristic('apReduction', 'Retrait PA', 7, 0xECA90E),
+	new Characteristic('mpReduction', 'Retrait PM', 7, 0x99CC00),
+	new Characteristic('apLossResistance', 'Esquive PA', 7, 0xECA90E),
+	new Characteristic('mpLossResistance', 'Esquive PM', 7, 0x99CC00),
+	new Characteristic('criticalDamage', 'Dommages Critiques', 5, 0),
+	new Characteristic('criticalResistance', 'Résistance Critiques', 2, 0),
+	new Characteristic('pushbackDamage', 'Dommages Poussée', 5, 0),
+	new Characteristic('pushbackResistance', 'Résistance Poussée', 2, 0),
+	new Characteristic('trapPower', 'Puissance Pièges', 2, 0),
+	new Characteristic('trapDamage', 'Dommages Pièges', 15, 0)
+];
+var characteristicsByKey = { };
+characteristics.forEach(function (chara) {
+	characteristicsByKey[chara.key] = chara;
+});
+
+var defaultQualityFactor = 0.85;
+if ('localStorage' in window) {
+	defaultQualityFactor = parseFloat(localStorage.getItem('dof/prefs/defaultQualityFactor', 'true'));
+	if (defaultQualityFactor != defaultQualityFactor)
+		defaultQualityFactor = 0.85;
+}
