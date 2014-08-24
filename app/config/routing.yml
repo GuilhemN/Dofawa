@@ -90,3 +90,6 @@ fos_js_routing:
 fos_message:
     resource: "@FOSMessageBundle/Resources/config/routing.xml"
     prefix: /messages
+
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"

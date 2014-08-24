@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
+            new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
 
             new XN\UtilityBundle\XNUtilityBundle(),
             new SymfonyExtender\TranslationsBundle\SymfonyExtenderTranslationsBundle(),
