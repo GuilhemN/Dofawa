@@ -1,3 +1,7 @@
 dof_main_homepage:
     pattern:  /
     defaults: { _controller: DofMainBundle:Default:index }
+
+dof_main_calculateur:
+    pattern:  /calculateur
+    defaults: { _controller: DofMainBundle:Calculateur:index }
