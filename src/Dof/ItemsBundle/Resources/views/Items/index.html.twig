@@ -1,14 +1,20 @@
 {% extends '::layout.html.twig' %}
 
+{% trans_default_domain 'item' %}
 {% block body %}
 {% autoescape  %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{ item.getName(locales())}} <font size="2">{{ 'level' | trans({'%level%': item.level}, 'item')}}</font></h3>
+            <h3 class="panel-title">{{ item.getName(locales())}} <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font></h3>
         </div>
         <div class="panel-body">
             {% for name, value in item.characteristics %}
-                {{ name | trans({}, 'item') }}<br>
+                {% if value.min is not empty or value.max is not empty %}
+                    {% if value.min != value.max %}
+                        {{ value.min}} {{ 'to' | trans }} 
+                    {% endif %}
+                    {{ value.max }} {{ name | trans }}<br>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
