@@ -9,7 +9,7 @@
         </div>
         <div class="panel-body">
             {% for name, value in item.characteristics %}
-                {% if value.min is not null and value.max is not null %}
+                {% if value.min <> 0 and value.max <> 0 %}
                     {% if value.min != value.max %}
                         {{ value.min}} {{ 'to' | trans }}
                     {% endif %}
