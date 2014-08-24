@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e025b79ee3f9b80b287ba47057245e6e",
+    "hash": "82286c9c4b26d7c07e7c4f2721455047",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -202,7 +202,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -248,7 +248,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -269,7 +269,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -796,12 +796,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSMessageBundle.git",
-                "reference": "95c1d625f199735c38ca138b7e76b831fe8bdaa3"
+                "reference": "d2fd7b48baf1d0efe0c00700a49b22c8f30d5fe2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSMessageBundle/zipball/95c1d625f199735c38ca138b7e76b831fe8bdaa3",
-                "reference": "95c1d625f199735c38ca138b7e76b831fe8bdaa3",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSMessageBundle/zipball/d2fd7b48baf1d0efe0c00700a49b22c8f30d5fe2",
+                "reference": "d2fd7b48baf1d0efe0c00700a49b22c8f30d5fe2",
                 "shasum": ""
             },
             "require": {
@@ -848,7 +848,7 @@
                 "messaging",
                 "symfony"
             ],
-            "time": "2014-08-09 10:44:38"
+            "time": "2014-08-20 16:58:11"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1366,26 +1366,26 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/snappy.git",
-                "reference": "9e0510d87babb33612cbf9d76a3b360048e0418d"
+                "reference": "d208ff86aea72def58f569cecb61577d466c66b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/9e0510d87babb33612cbf9d76a3b360048e0418d",
-                "reference": "9e0510d87babb33612cbf9d76a3b360048e0418d",
+                "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/d208ff86aea72def58f569cecb61577d466c66b5",
+                "reference": "d208ff86aea72def58f569cecb61577d466c66b5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.3.0",
+                "symfony/process": "~2.1"
             },
             "suggest": {
                 "h4cc/wkhtmltopdf-amd64": "Provide wkhtmltopdf-amd64 binary, use version `0.12.0` as dependency",
-                "h4cc/wkhtmltopdf-i386": "Provide wkhtmltopdf-i386 binary, use version `0.12.0` as dependency",
-                "symfony/process": "Process Component of Symfony2."
+                "h4cc/wkhtmltopdf-i386": "Provide wkhtmltopdf-i386 binary, use version `0.12.0` as dependency"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.1.x-dev"
+                    "dev-master": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1417,7 +1417,7 @@
                 "thumbnail",
                 "wkhtmltopdf"
             ],
-            "time": "2014-07-28 15:43:39"
+            "time": "2014-08-22 13:35:04"
         },
         {
             "name": "knplabs/knp-snappy-bundle",
@@ -1909,12 +1909,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "892ad14dc7b047ce170702dcc0897815e41152a7"
+                "reference": "c53fed279cff5e05df0b19e07b936b036bf3b092"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/892ad14dc7b047ce170702dcc0897815e41152a7",
-                "reference": "892ad14dc7b047ce170702dcc0897815e41152a7",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/c53fed279cff5e05df0b19e07b936b036bf3b092",
+                "reference": "c53fed279cff5e05df0b19e07b936b036bf3b092",
                 "shasum": ""
             },
             "require": {
@@ -1980,7 +1980,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-08-08 08:04:51"
+            "time": "2014-08-24 20:02:21"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -1988,12 +1988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "4c2241900df15a16a10b32ce61769e1e790418c8"
+                "reference": "e4195582740d0e26346761be9cf5f4aa6fc26238"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/4c2241900df15a16a10b32ce61769e1e790418c8",
-                "reference": "4c2241900df15a16a10b32ce61769e1e790418c8",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/e4195582740d0e26346761be9cf5f4aa6fc26238",
+                "reference": "e4195582740d0e26346761be9cf5f4aa6fc26238",
                 "shasum": ""
             },
             "require": {
@@ -2004,11 +2004,11 @@
                 "symfony/http-kernel": "~2.2"
             },
             "require-dev": {
-                "knplabs/knp-menu-bundle": "~1.1",
+                "knplabs/knp-menu-bundle": "~2.0",
                 "sonata-project/admin-bundle": "~2.2"
             },
             "suggest": {
-                "knplabs/knp-menu-bundle": "~1.1",
+                "knplabs/knp-menu-bundle": "~2.0",
                 "sonata-project/admin-bundle": "~2.2",
                 "sonata-project/cache-bundle": "~2.1"
             },
@@ -2044,7 +2044,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2014-08-05 11:36:37"
+            "time": "2014-08-14 12:40:45"
         },
         {
             "name": "sonata-project/cache",
@@ -2175,12 +2175,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "00b222f45a9af5b16e7a7a15e3b6a7369d4d58fa"
+                "reference": "34b8f90d65b57fcd2008a1b809b56edd2d1961a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/00b222f45a9af5b16e7a7a15e3b6a7369d4d58fa",
-                "reference": "00b222f45a9af5b16e7a7a15e3b6a7369d4d58fa",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/34b8f90d65b57fcd2008a1b809b56edd2d1961a4",
+                "reference": "34b8f90d65b57fcd2008a1b809b56edd2d1961a4",
                 "shasum": ""
             },
             "require": {
@@ -2237,7 +2237,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2014-08-05 13:32:38"
+            "time": "2014-08-18 08:58:10"
         },
         {
             "name": "sonata-project/exporter",
@@ -2846,6 +2846,64 @@
             "time": "2014-07-05 12:19:05"
         },
         {
+            "name": "willdurand/js-translation-bundle",
+            "version": "v2.1.1",
+            "target-dir": "Bazinga/Bundle/JsTranslationBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/BazingaJsTranslationBundle.git",
+                "reference": "6ee06b9e974b9b768544fbbd6e1432773d205ebd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/6ee06b9e974b9b768544fbbd6e1432773d205ebd",
+                "reference": "6ee06b9e974b9b768544fbbd6e1432773d205ebd",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "~2.3",
+                "symfony/finder": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/intl": "~2.3"
+            },
+            "replace": {
+                "willdurand/expose-translation-bundle": "2.1.*"
+            },
+            "require-dev": {
+                "symfony/browser-kit": "~2.3",
+                "symfony/twig-bundle": "~2.3",
+                "symfony/yaml": "~2.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Bazinga\\Bundle\\JsTranslationBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com"
+                }
+            ],
+            "description": "A pretty nice way to expose your translation messages to your JavaScript.",
+            "keywords": [
+                "javascript",
+                "symfony",
+                "translation"
+            ],
+            "time": "2014-07-29 09:19:11"
+        },
+        {
             "name": "willdurand/jsonp-callback-validator",
             "version": "v1.1.0",
             "source": {
@@ -2886,8 +2944,12 @@
             "time": "2014-01-20 22:35:06"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
         "jms/i18n-routing-bundle": 20,
@@ -2902,11 +2964,14 @@
         "knplabs/knp-snappy": 20,
         "knplabs/knp-snappy-bundle": 20,
         "h4cc/wkhtmltopdf-amd64": 20,
-        "h4cc/wkhtmltoimage-amd64": 20
+        "h4cc/wkhtmltoimage-amd64": 20,
+        "willdurand/js-translation-bundle": 0
     },
     "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": []
+    "platform-dev": [
+
+    ]
 }
