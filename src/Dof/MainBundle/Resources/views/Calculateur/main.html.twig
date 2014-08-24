@@ -1,0 +1,11 @@
+{% extends "::layout.html.twig" %}
+
+{% block breadcrumb %}
+	{{ parent() }}
+	<li>{{ 'generalTrans'|trans({}, 'calculator') }}</li>
+{% endblock %}
+
+{% block body %}
+<h1>lolcalculateur</h1>
+
+{% endblock body %}
