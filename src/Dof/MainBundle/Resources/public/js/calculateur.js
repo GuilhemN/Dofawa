@@ -244,9 +244,9 @@ function InverseTout( nom )
 	}
 }
 
-function verif() 
+/*function verif() 
 {
 	i = document.getElementById("type").value;
 	CacheTout('calc');DivStatus('calc'+i,'');
 }
-verif();
+verif();*/
