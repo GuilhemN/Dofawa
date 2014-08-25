@@ -170,3 +170,6 @@ knp_snappy:
         enabled: true
         binary: %kernel.root_dir%/../vendor/h4cc/wkhtmltoimage-amd64/bin/wkhtmltoimage-amd64
         options: []
+
+bazinga_js_translation:
+    locale_fallback: fr
