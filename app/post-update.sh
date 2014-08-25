@@ -46,4 +46,4 @@ else
 	php app/console assets:install
 fi
 
-php app/console bazinga:js-translation:dump
+php app/console bazinga:js-translation:dump web/js
