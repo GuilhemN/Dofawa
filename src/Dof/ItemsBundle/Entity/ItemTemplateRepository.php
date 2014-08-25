@@ -16,7 +16,10 @@ class ItemTemplateRepository extends FilterableEntityRepository
 {
 	protected function getFilterableExpr(QueryBuilder $qb, $alias, $locale = 'fr')
 	{
-		return $alias . ".name" . ucfirst($locale);
+		$primary = $alias . ".name" . ucfirst($locale);
+		$secondary = $alias . ".nameFr";
+
+		return  " CASE WHEN (" . $primary . " IS NOT NULL) THEN " . $primary . " ELSE " . $secondary ." END ";
 	}
 
     public function findByIdWithType($id) {
