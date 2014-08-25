@@ -5,6 +5,10 @@
 	<li>{{ 'calculator'|trans({}, 'generalTrans') }}</li>
 {% endblock %}
 
+{% block js %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundle/dofmain/js/calculateur.js') }}"></script>
+{% endblock %}
 {% block body %}
 <div id="bloc1"><h3>Les Calculateurs !</h3>
 	<br>
