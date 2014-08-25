@@ -34,7 +34,7 @@
 
 {% block js %}
 {{ parent() }}
-<script src="{{ url('bazinga_jstranslation_js', { 'domain': 'item' }) }}"></script>
+<script src="{{ asset('js/translations/item/' ~ app.request.locale ~ '.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/xnutility/js/raphael.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/dofitems/js/items-common.min.js#qdiag') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/dofitems/js/quality-diagram.min.js') }}"></script>
