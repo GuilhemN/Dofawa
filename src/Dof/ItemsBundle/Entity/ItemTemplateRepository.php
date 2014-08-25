@@ -19,7 +19,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		$primary = $alias . ".name" . ucfirst($locale);
 		$secondary = $alias . ".nameFr";
 
-		return  " COALESCE(" . $primary . ", " . $secondary .") ";
+		return  /*" COALESCE(" . */ $primary /*. ", " . $secondary .") "*/;
 	}
 
     public function findByIdWithType($id) {
