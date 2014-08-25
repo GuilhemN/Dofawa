@@ -114,7 +114,7 @@ $(function () {
                 } }><span class="glyphicon glyphicon-minus-sign"></span> Supprimer</a> : null;
                 listItem = <li style={ { background: generateLinearGradientEx(chara.color, range.max - range.min, range.value - range.min) } }>{ removeLink }<label>
                         <input type="number" name={ 'items[' + item.serial + '][characteristics][' + chara.key + ']' } value={ range.value } step="1" min={ Math.min(range.min, 0) } max={ Math.max(range.max, Math.floor(101 / chara.defaultWeight)) }
-                            onchange={ onchange } onkeyup={ onchange } onblur={ onchange } /> <span>{ chara.name }<br />({ (range.min == range.max) ? ("" + range.min) : (range.min + ' à ' + range.max) })</span>
+                            onchange={ onchange } onkeyup={ onchange } onblur={ onchange } /> <span>{ chara.name }<br />({ (range.min == range.max) ? ("" + range.min) : (range.min + ' ' +  Translator.trans('to', {}, 'item') + ' ' + range.max) })</span>
                     </label></li>;
                 subform.appendChild(listItem);
             }
@@ -288,7 +288,7 @@ $(function () {
                         updateDiagrams();
                 }
                 return false;
-            } }><span class="glyphicon glyphicon-minus-sign"></span> Supprimer</a><div><span class="name">Chargement ...</span> (Niv. <span class="level">0</span>)</div><input type="hidden" name={ 'items[' + serial + '][slug]' } value={ itemList.selectedValue } /><ul class="subform col-lg-5" /><div class="diagram-container col-lg-7" /></div>;
+            } }><span class="glyphicon glyphicon-minus-sign"></span> Supprimer</a><div><span class="name">Chargement ...</span> ({Translator.trans('level', {'level': '<span class="level">0</span>'}, 'item') })</div><input type="hidden" name={ 'items[' + serial + '][slug]' } value={ itemList.selectedValue } /><ul class="subform col-lg-5" /><div class="diagram-container col-lg-7" /></div>;
             diagramsNode.appendChild(diagramNode);
             try {
                 item = yield get(Routing.generate('dof_items_json_itemtemplate', { l1id: itemList.selectedValue }));
