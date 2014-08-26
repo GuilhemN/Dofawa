@@ -22,6 +22,7 @@
 {
     font-size: 87px;
 }
+
 //CONTENU
 .content-box{
 	font-size: 15px;
@@ -53,14 +54,24 @@
 	.content{
 		padding: 8px 15px;
 		background: white;
-    &:not(.thumbnail){
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        &:not(.thumbnail){
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        &:last-child {
+          border-radius: 0 0 2px 2px;
+        }
+	}
+}
+
+.item {
+    .nav > li > a {
+        padding: 5px 10px;
     }
 
-    &:last-child {
-      border-radius: 0 0 2px 2px;
+    .panel-body{
+        padding-top: 5px;
     }
-	}
 }
 
 //FOOTER
