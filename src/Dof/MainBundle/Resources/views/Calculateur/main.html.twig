@@ -20,75 +20,75 @@
 	</script>
 {% endblock %}
 {% block body %}
-	<h3>Les Calculateurs !</h3>
-	<br>
-	<select id="type" onchange="verif();">
+	<h3>{{ 'calculators'|trans({}, 'generalTrans') }} !</h3>
+	<!-- <select id="type" onchange="verif();">
 	<option value="1" selected="">Calculateur de CC</option>
 	<option value="2">Calculateur de Pods</option>
 	<option value="3">Calculateur d'initiative</option>
-	</select>
+	</select> -->
 
-	<!-- <ul class="nav nav-tabs" role="tablist">
-      <li class="active" onclick="CacheTout('calc');DivStatus('calc1','');"><a href="">cc</a></li>
-      <li onclick="CacheTout('calc');DivStatus('calc2','');"><a href="">pod</a></li>
-      <li onclick="CacheTout('calc');DivStatus('calc3','');"><a href="">ini</a></li>
-    </ul> -->
+    <ul class="nav nav-tabs" role="tablist">
+  		<li class="active"><a href="#calc1" role="tab" data-toggle="tab">{{ 'criticalHits'|trans({}, 'item') }}</a></li>
+  		<li><a href="#calc2" role="tab" data-toggle="tab">{{ 'pods'|trans({}, 'item') }}</a></li>
+ 		<li><a href="#calc3" role="tab" data-toggle="tab">{{ 'initiative'|trans({}, 'item') }}</a></li>
+	</ul>
 
-	<br>
-	<div id="calc1" class="">
+	<div class="tab-content">
+	<div class="tab-pane active" id="calc1">
 		<form name="cc">
 			<br>
 			<label for="ccbase">
-				Coup Critique de base de votre Sort ou de Votre Arme
-			</label> :
+				{{ 'ccbase'|trans({}, 'generalTrans') }} :
+			</label> 
 			1/<input type="text" onkeypress="calculCc()" onkeydown="calculCc()" onkeyup="calculCc()" size="4" name="ccbase" value="5" id="ccbase">
 			<br>
 			<br>
 			<label for="ccbonus">
-				Vos bonus de Coup Critique :
+				{{ 'bonuscc'|trans({}, 'generalTrans') }} :
 			</label>
 			<input type="text" size="40" value="0" name="ccbonus" onkeypress="calculCc()" onkeydown="calculCc()" onkeyup="calculCc()" id="ccbonus">
 			<br>
 			<br>
-			<label for="agi">Votre Agilité</label> : <input type="text" size="40" value="0" onkeypress="calculCc()" onkeydown="calculCc()" onkeyup="calculCc()" name="agi" id="agi">
+			<label for="agi">{{ 'yagility'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" value="0" onkeypress="calculCc()" onkeydown="calculCc()" onkeyup="calculCc()" name="agi" id="agi">
 			<br><br>
-			Vous avez 1/<b id="cc">5</b> de chance de faire un coup Critique...
+			{{ 'yhave'|trans({}, 'generalTrans') }} 1/<b id="cc">5</b> {{ 'luckcc'|trans({}, 'generalTrans') }}...
 		</form>
 	</div>
-	<div class="cachediv" id="calc2">
+	<div class="tab-pane" id="calc2">
 		<div style="margin-bottom: 2px;">
 			<form name="pods">
-				<br><label for="force"> Votre Force de Base</label> : <input type="text" size="40" name="force" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" value="0" id="force"><br>
-				<br><label for="bonus"> Vos Bonus de Pods</label> : <input type="text" size="40" value="0" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" name="bonus" id="bonus"><br><br>
-					Niveau de vos métier : <br>
-				<br><label for="metier1"> Votre Métier n°1</label> : <input type="text" size="40" name="metier1" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" id="metier1" value="0"><br>
-				<label for="metier2"> Votre Métier n°2</label> : <input type="text" size="40" name="metier2" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" id="metier2" value="0"><br>	
-				<label for="metier3"> Votre Métier n°3</label> : <input type="text" size="40" name="metier3" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" id="metier3" value="0"><br>
-				<label for="specialisation1"> Votre spécialisation n°1</label> : <input type="text" size="40" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" name="specialisation1" value="0" id="specialisation1"><br>
-				<label for="specialisation2"> Votre spécialisation n°2</label> : <input type="text" size="40" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" name="spacialisation2" value="0" id="specialisation2"><br>	
-				<label for="specialisation1"> Votre spécialisation n°3</label> : <input type="text" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" size="40" name="specialisation3" value="0" id="specialisation3"><br><br>
-				Vous avez <b id="pods">1000</b> pods.
+				<br><label for="force"> {{ 'ystrength'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" name="force" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" value="0" id="force"><br>
+				<br><label for="bonus"> {{ 'bonuspods'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" value="0" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" name="bonus" id="bonus"><br><br>
+					{{ 'lvlyjob'|trans({}, 'generalTrans') }} : <br>
+				<br><label for="metier1"> {{ 'yjob'|trans({}, 'generalTrans') }} n°1 :</label> <input type="text" size="40" name="metier1" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" id="metier1" value="0"><br>
+				<label for="metier2"> {{ 'yjob'|trans({}, 'generalTrans') }} n°2 :</label> <input type="text" size="40" name="metier2" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" id="metier2" value="0"><br>	
+				<label for="metier3"> {{ 'yjob'|trans({}, 'generalTrans') }} n°3 :</label> <input type="text" size="40" name="metier3" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" id="metier3" value="0"><br>
+				<label for="specialisation1"> {{ 'yspe'|trans({}, 'generalTrans') }} n°1 :</label> <input type="text" size="40" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" name="specialisation1" value="0" id="specialisation1"><br>
+				<label for="specialisation2"> {{ 'yspe'|trans({}, 'generalTrans') }} n°2 :</label> <input type="text" size="40" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" name="spacialisation2" value="0" id="specialisation2"><br>	
+				<label for="specialisation1"> {{ 'yspe'|trans({}, 'generalTrans') }} n°3 :</label> <input type="text" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" size="40" name="specialisation3" value="0" id="specialisation3"><br><br>
+				{{ 'yhave'|trans({}, 'generalTrans') }} <b id="pods">1000</b> {{ 'pods'|trans({}, 'item') }}.
 			</form>
 		</div>
 	</div> 
-	<div class="cachediv" id="calc3">
+	<div class="tab-pane" id="calc3">
 		<div style="margin-bottom: 2px;">
 			<br>
-			Entrez vos Informations pour savoir votre Initiative...<br><br>
+			{{ 'enterinfos'|trans({}, 'generalTrans') }}...<br><br>
 			<form name="ini">
 				<div name="ahah" class="cachediv" id="ahah">
 					<div style=" margin-bottom: 2px;">
-						<br><label for="pvmax">Point de vie Maximum</label> : <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" name="pvmax" value="1" id="pvmax"><br>
-						<br><label for="pvactuel">Point de vie actuel</label> : <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="1" name="pvactuel" id="pvactuel"><br>
+						<br><label for="pvmax">{{ 'vitamax'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" name="pvmax" value="1" id="pvmax"><br>
+						<br><label for="pvactuel">{{ 'vitaactu'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="1" name="pvactuel" id="pvactuel"><br>
 					</div>
 				</div>
-				<br><label for="bonusini">Bonus d'Initiative</label> : <input type="text" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" size="40" value="0" name="bonusini" id="bonusini"><br>
-				<br><label for="force">Votre Force(Terre)</label> : <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="0" name="force" id="force">
-				<br><label for="feu">Votre Intelligence (Feu)</label> : <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="0" name="feu" id="feu">
-				<br><label for="eau">Votre Chance (Eau)</label> : <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="0" name="eau" id="eau">
-				<br><label for="agi">Votre Agilité (Air)</label> : <input type="text" size="40" value="0" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" name="agi" id="agi"><br><br><br>
-				<label for="pvmax">Vous avez <b id="initiative">0</b> d'initiative.</label>
+				<br><label for="bonusini">{{ 'bonusini'|trans({}, 'generalTrans') }} :</label> <input type="text" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" size="40" value="0" name="bonusini" id="bonusini"><br>
+				<br><label for="force">{{ 'yearth'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="0" name="force" id="force">
+				<br><label for="feu">{{ 'yintel'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="0" name="feu" id="feu">
+				<br><label for="eau">{{ 'ychance'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="0" name="eau" id="eau">
+				<br><label for="agi">{{ 'yagi'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" value="0" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" name="agi" id="agi"><br><br><br>
+				<label for="pvmax">{{ 'yhave'|trans({}, 'generalTrans') }} <b id="initiative">0</b> {{ 'initiative'|trans({}, 'item') }}.</label>
 			</form>
 		</div>
+	</div>
 	</div>
 {% endblock body %}
