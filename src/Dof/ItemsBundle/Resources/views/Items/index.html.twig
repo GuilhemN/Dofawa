@@ -3,7 +3,7 @@
 {% trans_default_domain 'item' %}
 {% block body %}
 {% autoescape  %}
-    <div class="panel panel-default">
+    <div class="panel panel-default item">
         <div class="panel-heading">
             <h3 class="panel-title">{{ item.getName(locales())}} <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font></h3>
         </div>
