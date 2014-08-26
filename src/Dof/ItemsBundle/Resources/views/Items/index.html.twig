@@ -8,14 +8,25 @@
             <h3 class="panel-title">{{ item.getName(locales())}} <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font></h3>
         </div>
         <div class="panel-body">
-            {% for name, value in item.characteristics %}
-                {% if value.min != 0 and value.max != 0 %}
-                    {% if value.min != value.max %}
-                        {{ value.min}} {{ 'to' | trans }}
-                    {% endif %}
-                    {{ value.max }} {{ name | trans }}<br>
-                {% endif %}
-            {% endfor %}
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Caracts</a></li>
+              <li><a href="#caracts-conditions{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                    {% for name, value in item.characteristics %}
+                        {% if value.min != 0 and value.max != 0 %}
+                            {% if value.min != value.max %}
+                                {{ value.min}} {{ 'to' | trans }}
+                            {% endif %}
+                            {{ value.max }} {{ name | trans }}<br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="tab-pane" id="caracts-conditions{{ item.id }}">...</div>
+            </div>
         </div>
     </div>
 {% endautoescape %}
