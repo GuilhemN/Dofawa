@@ -2,21 +2,38 @@
 
 {% block breadcrumb %}
 	{{ parent() }}
-	<li>{{ 'calculator'|trans({}, 'generalTrans') }}</li>
+	<li>{{ 'calculator'|trans({}, 'generalTrans') }}s</li>
 {% endblock %}
 
 {% block js %}
 	{{ parent() }}
 	<script type="text/javascript" src="{{ asset('bundles/dofmain/js/calculateur.js') }}"></script>
+	<script defer="" async="">
+		function verif()
+		{
+			i = document.getElementById("type").value;
+			CacheTout('calc');DivStatus('calc'+i,'');
+
+		}
+
+		verif();
+	</script>
 {% endblock %}
 {% block body %}
-<div id="bloc1"><h3>Les Calculateurs !</h3>
+	<h3>Les Calculateurs !</h3>
 	<br>
 	<select id="type" onchange="verif();">
 	<option value="1" selected="">Calculateur de CC</option>
 	<option value="2">Calculateur de Pods</option>
 	<option value="3">Calculateur d'initiative</option>
 	</select>
+
+	<!-- <ul class="nav nav-tabs" role="tablist">
+      <li class="active" onclick="CacheTout('calc');DivStatus('calc1','');"><a href="">cc</a></li>
+      <li onclick="CacheTout('calc');DivStatus('calc2','');"><a href="">pod</a></li>
+      <li onclick="CacheTout('calc');DivStatus('calc3','');"><a href="">ini</a></li>
+    </ul> -->
+
 	<br>
 	<div id="calc1" class="">
 		<form name="cc">
@@ -74,6 +91,4 @@
 			</form>
 		</div>
 	</div>
-</div>
-
 {% endblock body %}
