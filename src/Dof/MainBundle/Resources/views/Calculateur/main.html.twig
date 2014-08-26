@@ -22,20 +22,25 @@
 {% block body %}
 	<h3>Les Calculateurs !</h3>
 	<br>
-	<select id="type" onchange="verif();">
+	<!-- <select id="type" onchange="verif();">
 	<option value="1" selected="">Calculateur de CC</option>
 	<option value="2">Calculateur de Pods</option>
 	<option value="3">Calculateur d'initiative</option>
-	</select>
+	</select> -->
 
-	<!-- <ul class="nav nav-tabs" role="tablist">
+	<ul class="nav nav-tabs" role="tablist">
       <li class="active" onclick="CacheTout('calc');DivStatus('calc1','');"><a href="">cc</a></li>
       <li onclick="CacheTout('calc');DivStatus('calc2','');"><a href="">pod</a></li>
       <li onclick="CacheTout('calc');DivStatus('calc3','');"><a href="">ini</a></li>
-    </ul> -->
+    </ul>
+    <ul class="nav nav-tabs" role="tablist">
+  		<li class="active"><a href="#calc1" role="tab" data-toggle="tab">cc</a></li>
+  		<li><a href="#calc2" role="tab" data-toggle="tab">pods</a></li>
+ 		<li><a href="#calc3" role="tab" data-toggle="tab">ini</a></li>
+	</ul>
 
-	<br>
-	<div id="calc1" class="">
+	<div class="tab-content">
+	<div class="tab-pane active" id="calc1">
 		<form name="cc">
 			<br>
 			<label for="ccbase">
@@ -55,7 +60,7 @@
 			Vous avez 1/<b id="cc">5</b> de chance de faire un coup Critique...
 		</form>
 	</div>
-	<div class="cachediv" id="calc2">
+	<div class="tab-pane" id="calc2">
 		<div style="margin-bottom: 2px;">
 			<form name="pods">
 				<br><label for="force"> Votre Force de Base</label> : <input type="text" size="40" name="force" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" value="0" id="force"><br>
@@ -71,7 +76,7 @@
 			</form>
 		</div>
 	</div> 
-	<div class="cachediv" id="calc3">
+	<div class="tab-pane" id="calc3">
 		<div style="margin-bottom: 2px;">
 			<br>
 			Entrez vos Informations pour savoir votre Initiative...<br><br>
@@ -90,5 +95,6 @@
 				<label for="pvmax">Vous avez <b id="initiative">0</b> d'initiative.</label>
 			</form>
 		</div>
+	</div>
 	</div>
 {% endblock body %}
