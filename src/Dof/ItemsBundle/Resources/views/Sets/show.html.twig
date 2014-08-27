@@ -12,7 +12,15 @@
     {% endfor %}
 
     {% for combination in combinations %}
-        {# Get the characteristics #}
-        {% include 'DofItemsBundle::characteristics.html.twig' with {'item': combination} %}
+
+    	<div class="row">
+		  <div class="col-xs-6 col-md-3">
+		    <a href="#" class="thumbnail">
+		    <center>{{ combination.itemCount }} items</center>
+		    	{# Get the characteristics #}
+        		{% include 'DofItemsBundle::characteristics.html.twig' with {'item': combination} %}  
+		    </a>
+		  </div>
+		</div>
 	{% endfor %}
 {% endblock %}
