@@ -6,11 +6,17 @@
 {% endblock %}
 
 {% block body %}
-    {{ set }} ({{ items_count }} items) - lvl {{ level }}
+    {{ set.getName(locales()) }} ({{ items_count }} items) - lvl {{ level }}
 
     {% for item in items %}
     {% endfor %}
 
-    {% for combination in combinations %}
+    {% for name, value in combination.characteristics %}
+        {% if value.min != 0 and value.max != 0 %}
+            {% if value.min != value.max %}
+                {{ value.min}} {{ 'to' | trans }}
+            {% endif %}
+        	{{ value.max }} {{ name | trans }}<br>
+        {% endif %}
     {% endfor %}
 {% endblock %}
