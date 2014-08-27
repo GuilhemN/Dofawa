@@ -11,7 +11,7 @@ class ItemsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:EquipmentTemplate');
 
-        $item = $repo->findOneBy(array());
+        $item = $repo->findOneBy(array('level' => '199'));
         return $this->render('DofItemsBundle:Items:index.html.twig', ['item' => $item]);
     }
 }
