@@ -14,9 +14,9 @@ class EquipmentTemplateRepository extends ItemTemplateRepository
         $qb = $this
                   ->createQueryBuilder('i')
                   ->select(array('i', 'cp', 'icp', 's'))
-                  ->join('i.components', 'cp')
-				  ->join('cp.component', 'icp')
                   ->join('i.set', 's')
+                  ->leftjoin('i.components', 'cp')
+				  ->leftjoin('cp.component', 'icp')
 			;
 
 		$i = 0;
