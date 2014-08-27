@@ -1,3 +1,5 @@
+{% trans_default_domain 'item' %}
+
 {% for name, value in item.characteristics %}
     {% if value | is_array %}
         {% set min = value.min %}

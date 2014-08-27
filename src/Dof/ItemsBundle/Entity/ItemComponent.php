@@ -47,9 +47,16 @@ class ItemComponent implements IdentifiableInterface
     private $quantity;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sticky", type="boolean")
+     */
+    private $sticky;
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -78,7 +85,7 @@ class ItemComponent implements IdentifiableInterface
     {
         return $this->compound;
     }
-    
+
     /**
      * Set component
      *
@@ -118,10 +125,42 @@ class ItemComponent implements IdentifiableInterface
     /**
      * Get quantity
      *
-     * @return integer 
+     * @return integer
      */
     public function getQuantity()
     {
         return $this->quantity;
+    }
+    /**
+     * Set sticky
+     *
+     * @param boolean $sticky
+     * @return ItemComponent
+     */
+    public function setSticky($sticky)
+    {
+        $this->sticky = $sticky;
+
+        return $this;
+    }
+
+    /**
+     * Get sticky
+     *
+     * @return boolean
+     */
+    public function getSticky()
+    {
+        return $this->sticky;
+    }
+
+    /**
+     * Get sticky
+     *
+     * @return boolean
+     */
+    public function isSticky()
+    {
+        return $this->sticky;
     }
 }
