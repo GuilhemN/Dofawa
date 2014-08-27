@@ -43,7 +43,32 @@ class ItemTemplateRepository extends FilterableEntityRepository
                   ->setParameter('slot', $slot)
                   ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
                   ->useResultCache(true, 3600)
-                  ->getArrayResult();
+                  ->getArrayResult()
               ;
     }
+
+	public function findItemsWithJoins($criteria, $firstResult = null, $maxResults = null){
+        $qb = $this
+                  ->createQueryBuilder('i')
+                  ->join('i.set', 's')
+              ;
+		
+		foreach($criteria as $k => $v){
+			$i++;
+			$qb
+				->andWhere($k . ' LIKE :filterWord' . $i)
+				->setParameter('filterWord' . $i, $v)
+			;
+		}
+
+		if($firstResult != null)
+			$qb->setFirstResult($firstresult);
+		if($maxResults != null)
+			$qb->setMaxResults($maxResults);
+
+		return $qb
+        	->getQuery()
+        	->getResult()
+		;
+	}
 }
