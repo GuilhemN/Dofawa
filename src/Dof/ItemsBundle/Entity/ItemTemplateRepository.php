@@ -50,6 +50,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 	public function findItemsWithJoins($criteria, $firstResult = null, $maxResults = null){
         $qb = $this
                   ->createQueryBuilder('i')
+				  ->select(array('i', 's'))
                   ->join('i.set', 's')
               ;
 
