@@ -34,7 +34,7 @@ class ItemSetRepository extends EntityRepository
 
 		return $qb
         	->getQuery()
-        	->getResult()
+        	->getSingleResult()
 		;
     }
 }
