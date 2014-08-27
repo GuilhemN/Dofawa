@@ -25,7 +25,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
               ORDER BY o.resultId');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
-        $repo = $this->dm->getRepository('DofItemsBundle:ItemComponent');
+        $repo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
 
         $rowsProcessed = 0;
         if ($output && $progress)
