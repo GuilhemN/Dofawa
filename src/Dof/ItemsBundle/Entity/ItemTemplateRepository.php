@@ -83,7 +83,8 @@ class ItemTemplateRepository extends FilterableEntityRepository
 
 		// Si requête normale, on récupère les items associés à la recette
 		if($type == 'normal'){
-			$select += ['icp', 's'];
+			$select[ ] = 'icp';
+			$select[ ] = 's';
 			$qb
 				->join('cp.component', 'icp')
                 ->join('i.set', 's')
