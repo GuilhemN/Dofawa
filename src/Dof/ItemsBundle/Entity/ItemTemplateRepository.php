@@ -51,7 +51,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		$qb = $this->queryWithJoins($criteria);
 
 		if($firstResult != null)
-			$qb->setFirstResult($firstresult);
+			$qb->setFirstResult($firstResult);
 		if($maxResults != null)
 			$qb->setMaxResults($maxResults);
 
