@@ -20,7 +20,6 @@ use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
-use Dof\BuildBundle\Entity\Item;
 
 /**
  * ItemTemplate
