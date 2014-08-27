@@ -7,6 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\ItemsBundle\CharacteristicsRangeTrait;
+use Dof\BuildBundle\Entity\Item;
 
 /**
  * EquipmentTemplate
