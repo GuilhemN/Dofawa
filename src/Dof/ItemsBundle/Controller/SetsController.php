@@ -20,7 +20,7 @@ class SetsController extends Controller
         $maxLevel = 0;
         foreach($items as $item){
             if($item->getLevel() > $maxLevel)
-                $maxLevel = $item->getLevel;
+                $maxLevel = $item->getLevel();
         }
 
         return $this->render('DofItemsBundle:Sets:show.html.twig', [
