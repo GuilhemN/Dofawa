@@ -13,6 +13,6 @@
 
     {% for combination in combinations %}
         {# Get the characteristics #}
-        {% include 'DofItemsBundle::characteristic.html.twig' with {'item': combination} %}
+        {% include 'DofItemsBundle::characteristics.html.twig' with {'item': combination} %}
 	{% endfor %}
 {% endblock %}
