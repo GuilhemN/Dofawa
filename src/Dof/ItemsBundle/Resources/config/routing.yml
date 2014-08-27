@@ -39,6 +39,6 @@ dof_items_show:
 
 dof_set_show:
     pattern: /sets/{slug}
-    defaults: { _controller: DofItemsBundle:Sets:index }
+    defaults: { _controller: DofItemsBundle:Sets:show }
     requirements:
         slug: '[0-9a-z-]+'
