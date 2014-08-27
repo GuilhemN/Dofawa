@@ -12,7 +12,7 @@
     {% endfor %}
 
     {% for combination in combinations %}
-	    {% for name, value in combinations.characteristics %}
+	    {% for name, value in combinations %}
 	        {% if value.min != 0 and value.max != 0 %}
 	            {% if value.min != value.max %}
 	                {{ value.min}} {{ 'to' | trans }}
