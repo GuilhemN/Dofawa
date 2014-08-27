@@ -95,8 +95,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Re
-move items
+     * Remove items
      *
      * @param EquipmentTemplate $items
      * @return ItemSet

@@ -36,3 +36,9 @@ dof_items_qualitydiagram_pdf:
 dof_items_show:
     pattern: /test
     defaults: { _controller: DofItemsBundle:Items:index }
+
+dof_set_show:
+    pattern: /sets/{slug}
+    defaults: { _controller: DofItemsBundle:Sets:index }
+    requirements:
+        slug: '[0-9a-z-]+'
