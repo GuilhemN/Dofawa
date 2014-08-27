@@ -52,7 +52,8 @@ class ItemTemplateRepository extends FilterableEntityRepository
                   ->createQueryBuilder('i')
                   ->join('i.set', 's')
               ;
-		
+
+		$i = 0;
 		foreach($criteria as $k => $v){
 			$i++;
 			$qb
