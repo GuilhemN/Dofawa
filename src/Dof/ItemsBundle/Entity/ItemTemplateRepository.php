@@ -74,18 +74,20 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		$criteria = (array) $criteria;
 
 		// Select par défaut
-		$select = array('i', 's', 'cp');
+		$select = array('i', 'cp');
 		// Jointure par défaut
         $qb = $this
                   ->createQueryBuilder('i')
-                  ->join('i.set', 's')
                   ->join('i.components', 'cp')
               ;
 
 		// Si requête normale, on récupère les items associés à la recette
 		if($type == 'normal'){
-			$select[] = 'icp';
-			$qb->join('cp.component', 'icp');
+			$select += ['icp', 's'];
+			$qb
+				->join('cp.component', 'icp')
+                ->join('i.set', 's')
+			;
 		}
 
 		// Transmission des jointures à récupérées

@@ -93,6 +93,5 @@ class ItemTemplateImporter extends AbstractGameDataImporter
         if ($output && $progress)
             $progress->finish();
 
-        unset($all);
     }
 }
