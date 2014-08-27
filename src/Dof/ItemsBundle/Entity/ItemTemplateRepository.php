@@ -47,21 +47,8 @@ class ItemTemplateRepository extends FilterableEntityRepository
               ;
     }
 
-	public function findItemsWithJoins($criteria, $firstResult = null, $maxResults = null){
-        $qb = $this
-                  ->createQueryBuilder('i')
-				  ->select(array('i', 's'))
-                  ->join('i.set', 's')
-              ;
-
-		$i = 0;
-		foreach($criteria as $k => $v){
-			$i++;
-			$qb
-				->andWhere('i.' . $k . ' LIKE :filterWord' . $i)
-				->setParameter('filterWord' . $i, $v)
-			;
-		}
+	public function findWithJoins($criteria, $firstResult = null, $maxResults = null){
+		$qb = $this->queryWithJoins($criteria);
 
 		if($firstResult != null)
 			$qb->setFirstResult($firstresult);
@@ -72,5 +59,48 @@ class ItemTemplateRepository extends FilterableEntityRepository
         	->getQuery()
         	->getResult()
 		;
+	}
+
+	public function findOneWithJoins($criteria, $type = 'normal'){
+		$qb = $this->findWithJoins($criteria);
+
+		return $qb
+			->getQuery()
+			->getSingleResult()
+		;
+	}
+
+	protected function queryWithJoins($criteria, $type = 'normal'){
+		$criteria = (array) $criteria;
+
+		// Select par défaut
+		$select = array('i', 's', 'cp');
+		// Jointure par défaut
+        $qb = $this
+                  ->createQueryBuilder('i')
+                  ->join('i.set', 's')
+                  ->join('i.components', 'cp')
+              ;
+
+		// Si requête normale, on récupère les items associés à la recette
+		if($type == 'normal'){
+			$select[] = 'icp';
+			$qb->join('cp.component', 'icp');
+		}
+
+		// Transmission des jointures à récupérées
+		$qb->select($select);
+
+		$i = 0;
+		// Ajout des critères à la requête
+		foreach($criteria as $k => $v){
+			$i++;
+			$qb
+				->andWhere('i.' . $k . ' LIKE :filterWord' . $i)
+				->setParameter('filterWord' . $i, $v)
+			;
+		}
+
+		return $qb;
 	}
 }
