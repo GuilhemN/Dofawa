@@ -4,7 +4,7 @@ namespace Dof\ItemsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Dof\ItemsBundle\ItemSet;
+use Dof\ItemsBundle\Entity\ItemSet;
 
 class SetsController extends Controller
 {
