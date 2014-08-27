@@ -11,7 +11,7 @@ class SetsController extends Controller
 {
 
     /**
-     * @ParamConverter("set", class="DofItemsBundle:ItemSet", options={"repository_method" = "findWithJoins"})
+     * @ParamConverter("set", class="DofItemsBundle:ItemSet", options={"repository_method" = "findOneWithJoins"})
      */
     public function showAction(ItemSet $set)
     {
