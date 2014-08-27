@@ -10,19 +10,14 @@ class EquipmentTemplateRepository extends ItemTemplateRepository
     protected function queryWithJoins($criteria){
 		$criteria = (array) $criteria;
 
-		// Select par défaut
-		$select = array('i', 'cp', 'icp', 's');
 		// Jointure par défaut
         $qb = $this
                   ->createQueryBuilder('i')
+                  ->select(array('i', 'cp', 'icp', 's'))
                   ->join('i.components', 'cp')
 				  ->join('cp.component', 'icp')
                   ->join('i.set', 's')
 			;
-		}
-
-		// Transmission des jointures à récupérées
-		$qb->select($select);
 
 		$i = 0;
 		// Ajout des critères à la requête
