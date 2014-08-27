@@ -45,7 +45,7 @@ class ItemSetRepository extends EntityRepository
 		foreach($criteria as $k => $v){
 			$i++;
 			$qb
-				->andWhere('i.' . $k . ' LIKE :filterWord' . $i)
+				->andWhere('s.' . $k . ' LIKE :filterWord' . $i)
 				->setParameter('filterWord' . $i, $v)
 			;
 		}
