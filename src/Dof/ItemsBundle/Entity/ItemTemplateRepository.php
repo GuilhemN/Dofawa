@@ -76,7 +76,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		// Jointure par défaut
         $qb = $this
                   ->createQueryBuilder('i')
-				  ->select(array('i', 'cp'));
+				  ->select(array('i', 'cp'))
                   ->join('i.components', 'cp')
               ;
 
