@@ -11,7 +11,7 @@ class ItemsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:EquipmentTemplate');
 
-        $item = $repo->findItemsWithJoins(array('i.level' => '199'));
+        $item = $repo->findItemsWithJoins(array('level' => '199'));
 
         if(!isset($item[0]))
             throw $this->createNotFoundException();

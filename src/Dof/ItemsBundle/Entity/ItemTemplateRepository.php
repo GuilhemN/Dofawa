@@ -24,9 +24,9 @@ class ItemTemplateRepository extends FilterableEntityRepository
 
     public function findByIdWithType($id) {
         return $this
-                  ->createQueryBuilder('it')
-                  ->join('it.type', 't')
-                  ->where('it.id = :id')
+                  ->createQueryBuilder('i')
+                  ->join('i.type', 't')
+                  ->where('i.id = :id')
                   ->getQuery()
                   ->setParameter('id', $id)
                   ->getResult();
@@ -57,7 +57,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		foreach($criteria as $k => $v){
 			$i++;
 			$qb
-				->andWhere($k . ' LIKE :filterWord' . $i)
+				->andWhere('i.' . $k . ' LIKE :filterWord' . $i)
 				->setParameter('filterWord' . $i, $v)
 			;
 		}
