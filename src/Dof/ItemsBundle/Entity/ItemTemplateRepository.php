@@ -61,8 +61,8 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		;
 	}
 
-	public function findOneWithJoins($criteria, $type = 'normal'){
-		$qb = $this->findWithJoins($criteria, $type);
+	public function findOneWithJoins($criteria){
+		$qb = $this->findWithJoins($criteria);
 
 		return $qb
 			->getQuery()
@@ -70,19 +70,15 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		;
 	}
 
-	protected function queryWithJoins($criteria, $type = 'normal'){
+	protected function queryWithJoins($criteria){
 		$criteria = (array) $criteria;
 
-		// Select par défaut
-		$select = array('i', 'cp');
 		// Jointure par défaut
         $qb = $this
                   ->createQueryBuilder('i')
+				  ->select(array('i', 'cp'));
                   ->join('i.components', 'cp')
               ;
-
-		// Transmission des jointures à récupérées
-		$qb->select($select);
 
 		$i = 0;
 		// Ajout des critères à la requête

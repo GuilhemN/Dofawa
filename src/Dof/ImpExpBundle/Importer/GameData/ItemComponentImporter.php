@@ -37,7 +37,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
             // Si item est identique au précédent
             if(!isset($item) || $item->getId() != $row['id'])
                 // Récupération de l'item (composé)
-                $item = $repo->findOneWithJoins(array('id' => $row['id']), 'importer');
+                $item = $repo->findOneWithJoins(array('id' => $row['id']));
             else
                 // Si récupérer depuis la précédente boucle
                 $cached = true;

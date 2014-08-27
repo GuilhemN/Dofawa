@@ -7,24 +7,17 @@ namespace Dof\ItemsBundle\Entity;
  */
 class EquipmentTemplateRepository extends ItemTemplateRepository
 {
-    protected function queryWithJoins($criteria, $type = 'normal'){
+    protected function queryWithJoins($criteria){
 		$criteria = (array) $criteria;
 
 		// Select par défaut
-		$select = array('i', 'cp');
+		$select = array('i', 'cp', 'icp', 's');
 		// Jointure par défaut
         $qb = $this
                   ->createQueryBuilder('i')
                   ->join('i.components', 'cp')
-              ;
-
-		// Si requête normale, on récupère les items associés à la recette
-		if($type == 'normal'){
-			$select[ ] = 'icp';
-			$select[ ] = 's';
-			$qb
-				->join('cp.component', 'icp')
-                ->join('i.set', 's')
+				  ->join('cp.component', 'icp')
+                  ->join('i.set', 's')
 			;
 		}
 
