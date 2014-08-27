@@ -11,7 +11,7 @@
     {% for item in items %}
     {% endfor %}
 
-    {% for name, value in combination.characteristics %}
+    {% for name, value in combinations.characteristics %}
         {% if value.min != 0 and value.max != 0 %}
             {% if value.min != value.max %}
                 {{ value.min}} {{ 'to' | trans }}
