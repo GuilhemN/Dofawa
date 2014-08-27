@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-    {{ set.getName(locales()) }} ({{ items_count }} items) - lvl {{ level }}
+    <h3 class="well text-center">{{ set.getName(locales()) }} ({{ items_count }} items) - lvl {{ level }}</h3>
 
     {% for item in items %}
     {% endfor %}
@@ -16,7 +16,7 @@
 	    	
 			  <div class="col-xs-6 col-md-3">
 			    <div class="thumbnail">
-			    	<center>{{ combination.itemCount }} items</center>
+			    	<center><strong>{{ combination.itemCount }} items</strong></center>
 			    	{# Get the characteristics #}
 	        		{% include 'DofItemsBundle::characteristics.html.twig' with {'item': combination} %}  
 			    </div>
