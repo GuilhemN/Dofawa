@@ -39,6 +39,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFilter('slugify', [ self::INFLECTOR_CLASS, 'slugify' ]),
 			new \Twig_SimpleFilter('bin2hex', 'bin2hex'),
 			new \Twig_SimpleFilter('hex2bin', 'hex2bin'),
+			new \Twig_SimpleFilter('is_array', 'is_array'),
 		);
 	}
 

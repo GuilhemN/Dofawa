@@ -25,14 +25,7 @@
                     {# Tab panes #}
                     <div class="tab-content">
                         <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                            {% for name, value in item.characteristics %}
-                                {% if value.min != 0 or value.max != 0 %}
-                                    {% if value.min != value.max %}
-                                        {{ value.min}} {{ 'to' | trans }}
-                                    {% endif %}
-                                    {{ value.max }} {{ name | trans }}<br>
-                                {% endif %}
-                            {% endfor %}
+                            {% include 'DofItemsBundle::characteristic.html.twig' with {'item': item} %}
                         </div>
                         <div class="tab-pane" id="caracts-conditions{{ item.id }}">...</div>
                     </div>

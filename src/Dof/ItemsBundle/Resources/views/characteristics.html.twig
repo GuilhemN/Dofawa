@@ -1,0 +1,16 @@
+{% for name, value in item.characteristics %}
+    {% if value | is_array %}
+        {% set min = value.min %}
+        {% set max = value.max %}
+    {% else %}
+        {% set min = value %}
+        {% set max = value %}
+    {% endif %}
+
+    {% if min != 0 or max != 0 %}
+        {% if min != max %}
+            {{ min}} {{ 'to' | trans }}
+        {% endif %}
+        {{ max }} {{ name | trans }}<br>
+    {% endif %}
+{% endfor %}
