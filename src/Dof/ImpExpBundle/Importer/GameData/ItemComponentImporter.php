@@ -19,12 +19,10 @@ class ItemComponentImporter extends AbstractGameDataImporter
         // Si bdd accessible en écriture
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
 
-        $stmt = $conn->query('SELECT o.resultId as id, o.value as ingredient, o2.value as quantity ' .
-            $this->generateD2ISelects('name', $locales) .
-            ' FROM ' . $db . '.D2O_Recipe_ingredientId o
-              JOIN ' . $db . '.D2O_Recipe_ingredientId o2 on o2.resultId = o.resultId and o2._index1 = o._index1 '.
-            $this->generateD2IJoins('name', $db, $locales) .
-            ' ORDER BY o.resultId');
+        $stmt = $conn->query('SELECT o.resultId as id, o.value as ingredient, o2.value as quantity
+              FROM ' . $db . '.D2O_Recipe_ingredientId o
+              JOIN ' . $db . '.D2O_Recipe_ingredientId o2 on o2.resultId = o.resultId and o2._index1 = o._index1
+              ORDER BY o.resultId');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
         $repo = $this->dm->getRepository('DofItemsBundle:ItemComponent');
