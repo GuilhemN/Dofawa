@@ -62,7 +62,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 	}
 
 	public function findOneWithJoins($criteria){
-		$qb = $this->findWithJoins($criteria);
+		$qb = $this->queryWithJoins($criteria);
 
 		return $qb
 			->getQuery()
