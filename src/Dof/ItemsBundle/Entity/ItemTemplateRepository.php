@@ -62,7 +62,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 	}
 
 	public function findOneWithJoins($criteria, $type = 'normal'){
-		$qb = $this->findWithJoins($criteria);
+		$qb = $this->findWithJoins($criteria, $type);
 
 		return $qb
 			->getQuery()
@@ -80,16 +80,6 @@ class ItemTemplateRepository extends FilterableEntityRepository
                   ->createQueryBuilder('i')
                   ->join('i.components', 'cp')
               ;
-
-		// Si requête normale, on récupère les items associés à la recette
-		if($type == 'normal'){
-			$select[ ] = 'icp';
-			$select[ ] = 's';
-			$qb
-				->join('cp.component', 'icp')
-                ->join('i.set', 's')
-			;
-		}
 
 		// Transmission des jointures à récupérées
 		$qb->select($select);
