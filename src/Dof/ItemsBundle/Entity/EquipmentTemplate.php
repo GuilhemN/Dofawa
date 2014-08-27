@@ -32,6 +32,13 @@ class EquipmentTemplate extends ItemTemplate
      */
     private $set;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Item", mappedBy="itemTemplate")
+     */
+    private $buildItems;
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -91,6 +98,42 @@ class EquipmentTemplate extends ItemTemplate
     public function getSet()
     {
         return $this->set;
+    }
+
+     /**
+     * Add buildItem
+     *
+     * @param Item $buildItem
+     * @return ItemTemplate
+     */
+    public function addBuildItem(Item $buildItem)
+    {
+        $this->buildItem[] = $buildItem;
+
+        return $this;
+    }
+
+    /**
+     * Remove buildItem
+     *
+     * @param Item $buildItem
+     * @return ItemTemplate
+     */
+    public function removeBuildItem(Item $buildItem)
+    {
+        $this->buildItem->removeElement($buildItem);
+
+        return $this;
+    }
+
+    /**
+     * Get buildItem
+     *
+     * @return Collection
+     */
+    public function getBuildItem()
+    {
+        return $this->buildItem;
     }
 
 	public function isEquipment() { return true; }

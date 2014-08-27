@@ -42,7 +42,7 @@ class Item implements IdentifiableInterface, TimestampableInterface
     /**
      * @var Stuff
      *
-     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate", inversedBy="buildItems")
+     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\EquipmentTemplate", inversedBy="buildItems")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $itemTemplate;
