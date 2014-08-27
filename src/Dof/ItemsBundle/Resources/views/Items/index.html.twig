@@ -42,9 +42,9 @@
             </div>
             <hr />
             {% if item.set is not null %}
-                <strong>{{ item.set.getName(locales) }}</strong><br>
+                <strong>{{ item.set.getName(locales()) }}</strong><br>
             {% endif %}
-            {{ item.getDescription(locales)}}
+            {{ item.getDescription(locales())}}
         </div>
     </div>
 {% endautoescape %}
