@@ -12,4 +12,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemSetRepository extends EntityRepository
 {
+    public function findWithJoins($criteria){
+        $criteria = (array) $criteria;
+
+        $qb = $this
+                  ->createQueryBuilder('s')
+				  ->select(array('s', 'i', 'c'))
+                  ->join('s.items', 'i')
+                  ->join('s.combinations', 'c')
+                  ->orderBy('c.itemCount', 'asc')
+              ;
+
+		$i = 0;
+		foreach($criteria as $k => $v){
+			$i++;
+			$qb
+				->andWhere('i.' . $k . ' LIKE :filterWord' . $i)
+				->setParameter('filterWord' . $i, $v)
+			;
+		}
+
+		return $qb
+        	->getQuery()
+        	->getResult()
+		;
+    }
 }
