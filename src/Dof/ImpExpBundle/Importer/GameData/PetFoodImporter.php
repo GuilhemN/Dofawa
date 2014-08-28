@@ -18,16 +18,19 @@ class PetFoodImporter extends AbstractGameDataImporter
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
 
-        $foodItems = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Pet_foodItem o');
-        $foodTypes = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Pet_foodType o');
+        $stmt1 = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Pet_foodItem o');
+        $stmt2 = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Pet_foodType o');
+
+        $foodItems = $stmt1->fetchAll();
+        $foodTypes = $stmt2->fetchAll();
 
         foreach($foodItems as $row)
             $pets[$row['id']]['foodItems'][] = $row['value'];
         foreach($foodTypes as $row)
             $pets[$row['id']]['foodTypes'][] = $row['value'];
 
-        $all = $stmt->fetchAll();
-        $stmt->closeCursor();
+        $stmt1->closeCursor();
+        $stmt2->closeCursor();
 
         $repo = $this->dm->getRepository('DofItemsBundle:PetTemplate');
         $typeRepo = $this->dm->getRepository('DofItemsBundle:ItemType');
