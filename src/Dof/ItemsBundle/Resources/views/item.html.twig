@@ -9,7 +9,9 @@
             <div class="row">
                 {# Left column #}
                 <div class="col-sm-3">
-                    <img class="thumbnail img-responsive" src="{{ asset('bundles/dofitems/img/testitem.png') }}" alt="{{ item.getName(locales()) }}">
+                    <a href="{{ path('dof_items_show', {'slug': item.slug}) }}" class="thumbnail">
+                        <img class="img-responsive" src="{{ asset('bundles/dofitems/img/testitem.png') }}" alt="{{ item.getName(locales()) }}">
+                    </a>
                 </div>
 
                 {# Right column #}
