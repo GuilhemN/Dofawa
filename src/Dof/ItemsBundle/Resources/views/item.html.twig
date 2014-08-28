@@ -16,18 +16,31 @@
 
                 {# Right column #}
                 <div class="col-sm-9">
+                    {% set item_content = '' %}
                     {# Menu tabs #}
                     <ul class="nav nav-tabs" role="tablist">
-                      <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Caracts</a></li>
-                      <li><a href="#caracts-conditions{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+                        {% if item.isEquipment() %}
+                            {# Charactéristiques #}
+                            <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Caracts</a></li>
+                            {% set item_content %}
+                                {{ item_content }}
+                                <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item} %}
+                                </div>
+                            {% endset %}
+
+                            {# Conditions #}
+                            <li><a href="#caracts-conditions{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+                            {% set item_content %}
+                                {{ item_content }}
+                                <div class="tab-pane" id="caracts-conditions{{ item.id }}">...</div>
+                            {% endset %}
+                        {% endif %}
                     </ul>
 
                     {# Tab panes #}
                     <div class="tab-content">
-                        <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                            {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item} %}
-                        </div>
-                        <div class="tab-pane" id="caracts-conditions{{ item.id }}">...</div>
+                        {{ item_content }}
                     </div>
 
                 {# Close right column #}
