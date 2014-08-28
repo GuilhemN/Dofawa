@@ -50,13 +50,17 @@ class PetFoodImporter extends AbstractGameDataImporter
             foreach($pet->getFoodItems() as $foodItem)
                 $pet->removeFoodItem($foodItem);
 
-            $foodTypes = $typeRepo->findById($v['foodTypes']);
-            $foodItems = $itemRepo->findById($v['foodItems']);
+            if(isset($v['foodTypes'])){
+                $foodTypes = $typeRepo->findById($v['foodTypes']);
+                foreach($foodTypes as $foodType)
+                    $pet->addFoodType($foodType);
+            }
 
-            foreach($foodTypes as $foodType)
-                $pet->addFoodType($foodType);
-            foreach($foodItems as $foodItem)
-                $pet->addFoodItem($foodItem);
+            if(isset($v['foodItems'])){
+                $foodItems = $itemRepo->findById($v['foodItems']);
+                foreach($foodItems as $foodItem)
+                    $pet->addFoodItem($foodItem);
+            }
 
             ++$rowsProcessed;
             if (($rowsProcessed % 75) == 0) {
