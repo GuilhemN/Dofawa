@@ -6,15 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ItemsController extends Controller
 {
-    public function indexAction()
+    /**
+     * @ParamConverter("set", class="DofItemsBundle:ItemTemplate", options={"repository_method" = "findOneWithJoins"})
+     */
+    public function showAction(ItemTemplate $item)
     {
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('DofItemsBundle:EquipmentTemplate');
-
-        $item = $repo->findWithJoins(array('level' => '199'));
-
-        if(!isset($item[0]))
-            throw $this->createNotFoundException();
-        return $this->render('DofItemsBundle:Items:index.html.twig', ['item' => $item[0]]);
+        return $this->render('DofItemsBundle:Items:index.html.twig', ['item' => $item);
     }
 }

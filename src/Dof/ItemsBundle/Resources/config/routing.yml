@@ -34,8 +34,10 @@ dof_items_qualitydiagram_pdf:
     requirements: { _method: POST }
 
 dof_items_show:
-    pattern: /test
-    defaults: { _controller: DofItemsBundle:Items:index }
+    pattern: /{slug}
+    defaults: { _controller: DofItemsBundle:Items:show }
+    requirements:
+        slug: '[0-9a-z-]+'
 
 dof_set_show:
     pattern: /sets/{slug}
