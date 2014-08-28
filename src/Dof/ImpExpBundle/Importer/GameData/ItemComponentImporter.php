@@ -58,6 +58,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
             if ($write && !$cached && (!isset($lastitem) or $lastitem != $item->getId())){
                 foreach($item->getComponents() as $component){
                     $item->removeComponent($component);
+                    $this->dm->remove($component);
                 }
             }
             if(isset($lastitem))
