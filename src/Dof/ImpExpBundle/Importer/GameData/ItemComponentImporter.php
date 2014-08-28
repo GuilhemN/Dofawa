@@ -57,7 +57,6 @@ class ItemComponentImporter extends AbstractGameDataImporter
             // Si droit en écriture et 1er ingrédient
             if ($write && !$cached && (!isset($lastitem) or $lastitem != $item->getId())){
                 foreach($item->getComponents() as $component){
-                    $this->dm->remove($component);
                     $item->removeComponent($component);
                 }
             }
@@ -71,8 +70,8 @@ class ItemComponentImporter extends AbstractGameDataImporter
             $component->setQuantity($row['quantity']);
             $component->setSticky(false);
 
-            $this->dm->detach($item);
             $this->dm->persist($component);
+            $this->dm->persist($item);
 
             // Enregistrement régulier
             ++$rowsProcessed;
