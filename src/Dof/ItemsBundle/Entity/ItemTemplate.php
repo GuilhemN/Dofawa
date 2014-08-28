@@ -739,11 +739,6 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         return $this->components;
     }
 
-    public function removeAllComponents(){
-        $this->components = new ArrayCollection();
-        return $this;
-    }
-
     /**
      * Add compounds
      *

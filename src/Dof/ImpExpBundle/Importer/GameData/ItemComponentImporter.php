@@ -56,9 +56,10 @@ class ItemComponentImporter extends AbstractGameDataImporter
 
             // Si droit en écriture et 1er ingrédient
             if ($write && !$cached){
-                // Suppression des recettes en bdd
-                $this->dm->createQuery('DELETE DofItemsBundle:ItemComponent s  WHERE s.compound = ' . $item->getId())->execute() ;
-                $item->removeAllComponents();
+                foreach($item->getComponents() as $component){
+                    $item->removeComponent($component);
+                    $this->dm->remove($component);
+                }
             }
             // Création de l'ingrédient
             $component = new ItemComponent();
@@ -67,6 +68,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
             $component->setQuantity($row['quantity']);
             $component->setSticky(false);
 
+            $this->dm->persist($item);
             $this->dm->persist($component);
 
             // Enregistrement régulier
