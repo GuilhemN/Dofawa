@@ -68,6 +68,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
 
             $this->dm->persist($component);
             $this->dm->persist($item);
+            $this->dm->persist($ingredient);
 
             // Enregistrement régulier
             ++$rowsProcessed;
