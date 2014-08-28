@@ -54,13 +54,14 @@ class ItemComponentImporter extends AbstractGameDataImporter
                 if($component->isSticky() == true)
                     continue 2;
 
-            // Si droit en écriture et 1er ingrédient
+            // Si droit en écriture et 1er ingrédient et si item non utilisé précédément
             if ($write && !$cached && (!isset($lastitem) or $lastitem != $item->getId())){
                 foreach($item->getComponents() as $component){
                     $item->removeComponent($component);
                     $this->dm->remove($component);
                 }
             }
+            // Suppression de l'id de l'item de la précédente boucle
             if(isset($lastitem))
                 unset($lastitem);
 
@@ -71,18 +72,25 @@ class ItemComponentImporter extends AbstractGameDataImporter
             $component->setQuantity($row['quantity']);
             $component->setSticky(false);
 
+            // Persistage des entités
             $this->dm->persist($component);
-            $this->dm->persist($item);
+            $this->dm->persist($item); // facultatif
 
             // Enregistrement régulier
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {
+                // Récupération de l'id de l'item courant pour ne pas en supprimer ses ingrédients
                 $lastitem = $item->getId();
+
+                // Persistage en bdd + nettoyage
                 $this->dm->flush();
                 $this->dm->clear();
 
+                // Suppression des entités ItemTemplate
                 unset($item);
                 unset($ingredient);
+
+                // Avance de la barre de progression
                 if ($output && $progress)
                     $progress->advance(300);
             }
