@@ -61,7 +61,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
 
                 if($ingredient === null || ($ingredient->isPreliminary() ^ $beta))
                     continue;
-                
+
                 $component = new ItemComponent();
                 $component->setCompound($item);
                 $component->setComponent($ingredient);
@@ -74,9 +74,6 @@ class ItemComponentImporter extends AbstractGameDataImporter
             // Enregistrement régulier
             ++$rowsProcessed;
             if (($rowsProcessed % 150) == 0) {
-                // Récupération de l'id de l'item courant pour ne pas en supprimer ses ingrédients
-                $lastitem = $item->getId();
-
                 // Persistage en bdd + nettoyage
                 $this->dm->flush();
                 $this->dm->clear();
