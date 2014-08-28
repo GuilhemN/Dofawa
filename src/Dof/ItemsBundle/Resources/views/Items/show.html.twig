@@ -1,0 +1,6 @@
+{% extends '::layout.html.twig' %}
+
+{% trans_default_domain 'item' %}
+{% block body %}
+    {% include 'DofItemBundle::item.html.twig' with {'item': item} %}
+{% endblock %}
