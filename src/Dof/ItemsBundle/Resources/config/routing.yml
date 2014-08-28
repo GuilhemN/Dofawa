@@ -1,6 +1,6 @@
 dof_items_homepage:
-    pattern:  /
-    defaults: { _controller: DofItemsBundle:Default:index }
+    pattern:   /
+    defaults:  { _controller: DofItemsBundle:Default:index }
 
 dof_items_json_itemtemplate:
     pattern:  /json/item-template/{l1id}/data.json
