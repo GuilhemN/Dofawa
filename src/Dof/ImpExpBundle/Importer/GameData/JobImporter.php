@@ -36,6 +36,7 @@ class JobImporter extends AbstractGameDataImporter
             if ($job === null)
                 $job = new Job();
 
+            $job->setId($row['id']);
             $this->copyI18NProperty($job, 'setName', $row, 'name');
             $this->dm->persist($job);
 
