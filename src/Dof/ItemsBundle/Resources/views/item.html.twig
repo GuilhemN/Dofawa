@@ -16,14 +16,14 @@
 
                 {# Right column #}
                 <div class="col-sm-9">
-                    {% set item_content = '' %}
+                    {% set content_item = '' %}
                     {# Menu tabs #}
                     <ul class="nav nav-tabs" role="tablist">
                         {% if item.isEquipment() %}
                             {# Charactéristiques #}
                             <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Caracts</a></li>
-                            {% set item_content %}
-                                {{ item_content }}
+                            {% set content_item %}
+                                {{ content_item }}
                                 <div class="tab-pane active" id="caracts-item{{ item.id }}">
                                     {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item} %}
                                 </div>
@@ -31,8 +31,8 @@
 
                             {# Conditions #}
                             <li><a href="#caracts-conditions{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
-                            {% set item_content %}
-                                {{ item_content }}
+                            {% set content_item %}
+                                {{ content_item }}
                                 <div class="tab-pane" id="caracts-conditions{{ item.id }}">...</div>
                             {% endset %}
                         {% endif %}
@@ -40,7 +40,7 @@
 
                     {# Tab panes #}
                     <div class="tab-content">
-                        {{ item_content }}
+                        {{ content_item }}
                     </div>
 
                 {# Close right column #}
