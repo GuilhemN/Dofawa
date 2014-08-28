@@ -51,7 +51,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
 
             // Passe la recette si un ingrédient a été rentré manuellement
             foreach($item->getComponents() as $component)
-                if($component->isSticky == true)
+                if($component->isSticky() == true)
                     continue 2;
 
             // Si droit en écriture et 1er ingrédient
