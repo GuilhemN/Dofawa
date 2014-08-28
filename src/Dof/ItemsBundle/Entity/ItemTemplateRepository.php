@@ -47,14 +47,41 @@ class ItemTemplateRepository extends FilterableEntityRepository
               ;
     }
 
-	public function findItemsWithJoins($criteria, $firstResult = null, $maxResults = null){
+	public function findWithJoins($criteria, $firstResult = null, $maxResults = null){
+		$qb = $this->queryWithJoins($criteria);
+
+		if($firstResult != null)
+			$qb->setFirstResult($firstResult);
+		if($maxResults != null)
+			$qb->setMaxResults($maxResults);
+
+		return $qb
+        	->getQuery()
+        	->getResult()
+		;
+	}
+
+	public function findOneWithJoins($criteria){
+		$qb = $this->queryWithJoins($criteria);
+
+		return $qb
+			->getQuery()
+			->getSingleResult()
+		;
+	}
+
+	protected function queryWithJoins($criteria){
+		$criteria = (array) $criteria;
+
+		// Jointure par défaut
         $qb = $this
                   ->createQueryBuilder('i')
-				  ->select(array('i', 's'))
-                  ->join('i.set', 's')
+				  ->select(array('i', 'cp'))
+                  ->leftjoin('i.components', 'cp')
               ;
 
 		$i = 0;
+		// Ajout des critères à la requête
 		foreach($criteria as $k => $v){
 			$i++;
 			$qb
@@ -63,14 +90,6 @@ class ItemTemplateRepository extends FilterableEntityRepository
 			;
 		}
 
-		if($firstResult != null)
-			$qb->setFirstResult($firstresult);
-		if($maxResults != null)
-			$qb->setMaxResults($maxResults);
-
-		return $qb
-        	->getQuery()
-        	->getResult()
-		;
+		return $qb;
 	}
 }

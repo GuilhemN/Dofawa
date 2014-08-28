@@ -1,0 +1,61 @@
+{% trans_default_domain 'item' %}
+
+{% autoescape  %}
+    <div class="panel panel-default item">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ item.getName(locales())}} <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font></h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                {# Left column #}
+                <div class="col-sm-3">
+                    <a href="{{ path('dof_items_show', {'slug': item.slug}) }}" class="thumbnail">
+                        <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ item.getName(locales()) }}">
+                    </a>
+                </div>
+
+                {# Right column #}
+                <div class="col-sm-9">
+                    {% set item_content = '' %}
+                    {# Menu tabs #}
+                    <ul class="nav nav-tabs" role="tablist">
+                        {% if item.isEquipment() %}
+                            {# Charactéristiques #}
+                            <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Caracts</a></li>
+                            {% set item_content %}
+                                {{ item_content }}
+                                <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item} %}
+                                </div>
+                            {% endset %}
+
+                            {# Conditions #}
+                            <li><a href="#caracts-conditions{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+                            {% set item_content %}
+                                {{ item_content }}
+                                <div class="tab-pane" id="caracts-conditions{{ item.id }}">...</div>
+                            {% endset %}
+                        {% endif %}
+                    </ul>
+
+                    {# Tab panes #}
+                    <div class="tab-content">
+                        {{ item_content }}
+                    </div>
+
+                {# Close right column #}
+                </div>
+            </div>
+            <hr />
+            {% if item.isEquipment() and item.set is not null %}
+                <strong>
+                    <a href="{{ path('dof_set_show', {'slug': item.set.slug}) }}">
+                        {{ item.set.getName(locales()) }}
+                    </a>
+                </strong>
+                <br />
+            {% endif %}
+            {{ item.getDescription(locales())}}
+        </div>
+    </div>
+{% endautoescape %}

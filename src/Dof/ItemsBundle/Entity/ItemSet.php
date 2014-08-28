@@ -15,6 +15,8 @@ use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
+use Dof\ItemsBundle\ElementableInterface;
+use Dof\ItemsBundle\ElementableTrait;
 
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
@@ -25,7 +27,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_item_sets")
  * @ORM\Entity(repositoryClass="ItemSetRepository")
  */
-class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface
+class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, ElementableInterface
 {
     /**
      * @var integer
@@ -35,7 +37,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, ElementableTrait;
 
     /**
      * @var Collection
@@ -172,5 +174,22 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
         return false;
+    }
+
+    public function getCharacteristicsForElements($metadata, array $caracts = array()){
+
+        $biggestCombination = null;
+        foreach($this->getCombinations() as $combination)
+            if($biggestCombination === null or $biggestCombination->getItemCount() < $combination->getItemCount())
+                $biggestCombination = $combination;
+
+        foreach($metadata as $k => $v){
+            $caracts[$v['element']] += $biggestCombination->{'get' . ucfirst($k)}() * $v['weight'];
+        }
+
+        foreach($this->getItems() as $item)
+            $caracts = $item->getCharacteristicsForElements($metadata, $caracts);
+
+        return $caracts;
     }
 }

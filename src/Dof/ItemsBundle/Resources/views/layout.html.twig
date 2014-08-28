@@ -1,0 +1,6 @@
+{% extends '::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{#{ path('dof_items_homepage') }#}">Items</a></li>
+{% endblock %}

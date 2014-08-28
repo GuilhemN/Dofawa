@@ -71,3 +71,11 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: item_template_effects, requires: item_templates }
             - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: beta_item_templates }
+
+    # DofItemsBundle:ItemComponent
+    dof_imp_exp.importer.item_components:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemComponentImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_components, requires: item_templates }
+            - { name: dof_imp_exp.importer, provides: beta_item_components, requires: beta_item_templates }

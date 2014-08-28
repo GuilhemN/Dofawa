@@ -15,6 +15,8 @@ use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
+use Dof\ItemsBundle\ElementableInterface;
+use Dof\ItemsBundle\ElementableTrait;
 
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
@@ -30,7 +32,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
  */
-class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface
+class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, ElementableInterface
 {
     /**
      * @var integer
@@ -40,7 +42,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait, ElementableTrait;
 
     /**
      * @var ItemType
@@ -916,5 +918,16 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
         return false;
+    }
+
+    public function getCharacteristicsForElements($metadata, array $caracts = array()){
+
+        $biggestCombination = null;
+
+        foreach($metadata as $k => $v){
+            $caracts[$v['element']] += ($this->{'getMax' . ucfirst($k)}() + $this->{'getMin' . ucfirst($k)}()) / 2 * $v['weight'];
+        }
+
+        return $caracts;
     }
 }

@@ -1,6 +1,6 @@
-dof_items_index:
-    pattern:  /
-    defaults: { _controller: DofItemsBundle:Default:index }
+dof_items_homepage:
+    pattern:   /
+    defaults:  { _controller: DofItemsBundle:Items:index }
 
 dof_items_json_itemtemplate:
     pattern:  /json/item-template/{l1id}/data.json
@@ -34,8 +34,10 @@ dof_items_qualitydiagram_pdf:
     requirements: { _method: POST }
 
 dof_items_show:
-    pattern: /test
-    defaults: { _controller: DofItemsBundle:Items:index }
+    pattern: /{slug}
+    defaults: { _controller: DofItemsBundle:Items:show }
+    requirements:
+        slug: '[0-9a-z-]+'
 
 dof_set_show:
     pattern: /sets/{slug}
