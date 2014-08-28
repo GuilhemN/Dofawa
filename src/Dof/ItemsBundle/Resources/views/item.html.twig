@@ -38,7 +38,7 @@
                         {% endif %}
 
                         {# Recette #}
-                        {% if item.components is not empty %}
+                        {#% if item.components is not empty %#}
                             <li><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
                             {% set item_content %}
                                 {{ item_content }}
@@ -48,7 +48,7 @@
                                     {% endfor %}
                                 </div>
                             {% endset %}
-                        {% endif %}
+                        {#% endif %#}
                     </ul>
 
                     {# Tab panes #}
