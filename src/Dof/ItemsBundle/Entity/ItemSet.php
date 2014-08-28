@@ -216,8 +216,6 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
             if($caracts[$element] > 0 && !empty($biggestCaract) && ($caracts[$element] * 100 / $biggestCaract) > 56 )
                 $itemElements[] = $element;
 
-        print_r($caracts);
-        
         return $itemElements;
     }
 
