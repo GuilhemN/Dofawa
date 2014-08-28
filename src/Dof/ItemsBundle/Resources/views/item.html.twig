@@ -37,6 +37,24 @@
                             {% endset %}
                         {% endif %}
 
+                        {# Nourriture familier #}
+                        {% if item.isPet() and (item.foodTypes is not empty or item.foodItems is not empty) %}
+                            <li><a href="#food-item{{ item.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
+                            {% set item_content %}
+                                {{ item_content }}
+                                <div class="tab-pane" id="food-item{{ item.id }}">
+                                    {% for food_type in item.foodTypes %}
+                                        {{ food_type.getName(locales()) }}
+                                        <br />
+                                    {% endfor %}
+                                    {% for food_item in item.foodItems %}
+                                        {{ food_item.getName(locales()) }}
+                                        <br />
+                                    {% endfor %}
+                                </div>
+                            {% endset %}
+                        {% endif %}
+
                         {# Recette #}
                         {% if item.components is not empty %}
                             <li{% if item.isEquipment() == false %} class="active"{% endif %}><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
