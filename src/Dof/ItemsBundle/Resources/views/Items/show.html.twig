@@ -2,7 +2,7 @@
 
 {% block breadcrumb %}
     {{ parent() }}
-    <li>{{ item.getName(locales) }}</li>
+    <li>{{ item.getName(locales()) }}</li>
 {% endblock %}
 
 {% trans_default_domain 'item' %}

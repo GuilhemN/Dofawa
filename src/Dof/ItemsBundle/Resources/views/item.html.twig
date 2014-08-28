@@ -44,7 +44,10 @@
                                 {{ item_content }}
                                 <div class="tab-pane" id="recipe-item{{ item.id }}">
                                     {% for component in item.components %}
-                                        {{ component.quantity }} x {{ component.component.getName(locales()) }}<br>
+                                        <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
+                                            {{ component.component.getName(locales()) }} x {{ component.quantity }}
+                                        </a>
+                                        <br />
                                     {% endfor %}
                                 </div>
                             {% endset %}
