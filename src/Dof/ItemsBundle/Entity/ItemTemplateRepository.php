@@ -78,7 +78,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
                   ->createQueryBuilder('i')
 				  ->select(array('i', 'cp', 'cpi'))
                   ->leftjoin('i.components', 'cp')
-                  ->join('cp.component', 'cpi')
+                  ->leftjoin('cp.component', 'cpi')
               ;
 
 		$i = 0;
