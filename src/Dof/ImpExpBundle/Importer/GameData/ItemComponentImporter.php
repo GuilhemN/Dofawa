@@ -46,7 +46,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
                 continue;
 
             foreach($item->getComponents() as $component)
-                if($component->isSticky() == true)
+                if($component->isSticky())
                     continue 2;
 
             // Suppression de l'ancienne recette
