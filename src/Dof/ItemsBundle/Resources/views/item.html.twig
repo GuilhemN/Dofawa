@@ -48,7 +48,12 @@
             </div>
             <hr />
             {% if item.isEquipment() and item.set is not null %}
-                <strong>{{ item.set.getName(locales()) }}</strong><br>
+                <strong>
+                    <a href="{{ path('dof_set_show', {'slug': item.set.slug}) }}">
+                        {{ item.set.getName(locales()) }}
+                    </a>
+                </strong>
+                <br />
             {% endif %}
             {{ item.getDescription(locales())}}
         </div>
