@@ -3,6 +3,7 @@
 namespace Dof\ItemsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ItemsController extends Controller
 {
