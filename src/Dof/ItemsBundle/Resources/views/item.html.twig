@@ -30,10 +30,23 @@
                             {% endset %}
 
                             {# Conditions #}
-                            <li><a href="#caracts-conditions{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+                            <li><a href="#conditions-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
                             {% set item_content %}
                                 {{ item_content }}
-                                <div class="tab-pane" id="caracts-conditions{{ item.id }}">...</div>
+                                <div class="tab-pane" id="conditions-item{{ item.id }}">...</div>
+                            {% endset %}
+                        {% endif %}
+
+                        {# Recette #}
+                        {% if item.components is not empty %}
+                            <li><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                            {% set item_content %}
+                                {{ item_content }}
+                                <div class="tab-pane" id="recipe-item{{ item.id }}">
+                                    {% for component in item.components %}
+                                        {{ component.quantity }} x {{ component.component.getName(locales()) }}<br>
+                                    {% endfor %}
+                                </div>
                             {% endset %}
                         {% endif %}
                     </ul>
