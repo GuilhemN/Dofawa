@@ -10,7 +10,7 @@ use Dof\ItemsBundle\Entity\ItemTemplate;
 class ItemsController extends Controller
 {
     /**
-     * @ParamConverter("set", class="DofItemsBundle:ItemTemplate", options={"repository_method" = "findOneWithJoins"})
+     * @ParamConverter("set", class="DofItemsBundle:ItemTemplate")
      */
     public function showAction(ItemTemplate $item)
     {
