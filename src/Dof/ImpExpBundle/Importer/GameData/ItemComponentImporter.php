@@ -27,58 +27,50 @@ class ItemComponentImporter extends AbstractGameDataImporter
         $stmt->closeCursor();
         $repo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
 
+        $items = array();
+        foreach($all as $row){
+            $items[$row['id']][ ] = array(
+                'ingredient' => $row['ingredient'],
+                'quantity' => $row['quantity']
+            );
+        }
+
         $rowsProcessed = 0;
         if ($output && $progress)
             $progress->start($output, count($all));
 
-        foreach ($all as $row) {
-            $cached = false;
+        foreach ($items as $id => $v) {
+            $item = $repo->find($id);
 
-            // Si item est identique au précédent
-            if(!isset($item) || $item->getId() != $row['id'])
-                // Récupération de l'item (composé)
-                $item = $repo->findOneWithJoins(array('id' => $row['id']));
-            else
-                // Si récupérer depuis la précédente boucle
-                $cached = true;
-
-            if(!isset($ingredient) or $ingredient->getId() != $row['ingredient'])
-                $ingredient = $repo->findOneById($row['ingredient']);
-
-            // Passe la recette si l'item n'existe pas ou si item de la béta mais connexion en offi et inversement
             if ($item === null || ($item->isPreliminary() ^ $beta))
                 continue;
 
-            // Passe la recette si un ingrédient a été rentré manuellement
             foreach($item->getComponents() as $component)
                 if($component->isSticky() == true)
                     continue 2;
 
-            // Si droit en écriture et 1er ingrédient et si item non utilisé précédément
-            if ($write && !$cached && (!isset($lastitem) or $lastitem != $item->getId())){
+            // Suppression de l'ancienne recette
+            if ($write)
                 foreach($item->getComponents() as $component){
                     $item->removeComponent($component);
                     $this->dm->remove($component);
                 }
+
+            foreach($v as $recipeRow){
+                $ingredient = $repo->find($recipeRow['ingredient']);
+
+                $component = new ItemComponent();
+                $component->setCompound($item);
+                $component->setComponent($ingredient);
+                $component->setQuantity($recipeRow['quantity']);
+                $component->setSticky(false);
+
+                $this->dm->persist($component);
             }
-            // Suppression de l'id de l'item de la précédente boucle
-            if(isset($lastitem))
-                unset($lastitem);
-
-            // Création de l'ingrédient
-            $component = new ItemComponent();
-            $component->setCompound($item);
-            $component->setComponent($ingredient);
-            $component->setQuantity($row['quantity']);
-            $component->setSticky(false);
-
-            // Persistage des entités
-            $this->dm->persist($component);
-            $this->dm->persist($item); // facultatif
 
             // Enregistrement régulier
             ++$rowsProcessed;
-            if (($rowsProcessed % 300) == 0) {
+            if (($rowsProcessed % 150) == 0) {
                 // Récupération de l'id de l'item courant pour ne pas en supprimer ses ingrédients
                 $lastitem = $item->getId();
 
@@ -86,13 +78,9 @@ class ItemComponentImporter extends AbstractGameDataImporter
                 $this->dm->flush();
                 $this->dm->clear();
 
-                // Suppression des entités ItemTemplate
-                unset($item);
-                unset($ingredient);
-
                 // Avance de la barre de progression
                 if ($output && $progress)
-                    $progress->advance(300);
+                    $progress->advance(150);
             }
         }
 
