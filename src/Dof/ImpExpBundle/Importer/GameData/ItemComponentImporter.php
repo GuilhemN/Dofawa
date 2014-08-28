@@ -64,6 +64,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
             $component->setCompound($item);
             $component->setComponent($ingredient);
             $component->setQuantity($row['quantity']);
+            $composent->setSticky(false);
 
             $this->dm->persist($component);
 
