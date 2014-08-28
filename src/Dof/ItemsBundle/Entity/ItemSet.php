@@ -173,4 +173,66 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         return false;
     }
+
+    public function getElements()
+    {
+        $elements = array('earth', 'fire', 'water', 'air');
+        $metadata = array(
+            'strength' => array('element' => 'earth', 'weight' => 1),
+            'intelligence' => array('element' => 'fire', 'weight' => 1),
+            'chance' => array('element' => 'water', 'weight' => 1),
+            'agility' => array('element' => 'air', 'weight' => 1),
+            'neutralDamage' => array('element' => 'earth', 'weight' => 2.5),
+            'earthDamage' => array('element' => 'earth', 'weight' => 2.5),
+            'fireDamage' => array('element' => 'fire', 'weight' => 5),
+            'waterDamage' => array('element' => 'water', 'weight' => 5),
+            'airDamage' => array('element' => 'air', 'weight' => 5)
+        );
+
+        $caracts = $this->getCharacteristicsForElements($metadata);
+
+        $smallestCaract = null;
+        $biggestCaract = null;
+
+        foreach($elements as $element){
+            if($smallestCaract === null or $caracts[$element] < $smallestCaract)
+                $smallestCaract = $caracts[$element];
+
+            if($biggestCaract === null or $caracts[$element] > $biggestCaract)
+                $biggestCaract = $caracts[$element];
+        }
+
+        if($smallestCaract < 0)
+            $smallestCaract = 0;
+        if($biggestCaract < 0)
+            $biggestCaract = 0;
+
+        foreach($caracts as &$v)
+            $v -= $smallestCaract;
+
+        $itemElements = array();
+
+        foreach($elements as $element)
+            if($caracts[$element] > 0 && !empty($biggestCaract) && ($caracts[$element] * 100 / $biggestCaract) > 56 )
+                $itemElements[] = $element;
+
+        return $itemElements;
+    }
+
+    public function getCharacteristicsForElements($metadata, array $caracts = array()){
+
+        $biggestCombination = null;
+        foreach($this->getCombinations() as $combination)
+            if($biggestCombination === null or $biggestCombination->getItemCount() < $combination->getItemCount())
+                $biggestCombination = $combination;
+
+        foreach($metadata as $k => $v){
+            $caracts[$v['element']] += $biggestCombination->{'get' . ucfirst($k)}() * $v['weight'];
+        }
+
+        foreach($this->getItems() as $item)
+            $caracts = $item->getCharacteristicsForElements($metadata, $caracts);
+
+        return $caracts;
+    }
 }

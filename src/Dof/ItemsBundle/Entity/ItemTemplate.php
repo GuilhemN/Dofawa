@@ -917,4 +917,15 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     {
         return false;
     }
+
+    public function getCharacteristicsForElements($metadata, array $caracts = array()){
+
+        $biggestCombination = null;
+
+        foreach($metadata as $k => $v){
+            $caracts[$v['element']] += ($this->{'getMax' . ucfirst($k)}() + $this->{'getMin' . ucfirst($k)}()) / 2 * $v['weight'];
+        }
+
+        return $caracts;
+    }
 }
