@@ -1,0 +1,70 @@
+<?php
+
+namespace Dof\ImpExpBundle\Importer\GameData;
+
+use Symfony\Component\Console\Helper\ProgressHelper;
+use Symfony\Component\Console\Output\OutputInterface;
+
+use Dof\ImpExpBundle\ImporterFlags;
+
+use Dof\ItemsBundle\Entity\Job;
+
+class PetFoodImporter extends AbstractGameDataImporter
+{
+    const CURRENT_DATA_SET = 'pet_food';
+    const BETA_DATA_SET = 'beta_pet_food';
+
+    protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
+    {
+        $write = ($flags & ImporterFlags::DRY_RUN) == 0;
+
+        $foodItems = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Pet_foodItem o');
+        $foodTypes = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Pet_foodType o');
+
+        foreach($foodItems as $row)
+            $pets[$row['id']]['foodItems'][] = $row['value'];
+        foreach($foodTypes as $row)
+            $pets[$row['id']]['foodTypes'][] = $row['value'];
+
+        $all = $stmt->fetchAll();
+        $stmt->closeCursor();
+
+        $repo = $this->dm->getRepository('DofItemsBundle:PetTemplate');
+        $typeRepo = $this->dm->getRepository('DofItemsBundle:ItemType');
+        $itemRepo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
+
+        $rowsProcessed = 0;
+        if ($output && $progress)
+            $progress->start($output, count($pets));
+
+        foreach ($pets as $id => $v) {
+            $pet = $repo->find($id);
+            if ($pet === null || ($pet->isPreliminary() ^ $beta))
+                continue;
+
+            foreach($pet->getFoodTypes() as $foodType)
+                $pet->removeFoodType($foodType);
+            foreach($pet->getFoodItems() as $foodItem)
+                $pet->removeFoodItem($foodItem);
+
+            $foodTypes = $typeRepo->findById($v['foodTypes']);
+            $foodItems = $itemRepo->findById($v['foodItems']);
+
+            foreach($foodTypes as $foodType)
+                $pet->addFoodType($foodType);
+            foreach($foodItems as $foodItem)
+                $pet->addFoodItem($foodItem);
+
+            ++$rowsProcessed;
+            if (($rowsProcessed % 75) == 0) {
+                $this->dm->flush();
+                $this->dm->clear();
+                if ($output && $progress)
+                    $progress->advance(75);
+            }
+        }
+        if ($output && $progress)
+            $progress->finish();
+
+    }
+}

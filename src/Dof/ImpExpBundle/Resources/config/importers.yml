@@ -87,3 +87,11 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: job }
             - { name: dof_imp_exp.importer, provides: beta_job }
+
+    # DofItemsBundle:PetTemplate and subclasses
+    dof_imp_exp.importer.pet_food:
+        class: Dof\ImpExpBundle\Importer\GameData\PetFoodImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: pet_food }
+            - { name: dof_imp_exp.importer, provides: beta_pet_food }
