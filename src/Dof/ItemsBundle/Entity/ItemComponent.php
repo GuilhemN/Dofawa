@@ -26,7 +26,7 @@ class ItemComponent implements IdentifiableInterface
     /**
      * @var ItemTemplate
      *
-     * @ORM\ManyToOne(targetEntity="ItemTemplate", inversedBy="components", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ItemTemplate", inversedBy="components")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $compound;
@@ -34,7 +34,7 @@ class ItemComponent implements IdentifiableInterface
     /**
      * @var ItemTemplate
      *
-     * @ORM\ManyToOne(targetEntity="ItemTemplate", inversedBy="compounds", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ItemTemplate", inversedBy="compounds")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $component;

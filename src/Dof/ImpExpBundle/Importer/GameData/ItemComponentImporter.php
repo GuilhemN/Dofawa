@@ -21,7 +21,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
 
         $stmt = $conn->query('SELECT o.resultId as id, o.value as ingredient, o2.value as quantity
               FROM ' . $db . '.D2O_Recipe_ingredientId o
-              JOIN ' . $db . '.D2O_Recipe_ingredientId o2 on o2.resultId = o.resultId and o2._index1 = o._index1
+              JOIN ' . $db . '.D2O_Recipe_quantity o2 on o2.resultId = o.resultId and o2._index1 = o._index1
               ORDER BY o.resultId');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -55,10 +55,11 @@ class ItemComponentImporter extends AbstractGameDataImporter
                     continue 2;
 
             // Si droit en écriture et 1er ingrédient
-            if ($write && !$cached)
+            if ($write && !$cached){
                 // Suppression des recettes en bdd
                 $this->dm->createQuery('DELETE DofItemsBundle:ItemComponent s  WHERE s.compound = ' . $item->getId())->execute() ;
-
+                $item->removeAllComponents();
+            }
             // Création de l'ingrédient
             $component = new ItemComponent();
             $component->setCompound($item);
