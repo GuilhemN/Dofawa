@@ -37,7 +37,8 @@
         "knplabs/knp-snappy-bundle": "dev-master",
         "h4cc/wkhtmltopdf-amd64": "dev-master",
         "h4cc/wkhtmltoimage-amd64": "dev-master",
-        "willdurand/js-translation-bundle": "@stable"
+        "willdurand/js-translation-bundle": "@stable",
+        "codeconsortium/ccdn-forum-bundle": "2.0.*"
     },
     "scripts": {
         "post-install-cmd": [
