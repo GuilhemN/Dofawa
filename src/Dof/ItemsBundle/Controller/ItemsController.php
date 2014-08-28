@@ -11,6 +11,6 @@ class ItemsController extends Controller
      */
     public function showAction(ItemTemplate $item)
     {
-        return $this->render('DofItemsBundle:Items:index.html.twig', ['item' => $item);
+        return $this->render('DofItemsBundle:Items:index.html.twig', ['item' => $item]);
     }
 }
