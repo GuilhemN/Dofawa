@@ -1,3 +1,7 @@
+dof_forum:
+    resource: "@DofForumBundle/Resources/config/routing.yml"
+    prefix:   /
+
 dof_build:
     resource: "@DofBuildBundle/Resources/config/routing.yml"
     prefix:   /build
@@ -93,6 +97,3 @@ fos_message:
 
 _bazinga_jstranslation:
     resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
-
-CCDNForumForumBundle:
-    resource: "@CCDNForumForumBundle/Resources/config/routing.yml"
