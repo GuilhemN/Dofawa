@@ -50,6 +50,7 @@ class AppKernel extends Kernel
             new Dof\MessageBundle\DofMessageBundle(),
             new Dof\TranslationBundle\DofTranslationBundle(),
             new Dof\BuildBundle\DofBuildBundle(),
+            new Dof\ForumBundle\DofForumBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
