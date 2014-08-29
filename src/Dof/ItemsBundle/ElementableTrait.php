@@ -39,9 +39,6 @@ trait ElementableTrait
         if($biggestCaract < 0)
             $biggestCaract = 0;
 
-        foreach($caracts as &$v)
-            $v -= $smallestCaract;
-
         $itemElements = array();
 
         foreach($elements as $element)
