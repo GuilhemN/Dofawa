@@ -18,7 +18,7 @@
 	    {% for combination in combinations %}
 
 			  <div class="col-xs-6 col-md-3">
-			    <div class="thumbnail">
+			    <div class="well well-sm">
 			    	<center><strong>{{ combination.itemCount }} items</strong></center>
 			    	{# Get the characteristics #}
 	        		{% include 'DofItemsBundle::characteristics.html.twig' with {'item': combination} %}
