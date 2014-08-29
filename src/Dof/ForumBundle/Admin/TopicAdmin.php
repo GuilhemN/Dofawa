@@ -61,7 +61,7 @@ class TopicAdmin extends Admin
             ->add('owner')
             ->add('updater')
             ->add('name')
-            ->add('locked', array('require' => false))
+            ->add('locked', null, array('require' => false))
         ;
     }
 
