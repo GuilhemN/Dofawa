@@ -35,9 +35,10 @@ class ItemSetRepository extends EntityRepository
 
         $qb = $this
                   ->createQueryBuilder('s')
-				  ->select(array('s', 'i', 'c'))
+				  ->select(array('s', 'i', 'c', 'cc'))
                   ->join('s.items', 'i')
-                  ->join('s.combinations', 'c')
+                  ->join('i.combinations', 'c')
+                  ->join('c.component', 'cc')
                   ->orderBy('c.itemCount', 'asc')
               ;
 
