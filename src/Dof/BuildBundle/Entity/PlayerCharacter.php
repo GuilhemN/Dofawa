@@ -4,6 +4,8 @@ namespace Dof\BuildBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
@@ -67,6 +69,11 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
      * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="character")
      */
     private $stuffs;
+
+    public function __construct()
+    {
+        $this->stuffs = new ArrayCollection();
+    }
 
     /**
      * Get id
