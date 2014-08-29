@@ -17,6 +17,7 @@ class ForumAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
+            ->add('category')
             ->add('index')
             ->add('slug')
             ->add('nameFr')
@@ -38,6 +39,7 @@ class ForumAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('category')
             ->add('index')
             ->add('createdAt')
             ->add('updatedAt')
@@ -61,6 +63,7 @@ class ForumAdmin extends Admin
     {
         $formMapper
             ->add('index')
+            ->add('category')
             ->add('nameFr')
             ->add('nameEn')
             ->add('nameDe')
@@ -87,6 +90,7 @@ class ForumAdmin extends Admin
     {
         $showMapper
             ->add('id')
+            ->add('category')
             ->add('index')
             ->add('createdAt')
             ->add('updatedAt')

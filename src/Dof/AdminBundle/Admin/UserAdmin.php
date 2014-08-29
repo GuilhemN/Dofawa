@@ -16,8 +16,8 @@ class UserAdmin extends Admin
         $formMapper
           ->add('username')
           ->add('email')
-          ->add('enabled')
-          ->add('locked')
+          ->add('enabled', array('require' => false))
+          ->add('locked', array('require' => false))
           ->add('roles')
           ->add('point')
           ->add('groupe')

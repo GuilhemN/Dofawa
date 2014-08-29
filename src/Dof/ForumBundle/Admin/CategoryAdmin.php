@@ -17,6 +17,7 @@ class CategoryAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
+            ->add('forums')
             ->add('index')
             ->add('slug')
             ->add('nameFr')
@@ -38,6 +39,7 @@ class CategoryAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('forums')
             ->add('index')
             ->add('slug')
             ->add('nameFr')
@@ -58,6 +60,7 @@ class CategoryAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('forums')
             ->add('index')
             ->add('nameFr')
             ->add('nameEn')
@@ -85,6 +88,7 @@ class CategoryAdmin extends Admin
     {
         $showMapper
             ->add('id')
+            ->add('forums')
             ->add('index')
             ->add('createdAt')
             ->add('updatedAt')

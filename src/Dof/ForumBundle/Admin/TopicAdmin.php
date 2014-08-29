@@ -17,6 +17,7 @@ class TopicAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
+            ->add('forum')
             ->add('name')
             ->add('locked')
             ->add('createdAt')
@@ -32,6 +33,9 @@ class TopicAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('forum')
+            ->add('owner')
+            ->add('updater')
             ->add('name')
             ->add('locked')
             ->add('createdAt')
@@ -53,8 +57,11 @@ class TopicAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('forum')
+            ->add('owner')
+            ->add('updater')
             ->add('name')
-            ->add('locked')
+            ->add('locked', array('require' => false))
         ;
     }
 
@@ -65,6 +72,7 @@ class TopicAdmin extends Admin
     {
         $showMapper
             ->add('id')
+            ->add('forum')
             ->add('name')
             ->add('locked')
             ->add('createdAt')
