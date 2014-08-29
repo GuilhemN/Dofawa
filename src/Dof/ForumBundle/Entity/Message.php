@@ -40,7 +40,7 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Topic")
-     * @ORM\JoinColumn(nullable=false, ondelete="CASCADE")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $topic;
 

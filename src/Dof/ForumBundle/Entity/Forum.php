@@ -27,7 +27,7 @@ use Dof\ForumBundle\Entity\Topic;
  */
 class Forum implements IdentifiableInterface, TimestampableInterface, SluggableInterface
 {
-    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait
+    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
     /**
      * @var integer
@@ -47,7 +47,7 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Category")
-     * @ORM\JoinColumn(nullable=false, ondelete="CASCADE")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $category;
 

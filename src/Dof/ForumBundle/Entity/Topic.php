@@ -55,7 +55,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Forum")
-     * @ORM\JoinColumn(nullable=false, ondelete="CASCADE")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $forum;
 

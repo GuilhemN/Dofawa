@@ -4,9 +4,9 @@ namespace XN\L10n;
 
 interface LocalizedOriginInterface
 {
-  public function getCreatedLocale();
-  public function setCreatedLocale($createdLocale);
+  public function getCreatedOnLocale();
+  public function setCreatedOnLocale($createdOnLocale);
 
-  public function getUpdatedLocale();
-  public function setUpdatedLocale($updatedLocale);
+  public function getUpdatedOnLocale();
+  public function setUpdatedOnLocale($updatedOnLocale);
 }
