@@ -6,10 +6,12 @@
 {% endblock %}
 
 {% block body %}
-    <div class="well text-center">
-        <h3>
-            {{ set.getName(locales()) }} ({{ items_count }} items) - lvl {{ level }}
-        </h3>
+    <div class="well well-sm text-center">
+        <div class="page-header nopadding marginbottom">
+          <h1>{{ set.getName(locales()) }} <small>{{ 'level' | trans({'%level%': level}, 'item') }}</small></h1>
+        </div>
+        <p>{{ items_count }} Item </p>
+        
         {% for element in set.elements %}
             <img src="{{ asset('bundles/dofitems/img/' ~ element ~ '.png') }}" alt="{{ element }}">
         {% endfor %}
