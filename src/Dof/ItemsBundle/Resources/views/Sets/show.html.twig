@@ -11,7 +11,7 @@
             {{ set.getName(locales()) }} ({{ items_count }} items) - lvl {{ level }}
         </h3>
         {% for element in set.elements %}
-            {{ element }}, 
+            <img src="{{ asset('bundles/dofitems/img/' ~ element ~ 'element') }}" alt="{{ element }}">  
         {% endfor %}
     </div>
 	<div class="row">
