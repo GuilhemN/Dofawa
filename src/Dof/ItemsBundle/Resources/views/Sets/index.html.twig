@@ -1,0 +1,30 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Les panoplies</div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Items</th>
+                    <th>Éléments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for set in sets %}
+                    <tr>
+                        <td>{{ set.getName(locales()) }}</td>
+                        <td>{{ set.items | length }} items</td>
+                        <td>
+                            {% for element in set.elements %}
+                                <img src="{{ asset('bundles/dofitems/img/' ~ element ~ '.png') }}" alt="{{ element }}">
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

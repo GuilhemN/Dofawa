@@ -9,7 +9,17 @@ use Dof\ItemsBundle\Entity\ItemSet;
 
 class SetsController extends Controller
 {
+    public function indexAction(){
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('DofItemsBundle:ItemSet');
 
+        $sets = $repo->findWithJoins();
+
+        return $this->render('DofItemsBundle:Sets:index.html.twig', [
+            'sets' => $sets
+            ]);
+    }
+    
     /**
      * @ParamConverter("set", class="DofItemsBundle:ItemSet", options={"repository_method" = "findOneWithJoins"})
      */

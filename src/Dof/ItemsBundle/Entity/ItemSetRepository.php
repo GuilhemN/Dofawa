@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemSetRepository extends EntityRepository
 {
-    public function findOneWithJoins($criteria){
+    public function findOneWithJoins($criteria = array()){
         $qb = $this->queryWithJoins($criteria);
 
 		return $qb
@@ -21,7 +21,7 @@ class ItemSetRepository extends EntityRepository
 		;
     }
 
-    public function findWithJoins($criteria){
+    public function findWithJoins($criteria = array()){
         $qb = $this->queryWithJoins($criteria);
 
 		return $qb
