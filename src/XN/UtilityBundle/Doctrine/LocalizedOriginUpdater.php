@@ -30,9 +30,9 @@ class LocalizedOriginUpdater
 
     $ent = $args->getEntity();
     if ($ent instanceof LocalizedOriginInterface) {
-      $ent->setUpdatedLocale($locale);
-      if ($ent->getCreatedLocale() === null)
-        $ent->setCreatedLocale($ent->getUpdatedLocale());
+      $ent->setUpdatedOnLocale($locale);
+      if ($ent->getCreatedOnLocale() === null)
+        $ent->setCreatedOnLocale($ent->getUpdatedOnLocale());
     }
   }
 
@@ -44,10 +44,10 @@ class LocalizedOriginUpdater
     $uow = $em->getUnitOfWork();
     $mds = array();
     $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $locale) {
-      return $ent instanceof LocalizedOriginInterface && $ent->getUpdatedLocale() !== $locale && self::hasMajorChanges($ent, $uow->getEntityChangeSet($ent));
+      return $ent instanceof LocalizedOriginInterface && $ent->getUpdatedOnLocale() !== $locale && self::hasMajorChanges($ent, $uow->getEntityChangeSet($ent));
     });
     foreach ($updates as $ent) {
-      $ent->setUpdatedLocale($locale);
+      $ent->setUpdatedOnLocale($locale);
       $clazz = get_class($ent);
       if (isset($mds[$clazz]))
         $md = $mds[$clazz];

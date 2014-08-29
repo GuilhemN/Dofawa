@@ -11,59 +11,59 @@ trait LocalizedOriginTrait
      *
      * @ORM\Column(name="created_locale", type="string")
      */
-    private $createdLocale;
+    private $createdOnLocale;
 
     /**
      * @var string
      *
      * @ORM\Column(name="updated_locale", type="string")
      */
-    private $updatedLocale;
+    private $updatedOnLocale;
 
     /**
-     * Set createdLocale
+     * Set createdOnLocale
      *
-     * @param string $createdLocale
+     * @param string $createdOnLocale
      * @return object
      */
-    public function setCreatedLocale($createdLocale)
+    public function setCreatedOnLocale($createdOnLocale)
     {
-        $this->createdLocale = $createdLocale;
+        $this->createdOnLocale = $createdOnLocale;
 
         return $this;
     }
 
     /**
-     * Get createdLocale
+     * Get createdOnLocale
      *
      * @return string
      */
-    public function getCreatedLocale()
+    public function getCreatedOnLocale()
     {
-        return $this->createdLocale;
+        return $this->createdOnLocale;
     }
 
     /**
-     * Set updatedLocale
+     * Set updatedOnLocale
      *
-     * @param string $updatedLocale
+     * @param string $updatedOnLocale
      * @return object
      */
-    public function setUpdatedLocale($updatedLocale)
+    public function setUpdatedOnLocale($updatedOnLocale)
     {
-        $this->updatedLocale = $updatedLocale;
+        $this->updatedOnLocale = $updatedOnLocale;
 
         return $this;
     }
 
     /**
-     * Get createdLocale
+     * Get updatedOnLocale
      *
      * @return string
      */
-    public function getUpdatedLocale()
+    public function getUpdatedOnLocale()
     {
-        return $this->updatedLocale;
+        return $this->updatedOnLocale;
     }
 
 }

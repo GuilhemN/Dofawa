@@ -23,24 +23,14 @@ trait ElementableTrait
 
         $caracts = $this->getCharacteristicsForElements($metadata);
 
-        $smallestCaract = null;
         $biggestCaract = null;
 
-        foreach($elements as $element){
-            if($smallestCaract === null or $caracts[$element] < $smallestCaract)
-                $smallestCaract = $caracts[$element];
-
+        foreach($elements as $element)
             if($biggestCaract === null or $caracts[$element] > $biggestCaract)
                 $biggestCaract = $caracts[$element];
-        }
 
-        if($smallestCaract < 0)
-            $smallestCaract = 0;
         if($biggestCaract < 0)
             $biggestCaract = 0;
-
-        foreach($caracts as &$v)
-            $v -= $smallestCaract;
 
         $itemElements = array();
 

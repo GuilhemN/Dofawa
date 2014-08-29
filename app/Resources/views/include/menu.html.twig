@@ -76,7 +76,7 @@
           <ul class="dropdown-menu">
             <li class="dropdown-header">Stuffs</li>
             {% if app.user is not null %}
-            <li><a href="#">Mes builds</a></li>
+                <li><a href="{{ path('dof_build_homepage') }}">Mes builds</a></li>
             {% endif %}
             <li><a href="#">Recherche de build</a></li>
             <li class="divider"></li>

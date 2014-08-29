@@ -12,6 +12,11 @@
                     <a href="{{ path('dof_items_show', {'slug': item.slug}) }}" class="thumbnail">
                         <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ item.getName(locales()) }}">
                     </a>
+                    <div class="text-center">
+                        {% for element in item.elements %}
+                            <img src="{{ asset('bundles/dofitems/img/' ~ element ~ '.png') }}" alt="{{ element }}">
+                        {% endfor %}
+                    </div>
                 </div>
 
                 {# Right column #}
