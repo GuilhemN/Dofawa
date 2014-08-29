@@ -38,8 +38,8 @@ class ItemSetRepository extends EntityRepository
 				  ->select(array('s', 'i', 'c', 're', 'rei'))
                   ->join('s.items', 'i')
                   ->join('s.combinations', 'c')
-                  ->join('i.components', 're')
-                  ->join('re.component', 'rei')
+                  ->leftjoin('i.components', 're')
+                  ->leftjoin('re.component', 'rei')
                   ->orderBy('c.itemCount', 'asc')
               ;
 
