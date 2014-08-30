@@ -17,7 +17,7 @@ class CollectionSynchronizationHelper
         for (; $i < $nmin; ++$i) {
             $ent = $ents[$i];
             $fillEnt($ent, $rows[$i]);
-            $this->dm->persist($ent);
+            $dm->persist($ent);
         }
         for (; $i < $nrows; ++$i) {
             $ent = $createEnt();
