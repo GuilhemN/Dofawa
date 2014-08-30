@@ -288,7 +288,7 @@ $(function () {
                         updateDiagrams();
                 }
                 return false;
-            } }><span class="glyphicon glyphicon-minus-sign"></span> Supprimer</a><div><span class="name">Chargement ...</span> ({Translator.trans('level', {'level': '<span class="level">0</span>'}, 'item') })</div><input type="hidden" name={ 'items[' + serial + '][slug]' } value={ itemList.selectedValue } /><ul class="subform col-lg-5" /><div class="diagram-container col-lg-7" /></div>;
+            } }><span class="glyphicon glyphicon-minus-sign"></span> Supprimer</a><div><span class="name">Chargement ...</span> (niveau <span class="level">0</span>)</div><input type="hidden" name={ 'items[' + serial + '][slug]' } value={ itemList.selectedValue } /><ul class="subform col-lg-5" /><div class="diagram-container col-lg-7" /></div>;
             diagramsNode.appendChild(diagramNode);
             try {
                 item = yield get(Routing.generate('dof_items_json_itemtemplate', { l1id: itemList.selectedValue }));
