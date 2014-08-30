@@ -18,10 +18,6 @@ trait ElementableTrait
     protected $elements = array();
 
     public function getElements(){
-        if(!empty($this->elements))
-            return $this->elements;
-
-        $this->setElements();
         return $this->elements;
     }
 
