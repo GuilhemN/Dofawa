@@ -50,7 +50,6 @@ class ItemSetRepository extends EntityRepository
                       ->join('s.items', 'i')
                       ->join('s.combinations', 'c')
                       ->orderBy('c.itemCount', 'asc')
-                      ->having('c.itemCount = COUNT(i)')
                   ;
         else
             throw new Exception('Unknow type in ' . __FILE__);
