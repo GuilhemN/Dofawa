@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use XN\Persistence\IdentifiableInterface;
+use Dof\ItemsBundle\ElementableInterface;
+use Dof\ItemsBundle\ElementableTrait;
 
 use Dof\ItemsBundle\CharacteristicsTrait;
 
@@ -17,8 +19,10 @@ use Dof\ItemsBundle\CharacteristicsTrait;
  * @ORM\Table(name="dof_item_set_combinations")
  * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\ItemSetCombinationRepository")
  */
-class ItemSetCombination implements IdentifiableInterface
+class ItemSetCombination implements IdentifiableInterface, ElementableInterface
 {
+    use ElementableTrait;
+
     /**
      * @var integer
      *
@@ -148,5 +152,16 @@ class ItemSetCombination implements IdentifiableInterface
     public function getEffects()
     {
         return $this->effects;
+    }
+
+    public function getCharacteristicsForElements($metadata, array $caracts = array()){
+        foreach($metadata as $k => $v)
+            $caracts[$v['element']] += $biggestCombination->{'get' . ucfirst($k)}() * $v['weight'];
+
+        return $caracts;
+    }
+
+    public function getParentElements(){
+        return $this->set;
     }
 }

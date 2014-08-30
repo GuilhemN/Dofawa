@@ -196,9 +196,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
             if($combination->getItemCount() == $countItem){
                 $biggestCombination = $combination;
 
-                foreach($metadata as $k => $v){
-                    $caracts[$v['element']] += $biggestCombination->{'get' . ucfirst($k)}() * $v['weight'];
-                }
+                $caracts = $biggestCombination->getCharacteristicsForElements($metadata, $caracts);
                 break;
             }
 
@@ -206,5 +204,9 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
             $caracts = $item->getCharacteristicsForElements($metadata, $caracts);
 
         return $caracts;
+    }
+
+    public function getParentElements(){
+        return $this->set;
     }
 }

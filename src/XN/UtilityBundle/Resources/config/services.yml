@@ -7,6 +7,7 @@ parameters:
     xn.utility.doctrine.localized_origin_updater.class: XN\UtilityBundle\Doctrine\LocalizedOriginUpdater
     xn.utility.doctrine.sluggable_updater.class: XN\UtilityBundle\Doctrine\SluggableUpdater
     xn.utility.doctrine.timestampable_updater.class: XN\UtilityBundle\Doctrine\TimestampableUpdater
+    xn.utility.doctrine.elementable_updater.class: XN\UtilityBundle\Doctrine\ElementableUpdater
 
 services:
     xn.utility.twig_extension:
@@ -47,6 +48,12 @@ services:
 
     xn.utility.doctrine.timestampable_updater:
         class: "%xn.utility.doctrine.timestampable_updater.class%"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: onFlush }
+
+    xn.utility.doctrine.elementable_updater:
+        class: "%xn.utility.doctrine.elementable_updater.class%"
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }

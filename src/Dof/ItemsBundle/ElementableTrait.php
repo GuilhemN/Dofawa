@@ -2,12 +2,30 @@
 
 namespace Dof\ItemsBundle;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ElementableTrait
+ *
+ * @ORM\HasLifecycleCallbacks()
+ */
 trait ElementableTrait
 {
-    public function getElements()
-    {
-        $elements = array('earth', 'fire', 'water', 'air');
-        $metadata = array(
+    /**
+     * @ORM\Column(name="elements", type="json_array")
+     */
+    protected $elements = array();
+
+    public function getElements(){
+        return $this->elements;
+    }
+
+    public function setElements(array $elements = array()){
+        $this->elements = $elements;
+    }
+
+    public function getElementsMetadata(){
+        return array(
             'strength' => array('element' => 'earth', 'weight' => 1),
             'intelligence' => array('element' => 'fire', 'weight' => 1),
             'chance' => array('element' => 'water', 'weight' => 1),
@@ -18,6 +36,12 @@ trait ElementableTrait
             'waterDamage' => array('element' => 'water', 'weight' => 5),
             'airDamage' => array('element' => 'air', 'weight' => 5)
         );
+    }
+
+    public function updateElements()
+    {
+        $elements = array('earth', 'fire', 'water', 'air');
+        $metadata = $this->getElementsMetadata();
 
         $caracts = $this->getCharacteristicsForElements($metadata);
 
@@ -36,7 +60,11 @@ trait ElementableTrait
             if($caracts[$element] > 0 && !empty($biggestCaract) && ($caracts[$element] * 100 / $biggestCaract) > 56 )
                 $itemElements[] = $element;
 
-        return $itemElements;
+        $this->elements = $itemElements;
+    }
+
+    public function getParentElements(){
+        return null;
     }
 
 	/**
