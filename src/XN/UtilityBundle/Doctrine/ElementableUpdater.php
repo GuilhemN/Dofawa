@@ -5,7 +5,7 @@ namespace XN\UtilityBundle\Doctrine;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
-use XN\Metadata\ElementableInterface;
+use Dof\ItemsBundle\ElementableInterface;
 
 class ElementableUpdater
 {
