@@ -46,10 +46,11 @@ class ItemSetRepository extends EntityRepository
         elseif($type == 'list')
             $qb = $this
                       ->createQueryBuilder('s')
-    				  ->select(array('s', 'i', 'c'))
+    				  ->select(array('s', 'i', 'c', 'COUNT(i) as count_items'))
                       ->join('s.items', 'i')
                       ->join('s.combinations', 'c')
                       ->orderBy('c.itemCount', 'asc')
+                      ->andwhere('c.itemCount = count_items')
                   ;
         else
             throw new Exception('Unknow type in ' . __FILE__);
