@@ -5,3 +5,14 @@ services:
 #    dof_items.example:
 #        class: %dof_items.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    dof_items.admin.item_template:
+        class: Dof\ItemsBundle\Admin\ItemTemplateAdmin
+        arguments: [~, Dof\ItemsBundle\Entity\ItemTemplate, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Items, label: ItemTemplate}
+
+    dof_items.admin.skinned_equipment_template:
+        class: Dof\ItemsBundle\Admin\SkinnedEquipmentTemplateAdmin
+        arguments: [~, Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Items, label: SkinnedEquipmentTemplate}
