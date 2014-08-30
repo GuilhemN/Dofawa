@@ -49,7 +49,7 @@ class ItemSetRepository extends EntityRepository
     				  ->select(array('s', 'i', 'c'))
                       ->join('s.items', 'i')
                       ->join('s.combinations', 'c')
-                      ->addOrderBy('i.level', 'asc')
+                      ->addOrderBy('s.level', 'desc')
                       ->addOrderBy('c.itemCount', 'asc')
                   ;
         else
