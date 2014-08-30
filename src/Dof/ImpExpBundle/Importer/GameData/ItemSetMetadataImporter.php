@@ -30,7 +30,7 @@ class ItemSetMetadataImporter extends AbstractGameDataImporter
                 continue;
 
             $set->setLevel($row['level']);
-            $set->setCountItem($row['count']);
+            $set->setItemCount($row['count']);
         }
     }
 }
