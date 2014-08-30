@@ -22,7 +22,7 @@
                             </a>
                         </td>
                         <td>Niveau {{ set.level }}</td>
-                        <td>{{ set.items | length }} items</td>
+                        <td>{{ set.itemCount }} items</td>
                         <td>
                             {% for element in set.elements %}
                                 <img src="{{ asset('bundles/dofitems/img/' ~ element ~ '.png') }}" alt="{{ element }}">
