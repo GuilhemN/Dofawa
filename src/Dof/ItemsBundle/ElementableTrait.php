@@ -4,24 +4,39 @@ namespace Dof\ItemsBundle;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * ElementableTrait
- *
- * @ORM\HasLifecycleCallbacks()
- */
 trait ElementableTrait
 {
     /**
      * @ORM\Column(name="elements", type="json_array")
      */
-    protected $elements = array();
+    protected $elements;
 
-    public function getElements(){
-        return $this->elements;
+    public function __construct(){
+        $this->elements = array();
     }
 
-    public function setElements(array $elements = array()){
+
+
+    public function setElements(array $elements)
+    {
         $this->elements = $elements;
+        return $this;
+    }
+    public function addElement($element)
+    {
+        $this->elements[] = $element;
+        return $this;
+    }
+    public function removeElement($element)
+    {
+        $key = array_search($element, $this->elements);
+        if ($key !== false)
+            array_splice($this->elements, $key, 1);
+        return $this;
+    }
+    public function getElements()
+    {
+        return $this->elements;
     }
 
     public function getElementsMetadata(){
