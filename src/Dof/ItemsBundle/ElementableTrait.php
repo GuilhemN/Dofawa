@@ -4,12 +4,18 @@ namespace Dof\ItemsBundle;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * ElementableTrait
+ *
+ * @ORM\Entity(repositoryClass="EquipmentTemplateRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
 trait ElementableTrait
 {
     /**
      * @ORM\Column(name="elements", type="json_array")
      */
-    protected $elements;
+    protected $elements = array();
 
     public function getElements(){
         if(!empty($this->elements))
@@ -19,6 +25,10 @@ trait ElementableTrait
         return $this->elements;
     }
 
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
     public function setElements($value = null)
     {
         if($value !== null){

@@ -15,7 +15,11 @@
             <tbody>
                 {% for set in sets %}
                     <tr>
-                        <td>{{ set.getName(locales()) }}</td>
+                        <td>
+                            <a href="{{ path('dof_set_show', {'slug': set.slug}) }}">
+                                {{ set.getName(locales()) }}
+                            </a>
+                        </td>
                         <td>{{ set.items | length }} items</td>
                         <td>
                             {% for element in set.elements %}
