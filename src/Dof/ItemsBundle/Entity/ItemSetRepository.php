@@ -30,7 +30,7 @@ class ItemSetRepository extends EntityRepository
 		;
     }
 
-    protected function queryWithJoins($criteria){
+    protected function queryWithJoins($criteria, $type = 'normal'){
         $criteria = (array) $criteria;
 
         if($type == 'normal')
