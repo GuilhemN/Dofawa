@@ -4,8 +4,6 @@ namespace Dof\ItemsBundle;
 
 trait ElementableTrait
 {
-
-
     public function getElements()
     {
         $elements = array('earth', 'fire', 'water', 'air');

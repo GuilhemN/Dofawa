@@ -179,13 +179,16 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getCharacteristicsForElements($metadata, array $caracts = array()){
 
         $biggestCombination = null;
+        $countItem = count($this->getItems());
         foreach($this->getCombinations() as $combination)
-            if($biggestCombination === null or $biggestCombination->getItemCount() < $combination->getItemCount())
+            if($combination->getItemCount() == $countItem){
                 $biggestCombination = $combination;
 
-        foreach($metadata as $k => $v){
-            $caracts[$v['element']] += $biggestCombination->{'get' . ucfirst($k)}() * $v['weight'];
-        }
+                foreach($metadata as $k => $v){
+                    $caracts[$v['element']] += $biggestCombination->{'get' . ucfirst($k)}() * $v['weight'];
+                }
+                break;
+            }
 
         foreach($this->getItems() as $item)
             $caracts = $item->getCharacteristicsForElements($metadata, $caracts);
