@@ -60,7 +60,7 @@ class ElementableUpdater
         foreach(array_keys($metadata) as $charact){
             $charactsFields[ ] = $charact;
 			$charactsFields[ ] = 'max' . ucfirst($charact);
-			$charactsFields[ ] = 'min' . ucfirst($charact)];
+			$charactsFields[ ] = 'min' . ucfirst($charact);
 		}
 
 		foreach ($chgset as $key => $value)
