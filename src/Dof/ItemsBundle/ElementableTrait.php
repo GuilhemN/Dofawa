@@ -25,17 +25,16 @@ trait ElementableTrait
         return $this->elements;
     }
 
+    public function setElements(array $elements = array()){
+        $this->elements = $elements;
+    }
+
     /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
-    public function setElements($value = null)
+    public function updateElements()
     {
-        if($value !== null){
-            $this->elements = $value;
-            return $this;
-        }
-
         $elements = array('earth', 'fire', 'water', 'air');
         $metadata = array(
             'strength' => array('element' => 'earth', 'weight' => 1),
@@ -67,8 +66,6 @@ trait ElementableTrait
                 $itemElements[] = $element;
 
         $this->elements = $itemElements;
-
-        return $this;
     }
 
 	/**
