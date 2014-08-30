@@ -69,6 +69,8 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
             if($level == 200)
                 break;
         }
+
+        return $maxLevel;
     }
     /**
      * Set id
