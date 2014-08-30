@@ -169,4 +169,8 @@ class EquipmentTemplate extends ItemTemplate implements ElementableInterface
 
         return $caracts;
     }
+
+    public function getParentElements(){
+        return $this->set;
+    }
 }
