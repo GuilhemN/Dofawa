@@ -63,7 +63,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getLevel(){
         $maxLevel = 0;
         foreach($this->getItems() as $item){
-            if($level = $item->getLevel() > $maxLevel)
+            if(($level = $item->getLevel()) > $maxLevel)
                 $maxLevel = $level;
 
             if($level == 200)
