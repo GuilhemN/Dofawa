@@ -14,7 +14,7 @@ class ElementableUpdater
 	{
 		$ent = $args->getEntity();
 		if ($ent instanceof ElementableInterface) {
-			$ent->updateElements());
+			$ent->updateElements();
 		}
 	}
 
