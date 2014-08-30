@@ -156,7 +156,7 @@ class ItemSetCombination implements IdentifiableInterface, ElementableInterface
 
     public function getCharacteristicsForElements($metadata, array $caracts = array()){
         foreach($metadata as $k => $v)
-            $caracts[$v['element']] += $biggestCombination->{'get' . ucfirst($k)}() * $v['weight'];
+            $caracts[$v['element']] += $this->{'get' . ucfirst($k)}() * $v['weight'];
 
         return $caracts;
     }
