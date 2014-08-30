@@ -57,8 +57,11 @@ class ElementableUpdater
     protected static function hasCharactsChanges($entity, $chgset){
 		$metadata = $entity->getElementsMetadata();
         $charactsFields = array();
-        foreach(array_keys($metadata) as $charact)
-            $charactsFields += [$charact, 'max' . ucfirst($charact), 'min' . ucfirst($charact)];
+        foreach(array_keys($metadata) as $charact){
+            $charactsFields[ ] = $charact;
+			$charactsFields[ ] = 'max' . ucfirst($charact);
+			$charactsFields[ ] = 'min' . ucfirst($charact)];
+		}
 
 		foreach ($chgset as $key => $value)
 			if (in_array($key, $charactsFields))
