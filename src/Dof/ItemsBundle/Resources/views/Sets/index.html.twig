@@ -8,6 +8,7 @@
             <thead>
                 <tr>
                     <th>Nom</th>
+                    <th>Level</th>
                     <th>Items</th>
                     <th>Éléments</th>
                 </tr>
@@ -20,6 +21,7 @@
                                 {{ set.getName(locales()) }}
                             </a>
                         </td>
+                        <td>Niveau {{ set.level }}</td>
                         <td>{{ set.items | length }} items</td>
                         <td>
                             {% for element in set.elements %}

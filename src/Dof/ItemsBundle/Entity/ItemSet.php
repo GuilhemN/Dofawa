@@ -60,6 +60,16 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
         $this->combinations = new ArrayCollection();
     }
 
+    public function getLevel(){
+        $maxLevel = 0;
+        foreach($this->getItems() as $item){
+            if($level = $item->getLevel() > $maxLevel)
+                $maxLevel = $level;
+
+            if($level == 200)
+                break;
+        }
+    }
     /**
      * Set id
      *

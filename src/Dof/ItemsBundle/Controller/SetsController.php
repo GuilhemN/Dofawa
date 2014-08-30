@@ -27,15 +27,8 @@ class SetsController extends Controller
     {
         $items = $set->getItems();
 
-        $maxLevel = 0;
-        foreach($items as $item){
-            if($item->getLevel() > $maxLevel)
-                $maxLevel = $item->getLevel();
-        }
-
         return $this->render('DofItemsBundle:Sets:show.html.twig', [
             'set' => $set,
-            'level' => $maxLevel,
             'items' => $items,
             'items_count' => count($items),
             'combinations' => $set->getCombinations()
