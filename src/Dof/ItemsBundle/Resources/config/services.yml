@@ -9,10 +9,10 @@ services:
         class: Dof\ItemsBundle\Admin\ItemTemplateAdmin
         arguments: [~, Dof\ItemsBundle\Entity\ItemTemplate, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Items, label: ItemTemplate}
+            - {name: sonata.admin, manager_type: orm, group: Items, label: Item}
 
     dof_items.admin.skinned_equipment_template:
         class: Dof\ItemsBundle\Admin\SkinnedEquipmentTemplateAdmin
         arguments: [~, Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Items, label: SkinnedEquipmentTemplate}
+            - {name: sonata.admin, manager_type: orm, group: Items, label: Equipment}
