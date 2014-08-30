@@ -7,6 +7,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\ItemsBundle\CharacteristicsRangeTrait;
+use Dof\ItemsBundle\ElementableInterface;
+use Dof\ItemsBundle\ElementableTrait;
+
 use Dof\BuildBundle\Entity\Item;
 
 /**
@@ -14,9 +17,9 @@ use Dof\BuildBundle\Entity\Item;
  *
  * @ORM\Entity(repositoryClass="EquipmentTemplateRepository")
  */
-class EquipmentTemplate extends ItemTemplate
+class EquipmentTemplate extends ItemTemplate implements ElementableInterface
 {
-	use CharacteristicsRangeTrait;
+	use CharacteristicsRangeTrait, ElementableTrait;
 
     /**
      * @var boolean
@@ -153,5 +156,16 @@ class EquipmentTemplate extends ItemTemplate
         if (parent::importField($key, $value, $dm, $locale))
             return true;
         return false;
+    }
+
+    public function getCharacteristicsForElements($metadata, array $caracts = array()){
+
+        $biggestCombination = null;
+
+        foreach($metadata as $k => $v){
+            $caracts[$v['element']] += ($this->{'getMax' . ucfirst($k)}() + $this->{'getMin' . ucfirst($k)}()) / 2 * $v['weight'];
+        }
+
+        return $caracts;
     }
 }

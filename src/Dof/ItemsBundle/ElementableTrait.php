@@ -2,12 +2,30 @@
 
 namespace Dof\ItemsBundle;
 
+use Doctrine\ORM\Mapping as ORM;
+
 trait ElementableTrait
 {
+    /**
+     * @ORM\Column(name="elements", type="json_array")
+     */
+    protected $elements;
 
+    public function getElements(){
+        if(!empty($this->elements))
+            return $this->elements;
 
-    public function getElements()
+        $this->setElements();
+        return $this->elements;
+    }
+
+    public function setElements($value = null)
     {
+        if($value !== null){
+            $this->elements = $value;
+            return $this;
+        }
+
         $elements = array('earth', 'fire', 'water', 'air');
         $metadata = array(
             'strength' => array('element' => 'earth', 'weight' => 1),
@@ -38,7 +56,9 @@ trait ElementableTrait
             if($caracts[$element] > 0 && !empty($biggestCaract) && ($caracts[$element] * 100 / $biggestCaract) > 56 )
                 $itemElements[] = $element;
 
-        return $itemElements;
+        $this->elements = $itemElements;
+
+        return $this;
     }
 
 	/**
