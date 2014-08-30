@@ -21,8 +21,8 @@ class ItemSetRepository extends EntityRepository
 		;
     }
 
-    public function findWithJoins($criteria = array()){
-        $qb = $this->queryWithJoins($criteria);
+    public function findWithJoins($criteria = array(), $type = 'normal'){
+        $qb = $this->queryWithJoins($criteria, $type);
 
 		return $qb
         	->getQuery()
@@ -33,15 +33,27 @@ class ItemSetRepository extends EntityRepository
     protected function queryWithJoins($criteria){
         $criteria = (array) $criteria;
 
-        $qb = $this
-                  ->createQueryBuilder('s')
-				  ->select(array('s', 'i', 'c', 're', 'rei'))
-                  ->join('s.items', 'i')
-                  ->join('s.combinations', 'c')
-                  ->leftjoin('i.components', 're')
-                  ->leftjoin('re.component', 'rei')
-                  ->orderBy('c.itemCount', 'asc')
-              ;
+        if($type == 'normal')
+            $qb = $this
+                      ->createQueryBuilder('s')
+    				  ->select(array('s', 'i', 'c', 're', 'rei'))
+                      ->join('s.items', 'i')
+                      ->join('s.combinations', 'c')
+                      ->leftjoin('i.components', 're')
+                      ->leftjoin('re.component', 'rei')
+                      ->orderBy('c.itemCount', 'asc')
+                  ;
+        elseif($type == 'list')
+            $qb = $this
+                      ->createQueryBuilder('s')
+    				  ->select(array('s', 'i', 'c'))
+                      ->join('s.items', 'i')
+                      ->join('s.combinations', 'c')
+                      ->orderBy('c.itemCount', 'asc')
+                  ;
+        else
+            throw new Exception('Unknow type in ' . __FILE__);
+
 
 		$i = 0;
 		foreach($criteria as $k => $v){

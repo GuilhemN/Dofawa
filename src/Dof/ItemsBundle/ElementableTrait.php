@@ -2,33 +2,11 @@
 
 namespace Dof\ItemsBundle;
 
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * ElementableTrait
- *
- * @ORM\HasLifecycleCallbacks()
- */
 trait ElementableTrait
 {
-    /**
-     * @ORM\Column(name="elements", type="json_array")
-     */
-    protected $elements = array();
 
-    public function getElements(){
-        return $this->elements;
-    }
 
-    public function setElements(array $elements = array()){
-        $this->elements = $elements;
-    }
-
-    /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
-    public function updateElements()
+    public function getElements()
     {
         $elements = array('earth', 'fire', 'water', 'air');
         $metadata = array(
@@ -60,7 +38,7 @@ trait ElementableTrait
             if($caracts[$element] > 0 && !empty($biggestCaract) && ($caracts[$element] * 100 / $biggestCaract) > 56 )
                 $itemElements[] = $element;
 
-        $this->elements = $itemElements;
+        return $itemElements;
     }
 
 	/**

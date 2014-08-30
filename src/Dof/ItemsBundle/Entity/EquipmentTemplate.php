@@ -16,7 +16,6 @@ use Dof\BuildBundle\Entity\Item;
  * EquipmentTemplate
  *
  * @ORM\Entity(repositoryClass="EquipmentTemplateRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class EquipmentTemplate extends ItemTemplate implements ElementableInterface
 {

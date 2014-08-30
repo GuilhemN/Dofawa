@@ -13,13 +13,13 @@ class SetsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemSet');
 
-        $sets = $repo->findWithJoins();
+        $sets = $repo->findWithJoins(array(), 'list');
 
         return $this->render('DofItemsBundle:Sets:index.html.twig', [
             'sets' => $sets
             ]);
     }
-    
+
     /**
      * @ParamConverter("set", class="DofItemsBundle:ItemSet", options={"repository_method" = "findOneWithJoins"})
      */
