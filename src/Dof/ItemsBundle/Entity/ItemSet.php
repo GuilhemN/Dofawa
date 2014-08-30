@@ -54,24 +54,26 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $combinations;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer")
+     */
+    private $level;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="item_count", type="integer")
+     */
+    private $itemCount;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
         $this->combinations = new ArrayCollection();
     }
 
-    public function getLevel(){
-        $maxLevel = 0;
-        foreach($this->getItems() as $item){
-            if(($level = $item->getLevel()) > $maxLevel)
-                $maxLevel = $level;
-
-            if($level == 200)
-                break;
-        }
-
-        return $maxLevel;
-    }
     /**
      * Set id
      *
@@ -165,6 +167,52 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getCombinations()
     {
         return $this->combinations;
+    }
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     * @return ItemTemplate
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * Set itemCount
+     *
+     * @param integer $itemCount
+     * @return ItemSet
+     */
+    public function setItemCount($itemCount)
+    {
+        $this->itemCount = $itemCount;
+
+        return $this;
+    }
+
+    /**
+     * Get itemCount
+     *
+     * @return integer
+     */
+    public function getItemCount()
+    {
+        return $this->itemCount;
     }
 
     public function __toString()

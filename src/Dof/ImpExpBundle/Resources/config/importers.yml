@@ -39,6 +39,13 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: item_sets }
             - { name: dof_imp_exp.importer, provides: beta_item_sets, requires: item_sets }
+
+    dof_imp_exp.importer.item_sets_metadatas:
+        class: Dof\ImpExpBundle\Importer\GameData\ItemSetMetadataImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: item_set_metadatas, requires: item_templates }
+            - { name: dof_imp_exp.importer, provides: beta_item_set_metadatas, requires: beta_item_templates }
     # DofItemsBundle:ItemSetCombination, DofItemsBundle:ItemSetEffect
     dof_imp_exp.importer.item_set_effects:
         class: Dof\ImpExpBundle\Importer\GameData\ItemSetEffectImporter
