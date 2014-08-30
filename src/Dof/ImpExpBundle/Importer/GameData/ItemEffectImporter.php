@@ -49,7 +49,9 @@ class ItemEffectImporter extends AbstractGameDataImporter
                 $charas = EffectListHelper::extractCharacteristicsRanges($effects);
                 $item->setCharacteristics($charas, true);
                 $item->setElements();
-                $item->getSet()->setElements();
+
+                $set = $item->getSet()->setElements();
+                $this->dm->persist($set);
                 if ($item->isWeapon()) {
                     $damages = EffectListHelper::extractWeaponDamageRows($effects);
                     CollectionSynchronizationHelper::synchronize($this->dm, $item->getDamageRows()->toArray(), $damages, function () use ($item) {
