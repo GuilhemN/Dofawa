@@ -205,8 +205,4 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
 
         return $caracts;
     }
-
-    public function getParentElements(){
-        return $this->set;
-    }
 }

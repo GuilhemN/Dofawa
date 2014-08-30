@@ -917,4 +917,8 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     {
         return false;
     }
+    
+    public function getParentElements(){
+        return $this->set;
+    }
 }
