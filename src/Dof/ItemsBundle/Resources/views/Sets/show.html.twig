@@ -10,14 +10,14 @@
         <div class="page-header nopadding marginbottom">
           <h1>{{ set.getName(locales()) }} <small>{{ 'level' | trans({'%level%': set.level}, 'item') }}</small></h1>
         </div>
-        <p>{{ items_count }} Item </p>
+        <p>{{ set.itemCount }} Item </p>
 
         {% for element in set.elements %}
             <img src="{{ asset('bundles/dofitems/img/' ~ element ~ '.png') }}" alt="{{ element }}">
         {% endfor %}
     </div>
 	<div class="row">
-	    {% for combination in combinations %}
+	    {% for combination in set.combinations %}
 
 			  <div class="col-xs-6 col-md-3">
 			    <div class="well well-sm">
@@ -30,7 +30,7 @@
 		{% endfor %}
 	</div>
 
-    {% for item in items %}
+    {% for item in set.items %}
         {% include 'DofItemsBundle::item.html.twig' with {'item': item} %}
     {% endfor %}
 

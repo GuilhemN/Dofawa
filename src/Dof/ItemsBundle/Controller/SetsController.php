@@ -25,13 +25,8 @@ class SetsController extends Controller
      */
     public function showAction(ItemSet $set)
     {
-        $items = $set->getItems();
-
         return $this->render('DofItemsBundle:Sets:show.html.twig', [
-            'set' => $set,
-            'items' => $items,
-            'items_count' => count($items),
-            'combinations' => $set->getCombinations()
+            'set' => $set
             ]);
     }
 }
