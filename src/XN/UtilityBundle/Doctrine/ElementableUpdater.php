@@ -32,6 +32,15 @@ class ElementableUpdater
 			if($parent != null){
 				$parent->updateElements();
 				$em->persist($parent);
+
+				$pClazz = get_class($parent);
+				if (isset($mds[$pClazz]))
+					$md = $mds[$pClazz];
+				else {
+					$md = $em->getClassMetadata($pClazz);
+					$mds[$pClazz] = $md;
+				}
+				$uow->recomputeSingleEntityChangeSet($md, $parent);
 			}
 
 			$clazz = get_class($ent);
