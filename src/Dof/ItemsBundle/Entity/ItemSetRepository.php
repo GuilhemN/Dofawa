@@ -41,7 +41,6 @@ class ItemSetRepository extends EntityRepository
                       ->join('s.combinations', 'c')
                       ->leftjoin('i.components', 're')
                       ->leftjoin('re.component', 'rei')
-                      ->addOrderBy('i.level', 'asc')
                       ->addOrderBy('c.itemCount', 'asc')
                   ;
         elseif($type == 'list')
@@ -50,7 +49,8 @@ class ItemSetRepository extends EntityRepository
     				  ->select(array('s', 'i', 'c'))
                       ->join('s.items', 'i')
                       ->join('s.combinations', 'c')
-                      ->orderBy('c.itemCount', 'asc')
+                      ->addOrderBy('i.level', 'asc')
+                      ->addOrderBy('c.itemCount', 'asc')
                   ;
         else
             throw new Exception('Unknow type in ' . __FILE__);
