@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ElementableTrait
  *
- * @ORM\Entity(repositoryClass="EquipmentTemplateRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 trait ElementableTrait
