@@ -29,7 +29,7 @@ class ElementableUpdater
 		foreach ($updates as $ent) {
 			$ent->updateElements();
 			$parent = $ent->getParentElements();
-			var_dump($parent);
+			var_dump($parent->getName('fr'));
 			if($parent != null){
 				$parent->updateElements();
 				$em->persist($parent);
