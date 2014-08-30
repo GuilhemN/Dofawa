@@ -30,7 +30,6 @@ class ElementableUpdater
 			$ent->updateElements();
 			$parent = $ent->getParentElements();
 			if($parent != null){
-			var_dump($parent->getId());
 				$parent->updateElements();
 				$em->persist($parent);
 
