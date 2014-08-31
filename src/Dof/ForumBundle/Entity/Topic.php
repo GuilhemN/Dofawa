@@ -54,7 +54,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $locked;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Forum")
+     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Forum", inversedBy="topics")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $forum;
@@ -74,7 +74,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -97,7 +97,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -120,7 +120,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * Get locked
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getLocked()
     {
@@ -146,7 +146,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     {
         return $this->forum;
     }
-    
+
     /**
      * Add messages
      *
