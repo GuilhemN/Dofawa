@@ -24,8 +24,8 @@
                         <td>{{ 'level' | trans({'%level%': set.level}, 'item') }}</td>
                         <td>{{ set.itemCount }} items</td>
                         <td>
-                            {% for element in set.elements %}
-                                <img src="{{ asset('bundles/dofitems/img/' ~ element ~ '.png') }}" alt="{{ element }}">
+                            {% for bonus in set.primaryBonus %}
+                                <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
                             {% endfor %}
                         </td>
                     </tr>

@@ -7,8 +7,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\ItemsBundle\CharacteristicsRangeTrait;
-use Dof\ItemsBundle\ElementableInterface;
-use Dof\ItemsBundle\ElementableTrait;
+use Dof\ItemsBundle\PrimaryBonusInterface;
+use Dof\ItemsBundle\PrimaryBonusTrait;
 
 use Dof\BuildBundle\Entity\Item;
 
@@ -18,9 +18,9 @@ use Dof\BuildBundle\Entity\Item;
  * @ORM\Entity(repositoryClass="EquipmentTemplateRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class EquipmentTemplate extends ItemTemplate implements ElementableInterface
+class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 {
-	use CharacteristicsRangeTrait, ElementableTrait;
+	use CharacteristicsRangeTrait, PrimaryBonusTrait;
 
     /**
      * @var boolean
@@ -159,18 +159,17 @@ class EquipmentTemplate extends ItemTemplate implements ElementableInterface
         return false;
     }
 
-    public function getCharacteristicsForElements($metadata, array $caracts = array()){
+    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
 
         $biggestCombination = null;
 
-        foreach($metadata as $k => $v){
-            $caracts[$v['element']] += ($this->{'getMax' . ucfirst($k)}() + $this->{'getMin' . ucfirst($k)}()) / 2 * $v['weight'];
-        }
+        foreach($primaryFields as $k => $v)
+            $caracts[$v['primaryBonus']] += ($this->{'getMax' . ucfirst($k)}() + $this->{'getMin' . ucfirst($k)}()) / 2 * $v['weight'];
 
         return $caracts;
     }
 
-    public function getParentElements(){
+    public function getCascadeForPrimaryBonus(){
         return $this->set;
     }
 }

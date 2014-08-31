@@ -8,8 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use XN\Persistence\IdentifiableInterface;
-use Dof\ItemsBundle\ElementableInterface;
-use Dof\ItemsBundle\ElementableTrait;
+use Dof\ItemsBundle\PrimaryBonusInterface;
+use Dof\ItemsBundle\PrimaryBonusTrait;
 
 use Dof\ItemsBundle\CharacteristicsTrait;
 
@@ -19,9 +19,9 @@ use Dof\ItemsBundle\CharacteristicsTrait;
  * @ORM\Table(name="dof_item_set_combinations")
  * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\ItemSetCombinationRepository")
  */
-class ItemSetCombination implements IdentifiableInterface, ElementableInterface
+class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
 {
-    use ElementableTrait;
+    use PrimaryBonusTrait;
 
     /**
      * @var integer
@@ -154,14 +154,14 @@ class ItemSetCombination implements IdentifiableInterface, ElementableInterface
         return $this->effects;
     }
 
-    public function getCharacteristicsForElements($metadata, array $caracts = array()){
-        foreach($metadata as $k => $v)
-            $caracts[$v['element']] += $this->{'get' . ucfirst($k)}() * $v['weight'];
+    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
+        foreach($primaryFields as $k => $v)
+            $caracts[$v['primaryBonus']] += $this->{'get' . ucfirst($k)}() * $v['weight'];
 
         return $caracts;
     }
 
-    public function getParentElements(){
+    public function getCascadeForPrimaryBonus(){
         return $this->set;
     }
 }

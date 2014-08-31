@@ -12,8 +12,8 @@
         </div>
         <p>{{ set.itemCount }} Item </p>
 
-        {% for element in set.elements %}
-            <img src="{{ asset('bundles/dofitems/img/' ~ element ~ '.png') }}" alt="{{ element }}">
+        {% for bonus in set.primaryBonus %}
+            <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
         {% endfor %}
     </div>
 	<div class="row">
