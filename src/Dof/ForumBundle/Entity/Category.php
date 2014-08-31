@@ -49,7 +49,7 @@ class Category implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Dof\ForumBundle\Entity\Forum", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Dof\ForumBundle\Entity\Forum", mappedBy="category", nullable="true")
      */
     private $forums;
 
@@ -61,7 +61,7 @@ class Category implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -84,7 +84,7 @@ class Category implements IdentifiableInterface, TimestampableInterface, Sluggab
     /**
      * Get index
      *
-     * @return integer 
+     * @return integer
      */
     public function getIndex()
     {
