@@ -9,9 +9,9 @@ class ForumController extends Controller
     public function indexAction()
     {
     	$em = $this->getDoctrine()->getManager();
-    	$categorys = $em->getRepository('DofForumBundle:Category')->findAll();
+    	$categories = $em->getRepository('DofForumBundle:Category')->findAll();
 
-        return $this->render('DofForumBundle:Forum:index.html.twig', array('category' => $categorys));
+        return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories));
     }
 
    /* public function showForumAction($forum)
