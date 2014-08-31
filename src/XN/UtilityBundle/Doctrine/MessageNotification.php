@@ -29,6 +29,7 @@ class MessageNotification
                 $notification->setType(NotificationType::RECEIVE_MESSAGE);
                 $notification->setTranslateString('message.receive');
                 $notification->setTranslateParams(array('by' => $senderUsername));
+                $notification->setIsRead(false);
 
                 $notification->setPath('fos_message_thread_view');
                 $notification->setParams(array('threadId' => $threadId));
