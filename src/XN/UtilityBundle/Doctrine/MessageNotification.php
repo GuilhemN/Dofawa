@@ -17,8 +17,10 @@ class MessageNotification
 		$ent = $args->getEntity();
 		if ($ent instanceof Message) {
             $em = $args->getEntityManager();
+
 			$notification = new Notification();
 
+            $notification->setOwner($ent->getMetadata()->getParticipant());
             $notification->setType(NotificationType::RECEIVE_MESSAGE);
             $notification->setTranslateString('message.receive');
             $notification->setTranslateParams(array('by' => $ent->getSender()->getUsername()));

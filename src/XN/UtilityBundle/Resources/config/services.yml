@@ -8,6 +8,7 @@ parameters:
     xn.utility.doctrine.sluggable_updater.class: XN\UtilityBundle\Doctrine\SluggableUpdater
     xn.utility.doctrine.timestampable_updater.class: XN\UtilityBundle\Doctrine\TimestampableUpdater
     xn.utility.doctrine.primary_bonus_updater.class: XN\UtilityBundle\Doctrine\PrimaryBonusUpdater
+    xn.utility.doctrine.message_notification.class: XN\UtilityBundle\Doctrine\MessageNotification
 
 services:
     xn.utility.twig_extension:
@@ -57,3 +58,9 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }
+
+
+    xn.utility.doctrine.message_notification:
+        class: "%xn.utility.doctrine.message_notification.class%"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
