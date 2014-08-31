@@ -151,6 +151,14 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
         return $this->translateParams;
     }
 
+    public function getAdaptedTranslateParams(){
+        $params = $this->getTranslateParams();
+        foreach($params as &$k => $v)
+            $k = '%' . $k . '%';
+
+        return $params;
+    }
+
     /**
      * Set path
      *
@@ -217,6 +225,10 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
      */
     public function getIsRead()
     {
+        return $this->isRead;
+    }
+
+    public function isRead(){
         return $this->isRead;
     }
 }

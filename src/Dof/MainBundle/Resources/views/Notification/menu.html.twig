@@ -1,0 +1,13 @@
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notifications <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        {% for notification in notifications %}
+        <li>
+            <a href="{{ path(notification.path, notification.params) }}">
+                {{ notification.translateString | trans(notification.adaptedTranslateParams, 'notifications') }}
+            </a>
+        </li>
+        <li class="divider"></li>
+        {% endfor %}
+    </ul>
+</li>
