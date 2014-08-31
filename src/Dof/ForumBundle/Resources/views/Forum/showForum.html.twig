@@ -11,9 +11,9 @@
 			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
 		<table class="table">
-			<tr><th>Topic</th><th>par</th><th>Nb. de réponse</th></tr>
+			<tr><th>Topic</th><th>par</th><th>le</th><th>Nb. de réponse</th></tr>
 			{% for topic in forum.topics %}
-				<tr><td>{{ topic.getName(locales()) }}</td> <td><a href="{{ path('dof_profile_userpage', { 'slug' : topic.owner }) }}">{{ topic.owner }}</a></td></tr>
+				<tr><td>{{ topic.getName(locales()) }}</td><td>{{ topic.createdAt | date("d/m/Y") }}</td><td><a href="{{ path('dof_profile_userpage', { 'slug' : topic.owner }) }}">{{ topic.owner }}</a></td></tr>
 			{% endfor %}
 		</table>
 	</div>
