@@ -39,7 +39,7 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Topic")
+     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Topic", inversedBy="messages")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $topic;
@@ -48,7 +48,7 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +71,7 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     /**
      * Get content
      *
-     * @return text 
+     * @return text
      */
     public function getContent()
     {

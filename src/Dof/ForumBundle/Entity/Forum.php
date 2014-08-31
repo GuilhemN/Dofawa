@@ -46,7 +46,7 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $index;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Category", inversedBy="forums")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $category;
@@ -67,7 +67,7 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -91,7 +91,7 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * Get index
      *
-     * @return integer 
+     * @return integer
      */
     public function getIndex()
     {
