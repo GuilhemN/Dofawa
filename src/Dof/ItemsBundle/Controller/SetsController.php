@@ -9,7 +9,7 @@ use Dof\ItemsBundle\Entity\ItemSet;
 
 class SetsController extends Controller
 {
-    public function indexAction(){
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemSet');
 
