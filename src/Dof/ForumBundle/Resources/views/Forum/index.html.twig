@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+{% autoescape %}
 	{% for category in categories %}
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -15,4 +16,5 @@
 			</div>
 		</div>
 	{% endfor %}
+{% endautoescape %}
 {% endblock %}
