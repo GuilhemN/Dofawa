@@ -12,7 +12,10 @@
 				<h3 class="panel-title">{{ category.getName(locales()) }}</h3>
 			</div>
 			<div class="panel-body">
-			    Panel content
+			    {% for forum in category.forums %}
+			    	{{ forum.getName(locales()) }}
+			    {% endfor %}
+			</div>
 			</div>
 		</div>
 	{% endfor %}
