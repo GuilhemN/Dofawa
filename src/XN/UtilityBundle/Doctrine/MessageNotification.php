@@ -35,8 +35,6 @@ class MessageNotification
 
                 $em->persist($notification);
             }
-
-            $em->flush();
 		}
 	}
 }
