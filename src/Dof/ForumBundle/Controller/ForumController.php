@@ -3,6 +3,7 @@
 namespace Dof\ForumBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ForumController extends Controller
 {
@@ -16,12 +17,12 @@ class ForumController extends Controller
 
 
     /**
-   	* @ParamConverter("forumslug", options={"mapping": {"slug": "slug"}})
+   	* @ParamConverter("forum")
    	*/
-   	public function showForumAction($forumslug)
+   	public function showForumAction(Forum $forum)
     {
     	$em = $this->getDoctrine()->getManager();
-    	$forum = $em->getRepository('DofForumBundle:Forum')->findbySlug($forumslug);
+    	$forum = $em->getRepository('DofForumBundle:Forum')->findbySlug($forum);
         return $this->render('DofForumBundle:Forum:showForum.html.twig', array('forum' => $forum));
     }
 
