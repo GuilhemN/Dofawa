@@ -14,7 +14,7 @@
 			<table class="table">
 				<tr><th>Forum</th><th>Description</th><th>Nb. topics</th></tr>
 			    {% for forum in category.forums %}
-			    	<tr><a href="{{ path('dof_forum_show_forum', { 'slug' : forum.slug }) }}"><td>{{ forum.getName(locales()) }} </td><td><font size="2">{{ forum.getDescription(locales()) }}</font></a></td></tr>
+			    	<tr><a href="{{ path('dof_forum_show_forum', { 'slug' : forum.slug }) }}"><td>{{ forum.getName(locales()) }} </td><td><font size="2">{{ forum.getDescription(locales()) }}</font></td></a></tr>
 			    {% endfor %}
 			</table>
 		</div>
