@@ -14,7 +14,7 @@ class PrimaryBonusUpdater
 	{
 		$ent = $args->getEntity();
 		if ($ent instanceof PrimaryBonusInterface) {
-			$ent->updateElements();
+			$ent->updatePrimaryBonus();
 		}
 	}
 
