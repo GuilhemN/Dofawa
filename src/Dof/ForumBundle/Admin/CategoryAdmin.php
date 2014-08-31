@@ -88,7 +88,7 @@ class CategoryAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('forums')
+            ->add('forums', null, array('require' => false))
             ->add('index')
             ->add('createdAt')
             ->add('updatedAt')
