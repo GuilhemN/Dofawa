@@ -13,7 +13,7 @@
 		<div class="panel-body">
 		<table class="table">
 			{% for topic in forum.topics %}
-				<tr>{{ topic.getName(locales()) }} - <font size="2">{{ topic.getDescription(locales()) }}</font></tr>
+				<tr>{{ topic.getName(locales()) }}</tr>
 			{% endfor %}
 		</table>
 		</div>
