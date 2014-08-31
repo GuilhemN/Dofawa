@@ -153,10 +153,11 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
 
     public function getAdaptedTranslateParams(){
         $params = $this->getTranslateParams();
-        foreach($params as &$k => $v)
-            $k = '%' . $k . '%';
+        $nParams = array();
+        foreach($params as $k => $v)
+            $nParams['%' . $k . '%'] = $v;
 
-        return $params;
+        return $nParams;
     }
 
     /**
