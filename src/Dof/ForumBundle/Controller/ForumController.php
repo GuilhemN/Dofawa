@@ -21,7 +21,7 @@ class ForumController extends Controller
    	public function showForumAction($forumslug)
     {
     	$em = $this->getDoctrine()->getManager();
-    	$forum = $em->getRepository('DofForumBundle:Forum')->findbySlug($forumslug));
+    	$forum = $em->getRepository('DofForumBundle:Forum')->findbySlug($forumslug);
         return $this->render('DofForumBundle:Forum:showForum.html.twig', array('forum' => $forum));
     }
 
