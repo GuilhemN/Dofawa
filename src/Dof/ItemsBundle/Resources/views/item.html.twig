@@ -34,12 +34,16 @@
                                 </div>
                             {% endset %}
 
-                            {# Conditions #}
-                            <li><a href="#conditions-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
-                            {% set item_content %}
-                                {{ item_content }}
-                                <div class="tab-pane" id="conditions-item{{ item.id }}">...</div>
-                            {% endset %}
+                            {% if item.criteria is not empty %}
+                                {# Conditions #}
+                                <li><a href="#conditions-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+                                {% set item_content %}
+                                    {{ item_content }}
+                                    <div class="tab-pane" id="conditions-item{{ item.id }}">
+                                        {{ item.criteria }}
+                                    </div>
+                                {% endset %}
+                            {% endif %}
                         {% endif %}
 
                         {# Nourriture familier #}

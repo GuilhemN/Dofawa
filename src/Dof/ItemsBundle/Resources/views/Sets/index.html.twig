@@ -7,8 +7,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Level</th>
+                    <th>{{ 'name' | trans({}, 'generalTrans')}}</th>
+                    <th>{{ 'list.level' | transs({}, 'item')}}</th>
                     <th>Items</th>
                     <th>Éléments</th>
                 </tr>
@@ -21,7 +21,7 @@
                                 {{ set.getName(locales()) }}
                             </a>
                         </td>
-                        <td>Niveau {{ set.level }}</td>
+                        <td>{{ 'level' | trans({'%level%': set.level}, 'item') }}</td>
                         <td>{{ set.itemCount }} items</td>
                         <td>
                             {% for element in set.elements %}

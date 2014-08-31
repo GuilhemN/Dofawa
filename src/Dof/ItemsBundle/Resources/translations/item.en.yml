@@ -1,4 +1,6 @@
-level: level %level%
+list:
+    level: Level
+level: Level %level%
 
 to: to
 vitality: Vitality
