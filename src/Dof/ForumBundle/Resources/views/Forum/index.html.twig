@@ -5,11 +5,10 @@
 {% endblock %}
 
 {% block body %}
-{% autoescape %}
 	{% for category in categories %}
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">{{ category.getName(locales()) }}</h3>
+				<h3 class="panel-title">category.getName(locales())</h3>
 			</div>
 			<div class="panel-body">
 			    {% for forum in category.forums %}
@@ -19,5 +18,4 @@
 			</div>
 		</div>
 	{% endfor %}
-{% endautoescape %}
 {% endblock %}
