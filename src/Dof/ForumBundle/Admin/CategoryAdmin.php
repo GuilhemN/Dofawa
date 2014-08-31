@@ -60,7 +60,7 @@ class CategoryAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('forums', null, array('require' => false))
+            ->add('forums', null, array('required' => false))
             ->add('index')
             ->add('nameFr')
             ->add('nameEn')
