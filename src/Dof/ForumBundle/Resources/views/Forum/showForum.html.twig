@@ -1,0 +1,22 @@
+{% extends 'DofArticlesBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+  <li><a href="{{ path('dof_forum_homepage') }}">Forum</a></li> <li>{{ forum.getName(locales()) }}</li>
+{% endblock %}
+
+{% block body %}
+{% autoescape %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
+		</div>
+		<div class="panel-body">
+		<table class="table">
+			{% for topic in forum.topics %}
+				<tr>{{ topic.getName(locales()) }} - <font size="2">{{ topic.getDescription(locales()) }}</font></tr>
+			{% endfor %}
+		</table>
+		</div>
+	</div>
+{% endautoescape %}
+{% endblock %}

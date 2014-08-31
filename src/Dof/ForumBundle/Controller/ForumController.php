@@ -14,14 +14,18 @@ class ForumController extends Controller
         return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories));
     }
 
-   /* public function showForumAction($forum)
+
+    /**
+   	* @ParamConverter("forumslug", options={"mapping": {"slug": "slug"}})
+   	*/
+   	public function showForumAction($forumslug)
     {
     	$em = $this->getDoctrine()->getManager();
-    	$forums = $em->getRepository('DofForumBundle:Forum')->findBy(array('name' => $forum, 'content' => 'dddd'));
-        return $this->render('DofForumBundle:Default:index.html.twig', array('name' => $name));
+    	$forum = $em->getRepository('DofForumBundle:Forum')->findbySlug($forumslug));
+        return $this->render('DofForumBundle:Forum:showForum.html.twig', array('forum' => $forum));
     }
 
-    public function showTopicAction($topic)
+    /*public function showTopicAction($topic)
     {
         return $this->render('DofForumBundle:Default:index.html.twig', array('name' => $name));
     }*/
