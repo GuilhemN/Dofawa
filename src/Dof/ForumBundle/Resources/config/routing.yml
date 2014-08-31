@@ -1,3 +1,7 @@
 dof_forum_homepage:
     path:     /forum
     defaults: { _controller: DofForumBundle:Forum:index }
+
+dof_forum_show_forum:
+    path:     /forum/{slug}
+    defaults: { _controller: DofForumBundle:Forum:showForum }
