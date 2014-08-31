@@ -21,6 +21,6 @@ class NotificationController extends Controller
             if(!$notification->isRead())
                 $unread++;
 
-        return $this->render('DofMainBundle:Notification:menu.html.twig', ['notifications' => 'notifications', 'unread' => $unread]);
+        return $this->render('DofMainBundle:Notification:menu.html.twig', ['notifications' => $notifications, 'unread' => $unread]);
     }
 }
