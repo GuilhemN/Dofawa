@@ -1,0 +1,21 @@
+{% extends 'DofArticlesBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+  <li>Forum</li>
+{% endblock %}
+
+{% block body %}
+	{% for category in categories %}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">category.getName(locales())</h3>
+			</div>
+			<div class="panel-body">
+
+			
+			    	{% forum in category.forums %}
+			
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}
