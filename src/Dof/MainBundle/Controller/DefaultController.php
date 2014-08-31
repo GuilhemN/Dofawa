@@ -20,6 +20,5 @@ class DefaultController extends Controller
 		}
 
 		return $this->render('DofMainBundle:Home:index.html.twig', array('articles'=>$articles));
-
 	}
 }
