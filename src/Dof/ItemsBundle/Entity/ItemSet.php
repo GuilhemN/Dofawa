@@ -15,8 +15,8 @@ use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-use Dof\ItemsBundle\ElementableInterface;
-use Dof\ItemsBundle\ElementableTrait;
+use Dof\ItemsBundle\PrimaryBonusInterface;
+use Dof\ItemsBundle\PrimaryBonusTrait;
 
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
@@ -27,7 +27,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_item_sets")
  * @ORM\Entity(repositoryClass="ItemSetRepository")
  */
-class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, ElementableInterface
+class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, PrimaryBonusInterface
 {
     /**
      * @var integer
@@ -37,7 +37,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, ElementableTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, PrimaryBonusTrait;
 
     /**
      * @var Collection
@@ -236,7 +236,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
         return false;
     }
 
-    public function getCharacteristicsForElements($metadata, array $caracts = array()){
+    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
 
         $biggestCombination = null;
         $countItem = count($this->getItems());
@@ -244,12 +244,12 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
             if($combination->getItemCount() == $countItem){
                 $biggestCombination = $combination;
 
-                $caracts = $biggestCombination->getCharacteristicsForElements($metadata, $caracts);
+                $caracts = $biggestCombination->getCharacteristicsForPrimaryBonus($primaryFields, $caracts);
                 break;
             }
 
         foreach($this->getItems() as $item)
-            $caracts = $item->getCharacteristicsForElements($metadata, $caracts);
+            $caracts = $item->getCharacteristicsForPrimaryBonus($primaryFields, $caracts);
 
         return $caracts;
     }

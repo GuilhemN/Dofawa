@@ -5,15 +5,15 @@ namespace XN\UtilityBundle\Doctrine;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
-use Dof\ItemsBundle\ElementableInterface;
+use Dof\ItemsBundle\PrimaryBonusInterface;
 
-class ElementableUpdater
+class PrimaryBonusUpdater
 {
 
 	public function prePersist(LifecycleEventArgs $args)
 	{
 		$ent = $args->getEntity();
-		if ($ent instanceof ElementableInterface) {
+		if ($ent instanceof PrimaryBonusInterface) {
 			$ent->updateElements();
 		}
 	}
@@ -24,23 +24,23 @@ class ElementableUpdater
 		$uow = $em->getUnitOfWork();
 		$mds = array();
 		$updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow) {
-			return $ent instanceof ElementableInterface && self::hasCharactsChanges($ent, $uow->getEntityChangeSet($ent));
+			return $ent instanceof PrimaryBonusInterface && self::hasCharactsChanges($ent, $uow->getEntityChangeSet($ent));
 		});
 		foreach ($updates as $ent) {
-			$ent->updateElements();
-			$parent = $ent->getParentElements();
-			if($parent != null){
-				$parent->updateElements();
-				$em->persist($parent);
+			$ent->updatePrimaryBonus();
+			$cascadeClass = $ent->getCascadeForPrimaryBonus();
+			if($cascadeClass != null){
+				$cascadeClass->updatePrimaryBonus();
+				$em->persist($cascadeClass);
 
-				$pClazz = get_class($parent);
+				$pClazz = get_class($cascadeClass);
 				if (isset($mds[$pClazz]))
 					$md = $mds[$pClazz];
 				else {
 					$md = $em->getClassMetadata($pClazz);
 					$mds[$pClazz] = $md;
 				}
-				$uow->recomputeSingleEntityChangeSet($md, $parent);
+				$uow->recomputeSingleEntityChangeSet($md, $cascadeClass);
 			}
 
 			$clazz = get_class($ent);
@@ -55,7 +55,7 @@ class ElementableUpdater
 	}
 
     protected static function hasCharactsChanges($entity, $chgset){
-		$metadata = $entity->getElementsMetadata();
+		$metadata = $entity->getPrimaryBonusFields();
         $charactsFields = array();
         foreach(array_keys($metadata) as $charact){
             $charactsFields[ ] = $charact;
