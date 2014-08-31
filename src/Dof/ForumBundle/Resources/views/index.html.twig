@@ -12,7 +12,9 @@
 			</div>
 			<div class="panel-body">
 			
-			    	{% forum in category.forums %}
+			    {% for forum in category.forums %}
+			    	{{ forum.getName(locales()) }}
+			    {% endfor %}
 			</div>
 		</div>
 	{% endfor %}
