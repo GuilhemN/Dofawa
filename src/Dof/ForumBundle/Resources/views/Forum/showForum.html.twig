@@ -11,8 +11,9 @@
 			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
 		<table class="table">
+			<tr><th>Topic</th><th>par</th><th>Nb. de réponse</th></tr>
 			{% for topic in forum.topics %}
-				<tr><td>{{ topic.getName(locales()) }} par {{ topic.owner }}</td></tr>
+				<tr><td>{{ topic.getName(locales()) }}</td> <td>{{ topic.owner }}</td></tr>
 			{% endfor %}
 		</table>
 	</div>
