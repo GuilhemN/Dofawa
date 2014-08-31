@@ -11,7 +11,7 @@ class ForumController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$categorys = $em->getRepository('DofForumBundle:Category')->findAll();
 
-        return $this->render('DofForumBundle:index.html.twig', array('category' => $categorys));
+        return $this->render('DofForumBundle:Forum:index.html.twig', array('category' => $categorys));
     }
 
    /* public function showForumAction($forum)
