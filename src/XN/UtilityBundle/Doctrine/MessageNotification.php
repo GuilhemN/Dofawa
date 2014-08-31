@@ -18,17 +18,24 @@ class MessageNotification
 		if ($ent instanceof Message) {
             $em = $args->getEntityManager();
 
-			$notification = new Notification();
+            $otherParticipants = $ent->getThread()->getOtherParticipants($ent->getSender());
+            $senderUsername = $ent->getSender()->getUsername();
+            $threadId = $ent->getThread()->getId();
 
-            $notification->setOwner($ent->getMetadata()->getParticipant());
-            $notification->setType(NotificationType::RECEIVE_MESSAGE);
-            $notification->setTranslateString('message.receive');
-            $notification->setTranslateParams(array('by' => $ent->getSender()->getUsername()));
+            foreach($otherParticipants as $participant){
+    			$notification = new Notification();
 
-            $notification->setPath('fos_message_thread_view');
-            $notification->setParams(array('threadId' => $ent->getThread()->getId()));
+                $notification->setOwner($participant);
+                $notification->setType(NotificationType::RECEIVE_MESSAGE);
+                $notification->setTranslateString('message.receive');
+                $notification->setTranslateParams(array('by' => $senderUsername));
 
-            $em->persist($notification);
+                $notification->setPath('fos_message_thread_view');
+                $notification->setParams(array('threadId' => $threadId));
+
+                $em->persist($notification);
+            }
+
             $em->flush();
 		}
 	}
