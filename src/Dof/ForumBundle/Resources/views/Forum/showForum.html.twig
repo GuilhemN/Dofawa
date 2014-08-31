@@ -10,13 +10,12 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
-		<div class="panel-body">
 		<table class="table">
+			<tr><th>Topic</th><th>par</th><th>Nb. de réponse</th></tr>
 			{% for topic in forum.topics %}
-				<tr>{{ topic.getName(locales()) }} - <font size="2">{{ topic.getDescription(locales()) }}</font></tr>
+				<tr><td>{{ topic.getName(locales()) }}</td> <td><a href="{{ path('dof_profile_userpage', { 'slug' : topic.owner }) }}">{{ topic.owner }}</a></td></tr>
 			{% endfor %}
 		</table>
-		</div>
 	</div>
 {% endautoescape %}
 {% endblock %}

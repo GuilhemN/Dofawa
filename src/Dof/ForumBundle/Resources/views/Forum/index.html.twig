@@ -11,11 +11,12 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">{{ category.getName(locales()) }}</h3>
 			</div>
-			<div class="panel-body">
+			<table class="table">
+				<tr><th>Forum</th><th>Description</th><th>Nb. topics</th></tr>
 			    {% for forum in category.forums %}
-			    	<div class="well">{{ forum.getName(locales()) }} - <font size="2">{{ forum.getDescription(locales()) }}</font></div>
+			    	<tr><td><a href="{{ path('dof_forum_show_forum', { 'slug' : forum.slug }) }}">{{ forum.getName(locales()) }}</a></td><td><font size="2">{{ forum.getDescription(locales()) }}</font></td></tr>
 			    {% endfor %}
-			</div>
+			</table>
 		</div>
 	{% endfor %}
 {% endautoescape %}

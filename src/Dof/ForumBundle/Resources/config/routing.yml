@@ -5,3 +5,5 @@ dof_forum_homepage:
 dof_forum_show_forum:
     path:     /forum/{slug}
     defaults: { _controller: DofForumBundle:Forum:showForum }
+    requirements:
+       slug: '[0-9a-z-]+'
