@@ -10,13 +10,11 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
-		<div class="panel-body">
 		<table class="table">
 			{% for topic in forum.topics %}
 				<tr><td>{{ topic.getName(locales()) }} par {{ topic.owner }}</td></tr>
 			{% endfor %}
 		</table>
-		</div>
 	</div>
 {% endautoescape %}
 {% endblock %}
