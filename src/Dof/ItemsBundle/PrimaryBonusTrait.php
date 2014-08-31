@@ -48,7 +48,7 @@ trait PrimaryBonusTrait
     {
         $elements = array('earth', 'fire', 'water', 'air');
 
-        $caracts = $this->getCharacteristicsForElements($this->getPrimaryBonusFields());
+        $caracts = $this->getCharacteristicsForPrimaryBonus($this->getPrimaryBonusFields());
 
         $biggestCaract = null;
 
