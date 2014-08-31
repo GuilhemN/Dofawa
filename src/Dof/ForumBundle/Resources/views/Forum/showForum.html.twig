@@ -13,7 +13,7 @@
 		<div class="panel-body">
 		<table class="table">
 			{% for topic in forum.topics %}
-				<tr>{{ topic.getName(locales()) }}</tr>
+				<tr><td>{{ topic.getName(locales()) }} par {{ topic.owner }}</td></tr>
 			{% endfor %}
 		</table>
 		</div>
