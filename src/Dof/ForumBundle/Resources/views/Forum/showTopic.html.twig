@@ -15,15 +15,14 @@
 				  	<div class="panel-body">
 				    	<table class="table">
 							<tr>
-						        <td rowspan="2">
+						        <td rowspan="2" class="col-xs-4">
 							        <div class="thumbnail">
 								      <div class="caption">
-								        <h3>{{ message.owner }}</h3>
-								        	
+								        <a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a>
 								      </div>
 								    </div>
 								</td>
-						        <td>{{ message.content }}</td>
+						        <td class="col-xs-8">{{ message.content }}</td>
 						    </tr>
 						    <tr>
 						        <td></td>
