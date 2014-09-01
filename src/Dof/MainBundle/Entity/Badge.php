@@ -15,6 +15,7 @@ use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 
 use Dof\MainBundle\Entity\BadgeLevel;
+use Dof\UserBundle\Entity\Badge as UserBadge;
 
 /**
  * Badge
@@ -24,7 +25,7 @@ use Dof\MainBundle\Entity\BadgeLevel;
  */
 class Badge implements IdentifiableInterface, TimestampableInterface
 {
-    use TimestampableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
+    use TimestampableTrait, LocalizedNameTrait;
     /**
      * @var integer
      *
@@ -48,9 +49,17 @@ class Badge implements IdentifiableInterface, TimestampableInterface
      */
     private $levels;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="Dof\UserBundle\Entity\Badge", mappedBy="badge")
+     */
+    private $userBadges;
+
     public function __construct()
     {
         $this->levels = new ArrayCollection();
+        $this->userBadges = new ArrayCollection();
     }
 
 
@@ -126,5 +135,42 @@ class Badge implements IdentifiableInterface, TimestampableInterface
 
     public function __toString(){
         return $this->getName();
+    }
+
+
+    /**
+     * Add userBadges
+     *
+     * @param UserBadge $userBadges
+     * @return Badge
+     */
+    public function addUserBadge(UserBadge $userBadges)
+    {
+        $this->userBadges[] = $userBadges;
+
+        return $this;
+    }
+
+    /**
+     * Remove userBadges
+     *
+     * @param UserBadge $userBadges
+     * @return Badge
+     */
+    public function removeUserBadge(UserBadge $userBadges)
+    {
+        $this->userBadges->removeElement($userBadges);
+
+        return $this;
+    }
+
+    /**
+     * Get userBadges
+     *
+     * @return Collection
+     */
+    public function getUserBadges()
+    {
+        return $this->userBadges;
     }
 }

@@ -21,7 +21,6 @@ class BadgeAdmin extends Admin
             ->add('createdAt')
             ->add('updatedAt')
             ->add('nameFr')
-            ->add('descriptionFr')
         ;
     }
 
@@ -62,14 +61,6 @@ class BadgeAdmin extends Admin
             ->add('namePt')
             ->add('nameJp')
             ->add('nameRu')
-            ->add('descriptionFr')
-            ->add('descriptionEn')
-            ->add('descriptionDe')
-            ->add('descriptionEs')
-            ->add('descriptionIt')
-            ->add('descriptionPt')
-            ->add('descriptionJp')
-            ->add('descriptionRu')
         ;
     }
 
@@ -91,14 +82,6 @@ class BadgeAdmin extends Admin
             ->add('namePt')
             ->add('nameJp')
             ->add('nameRu')
-            ->add('descriptionFr')
-            ->add('descriptionEn')
-            ->add('descriptionDe')
-            ->add('descriptionEs')
-            ->add('descriptionIt')
-            ->add('descriptionPt')
-            ->add('descriptionJp')
-            ->add('descriptionRu')
         ;
     }
 }

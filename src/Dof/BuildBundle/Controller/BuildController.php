@@ -10,6 +10,7 @@ use Dof\BuildBundle\Entity\Stuff;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
 use Dof\CharactersBundle\Gender;
+use Dof\UserBundle\Entity\Badge;
 
 class BuildController extends Controller
 {
@@ -47,7 +48,7 @@ class BuildController extends Controller
             $look->setGender($dform['gender']);
 
             // Ajout d'un nom au premier stuff
-            $stuff->setName('1er Stuff');
+            $stuff->setName('1er Stuff de '  . $character->getName());
 
             // Relations
             $character->addStuff($stuff);
@@ -61,7 +62,15 @@ class BuildController extends Controller
             $em->persist($stuff);
             $em->persist($look);
 
+            // Badge
+            $this->get('badge_manager')->addBadge('create-build');
+
             $em->flush();
+            return $this->redirect($this->generateUrl('dof_build_show', array(
+                'user' => $this->getUser()->getSlug(),
+                'character' => $character->getSlug(),
+                'stuff' => $stuff->getSlug()
+                )));
         }
 
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
@@ -75,7 +84,7 @@ class BuildController extends Controller
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
         $perso = $persoR->findForShow($user, $character);
-        
+
         if(empty($perso))
             throw $this->createNotFoundException();
 

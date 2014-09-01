@@ -18,6 +18,8 @@ mkdir -p bin/cache
 rm -rf app/cache
 mkdir -p app/cache
 
+mkdir -p web/uploads/badges
+
 if [ "$1" == --dev ]; then
 	php "$(type -p composer)" install --no-scripts
 else
@@ -38,6 +40,7 @@ if [ "$(id -u)" == 0 ]; then
 	chown -R www-data:www-data app/cache
 	chown -R www-data:www-data app/logs
 	chown -R www-data:www-data bin/cache
+	chown -R www-data:www-data web/uploads/
 fi
 
 if [ "$1" == --dev ]; then

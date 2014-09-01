@@ -19,6 +19,9 @@ class BadgeLevelAdmin extends Admin
             ->add('id')
             ->add('minCount')
             ->add('path')
+            ->add('nameFr')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
 
@@ -29,6 +32,7 @@ class BadgeLevelAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('nameFr')
             ->add('minCount')
             ->add('path')
             ->add('_action', 'actions', array(
@@ -49,7 +53,23 @@ class BadgeLevelAdmin extends Admin
         $formMapper
             ->add('badge', null, array('required' => false))
             ->add('minCount')
-            ->add('file')
+            ->add('file', 'file')
+            ->add('nameFr')
+            ->add('nameEn')
+            ->add('nameDe')
+            ->add('nameEs')
+            ->add('nameIt')
+            ->add('namePt')
+            ->add('nameJp')
+            ->add('nameRu')
+            ->add('descriptionFr')
+            ->add('descriptionEn')
+            ->add('descriptionDe')
+            ->add('descriptionEs')
+            ->add('descriptionIt')
+            ->add('descriptionPt')
+            ->add('descriptionJp')
+            ->add('descriptionRu')
         ;
     }
 
@@ -60,8 +80,26 @@ class BadgeLevelAdmin extends Admin
     {
         $showMapper
             ->add('id')
+            ->add('createdAt')
+            ->add('updatedAt')
             ->add('minCount')
             ->add('path')
+            ->add('nameFr')
+            ->add('nameEn')
+            ->add('nameDe')
+            ->add('nameEs')
+            ->add('nameIt')
+            ->add('namePt')
+            ->add('nameJp')
+            ->add('nameRu')
+            ->add('descriptionFr')
+            ->add('descriptionEn')
+            ->add('descriptionDe')
+            ->add('descriptionEs')
+            ->add('descriptionIt')
+            ->add('descriptionPt')
+            ->add('descriptionJp')
+            ->add('descriptionRu')
         ;
     }
 }
