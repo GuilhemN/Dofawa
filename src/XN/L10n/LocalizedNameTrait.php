@@ -296,4 +296,17 @@ trait LocalizedNameTrait
     		default: return null;
     	}
     }
+
+    public function getNames(){
+        return [
+            'nameFr' => $this->nameFr,
+            'nameEn' => $this->nameEn,
+            'nameDe' => $this->nameDe,
+            'nameEs' => $this->nameEs,
+            'nameIt' => $this->nameIt,
+            'namePt' => $this->namePt,
+            'nameJp' => $this->nameJp,
+            'nameRu' => $this->nameRu
+        ];
+    }
 }

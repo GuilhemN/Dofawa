@@ -62,10 +62,11 @@ class BuildController extends Controller
             $em->persist($stuff);
             $em->persist($look);
 
+            $em->flush();
+            
             // Badge
             $this->get('badge_manager')->addBadge('create-build');
 
-            $em->flush();
             return $this->redirect($this->generateUrl('dof_build_show', array(
                 'user' => $this->getUser()->getSlug(),
                 'character' => $character->getSlug(),

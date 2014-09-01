@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class BadgeRepository extends EntityRepository
 {
+    public function findOneBySlugWithLevels($slug) {
+        return $this
+                  ->createQueryBuilder('i')
+                  ->select(array('i', 'l'))
+                  ->join('i.levels', 'l')
+                  ->where('i.slug = :slug')
+                  ->getQuery()
+                  ->setParameter('slug', $slug)
+                  ->getOneResult();
+              ;
+    }
 }
