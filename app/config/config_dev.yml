@@ -34,8 +34,3 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
-
-security:
-    firewalls:
-        main:
-            switch_user: { role: ROLE_SUPER_ADMIN, parameter: _switch_user }
