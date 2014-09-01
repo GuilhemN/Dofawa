@@ -66,6 +66,11 @@ class BuildController extends Controller
             $this->get('badge_manager')->addBadge('create-build');
 
             $em->flush();
+            return $this->redirect($this->generateUrl('dof_build_show', array(
+                'user' => $this->getUser()->getSlug(),
+                'character' => $character->getSlug(),
+                'stuff' => $stuff->getSlug()
+                )));
         }
 
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
