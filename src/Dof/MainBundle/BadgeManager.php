@@ -4,8 +4,8 @@ namespace Dof\MainBundle;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Dof\UserBundle\User;
-use Dof\UserBundle\Badge;
+use Dof\UserBundle\Entity\User;
+use Dof\UserBundle\Entity\Badge;
 
 class BadgeManager
 {
@@ -23,7 +23,7 @@ class BadgeManager
     public function addBadge($slug, $user = null){
         if(!($user instanceof User)){
             $user = $this->di->get('security.context')->getToken()->getUser();
-            if($user ===  null)
+            if(!($user instanceof User))
                 return ;
         }
 
