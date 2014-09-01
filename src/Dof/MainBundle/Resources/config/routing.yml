@@ -5,3 +5,7 @@ dof_main_homepage:
 dof_main_calculateur:
     pattern:  /calculateur
     defaults: { _controller: DofMainBundle:Calculateur:index }
+
+dof_notifications_mark_as_read:
+    pattern:  /notifications/mark_as_read
+    defaults: { _controller: DofMainBundle:Notification:markAsRead }

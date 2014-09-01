@@ -1,8 +1,8 @@
-<li class="dropdown">
+<li class="dropdown" id="notifications">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notifications <span class="badge">{{ unread }}</span> <b class="caret"></b></a>
     <ul class="dropdown-menu">
         {% for notification in notifications %}
-        <li>
+        <li {% if notification.isRead() %}class="active"{% endif %}>
             <a href="{{ path(notification.path, notification.params) }}">
                 {{ notification.translateString | trans(notification.adaptedTranslateParams, 'notifications') | raw }}
                 <br>

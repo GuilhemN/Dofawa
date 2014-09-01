@@ -3,11 +3,13 @@
 namespace Dof\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use XN\Common\AjaxControllerTrait;
 
 class NotificationController extends Controller
 {
-    public function menuAction(Request $request)
+    use AjaxControllerTrait;
+
+    public function menuAction()
     {
         $user = $this->get('security.context')->getToken()->getUser();
 
@@ -22,5 +24,31 @@ class NotificationController extends Controller
                 $unread++;
 
         return $this->render('DofMainBundle:Notification:menu.html.twig', ['notifications' => $notifications, 'unread' => $unread]);
+    }
+
+    public function markAsReadAction(){
+        $securityContext = $this->get('security.context');
+        if(!$securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+            throw $this->createAccessDeniedException();
+
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('DofMainBundle:Notification');
+
+        $user = $securityContext->getToken()->getUser();
+
+        $notifications = $repo->findBy('owner' => $user, 'isRead' => false);
+
+        $i = 0;
+        foreach($notification as $notification){
+            $notification->setIsRead(true);
+            $em->persist($notification);
+
+            $i++;
+        }
+
+        $return = array('updated' => $i);
+        $em->flush();
+
+        return $this->createJsonResponse($return);
     }
 }
