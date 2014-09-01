@@ -19,6 +19,7 @@ security:
                 path: fos_user_security_logout
                 target: /%locale%/
             anonymous:    true
+            switch_user: true
 
     access_control:
         - { path: "fos_user_security_login", role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -65,3 +66,4 @@ security:
             - ROLE_STYLIST_ADMIN
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
+            - ROLE_ALLOWED_TO_SWITCH
