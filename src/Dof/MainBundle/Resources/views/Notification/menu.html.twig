@@ -4,8 +4,9 @@
         {% for notification in notifications %}
         <li>
             <a href="{{ path(notification.path, notification.params) }}">
-                {{ notification.translateString | trans(notification.adaptedTranslateParams, 'notifications') }}
-            </a>
+                {{ notification.translateString | trans(notification.adaptedTranslateParams, 'notifications') | raw }}
+            </a><br>
+            <small>{{ notification.createdAt }}</small>
         </li>
         <li class="divider"></li>
         {% endfor %}
