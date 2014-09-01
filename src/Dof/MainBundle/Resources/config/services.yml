@@ -8,10 +8,10 @@ services:
         class: Dof\MainBundle\Admin\BadgeAdmin
         arguments: [~, Dof\MainBundle\Entity\Badge, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: Badge}
+            - {name: sonata.admin, manager_type: orm, group: Badge, label: Badge}
 
     dof_main.admin.badge_level:
         class: Dof\MainBundle\Admin\BadgeLevelAdmin
         arguments: [~, Dof\MainBundle\Entity\BadgeLevel, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: BadgeLevel}
+            - {name: sonata.admin, manager_type: orm, group: Badge, label: BadgeLevel}

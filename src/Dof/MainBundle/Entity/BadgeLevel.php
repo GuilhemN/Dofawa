@@ -7,6 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+use XN\Metadata\TimestampableInterface;
+use XN\Metadata\TimestampableTrait;
+
+//Traduction Titre/Description
+use XN\L10n\LocalizedNameTrait;
+use XN\L10n\LocalizedDescriptionTrait;
+
 use Dof\MainBundle\Entity\Badge;
 
 /**
@@ -16,8 +23,9 @@ use Dof\MainBundle\Entity\Badge;
  * @ORM\Entity(repositoryClass="Dof\MainBundle\Entity\BadgeLevelRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class BadgeLevel
+class BadgeLevel implements TimestampableInterface
 {
+    use TimestampableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
     /**
      * @var integer
@@ -198,6 +206,6 @@ class BadgeLevel
     }
 
     public function __toString(){
-        return 'Count : ' . $this->getMinCount();
+        return $this->getName();
     }
 }
