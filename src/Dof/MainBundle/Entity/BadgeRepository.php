@@ -20,7 +20,7 @@ class BadgeRepository extends EntityRepository
                   ->where('i.slug = :slug')
                   ->getQuery()
                   ->setParameter('slug', $slug)
-                  ->getOneResult();
+                  ->getSingleResult();
               ;
     }
 }
