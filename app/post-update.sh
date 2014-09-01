@@ -18,6 +18,8 @@ mkdir -p bin/cache
 rm -rf app/cache
 mkdir -p app/cache
 
+mkdir -p web/uploads/badges
+
 if [ "$1" == --dev ]; then
 	php "$(type -p composer)" install --no-scripts
 else
