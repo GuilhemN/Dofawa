@@ -5,6 +5,7 @@ namespace Dof\ForumBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ForumBundle\Entity\Forum;
+use Dof\ForumBundle\Entity\Topic;
 
 class ForumController extends Controller
 {
@@ -25,8 +26,11 @@ class ForumController extends Controller
         return $this->render('DofForumBundle:Forum:showForum.html.twig', array('forum' => $forum));
     }
 
-    /*public function showTopicAction($topic)
+    /**
+   	* @ParamConverter("topic")
+   	*/
+   	public function showTopicAction(Topic $topic)
     {
-        return $this->render('DofForumBundle:Default:index.html.twig', array('name' => $name));
-    }*/
+        return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic));
+    }
 }

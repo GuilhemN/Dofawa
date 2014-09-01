@@ -7,3 +7,9 @@ dof_forum_show_forum:
     defaults: { _controller: DofForumBundle:Forum:showForum }
     requirements:
        slug: '[0-9a-z-]+'
+
+dof_forum_show_topic:
+    path:     /forum/topic/{slug}
+    defaults: { _controller: DofForumBundle:Forum:showTopic }
+    requirements:
+       slug: '[0-9a-z-]+'
