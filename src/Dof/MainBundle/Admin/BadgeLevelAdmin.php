@@ -53,7 +53,7 @@ class BadgeLevelAdmin extends Admin
         $formMapper
             ->add('badge', null, array('required' => false))
             ->add('minCount')
-            ->add('file')
+            ->add('file', 'file')
             ->add('nameFr')
             ->add('nameEn')
             ->add('nameDe')
