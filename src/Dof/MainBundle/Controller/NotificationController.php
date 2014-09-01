@@ -36,7 +36,7 @@ class NotificationController extends Controller
 
         $user = $securityContext->getToken()->getUser();
 
-        $notifications = $repo->findBy('owner' => $user, 'isRead' => false);
+        $notifications = $repo->findBy(array('owner' => $user, 'isRead' => false));
 
         $i = 0;
         foreach($notification as $notification){
