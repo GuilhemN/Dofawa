@@ -428,7 +428,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     public function getWebPath()
     {
         return null === $this->avatar
-            ? null
+            ? 'bundles/dofuser/img/default.png'
             : $this->getUploadDir().'/'.$this->avatar;
     }
 
@@ -436,7 +436,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return $this->getWebDir() . $this->getUploadDir();
     }
 
     protected function getUploadDir()
