@@ -15,7 +15,7 @@ use Dof\MainBundle\Entity\Badge as BaseBadge;
 /**
  * Badge
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_user_badges")
  * @ORM\Entity(repositoryClass="Dof\UserBundle\Entity\BadgeRepository")
  */
 class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInterface
