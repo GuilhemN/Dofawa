@@ -5,6 +5,7 @@ namespace Dof\ForumBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ForumBundle\Entity\Forum;
+use Dof\ForumBundle\Entity\Topic;
 
 class ForumController extends Controller
 {
