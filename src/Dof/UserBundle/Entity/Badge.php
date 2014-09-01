@@ -4,6 +4,12 @@ namespace Dof\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\Persistence\IdentifiableInterface;
+use XN\Metadata\TimestampableInterface;
+use XN\Metadata\TimestampableTrait;
+use XN\Metadata\OwnableInterface;
+use Dof\UserBundle\OwnableTrait;
+
 use Dof\MainBundle\Entity\Badge as BaseBadge;
 
 /**
@@ -12,8 +18,10 @@ use Dof\MainBundle\Entity\Badge as BaseBadge;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Dof\UserBundle\Entity\BadgeRepository")
  */
-class Badge
+class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInterface
 {
+    use TimestampableTrait, OwnableTrait;
+
     /**
      * @var integer
      *
@@ -69,7 +77,7 @@ class Badge
     {
         return $this->count;
     }
-    
+
     /**
      * Set badge
      *
