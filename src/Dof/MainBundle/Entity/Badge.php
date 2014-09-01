@@ -24,7 +24,7 @@ use Dof\MainBundle\Entity\BadgeLevel;
  */
 class Badge implements IdentifiableInterface, TimestampableInterface
 {
-    use TimestampableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
+    use TimestampableTrait, LocalizedNameTrait;
     /**
      * @var integer
      *
