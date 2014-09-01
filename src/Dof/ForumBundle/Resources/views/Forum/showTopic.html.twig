@@ -17,12 +17,20 @@
 							<tr>
 						        <td rowspan="2" class="col-xs-4">
 							        <div class="thumbnail">
+							        	<p class="text-right">{{ message.createdAt | date("h:i:s d/m/Y") }}</p>
 								      <div class="caption">
-								        <a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a>
+								      	<table>
+								      		<tr><td><a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a></td></tr>
+								      		<tr><td>Guilde: {{ message.owner.guilde }}</td></tr>
+								      		<tr><td>Lieu: {{ message.owner.lieu }}</td></tr>
+								      		<tr><td>Inscrit le: {{ message.owner.createdAt | date("d/m/Y") }}</td></tr>
+								      	</table>
 								      </div>
 								    </div>
 								</td>
-						        <td class="col-xs-8">{{ message.content }}</td>
+						        <td class="col-xs-8">
+						        	{{ message.content }}
+						        </td>
 						    </tr>
 						    <tr>
 						        <td></td>
