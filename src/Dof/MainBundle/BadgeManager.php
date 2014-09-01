@@ -31,7 +31,7 @@ class BadgeManager
 
         $badge = $em->getRepository('DofMainBundle:Badge')->findOneBySlug($slug);
         if($badge !== null){
-                $uBadge = $em->getRepository('DofUserBundle:Badge')->findOneBy(array('badge' => $badge, 'owner' => $user))
+                $uBadge = $em->getRepository('DofUserBundle:Badge')->findOneBy(array('badge' => $badge, 'owner' => $user));
 
                 if($uBadge === null){
                     $uBadge = new Badge();
