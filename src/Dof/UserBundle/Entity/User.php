@@ -5,6 +5,9 @@ namespace Dof\UserBundle\Entity;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\MinorColumnsInterface;
 use XN\Metadata\TimestampableInterface;
@@ -112,6 +115,22 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
      */
     private $differentpseudo=null;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $avatar;
+
+    /**
+     * @Assert\Image(
+     *     maxSize = "1024k",
+     *     minWidth = 80,
+     *     maxWidth = 150,
+     *     minHeight = 80,
+     *     maxHeight = 150,
+     *     mimeTypesMessage = "Choisissez un fichier image valide.")
+     */
+    private $file;
+
 
     /**
      * Get id
@@ -144,29 +163,6 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     public function getPoint()
     {
         return $this->point;
-    }
-
-    /**
-     * Set avatar
-     *
-     * @param string $avatar
-     * @return User
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    /**
-     * Get avatar
-     *
-     * @return string
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
     }
 
     /**
@@ -420,6 +416,92 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     public function getDifferentpseudo()
     {
         return $this->differentpseudo;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->avatar
+            ? null
+            : $this->getUploadRootDir().'/'.$this->avatar;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->avatar
+            ? null
+            : $this->getUploadDir().'/'.$this->avatar;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/avatars';
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function upload()
+    {
+        // the file property can be empty if the field is not required
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        if(!empty($this->avatar))
+            $this->removeUpload();
+
+        // use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+
+        // move takes the target directory and then the
+        // target filename to move to
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            time().$this->getFile()->getClientOriginalName()
+        );
+
+        // set the path property to the filename where you've saved the file
+        $this->avatar = time().$this->getFile()->getClientOriginalName();
+
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
+    }
+
+    /**
+     * @ORM\PreRemove
+     */
+    public function removeUpload(){
+        @unlink($this->getAbsolutePath());
     }
 
     public function getMinorColumns()

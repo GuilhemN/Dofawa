@@ -14,3 +14,4 @@ inputs:
     date:
         registration: Inscrit le
         born: Date de Naissance
+    avatar: Avatar

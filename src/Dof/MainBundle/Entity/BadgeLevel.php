@@ -55,9 +55,12 @@ class BadgeLevel implements TimestampableInterface
     public $path;
 
     /**
-     * @Assert\File(
+     * @Assert\Image(
      *     maxSize = "1024k",
-     *     mimeTypes = {"image/jpeg", "image/png", "image/gif", "image/pjpeg"},
+     *     minWidth = 80,
+     *     maxWidth = 80,
+     *     minHeight = 80,
+     *     maxHeight = 80,
      *     mimeTypesMessage = "Choisissez un fichier image valide.")
      */
     private $file;
