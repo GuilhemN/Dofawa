@@ -6,6 +6,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Dof\UserBundle\Entity\User;
 use Dof\UserBundle\Entity\Badge;
+use Dof\MainBundle\Entity\Notification;
+use Dof\MainBundle\NotificationType;
 
 class BadgeManager
 {
@@ -29,7 +31,7 @@ class BadgeManager
 
         $em = $this->di->get('doctrine')->getEntityManager();
 
-        $badge = $em->getRepository('DofMainBundle:Badge')->findOneBySlug($slug);
+        $badge = $em->getRepository('DofMainBundle:Badge')->findOneBySlugWithLevels($slug);
         if($badge !== null){
             $uBadge = $em->getRepository('DofUserBundle:Badge')->findOneBy(array('badge' => $badge, 'owner' => $user));
 
@@ -40,7 +42,25 @@ class BadgeManager
             }
 
             $uBadge->setCount($uBadge->getCount() + 1);
+            $count = $uBadge->getCount();
+
+            foreach($badge->getLevels() as $level)
+                if($level->getMinCount() == $count){
+                    $notification = new Notification();
+
+                    $notification->setType(NotificationType::RECEIVE_BADGE);
+                    $notification->setTranslateString('badge.new');
+                    $notification->setTranslateParams($level->getNames());
+
+                    $notification->setPath('dof_profile_userpage');
+                    $notification->setParams(array('slug' => $user->getSlug()));
+
+                    $em->persist($notification);
+                    break;
+                }
+
             $em->persist($uBadge);
+            $em->flush();
         }
     }
 
