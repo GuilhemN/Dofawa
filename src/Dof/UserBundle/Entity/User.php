@@ -118,7 +118,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public $avatar;
+    private $avatar;
 
     /**
      * @Assert\Image(
