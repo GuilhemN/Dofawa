@@ -9,3 +9,4 @@ dof_main_calculateur:
 dof_notifications_mark_as_read:
     pattern:  /notifications/mark_as_read
     defaults: { _controller: DofMainBundle:Notification:markAsRead }
+    options:  { expose: true }
