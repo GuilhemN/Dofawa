@@ -48,7 +48,7 @@ class BuildController extends Controller
             $look->setGender($dform['gender']);
 
             // Ajout d'un nom au premier stuff
-            $stuff->setName('1er Stuff');
+            $stuff->setName('1er Stuff de '  . $character->getName());
 
             // Relations
             $character->addStuff($stuff);
