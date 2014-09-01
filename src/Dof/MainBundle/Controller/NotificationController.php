@@ -39,7 +39,7 @@ class NotificationController extends Controller
         $notifications = $repo->findBy(array('owner' => $user, 'isRead' => false));
 
         $i = 0;
-        foreach($notification as $notification){
+        foreach($notifications as $notification){
             $notification->setIsRead(true);
             $em->persist($notification);
 
