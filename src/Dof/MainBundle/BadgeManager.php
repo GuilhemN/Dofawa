@@ -54,6 +54,7 @@ class BadgeManager
 
                     $notification->setPath('dof_profile_userpage');
                     $notification->setParams(array('slug' => $user->getSlug()));
+                    $notification->setIsRead(false);
 
                     $em->persist($notification);
                     break;

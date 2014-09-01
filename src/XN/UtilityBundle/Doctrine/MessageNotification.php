@@ -22,6 +22,11 @@ class MessageNotification
             $senderUsername = $ent->getSender()->getUsername();
             $threadId = $ent->getThread()->getId();
 
+			if(empty($threadId)){
+				$em->flush();
+				$threadId = $ent->getThread()->getId();
+			}
+
             foreach($otherParticipants as $participant){
     			$notification = new Notification();
 
