@@ -19,10 +19,14 @@
 							        <div class="thumbnail">
 								      <div class="caption">
 								        <a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a>
+								        Guilde: {{ message.owner.guilde }}
+								        lieu: {{ message.owner.lieu }}
 								      </div>
 								    </div>
 								</td>
-						        <td class="col-xs-8">{{ message.content }}</td>
+						        <td class="col-xs-8">
+						        	{{ message.content }}
+						        </td>
 						    </tr>
 						    <tr>
 						        <td></td>
