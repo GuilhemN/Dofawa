@@ -21,7 +21,7 @@
 					<p><strong>{{ 'inputs.website' | trans({}, 'profile') }}</strong> : {{ user.site }}</p>
 				</div><!--/col-->
 				<div class="col-xs-12 col-sm-4 text-center">
-					<img src="{{ assert(user.getWebPath()) }}" alt="" class="center-block img-circle img-responsive">
+					<img src="{{ asset(user.getWebPath()) }}" alt="" class="center-block img-circle img-responsive">
 				</div><!--/col-->
 			</div>
 		</div><!--/panel-body-->
