@@ -16,7 +16,11 @@ class NotificationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
 
-        $notifications = $repo->findByOwner($user);
+        $notifications = $repo->findBy(
+            array('owner' => $user),
+            array('createdAt' => 'DESC'),
+            10
+            );
 
         $unread = 0;
         foreach($notifications as $notification)
