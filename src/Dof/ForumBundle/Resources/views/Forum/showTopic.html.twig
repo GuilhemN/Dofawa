@@ -17,6 +17,8 @@
 				    	<table class="table">
 							<tr>
 						        <td rowspan="2" class="col-xs-4">
+						        	{% set role='' %}	
+								    {% set color='' %}	
 						        	{% if message.owner.hasRole('ROLE_SUPER_ADMIN') %}
 								      	{% set role='Admin' %}	
 								      	{% set color='bg-danger' %}			
