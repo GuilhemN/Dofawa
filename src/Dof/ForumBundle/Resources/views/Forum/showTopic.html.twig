@@ -24,15 +24,15 @@
 										{% set role='Styliste' %}
 										{% set color='bg-success' %}
 									{% endif %}
-							        <div class="thumbnail {{ color |default() }}">
-								      <div class="caption">
+							        <div class="thumbnail">
+								      <div class="caption {{ color |default() }}">
 								      	<table>
 								      		<tr><td><a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a></td></tr>
 								      		<tr><td><img src="{{ asset(message.owner.getWebPath()) }}"></td></tr>
 								      		<tr><td>Guilde: {{ message.owner.guilde }}</td></tr>
 								      		<tr><td>Lieu: {{ message.owner.lieu }}</td></tr>
 								      		<tr><td>Inscrit le: {{ message.owner.createdAt | date("d/m/Y") }}</td></tr>
-								      		<tr><td><font class="{{ color |default() }}">{{ role |default() }}</font></td></tr>
+								      		<tr><td><b>{{ role |default() }}</b></td></tr>
 								      	</table>
 								      </div>
 								    </div>
