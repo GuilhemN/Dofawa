@@ -17,7 +17,14 @@
 				    	<table class="table">
 							<tr>
 						        <td rowspan="2" class="col-xs-4">
-							        <div class="thumbnail">
+						        	{% if message.owner.hasRole('ROLE_SUPER_ADMIN') %}
+								      	{% set role='Admin' %}	
+								      	{% set color='danger' %}			
+									{% elseif message.owner.hasRole('ROLE_STYLIST') %}
+										{% set role='Styliste' %}
+										{% set color='succes' %}
+									{% endif %}
+							        <div class="thumbnail {{ color |default() }}">
 								      <div class="caption">
 								      	<table>
 								      		<tr><td><a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a></td></tr>
@@ -25,7 +32,7 @@
 								      		<tr><td>Guilde: {{ message.owner.guilde }}</td></tr>
 								      		<tr><td>Lieu: {{ message.owner.lieu }}</td></tr>
 								      		<tr><td>Inscrit le: {{ message.owner.createdAt | date("d/m/Y") }}</td></tr>
-								      		<tr><td>Rang: {{ message.owner. }}</td></tr>
+								      		<tr><td><font class="{{ color |default() }}">{{ role |default() }}</font></td></tr>
 								      	</table>
 								      </div>
 								    </div>
