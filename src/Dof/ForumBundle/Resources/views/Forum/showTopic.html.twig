@@ -13,11 +13,11 @@
 			{% for message in topic.messages %}
 				<div class="panel panel-default">
 				  	<div class="panel-body">
+				  	<p class="text-right">{{ message.createdAt | date("h:i:s d/m/Y") }}</p>
 				    	<table class="table">
 							<tr>
 						        <td rowspan="2" class="col-xs-4">
 							        <div class="thumbnail">
-							        	<p class="text-right">{{ message.createdAt | date("h:i:s d/m/Y") }}</p>
 								      <div class="caption">
 								      	<table>
 								      		<tr><td><a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a></td></tr>
