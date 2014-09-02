@@ -19,10 +19,10 @@
 						        <td rowspan="2" class="col-xs-4">
 						        	{% if message.owner.hasRole('ROLE_SUPER_ADMIN') %}
 								      	{% set role='Admin' %}	
-								      	{% set color='danger' %}			
+								      	{% set color='bg-danger' %}			
 									{% elseif message.owner.hasRole('ROLE_STYLIST') %}
 										{% set role='Styliste' %}
-										{% set color='succes' %}
+										{% set color='bg-success' %}
 									{% endif %}
 							        <div class="thumbnail {{ color |default() }}">
 								      <div class="caption">
