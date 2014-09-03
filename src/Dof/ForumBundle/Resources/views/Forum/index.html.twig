@@ -1,8 +1,4 @@
-{% extends 'DofArticlesBundle::layout.html.twig' %}
-
-{% block breadcrumb %}
-  <li>Forum</li>
-{% endblock %}
+{% extends 'DofForumBundle::layout.html.twig' %}
 
 {% block body %}
 {% autoescape %}
@@ -12,9 +8,25 @@
 				<h3 class="panel-title">{{ category.getName(locales()) }}</h3>
 			</div>
 			<table class="table">
-				<tr><th>Forum</th><th>Description</th><th>Nb. topics</th></tr>
+				<tr>
+                    <th>Forum</th>
+                    <th>Description</th>
+                    <th>Nb. topics</th>
+                </tr>
 			    {% for forum in category.forums %}
-			    	<tr><td><a href="{{ path('dof_forum_show_forum', { 'slug' : forum.slug }) }}">{{ forum.getName(locales()) }}</a></td><td><font size="2">{{ forum.getDescription(locales()) }}</font></td><td></td></tr>
+			    	<tr>
+                        <td>
+                            <a href="{{ path('dof_forum_show_forum', { 'slug' : forum.slug }) }}">
+                                {{ forum.getName(locales()) }}
+                            </a>
+                        </td>
+                        <td>
+                            <font size="2">
+                                {{ forum.getDescription(locales()) }}
+                            </font>
+                        </td>
+                        <td>{{ forum.topics | length }}</td>
+                    </tr>
 			    {% endfor %}
 			</table>
 		</div>

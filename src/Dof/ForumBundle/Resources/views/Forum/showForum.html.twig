@@ -1,7 +1,8 @@
-{% extends 'DofArticlesBundle::layout.html.twig' %}
+{% extends 'DofForumBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-  <li><a href="{{ path('dof_forum_homepage') }}">Forum</a></li> <li>{{ forum.getName(locales()) }}</li>
+    {{ parent() }}
+    <li>{{ forum.getName(locales()) }}</li>
 {% endblock %}
 
 {% block body %}
@@ -11,9 +12,29 @@
 			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
 		<table class="table">
-			<tr><th>Topic</th><th>par</th><th>le</th><th>Nb. de réponse</th></tr>
+			<tr>
+                <th>Topic</th>
+                <th>par</th>
+                <th>le</th>
+                <th>Réponse(s)</th>
+            </tr>
 			{% for topic in forum.topics %}
-				<tr><td><a href="{{ path('dof_forum_show_topic', { 'slug' : topic.slug }) }}">{{ topic.getName(locales()) }}</a></td><td><a href="{{ path('dof_profile_userpage', { 'slug' : topic.owner }) }}">{{ topic.owner }}</a></td><td>{{ topic.createdAt | date("h:i:s d/m/Y") }}</td><td></td></tr>
+				<tr>
+                    <td>
+                        <a href="{{ path('dof_forum_show_topic', { 'slug' : topic.slug }) }}">
+                            {{ topic.getName(locales()) }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('dof_profile_userpage', { 'slug' : topic.owner }) }}">
+                            {{ topic.owner }}
+                        </a>
+                    </td>
+                    <td>
+                        {{ topic.createdAt | date("h:i:s d/m/Y") }}
+                    </td>
+                    <td>{{ topic.messages | length }}</td>
+                </tr>
 			{% endfor %}
 		</table>
 	</div>

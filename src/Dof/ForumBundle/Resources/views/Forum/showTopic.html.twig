@@ -1,7 +1,9 @@
-{% extends 'DofArticlesBundle::layout.html.twig' %}
+{% extends 'DofForumBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-  <li><a href="{{ path('dof_forum_homepage') }}">Forum</a></li> <li><a href="{{ path('dof_forum_show_forum', { 'slug' : topic.forum.slug }) }}">{{ topic.forum }}</a></li> <li>{{ topic.getName(locales()) }}</li>
+    {{ parent() }}
+    <li><a href="{{ path('dof_forum_show_forum', { 'slug' : topic.forum.slug }) }}">{{ topic.getName(locales()) }}</a></li>
+    <li>{{ topic.getName(locales()) }}</li>
 {% endblock %}
 
 {% block body %}
