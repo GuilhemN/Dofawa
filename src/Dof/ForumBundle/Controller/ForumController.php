@@ -12,7 +12,7 @@ class ForumController extends Controller
     public function indexAction()
     {
     	$em = $this->getDoctrine()->getManager();
-    	$categories = $em->getRepository('DofForumBundle:Category')->findAll();
+    	$categories = $em->getRepository('DofForumBundle:Category')->displayOrder();
 
         return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories));
     }
