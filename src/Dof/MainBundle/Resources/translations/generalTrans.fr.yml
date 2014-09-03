@@ -12,11 +12,18 @@ bonuspods: "Vos Bonus de Pods"
 lvlyjob: "Niveau de vos métiers"
 yjob: "Votre Métier"
 yspe: "Votre spécialisation"
-enterinfos: "Enter your information to see your Initiative"
+enterinfos: "Entrer vos informations pour voir votre initiative"
 vitamax: "Point de vie Maximum"
 vitaactu: "Point de vie actuel"
 bonusini: "Bonus d'Initiative"
-yearth: "Votre Force(Terre)"
+yearth: "Votre Force (Terre)"
 yintel: "Votre Intelligence (Feu)"
 ychance: "Votre Chance (Eau)"
 yagi: "Votre Agilité (Air)"
+
+# Layout
+footer:
+    links: Liens
+    partners: Partenaires
+    theteam: L'équipe
+    copyright: Dofawa.fr est un fan site non-officiel sans aucun lien avec Ankama. Dofawa © 2014. Tous droits réservés.
