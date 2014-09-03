@@ -1,7 +1,6 @@
 {% extends "::layout.html.twig" %}
 
 {% block breadcrumb %}
-	{{ parent() }}
 	<li><a href="{{ path('fos_user_profile_show') }}">{{ 'profil'|trans({}, 'profile') }}</a></li>
 	<li>{{ 'edit'|trans({}, 'generalTrans')}}</li>
 {% endblock %}

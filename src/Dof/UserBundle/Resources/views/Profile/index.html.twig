@@ -1,8 +1,7 @@
 {% extends "::layout.html.twig" %}
 
 {% block breadcrumb %}
-{{ parent() }}
-<li>{{ 'of'|trans({'%name%': user.username }, 'profile')}}</li>
+	<li>{{ 'of'|trans({'%name%': user.username }, 'profile')}}</li>
 {% endblock %}
 
 {% block body %}

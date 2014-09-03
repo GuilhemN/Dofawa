@@ -1,11 +1,6 @@
-{% extends '::layout.html.twig' %}
+{% extends 'DofBuildBundle::layout.html.twig' %}
 
 {% trans_default_domain "build" %}
-
-{% block breadcrumb %}
-    {{ parent() }}
-    <li>Builds</li>
-{% endblock %}
 
 {% block body %}
 {% autoescape  %}

@@ -1,6 +1,13 @@
-{% extends '::layout.html.twig' %}
+{% extends 'DofBuildBundle::layout.html.twig' %}
 
 {% trans_default_domain "build" %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('dof_profile_userpage', {'slug': perso.owner.slug}) }}">{{ perso.owner.username }}</a></li>
+    <li>{{ perso.name }}</li>
+    <li>{{ stuff.name }}</li>
+{% endblock %}
 
 {% block body %}
 {% autoescape %}

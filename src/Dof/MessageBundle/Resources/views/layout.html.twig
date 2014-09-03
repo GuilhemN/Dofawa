@@ -7,8 +7,7 @@
 
 
     {% block breadcrumb %}
-        {{ parent() }} /
-        {% trans from 'FOSMessageBundle' %}messenger{% endtrans %}
+    <li>{% trans from 'FOSMessageBundle' %}messenger{% endtrans %}</li>
     {% endblock %}
 
 {% block body %}
