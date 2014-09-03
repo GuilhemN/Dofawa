@@ -1,6 +1,6 @@
 dof_forum:
     resource: "@DofForumBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /forum
 
 dof_build:
     resource: "@DofBuildBundle/Resources/config/routing.yml"

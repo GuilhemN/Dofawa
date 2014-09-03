@@ -1,15 +1,15 @@
 dof_forum_homepage:
-    path:     /forum
+    path:     /
     defaults: { _controller: DofForumBundle:Forum:index }
 
 dof_forum_show_forum:
-    path:     /forum/{slug}
+    path:     /{slug}
     defaults: { _controller: DofForumBundle:Forum:showForum }
     requirements:
        slug: '[0-9a-z-]+'
 
 dof_forum_show_topic:
-    path:     /forum/topic/{slug}
+    path:     /topic/{slug}
     defaults: { _controller: DofForumBundle:Forum:showTopic }
     requirements:
        slug: '[0-9a-z-]+'
