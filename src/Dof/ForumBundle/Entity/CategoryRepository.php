@@ -15,6 +15,7 @@ class CategoryRepository extends EntityRepository
 	function displayOrder()
 	{
 		$qb = $this->createQueryBuilder('c')
+				->select('c', 'f')
 				->leftJoin('c.forums', 'f')
                 ->addOrderBy('c.index', 'ASC')
                 ->addOrderBy('f.index', 'ASC');
