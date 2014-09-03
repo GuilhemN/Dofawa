@@ -13,23 +13,36 @@
 			{% for message in topic.messages %}
 				<div class="panel panel-default">
 				  	<div class="panel-body">
+				  	<p class="text-right">{{ message.createdAt | date("h:i:s d/m/Y") }}</p>
 				    	<table class="table">
 							<tr>
 						        <td rowspan="2" class="col-xs-4">
+						        	{% set role='' %}	
+								    {% set color='' %}	
+						        	{% if message.owner.hasRole('ROLE_SUPER_ADMIN') %}
+								      	{% set role='Admin' %}	
+								      	{% set color='bg-danger' %}			
+									{% elseif message.owner.hasRole('ROLE_STYLIST') %}
+										{% set role='Styliste' %}
+										{% set color='bg-success' %}
+									{% endif %}
 							        <div class="thumbnail">
-							        	<p class="text-right">{{ message.createdAt | date("h:i:s d/m/Y") }}</p>
-								      <div class="caption">
+								      <div class="caption {{ color |default() }}">
 								      	<table>
 								      		<tr><td><a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a></td></tr>
+								      		<tr><td><img src="{{ asset(message.owner.getWebPath()) }}"></td></tr>
 								      		<tr><td>Guilde: {{ message.owner.guilde }}</td></tr>
 								      		<tr><td>Lieu: {{ message.owner.lieu }}</td></tr>
 								      		<tr><td>Inscrit le: {{ message.owner.createdAt | date("d/m/Y") }}</td></tr>
+								      		<tr><td><b>{{ role |default() }}</b></td></tr>
 								      	</table>
 								      </div>
 								    </div>
 								</td>
 						        <td class="col-xs-8">
-						        	{{ message.content }}
+						        	<div class="jumbotron">
+						        		{{ message.content }}
+						        	</div>
 						        </td>
 						    </tr>
 						    <tr>
