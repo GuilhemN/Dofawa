@@ -1,0 +1,60 @@
+list:
+    level: Stufe
+level: Stufe %level%
+
+to: bis
+vitality: Vitalität
+strength: Stärke
+intelligence: Intelligenz
+chance: Glück
+agility: Flinkheit
+wisdom: Weisheit
+power: Schlagkraft
+criticalHits: KT
+ap: AP
+mp: BP
+range: RW
+summons: beschwörbare Kreaturen
+damage: Schaden
+neutralDamage: Neutralschaden
+earthDamage: Erdschaden
+fireDamage: Feuerschaden
+waterDamage: Wasserschaden
+airDamage: Luftschaden
+heals: Heilung
+prospecting: Filzpunkte
+initiative: Initiative
+reflectedDamage: Wirftschaden # TODO
+percentNeutralResistance: % Neutralresistenz
+percentEarthResistance: % Erdresistenz
+percentFireResistance: % Feuerresistenz
+percentWaterResistance: % Wasserresistenz
+percentAirResistance: % Luftresistenz
+neutralResistance: Neutralresistenz
+earthResistance: Erdresistenz
+fireResistance: Feuerresistenz
+waterResistance: Wasserresistenz
+airResistance: Luftresistenz
+percentNeutralResistanceInPvp: % Neutralresistenz im PvP
+percentEarthResistanceInPvp: % Erdresistenz im PvP
+percentFireResistanceInPvp: % Feuerresistenz im Pvp
+percentWaterResistanceInPvp: % Wasserresistenz im Pvp
+percentAirResistanceInPvp: % Luftresistenz im PvP
+neutralResistanceInPvp: Neutralresistenz im PvP
+earthResistanceInPvp: Erdresistenz im PvP
+fireResistanceInPvp: Feuerresistenz im Pvp
+waterResistanceInPvp: Wasserresistenz im Pvp
+airResistanceInPvp: Luftresistenz im PvP
+lock: Blocken
+dodge: Ausweichen
+apReduction: AP-Entzug
+mpReduction: BP-Entzug
+apLossResistance: Res. gg. AP-Entzug
+mpLossResistance: Res. gg. BP-Entzug
+criticalDamage: KT-Schaden
+criticalResistance: KT-Resistenz
+pushbackDamage: Schubsschaden
+pushbackResistance: Schubsresistenz
+trapPower: Schlagkraft (Fallen)
+trapDamage: Fallenschaden
+pods: Pods
