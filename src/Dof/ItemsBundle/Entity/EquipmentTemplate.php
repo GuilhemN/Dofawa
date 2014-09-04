@@ -6,6 +6,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Dof\ItemsBundle\NoteHelper;
+
 use Dof\ItemsBundle\CharacteristicsRangeTrait;
 use Dof\ItemsBundle\PrimaryBonusInterface;
 use Dof\ItemsBundle\PrimaryBonusTrait;
@@ -43,6 +45,13 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Item", mappedBy="itemTemplate")
      */
     private $buildItems;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="power_rate", type="integer")
+     */
+    private $powerRate;
 
 	public function __construct()
 	{
@@ -140,6 +149,23 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
     {
         return $this->buildItem;
     }
+
+	public function getPowerRate(){
+		return $this->powerRate;
+	}
+
+	public function setPowerRate($powerRate){
+		$this->powerRate = $powerRate;
+		return $this;
+	}
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+	public function updatePowerRate(){
+		return NoteHelper::calcPowerRate($this->getCharacteristics);
+	}
 
 	public function isEquipment() { return true; }
 	public function getClassId() { return 'equip'; }
