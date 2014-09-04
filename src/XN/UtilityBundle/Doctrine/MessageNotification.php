@@ -30,14 +30,11 @@ class MessageNotification
 
             $otherParticipants = $ent->getThread()->getOtherParticipants($ent->getSender());
 
-			$em->detach($ent->getThread());
 			$em->flush();
 
 			$nm = $this->di->get('notification_manager');
             foreach($otherParticipants as $participant)
                 $nm->addNotification($ent, 'message.receive', $participant);
-
-			$em->persist($ent->getThread());
 		}
 	}
 }
