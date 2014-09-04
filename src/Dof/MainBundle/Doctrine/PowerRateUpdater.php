@@ -1,6 +1,6 @@
 <?php
 
-namespace XN\UtilityBundle\Doctrine;
+namespace Dof\MainBundle\Doctrine;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
