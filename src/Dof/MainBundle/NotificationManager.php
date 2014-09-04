@@ -83,8 +83,8 @@ class NotificationManager
 
             $metadatas = $this->getMetadataByType($notification->getType());
 
-            if(isset($dynamics = $metadatas['translationParams']['dynamic']))
-                foreach($dynamics as $k => $var) {
+            if(isset($metadatas['translationParams']['dynamic']))
+                foreach($metadatas['translationParams']['dynamic'] as $k => $var) {
                     $fields = explode(".", $var);
 
                     $value = $ent;
@@ -98,15 +98,15 @@ class NotificationManager
 
                     $translationParams[$k] = $value;
                 }
-            if(isset($statics = $metadatas['translationParams']['static']))
-                $translationParams += $statics;
+            if(isset($metadatas['translationParams']['static']))
+                $translationParams += $metadatas['translationParams']['static'];
 
             $return[$i]['translationString'] = $metadatas['translationString'];
             $return[$i]['translationParams'] = $translationParams;
 
 
-            if(isset($dynamics = $metadatas['pathParams']['dynamic']))
-                foreach($dynamics as $k => $var) {
+            if(isset($metadatas['pathParams']['dynamic']))
+                foreach($metadatas['pathParams']['dynamic'] as $k => $var) {
                     $fields = explode(".", $var);
 
                     $value = $ent;
@@ -115,8 +115,8 @@ class NotificationManager
 
                     $pathParams[$k] = $value;
                 }
-            if(isset($statics = $metadatas['pathParams']['static']))
-                $pathParams += $statics;
+            if(isset($metadatas['pathParams']['static']))
+                $pathParams += $metadatas['pathParams']['static'];
 
             $return[$i]['path'] = $metadatas['path'];
             $return[$i]['pathParams'] = $pathParams;
