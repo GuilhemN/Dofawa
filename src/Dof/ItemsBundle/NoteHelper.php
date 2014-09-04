@@ -56,15 +56,16 @@ class NoteHelper {
             ];
     }
 
-    public static function calcPowerRate(array $caracts, $range = true){
+    public static function calcPowerRate(array $characts, $range = true){
         $powerRates = self::getPowerRate();
 
         $pwrg = 0; // Power-Rate Global
         foreach($powerRates as $charact => $powerRate){
+            $row = $characts[$charact];
             if($range)
-                $pwrg += ($caracts['min' . ucfirst($charact)] + $caract['max' . ucfirst($charact)]) / 2 * $powerRate;
+                $pwrg += ($row['min'] + $row['max']) / 2 * $powerRate;
             else
-                $pwrg += $caracts[$charact] * $powerRate;
+                $pwrg += $row * $powerRate;
         }
 
         return $pwrg;
