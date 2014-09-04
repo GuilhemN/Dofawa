@@ -26,7 +26,8 @@ class Thread extends BaseThread
     /**
      * @ORM\OneToMany(
      *   targetEntity="Dof\MessageBundle\Entity\Message",
-     *   mappedBy="thread"
+     *   mappedBy="thread",
+     *   cascade={"persist"}
      * )
      * @var Message[]|\Doctrine\Common\Collections\Collection
      */
