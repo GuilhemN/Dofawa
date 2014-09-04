@@ -57,7 +57,7 @@ class NoteHelper {
     }
 
     public static function calcPowerRate(array $caracts, $range = true){
-        $powerRates = $this->getPowerRate();
+        $powerRates = self::getPowerRate();
 
         $pwrg = 0; // Power-Rate Global
         foreach($powerRates as $charact => $powerRate){
