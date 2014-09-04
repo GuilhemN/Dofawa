@@ -74,7 +74,7 @@ class NotificationManager
         $notifications = (array) $notifications;
 
         $i = 0;
-        foreach($notifications as &$notification){
+        foreach($notifications as $notification){
             $ent = $em->getRepository($notification->getClass())->find($notification->getClassId());
             if($ent === null)
                 continue;
@@ -104,7 +104,7 @@ class NotificationManager
 
             $return[$i]['translationString'] = $metadatas['translationString'];
             $return[$i]['translationParams'] = $translationParams;
-            unset($translationParams);
+
 
             if(isset($metadatas['pathParams']['dynamic']))
                 foreach($metadatas['pathParams']['dynamic'] as $k => $var) {
@@ -121,12 +121,10 @@ class NotificationManager
 
             $return[$i]['path'] = $metadatas['path'];
             $return[$i]['pathParams'] = $pathParams;
-            unset($pathParams);
 
             $return[$i]['createdAt'] = $ent->getCreatedAt();
 
             $i++;
-            unset($notification);
 
             return $return;
         }
