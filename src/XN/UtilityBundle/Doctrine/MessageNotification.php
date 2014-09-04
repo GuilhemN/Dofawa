@@ -40,7 +40,7 @@ class MessageNotification
 			$nm = $this->di->get('notification_manager');
 
             foreach($otherParticipants as $participant)
-                $nm->addNotification($level, 'message.receive', $user);
+                $nm->addNotification($level, 'message.receive', $participant);
 
 			$em->flush();
 		}
