@@ -30,7 +30,7 @@ class MessageNotification
 
             $otherParticipants = $ent->getThread()->getOtherParticipants($ent->getSender());
 
-			$em->flush();
+			$em->flush($ent);
 
 			$nm = $this->di->get('notification_manager');
             foreach($otherParticipants as $participant)
