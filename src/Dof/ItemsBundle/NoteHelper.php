@@ -1,5 +1,5 @@
 <?php
-namespace Dof\ItemBundle;
+namespace Dof\ItemsBundle;
 
 class NoteHelper {
     public static function getPowerRate() {
