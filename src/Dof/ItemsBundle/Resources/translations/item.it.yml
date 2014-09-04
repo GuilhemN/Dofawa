@@ -1,0 +1,60 @@
+list:
+    level: Livello
+level: Livello %level%
+
+to: a
+vitality: Vitalité # TODO
+strength: Force # TODO
+intelligence: Intelligence # TODO
+chance: Chance # TODO
+agility: Agilité # TODO
+wisdom: Sagesse # TODO
+power: Puissance # TODO
+criticalHits: Coups Critiques # TODO
+ap: PA # TODO
+mp: PM # TODO
+range: PO # TODO
+summons: Invocations # TODO
+damage: Dommages # TODO
+neutralDamage: Dommages Neutre # TODO
+earthDamage: Dommages Terre # TODO
+fireDamage: Dommages Feu # TODO
+waterDamage: Dommages Eau # TODO
+airDamage: Dommages Air
+heals: Soins # TODO
+prospecting: Prospection # TODO
+initiative: Initiative # TODO
+reflectedDamage: Dommages Retournés # TODO
+percentNeutralResistance: % Résistance Neutre # TODO
+percentEarthResistance: % Résistance Terre # TODO
+percentFireResistance: % Résistance Feu # TODO
+percentWaterResistance: % Résistance Eau # TODO
+percentAirResistance: % Résistance Air # TODO
+neutralResistance: Résistance Neutre # TODO
+earthResistance: Résistance Terre # TODO
+fireResistance: Résistance Feu # TODO
+waterResistance: Résistance Eau # TODO
+airResistance: Résistance Air # TODO
+percentNeutralResistanceInPvp: % Résistance Neutre (JcJ) # TODO
+percentEarthResistanceInPvp: % Résistance Terre (JcJ) # TODO
+percentFireResistanceInPvp: % Résistance Feu (JcJ) # TODO
+percentWaterResistanceInPvp: % Résistance Eau (JcJ) # TODO
+percentAirResistanceInPvp: % Résistance Air (JcJ) # TODO
+neutralResistanceInPvp: Résistance Neutre (JcJ) # TODO
+earthResistanceInPvp: Résistance Terre (JcJ) # TODO
+fireResistanceInPvp: Résistance Feu (JcJ) # TODO
+waterResistanceInPvp: Résistance Eau (JcJ) # TODO
+airResistanceInPvp: Résistance Air (JcJ) # TODO
+lock: Tacle # TODO
+dodge: Fuite # TODO
+apReduction: Retrait PA # TODO
+mpReduction: Retrait PM # TODO
+apLossResistance: Esquive PA # TODO
+mpLossResistance: Esquive PM # TODO
+criticalDamage: Dommages Critiques # TODO
+criticalResistance: Résistance Critiques # TODO
+pushbackDamage: Dommages Poussée # TODO
+pushbackResistance: Dommages Poussée # TODO
+trapPower: Puissance Pièges # TODO
+trapDamage: Dommages Pièges # TODO
+pods: Pods # TODO

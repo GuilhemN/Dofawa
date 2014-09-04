@@ -19,3 +19,7 @@ services:
     badge_manager:
         class: Dof\MainBundle\BadgeManager
         arguments: [ "@service_container" ]
+
+    notification_manager:
+        class: Dof\MainBundle\NotificationManager
+        arguments: [ "@service_container" ]

@@ -2,8 +2,9 @@
 
 namespace XN\UtilityBundle\Doctrine;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\OnFlushEventArgs;
 
 use Dof\MessageBundle\Entity\Message;
 use Dof\MainBundle\Entity\Notification;
@@ -11,6 +12,15 @@ use Dof\MainBundle\NotificationType;
 
 class MessageNotification
 {
+	/**
+	 * @var ContainerInterface
+	 */
+	private $di;
+
+	public function __construct(ContainerInterface $di)
+	{
+		$this->di = $di;
+	}
 
 	public function prePersist(LifecycleEventArgs $args)
 	{
@@ -27,20 +37,12 @@ class MessageNotification
 				$threadId = $ent->getThread()->getId();
 			}
 
-            foreach($otherParticipants as $participant){
-    			$notification = new Notification();
+			$nm = $this->di->get('notification_manager');
 
-                $notification->setOwner($participant);
-                $notification->setType(NotificationType::RECEIVE_MESSAGE);
-                $notification->setTranslateString('message.receive');
-                $notification->setTranslateParams(array('by' => $senderUsername));
-                $notification->setIsRead(false);
+            foreach($otherParticipants as $participant)
+                $nm->addNotification($level, 'message.receive', $user);
 
-                $notification->setPath('fos_message_thread_view');
-                $notification->setParams(array('threadId' => $threadId));
-
-                $em->persist($notification);
-            }
+			$em->flush();
 		}
 	}
 }

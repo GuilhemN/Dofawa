@@ -46,17 +46,8 @@ class BadgeManager
 
             foreach($badge->getLevels() as $level)
                 if($level->getMinCount() == $count){
-                    $notification = new Notification();
-
-                    $notification->setType(NotificationType::RECEIVE_BADGE);
-                    $notification->setTranslateString('badge.new');
-                    $notification->setTranslateParams($level->getNames());
-
-                    $notification->setPath('dof_profile_userpage');
-                    $notification->setParams(array('slug' => $user->getSlug()));
-                    $notification->setIsRead(false);
-
-                    $em->persist($notification);
+                    $nm = $this->di->get('notification_manager');
+                    $nm->addNotification($level, 'badge.receive', $user);
                     break;
                 }
 

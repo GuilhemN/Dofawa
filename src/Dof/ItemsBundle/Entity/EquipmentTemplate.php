@@ -159,14 +159,6 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 		return $this;
 	}
 
-    /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
-	public function updatePowerRate(){
-		$this->powerRate = NoteHelper::calcPowerRate($this->getCharacteristics());
-	}
-
 	public function isEquipment() { return true; }
 	public function getClassId() { return 'equip'; }
 

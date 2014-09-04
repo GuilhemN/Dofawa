@@ -30,40 +30,11 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     private $id;
 
     /**
-     * Dof\MainBundle\NotificationType
      * @var string
      *
-     * @ORM\Column(name="type", type="integer")
+     * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="translate_string", type="string", length=255)
-     */
-    private $translateString;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="translate_params", type="json_array")
-     */
-    private $translateParams;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="path", type="string", length=255)
-     */
-    private $path;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="params", type="json_array")
-     */
-    private $params;
 
     /**
      * @var boolean
@@ -71,6 +42,20 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
      * @ORM\Column(name="is_read", type="boolean")
      */
     private $isRead;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="class", type="string", length=255)
+     */
+    private $class;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="class_id", type="integer")
+     */
+    private $classId;
 
 
     /**
@@ -86,7 +71,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     /**
      * Set type
      *
-     * @param integer $type
+     * @param string $type
      * @return Notification
      */
     public function setType($type)
@@ -97,115 +82,15 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Get type
+     * Get translateString
      *
-     * @return integer
+     * @return string
      */
     public function getType()
     {
         return $this->type;
     }
-
-    /**
-     * Set translateString
-     *
-     * @param string $translateString
-     * @return Notification
-     */
-    public function setTranslateString($translateString)
-    {
-        $this->translateString = $translateString;
-
-        return $this;
-    }
-
-    /**
-     * Get translateString
-     *
-     * @return string
-     */
-    public function getTranslateString()
-    {
-        return $this->translateString;
-    }
-    /**
-     * Set translateParams
-     *
-     * @param array $translateParams
-     * @return Notification
-     */
-    public function setTranslateParams($translateParams)
-    {
-        $this->translateParams = $translateParams;
-
-        return $this;
-    }
-
-    /**
-     * Get translateParams
-     *
-     * @return array
-     */
-    public function getTranslateParams()
-    {
-        return $this->translateParams;
-    }
-
-    public function getAdaptedTranslateParams(){
-        $params = $this->getTranslateParams();
-        $nParams = array();
-        foreach($params as $k => $v)
-            $nParams['%' . $k . '%'] = $v;
-
-        return $nParams;
-    }
-
-    /**
-     * Set path
-     *
-     * @param string $path
-     * @return Notification
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
-
-        return $this;
-    }
-
-    /**
-     * Get path
-     *
-     * @return string
-     */
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    /**
-     * Set params
-     *
-     * @param array $params
-     * @return Notification
-     */
-    public function setParams($params)
-    {
-        $this->params = $params;
-
-        return $this;
-    }
-
-    /**
-     * Get params
-     *
-     * @return array
-     */
-    public function getParams()
-    {
-        return $this->params;
-    }
-
+    
     /**
      * Set isRead
      *
@@ -231,5 +116,51 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
 
     public function isRead(){
         return $this->isRead;
+    }
+
+    /**
+     * Set class
+     *
+     * @param string $class
+     * @return Notification
+     */
+    public function setClass($class)
+    {
+        $this->class = $class;
+
+        return $this;
+    }
+
+    /**
+     * Get class
+     *
+     * @return string
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
+
+    /**
+     * Set classId
+     *
+     * @param integer $classId
+     * @return Notification
+     */
+    public function setClassId($classId)
+    {
+        $this->classId = $classId;
+
+        return $this;
+    }
+
+    /**
+     * Get classId
+     *
+     * @return integer
+     */
+    public function getClassId()
+    {
+        return $this->classId;
     }
 }
