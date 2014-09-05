@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait PrimaryBonusTrait
 {
     /**
-     * @ORM\Column(name="primary_bonus", type="json_array")
+     * @ORM\Column(name="primary_bonus", type="json_array", nullable=true)
      */
     protected $primaryBonus;
 
