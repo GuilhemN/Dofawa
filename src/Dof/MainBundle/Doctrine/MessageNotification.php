@@ -22,7 +22,7 @@ class MessageNotification
 		$this->di = $di;
 	}
 
-	public function prePersist(LifecycleEventArgs $args)
+	public function postPersist(LifecycleEventArgs $args)
 	{
 		$ent = $args->getEntity();
 		if ($ent instanceof Message) {
