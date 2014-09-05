@@ -209,7 +209,6 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
 
     public function __construct()
     {
-        $this->buildItems = new ArrayCollection();
         $this->effects = new ArrayCollection();
         $this->components = new ArrayCollection();
         $this->compounds = new ArrayCollection();
