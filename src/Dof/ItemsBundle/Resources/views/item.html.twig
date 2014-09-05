@@ -13,9 +13,16 @@
                         <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ item.getName(locales()) }}">
                     </a>
                     <div class="text-center">
+                        {% if set.preliminary %}
+                            <p>
+                                <span class="label label-danger">Béta</span>
+                            </p>
+                        {% endif %}
+                        <p>
                         {% for bonus in item.primaryBonus %}
                             <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
                         {% endfor %}
+                        </p>
                     </div>
                 </div>
 
