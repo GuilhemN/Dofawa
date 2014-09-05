@@ -93,7 +93,7 @@ class NotificationManager
                     foreach($fields as $field)
                         if($field == 'localeName')
                             $value = $value->getName($this->di->get('translator')->getLocales());
-                        elseif(strtolower($field == 'currentuser'))
+                        elseif(strtolower($field) == 'currentuser')
                             $value = $this->di->get('security.context')->getToken()->getUser();
                         else
                             $value = $value->{'get' . ucfirst($field)}();
