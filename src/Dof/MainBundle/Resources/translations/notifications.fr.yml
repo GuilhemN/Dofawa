@@ -1,2 +1,2 @@
 message.receive: <strong>%by%</strong> vient de vous envoyer un message privé.
-badge.receive: Vous avez reçu un nouveau Badge : <strong>%nameFr%</strong>
+badge.receive: Vous avez reçu un nouveau Badge : <strong>%name%</strong>
