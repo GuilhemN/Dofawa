@@ -15,9 +15,11 @@
                     <div class="text-center">
                         <p>
                             {% if set.preliminary %}
-                                <span class="label label-danger">Béta</span> 
+                                <span class="label label-danger">Béta</span>
                             {% endif %}
-                            <span class="label label-default">{{ item.release }}</span>
+                            {% if item.release != 1 %}
+                                <span class="label label-default hidden-xs">{{ item.release }}</span> 
+                            {% endif %}
                         </p>
                         <p>
                         {% for bonus in item.primaryBonus %}

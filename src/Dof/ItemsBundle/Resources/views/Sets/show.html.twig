@@ -12,9 +12,11 @@
         </div>
         <p>
             {% if set.preliminary %}
-                <span class="label label-danger">Béta</span> 
+                <span class="label label-danger">Béta</span>
             {% endif %}
-            <span class="label label-default">{{ set.release }}</span>
+            {% if set.release != 1 %}
+                <span class="label label-default hidden-xs">{{ set.release }}</span>
+            {% endif %}
             <br>
             {{ set.itemCount }} Item
         </p>
