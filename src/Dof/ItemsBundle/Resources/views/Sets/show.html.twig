@@ -11,6 +11,8 @@
           <h1>{{ set.getName(locales()) }} <small>{{ 'level' | trans({'%level%': set.level}, 'item') }}</small></h1>
         </div>
         <p>
+            <span class="label label-default">{{ set.release }}</span>
+            <br>
             {% if set.preliminary %}
                 <span class="label label-danger">Béta</span>
                 <br>
