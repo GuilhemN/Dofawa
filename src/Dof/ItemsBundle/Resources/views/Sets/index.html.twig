@@ -18,6 +18,9 @@
                     <tr>
                         <td>
                             <a href="{{ path('dof_set_show', {'slug': set.slug}) }}">
+                                {% if set.preliminary %}
+                                    <span class="label label-danger">Béta</span>
+                                {% endif %}
                                 {{ set.getName(locales()) }}
                             </a>
                         </td>
