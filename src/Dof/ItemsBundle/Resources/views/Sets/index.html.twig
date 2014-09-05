@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="panel panel-default">
-        <div class="panel-heading">Les panoplies</div>
+        <div class="panel-heading">{{ 'sets' | trans({}, 'item')}}</div>
 
         <table class="table">
             <thead>
@@ -10,7 +10,7 @@
                     <th>{{ 'name' | trans({}, 'generalTrans')}}</th>
                     <th>{{ 'list.level' | trans({}, 'item')}}</th>
                     <th>Items</th>
-                    <th>Éléments</th>
+                    <th>{{ 'primary_bonus' | trans({}, 'item')}}</th>
                 </tr>
             </thead>
             <tbody>

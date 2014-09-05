@@ -1,6 +1,7 @@
 list:
     level: Level
 level: Level %level%
+primary_bonus: Primary Bonus
 
 to: to
 vitality: Vitality

@@ -1,2 +1,9 @@
 menu_haut:
     home: Home
+    universe:
+        title: Universe
+        quests: Quests
+        tutorials: Tutorials
+        dungeons: Dungeons
+    tools:
+        title: Tools

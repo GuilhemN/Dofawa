@@ -1,6 +1,11 @@
+items: Items
+item: Item
+set: Set
+sets: Sets
 list:
     level: Niveau
 level: Niveau %level%
+primary_bonus: Bonus primaires
 
 to: à
 vitality: Vitalité

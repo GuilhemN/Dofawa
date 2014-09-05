@@ -1,2 +1,9 @@
 menu_haut:
     home: Accueil
+    universe:
+        title: Univers
+        quests: Quêtes
+        tutorials: Tutoriels
+        dungeons: Donjons
+    tools:
+        title: Outils
