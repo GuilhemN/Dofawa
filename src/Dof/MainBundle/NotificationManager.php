@@ -95,10 +95,8 @@ class NotificationManager
                             $value = $value->getName($this->di->get('translator')->getLocales());
                         elseif(strtolower($field) == 'currentuser')
                             $value = $this->di->get('security.context')->getToken()->getUser();
-                        else{
-                            echo $field;
+                        else
                             $value = $value->{'get' . ucfirst($field)}();
-                        }
 
                     $translationParams[$k] = $value;
                 }
