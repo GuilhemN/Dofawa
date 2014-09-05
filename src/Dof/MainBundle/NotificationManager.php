@@ -126,9 +126,9 @@ class NotificationManager
             $return[$i]['isRead'] = $notification->getIsRead();
 
             $i++;
-
-            return $return;
         }
+
+        return $return;
     }
 
     protected function getMetadataByType($type){
