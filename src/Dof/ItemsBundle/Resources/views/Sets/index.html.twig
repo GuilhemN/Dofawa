@@ -10,7 +10,7 @@
                     <th>{{ 'name' | trans({}, 'generalTrans')}}</th>
                     <th>{{ 'list.level' | trans({}, 'item')}}</th>
                     <th>Items</th>
-                    <th>{{ 'primary_bonus' | trans({}, 'item')}}</th>
+                    <th class="hidden-xs">{{ 'primary_bonus' | trans({}, 'item')}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
                                 <span class="label label-danger">Béta</span>
                             {% endif %}
                             {% if set.release != 1 %}
-                                <span class="label label-default hidden-xs">{{ set.release }}</span> 
+                                <span class="label label-default hidden-xs">{{ set.release }}</span>
                             {% endif %}
                             <a href="{{ path('dof_set_show', {'slug': set.slug}) }}">
                                 {{ set.getName(locales()) }}
@@ -29,7 +29,7 @@
                         </td>
                         <td>{{ 'level' | trans({'%level%': set.level}, 'item') }}</td>
                         <td>{{ set.itemCount }} items</td>
-                        <td>
+                        <td class="hidden-xs">
                             {% for bonus in set.primaryBonus %}
                                 <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
                             {% endfor %}
