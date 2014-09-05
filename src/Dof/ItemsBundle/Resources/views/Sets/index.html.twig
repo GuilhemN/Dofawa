@@ -20,6 +20,7 @@
                             {% if set.preliminary %}
                                 <span class="label label-danger">Béta</span>
                             {% endif %}
+                            <span class="label label-default hidden-xs">{{ set.release }}</span> 
                             <a href="{{ path('dof_set_show', {'slug': set.slug}) }}">
                                 {{ set.getName(locales()) }}
                             </a>
