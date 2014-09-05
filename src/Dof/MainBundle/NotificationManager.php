@@ -118,7 +118,7 @@ class NotificationManager
                         elseif($field == 'currentUser')
                             $value = $this->di->get('security.context')->getToken()->getUser();
                         else
-                            $value = $ent->{'get' . ucfirst($field)}();
+                            $value = $value->{'get' . ucfirst($field)}();
 
                     $pathParams[$k] = $value;
                 }
