@@ -39,7 +39,7 @@ class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInt
     private $count;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\MainBundle\Entity\Badge", inversedBy=userBadges)
+     * @ORM\ManyToOne(targetEntity="Dof\MainBundle\Entity\Badge", inversedBy="userBadges")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $badge;
