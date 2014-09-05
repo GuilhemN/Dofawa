@@ -6,8 +6,8 @@ imports:
 
 parameters:
   locales: [en, de, fr, es, ru, it]
-  current_release_number: '1'
-  beta_release_number: '2.21'
+  current_release_number: '2.22'
+  beta_release_number: '2.23'
   current_release_database: dofus2
   beta_release_database: dofus2beta
 
