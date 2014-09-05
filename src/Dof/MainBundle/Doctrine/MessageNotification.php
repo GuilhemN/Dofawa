@@ -26,7 +26,7 @@ class MessageNotification
 	{
 		$ent = $args->getEntity();
 		if ($ent instanceof Message) {
-            $em = $args->getManager();
+            $em = $args->getEntityManager();
 
             $otherParticipants = $ent->getThread()->getOtherParticipants($ent->getSender());
 
