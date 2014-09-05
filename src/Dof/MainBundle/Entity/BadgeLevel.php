@@ -52,7 +52,7 @@ class BadgeLevel implements TimestampableInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public $path;
+    protected $path;
 
     /**
      * @Assert\Image(
