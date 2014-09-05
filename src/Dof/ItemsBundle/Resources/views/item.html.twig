@@ -21,11 +21,13 @@
                                 <span class="label label-default hidden-xs">{{ item.release }}</span>
                             {% endif %}
                         </p>
-                        <p>
-                        {% for bonus in item.primaryBonus %}
-                            <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
-                        {% endfor %}
-                        </p>
+                        {% if item.isEquipment() %}
+                            <p>
+                            {% for bonus in item.primaryBonus %}
+                                <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
+                            {% endfor %}
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
 
