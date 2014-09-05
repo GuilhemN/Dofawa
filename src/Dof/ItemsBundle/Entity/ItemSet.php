@@ -64,7 +64,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * @var integer
      *
-     * @ORM\Column(name="item_count", type="integer")
+     * @ORM\Column(name="item_count", type="integer", nullable=true)
      */
     private $itemCount;
 
