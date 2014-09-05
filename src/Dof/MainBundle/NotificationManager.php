@@ -122,8 +122,8 @@ class NotificationManager
             $return[$i]['path'] = $metadatas['path'];
             $return[$i]['pathParams'] = $pathParams;
 
-            $return[$i]['createdAt'] = $ent->getCreatedAt();
-            $return[$i]['isRead'] = $ent->getIsRead();
+            $return[$i]['createdAt'] = $notification->getCreatedAt();
+            $return[$i]['isRead'] = $notification->getIsRead();
 
             $i++;
 
