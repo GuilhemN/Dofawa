@@ -123,6 +123,7 @@ class NotificationManager
             $return[$i]['pathParams'] = $pathParams;
 
             $return[$i]['createdAt'] = $ent->getCreatedAt();
+            $return[$i]['isRead'] = $ent->getIsRead();
 
             $i++;
 

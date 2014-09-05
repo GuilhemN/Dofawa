@@ -4,7 +4,7 @@
         {% for notification in notifications %}
         <li {% if notification.isRead == false %}class="active"{% endif %}>
             <a href="{{ path(notification.path, notification.pathParams) }}">
-                {{ notification.translateString | trans(notification.translateParams, 'notifications') | raw }}
+                {{ notification.translationString | trans(notification.translationParams, 'notifications') | raw }}
                 <br>
                 <small>{{ notification.createdAt | localizeddate('full', 'short') }}</small>
             </a>
