@@ -10,7 +10,13 @@
         <div class="page-header nopadding marginbottom">
           <h1>{{ set.getName(locales()) }} <small>{{ 'level' | trans({'%level%': set.level}, 'item') }}</small></h1>
         </div>
-        <p>{{ set.itemCount }} Item </p>
+        <p>
+            {% if set.preliminary %}
+                <span class="label label-danger">Béta</span>
+                <br>
+            {% endif %}
+            {{ set.itemCount }} Item
+        </p>
 
         {% for bonus in set.primaryBonus %}
             <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
@@ -22,10 +28,6 @@
 			  <div class="col-xs-6 col-md-3">
 			    <div class="well well-sm">
 			    	<center>
-                        {% if set.preliminary %}
-                            <span class="label label-danger">Béta</span>
-                        {% endif %}
-                        <br>
                         <strong>{{ combination.itemCount }} items</strong>
                     </center>
 			    	{# Get the characteristics #}
