@@ -14,11 +14,11 @@
                     </a>
                     <div class="text-center">
                         <p>
-                            {% if set.preliminary %}
+                            {% if item.preliminary %}
                                 <span class="label label-danger">Béta</span>
                             {% endif %}
                             {% if item.release != 1 %}
-                                <span class="label label-default hidden-xs">{{ item.release }}</span> 
+                                <span class="label label-default hidden-xs">{{ item.release }}</span>
                             {% endif %}
                         </p>
                         <p>
