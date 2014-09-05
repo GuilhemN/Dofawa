@@ -57,7 +57,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * @var integer
      *
-     * @ORM\Column(name="level", type="integer")
+     * @ORM\Column(name="level", type="integer", nullable=true)
      */
     private $level;
 
