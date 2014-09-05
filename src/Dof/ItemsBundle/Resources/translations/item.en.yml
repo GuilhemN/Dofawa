@@ -4,7 +4,7 @@ set: Set
 sets: Sets
 list:
     level: Level
-level: Level %level%
+level: Lvl. %level%
 primary_bonus: Primary Bonus
 
 to: to

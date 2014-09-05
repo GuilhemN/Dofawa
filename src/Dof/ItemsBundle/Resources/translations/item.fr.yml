@@ -4,7 +4,7 @@ set: Panoplie
 sets: Panoplies
 list:
     level: Niveau
-level: Niveau %level%
+level: Niv. %level%
 primary_bonus: Bonus primaires
 
 to: à
