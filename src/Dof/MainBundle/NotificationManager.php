@@ -73,6 +73,7 @@ class NotificationManager
         $em = $this->di->get('doctrine')->getEntityManager();
         $notifications = (array) $notifications;
 
+        $return = array();
         $i = 0;
         foreach($notifications as $notification){
             $ent = $em->getRepository($notification->getClass())->find($notification->getClassId());
