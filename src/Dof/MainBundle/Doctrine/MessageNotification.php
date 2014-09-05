@@ -26,7 +26,7 @@ class MessageNotification
 	{
 		$ent = $args->getEntity();
 		if ($ent instanceof Message) {
-            $em = $args->getEntityManager();
+            $em = $args->getManager();
 
             $otherParticipants = $ent->getThread()->getOtherParticipants($ent->getSender());
 
@@ -35,6 +35,8 @@ class MessageNotification
 			$nm = $this->di->get('notification_manager');
             foreach($otherParticipants as $participant)
                 $nm->addNotification($ent, 'message.receive', $participant);
+
+			$em->flush();
 		}
 	}
 }
