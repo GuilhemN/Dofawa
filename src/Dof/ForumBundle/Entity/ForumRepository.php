@@ -12,5 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class ForumRepository extends EntityRepository
 {
-	
+	function orderByDate()
+	{
+		$qb = $this->createQueryBuilder('f')
+				->select('f', 't', 'm')
+				->join('f.topics', 't')
+				->join('t.messages', 'm')
+                ->addOrderBy('m.createdAt', 'desc');
+
+		return $qb->getQuery()
+        	->getResult();
+	}
 }

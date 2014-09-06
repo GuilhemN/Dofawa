@@ -20,7 +20,7 @@ class ForumController extends Controller
 
 
     /**
-   	* @ParamConverter("forum")
+   	* @ParamConverter("forum", options={"repository_method" = "orderByDate"})
    	*/
    	public function showForumAction(Forum $forum)
     {
@@ -28,7 +28,7 @@ class ForumController extends Controller
     }
 
     /**
-   	* @ParamConverter("topic", options={"repository_method" = "orderByDate"})
+   	* @ParamConverter("topic")
    	*/
    	public function showTopicAction(Topic $topic)
     {
