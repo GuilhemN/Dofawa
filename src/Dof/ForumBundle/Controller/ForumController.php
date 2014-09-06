@@ -28,7 +28,7 @@ class ForumController extends Controller
     }
 
     /**
-   	* @ParamConverter("topic")
+   	* @ParamConverter("topic", options={"repository_method" = "orderByDate"})
    	*/
    	public function showTopicAction(Topic $topic)
     {
