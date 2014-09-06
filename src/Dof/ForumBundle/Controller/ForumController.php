@@ -24,7 +24,7 @@ class ForumController extends Controller
    	*/
    	public function showForumAction(Forum $forum)
     {
-        return $this->render('DofForumBundle:Forum:showForum.html.twig', array('forum' => $forum));
+        return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum]);
     }
 
     /**
