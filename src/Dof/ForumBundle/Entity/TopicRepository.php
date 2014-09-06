@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class TopicRepository extends EntityRepository
 {
+	function orderByDate()
+	{
+		$qb = $this->createQueryBuilder('t')
+				->select('t', 'm')
+				->join('t.messages', 'm')
+                ->addOrderBy('m.createdAt', 'desc');
+
+		return $qb->getQuery()
+        	->getResult();
+	}
 }
