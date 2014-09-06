@@ -14,10 +14,21 @@ class SetsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemSet');
 
-        $sets = $repo->findWithJoins([], 'list');
+        $form = $this->createForm(new ItemSetType());
+
+        $form->handleRequest($this->get('request'));
+
+        $searchFields = [];
+        if($form->isValid())
+        foreach($form->getData() as $k => $v)
+            if(!empty($v))
+                $searchFields[$k] = $v;
+
+        $sets = $repo->findWithJoins($searchFields, 'list');
 
         return $this->render('DofItemsBundle:Sets:index.html.twig', [
-            'sets' => $sets
+            'sets' => $sets,
+            'form' => $form->createView()
             ]);
     }
 
