@@ -15,11 +15,11 @@ class ItemSetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('level', 'integer', array('required' => false))
-            ->add('itemCount', 'integer', array('required' => false))
+            ->add('level', 'number', array('required' => false))
+            ->add('itemCount', 'number', array('required' => false))
             ->add('release', 'checkbox', array('required' => false))
             ->add('preliminary', 'checkbox', array('required' => false))
-            ->add('nameFr', 'string', array('required' => false))
+            ->add('nameFr', 'text', array('required' => false))
             ->add('submit', 'submit')
         ;
     }
