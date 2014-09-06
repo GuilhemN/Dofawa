@@ -61,7 +61,6 @@ class ForumController extends Controller
 
 		      	return $this->redirect($this->generateUrl('dof_forum_show_topic', array('topic' => $topic )));
 		    }
-		    return $this->redirect($this->generateUrl('dof_forum_homepage');
 		}
         return $this->render('DofForumBundle:Forum:addMessage.html.twig', array('form' => $form->createView(), 'topic' => $topic));
     }
