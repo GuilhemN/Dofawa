@@ -15,27 +15,16 @@ class ItemSetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id')
             ->add('level')
             ->add('itemCount')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('slug')
             ->add('release')
             ->add('preliminary')
-            ->add('deprecated')
             ->add('nameFr')
-            ->add('nameEn')
-            ->add('nameDe')
-            ->add('nameEs')
-            ->add('nameIt')
-            ->add('namePt')
-            ->add('nameJp')
-            ->add('nameRu')
             ->add('primaryBonus')
+            ->add('submit')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
