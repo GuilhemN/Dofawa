@@ -17,6 +17,9 @@ class SetsController extends Controller
         $form = $this->createForm(new ItemSetType());
 
         $form->handleRequest($this->get('request'));
+
+        $searchFields = [];
+        if($form->isValid())
         foreach($form->getData() as $k => $v)
             if(!empty($v))
                 $searchFields[$k] = $v;
