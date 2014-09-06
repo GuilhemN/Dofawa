@@ -15,12 +15,11 @@ class ItemSetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('level')
-            ->add('itemCount')
-            ->add('release')
-            ->add('preliminary')
-            ->add('nameFr')
-            ->add('primaryBonus')
+            ->add('level', 'integer', array('required' => false))
+            ->add('itemCount', 'integer', array('required' => false))
+            ->add('release', 'checkbox', array('required' => false))
+            ->add('preliminary', 'checkbox', array('required' => false))
+            ->add('nameFr', 'string', array('required' => false))
             ->add('submit', 'submit')
         ;
     }
@@ -30,9 +29,6 @@ class ItemSetType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Dof\ItemsBundle\Entity\ItemSet'
-        ));
     }
 
     /**
