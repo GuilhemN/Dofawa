@@ -21,7 +21,7 @@ class SetsController extends Controller
             if(!empty($v))
                 $searchFields[$k] = $v;
 
-        $sets = $repo->findWithJoins(, 'list');
+        $sets = $repo->findWithJoins($searchFields, 'list');
 
         return $this->render('DofItemsBundle:Sets:index.html.twig', [
             'sets' => $sets,
