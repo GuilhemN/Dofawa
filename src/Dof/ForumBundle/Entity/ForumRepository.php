@@ -12,15 +12,27 @@ use Doctrine\ORM\EntityRepository;
  */
 class ForumRepository extends EntityRepository
 {
-	function orderByDate()
+	function orderByDate($criteria = array())
 	{
+		$criteria = (array) $criteria;
+
 		$qb = $this->createQueryBuilder('f')
 				->select('f', 't', 'm')
 				->join('f.topics', 't')
 				->join('t.messages', 'm')
                 ->addOrderBy('m.createdAt', 'desc');
 
+		$i = 0;
+		// Ajout des critères à la requête
+		foreach($criteria as $k => $v){
+			$i++;
+			$qb
+				->andWhere('i.' . $k . ' LIKE :filterWord' . $i)
+				->setParameter('filterWord' . $i, $v)
+			;
+		}
+		
 		return $qb->getQuery()
-        	->getResult();
+        	->getSingleScalarResult();
 	}
 }
