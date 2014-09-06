@@ -16,7 +16,7 @@ class SetsController extends Controller
 
         $form = $this->createForm(new ItemSetType());
 
-        $query = $this->getDoctrine()->getRepository('AcmeDemoBundle:Pony')->findWithJoins($form->getData(), 'list');
+        $query = $repo->findWithJoins($form->getData(), 'list');
         $sets = $query->getResult();
 
         return $this->render('DofItemsBundle:Sets:index.html.twig', [
