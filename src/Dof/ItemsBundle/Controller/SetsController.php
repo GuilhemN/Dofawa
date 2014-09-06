@@ -18,7 +18,7 @@ class SetsController extends Controller
 
         if ($form->isValid()) {
            $query = $this->getDoctrine()->getRepository('AcmeDemoBundle:Pony')->search($form->getData());
-           $results = $query->getResult();
+           $sets = $query->getResult();
         }
         else
             $sets = $repo->findWithJoins([], 'list');
