@@ -19,8 +19,8 @@ class SetsController extends Controller
         $form->handleRequest($this->get('request'));
         foreach($form->getData() as $k => $v)
             if(!empty($v))
-                $searchFields[$k] => $v;
-        
+                $searchFields[$k] = $v;
+
         $sets = $repo->findWithJoins(, 'list');
 
         return $this->render('DofItemsBundle:Sets:index.html.twig', [
