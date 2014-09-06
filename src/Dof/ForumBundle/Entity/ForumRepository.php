@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ForumRepository extends EntityRepository
 {
-	function orderByDate($criteria = array())
+	function getOrderByDate($criteria = array())
 	{
 		$criteria = (array) $criteria;
 
@@ -33,6 +33,6 @@ class ForumRepository extends EntityRepository
 		}
 
 		return $qb->getQuery()
-        	->getSingleScalarResult();
+        	->getSingleResult();
 	}
 }
