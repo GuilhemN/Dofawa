@@ -21,7 +21,7 @@ class ItemSetType extends AbstractType
             ->add('preliminary')
             ->add('nameFr')
             ->add('primaryBonus')
-            ->add('submit')
+            ->add('submit', 'submit')
         ;
     }
 
