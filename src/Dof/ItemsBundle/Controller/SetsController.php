@@ -18,7 +18,7 @@ class SetsController extends Controller
 
         $form->handleRequest($this->get('request'));
         if ($form->isValid()) {
-           $query = $this->getDoctrine()->getRepository('AcmeDemoBundle:Pony')->search($form->getData());
+           $query = $repo->search($form->getData());
            $sets = $query->getResult();
         }
         else
