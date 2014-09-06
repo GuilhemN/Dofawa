@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\ItemsBundle\Entity\ItemSet;
+use Dof\ItemsBundle\Form\ItemSetType;
 
 class SetsController extends Controller
 {
@@ -13,10 +14,14 @@ class SetsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemSet');
 
-        $sets = $repo->findWithJoins(array(), 'list');
+        $form = $this->createForm(new ItemSetType());
+
+        $query = $this->getDoctrine()->getRepository('AcmeDemoBundle:Pony')->findWithJoins($form->getData(), 'list');
+        $sets = $query->getResult();
 
         return $this->render('DofItemsBundle:Sets:index.html.twig', [
-            'sets' => $sets
+            'sets' => $sets,
+            'form' => $form->createView()
             ]);
     }
 
