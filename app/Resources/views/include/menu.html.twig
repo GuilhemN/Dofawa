@@ -1,174 +1,180 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container sm-autowidth">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand nopadding" href="{{ path('dof_main_homepage') }}">
-        <img src="{{ asset('bundles/dofmain/images/logo.png')}}" alt="Dofawa" />
-      </a>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+    <div class="container sm-autowidth">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand nopadding" href="{{ path('dof_main_homepage') }}">
+                <img src="{{ asset('bundles/dofmain/images/logo.png')}}" alt="Dofawa" />
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
 
-        {# Languages switcher #}
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/dofmain/images/flag/' ~ app.request.locale ~ '.png') }}" alt="" /><b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path(app.request.get('_route'),
-              app.request.attributes.get('_route_params')|merge({'_locale': 'fr'}) ) }}">
-              Français
-            </a></li>
-            <li><a href="{{ path(app.request.get('_route'),
-              app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) ) }}">
-              English
-            </a></li>
-            <li><a href="{{ path(app.request.get('_route'),
-              app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) }}">
-              Español
-            </a></li>
-            <li><a href="{{ path(app.request.get('_route'),
-              app.request.attributes.get('_route_params')|merge({'_locale': 'de'}) ) }}">
-              Deutsch
-            </a></li>
-            <li><a href="{{ path(app.request.get('_route'),
-              app.request.attributes.get('_route_params')|merge({'_locale': 'it'}) ) }}">
-              Italiano
-            </a></li>
-            <li><a href="{{ path(app.request.get('_route'),
-              app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) ) }}">
-              Ру́сский
-            </a></li>
-          </ul>
-        </li>
+                {# Languages switcher #}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/dofmain/images/flag/' ~ app.request.locale ~ '.png') }}" alt="" /><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'fr'}) ) }}">
+                                Français
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) ) }}">
+                                English
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) }}">
+                                Español
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'de'}) ) }}">
+                                Deutsch
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'it'}) ) }}">
+                                Italiano
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) ) }}">
+                                Ру́сский
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-        {# Nav #}
-        <li {{ is_current_page('dof_main_homepage') }}>
-          <a href="{{ path('dof_main_homepage') }}">
-            {{ 'menu_haut.home' | trans()}}
-          </a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('img/encyclopedia.png') }}" alt="" />
-              {{ 'encyclopedia' | trans({}, 'type_item') }} <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('dof_set_homepage') }}">{{ 'sets' | transchoice(2, {}, 'type_item') }}</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Items</li>
-            <li><a href="#">{{ 'equipments.main' | transchoice(2, {}, 'type_item') }}</a></li>
-            <li><a href="#">{{ 'weapons.main' | transchoice(2, {}, 'type_item') }}</a></li>
-            <li><a href="#">{{ 'animals.main' | transchoice(2, {}, 'type_item') }}</a></li>
-            <li><a href="#">{{ 'resources.main' | transchoice(2, {}, 'type_item') }}</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('img/universe.png') }}" alt="" />
-              {{ 'menu_haut.universe.title' | trans() }} <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Quêtes</a></li>
-            <li><a href="#">Tutoriels</a></li>
-            <li><a href="#">Donjons</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('img/encyclopedia.png') }}" alt="" />
-              {{ 'menu_haut.tools.title' | trans() }} <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-header">Stuffs</li>
-            {% if app.user is not null %}
-                <li><a href="{{ path('dof_build_homepage') }}">Mes builds</a></li>
+                {# Nav #}
+                <li {{ is_current_page('dof_main_homepage') }}>
+                    <a href="{{ path('dof_main_homepage') }}">
+                        {{ 'menu_haut.home' | trans()}}
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ asset('img/encyclopedia.png') }}" alt="" />
+                        {{ 'encyclopedia' | trans({}, 'type_item') }} <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('dof_set_homepage') }}">{{ 'sets' | transchoice(2, {}, 'type_item') }}</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Items</li>
+                        <li><a href="#">{{ 'equipments.main' | transchoice(2, {}, 'type_item') }}</a></li>
+                        <li><a href="#">{{ 'weapons.main' | transchoice(2, {}, 'type_item') }}</a></li>
+                        <li><a href="#">{{ 'animals.main' | transchoice(2, {}, 'type_item') }}</a></li>
+                        <li><a href="#">{{ 'resources.main' | transchoice(2, {}, 'type_item') }}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ asset('img/universe.png') }}" alt="" />
+                        {{ 'menu_haut.universe.title' | trans() }} <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Quêtes</a></li>
+                        <li><a href="#">Tutoriels</a></li>
+                        <li><a href="#">Donjons</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ asset('img/encyclopedia.png') }}" alt="" />
+                        {{ 'menu_haut.tools.title' | trans() }} <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Stuffs</li>
+                        {% if app.user is not null %}
+                        <li><a href="{{ path('dof_build_homepage') }}">Mes builds</a></li>
+                        {% endif %}
+                        <li><a href="#">Recherche de build</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Divers</li>
+                        <li><a href="#">Les guildes</a></li>
+                        <li><a href="{{ path('dof_main_calculateur') }}">Calculateurs</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Créations des joueurs</li>
+                        <li><a href="#">Fan-art</a></li>
+                        <li><a href="#">Skins</a></li>
+                    </ul>
+                </li>
+                {# Menu Admin #}
+                {% if is_granted('ROLE_ZONE_ADMIN') %}
+                <li><a href="{{ path('sonata_admin_dashboard') }}">Admin</a></li>
             {% endif %}
-            <li><a href="#">Recherche de build</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Divers</li>
-            <li><a href="#">Les guildes</a></li>
-            <li><a href="{{ path('dof_main_calculateur') }}">Calculateurs</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Créations des joueurs</li>
-            <li><a href="#">Fan-art</a></li>
-            <li><a href="#">Skins</a></li>
-          </ul>
-        </li>
-        {# Menu Admin #}
-        {% if is_granted('ROLE_ZONE_ADMIN') %}
-        <li><a href="{{ path('sonata_admin_dashboard') }}">Admin</a></li>
-        {% endif %}
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        {# Si non-connecté #}
-        {% if app.user is null %}
-        <li class="dropdown" id="menuLogin">
-          <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-          <div class="dropdown-menu" style="padding:17px;">
-            {{ render(controller('DofUserBundle:Security:modulelogin', { 'module': 'module' })) }}
-            {# Lien d'inscription #}
-            <div class="visible-sm">
-              <br>
-              <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
-            </div>
-          </div>
-        </li>
-        <li class="hidden-sm"><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
-        {% else %}
-        {# Menu utilisateur #}
-        {{ render(controller('DofMainBundle:Notification:menu')) }}
-        <li class="hidden-md"><a href="{{ path('fos_message_inbox') }}">Messages</a></li>
-        <li class="dropdown" id="menuLogin">
-          <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ app.user.username }}</a>
-          <ul class="dropdown-menu">
-            <li>
-              <div class="navbar-login">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <p class="text-center">
-                      <span class="glyphicon glyphicon-user icon-size"></span>
-                    </p>
-                  </div>
-                  <div class="col-lg-8">
-                    <p class="text-left"><strong>{{ app.user.username }}</strong></p>
-                    <p class="text-left small">{{ app.user.email }}</p>
-                    <p class="text-left">
-                      <a href="{{ path('dof_profile_userpage', {'slug': app.user.slug }) }}" class="btn btn-primary btn-block btn-sm">
-                        {{ 'mine'|trans({}, 'profile') }}
-                      </a>
-                      <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block btn-sm">
-                        {{ 'edit' | trans({}, 'generalTrans') }}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <div class="navbar-login navbar-login-session">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <p>
-                      <a href="{{ path('fos_message_inbox') }}" class="btn btn-default btn-block btn-sm visible-md">
-                        Messages
-                      </a>
-                      <a href="{{ path('fos_user_security_logout') }}" class="btn btn-danger btn-block">
-                        {{ 'layout.logout' | trans({}, 'FOSUserBundle') }}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        {% endif %}
-      </ul>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {# Si non-connecté #}
+                {% if app.user is null %}
+                <li class="dropdown" id="menuLogin">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    <div class="dropdown-menu" style="padding:17px;">
+                        {{ render(controller('DofUserBundle:Security:modulelogin', { 'module': 'module' })) }}
+                        {# Lien d'inscription #}
+                        <div class="visible-sm">
+                            <br>
+                            <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="hidden-sm"><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                {% else %}
+                {# Menu utilisateur #}
+                {{ render(controller('DofMainBundle:Notification:menu')) }}
+                <li class="hidden-md"><a href="{{ path('fos_message_inbox') }}">Messages</a></li>
+                <li class="dropdown" id="menuLogin">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ app.user.username }}</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>{{ app.user.username }}</strong></p>
+                                        <p class="text-left small">{{ app.user.email }}</p>
+                                        <p class="text-left">
+                                            <a href="{{ path('dof_profile_userpage', {'slug': app.user.slug }) }}" class="btn btn-primary btn-block btn-sm">
+                                                {{ 'mine'|trans({}, 'profile') }}
+                                            </a>
+                                            <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block btn-sm">
+                                                {{ 'edit' | trans({}, 'generalTrans') }}
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            <a href="{{ path('fos_message_inbox') }}" class="btn btn-default btn-block btn-sm visible-md">
+                                                Messages
+                                            </a>
+                                            <a href="{{ path('fos_user_security_logout') }}" class="btn btn-danger btn-block">
+                                                {{ 'layout.logout' | trans({}, 'FOSUserBundle') }}
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
