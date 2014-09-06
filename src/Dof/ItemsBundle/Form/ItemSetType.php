@@ -17,8 +17,8 @@ class ItemSetType extends AbstractType
         $builder
             ->add('level', 'integer', array('required' => false))
             ->add('itemCount', 'integer', array('required' => false))
-            ->add('release', 'boolean', array('required' => false))
-            ->add('preliminary', 'boolean', array('required' => false))
+            ->add('release', 'checkbox', array('required' => false))
+            ->add('preliminary', 'checkbox', array('required' => false))
             ->add('nameFr', 'string', array('required' => false))
             ->add('submit', 'submit')
         ;
