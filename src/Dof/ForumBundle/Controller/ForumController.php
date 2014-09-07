@@ -41,6 +41,8 @@ class ForumController extends Controller
    	*/
    	public function addMessageAction(Topic $topic)
     {
+    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+            throw $this->createAccessDeniedException();
     	$message = new Message;
 		$form = $this->createFormBuilder($message)
                  ->add('content',     'textarea')
