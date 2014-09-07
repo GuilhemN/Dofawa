@@ -12,7 +12,7 @@
       <h1>{{ topic.getName(locales()) }}</h1>
     </div>
 	{% for message in topic.messages %}
-		<div class="panel panel-default" id="message-{{ id }}">
+		<div class="panel panel-default" id="message-{{ message.id }}">
 		  	<div class="panel-body nopadding">
 		  	    <p class="text-right padding-right">{{ message.createdAt | date("h:i:s d/m/Y") }}</p>
 		    	<table class="table">
