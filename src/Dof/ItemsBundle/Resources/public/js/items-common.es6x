@@ -67,7 +67,7 @@ class Characteristic {
 
 var characteristics = [
 	new Characteristic('vitality', Translator.trans('vitality', {'1': ''}, 'item'), 0.25, 0xFF1E1E),
-	new Characteristic('strength', Translator.trans('strength', {'1': ''}, 'strenght'), 1, 0x815633),
+	new Characteristic('strength', Translator.trans('strength', {'1': ''}, 'item'), 1, 0x815633),
 	new Characteristic('intelligence', Translator.trans('intelligence', {'1': ''}, 'item'), 1, 0xD13800),
 	new Characteristic('chance', Translator.trans('chance', {'1': ''}, 'item'), 1, 0x398A89),
 	new Characteristic('agility', Translator.trans('agility', {'1': ''}, 'item'), 1, 0x2B6F2D),
