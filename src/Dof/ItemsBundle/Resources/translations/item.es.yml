@@ -3,57 +3,57 @@ list:
 level: Nivel %level%
 
 to: a
-vitality: Vitalidad
-strength: Fuerza
-intelligence: Inteligencia
-chance: Suerte
-agility: Agilidad
-wisdom: Sabiduría
-power: Potencia (daños generales)
-criticalHits: GC
-ap: PA
-mp: PM
-range: Al
-summons: Invocaciones
-damage: Daños
-neutralDamage: Daños neutrales
-earthDamage: Daños de tierra
-fireDamage: Daños de fuego
-waterDamage: Daños de agua
-airDamage: Daños de aire
-heals: Curas
-prospecting: Prospección
-initiative: Iniciativa
-percentNeutralResistance: % resistencia neutral
-percentEarthResistance: % resistencia a la tierra
-percentFireResistance: % resistencia al fuego
-percentWaterResistance: % resistencia al agua
-percentAirResistance: % resistencia al aire
-neutralResistance: Resistencia neutral
-earthResistance: Resistencia a la tierra
-fireResistance: Resistencia al fuego
-waterResistance: Resistencia al agua
-airResistance: Resistencia al aire
-percentNeutralResistanceInPvp: % resistencia neutral en JcJ
-percentEarthResistanceInPvp: % resistencia a la tierra en JcJ
-percentFireResistanceInPvp: % resistencia al fuego en JcJ
-percentWaterResistanceInPvp: % Résistance Eau en JcJ
-percentAirResistanceInPvp: % Résistance Air en JcJ
-neutralResistanceInPvp: Resistencia neutral en JcJ
-earthResistanceInPvp: Resistencia a la tierra en JcJ
-fireResistanceInPvp: Resistencia al fuego en JcJ
-waterResistanceInPvp: Resistencia al agua en JcJ
-airResistanceInPvp: Resistencia al aire en JcJ
-lock: placaje
-dodge: huida
-apReduction: al retiro de PA
-mpReduction: al retiro de PM
-apLossResistance: a la esquiva pérdidas de PA
-mpLossResistance: a la esquiva pérdidas de PM
-criticalDamage: Daños críticos
-criticalResistance: Resistencia a los críticos
-pushbackDamage: Daños por empuje
-pushbackResistance: Resistencia al empuje
-trapPower: Potencia (daños generales) con trampas
-trapDamage: Daños con trampas
-pods: Pods
+vitality: %1% Vitalidad
+strength: %1% Fuerza
+intelligence: %1% Inteligencia
+chance: %1% Suerte
+agility: %1% Agilidad
+wisdom: %1% Sabiduría
+power: %1% Potencia (daños generales)
+criticalHits: %1% GC
+ap: %1% PA
+mp: %1% PM
+range: %1% Al
+summons: %1% Invocaciones
+damage: %1% Daños
+neutralDamage: %1% Daños neutrales
+earthDamage: %1% Daños de tierra
+fireDamage: %1% Daños de fuego
+waterDamage: %1% Daños de agua
+airDamage: %1% Daños de aire
+heals: %1% Curas
+prospecting: %1% Prospección
+initiative: %1% Iniciativa
+percentNeutralResistance: %1% % resistencia neutral
+percentEarthResistance: %1% % resistencia a la tierra
+percentFireResistance: %1% % resistencia al fuego
+percentWaterResistance: %1% % resistencia al agua
+percentAirResistance: %1% % resistencia al aire
+neutralResistance: %1% Resistencia neutral
+earthResistance: %1% Resistencia a la tierra
+fireResistance: %1% Resistencia al fuego
+waterResistance: %1% Resistencia al agua
+airResistance: %1% Resistencia al aire
+percentNeutralResistanceInPvp: %1% % resistencia neutral en JcJ
+percentEarthResistanceInPvp: %1% % resistencia a la tierra en JcJ
+percentFireResistanceInPvp: %1% % resistencia al fuego en JcJ
+percentWaterResistanceInPvp: %1% % Résistance Eau en JcJ
+percentAirResistanceInPvp: %1% % Résistance Air en JcJ
+neutralResistanceInPvp: %1% Resistencia neutral en JcJ
+earthResistanceInPvp: %1% Resistencia a la tierra en JcJ
+fireResistanceInPvp: %1% Resistencia al fuego en JcJ
+waterResistanceInPvp: %1% Resistencia al agua en JcJ
+airResistanceInPvp: %1% Resistencia al aire en JcJ
+lock: %1% placaje
+dodge: %1% huida
+apReduction: %1% al retiro de PA
+mpReduction: %1% al retiro de PM
+apLossResistance: %1% a la esquiva pérdidas de PA
+mpLossResistance: %1% a la esquiva pérdidas de PM
+criticalDamage: %1% Daños críticos
+criticalResistance: %1% Resistencia a los críticos
+pushbackDamage: %1% Daños por empuje
+pushbackResistance: %1% Resistencia al empuje
+trapPower: %1% Potencia (daños generales) con trampas
+trapDamage: %1% Daños con trampas
+pods: %1% Pods

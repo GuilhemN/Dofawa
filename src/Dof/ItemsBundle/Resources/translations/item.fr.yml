@@ -8,58 +8,58 @@ level: Niv. %level%
 primary_bonus: Bonus primaires
 
 to: à
-vitality: Vitalité
-strength: Force
-intelligence: Intelligence
-chance: Chance
-agility: Agilité
-wisdom: Sagesse
-power: Puissance
-criticalHits: Coups Critiques
-ap: PA
-mp: PM
-range: PO
-summons: Invocations
-damage: Dommages
-neutralDamage: Dommages Neutre
-earthDamage: Dommages Terre
-fireDamage: Dommages Feu
-waterDamage: Dommages Eau
-airDamage: Dommages Air
-heals: Soins
-prospecting: Prospection
-initiative: Initiative
-reflectedDamage: Dommages Retournés
-percentNeutralResistance: % Résistance Neutre
-percentEarthResistance: % Résistance Terre
-percentFireResistance: % Résistance Feu
-percentWaterResistance: % Résistance Eau
-percentAirResistance: % Résistance Air
-neutralResistance: Résistance Neutre
-earthResistance: Résistance Terre
-fireResistance: Résistance Feu
-waterResistance: Résistance Eau
-airResistance: Résistance Air
-percentNeutralResistanceInPvp: % Résistance Neutre (JcJ)
-percentEarthResistanceInPvp: % Résistance Terre (JcJ)
-percentFireResistanceInPvp: % Résistance Feu (JcJ)
-percentWaterResistanceInPvp: % Résistance Eau (JcJ)
-percentAirResistanceInPvp: % Résistance Air (JcJ)
-neutralResistanceInPvp: Résistance Neutre (JcJ)
-earthResistanceInPvp: Résistance Terre (JcJ)
-fireResistanceInPvp: Résistance Feu (JcJ)
-waterResistanceInPvp: Résistance Eau (JcJ)
-airResistanceInPvp: Résistance Air (JcJ)
-lock: Tacle
-dodge: Fuite
-apReduction: Retrait PA
-mpReduction: Retrait PM
-apLossResistance: Esquive PA
-mpLossResistance: Esquive PM
-criticalDamage: Dommages Critiques
-criticalResistance: Résistance Critiques
-pushbackDamage: Dommages Poussée
-pushbackResistance: Dommages Poussée
-trapPower: Puissance Pièges
-trapDamage: Dommages Pièges
-pods: Pods
+vitality: %1% Vitalité
+strength: %1% Force
+intelligence: %1% Intelligence
+chance: %1% Chance
+agility: %1% Agilité
+wisdom: %1% Sagesse
+power: %1% Puissance
+criticalHits: %1% Coups Critiques
+ap: %1% PA
+mp: %1% PM
+range: %1% PO
+summons: %1% Invocations
+damage: %1% Dommages
+neutralDamage: %1% Dommages Neutre
+earthDamage: %1% Dommages Terre
+fireDamage: %1% Dommages Feu
+waterDamage: %1% Dommages Eau
+airDamage: %1% Dommages Air
+heals: %1% Soins
+prospecting: %1% Prospection
+initiative: %1% Initiative
+reflectedDamage: %1% Dommages Retournés
+percentNeutralResistance: %1% % Résistance Neutre
+percentEarthResistance: %1% % Résistance Terre
+percentFireResistance: %1% % Résistance Feu
+percentWaterResistance: %1% % Résistance Eau
+percentAirResistance: %1% % Résistance Air
+neutralResistance: %1% Résistance Neutre
+earthResistance: %1% Résistance Terre
+fireResistance: %1% Résistance Feu
+waterResistance: %1% Résistance Eau
+airResistance: %1% Résistance Air
+percentNeutralResistanceInPvp: %1% % Résistance Neutre (JcJ)
+percentEarthResistanceInPvp: %1% % Résistance Terre (JcJ)
+percentFireResistanceInPvp: %1% % Résistance Feu (JcJ)
+percentWaterResistanceInPvp: %1% % Résistance Eau (JcJ)
+percentAirResistanceInPvp: %1% % Résistance Air (JcJ)
+neutralResistanceInPvp: %1% Résistance Neutre (JcJ)
+earthResistanceInPvp: %1% Résistance Terre (JcJ)
+fireResistanceInPvp: %1% Résistance Feu (JcJ)
+waterResistanceInPvp: %1% Résistance Eau (JcJ)
+airResistanceInPvp: %1% Résistance Air (JcJ)
+lock: %1% Tacle
+dodge: %1% Fuite
+apReduction: %1% Retrait PA
+mpReduction: %1% Retrait PM
+apLossResistance: %1% Esquive PA
+mpLossResistance: %1% Esquive PM
+criticalDamage: %1% Dommages Critiques
+criticalResistance: %1% Résistance Critiques
+pushbackDamage: %1% Dommages Poussée
+pushbackResistance: %1% Dommages Poussée
+trapPower: %1% Puissance Pièges
+trapDamage: %1% Dommages Pièges
+pods: %1% Pods

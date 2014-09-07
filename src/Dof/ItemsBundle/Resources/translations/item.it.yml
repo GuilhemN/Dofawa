@@ -3,58 +3,58 @@ list:
 level: Livello %level%
 
 to: a
-vitality: Vitalité # TODO
-strength: Force # TODO
-intelligence: Intelligence # TODO
-chance: Chance # TODO
-agility: Agilité # TODO
-wisdom: Sagesse # TODO
-power: Puissance # TODO
+vitality: %1% Vitalité # TODO
+strength: %1% Force # TODO
+intelligence: %1% Intelligence # TODO
+chance: %1% Chance # TODO
+agility: %1% Agilité # TODO
+wisdom: %1% Sagesse # TODO
+power: %1% Puissance # TODO
 criticalHits: Coups Critiques # TODO
-ap: PA # TODO
-mp: PM # TODO
-range: PO # TODO
-summons: Invocations # TODO
-damage: Dommages # TODO
-neutralDamage: Dommages Neutre # TODO
-earthDamage: Dommages Terre # TODO
-fireDamage: Dommages Feu # TODO
-waterDamage: Dommages Eau # TODO
-airDamage: Dommages Air
-heals: Soins # TODO
-prospecting: Prospection # TODO
-initiative: Initiative # TODO
-reflectedDamage: Dommages Retournés # TODO
-percentNeutralResistance: % Résistance Neutre # TODO
-percentEarthResistance: % Résistance Terre # TODO
-percentFireResistance: % Résistance Feu # TODO
-percentWaterResistance: % Résistance Eau # TODO
-percentAirResistance: % Résistance Air # TODO
-neutralResistance: Résistance Neutre # TODO
-earthResistance: Résistance Terre # TODO
-fireResistance: Résistance Feu # TODO
-waterResistance: Résistance Eau # TODO
-airResistance: Résistance Air # TODO
-percentNeutralResistanceInPvp: % Résistance Neutre (JcJ) # TODO
-percentEarthResistanceInPvp: % Résistance Terre (JcJ) # TODO
-percentFireResistanceInPvp: % Résistance Feu (JcJ) # TODO
-percentWaterResistanceInPvp: % Résistance Eau (JcJ) # TODO
-percentAirResistanceInPvp: % Résistance Air (JcJ) # TODO
-neutralResistanceInPvp: Résistance Neutre (JcJ) # TODO
-earthResistanceInPvp: Résistance Terre (JcJ) # TODO
-fireResistanceInPvp: Résistance Feu (JcJ) # TODO
-waterResistanceInPvp: Résistance Eau (JcJ) # TODO
-airResistanceInPvp: Résistance Air (JcJ) # TODO
-lock: Tacle # TODO
-dodge: Fuite # TODO
-apReduction: Retrait PA # TODO
-mpReduction: Retrait PM # TODO
-apLossResistance: Esquive PA # TODO
-mpLossResistance: Esquive PM # TODO
-criticalDamage: Dommages Critiques # TODO
-criticalResistance: Résistance Critiques # TODO
-pushbackDamage: Dommages Poussée # TODO
-pushbackResistance: Dommages Poussée # TODO
-trapPower: Puissance Pièges # TODO
-trapDamage: Dommages Pièges # TODO
-pods: Pods # TODO
+ap: %1% PA # TODO
+mp: %1% PM # TODO
+range: %1% PO # TODO
+summons: %1% Invocations # TODO
+damage: %1% Dommages # TODO
+neutralDamage: %1% Dommages Neutre # TODO
+earthDamage: %1% Dommages Terre # TODO
+fireDamage: %1% Dommages Feu # TODO
+waterDamage: %1% Dommages Eau # TODO
+airDamage: %1% Dommages Air
+heals: %1% Soins # TODO
+prospecting: %1% Prospection # TODO
+initiative: %1% Initiative # TODO
+reflectedDamage: %1% Dommages Retournés # TODO
+percentNeutralResistance: %1% % Résistance Neutre # TODO
+percentEarthResistance: %1% % Résistance Terre # TODO
+percentFireResistance: %1% % Résistance Feu # TODO
+percentWaterResistance: %1% % Résistance Eau # TODO
+percentAirResistance: %1% % Résistance Air # TODO
+neutralResistance: %1% Résistance Neutre # TODO
+earthResistance: %1% Résistance Terre # TODO
+fireResistance: %1% Résistance Feu # TODO
+waterResistance: %1% Résistance Eau # TODO
+airResistance: %1% Résistance Air # TODO
+percentNeutralResistanceInPvp: %1% % Résistance Neutre (JcJ) # TODO
+percentEarthResistanceInPvp: %1% % Résistance Terre (JcJ) # TODO
+percentFireResistanceInPvp: %1% % Résistance Feu (JcJ) # TODO
+percentWaterResistanceInPvp: %1% % Résistance Eau (JcJ) # TODO
+percentAirResistanceInPvp: %1% % Résistance Air (JcJ) # TODO
+neutralResistanceInPvp: %1% Résistance Neutre (JcJ) # TODO
+earthResistanceInPvp: %1% Résistance Terre (JcJ) # TODO
+fireResistanceInPvp: %1% Résistance Feu (JcJ) # TODO
+waterResistanceInPvp: %1% Résistance Eau (JcJ) # TODO
+airResistanceInPvp: %1% Résistance Air (JcJ) # TODO
+lock: %1% Tacle # TODO
+dodge: %1% Fuite # TODO
+apReduction: %1% Retrait PA # TODO
+mpReduction: %1% Retrait PM # TODO
+apLossResistance: %1% Esquive PA # TODO
+mpLossResistance: %1% Esquive PM # TODO
+criticalDamage: %1% Dommages Critiques # TODO
+criticalResistance: %1% Résistance Critiques # TODO
+pushbackDamage: %1% Dommages Poussée # TODO
+pushbackResistance: %1% Dommages Poussée # TODO
+trapPower: %1% Puissance Pièges # TODO
+trapDamage: %1% Dommages Pièges # TODO
+pods: %1% Pods # TODO

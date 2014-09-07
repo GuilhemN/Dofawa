@@ -10,9 +10,12 @@
     {% endif %}
 
     {% if min != 0 or max != 0 %}
-        {% if min != max %}
-            {{ min}} {{ 'to' | trans }}
-        {% endif %}
-        {{ max }} {{ name | trans }}<br>
+        {% set range %}
+            {% if min != max %}
+                {{ min}} {{ 'to' | trans }}
+            {% endif %}
+            {{ max }}
+        {% endset %}
+        {{ name | trans({'%1%': range}) }}<br>
     {% endif %}
 {% endfor %}
