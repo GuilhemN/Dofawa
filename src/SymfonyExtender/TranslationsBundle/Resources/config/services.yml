@@ -1,18 +1,21 @@
 parameters:
     translator.class: SymfonyExtender\TranslationsBundle\Translation\Translator
     language_fallbacks:
-        en:
-            - fr
         fr:
             - en
+        en:
+            - fr
+        de:
+            - en
+            - fr
         it:
             - en
             - fr
         es:
             - fr
             - en
-        de:
-            - en
+        pt:
+            - es
             - fr
         ru:
             - en

@@ -5,7 +5,7 @@ imports:
     - { resource: @DofAdminBundle/Resources/config/admin.yml }
 
 parameters:
-  locales: [en, de, fr, es, ru, it, ja]
+  locales: [fr, en, de, it, es, pt, ru, ja]
   current_release_number: '2.22'
   beta_release_number: '2.23'
   current_release_database: dofawa2

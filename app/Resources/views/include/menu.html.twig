@@ -29,11 +29,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) }}">
-                                Español
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'de'}) ) }}">
                                 Deutsch
                             </a>
@@ -44,13 +39,23 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) }}">
+                                Español
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'pt'}) ) }}">
+                                Português
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) ) }}">
                                 Ру́сский
                             </a>
                         </li>
                         <li>
                             <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ja'}) ) }}">
-                                日本の
+                                日本語
                             </a>
                         </li>
                     </ul>
