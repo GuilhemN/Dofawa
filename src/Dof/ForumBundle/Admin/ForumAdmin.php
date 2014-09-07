@@ -26,7 +26,7 @@ class ForumAdmin extends Admin
             ->add('nameEs')
             ->add('nameIt')
             ->add('namePt')
-            ->add('nameJp')
+            ->add('nameJa')
             ->add('nameRu')
             ->add('descriptionFr')
         ;
@@ -70,7 +70,7 @@ class ForumAdmin extends Admin
             ->add('nameEs')
             ->add('nameIt')
             ->add('namePt')
-            ->add('nameJp')
+            ->add('nameJa')
             ->add('nameRu')
             ->add('descriptionFr')
             ->add('descriptionEn')
@@ -78,7 +78,7 @@ class ForumAdmin extends Admin
             ->add('descriptionEs')
             ->add('descriptionIt')
             ->add('descriptionPt')
-            ->add('descriptionJp')
+            ->add('descriptionJa')
             ->add('descriptionRu')
         ;
     }
@@ -101,7 +101,7 @@ class ForumAdmin extends Admin
             ->add('nameEs')
             ->add('nameIt')
             ->add('namePt')
-            ->add('nameJp')
+            ->add('nameJa')
             ->add('nameRu')
             ->add('descriptionFr')
             ->add('descriptionEn')
@@ -109,7 +109,7 @@ class ForumAdmin extends Admin
             ->add('descriptionEs')
             ->add('descriptionIt')
             ->add('descriptionPt')
-            ->add('descriptionJp')
+            ->add('descriptionJa')
             ->add('descriptionRu')
         ;
     }

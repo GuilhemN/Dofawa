@@ -26,7 +26,7 @@ class CategoryAdmin extends Admin
             ->add('nameEs')
             ->add('nameIt')
             ->add('namePt')
-            ->add('nameJp')
+            ->add('nameJa')
             ->add('nameRu')
             ->add('descriptionFr')
         ;
@@ -68,7 +68,7 @@ class CategoryAdmin extends Admin
             ->add('nameEs')
             ->add('nameIt')
             ->add('namePt')
-            ->add('nameJp')
+            ->add('nameJa')
             ->add('nameRu')
             ->add('descriptionFr')
             ->add('descriptionEn')
@@ -76,7 +76,7 @@ class CategoryAdmin extends Admin
             ->add('descriptionEs')
             ->add('descriptionIt')
             ->add('descriptionPt')
-            ->add('descriptionJp')
+            ->add('descriptionJa')
             ->add('descriptionRu')
         ;
     }
@@ -99,7 +99,7 @@ class CategoryAdmin extends Admin
             ->add('nameEs')
             ->add('nameIt')
             ->add('namePt')
-            ->add('nameJp')
+            ->add('nameJa')
             ->add('nameRu')
             ->add('descriptionFr')
             ->add('descriptionEn')
@@ -107,7 +107,7 @@ class CategoryAdmin extends Admin
             ->add('descriptionEs')
             ->add('descriptionIt')
             ->add('descriptionPt')
-            ->add('descriptionJp')
+            ->add('descriptionJa')
             ->add('descriptionRu')
         ;
     }

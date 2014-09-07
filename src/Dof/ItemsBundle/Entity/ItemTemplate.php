@@ -95,9 +95,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     /**
      * @var string
      *
-     * @ORM\Column(name="obtainment_jp", type="text", nullable=true)
+     * @ORM\Column(name="obtainment_ja", type="text", nullable=true)
      */
-    private $obtainmentJp;
+    private $obtainmentJa;
 
     /**
      * @var string
@@ -399,26 +399,26 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainmentJp
+     * Set obtainmentJa
      *
-     * @param string $obtainmentJp
+     * @param string $obtainmentJa
      * @return ItemTemplate
      */
-    public function setObtainmentJp($obtainmentJp)
+    public function setObtainmentJa($obtainmentJa)
     {
-        $this->obtainmentJp = $obtainmentJp;
+        $this->obtainmentJa = $obtainmentJa;
 
         return $this;
     }
 
     /**
-     * Get obtainmentJp
+     * Get obtainmentJa
      *
      * @return string
      */
-    public function getObtainmentJp()
+    public function getObtainmentJa()
     {
-        return $this->obtainmentJp;
+        return $this->obtainmentJa;
     }
 
     /**
@@ -460,7 +460,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
             case 'es': $this->obtainmentEs = $obtainment; break;
             case 'it': $this->obtainmentIt = $obtainment; break;
             case 'pt': $this->obtainmentPt = $obtainment; break;
-            case 'jp': $this->obtainmentJp = $obtainment; break;
+            case 'ja': $this->obtainmentJa = $obtainment; break;
             case 'ru': $this->obtainmentRu = $obtainment; break;
         }
         return $this;
@@ -489,7 +489,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
             case 'es': return $this->obtainmentEs;
             case 'it': return $this->obtainmentIt;
             case 'pt': return $this->obtainmentPt;
-            case 'jp': return $this->obtainmentJp;
+            case 'ja': return $this->obtainmentJa;
             case 'ru': return $this->obtainmentRu;
             default: return null;
         }

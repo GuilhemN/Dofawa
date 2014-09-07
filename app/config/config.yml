@@ -5,10 +5,10 @@ imports:
     - { resource: @DofAdminBundle/Resources/config/admin.yml }
 
 parameters:
-  locales: [en, de, fr, es, ru, it]
+  locales: [en, de, fr, es, ru, it, ja]
   current_release_number: '2.22'
   beta_release_number: '2.23'
-  current_release_database: dofus2
+  current_release_database: dofawa2
   beta_release_database: dofus2beta
 
 jms_i18n_routing:

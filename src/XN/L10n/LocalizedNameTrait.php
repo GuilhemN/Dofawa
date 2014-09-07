@@ -51,9 +51,9 @@ trait LocalizedNameTrait
     /**
      * @var string
      *
-     * @ORM\Column(name="name_jp", type="string", length=150, nullable=true)
+     * @ORM\Column(name="name_ja", type="string", length=150, nullable=true)
      */
-    private $nameJp;
+    private $nameJa;
 
     /**
      * @var string
@@ -201,26 +201,26 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Set nameJp
+     * Set nameJa
      *
-     * @param string $nameJp
+     * @param string $nameJa
      * @return object
      */
-    public function setNameJp($nameJp)
+    public function setNameJa($nameJa)
     {
-        $this->nameJp = $nameJp;
+        $this->nameJa = $nameJa;
 
         return $this;
     }
 
     /**
-     * Get nameJp
+     * Get nameJa
      *
      * @return string
      */
-    public function getNameJp()
+    public function getNameJa()
     {
-        return $this->nameJp;
+        return $this->nameJa;
     }
 
     /**
@@ -262,7 +262,7 @@ trait LocalizedNameTrait
     		case 'es': $this->nameEs = $name; break;
     		case 'it': $this->nameIt = $name; break;
     		case 'pt': $this->namePt = $name; break;
-    		case 'jp': $this->nameJp = $name; break;
+    		case 'ja': $this->nameJa = $name; break;
     		case 'ru': $this->nameRu = $name; break;
     	}
     	return $this;
@@ -291,7 +291,7 @@ trait LocalizedNameTrait
     		case 'es': return $this->nameEs;
     		case 'it': return $this->nameIt;
     		case 'pt': return $this->namePt;
-    		case 'jp': return $this->nameJp;
+    		case 'ja': return $this->nameJa;
     		case 'ru': return $this->nameRu;
     		default: return null;
     	}
@@ -305,7 +305,7 @@ trait LocalizedNameTrait
             'nameEs' => $this->nameEs,
             'nameIt' => $this->nameIt,
             'namePt' => $this->namePt,
-            'nameJp' => $this->nameJp,
+            'nameJa' => $this->nameJa,
             'nameRu' => $this->nameRu
         ];
     }

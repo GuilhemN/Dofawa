@@ -62,7 +62,7 @@ class ItemTemplateAdmin extends Admin
             ->add('obtainmentEs')
             ->add('obtainmentIt')
             ->add('obtainmentPt')
-            ->add('obtainmentJp')
+            ->add('obtainmentJa')
             ->add('obtainmentRu')
             ->add('visible')
         ;
@@ -81,7 +81,7 @@ class ItemTemplateAdmin extends Admin
             ->add('obtainmentEs')
             ->add('obtainmentIt')
             ->add('obtainmentPt')
-            ->add('obtainmentJp')
+            ->add('obtainmentJa')
             ->add('obtainmentRu')
             ->add('iconRelativePath')
             ->add('dominantColor')
@@ -104,7 +104,7 @@ class ItemTemplateAdmin extends Admin
             ->add('nameEs')
             ->add('nameIt')
             ->add('namePt')
-            ->add('nameJp')
+            ->add('nameJa')
             ->add('nameRu')
             ->add('descriptionFr')
             ->add('descriptionEn')
@@ -112,7 +112,7 @@ class ItemTemplateAdmin extends Admin
             ->add('descriptionEs')
             ->add('descriptionIt')
             ->add('descriptionPt')
-            ->add('descriptionJp')
+            ->add('descriptionJa')
             ->add('descriptionRu')
         ;
     }

@@ -59,7 +59,7 @@ class BadgeAdmin extends Admin
             ->add('nameEs')
             ->add('nameIt')
             ->add('namePt')
-            ->add('nameJp')
+            ->add('nameJa')
             ->add('nameRu')
         ;
     }
@@ -80,7 +80,7 @@ class BadgeAdmin extends Admin
             ->add('nameEs')
             ->add('nameIt')
             ->add('namePt')
-            ->add('nameJp')
+            ->add('nameJa')
             ->add('nameRu')
         ;
     }

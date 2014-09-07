@@ -51,9 +51,9 @@ trait LocalizedDescriptionTrait
     /**
      * @var string
      *
-     * @ORM\Column(name="description_jp", type="text", nullable=true)
+     * @ORM\Column(name="description_ja", type="text", nullable=true)
      */
-    private $descriptionJp;
+    private $descriptionJa;
 
     /**
      * @var string
@@ -201,26 +201,26 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Set descriptionJp
+     * Set descriptionJa
      *
-     * @param string $descriptionJp
+     * @param string $descriptionJa
      * @return object
      */
-    public function setDescriptionJp($descriptionJp)
+    public function setDescriptionJa($descriptionJa)
     {
-        $this->descriptionJp = $descriptionJp;
+        $this->descriptionJa = $descriptionJa;
 
         return $this;
     }
 
     /**
-     * Get descriptionJp
+     * Get descriptionJa
      *
      * @return string
      */
-    public function getDescriptionJp()
+    public function getDescriptionJa()
     {
-        return $this->descriptionJp;
+        return $this->descriptionJa;
     }
 
     /**
@@ -262,7 +262,7 @@ trait LocalizedDescriptionTrait
             case 'es': $this->descriptionEs = $description; break;
             case 'it': $this->descriptionIt = $description; break;
             case 'pt': $this->descriptionPt = $description; break;
-            case 'jp': $this->descriptionJp = $description; break;
+            case 'ja': $this->descriptionJa = $description; break;
             case 'ru': $this->descriptionRu = $description; break;
         }
         return $this;
@@ -291,7 +291,7 @@ trait LocalizedDescriptionTrait
             case 'es': return $this->descriptionEs;
             case 'it': return $this->descriptionIt;
             case 'pt': return $this->descriptionPt;
-            case 'jp': return $this->descriptionJp;
+            case 'ja': return $this->descriptionJa;
             case 'ru': return $this->descriptionRu;
             default: return null;
         }

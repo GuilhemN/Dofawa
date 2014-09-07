@@ -80,9 +80,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * @var string
      *
-     * @ORM\Column(name="long_name_jp", type="string", length=255, nullable=true)
+     * @ORM\Column(name="long_name_ja", type="string", length=255, nullable=true)
      */
-    private $longNameJp;
+    private $longNameJa;
 
     /**
      * @var string
@@ -136,9 +136,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * @var string
      *
-     * @ORM\Column(name="gameplay_description_jp", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gameplay_description_ja", type="string", length=255, nullable=true)
      */
-    private $gameplayDescriptionJp;
+    private $gameplayDescriptionJa;
 
     /**
      * @var string
@@ -408,26 +408,26 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longNameJp
+     * Set longNameJa
      *
-     * @param string $longNameJp
+     * @param string $longNameJa
      * @return Breed
      */
-    public function setLongNameJp($longNameJp)
+    public function setLongNameJa($longNameJa)
     {
-        $this->longNameJp = $longNameJp;
+        $this->longNameJa = $longNameJa;
 
         return $this;
     }
 
     /**
-     * Get longNameJp
+     * Get longNameJa
      *
      * @return string
      */
-    public function getLongNameJp()
+    public function getLongNameJa()
     {
-        return $this->longNameJp;
+        return $this->longNameJa;
     }
 
     /**
@@ -469,7 +469,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'es': $this->longNameEs = $longName; break;
             case 'it': $this->longNameIt = $longName; break;
             case 'pt': $this->longNamePt = $longName; break;
-            case 'jp': $this->longNameJp = $longName; break;
+            case 'ja': $this->longNameJa = $longName; break;
             case 'ru': $this->longNameRu = $longName; break;
         }
         return $this;
@@ -498,7 +498,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'es': return $this->longNameEs;
             case 'it': return $this->longNameIt;
             case 'pt': return $this->longNamePt;
-            case 'jp': return $this->longNameJp;
+            case 'ja': return $this->longNameJa;
             case 'ru': return $this->longNameRu;
             default: return null;
         }
@@ -643,26 +643,26 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set gameplayDescriptionJp
+     * Set gameplayDescriptionJa
      *
-     * @param string $gameplayDescriptionJp
+     * @param string $gameplayDescriptionJa
      * @return Breed
      */
-    public function setGameplayDescriptionJp($gameplayDescriptionJp)
+    public function setGameplayDescriptionJa($gameplayDescriptionJa)
     {
-        $this->gameplayDescriptionJp = $gameplayDescriptionJp;
+        $this->gameplayDescriptionJa = $gameplayDescriptionJa;
 
         return $this;
     }
 
     /**
-     * Get gameplayDescriptionJp
+     * Get gameplayDescriptionJa
      *
      * @return string
      */
-    public function getGameplayDescriptionJp()
+    public function getGameplayDescriptionJa()
     {
-        return $this->gameplayDescriptionJp;
+        return $this->gameplayDescriptionJa;
     }
 
     /**
@@ -704,7 +704,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'es': $this->gameplayDescriptionEs = $gameplayDescription; break;
             case 'it': $this->gameplayDescriptionIt = $gameplayDescription; break;
             case 'pt': $this->gameplayDescriptionPt = $gameplayDescription; break;
-            case 'jp': $this->gameplayDescriptionJp = $gameplayDescription; break;
+            case 'ja': $this->gameplayDescriptionJa = $gameplayDescription; break;
             case 'ru': $this->gameplayDescriptionRu = $gameplayDescription; break;
         }
         return $this;
@@ -733,7 +733,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'es': return $this->gameplayDescriptionEs;
             case 'it': return $this->gameplayDescriptionIt;
             case 'pt': return $this->gameplayDescriptionPt;
-            case 'jp': return $this->gameplayDescriptionJp;
+            case 'ja': return $this->gameplayDescriptionJa;
             case 'ru': return $this->gameplayDescriptionRu;
             default: return null;
         }

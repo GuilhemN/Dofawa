@@ -104,8 +104,8 @@ class GameDataProvider
                 $this->currentReleaseLocales[] = 'pt';
             } catch (\Exception $e) { }
             try {
-                $this->conn->query('DESCRIBE ' . $this->currentReleaseDatabase . '.D2I_jp')->closeCursor();
-                $this->currentReleaseLocales[] = 'jp';
+                $this->conn->query('DESCRIBE ' . $this->currentReleaseDatabase . '.D2I_ja')->closeCursor();
+                $this->currentReleaseLocales[] = 'ja';
             } catch (\Exception $e) { }
             try {
                 $this->conn->query('DESCRIBE ' . $this->currentReleaseDatabase . '.D2I_ru')->closeCursor();
@@ -144,8 +144,8 @@ class GameDataProvider
                 $this->betaReleaseLocales[] = 'pt';
             } catch (\Exception $e) { }
             try {
-                $this->conn->query('DESCRIBE ' . $this->betaReleaseDatabase . '.D2I_jp')->closeCursor();
-                $this->betaReleaseLocales[] = 'jp';
+                $this->conn->query('DESCRIBE ' . $this->betaReleaseDatabase . '.D2I_ja')->closeCursor();
+                $this->betaReleaseLocales[] = 'ja';
             } catch (\Exception $e) { }
             try {
                 $this->conn->query('DESCRIBE ' . $this->betaReleaseDatabase . '.D2I_ru')->closeCursor();

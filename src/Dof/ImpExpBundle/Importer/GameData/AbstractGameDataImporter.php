@@ -90,8 +90,8 @@ abstract class AbstractGameDataImporter implements ImporterInterface
             $entity->$setter($row[$alias . 'It'], 'it');
         if (isset($row[$alias . 'Pt']))
             $entity->$setter($row[$alias . 'Pt'], 'pt');
-        if (isset($row[$alias . 'Jp']))
-            $entity->$setter($row[$alias . 'Jp'], 'jp');
+        if (isset($row[$alias . 'Ja']))
+            $entity->$setter($row[$alias . 'Ja'], 'ja');
         if (isset($row[$alias . 'Ru']))
             $entity->$setter($row[$alias . 'Ru'], 'ru');
     }
