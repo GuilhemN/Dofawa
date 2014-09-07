@@ -2,7 +2,7 @@ list:
     level: Level
 level: Lvl. %level%
 
-to: ~
+to: "~"
 vitality: 活力 %1%
 strength: 力 %1%
 intelligence: 知性 %1%
