@@ -50,13 +50,14 @@
 				        <td></td>
 				    </tr>
 				</table>
-				<center>
-		            <a href="{{ path('dof_forum_add_message', { 'slug' : topic.slug }) }}"><button type="button" class="btn btn-default btn-lg">
-		            Repondre
-		            </button></a>
-		        </center>
+				
 		  	</div>
 		</div>
 	{% endfor %}
+	<center>
+		<a href="{{ path('dof_forum_add_message', { 'slug' : topic.slug }) }}"><button type="button" class="btn btn-default btn-lg">
+		    Repondre
+		</button></a>
+	</center>
 {% endautoescape %}
 {% endblock %}
