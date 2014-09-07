@@ -1,0 +1,60 @@
+list:
+    level: Level
+level: Lvl. %level%
+
+to: ~
+vitality: 活力 %1%
+strength: 力 %1%
+intelligence: 知性 %1%
+chance: 運 %1%
+agility: すばやさ %1%
+wisdom: 精神 %1%
+power: パワー %1%
+criticalHits: クリティカルヒット %1%
+ap: AP %1%
+mp: MP %1%
+range: 有効エリア %1%
+summons: 召喚 : %1%
+damage: ダメージ %1%
+neutralDamage: ニュートラル属性ダメージ %1%
+earthDamage: 地属性ダメージ %1%
+fireDamage: 火属性ダメージ %1%
+waterDamage: 水属性ダメージ %1%
+airDamage: 風属性ダメージ %1%
+heals: ヒーリング  %1%
+prospecting: ドロップ率 %1%
+initiative: リーダーシップ %1%
+reflectedDamage: ダメージを%1%はね返す
+percentNeutralResistance: ニュートラル耐性 %1% %
+percentEarthResistance: 地耐性 %1% %
+percentFireResistance: 火耐性 %1% %
+percentWaterResistance: 水耐性 %1% %
+percentAirResistance: 風耐性 %1% %
+neutralResistance: ニュートラル耐性 %1%
+earthResistance: 地耐性 %1%
+fireResistance: 火耐性 %1%
+waterResistance: 水耐性 %1%
+airResistance: 風耐性 %1%
+percentNeutralResistanceInPvp: ニュートラル耐性 %1% % (PVP)
+percentEarthResistanceInPvp: 地耐性 %1% % (PVP)
+percentFireResistanceInPvp: 火耐性 %1% % (PVP)
+percentWaterResistanceInPvp: 水耐性 %1% % (PVP)
+percentAirResistanceInPvp: 風耐性 %1% % (PVP)
+neutralResistanceInPvp: ニュートラル耐性 %1% (PVP)
+earthResistanceInPvp: 地耐性 %1% (PVP)
+fireResistanceInPvp: 火耐性 %1% (PVP)
+waterResistanceInPvp: 水耐性 %1% (PVP)
+airResistanceInPvp: 風耐性 %1% (PVP)
+lock: 障害 %1%
+dodge: 回避 %1%
+apReduction: AP奪取 %1%
+mpReduction: MP奪取 %1%
+apLossResistance: APロス回避率 %1%
+mpLossResistance: MPロス回避率 %1%
+criticalDamage: クリティカルダメージ %1%
+criticalResistance: クリティカル耐性 %1%
+pushbackDamage: プッシュバックダメージ %1%
+pushbackResistance: プッシュバック耐性 %1%
+trapPower: トラップダメージ %1%
+trapDamage: トラップダメージ %1%
+pods: ポッズ %1%
