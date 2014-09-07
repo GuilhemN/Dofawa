@@ -13,3 +13,9 @@ dof_forum_show_topic:
     defaults: { _controller: DofForumBundle:Forum:showTopic }
     requirements:
        slug: '[0-9a-z-]+'
+
+dof_forum_add_message:
+    path:     /topic/{slug}/add
+    defaults: { _controller: DofForumBundle:Forum:addMessage }
+    requirements:
+       slug: '[0-9a-z-]+'
