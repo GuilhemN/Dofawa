@@ -48,6 +48,11 @@
                                 Ру́сский
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ja'}) ) }}">
+                                日本の
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
