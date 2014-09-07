@@ -52,7 +52,7 @@ class ForumController extends Controller
 
 		    if ($form->isValid()) {
 
-		    	$message->topic = $topic->slug;
+		    	$message->topic = $topic->getSlug();
 		    	$message->createdAt = new \Datetime;
 
 		    	$em = $this->getDoctrine()->getManager();
