@@ -12,7 +12,7 @@
       <h1>{{ topic.getName(locales()) }}</h1>
     </div>
 	{% for message in topic.messages %}
-		<div class="panel panel-default">
+		<div class="panel panel-default" id="message-{{ id }}">
 		  	<div class="panel-body nopadding">
 		  	    <p class="text-right padding-right">{{ message.createdAt | date("h:i:s d/m/Y") }}</p>
 		    	<table class="table">
@@ -50,6 +50,11 @@
 				        <td></td>
 				    </tr>
 				</table>
+				<center>
+		            <a href="{{ path('dof_forum_add_message', { 'slug' : topic.slug }) }}"><button type="button" class="btn btn-default btn-lg">
+		            Repondre
+		            </button></a>
+		        </center>
 		  	</div>
 		</div>
 	{% endfor %}
