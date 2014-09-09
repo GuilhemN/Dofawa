@@ -7,7 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ForumBundle\Entity\Forum;
 use Dof\ForumBundle\Entity\Topic;
 use Dof\ForumBundle\Entity\Message;
-use Dof\ForumBundle\Form;
+use Dof\ForumBundle\Form\MessageType;
+use Dof\ForumBundle\Form\TopicType;
 
 class ForumController extends Controller
 {
