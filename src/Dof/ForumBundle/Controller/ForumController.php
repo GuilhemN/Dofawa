@@ -78,9 +78,9 @@ class ForumController extends Controller
 
 		$request = $this->get('request');
 		if ($request->getMethod() == 'POST') {
-			$form->bind($request);
+			$formtopic->bind($request);
 
-		    if ($form->isValid()) {
+		    if ($formtopic->isValid()) {
 
 		    	$topic->setForum($forum);
 
