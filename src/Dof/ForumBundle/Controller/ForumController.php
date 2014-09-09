@@ -47,7 +47,7 @@ class ForumController extends Controller
             throw $this->createAccessDeniedException();
     	$message = new Message;
 		$form = $this->createForm(new MessageType, $message);
-
+ 
 		$request = $this->get('request');
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
