@@ -65,4 +65,43 @@ class ForumController extends Controller
 		}
         return $this->render('DofForumBundle:Forum:addMessage.html.twig', array('form' => $form->createView(), 'topic' => $topic));
     }
+
+    /**
+   	* @ParamConverter("forum")
+   	*/
+   	public function addTopicAction(Forum $forum)
+    {
+    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+            throw $this->createAccessDeniedException();
+    	$message = new Message;
+    	$topic =new Topic;
+
+    	$formmess = $this->createFormBuilder($message)
+                 ->add('content',     'textarea')
+                 ->getForm();
+    	$formtopic = $this->createFormBuilder($topic)
+                 ->add('content',     'textarea')
+                 ->add('messages',     $formmess)
+                 ->getForm();
+		
+
+		$request = $this->get('request');
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+
+		    if ($form->isValid()) {
+
+		    	$topic->setForum($forum);
+		    	$message->setTopic($Topic);
+
+		    	$em = $this->getDoctrine()->getManager();
+		      	$em->persist($message);
+		      	$em->persist($topic);
+		      	$em->flush();
+
+		      	return $this->redirect($this->generateUrl('dof_forum_show_forum', array('slug' => $forum->getSlug())));
+		    }
+		}
+        return $this->render('DofForumBundle:Forum:addTopic.html.twig', array('formtopic' => $formtopic->createView(), 'forum' => $forum));
+    }
 }
