@@ -1,7 +1,6 @@
 <?php
 
 namespace Dof\ForumBundle\Controller;
-namespace Dof\ForumBundle\Form;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
