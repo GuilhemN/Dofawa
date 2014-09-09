@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ForumBundle\Entity\Forum;
 use Dof\ForumBundle\Entity\Topic;
 use Dof\ForumBundle\Entity\Message;
+use Dof\ForumBundle\Form;
 
 class ForumController extends Controller
 {
@@ -44,9 +45,7 @@ class ForumController extends Controller
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
     	$message = new Message;
-		$form = $this->createFormBuilder($message)
-                 ->add('content',     'textarea')
-                 ->getForm();
+		$form = $this->createForm(new MessageType, $message);
 
 		$request = $this->get('request');
 		if ($request->getMethod() == 'POST') {
@@ -73,17 +72,9 @@ class ForumController extends Controller
     {
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
-    	$message = new Message;
     	$topic =new Topic;
 
-    	$formmess = $this->createFormBuilder($message)
-                 ->add('content',     'textarea')
-                 ->getForm();
-    	$formtopic = $this->createFormBuilder($topic)
-                 ->add('content',     'textarea')
-                 ->add('messages',     $formmess)
-                 ->getForm();
-		
+    	$formtopic = $this->createForm(new TopicType, $topic);
 
 		$request = $this->get('request');
 		if ($request->getMethod() == 'POST') {
@@ -92,14 +83,12 @@ class ForumController extends Controller
 		    if ($form->isValid()) {
 
 		    	$topic->setForum($forum);
-		    	$message->setTopic($Topic);
 
 		    	$em = $this->getDoctrine()->getManager();
-		      	$em->persist($message);
 		      	$em->persist($topic);
 		      	$em->flush();
 
-		      	return $this->redirect($this->generateUrl('dof_forum_show_forum', array('slug' => $forum->getSlug())));
+		      	return $this->redirect($this->generateUrl('dof_forum_show_topic', array('slug' => $topic->getSlug())));
 		    }
 		}
         return $this->render('DofForumBundle:Forum:addTopic.html.twig', array('formtopic' => $formtopic->createView(), 'forum' => $forum));
