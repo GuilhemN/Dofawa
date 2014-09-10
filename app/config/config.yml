@@ -9,7 +9,7 @@ parameters:
   current_release_number: '2.22'
   beta_release_number: '2.23'
   current_release_database: dofawa2
-  beta_release_database: dofus2beta
+  beta_release_database: dofawa3
 
 jms_i18n_routing:
     default_locale: en
