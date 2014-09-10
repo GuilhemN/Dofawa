@@ -1,4 +1,4 @@
-menu_haut:
+nav:
     home: Home
     universe:
         title: Universe
@@ -7,3 +7,13 @@ menu_haut:
         dungeons: Dungeons
     tools:
         title: Tools
+
+# Layout
+layout:
+    ad: Publicité
+
+footer:
+    links: Links
+    partners: Partners
+    theteam: The team
+    copyright: Dofawa.fr is an unofficial fan site unrelated to Ankama. Dofawa © 2014. All rights reserved.

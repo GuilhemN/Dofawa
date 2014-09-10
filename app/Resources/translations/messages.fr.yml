@@ -1,4 +1,4 @@
-menu_haut:
+nav:
     home: Accueil
     universe:
         title: Univers
@@ -7,3 +7,13 @@ menu_haut:
         dungeons: Donjons
     tools:
         title: Outils
+
+# Layout
+layout:
+    ad: Publicité
+
+footer:
+    links: Liens
+    partners: Partenaires
+    theteam: L'équipe
+    copyright: Dofawa.fr est un fan site non-officiel sans aucun lien avec Ankama. Dofawa © 2014. Tous droits réservés.
