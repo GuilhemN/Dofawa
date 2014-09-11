@@ -87,6 +87,7 @@ class ForumController extends Controller
 		    if ($formtopic->isValid()) {
 
 		    	$topic->setForum($forum);
+		    	$topic->setLocked(0);
 
 		    	$em = $this->getDoctrine()->getManager();
 		      	$em->persist($topic);
