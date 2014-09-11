@@ -90,6 +90,7 @@ class ForumController extends Controller
 
 		    	$em = $this->getDoctrine()->getManager();
 		      	$em->persist($topic);
+		      	$em->persist($message);
 		      	$em->flush();
 
 		      	return $this->redirect($this->generateUrl('dof_forum_show_topic', array('slug' => $topic->getSlug())));
