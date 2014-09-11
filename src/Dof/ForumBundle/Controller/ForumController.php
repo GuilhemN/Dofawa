@@ -74,6 +74,9 @@ class ForumController extends Controller
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
     	$topic =new Topic;
+    	$message =new Message;
+
+    	$topic->addMessage($message);
 
     	$formtopic = $this->createForm(new TopicType, $topic);
 
