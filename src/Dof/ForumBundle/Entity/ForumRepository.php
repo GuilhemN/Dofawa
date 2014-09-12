@@ -18,8 +18,8 @@ class ForumRepository extends EntityRepository
 
 		$qb = $this->createQueryBuilder('f')
 				->select('f', 't', 'm')
-				->join('f.topics', 't')
-				->join('t.messages', 'm')
+				->leftjoin('f.topics', 't')
+				->leftjoin('t.messages', 'm')
                 ->addOrderBy('m.createdAt', 'desc');
 
 		$i = 0;

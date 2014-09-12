@@ -8,10 +8,10 @@
 {% block body %}
 {% autoescape %}
 	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3><a class="text-right" href="{{ path('dof_forum_add_topic', { 'slug' : forum.slug }) }}"><button type="button" class="btn btn-default btn-lg">
-            Repondre
+		<div class="panel-heading"><a href="{{ path('dof_forum_add_topic', { 'slug' : forum.slug }) }}"><button type="button" class="btn btn-default btn-lg">
+            nouveau
         </button></a>
+			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
 		<table class="table">
 			<tr>
