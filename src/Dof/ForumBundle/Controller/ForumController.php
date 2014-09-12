@@ -47,7 +47,7 @@ class ForumController extends Controller
             throw $this->createAccessDeniedException();
     	$message = new Message;
 		$form = $this->createForm(new MessageType, $message);
- 
+
 		$request = $this->get('request');
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
@@ -73,22 +73,23 @@ class ForumController extends Controller
     {
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
-    	$topic =new Topic;
-    	$message =new Message;
+
+    	$topic = new Topic;
+    	$message = new Message;
 
     	$topic->addMessage($message);
-    	
-    	$formtopic = $this->createForm(new TopicType, $topic);
+        $message->setTopic($topic)
+
+    	$formTopic = $this->createForm(new TopicType, $topic);
 
 		$request = $this->get('request');
 		if ($request->getMethod() == 'POST') {
-			$formtopic->bind($request);
+			$formTopic->bind($request);
 
-		    if ($formtopic->isValid()) {
+		    if ($formTopic->isValid()) {
 
 		    	$topic->setForum($forum);
 		    	$topic->setLocked(0);
-		    	$message->setTopic($topic);
 
 		    	$em = $this->getDoctrine()->getManager();
 		      	$em->persist($topic);
@@ -98,6 +99,6 @@ class ForumController extends Controller
 		      	return $this->redirect($this->generateUrl('dof_forum_show_topic', array('slug' => $topic->getSlug())));
 		    }
 		}
-        return $this->render('DofForumBundle:Forum:addTopic.html.twig', array('formtopic' => $formtopic->createView(), 'forum' => $forum));
+        return $this->render('DofForumBundle:Forum:addTopic.html.twig', array('formtopic' => $formTopic->createView(), 'forum' => $forum));
     }
 }

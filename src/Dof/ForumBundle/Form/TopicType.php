@@ -16,10 +16,10 @@ class TopicType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('messages',"collection", array("type" => new MessageType()))
+            ->add('messages', 'collection', array('type' => new MessageType()))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
