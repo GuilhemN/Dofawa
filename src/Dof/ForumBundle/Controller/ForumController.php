@@ -76,7 +76,7 @@ class ForumController extends Controller
     	$topic =new Topic;
     	$message =new Message;
 
-    	$topic->addMessage($message);
+    	
 
     	$formtopic = $this->createForm(new TopicType, $topic);
 
@@ -88,7 +88,8 @@ class ForumController extends Controller
 
 		    	$topic->setForum($forum);
 		    	$topic->setLocked(0);
-
+				$topic->addMessage($message);
+				
 		    	$em = $this->getDoctrine()->getManager();
 		      	$em->persist($topic);
 		      	$em->persist($message);
