@@ -78,7 +78,7 @@ class ForumController extends Controller
     	$message = new Message;
 
     	$topic->addMessage($message);
-        $message->setTopic($topic)
+        $message->setTopic($topic);
 
     	$formTopic = $this->createForm(new TopicType, $topic);
 
