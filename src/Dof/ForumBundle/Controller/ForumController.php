@@ -7,8 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ForumBundle\Entity\Forum;
 use Dof\ForumBundle\Entity\Topic;
 use Dof\ForumBundle\Entity\Message;
+
+use Dof\ForumBundle\Form\MessageTopicType;
 use Dof\ForumBundle\Form\MessageType;
-use Dof\ForumBundle\Form\TopicType;
 
 class ForumController extends Controller
 {
@@ -45,6 +46,7 @@ class ForumController extends Controller
     {
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
+
     	$message = new Message;
 		$form = $this->createForm(new MessageType, $message);
 
@@ -77,10 +79,10 @@ class ForumController extends Controller
     	$topic = new Topic;
     	$message = new Message;
 
-    	$topic->addMessage($message);
         $message->setTopic($topic);
+    	$topic->addMessage($message);
 
-    	$formTopic = $this->createForm(new TopicType, $topic);
+    	$formTopic = $this->createForm(new MessageTopicType, $message);
 
 		$request = $this->get('request');
 		if ($request->getMethod() == 'POST') {
