@@ -6,6 +6,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
 use Dof\ItemsBundle\Entity\EquipmentTemplate;
+use Dof\ItemsBundle\Entity\ItemSet;
 
 class SetUpdater
 {
@@ -37,30 +38,44 @@ class SetUpdater
 		$uow = $em->getUnitOfWork();
 		$mds = array();
 		$updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow) {
-			return $ent instanceof EquipmentTemplate && self::hasCharactsChanges($ent, $uow->getEntityChangeSet($ent));
+			return $ent instanceof ItemSet or $ent instanceof EquipmentTemplate && self::hasCharactsChanges($ent, $uow->getEntityChangeSet($ent));
 		});
 		foreach ($updates as $ent) {
-			foreach($ent->getOriginalSets() as $set){
-				$maxLevel = 0;
-				foreach($set->getItems() as $item){
-					if($maxLevel < $item->getLevel())
-						$maxLevel = $item->getLevel();
-					if($item->getLevel() == 200)
-						break;
-				}
+			if($ent instanceof ItemSet && $ent->getId() === null){
+				$id = $em->getRepository('DofItemsBundle:ItemSet')->getMinimalId() - 1;
+				$ent->setId($id);
 
-				$set->setLevel($maxLevel);
-				$set->setItemCount(count($set->getItems()));
-
-				$clazz = get_class($set);
+				$clazz = get_class($ent);
 				if (isset($mds[$clazz]))
 					$md = $mds[$clazz];
 				else {
 					$md = $em->getClassMetadata($clazz);
 					$mds[$clazz] = $md;
 				}
-				$uow->recomputeSingleEntityChangeSet($md, $set);
+				$uow->recomputeSingleEntityChangeSet($md, $ent);
 			}
+			else
+				foreach($ent->getOriginalSets() as $set){
+					$maxLevel = 0;
+					foreach($set->getItems() as $item){
+						if($maxLevel < $item->getLevel())
+							$maxLevel = $item->getLevel();
+						if($item->getLevel() == 200)
+							break;
+					}
+
+					$set->setLevel($maxLevel);
+					$set->setItemCount(count($set->getItems()));
+
+					$clazz = get_class($set);
+					if (isset($mds[$clazz]))
+						$md = $mds[$clazz];
+					else {
+						$md = $em->getClassMetadata($clazz);
+						$mds[$clazz] = $md;
+					}
+					$uow->recomputeSingleEntityChangeSet($md, $set);
+				}
 		}
 	}
 

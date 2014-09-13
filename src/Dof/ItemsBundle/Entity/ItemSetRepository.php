@@ -30,6 +30,13 @@ class ItemSetRepository extends EntityRepository
 		;
     }
 
+    public function getMinimalId(){
+        $query = $this->createQueryBuilder('s');
+        $query->select('MIN(s.id) AS min_id');
+
+        return $query->getQuery()->getArrayResult()[0]['min_id'];
+    }
+
     protected function queryWithJoins($criteria, $type = 'normal'){
         $criteria = (array) $criteria;
 
