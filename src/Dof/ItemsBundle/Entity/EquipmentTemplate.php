@@ -113,7 +113,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 			}
 
 			$this->set->setLevel($maxLevel);
-			$this->set->setItemCount(count($set->getItems()));
+			$this->set->setItemCount(count($this->set->getItems()));
 		}
 
 		ReverseSetter::reverseCall($this->set, 'removeItem', $this);
