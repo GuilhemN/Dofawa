@@ -41,7 +41,7 @@ class SetUpdater
 			return $ent instanceof ItemSet or $ent instanceof EquipmentTemplate && self::hasCharactsChanges($ent, $uow->getEntityChangeSet($ent));
 		});
 		foreach ($updates as $ent) {
-			if($ent instanceof ItemSet && $ent->getId() === null){
+			if($ent instanceof ItemSet && $ent->getId() == ''){
 				$id = $em->getRepository('DofItemsBundle:ItemSet')->getMinimalId() - 1;
 				$ent->setId($id);
 
