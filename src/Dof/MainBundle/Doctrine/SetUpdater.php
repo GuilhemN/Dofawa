@@ -42,41 +42,4 @@ class SetUpdater
 			$em->persist($set);
 		}
 	}
-
-	public function postFlush(PostFlushEventArgs $args)
-	{
-		$em = $args->getEntityManager();
-		$uow = $em->getUnitOfWork();
-		$mds = array();
-		$updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow) {
-			return $ent instanceof EquipmentTemplate && self::hasCharactsChanges($ent, $uow->getEntityChangeSet($ent));
-		});
-		foreach ($updates as $ent) {
-			foreach($ent->getOriginalSets() as $set){
-				$maxLevel = 0;
-				foreach($set->getItems() as $item){
-					if($maxLevel < $item->getLevel())
-						$maxLevel = $item->getLevel();
-					if($item->getLevel() == 200)
-						break;
-				}
-
-				$set->setLevel($maxLevel);
-
-
-				$set->setItemCount(count($set->getItems()));
-				$em->persist($set);
-			}
-		}
-		$em->flush();
-	}
-
-    protected static function hasCharactsChanges($entity, $chgset){
-		$fields = ['set', 'level'];
-
-		foreach ($chgset as $key => $value)
-			if (in_array($key, $fields))
-				return true;
-		return false;
-	}
 }

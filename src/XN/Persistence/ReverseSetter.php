@@ -13,13 +13,4 @@ class ReverseSetter {
     public static function reverseCall($that, $fn, $me) {
         if ($that && !self::isProxy($that)) $that->$fn($me);
     }
-
-    public static function reverseCallToMany($that, $field, $me, $original){
-        if($original != $that){
-            if($original !== null)
-                self::reverseCall($original, 'remove' . ucfirst($field), $me);
-
-            self::reverseCall($that, 'add' . ucfirst($field), $me);
-        }
-    }
 }
