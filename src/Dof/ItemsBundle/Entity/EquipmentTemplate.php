@@ -113,7 +113,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 	public function getOriginalSets(){
 		$return = $this->originalSets;
 		if($this->set !== null)
-			$return += [$this->set->getId() => $this->set];
+			$return = $return + [$this->set->getId() => $this->set];
 
 		return $return;
 	}
