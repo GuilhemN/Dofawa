@@ -62,8 +62,11 @@ class SetUpdater
 				}
 
 				$set->setLevel($maxLevel);
-				if($ent->getSet() == $set)
+				if($ent->getSet()->getId() == $set->getId())
 					$set->addItem($ent);
+				else
+					$set->removeItem($ent);
+
 
 				$set->setItemCount(count($set->getItems()));
 
