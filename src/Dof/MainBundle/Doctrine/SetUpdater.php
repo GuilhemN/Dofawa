@@ -3,7 +3,7 @@
 namespace Dof\MainBundle\Doctrine;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PostFlushEventArgs;
 
 use Dof\ItemsBundle\Entity\EquipmentTemplate;
 use Dof\ItemsBundle\Entity\ItemSet;
@@ -43,7 +43,7 @@ class SetUpdater
 		}
 	}
 
-	public function onFlush(OnFlushEventArgs $args)
+	public function postFlush(PostFlushEventArgs $args)
 	{
 		$em = $args->getEntityManager();
 		$uow = $em->getUnitOfWork();
@@ -65,17 +65,10 @@ class SetUpdater
 
 
 				$set->setItemCount(count($set->getItems()));
-
-				$clazz = get_class($set);
-				if (isset($mds[$clazz]))
-					$md = $mds[$clazz];
-				else {
-					$md = $em->getClassMetadata($clazz);
-					$mds[$clazz] = $md;
-				}
-				$uow->recomputeSingleEntityChangeSet($md, $set);
+				$em->persist($set);
 			}
 		}
+		$em->flush();
 	}
 
     protected static function hasCharactsChanges($entity, $chgset){
