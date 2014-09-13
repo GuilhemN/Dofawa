@@ -39,6 +39,7 @@ class ItemTemplateAdmin extends Admin
             ->add('id')
             ->add('level')
             ->add('nameFr')
+            ->add('set')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),

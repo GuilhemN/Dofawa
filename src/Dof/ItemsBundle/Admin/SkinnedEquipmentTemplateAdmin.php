@@ -40,6 +40,7 @@ class SkinnedEquipmentTemplateAdmin extends Admin
             ->add('level')
             ->add('nameFr')
             ->add('skin')
+            ->add('set')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -56,7 +57,6 @@ class SkinnedEquipmentTemplateAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('set', null, ['disabled' => true])
             ->add('skin')
             ->add('obtainmentFr')
             ->add('obtainmentEn')
