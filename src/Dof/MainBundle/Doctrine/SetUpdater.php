@@ -54,7 +54,7 @@ class SetUpdater
 				}
 				$uow->recomputeSingleEntityChangeSet($md, $ent);
 			}
-			else
+			elseif($ent instanceof EquipmentTemplate)
 				foreach($ent->getOriginalSets() as $set){
 					$maxLevel = 0;
 					foreach($set->getItems() as $item){
