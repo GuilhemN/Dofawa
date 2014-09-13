@@ -102,7 +102,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      */
     public function setSet(ItemSet $set = null)
     {
-		if($this->set !== null)
+		if($this->set instanceof ItemSet)
 			$this->originalSets[$this->set->getId()] = $this->set;
 
         $this->set = $set;
@@ -112,7 +112,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 
 	public function getOriginalSets(){
 		$return = $this->originalSets;
-		if($this->set !== null)
+		if($this->set instanceof ItemSet)
 			$return = array_merge($return, [$this->set->getId() => $this->set]);
 
 		return $return;
