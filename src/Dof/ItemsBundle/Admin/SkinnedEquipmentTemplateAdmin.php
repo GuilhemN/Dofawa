@@ -17,14 +17,14 @@ class SkinnedEquipmentTemplateAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
+            ->add('nameFr')
+            ->add('descriptionFr')
             ->add('level')
             ->add('visible')
             ->add('slug')
             ->add('release')
             ->add('preliminary')
             ->add('deprecated')
-            ->add('nameFr')
-            ->add('descriptionFr')
             ->add('enhanceable')
             ->add('skin')
         ;
@@ -56,6 +56,7 @@ class SkinnedEquipmentTemplateAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('set', null, ['disabled' => true])
             ->add('skin')
             ->add('obtainmentFr')
             ->add('obtainmentEn')

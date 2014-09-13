@@ -17,6 +17,8 @@ class ItemTemplateAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
+            ->add('nameFr')
+            ->add('descriptionFr')
             ->add('dominantColor')
             ->add('level')
             ->add('visible')
@@ -25,8 +27,6 @@ class ItemTemplateAdmin extends Admin
             ->add('release')
             ->add('preliminary')
             ->add('deprecated')
-            ->add('nameFr')
-            ->add('descriptionFr')
         ;
     }
 
