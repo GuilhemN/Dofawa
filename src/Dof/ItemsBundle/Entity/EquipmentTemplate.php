@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\Persistence\ReverseSetter;
 use Dof\ItemsBundle\NoteHelper;
 
 use Dof\ItemsBundle\CharacteristicsRangeTrait;
@@ -102,21 +103,13 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      */
     public function setSet(ItemSet $set = null)
     {
-		if($this->set instanceof ItemSet)
-			$this->originalSets[$this->set->getId()] = $this->set;
-
-        $this->set = $set;
+		ReverseSetter::reverseCall($this->set, 'removeItem', $this);
+		$this->set = $set;
+		ReverseSetter::reverseCall($set, 'addItem', $this);
 
         return $this;
     }
 
-	public function getOriginalSets(){
-		$return = (array) $this->originalSets;
-		if($this->set instanceof ItemSet)
-			$return = array_merge($return, [$this->set->getId() => $this->set]);
-
-		return $return;
-	}
     /**
      * Get set
      *
@@ -126,6 +119,14 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
     {
         return $this->set;
     }
+
+	public function getOriginalSets(){
+		$return = (array) $this->originalSets;
+		if($this->set instanceof ItemSet)
+			$return = array_merge($return, [$this->set->getId() => $this->set]);
+
+		return $return;
+	}
 
      /**
      * Add buildItem
