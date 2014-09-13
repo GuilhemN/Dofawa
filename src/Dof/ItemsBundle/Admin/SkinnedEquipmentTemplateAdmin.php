@@ -66,7 +66,6 @@ class SkinnedEquipmentTemplateAdmin extends Admin
             ->add('obtainmentRu')
             ->add('level', null, ['disabled' => true])
             ->add('visible')
-            ->add('slug')
             ->add('release', null, ['disabled' => true])
             ->add('preliminary', null, ['disabled' => true])
             ->add('deprecated', null, ['disabled' => true])
