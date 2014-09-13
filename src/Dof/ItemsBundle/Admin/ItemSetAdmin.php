@@ -52,7 +52,6 @@ class ItemSetAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
             ->add('nameFr')
             ->add('nameEn')
             ->add('nameDe')
@@ -62,8 +61,8 @@ class ItemSetAdmin extends Admin
             ->add('nameJa')
             ->add('nameRu')
             ->add('release')
-            ->add('preliminary')
-            ->add('deprecated')
+            ->add('preliminary', null, ['required' => false])
+            ->add('deprecated', null, ['required' => false])
         ;
     }
 
