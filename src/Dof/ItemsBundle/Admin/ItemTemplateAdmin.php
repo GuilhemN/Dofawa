@@ -19,10 +19,8 @@ class ItemTemplateAdmin extends Admin
             ->add('id')
             ->add('nameFr')
             ->add('descriptionFr')
-            ->add('dominantColor')
             ->add('level')
             ->add('visible')
-            ->add('gatheringJobMinLevel')
             ->add('slug')
             ->add('release')
             ->add('preliminary')
@@ -39,7 +37,6 @@ class ItemTemplateAdmin extends Admin
             ->add('id')
             ->add('level')
             ->add('nameFr')
-            ->add('set')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),

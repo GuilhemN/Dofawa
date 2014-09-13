@@ -19,13 +19,13 @@ class SkinnedEquipmentTemplateAdmin extends Admin
             ->add('id')
             ->add('nameFr')
             ->add('descriptionFr')
+            ->add('set')
             ->add('level')
             ->add('visible')
             ->add('slug')
             ->add('release')
             ->add('preliminary')
             ->add('deprecated')
-            ->add('enhanceable')
             ->add('skin')
         ;
     }
