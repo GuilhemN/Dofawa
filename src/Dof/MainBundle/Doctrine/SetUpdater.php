@@ -63,8 +63,8 @@ class SetUpdater
 
 				$set->setLevel($maxLevel);
 				if($ent->getSet() == $set)
-					$set->addItem($set);
-				
+					$set->addItem($ent);
+
 				$set->setItemCount(count($set->getItems()));
 
 				$clazz = get_class($set);
