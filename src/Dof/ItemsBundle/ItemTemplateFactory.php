@@ -53,7 +53,14 @@ class ItemTemplateFactory
 				}
 			case ItemSlot::MOUNT:
 				return new Ent\MountTemplate();
-			default: // RESOURCE, QUEST, LIVING_ITEM
+			case ItemSlot::LIVING_ITEM:
+				switch ($typeId) {
+					case 177: // [!] Objet d'apparât
+						return new Ent\SkinnedEquipmentTemplate();
+					default:
+						return new Ent\ItemTemplate();
+				}
+			default: // RESOURCE, QUEST
 				return new Ent\ItemTemplate();
 		}
 	}
