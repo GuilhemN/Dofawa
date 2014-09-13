@@ -57,6 +57,7 @@ class ForumController extends Controller
 		    if ($form->isValid()) {
 
 		    	$message->setTopic($topic);
+		    	$message->topic->setUpdatedAt(new \DateTime());
 
 		    	$em = $this->getDoctrine()->getManager();
 		      	$em->persist($message);

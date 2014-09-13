@@ -8,9 +8,10 @@
 {% block body %}
 {% autoescape %}
 	<div class="panel panel-default">
-		<div class="panel-heading"><a href="{{ path('dof_forum_add_topic', { 'slug' : forum.slug }) }}"><button type="button" class="btn btn-default btn-lg">
+        <a style="float: right;" href="{{ path('dof_forum_add_topic', { 'slug' : forum.slug }) }}"><button type="button" class="btn btn-primary">
             nouveau
         </button></a>
+		<div class="panel-heading">
 			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
 		<table class="table">
@@ -33,7 +34,7 @@
                         </a>
                     </td>
                     <td>
-                        {{ topic.createdAt | date("h:i:s d/m/Y") }}
+                        {{ topic.updatedAt | date("h:i:s d/m/Y") }}
                     </td>
                     <td>{{ topic.messages | length }}</td>
                 </tr>
