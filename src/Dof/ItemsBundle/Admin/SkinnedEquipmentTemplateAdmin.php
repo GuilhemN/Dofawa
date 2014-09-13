@@ -56,6 +56,7 @@ class SkinnedEquipmentTemplateAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('skin')
             ->add('obtainmentFr')
             ->add('obtainmentEn')
             ->add('obtainmentDe')
@@ -65,13 +66,12 @@ class SkinnedEquipmentTemplateAdmin extends Admin
             ->add('obtainmentJa')
             ->add('obtainmentRu')
             ->add('level', null, ['disabled' => true])
-            ->add('visible')
+            ->add('visible', null, ['required' => false])
             ->add('release', null, ['disabled' => true])
             ->add('preliminary', null, ['disabled' => true])
             ->add('deprecated', null, ['disabled' => true])
             ->add('nameFr', null, ['disabled' => true])
             ->add('descriptionFr', null, ['disabled' => true])
-            ->add('skin')
         ;
     }
 
