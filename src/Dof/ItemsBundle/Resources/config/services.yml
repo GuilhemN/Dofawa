@@ -16,3 +16,9 @@ services:
         arguments: [~, Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Items, label: Equipment}
+
+    dof_items.admin.item_set:
+        class: Dof\ItemsBundle\Admin\ItemSetAdmin
+        arguments: [~, Dof\ItemsBundle\Entity\ItemSet, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: ItemSet}
