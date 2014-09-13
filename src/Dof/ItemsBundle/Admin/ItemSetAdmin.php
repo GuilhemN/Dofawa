@@ -36,7 +36,6 @@ class ItemSetAdmin extends Admin
             ->add('nameFr')
             ->add('level')
             ->add('itemCount')
-            ->add('primaryBonus')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -91,7 +90,6 @@ class ItemSetAdmin extends Admin
             ->add('namePt')
             ->add('nameJa')
             ->add('nameRu')
-            ->add('primaryBonus')
         ;
     }
 }
