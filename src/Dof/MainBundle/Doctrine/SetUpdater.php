@@ -23,9 +23,10 @@ class SetUpdater
 	public function preRemove(LifecycleEventArgs $args)
 	{
 		$ent = $args->getEntity();
-		if ($ent instanceof EquipmentTemplate) {
+		if ($ent instanceof EquipmentTemplate && $ent->getSet() !== null) {
 			$em = $args->getEntityManager();
 			$set = $ent->getSet();
+			$set->removeItem($ent);
 
 			$maxLevel = 0;
 			foreach($set->getItems() as $item){
