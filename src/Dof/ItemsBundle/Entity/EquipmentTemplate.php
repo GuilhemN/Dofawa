@@ -103,6 +103,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      */
     public function setSet(ItemSet $set = null)
     {
+		ReverseSetter::reverseCall($this->set, 'removeItem', $this);
 		if($this->set !== null){
 			$maxLevel = 0;
 			foreach($this->set->getItems() as $item){
@@ -116,7 +117,6 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 			$this->set->setItemCount(count($this->set->getItems()));
 		}
 
-		ReverseSetter::reverseCall($this->set, 'removeItem', $this);
 		$this->set = $set;
 		ReverseSetter::reverseCall($set, 'addItem', $this);
 
