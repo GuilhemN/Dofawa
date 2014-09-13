@@ -111,7 +111,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
     }
 
 	public function getOriginalSets(){
-		$return = $this->originalSets;
+		$return = (array) $this->originalSets;
 		if($this->set instanceof ItemSet)
 			$return = array_merge($return, [$this->set->getId() => $this->set]);
 
