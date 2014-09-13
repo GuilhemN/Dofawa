@@ -7,7 +7,7 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 
 use Dof\ItemsBundle\Entity\EquipmentTemplate;
 
-class PrimaryBonusUpdater
+class SetUpdater
 {
 	public function preRemove(LifecycleEventArgs $args)
 	{
