@@ -44,5 +44,6 @@ services:
     dof.main.doctrine.set_updater:
         class: "%dof.main.doctrine.set_updater.class%"
         tags:
+            - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preRemove }
             - { name: doctrine.event_listener, event: postPersist }
