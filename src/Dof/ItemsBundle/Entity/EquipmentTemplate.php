@@ -39,6 +39,8 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      */
     private $set;
 
+	private $originalSets;
+
     /**
      * @var Collection
      *
@@ -55,6 +57,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 
 	public function __construct()
 	{
+		$this->originalSets = array();
 		parent::__construct();
 	}
 
@@ -99,11 +102,15 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      */
     public function setSet(ItemSet $set = null)
     {
+		$this->originalSets[$this->set->getId()] = $this->set;
         $this->set = $set;
 
         return $this;
     }
 
+	public function getOriginalSets(){
+		return $this->originalSets + [$this->set->getId() => $this->set];
+	}
     /**
      * Get set
      *

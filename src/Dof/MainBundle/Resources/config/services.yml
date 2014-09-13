@@ -1,6 +1,7 @@
 parameters:
     dof.main.doctrine.primary_bonus_updater.class: Dof\MainBundle\Doctrine\PrimaryBonusUpdater
     dof.main.doctrine.message_notification.class: Dof\MainBundle\Doctrine\MessageNotification
+    dof.main.doctrine.set_updater.class: Dof\MainBundle\Doctrine\SetUpdater
 
 services:
     dof.twig.main_extension:
@@ -38,4 +39,10 @@ services:
         class: "%dof.main.doctrine.message_notification.class%"
         arguments: [ "@service_container" ]
         tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    dof.main.doctrine.set_updater:
+        class: "%dof.main.doctrine.set_updater.class%"
+        tags:
+            - { name: doctrine.event_listener, event: preRemove }
             - { name: doctrine.event_listener, event: postPersist }

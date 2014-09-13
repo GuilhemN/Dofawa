@@ -20,10 +20,9 @@ class ItemSetAdmin extends Admin
             ->add('nameFr')
             ->add('level')
             ->add('itemCount')
+            ->add('createdAt')
             ->add('slug')
             ->add('release')
-            ->add('preliminary')
-            ->add('deprecated')
         ;
     }
 
@@ -37,12 +36,35 @@ class ItemSetAdmin extends Admin
             ->add('nameFr')
             ->add('level')
             ->add('itemCount')
-            ->add('release')
+            ->add('primaryBonus')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
                 )
             ))
+        ;
+    }
+
+    /**
+     * @param FormMapper $formMapper
+     */
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->add('id')
+            ->add('nameFr')
+            ->add('nameEn')
+            ->add('nameDe')
+            ->add('nameEs')
+            ->add('nameIt')
+            ->add('namePt')
+            ->add('nameJa')
+            ->add('nameRu')
+            ->add('release')
+            ->add('preliminary')
+            ->add('deprecated')
         ;
     }
 

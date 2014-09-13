@@ -57,7 +57,8 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                 if ($tpl->isEquipment()) {
                     $tpl->setEnhanceable($row['enhanceable'] == '1');
                     $set = ($row['itemSetId'] == '-1') ? null : $setRepo->find($row['itemSetId']);
-                    $tpl->setSet($set);
+                    if($row['typeId'] != 177)
+                        $tpl->setSet($set);
                 }
                 if ($tpl->isWeapon()) {
                     $tpl->setTwoHanded($row['twoHanded'] == '1');
