@@ -53,7 +53,7 @@ class SetUpdater
 		$ent = $args->getEntity();
 		if ($ent instanceof EquipmentTemplate) {
 			$em = $args->getEntityManager();
-			foreach($ent->getOriginalSets() as $set)
+			foreach((array) $ent->getOriginalSets() as $set)
 				$em->persist($set);
 		}
 	}

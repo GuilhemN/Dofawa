@@ -167,6 +167,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      */
     public function addBuildItem(Item $buildItem)
     {
+		ReverseSetter::ReverseCall($buildItem, 'setItemTemplate', $this);
         $this->buildItem[] = $buildItem;
 
         return $this;
@@ -180,6 +181,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      */
     public function removeBuildItem(Item $buildItem)
     {
+		ReverseSetter::ReverseCall($buildItem, 'setItemTemplate', null);
         $this->buildItem->removeElement($buildItem);
 
         return $this;
