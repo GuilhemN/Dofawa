@@ -50,6 +50,11 @@ class SetUpdater
 	}
 	public function preUpdate(LifecycleEventArgs $args)
 	{
-		$this->preRemove($args);
+		$ent = $args->getEntity();
+		if ($ent instanceof EquipmentTemplate) {
+			$em = $args->getEntityManager();
+			foreach($ent->getOriginalSets() as $set)
+				$em->persist($set);
+		}
 	}
 }
