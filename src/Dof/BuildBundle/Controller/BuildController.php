@@ -9,6 +9,7 @@ use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
+use Dof\ItemsBundle\ItemSlot;
 use Dof\CharactersBundle\Gender;
 use Dof\UserBundle\Entity\Badge;
 
@@ -63,7 +64,7 @@ class BuildController extends Controller
             $em->persist($look);
 
             $em->flush();
-            
+
             // Badge
             $this->get('badge_manager')->addBadge('create-build');
 
@@ -86,9 +87,36 @@ class BuildController extends Controller
 
         $perso = $persoR->findForShow($user, $character);
 
+        $items = array();
+        foreach($stuff->getItems() as $item){
+            $items[$item->getSlot()] = $item;
+        }
+
         if(empty($perso))
             throw $this->createNotFoundException();
 
-        return $this->render('DofBuildBundle:Build:show.html.twig', ['perso' => $perso, 'stuff' => $stuff]);
+        return $this->render('DofBuildBundle:Build:show.html.twig', [
+            'perso' => $perso,
+            'stuff' => $stuff,
+            'dofus_slots' => [
+                BuildSlot::DOFUS1,
+                BuildSlot::DOFUS2,
+                BuildSlot::DOFUS3,
+                BuildSlot::DOFUS4,
+                BuildSlot::DOFUS5,
+                BuildSlot::DOFUS6,
+                ],
+            'items_slots' => [
+                BuildSlot::HAT,
+                BuildSlot::CLOAK,
+                BuildSlot::AMULET,
+                BuildSlot::WEAPON,
+                BuildSlot::RING1,
+                BuildSlot::RING2,
+                BuildSlot::BELT,
+                BuildSlot::BOOTS,
+                BuildSlot::SHIELD,
+                ]
+            ]);
     }
 }
