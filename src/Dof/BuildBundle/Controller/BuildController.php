@@ -116,6 +116,7 @@ class BuildController extends Controller
                 BuildSlot::BELT,
                 BuildSlot::BOOTS,
                 BuildSlot::SHIELD,
+                BuildSlot::ANIMAL,
                 ]
             ]);
     }
