@@ -106,10 +106,11 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 		$this->originalSets = (array) $this->originalSets;
 		if($this->set !== null){
 			$lset = $this->set;
-			ReverseSetter::reverseCall($lset, 'removeItem', $this);
+			$lset->removeItem($this);
 
 			$maxLevel = 0;
 			foreach($lset->getItems() as $item){
+
 				if($maxLevel < $item->getLevel())
 					$maxLevel = $item->getLevel();
 				if($item->getLevel() == 200)
@@ -123,9 +124,9 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 
 
 		$this->set = $set;
-		ReverseSetter::reverseCall($set, 'addItem', $this);
 
 		if($set !== null){
+			ReverseSetter::reverseCall($set, 'addItem', $this);
 			$maxLevel = 0;
 			foreach($set->getItems() as $item){
 				if($maxLevel < $item->getLevel())
