@@ -111,9 +111,6 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 			$maxLevel = 0;
 			$i = 0;
 			foreach($lset->getItems() as $item){
-				if($item->getId() == $this->getId())
-					continue;
-
 				$i++;
 				if($maxLevel < $item->getLevel())
 					$maxLevel = $item->getLevel();
