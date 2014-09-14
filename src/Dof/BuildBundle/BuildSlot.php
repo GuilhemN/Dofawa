@@ -1,6 +1,6 @@
 <?php
 
-namespace Dof\ItemsBundle;
+namespace Dof\BuildBundle;
 
 use XN\Common\Enum;
 
