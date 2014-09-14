@@ -118,7 +118,8 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     public function removeItem(EquipmentTemplate $items)
     {
-        $this->items->removeElement($items);
+        if($this->items->removeElement($items))
+            die();
 
         return $this;
     }
