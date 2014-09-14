@@ -19,6 +19,12 @@ class SetUpdater
 			$id = $em->getRepository('DofItemsBundle:ItemSet')->getMinimalId() - 1;
 			$ent->setId($id);
 		}
+		elseif ($ent instanceof EquipmentTemplate) {
+			$em = $args->getEntityManager();
+
+			$id = $em->getRepository('DofItemsBundle:ItemSet')->getMinimalId() - 1;
+			$ent->setId($id);
+		}
 	}
 	public function preRemove(LifecycleEventArgs $args)
 	{
@@ -41,5 +47,9 @@ class SetUpdater
 
 			$em->persist($set);
 		}
+	}
+	public function preUpdate(LifecycleEventArgs $args)
+	{
+		$this->preRemove($args);
 	}
 }
