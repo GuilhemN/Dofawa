@@ -9,7 +9,7 @@ use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
-use Dof\ItemsBundle\ItemSlot;
+use Dof\BuildBundle\BuildSlot;
 use Dof\CharactersBundle\Gender;
 use Dof\UserBundle\Entity\Badge;
 
