@@ -34,9 +34,9 @@
                         </a>
                     </td>
                     <td>
-                        {{ topic.lastPost | date("h:i:s d/m/Y") }}
+                        {{ topic.getLastPost() | date("h:i:s d/m/Y") }}
                     </td>
-                    <td>{{ topic.countPosts }}</td>
+                    <td>{{ topic.getCountPosts() }}</td>
                 </tr>
 			{% endfor %}
 		</table>
