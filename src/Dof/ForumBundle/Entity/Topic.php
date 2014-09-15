@@ -232,7 +232,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
      *
      * @return datetime
      */
-    public function getLountPost()
+    public function getLastPost()
     {
         return $this->lastPost;
     }
