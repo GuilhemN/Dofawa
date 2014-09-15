@@ -98,4 +98,12 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
         return $this->topic;
     }
 
+    /**
+    * @ORM\PrePersist
+    */
+    public function updateLastPost()
+    {
+        $this->topic->setLastPost(new \DateTime());
+        $this->topic->setCountPosts($this->topic->getCountPosts()+1) ;
+    }
 }

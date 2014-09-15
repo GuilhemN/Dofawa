@@ -66,6 +66,20 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $messages;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="countPosts", type="integer")
+     */
+    private $countPosts;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="lastPost", type="datetime")
+     */
+    private $lastPost;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -181,6 +195,46 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Set countPosts
+     *
+     * @param integer $countPosts
+     */
+    public function setCountPosts($countPosts)
+    {
+        $this->countPosts = $countPosts;
+    }
+
+    /**
+     * Get countPosts
+     *
+     * @return integer
+     */
+    public function getCountPosts()
+    {
+        return $this->countPosts;
+    }
+
+    /**
+     * Set lastPost
+     *
+     * @param datetime $lastPost
+     */
+    public function setLastPost($lastPost)
+    {
+        $this->lastPost = $lastPost;
+    }
+
+    /**
+     * Get lastPost
+     *
+     * @return datetime
+     */
+    public function getLountPost()
+    {
+        return $this->lastPost;
     }
 
     public function __toString(){
