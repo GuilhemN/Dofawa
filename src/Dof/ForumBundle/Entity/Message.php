@@ -17,6 +17,7 @@ use Dof\ForumBundle\Entity\Topic;
  *
  * @ORM\Table(name="dof_forum_messages")
  * @ORM\Entity(repositoryClass="Dof\ForumBundle\Entity\MessageRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Message implements IdentifiableInterface, TimestampableInterface, OwnableInterface
 {
