@@ -101,11 +101,11 @@ class UtilityExtension extends \Twig_Extension
 		return locale_get_display_region($locale, $in);
 	}
 
-	public function formatDate($datetime, $format){
+	public function formatDate($datetime, $format, $locale = null){
 		$infos = getdate($datetime->getTimestamp());
-		
+
 		$fields = [
-			'%A' => $this->dateParams('%A.' . $infos['wday']),
+			'%A' => $this->dateParams('%A.' . $infos['wday'], $locale),
 			'%d' => sprintf("%02s", $infos['mday']),
 			'%e' => $infos['mday']
 		];
@@ -113,7 +113,7 @@ class UtilityExtension extends \Twig_Extension
 		return str_replace(array_keys($fields), array_values($fields), $format);
 	}
 
-	protected function dateParams($string){
-		return $this->translator->trans($string, [], 'date');
+	protected function dateParams($string, $locale = null){
+		return $this->translator->trans($string, [], 'date', $locale);
 	}
 }
