@@ -17,7 +17,6 @@ use Dof\ForumBundle\Entity\Topic;
  *
  * @ORM\Table(name="dof_forum_messages")
  * @ORM\Entity(repositoryClass="Dof\ForumBundle\Entity\MessageRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class Message implements IdentifiableInterface, TimestampableInterface, OwnableInterface
 {
@@ -97,14 +96,5 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     public function getTopic()
     {
         return $this->topic;
-    }
-
-    /**
-    * @ORM\PrePersist
-    */
-    public function updateLastPost()
-    {
-        $this->topic->setLastPost(new \DateTime());
-        $this->topic->setCountPosts($this->topic->getCountPosts()+1) ;
     }
 }

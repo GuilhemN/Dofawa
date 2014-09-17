@@ -240,4 +240,10 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function __toString(){
         return $this->name;
     }
+
+    public function getLastMessageCreatedAt() {
+    foreach ($this->messages->matching(Criteria::create()->orderBy('createdAt', 'DESC')->setFirstResult( 0 )->setMaxResults(1)) as $message)
+        return $message->getCreatedAt();
+        return null;
+    }
 }
