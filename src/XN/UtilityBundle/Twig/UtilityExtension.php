@@ -113,7 +113,7 @@ class UtilityExtension extends \Twig_Extension
 			$diff = $datetime->diff(new \Datetime);
 
 			if (($diff->y && $diff->m) == 0 )
-				if($diff->d == 1)
+				if($diff->d == 1 or ($infos['hours'] < $diff->h && $diff->d == 0))
 					$format = $this->dateParams('formats.textual.yesterdayAt' . $type, $locale);
 				if($diff->d == 0 && $diff->h < 3)
 					$format = $this->trans('formats.textual.xHoursAgo' . $type, ['%x%' => $diff->h], 'date', $locale);
