@@ -101,13 +101,23 @@ class UtilityExtension extends \Twig_Extension
 		return locale_get_display_region($locale, $in);
 	}
 
-	public function formatDate($datetime, $type, $textual = false, $locale = null){
+	public function formatDate(\Datetime $datetime, $type, $textual = false, $locale = null){
 		if($type == ('short' or 'medium'))
-			$format = $this->translator->trans('formats.' . $textual . '.' . $type, [], 'date');
+			$format = $this->dateParams('formats.' . $textual . '.' . $type, $locale);
 		else
 			$format = $type;
 
 		$infos = getdate($datetime->getTimestamp());
+
+		if($textual) {
+			$diff = $datetime->diff(new \Datetime);
+
+			if (($diff['y'] && $diff['m']) == 0 )
+				if($diff['d'] == 1)
+					$format = $this->dateParams('formats.textual.yesterdayAt' . $type, $locale);
+				if($diff['d'] == 0 && $diff['h'] < 3)
+					$format = $this->dateParams('formats.textual.xHoursAgo' . $type, $locale);
+		}
 
 		if($infos['hours'] > 12)
 			$infos['hours-12'] = $infos['hours'] - 12;

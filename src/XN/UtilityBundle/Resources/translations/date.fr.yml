@@ -28,3 +28,5 @@ formats:
     1: # Textual
         short: %A %d %B %Y
         medium: %A %d %B %Y à %H:%M:%S
+        xHoursAgo: Il y a %H heures.
+        yesterdayAt: Hier à %H:%M:%S
