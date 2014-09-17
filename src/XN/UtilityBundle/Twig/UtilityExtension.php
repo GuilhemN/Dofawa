@@ -103,13 +103,14 @@ class UtilityExtension extends \Twig_Extension
 
 	public function formatDate($datetime, $format){
 		$infos = getdate($datetime->getTimestamp());
-		$translator = $this->container->get('translator');
+		
+		$fields = [
+			'%A' => $this->dateParams('%A.' . $infos['wday']),
+			'%d' => sprintf("%02s", $infos['mday']),
+			'%e' => $infos['mday']
+		];
 
-		str_replace('%A', $this->dateParams('%A.' . $infos['wday']), &$format);
-		str_replace('%d', sprintf("%02s", $infos['mday']), &$format);
-		str_replace('%e', $infos['mday'], &$format);
-
-		return $format;
+		return str_replace(array_keys($fields), array_values($fields), $format);
 	}
 
 	protected function dateParams($string){
