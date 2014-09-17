@@ -104,10 +104,18 @@ class UtilityExtension extends \Twig_Extension
 	public function formatDate($datetime, $format, $locale = null){
 		$infos = getdate($datetime->format('u'));
 
+		if($infos['hours'] > 12)
+			$infos['hours-12'] = $infos['hours'] - 12;
+		else
+			$infos['hours-12'] = $infos['hours'];
+
 		$fields = [
 			'%A' => $this->dateParams('%A.' . $infos['wday'], $locale),
 			'%d' => sprintf("%02s", $infos['mday']),
-			'%e' => $infos['mday']
+			'%e' => $infos['mday'],
+			'%Y' => $infos['year'],
+			'%I' => $infos['hours-12'],
+			'%k' => $infos['hours'],
 		];
 
 		return str_replace(array_keys($fields), array_values($fields), $format);
