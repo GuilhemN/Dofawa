@@ -116,15 +116,15 @@ class UtilityExtension extends \Twig_Extension
 				if($diff->d == 1 or (date('G') < $diff->h && $diff->d == 0))
 					$format = $this->dateParams('formats.1.yesterdayAt', $locale);
 				elseif($diff->d == 0 && $diff->h <= 2)
-					return $this->tranlator->trans('formats.1.xHoursAgo', ['%h%' => $diff->h, '%m%' => $diff->m], 'date', $locale);
+					return $this->translator->trans('formats.1.xHoursAgo', ['%h%' => $diff->h, '%m%' => $diff->m], 'date', $locale);
 				elseif($diff->d == 0)
 					$format = $this->dateParams('formats.1.todayAt', $locale);
 			elseif($type == 'short')
 				if($diff->y == 0)
 					if($diff->m == (1 || 2))
-						return $this->tranlator->trans('formats.1.xMonthsAgo', ['%m%' => $diff->m, '%d%' => $diff->d], 'date', $locale);
+						return $this->translator->trans('formats.1.xMonthsAgo', ['%m%' => $diff->m, '%d%' => $diff->d], 'date', $locale);
 					elseif($diff->m == 0 && $diff->d > 0)
-						return $this->tranlator->trans('formats.1.xDaysAgo', ['%d%' => $diff->d], 'date', $locale);
+						return $this->translator->trans('formats.1.xDaysAgo', ['%d%' => $diff->d], 'date', $locale);
 
 		}
 
