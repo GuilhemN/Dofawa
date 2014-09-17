@@ -17,6 +17,8 @@ use Dof\UserBundle\OwnableTrait;
 use XN\L10n\LocalizedOriginInterface;
 use XN\L10n\LocalizedOriginTrait;
 
+use Doctrine\Common\Collections\Criteria;
+
 use Dof\ForumBundle\Entity\Forum;
 use Dof\ForumBundle\Entity\Message;
 
