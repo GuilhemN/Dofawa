@@ -101,7 +101,7 @@ class UtilityExtension extends \Twig_Extension
 		return locale_get_display_region($locale, $in);
 	}
 
-	public function formatDate(\Datetime $datetime, $type, $textual = false, $locale = null){
+	public function formatDate(\Datetime $datetime, $type = 'medium', $textual = true, $locale = null){
 		if($type == ('short' or 'medium'))
 			$format = $this->dateParams('formats.' . $textual . '.' . $type, $locale);
 		else
