@@ -25,7 +25,6 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('once', [ $this, 'once' ]),
 			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
 			new \Twig_SimpleFunction('region', [ $this, 'getRegion' ]),
-			new \Twig_SimpleFunction('testdate', [ $this, 'formatDate' ]),
 		);
 	}
 
@@ -41,6 +40,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFilter('bin2hex', 'bin2hex'),
 			new \Twig_SimpleFilter('hex2bin', 'hex2bin'),
 			new \Twig_SimpleFilter('is_array', 'is_array'),
+			new \Twig_SimpleFilter('testdate', [ $this, 'formatDate' ]),
 		);
 	}
 
