@@ -22,5 +22,5 @@ days:
     6: Samedi
 
 formats:
-    short: %A/%m/%Y
-    medium: %A/%m/%Y %H:%M:%S
+    short: %d/%m/%Y
+    medium: %d/%m/%Y %H:%M:%S
