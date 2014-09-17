@@ -8,10 +8,12 @@ class UtilityExtension extends \Twig_Extension
 	const INFLECTOR_CLASS = 'XN\Common\Inflector';
 
     private $container;
+	private $translator;
 
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
+        $this->translator = $container->get('translator');
     }
 
 	public function getFunctions()
@@ -110,7 +112,7 @@ class UtilityExtension extends \Twig_Extension
 		return $format;
 	}
 
-	protected function dateParams($string, $tranlator){
-		return $translator->trans($string, [], 'date');
+	protected function dateParams($string){
+		return $this->translator->trans($string, [], 'date');
 	}
 }
