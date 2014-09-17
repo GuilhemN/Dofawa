@@ -42,7 +42,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFilter('bin2hex', 'bin2hex'),
 			new \Twig_SimpleFilter('hex2bin', 'hex2bin'),
 			new \Twig_SimpleFilter('is_array', 'is_array'),
-			new \Twig_SimpleFilter('testdate', [ $this, 'formatDate' ]),
+			new \Twig_SimpleFilter('date_format', [ $this, 'formatDate' ]),
 		);
 	}
 
@@ -112,11 +112,20 @@ class UtilityExtension extends \Twig_Extension
 		if($textual) {
 			$diff = $datetime->diff(new \Datetime);
 
-			if (($diff->y && $diff->m) == 0 )
+			if ($type == 'medium' && ($diff->y && $diff->m) == 0 )
 				if($diff->d == 1 or ($infos['hours'] > $diff->h && $diff->d == 0))
 					$format = $this->dateParams('formats.1.yesterdayAt', $locale);
-				if($diff->d == 0 && $diff->h <= 2)
-					$format = $this->trans('formats.1.xHoursAgo', ['%h%' => $diff->h, '%m%' => $diff->m], 'date', $locale);
+				elseif($diff->d == 0 && $diff->h <= 2)
+					return $this->trans('formats.1.xHoursAgo', ['%h%' => $diff->h, '%m%' => $diff->m], 'date', $locale);
+				elseif($diff->d == 0)
+					$format = $this->dateParams('formats.1.todayAt', $locale);
+			elseif($type == 'short')
+				if($diff->y == 0)
+					if($diff->m == (1 || 2))
+						return $this->trans('formats.1.xMonthsAgo', ['%m%' => $diff->m, '%d%' => $diff->d], 'date', $locale);
+					elseif($diff->m == 0 && $diff->d > 0)
+						return $this->trans('formats.1.xDaysAgo', ['%d%' => $diff->d], 'date', $locale);
+
 		}
 
 		if($infos['hours'] > 12)

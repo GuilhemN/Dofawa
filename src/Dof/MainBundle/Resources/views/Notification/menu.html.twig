@@ -6,7 +6,7 @@
             <a href="{{ path(notification.path, notification.pathParams) }}">
                 {{ notification.translationString | trans(notification.translationParams, 'notifications') | raw }}
                 <br>
-                <small>{{ notification.createdAt | testdate('medium', true) }}</small>
+                <small>{{ notification.createdAt | date_format('medium', true) }}</small>
             </a>
         </li>
         <li class="divider"></li>
