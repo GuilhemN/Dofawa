@@ -103,7 +103,7 @@ class UtilityExtension extends \Twig_Extension
 
 	public function formatDate($datetime, $type, $locale = null){
 		if($type == ('short' or 'medium'))
-			$format = $this->translator($type, [], 'date');
+			$format = $this->translator->trans($type, [], 'date');
 		else
 			$format = $type;
 
