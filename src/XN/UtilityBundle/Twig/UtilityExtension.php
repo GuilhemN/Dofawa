@@ -114,9 +114,9 @@ class UtilityExtension extends \Twig_Extension
 
 			if (($diff->y && $diff->m) == 0 )
 				if($diff->d == 1 or ($infos['hours'] > $diff->h && $diff->d == 0))
-					$format = $this->dateParams('formats.textual.yesterdayAt' . $type, $locale);
+					$format = $this->dateParams('formats.textual.yesterdayAt', $locale);
 				if($diff->d == 0 && $diff->h < 3)
-					$format = $this->trans('formats.textual.xHoursAgo' . $type, ['%x%' => $diff->h], 'date', $locale);
+					$format = $this->trans('formats.textual.xHoursAgo', ['%x%' => $diff->h], 'date', $locale);
 		}
 
 		if($infos['hours'] > 12)
