@@ -119,7 +119,7 @@ class UtilityExtension extends \Twig_Extension
 			'%Y' => $infos['year'],
 
 			// Months
-			'%B' => $this->dateParams('mois.' . $infos['mon'], $locale),
+			'%B' => $this->dateParams('months.' . $infos['mon'], $locale),
 			'%m' => sprintf("%02s", $infos['mon']),
 
 			// Days
