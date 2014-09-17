@@ -102,7 +102,7 @@ class UtilityExtension extends \Twig_Extension
 	}
 
 	public function formatDate($datetime, $format, $locale = null){
-		$infos = getdate($datetime->format('u'));
+		$infos = getdate($datetime->getTimestamp());
 
 		if($infos['hours'] > 12)
 			$infos['hours-12'] = $infos['hours'] - 12;
@@ -114,7 +114,7 @@ class UtilityExtension extends \Twig_Extension
 			'%d' => sprintf("%02s", $infos['mday']),
 			'%e' => $infos['mday'],
 			'%Y' => $infos['year'],
-			'%I' => $infos['hours-12'],
+			'%l' => $infos['hours-12'],
 			'%k' => $infos['hours'],
 		];
 
