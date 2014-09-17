@@ -100,6 +100,6 @@ class UtilityExtension extends \Twig_Extension
 	}
 
 	public function formatDate($datetime, $format){
-		return strftime("%a %e.%l.%Y", $datetime->getTimestamp())
+		return strftime("%a %e.%l.%Y", $datetime->getTimestamp());
 	}
 }
