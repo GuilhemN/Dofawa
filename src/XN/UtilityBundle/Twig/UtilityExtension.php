@@ -25,6 +25,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('once', [ $this, 'once' ]),
 			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
 			new \Twig_SimpleFunction('region', [ $this, 'getRegion' ]),
+			new \Twig_SimpleFunction('testdate', [ $this, 'formatDate' ]),
 		);
 	}
 
@@ -96,5 +97,9 @@ class UtilityExtension extends \Twig_Extension
 	public function getRegion($locale, $in)
 	{
 		return locale_get_display_region($locale, $in);
+	}
+
+	public function formatDate($datetime, $format){
+		return strftime("%a %e.%l.%Y", $datetime->getTimestamp())
 	}
 }
