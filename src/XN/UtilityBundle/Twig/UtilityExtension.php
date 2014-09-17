@@ -101,7 +101,12 @@ class UtilityExtension extends \Twig_Extension
 		return locale_get_display_region($locale, $in);
 	}
 
-	public function formatDate($datetime, $format, $locale = null){
+	public function formatDate($datetime, $type, $locale = null){
+		if($type == ('short' or 'medium'))
+			$format = $this->translator($type, [], 'date');
+		else
+			$format = $type;
+
 		$infos = getdate($datetime->getTimestamp());
 
 		if($infos['hours'] > 12)
@@ -110,12 +115,28 @@ class UtilityExtension extends \Twig_Extension
 			$infos['hours-12'] = $infos['hours'];
 
 		$fields = [
-			'%A' => $this->dateParams('%A.' . $infos['wday'], $locale),
+			// Année
+			'%Y' => $infos['year'],
+
+			// Mois
+			'%B' => $this->dateParams('mois.' . $infos['mon'], $locale),
+			'%m' => sprintf("%02s", $infos['mon']),
+
+			// Jour
+			'%A' => $this->dateParams('days.' . $infos['wday'], $locale),
 			'%d' => sprintf("%02s", $infos['mday']),
 			'%e' => $infos['mday'],
-			'%Y' => $infos['year'],
+
+			// Heure
+			'%H' => sprintf("%02s", $infos['hours']),
 			'%l' => $infos['hours-12'],
 			'%k' => $infos['hours'],
+
+			// Minute
+			'%M' => sprintf("%02s", $infos['minutes']),
+
+			// Seconde
+			'%S' => sprintf("%02s", $infos['seconds']),
 		];
 
 		return str_replace(array_keys($fields), array_values($fields), $format);
