@@ -103,7 +103,7 @@ class UtilityExtension extends \Twig_Extension
 		$infos = getdate($datetime->getTimestamp());
 		$translator = $this->container->get('translator');
 
-		str_replace('%A', $translator->trans('%A.' . $infos['wday']), $format);
+		$format = str_replace('%A', $translator->trans('%A.' . $infos['wday']), $format);
 
 		return $format;
 	}
