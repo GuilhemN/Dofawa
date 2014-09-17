@@ -100,6 +100,11 @@ class UtilityExtension extends \Twig_Extension
 	}
 
 	public function formatDate($datetime, $format){
-		return strftime("%a %e.%l.%Y", $datetime->getTimestamp());
+		$infos = getdate($datetime->getTimestamp());
+		$translator = $this->container->get('translator');
+
+		str_replace('%A', $translator->trans('%A.' . $infos['wday']), $format);
+
+		return $format;
 	}
 }
