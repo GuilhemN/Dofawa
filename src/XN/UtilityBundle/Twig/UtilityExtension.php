@@ -102,7 +102,7 @@ class UtilityExtension extends \Twig_Extension
 	}
 
 	public function formatDate($datetime, $format, $locale = null){
-		$infos = ($datetime->getdate());
+		$infos = getdate($datetime->getTimestamp());
 
 		$fields = [
 			'%A' => $this->dateParams('%A.' . $infos['wday'], $locale),
