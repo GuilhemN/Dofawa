@@ -3,18 +3,48 @@
 {% block fos_message_content %}
 
 <h2>{{ thread.subject }}</h2>
+<div class="panel-collapse collapse" id="collapseOne">
+    <div class="panel-body">
+        <ul class="chat">
+            {% for message in thread.messages | reverse %}
+                {% if app.user.id == message.sender.id %}
+                    {% set alignment = 'right' %}
+                {% else %}
+                    {% set alignment = 'left' %}
+                {% endif %}
 
-{% for message in thread.messages %}
-    <div class="messenger_thread_message panel panel-primary">
-        <div class="messenger_thread_message_info panel-heading">
-            {% trans with {'%sender%': message.sender|e, '%date%': message.createdAt|date} from 'FOSMessageBundle' %}message_info{% endtrans %}
-        </div>
-
-        <div class="messenger_thread_message_body" id="message_{{ message.id }}">
-            {{ message.body | nl2br }}
+                <li class="{{ alignment }} clearfix">
+                    <span class="chat-img pull-{{ alignment }}">
+                        <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                    </span>
+                    <div class="chat-body clearfix">
+                        <div class="header">
+                            <strong class="primary-font">{{ message.sender.username }}</strong>
+                            <small class="pull-right text-muted">
+                                <span class="glyphicon glyphicon-time"></span>
+                                {{ message.createdAt | date_format }}
+                            </small>
+                        </div>
+                        <p>
+                            {{ message.body | nl2br }}
+                        </p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {#
+    <div class="panel-footer">
+        <div class="input-group">
+            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+            <span class="input-group-btn">
+                <button class="btn btn-warning btn-sm" id="btn-chat">
+                    Send</button>
+            </span>
         </div>
     </div>
-{% endfor %}
+    #}
+</div>
 
 <h3>{% trans from 'FOSMessageBundle' %}reply{% endtrans %}</h3>
 
