@@ -3,10 +3,10 @@
 {% block fos_message_content %}
 
 <h2>{{ thread.subject }}</h2>
-<div class="panel-collapse collapse" id="collapseOne">
+<div class="panel-collapse" id="collapseOne">
     <div class="panel-body">
         <ul class="chat">
-            {% for message in thread.messages %}
+            {% for message in thread.messages | reverse %}
                 {% if app.user.id == message.sender.id %}
                     {% set alignment = 'right' %}
                 {% else %}
