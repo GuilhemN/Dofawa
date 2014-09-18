@@ -47,3 +47,9 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preRemove }
             - { name: doctrine.event_listener, event: preUpdate }
+
+    dof.main.doctrine.message_forum_updater:
+        class: "Dof\MainBundle\Doctrine\MessageForumUpdater"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preRemove }

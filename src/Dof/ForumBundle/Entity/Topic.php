@@ -17,6 +17,8 @@ use Dof\UserBundle\OwnableTrait;
 use XN\L10n\LocalizedOriginInterface;
 use XN\L10n\LocalizedOriginTrait;
 
+use Doctrine\Common\Collections\Criteria;
+
 use Dof\ForumBundle\Entity\Forum;
 use Dof\ForumBundle\Entity\Message;
 
@@ -239,5 +241,11 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     public function __toString(){
         return $this->name;
+    }
+
+    public function getLastMessageCreatedAt() {
+    foreach ($this->messages->matching(Criteria::create()->orderBy('createdAt', 'DESC')->setFirstResult( 0 )->setMaxResults(1)) as $message)
+        return $message->getCreatedAt();
+        return null;
     }
 }

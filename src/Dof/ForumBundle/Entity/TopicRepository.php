@@ -11,6 +11,5 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class TopicRepository extends EntityRepository
-{
-	
+{	
 }
