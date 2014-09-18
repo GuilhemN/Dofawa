@@ -29,6 +29,7 @@ formats:
         short: %A %d %B %Y
         medium: %A %d %B %Y à %H:%M:%S
 
+        justNow: À l'instant
         xHoursAgo: Il y a %h% heures et %m% minutes
         todayAt: Aujourd'hui à %H:%M:%S
         yesterdayAt: Hier à %H:%M:%S
