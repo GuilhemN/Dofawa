@@ -1,0 +1,32 @@
+months:
+    1: January
+    2: February
+    3: March
+    4: April
+    5: May
+    6: June
+    7: July
+    8: August
+    9: September
+    10: October
+    11: November
+    12: December
+
+days:
+    0: Sunday
+    1: Monday
+    2: Tuesday
+    3: Wednesday
+    4: Thursday
+    5: Friday
+    6: Saturday
+
+formats:
+    1: # Textual
+        justNow: Just now
+        xHoursAgo: %h% hours and %m% minutes ago
+        todayAt: Today at %H:%M:%S
+        yesterdayAt: Yesterday at %H:%M:%S
+
+        xDaysAgo: %d% days ago
+        xMonthsAgo: %m% months and %d% days ago
