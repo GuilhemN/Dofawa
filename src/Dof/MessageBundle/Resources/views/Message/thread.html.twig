@@ -6,7 +6,7 @@
 <div class="panel-collapse collapse" id="collapseOne">
     <div class="panel-body">
         <ul class="chat">
-            {% for message in thread.messages | reverse %}
+            {% for message in thread.messages %}
                 {% if app.user.id == message.sender.id %}
                     {% set alignment = 'right' %}
                 {% else %}
