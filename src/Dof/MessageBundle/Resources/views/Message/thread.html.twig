@@ -14,7 +14,7 @@
 
                 <li class="{{ alignment }} clearfix">
                     <span class="chat-img pull-{{ alignment }}">
-                        <img src="{{ asset(message.sender.getWebPath()) }}" alt="User Avatar" class="img-circle" />
+                        <img src="{{ asset(message.sender.getWebPath()) | imagine_filter('50x50') }}" alt="User Avatar" class="img-circle" />
                     </span>
                     <div class="chat-body clearfix">
                         <div class="header">
