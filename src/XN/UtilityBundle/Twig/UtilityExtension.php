@@ -118,7 +118,10 @@ class UtilityExtension extends \Twig_Extension
 				elseif($diff->d == 0 && $diff->h == 0 && $diff->i == 0)
 					return $this->translator->trans('formats.1.justNow', [], 'date', $locale);
 				elseif($diff->d == 0 && $diff->h <= 2)
-					return $this->translator->trans('formats.1.xHoursAgo', ['%h%' => $diff->h, '%m%' => $diff->i], 'date', $locale);
+					if($diff->h == 0)
+						return $this->translator->trans('formats.1.xMinutesAgo', ['%m%' => $diff->i], 'date', $locale);
+					else
+						return $this->translator->trans('formats.1.xHoursAgo', ['%h%' => $diff->h, '%m%' => $diff->i], 'date', $locale);
 				elseif($diff->d == 0)
 					$format = $this->dateParams('formats.1.todayAt', $locale);
 			elseif($type == 'short')

@@ -24,6 +24,7 @@ days:
 formats:
     1: # Textual
         justNow: Just now
+        xMinutesAgo: %m% minutes ago
         xHoursAgo: %h% hours and %m% minutes ago
         todayAt: Today at %H:%M:%S
         yesterdayAt: Yesterday at %H:%M:%S
