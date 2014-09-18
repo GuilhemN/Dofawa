@@ -115,7 +115,7 @@ class UtilityExtension extends \Twig_Extension
 			if ($type == 'medium' && ($diff->y && $diff->m) == 0 )
 				if($diff->d == 1 or (date('G') < $diff->h && $diff->d == 0))
 					$format = $this->dateParams('formats.1.yesterdayAt', $locale);
-				elseif($diff->d == 0 && $diff->h == && and $diff->i == 0)
+				elseif($diff->d == 0 && $diff->h == && $diff->i == 0)
 					return $this->translator->trans('formats.1.justNow', [], 'date', $locale);
 				elseif($diff->d == 0 && $diff->h <= 2)
 					return $this->translator->trans('formats.1.xHoursAgo', ['%h%' => $diff->h, '%m%' => $diff->i], 'date', $locale);
