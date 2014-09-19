@@ -34,8 +34,8 @@ class NotificationController extends Controller
             10
             );
 
-        foreach($notifications)
-            $notifications->setIsRead(true);
+        foreach($notifications as $notification)
+            $notification->setIsRead(true);
 
         $unreadNotifications = $repo->countUnread($user);
 
