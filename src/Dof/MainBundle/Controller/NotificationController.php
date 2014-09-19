@@ -34,7 +34,17 @@ class NotificationController extends Controller
             10
             );
 
-        return $this->render('DofMainBundle:Notification:ajax.html.twig', ['notifications' => $nm->transformNotifications($notifications)]);
+        foreach($notifications)
+            $notifications->setIsRead(true);
+
+        $unreadNotifications = $repo->countUnread($user);
+
+        $em->flush();
+
+        return $this->createJsonResponse([
+            'html' => $this->renderView('DofMainBundle:Notification:ajax.html.twig', ['notifications' => $nm->transformNotifications($notifications)]),
+            'unread' => $unreadNotifications
+        ]);
     }
 
     public function markAsReadAction(){
