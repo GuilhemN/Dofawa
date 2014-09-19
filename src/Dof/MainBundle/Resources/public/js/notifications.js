@@ -18,5 +18,5 @@ function checkUnreadNotifications(){
 }
 
 setTimeout(function() {
-    setInterval(checkUnreadNotifications, 15000)
+    setInterval(checkUnreadNotifications, 25000)
 }, 10000);
