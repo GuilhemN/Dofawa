@@ -3,6 +3,7 @@
 namespace Dof\MainBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Dof\UserBundle\Entity\User;
 
 /**
  * NotificationRepository
@@ -12,4 +13,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class NotificationRepository extends EntityRepository
 {
+
+    public function countUnread(User $user = null)
+    {
+        return $this->createQueryBuilder('id')
+            ->select('COUNT(id)')
+            ->where('owner' => ':owner')
+            ->setParameter('owner' => $user)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }

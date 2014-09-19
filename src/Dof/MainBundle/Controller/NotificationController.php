@@ -12,6 +12,17 @@ class NotificationController extends Controller
     public function menuAction()
     {
         $user = $this->get('security.context')->getToken()->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('DofMainBundle:Notification');
+
+        $unreadNotifications = $repo->countUnread($user);
+
+        return $this->render('DofMainBundle:Notification:menu.html.twig', ['unread' => $unreadNotifications]);
+    }
+
+    public function ajaxAction(){
+        $user = $this->get('security.context')->getToken()->getUser();
         $nm = $this->get('notification_manager');
 
         $em = $this->getDoctrine()->getManager();
@@ -28,7 +39,7 @@ class NotificationController extends Controller
             if(!$notification->isRead())
                 $unread++;
 
-        return $this->render('DofMainBundle:Notification:menu.html.twig', ['notifications' => $nm->transformNotifications($notifications), 'unread' => $unread]);
+        return $this->render('DofMainBundle:Notification:ajax.html.twig', ['notifications' => $nm->transformNotifications($notifications), 'unread' => $unread]);
     }
 
     public function markAsReadAction(){
