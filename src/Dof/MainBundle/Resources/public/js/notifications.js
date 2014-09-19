@@ -18,9 +18,13 @@ function checkUnreadNotifications(){
         url: Routing.generate('dof_notifications_ajax_check_unread')
     }).done(function(data) {
         jQuery('#notifications span.badge').html(data.unread);
+
+        if(document.title.match(/^\([0-9]+\)/))
+            document.replace(/^\([0-9]+\)/, '(' + data.unread + ')');
+        else
+            document.title = '(' + data.unread + ') ' + document.title;
+
     });
 }
 
-setTimeout(function() {
-    setInterval(checkUnreadNotifications, 25000)
-}, 10000);
+setInterval(checkUnreadNotifications, 25000)
