@@ -39,9 +39,9 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_read", type="boolean", options={"default" = false})
+     * @ORM\Column(name="is_read", type="boolean")
      */
-    private $isRead;
+    private $isRead = false;
 
     /**
      * @var string
