@@ -26,9 +26,9 @@ function checkUnreadNotifications(){
 function majNotificationsTitle(unread){
     if(document.title.match(/^\([0-9]+\)/))
         if(unread > 0)
-            document.replace(/^\([0-9]+\)/, '(' + unread + ')');
+            document.title.replace(/^\([0-9]+\)/, '(' + unread + ')');
         else
-            document.replace(/^\([0-9]+\)/, '');
+            document.title.replace(/^\([0-9]+\)/, '');
     else if(unread > 0)
         document.title = '(' + unread + ') ' + document.title;
 }
