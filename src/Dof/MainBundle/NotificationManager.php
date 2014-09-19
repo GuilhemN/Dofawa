@@ -76,57 +76,72 @@ class NotificationManager
         $return = array();
         $i = 0;
         foreach($notifications as $notification){
-            $ent = $em->getRepository($notification->getClass())->find($notification->getClassId());
-            if($ent === null)
+            if($notification->getClass() !== null){
+                $ent = $em->getRepository($notification->getClass())->find($notification->getClassId());
+                $noClass = false;
+            }
+            else
+                $noClass = true;
+
+            if($ent === null or $noClass)
                 continue;
 
             $translationParams = array();
             $pathParams = array();
 
-            $metadatas = $this->getMetadataByType($notification->getType());
+            if($notification->getMessage() !== null){
+                // Notif manuelle
+                $return[$i]['message'] = $notification->getMessage();
+                $return[$i]['manualPath'] = $notification->getPath();
+            }
+            else {
+                // Message traduit
+                $metadatas = $this->getMetadataByType($notification->getType());
 
-            if(isset($metadatas['translationParams']['dynamic']))
-                foreach($metadatas['translationParams']['dynamic'] as $k => $var) {
-                    $fields = explode(".", $var);
+                if(!$noClass && isset($metadatas['translationParams']['dynamic']))
+                    foreach($metadatas['translationParams']['dynamic'] as $k => $var) {
+                        $fields = explode(".", $var);
 
-                    $value = $ent;
-                    foreach($fields as $field)
-                        if($field == 'localeName')
-                            $value = $value->getName($this->di->get('translator')->getLocales());
-                        elseif($field == 'currentUser')
-                            $value = $this->di->get('security.context')->getToken()->getUser();
-                        else
-                            $value = $value->{'get' . ucfirst($field)}();
+                        $value = $ent;
+                        foreach($fields as $field)
+                            if($field == 'localeName')
+                                $value = $value->getName($this->di->get('translator')->getLocales());
+                            elseif($field == 'currentUser')
+                                $value = $this->di->get('security.context')->getToken()->getUser();
+                            else
+                                $value = $value->{'get' . ucfirst($field)}();
 
-                    $translationParams[$k] = $value;
-                }
-            if(isset($metadatas['translationParams']['static']))
-                $translationParams += $metadatas['translationParams']['static'];
+                        $translationParams[$k] = $value;
+                    }
+                if(isset($metadatas['translationParams']['static']))
+                    $translationParams += $metadatas['translationParams']['static'];
 
-            $return[$i]['translationString'] = $metadatas['translationString'];
-            $return[$i]['translationParams'] = $translationParams;
+                $return[$i]['translationString'] = $metadatas['translationString'];
+                $return[$i]['translationParams'] = $translationParams;
 
+                // Chemin
+                if(!$noClass && isset($metadatas['pathParams']['dynamic']))
+                    foreach($metadatas['pathParams']['dynamic'] as $k => $var) {
+                        $fields = explode(".", $var);
 
-            if(isset($metadatas['pathParams']['dynamic']))
-                foreach($metadatas['pathParams']['dynamic'] as $k => $var) {
-                    $fields = explode(".", $var);
+                        $value = $ent;
+                        foreach($fields as $field)
+                            if($field == 'localeName')
+                                $value = $value->getName($this->di->get('translator')->getLocales());
+                            elseif($field == 'currentUser')
+                                $value = $this->di->get('security.context')->getToken()->getUser();
+                            else
+                                $value = $value->{'get' . ucfirst($field)}();
 
-                    $value = $ent;
-                    foreach($fields as $field)
-                        if($field == 'localeName')
-                            $value = $value->getName($this->di->get('translator')->getLocales());
-                        elseif($field == 'currentUser')
-                            $value = $this->di->get('security.context')->getToken()->getUser();
-                        else
-                            $value = $value->{'get' . ucfirst($field)}();
+                        $pathParams[$k] = $value;
+                    }
+                if(isset($metadatas['pathParams']['static']))
+                    $pathParams += $metadatas['pathParams']['static'];
 
-                    $pathParams[$k] = $value;
-                }
-            if(isset($metadatas['pathParams']['static']))
-                $pathParams += $metadatas['pathParams']['static'];
+                $return[$i]['path'] = $metadatas['path'];
+                $return[$i]['pathParams'] = $pathParams;
 
-            $return[$i]['path'] = $metadatas['path'];
-            $return[$i]['pathParams'] = $pathParams;
+            }
 
             $return[$i]['createdAt'] = $notification->getCreatedAt();
             $return[$i]['isRead'] = $notification->getIsRead();

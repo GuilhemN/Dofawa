@@ -32,7 +32,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
@@ -46,7 +46,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     /**
      * @var string
      *
-     * @ORM\Column(name="class", type="string", length=255)
+     * @ORM\Column(name="class", type="string", length=255, nullable=true)
      */
     private $class;
 
@@ -56,6 +56,20 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
      * @ORM\Column(name="class_id", type="integer")
      */
     private $classId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="string", length=255, nullable=true)
+     */
+    private $message;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
+     */
+    private $path;
 
 
     /**
@@ -82,7 +96,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Get translateString
+     * Get type
      *
      * @return string
      */
@@ -90,7 +104,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     {
         return $this->type;
     }
-    
+
     /**
      * Set isRead
      *
@@ -162,5 +176,51 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     public function getClassId()
     {
         return $this->classId;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     * @return Notification
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Notification
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 }

@@ -1,7 +1,17 @@
 {% for notification in notifications %}
     <li {% if notification.isRead == false %}class="active"{% endif %}>
+
+        {% if notification.manualPath is defined %}
+        <a href="{{ notification.manualPath }}">
+        {% else %}
         <a href="{{ path(notification.path, notification.pathParams) }}">
-            {{ notification.translationString | trans(notification.translationParams, 'notifications') | raw }}
+        {% endif %}
+
+            {% if notification.message is defined %}
+                {{ notification.message }}
+            {% else %}
+                {{ notification.translationString | trans(notification.translationParams, 'notifications') | raw }}
+            {% endif %}
             <br>
             <small>{{ notification.createdAt | date_format }}</small>
         </a>
