@@ -80,10 +80,12 @@ class NotificationManager
                 $ent = $em->getRepository($notification->getClass())->find($notification->getClassId());
                 $noClass = false;
             }
-            else
+            else{
+                $ent = null;
                 $noClass = true;
+            }
 
-            if($ent === null or $noClass)
+            if($ent === null && !$noClass)
                 continue;
 
             $translationParams = array();
