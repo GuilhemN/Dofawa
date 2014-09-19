@@ -31,7 +31,7 @@ class NotificationController extends Controller
         $notifications = $repo->findBy(
             array('owner' => $user),
             array('createdAt' => 'DESC'),
-            10
+            6
             );
 
         $html = $this->renderView('DofMainBundle:Notification:ajax.html.twig', ['notifications' => $nm->transformNotifications($notifications)]);
