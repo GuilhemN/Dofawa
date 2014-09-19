@@ -39,7 +39,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_read", type="boolean")
+     * @ORM\Column(name="is_read", type="boolean", options={"default" = false})
      */
     private $isRead;
 
@@ -53,7 +53,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     /**
      * @var integer
      *
-     * @ORM\Column(name="class_id", type="integer")
+     * @ORM\Column(name="class_id", type="integer", nullable=true)
      */
     private $classId;
 

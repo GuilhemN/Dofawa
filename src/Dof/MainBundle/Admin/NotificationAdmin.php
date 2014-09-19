@@ -34,12 +34,11 @@ class NotificationAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('owner')
             ->add('type')
             ->add('message')
             ->add('isRead')
             ->add('class')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
