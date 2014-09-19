@@ -6,7 +6,12 @@ dof_main_calculateur:
     pattern:  /calculateur
     defaults: { _controller: DofMainBundle:Calculateur:index }
 
-dof_notifications_get_notifications:
-    pattern:  /notifications/get_notifications
+dof_notifications_ajax_list:
+    pattern:  /notifications/ajax/list
     defaults: { _controller: DofMainBundle:Notification:ajax }
+    options:  { expose: true }
+
+dof_notifications_ajax_check_unread:
+    pattern:  /notifications/ajax/check_unread
+    defaults: { _controller: DofMainBundle:Notification:checkUnread }
     options:  { expose: true }

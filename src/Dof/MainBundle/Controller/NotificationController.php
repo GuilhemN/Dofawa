@@ -41,11 +41,20 @@ class NotificationController extends Controller
 
         $em->flush();
 
-        $unreadNotifications = $repo->countUnread($user);
+        $unread = $repo->countUnread($user);
 
         return $this->createJsonResponse([
             'html' => $html,
-            'unread' => $unreadNotifications
+            'unread' => $unread
+        ]);
+    }
+
+    public function checkUnreadAction(){
+        $user = $this->get('security.context')->getToken()->getUser();
+        $unread = $repo->countUnread($user);
+        
+        return $this->createJsonResponse([
+            'unread' => $unread
         ]);
     }
 }

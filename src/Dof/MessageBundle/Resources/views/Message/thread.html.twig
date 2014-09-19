@@ -12,7 +12,7 @@
                     {% set alignment = 'left' %}
                 {% endif %}
 
-                <li class="{{ alignment }} clearfix">
+                <li id="message_{{ message.id}}" class="{{ alignment }} clearfix">
                     <span class="chat-img pull-{{ alignment }}">
                         <img src="{{ asset(message.sender.getWebPath()) | imagine_filter('50x50') }}" alt="User Avatar" class="img-circle" />
                     </span>
