@@ -10,8 +10,3 @@ dof_notifications_get_notifications:
     pattern:  /notifications/get_notifications
     defaults: { _controller: DofMainBundle:Notification:ajax }
     options:  { expose: true }
-
-dof_notifications_mark_as_read:
-    pattern:  /notifications/mark_as_read
-    defaults: { _controller: DofMainBundle:Notification:markAsRead }
-    options:  { expose: true }

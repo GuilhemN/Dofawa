@@ -7,7 +7,4 @@ jQuery(function () {
             jQuery('#notifications span.badge').html(data.unread);
         });
     });
-    jQuery('#notifications').on('hidden.bs.dropdown', function () {
-        jQuery('#notifications span.badge').html('0')
-    });
 });

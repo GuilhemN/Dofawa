@@ -37,39 +37,13 @@ class NotificationController extends Controller
         foreach($notifications as $notification)
             $notification->setIsRead(true);
 
-        $unreadNotifications = $repo->countUnread($user);
-
         $em->flush();
+
+        $unreadNotifications = $repo->countUnread($user);
 
         return $this->createJsonResponse([
             'html' => $this->renderView('DofMainBundle:Notification:ajax.html.twig', ['notifications' => $nm->transformNotifications($notifications)]),
             'unread' => $unreadNotifications
         ]);
-    }
-
-    public function markAsReadAction(){
-        $securityContext = $this->get('security.context');
-        if(!$securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('DofMainBundle:Notification');
-
-        $user = $securityContext->getToken()->getUser();
-
-        $notifications = $repo->findBy(array('owner' => $user, 'isRead' => false));
-
-        $i = 0;
-        foreach($notifications as $notification){
-            $notification->setIsRead(true);
-            $em->persist($notification);
-
-            $i++;
-        }
-
-        $return = array('updated' => $i);
-        $em->flush();
-
-        return $this->createJsonResponse($return);
     }
 }
