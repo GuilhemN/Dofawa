@@ -51,8 +51,10 @@ class NotificationController extends Controller
 
     public function checkUnreadAction(){
         $user = $this->get('security.context')->getToken()->getUser();
-        $unread = $repo->countUnread($user);
         
+        $repo = $em->getRepository('DofMainBundle:Notification');
+        $unread = $repo->countUnread($user);
+
         return $this->createJsonResponse([
             'unread' => $unread
         ]);
