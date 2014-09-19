@@ -103,7 +103,7 @@ class UtilityExtension extends \Twig_Extension
 
 	public function formatDate(\Datetime $datetime, $type = 'medium', $textual = true, $locale = null){
 		if($type == ('short' or 'medium'))
-			$format = $this->dateParams('formats.' . $textual . '.' . $type, $locale);
+			$format = $this->dateParams('formats.' . (int)$textual . '.' . $type, $locale);
 		else
 			$format = $type;
 
