@@ -1,4 +1,8 @@
 jQuery(function () {
+    var unread = jQuery('#notifications span.badge').html();
+    if(unread > 0)
+        document.title = '(' + unread + ') ' + document.title;
+
     jQuery('#notifications').on('show.bs.dropdown', function (){
         jQuery.ajax({
             url: Routing.generate('dof_notifications_ajax_list')
