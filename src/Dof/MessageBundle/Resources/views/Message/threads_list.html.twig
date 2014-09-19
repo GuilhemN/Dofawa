@@ -29,7 +29,7 @@
                     {{ thread.createdBy }}
                 </td>
                 <td class="hidden-xs">
-                    {{ thread.createdAt|date }}
+                    {{ thread.createdAt | format_date('medium', false) }}
                 </td>
                 <td class="hidden-xs hidden-sm hidden-md">
                     {{ thread.messages|length }}
@@ -39,7 +39,7 @@
                         <a href="{{ url('fos_message_thread_view', {'threadId': thread.id}) }}#message_{{ thread.lastMessage.id }}" title="{% trans from 'FOSMessageBundle' %}goto_last{% endtrans %}">
                             →
                         </a>
-                        {% trans with {'%date%': thread.lastMessage.createdAt|date} from 'FOSMessageBundle' %}on{% endtrans %}
+                        {% trans with {'%date%': thread.lastMessage.createdAt | format_date('medium', false)} from 'FOSMessageBundle' %}on{% endtrans %}
                         <br />
                         {% trans with {'%sender%': thread.lastMessage.sender|e } from 'FOSMessageBundle' %}by{% endtrans %}
                     {% else %}
