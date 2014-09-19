@@ -18,8 +18,8 @@ class NotificationRepository extends EntityRepository
     {
         return $this->createQueryBuilder('id')
             ->select('COUNT(id)')
-            ->where('owner' => ':owner')
-            ->setParameter('owner' => $user)
+            ->where('owner', ':owner')
+            ->setParameter('owner', $user)
             ->getQuery()
             ->getSingleScalarResult()
         ;
