@@ -1,7 +1,6 @@
 jQuery(function () {
     var unread = jQuery('#notifications span.badge').html();
-    if(unread > 0)
-        majNotificationsTitle(unread);
+    majNotificationsTitle(unread);
 
     jQuery('#notifications').on('show.bs.dropdown', function (){
         jQuery.ajax({
@@ -26,8 +25,11 @@ function checkUnreadNotifications(){
 
 function majNotificationsTitle(unread){
     if(document.title.match(/^\([0-9]+\)/))
-        document.replace(/^\([0-9]+\)/, '(' + unread + ')');
-    else
+        if(unread > 0)
+            document.replace(/^\([0-9]+\)/, '(' + unread + ')');
+        else
+            document.replace(/^\([0-9]+\)/, '');
+    else if(unread > 0)
         document.title = '(' + unread + ') ' + document.title;
 }
 
