@@ -3,7 +3,7 @@
 namespace Dof\UserBundle\EventListener;
 
 use FOS\UserBundle\FOSUserEvents;
-use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -32,8 +32,8 @@ class RegistrationListener implements EventSubscriberInterface
         );
     }
 
-    public function onRegistrationCompleted(FormEvent $event)
+    public function onRegistrationCompleted(FilterUserResponseEvent $event)
     {
-        $this->di->get('notification_manager')->addNotification(null, 'welcome');
+        $this->di->get('notification_manager')->addNotification(null, 'welcome', $this->getUser());
     }
 }
