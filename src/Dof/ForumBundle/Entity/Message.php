@@ -97,4 +97,8 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     {
         return $this->topic;
     }
+
+    public function __toString(){
+        return $this->content;
+    }
 }

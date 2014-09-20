@@ -62,6 +62,7 @@ class TopicAdmin extends Admin
             ->add('updater')
             ->add('name')
             ->add('locked', null, array('required' => false))
+            ->add('message', new MessageAdmin())
         ;
     }
 
