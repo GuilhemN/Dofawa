@@ -103,6 +103,6 @@ function setStoredObject(storage, key, value) {
 }
 var setStoredArray = setStoredObject;
 function addToStoredArray(storage, key, ...values) {
-    setStoredArray(storage, key, getStoredArray(storage, key).concat(values));
+    setStoredArray(storage, key, (getStoredArray(storage, key)).concat(values));
 }
 setInterval(checkUnreadNotifications, 25000)
