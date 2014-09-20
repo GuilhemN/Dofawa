@@ -6,7 +6,24 @@ jQuery(function () {
         jQuery.ajax({
             url: Routing.generate('dof_notifications_ajax_list')
         }).done(function(data) {
-            jQuery('#notifications .dropdown-menu').html(data.html);
+            var html;
+            for (var i = 0; i < data.notifications.length; i++) {
+                var notification = data.notifications[i];
+
+                html += '<li ';
+                if(notification.isRead == false)
+                    html += 'class="active"'
+
+                html += '>
+                    <a href="' + notification.path + '">
+                        '+ notification.message + '
+                        <br>
+                        <small>' + notification.createdAt + '</small>
+                    </a>
+                </li>
+                <li class="divider"></li>';
+            }
+            jQuery('#notifications .dropdown-menu').html(html);
             jQuery('#notifications span.badge').html(data.unread);
 
             majNotificationsTitle(data.unread);
