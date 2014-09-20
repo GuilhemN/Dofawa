@@ -44,17 +44,12 @@ jQuery(function () {
         localStorage.notificationCheckbox = jQuery(this).is(':checked');
         if(jQuery(this).is(':checked')) {
         	if (!('Notification' in window))
-                var error = true;
+                $(this).prop('checked', false);
             else
             	Notification.requestPermission(function (perm) {
             		if (perm != 'granted')
-            			var error = true;
-            		else
-            			var error = false;
+                        jQuery('#notifications #checkbox input').prop('checked', false);
             	});
-
-            if(error)
-                $(this).prop('checked', false);
         }
     });
 });
