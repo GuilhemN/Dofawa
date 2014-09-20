@@ -67,11 +67,15 @@ class NotificationManager
 
         $notification
             ->setType($type)
-            ->setClass($em->getClassMetadata(get_class($ent))->getName())
-            ->setClassId($ent->getId())
             ->setIsRead($is_read)
             ->setOwner($user)
         ;
+        if($ent !== null)
+            $notification
+                ->setClass($em->getClassMetadata(get_class($ent))->getName())
+                ->setClassId($ent->getId())
+            ;
+
 
         $em->persist($notification);
 
