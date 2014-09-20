@@ -33,12 +33,7 @@ class NotificationController extends Controller
             array('createdAt' => 'DESC'),
             6
         );
-        $unread = $repo->countUnread($user);
-
-        $response = $this->createJsonResponse([
-            'notifications' => $nm->transformNotifications($notifications),
-            'unread' => $unread
-        ]);
+        $tNotifications = $nm->transformNotifications($notifications);
 
         foreach($notifications as $notification)
             $notification->setIsRead(true);
@@ -47,7 +42,10 @@ class NotificationController extends Controller
 
         $unread = $repo->countUnread($user);
 
-        return $response;
+        return $this->createJsonResponse([
+            'notifications' => $tNotifications,
+            'unread' => $unread
+        ]);;
     }
 
     public function checkUnreadAction(){
