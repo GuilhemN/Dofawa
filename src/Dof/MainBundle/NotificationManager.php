@@ -44,7 +44,6 @@ class NotificationManager
                 'translationString' => 'welcome',
                 'translationParams' => array(
                     'dynamic' => array('%name%' => 'currentUser.username'),
-                    'static' => array('%name%' => 'test')
                 ),
                 'path' => 'dof_main_homepage',
             ),
@@ -117,11 +116,13 @@ class NotificationManager
                 $translationParams = array();
                 $pathParams = array();
 
-                if(!$noClass && isset($metadatas['translationParams']['dynamic']))
+                if(isset($metadatas['translationParams']['dynamic']))
                     foreach($metadatas['translationParams']['dynamic'] as $k => $var) {
                         $fields = explode(".", $var);
 
-                        $value = $ent;
+                        if(!$noClass)
+                            $value = $ent;
+
                         foreach($fields as $field)
                             if($field == 'localeName')
                                 $value = $value->getName($this->di->get('translator')->getLocales());
@@ -138,11 +139,13 @@ class NotificationManager
                 $return[$i]['message'] = $this->di->get('translator')->trans($metadatas['translationString'], $translationParams, 'notifications');
 
                 // Chemin
-                if(!$noClass && isset($metadatas['pathParams']['dynamic']))
+                if(isset($metadatas['pathParams']['dynamic']))
                     foreach($metadatas['pathParams']['dynamic'] as $k => $var) {
                         $fields = explode(".", $var);
 
-                        $value = $ent;
+                        if(!$noClass)
+                            $value = $ent;
+
                         foreach($fields as $field)
                             if($field == 'localeName')
                                 $value = $value->getName($this->di->get('translator')->getLocales());
