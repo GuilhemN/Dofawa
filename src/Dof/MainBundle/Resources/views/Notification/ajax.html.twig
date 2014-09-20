@@ -2,7 +2,7 @@
     <li {% if notification.isRead == false %}class="active"{% endif %}>
 
         <a href="{{ notification.path }}">
-            {{ notification.message }}
+            {{ notification.message | raw }}
             <br>
             <small>{{ notification.createdAt }}</small>
         </a>

@@ -6,7 +6,7 @@ class DateFormat
 {
     public static function formatDate($translator, \Datetime $datetime, $type = 'medium', $textual = true, $locale = null){
 		if($type == ('short' or 'medium'))
-			$format = self::dateParams('formats.' . (int) $textual . '.' . $type, $locale);
+			$format = self::dateParams('formats.' . (int) $textual . '.' . $type, $locale, $translator);
 		else
 			$format = $type;
 
@@ -69,7 +69,7 @@ class DateFormat
 		return str_replace(array_keys($fields), array_values($fields), $format);
 	}
 
-	protected static function dateParams($string, $locale = null, $tranlator){
+	protected static function dateParams($string, $locale = null, $translator){
 		return $translator->trans($string, [], 'date', $locale);
 	}
 }
