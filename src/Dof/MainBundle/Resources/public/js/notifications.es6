@@ -34,7 +34,7 @@ jQuery(function () {
     });
 
     jQuery('#notifications #checkbox input').on('click', function(){
-        localStorage.setItem('notificationCheckbox', jQuery(this).is(':checked'));
+        localStorage.notificationCheckbox = jQuery(this).is(':checked');
         if(jQuery(this).is(':checked')) {
         	if (!('Notification' in window))
                 var error = true;
@@ -74,7 +74,7 @@ function checkUnreadNotifications(){
                         var notification = data.notifications[i];
 
                         notify(warningFillStyle, '', 'Test', notification.message);
-                        localStorage.notified[] = notification.id;
+                        localStorage.notified += [notification.id];
                     }
                 }
     });
