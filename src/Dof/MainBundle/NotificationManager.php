@@ -43,7 +43,8 @@ class NotificationManager
             'welcome' => array(
                 'translationString' => 'welcome',
                 'translationParams' => array(
-                    'dynamic' => array('%name%' => 'currentUser.username')
+                    'dynamic' => array('%name%' => 'currentUser.username'),
+                    'static' => array('%name%' => 'test')
                 ),
                 'path' => 'dof_main_homepage',
             ),
