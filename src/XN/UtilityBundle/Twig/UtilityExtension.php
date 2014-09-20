@@ -102,6 +102,6 @@ class UtilityExtension extends \Twig_Extension
 	}
 
 	public function formatDate(\Datetime $datetime, $type = 'medium', $textual = true, $locale = null){
-		return DateFormat::formatData($this->container->get('translator'), $datetime, $type, $textual, $locale);
+		return DateFormat::formatDate($this->container->get('translator'), $datetime, $type, $textual, $locale);
 	}
 }
