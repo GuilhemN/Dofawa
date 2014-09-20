@@ -7,6 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Dof\UserBundle\Entity\User;
 use Dof\MainBundle\Entity\Notification;
 
+use XN\Common\DateFormat;
+
 class NotificationManager
 {
 
@@ -37,6 +39,13 @@ class NotificationManager
                     'static' => array(),
                     'dynamic' => array('slug' => 'currentUser.slug')
                 )
+            ),
+            'welcome' => array(
+                'translationString' => 'welcome',
+                'translationParams' => array(
+                    'dynamic' => array('%name%' => 'currentUser.username')
+                ),
+                'path' => 'dof_main_homepage',
             ),
         ];
 
@@ -86,17 +95,17 @@ class NotificationManager
             if(isset($ent) && $ent === null)
                 continue;
 
-            $translationParams = array();
-            $pathParams = array();
-
             if($notification->getMessage() !== null){
                 // Notif manuelle
                 $return[$i]['message'] = $notification->getMessage();
-                $return[$i]['manualPath'] = $notification->getPath();
+                $return[$i]['path'] = $notification->getPath();
             }
             else {
-                // Message traduit
+                // Notif automatique et traduite
                 $metadatas = $this->getMetadataByType($notification->getType());
+
+                $translationParams = array();
+                $pathParams = array();
 
                 if(!$noClass && isset($metadatas['translationParams']['dynamic']))
                     foreach($metadatas['translationParams']['dynamic'] as $k => $var) {
@@ -116,8 +125,7 @@ class NotificationManager
                 if(isset($metadatas['translationParams']['static']))
                     $translationParams += $metadatas['translationParams']['static'];
 
-                $return[$i]['translationString'] = $metadatas['translationString'];
-                $return[$i]['translationParams'] = $translationParams;
+                $return[$i]['message'] = $this->di->get('translator')->trans($metadatas['translationString'], $translationParams, 'notifications');
 
                 // Chemin
                 if(!$noClass && isset($metadatas['pathParams']['dynamic']))
@@ -138,12 +146,11 @@ class NotificationManager
                 if(isset($metadatas['pathParams']['static']))
                     $pathParams += $metadatas['pathParams']['static'];
 
-                $return[$i]['path'] = $metadatas['path'];
-                $return[$i]['pathParams'] = $pathParams;
+                $return[$i]['path'] = $this->di->get('router')->generate($metadatas['path'], $pathParams);
 
             }
 
-            $return[$i]['createdAt'] = $notification->getCreatedAt();
+            $return[$i]['createdAt'] = DateFormat::formatDate($this->di->get('translator'), $notification->getCreatedAt());
             $return[$i]['isRead'] = $notification->getIsRead();
 
             $i++;
