@@ -1,5 +1,5 @@
 var warningFillStyle = '#EECE00';
-if(localStorage.notified == '')
+if(typeof localStorage.notified != 'undefined')
     localStorage.notified = '{}';
 
 jQuery(function () {
