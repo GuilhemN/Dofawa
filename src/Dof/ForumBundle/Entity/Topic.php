@@ -78,7 +78,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * @var datetime
      *
-     * @ORM\Column(name="lastPost", type="datetime")
+     * @ORM\Column(name="lastPost", type="datetime", nullable=true)
      */
     private $lastPost;
 
