@@ -69,7 +69,7 @@ class DateFormat
 		return str_replace(array_keys($fields), array_values($fields), $format);
 	}
 
-	protected static function dateParams($string, $locale = null, $tranlator){
+	protected static function dateParams($string, $locale = null, $translator){
 		return $translator->trans($string, [], 'date', $locale);
 	}
 }
