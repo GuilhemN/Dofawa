@@ -6,7 +6,7 @@ class DateFormat
 {
     public static function formatDate($translator, \Datetime $datetime, $type = 'medium', $textual = true, $locale = null){
 		if($type == ('short' or 'medium'))
-			$format = self::>dateParams('formats.' . (int) $textual . '.' . $type, $locale);
+			$format = self::dateParams('formats.' . (int) $textual . '.' . $type, $locale);
 		else
 			$format = $type;
 
