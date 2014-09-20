@@ -56,7 +56,7 @@ class MessageAdmin extends Admin
         $formMapper
             ->add('owner')
             ->add('updater')
-            ->add('topic')
+            ->add('topic', array('required' => false))
             ->add('content')
         ;
     }
