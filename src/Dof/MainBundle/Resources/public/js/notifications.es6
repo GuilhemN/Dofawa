@@ -1,6 +1,4 @@
 var warningFillStyle = '#EECE00';
-if(typeof localStorage.notified == 'undefined')
-    localStorage.notified = '{}';
 
 jQuery(function () {
     var unread = jQuery('#notifications span.badge').html();
@@ -54,7 +52,7 @@ jQuery(function () {
     });
 });
 
-function notify(fillStyle, icon, title, text, preference) {
+function notify(fillStyle, title, text, preference) {
     var hasPreference = arguments.length > 4;
 	if (!hasPreference || (preference && preference.checked)) {
 		var notif = new Notification(title, { body: text.replace(/<[^>]+>/gi, '') });
@@ -74,7 +72,7 @@ function checkUnreadNotifications(){
                 for (var i = 0; i < data.notifications.length; i++) {
                     var notification = data.notifications[i];
                     if(jQuery.inArray(notification.id, getStoredArray(localStorage, 'notified')) == -1){
-                        notify(warningFillStyle, '', 'Test', notification.message);
+                        notify(warningFillStyle, notification.createdAt, notification.message);
                         addToStoredArray(localStorage, 'notified', notification.id);
                     }
                 }
