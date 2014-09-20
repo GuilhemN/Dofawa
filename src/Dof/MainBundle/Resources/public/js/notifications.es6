@@ -91,7 +91,7 @@ function checkUnreadNotifications(){
                 for (var i = 0; i < data.notifications.length; i++) {
                     var notification = data.notifications[i];
 
-                    notify(notify(warningFillStyle, '', 'Test', notification.message)
+                    notify(warningFillStyle, '', 'Test', notification.message)
                 }
     });
 }
