@@ -1,6 +1,12 @@
 var warningFillStyle = '#EECE00';
 
 jQuery(function () {
+    if(localStorage.notificationCheckbox = true)
+        jQuery('#notifications #checkbox input').prop('checked', true);
+    else
+        jQuery('#notifications #checkbox input').prop('checked', false);
+
+
     var unread = jQuery('#notifications span.badge').html();
     majNotificationsTitle(unread);
 
@@ -56,8 +62,8 @@ jQuery(function () {
 function notify(fillStyle, title, text, preference) {
     var hasPreference = arguments.length > 4;
 	if (!hasPreference || (preference && preference.checked)) {
-		var notif = new Notification(title.replace(/<[^>]+>/gi), { body: text.replace(/<[^>]+>/gi, '') });
-		setTimeout(notif.close.bind(notif), 8000);
+		var notif = new Notification(title.replace(/<[^>]+>/gi, ''), { body: text.replace(/<[^>]+>/gi, '') });
+		setTimeout(notif.close.bind(notif), 15000);
 	}
 }
 
