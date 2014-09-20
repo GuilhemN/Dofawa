@@ -16,9 +16,9 @@ class NotificationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
 
-        $unreadNotifications = $repo->countUnread($user);
+        $unread = $repo->countUnread($user);
 
-        return $this->render('DofMainBundle:Notification:menu.html.twig', ['unread' => $unreadNotifications]);
+        return $this->render('DofMainBundle:Notification:menu.html.twig', ['unread' => $unread]);
     }
 
     public function ajaxAction(){
@@ -32,7 +32,8 @@ class NotificationController extends Controller
             array('owner' => $user),
             array('createdAt' => 'DESC'),
             6
-            );
+        );
+        $unread = $repo->countUnread($user);
 
         $response = $this->createJsonResponse([
             'notifications' => $nm->transformNotifications($notifications),
