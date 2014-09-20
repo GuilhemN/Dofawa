@@ -1,3 +1,5 @@
+var warningFillStyle = '#EECE00';
+
 jQuery(function () {
     var unread = jQuery('#notifications span.badge').html();
     majNotificationsTitle(unread);
