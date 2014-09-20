@@ -70,8 +70,8 @@ function checkUnreadNotifications(){
         if (document.hidden)
             if(jQuery('#notifications #checkbox input').is(':checked'))
                 for (var i = 0; i < data.notifications.length; i++) {
+                    var notification = data.notifications[i];
                     if(jQuery.inArray(notification.id, JSON.parse(localStorage.notified)) != -1){
-                        var notification = data.notifications[i];
 
                         notify(warningFillStyle, '', 'Test', notification.message);
                         localStorage.notified = JSON.stringify(JSON.parse(localStorage.notified) + [notification.id]);
