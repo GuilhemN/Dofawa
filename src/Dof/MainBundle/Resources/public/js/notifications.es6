@@ -54,7 +54,7 @@ jQuery(function () {
 function notify(fillStyle, icon, title, text, preference) {
     var hasPreference = arguments.length > 4;
 	if (!hasPreference || (preference && preference.checked)) {
-		var notif = new Notification(title, { body: text });
+		var notif = new Notification(title, { body: text.replace(/<.[^>]*>/) });
 		setTimeout(notif.close.bind(notif), 8000);
 	}
 }
