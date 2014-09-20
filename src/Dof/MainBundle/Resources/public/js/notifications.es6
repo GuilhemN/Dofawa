@@ -6,6 +6,8 @@ jQuery(function () {
     else
         jQuery('#notifications #checkbox input').prop('checked', false);
 
+    if (!('Notification' in window)
+        jQuery('#notifications #checkbox input').remove();
 
     var unread = jQuery('#notifications span.badge').html();
     majNotificationsTitle(unread);
@@ -43,11 +45,13 @@ jQuery(function () {
     jQuery('#notifications #checkbox input').on('click', function(){
         localStorage.notificationCheckbox = jQuery(this).is(':checked');
         if(jQuery(this).is(':checked')) {
-        	if (!('Notification' in window))
+        	if (Notification.permission === 'denied')
                 $(this).prop('checked', false);
             else
             	Notification.requestPermission(function (perm) {
-            		if (perm != 'granted')
+            		if (perm === 'granted')
+                        return true;
+                    else
                         jQuery('#notifications #checkbox input').prop('checked', false);
             	});
         }
