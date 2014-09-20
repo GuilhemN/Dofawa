@@ -78,6 +78,7 @@ class NotificationManager
 
 
         $em->persist($notification);
+        $em->flush();
 
         return $this;
     }
