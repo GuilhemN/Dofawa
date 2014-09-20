@@ -69,13 +69,15 @@ function makeNotificationIcon(fillStyle, icon) { return runTask(function* () {
 }); }
 
 function notify(fillStyle, icon, title, text, preference) {
-    var hasPreference = arguments.length > 4; return runTask(function* () {
-	if (!hasPreference || (preference && preference.checked)) {
-		var img = yield makeNotificationIcon(fillStyle, icon);
-		var notif = new Notification(title, { body: text, icon: img });
-		setTimeout(notif.close.bind(notif), 8000);
-	}
-}); }
+    var hasPreference = arguments.length > 4;
+    return runTask(function* () {
+    	if (!hasPreference || (preference && preference.checked)) {
+    		var img = yield makeNotificationIcon(fillStyle, icon);
+    		var notif = new Notification(title, { body: text, icon: img });
+    		setTimeout(notif.close.bind(notif), 8000);
+    	}
+    });
+}
 
 function checkUnreadNotifications(){
     jQuery.ajax({
@@ -83,6 +85,14 @@ function checkUnreadNotifications(){
     }).done(function(data) {
         jQuery('#notifications span.badge').html(data.unread);
         majNotificationsTitle(data.unread);
+
+        if (document.hidden)
+            if(jQuery('#notifications #checkbox input').is(':checked'))
+                for (var i = 0; i < data.notifications.length; i++) {
+                    var notification = data.notifications[i];
+
+                    notify(notify(warningFillStyle, '', 'Test', notification.message)
+                }
     });
 }
 
