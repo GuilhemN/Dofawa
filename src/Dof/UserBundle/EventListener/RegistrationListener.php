@@ -34,6 +34,6 @@ class RegistrationListener implements EventSubscriberInterface
 
     public function onRegistrationCompleted(FilterUserResponseEvent $event)
     {
-        $this->di->get('notification_manager')->addNotification(null, 'welcome', $this->getUser());
+        $this->di->get('notification_manager')->addNotification(null, 'welcome', $event->getUser());
     }
 }
