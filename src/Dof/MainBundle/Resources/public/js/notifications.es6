@@ -73,9 +73,9 @@ function checkUnreadNotifications(){
             if(jQuery('#notifications #checkbox input').is(':checked'))
                 for (var i = 0; i < data.notifications.length; i++) {
                     var notification = data.notifications[i];
-                    if(jQuery.inArray(notification.id, JSON.parse(localStorage.notified)) == -1){
+                    if(jQuery.inArray(notification.id, getStoredArray(localStorage, 'notified'))) == -1){
                         notify(warningFillStyle, '', 'Test', notification.message);
-                        localStorage.notified = JSON.stringify(JSON.parse(localStorage.notified) + [notification.id]);
+                        addToStoredArray(localStorage, 'notified', notification.id);
                     }
                 }
     });
@@ -90,5 +90,19 @@ function majNotificationsTitle(unread){
     else if(unread > 0)
         document.title = '(' + unread + ') ' + document.title;
 }
-
+function getStoredArray(storage, key) {
+    if (key in storage) return JSON.parse(storage[key]);
+    return [ ];
+}
+function getStoredObject(storage, key) {
+    if (key in storage) return JSON.parse(storage[key]);
+    return { };
+}
+function setStoredObject(storage, key, value) {
+    storage[key] = JSON.stringify(value);
+}
+var setStoredArray = setStoredObject;
+function addToStoredArray(storage, key, ...values) {
+    setStoredArray(storage, key, getStoredArray(storage, key).concat(values));
+}
 setInterval(checkUnreadNotifications, 25000)
