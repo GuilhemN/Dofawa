@@ -6,7 +6,7 @@ jQuery(function () {
         jQuery.ajax({
             url: Routing.generate('dof_notifications_ajax_list')
         }).done(function(data) {
-            var html;
+            var html = '';
             for (var i = 0; i < data.notifications.length; i++) {
                 var notification = data.notifications[i];
 
