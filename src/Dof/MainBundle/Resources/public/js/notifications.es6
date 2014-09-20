@@ -6,7 +6,7 @@ jQuery(function () {
     else
         jQuery('#notifications #checkbox input').prop('checked', false);
 
-    if (!('Notification' in window)
+    if (!('Notification' in window))
         jQuery('#notifications #checkbox input').remove();
 
     var unread = jQuery('#notifications span.badge').html();
