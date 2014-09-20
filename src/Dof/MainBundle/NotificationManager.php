@@ -95,6 +95,10 @@ class NotificationManager
             if(isset($ent) && $ent === null)
                 continue;
 
+            $return[$i]['createdAt'] = DateFormat::formatDate($this->di->get('translator'), $notification->getCreatedAt());
+            $return[$i]['isRead'] = $notification->getIsRead();
+            $return[$i]['id'] = $notification->getId();
+
             if($notification->getMessage() !== null){
                 // Notif manuelle
                 $return[$i]['message'] = $notification->getMessage();
@@ -149,9 +153,6 @@ class NotificationManager
                 $return[$i]['path'] = $this->di->get('router')->generate($metadatas['path'], $pathParams);
 
             }
-
-            $return[$i]['createdAt'] = DateFormat::formatDate($this->di->get('translator'), $notification->getCreatedAt());
-            $return[$i]['isRead'] = $notification->getIsRead();
 
             $i++;
         }
