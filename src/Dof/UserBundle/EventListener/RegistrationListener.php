@@ -34,6 +34,6 @@ class RegistrationListener implements EventSubscriberInterface
 
     public function onRegistrationCompleted(FormEvent $event)
     {
-        $nm->addNotification(null, 'welcome');
+        $this->di->get('notification_manager')->addNotification(null, 'welcome');
     }
 }
