@@ -64,7 +64,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Dof\ForumBundle\Entity\Message", mappedBy="topic")
+     * @ORM\OneToMany(targetEntity="Dof\ForumBundle\Entity\Message", mappedBy="topic", cascade={"persist"})
      */
     private $messages;
 
