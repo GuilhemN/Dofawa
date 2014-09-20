@@ -39,7 +39,7 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Topic", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Topic", inversedBy="messages", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $topic;
