@@ -51,34 +51,12 @@ jQuery(function () {
     });
 });
 
-
-function makeNotificationIcon(fillStyle, icon) { return runTask(function* () {
-	var imgTask = fetchImage(icon);
-	var canvas = document.createElement('canvas');
-	canvas.width = 40;
-	canvas.height = 40;
-	var ctx = canvas.getContext('2d');
-	ctx.fillStyle = (typeof fillStyle == 'function') ? fillStyle(canvas, ctx) : fillStyle;
-	ctx.beginPath();
-	ctx.arc(20, 20, 20, 0, Math.PI * 2.0, false);
-	ctx.closePath();
-	ctx.fill();
-	try {
-		var img = yield imgTask;
-		ctx.drawImage(img, 8, 8, 24, 24);
-	} catch (e) { }
-	return canvas.toDataURL();
-}); }
-
 function notify(fillStyle, icon, title, text, preference) {
     var hasPreference = arguments.length > 4;
-    return runTask(function* () {
-    	if (!hasPreference || (preference && preference.checked)) {
-    		var img = yield makeNotificationIcon(fillStyle, icon);
-    		var notif = new Notification(title, { body: text, icon: img });
-    		setTimeout(notif.close.bind(notif), 8000);
-    	}
-    });
+	if (!hasPreference || (preference && preference.checked)) {
+		var notif = new Notification(title, { body: text });
+		setTimeout(notif.close.bind(notif), 8000);
+	}
 }
 
 function checkUnreadNotifications(){
