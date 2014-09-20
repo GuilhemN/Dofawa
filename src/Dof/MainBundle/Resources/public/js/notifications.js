@@ -12,16 +12,16 @@ jQuery(function () {
 
                 html += '<li ';
                 if(notification.isRead == false)
-                    html += 'class="active"'
+                    html += 'class="active"';
 
-                html += '>
-                    <a href="' + notification.path + '">
-                        '+ notification.message + '
-                        <br>
-                        <small>' + notification.createdAt + '</small>
-                    </a>
-                </li>
-                <li class="divider"></li>';
+                html += '>' +
+                    '<a href="' + notification.path + '">'
+                        + notification.message +
+                        '<br>' +
+                        '<small>' + notification.createdAt + '</small>' +
+                    '</a>' +
+                '</li>' +
+                '<li class="divider"></li>';
             }
             jQuery('#notifications .dropdown-menu').html(html);
             jQuery('#notifications span.badge').html(data.unread);
