@@ -56,7 +56,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $locked;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Forum", inversedBy="topics")
+     * @ORM\ManyToOne(targetEntity="Dof\ForumBundle\Entity\Forum", inversedBy="topics", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $forum;
@@ -64,7 +64,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Dof\ForumBundle\Entity\Message", mappedBy="topic")
+     * @ORM\OneToMany(targetEntity="Dof\ForumBundle\Entity\Message", mappedBy="topic", cascade={"persist"})
      */
     private $messages;
 
