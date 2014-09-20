@@ -29,6 +29,7 @@ jQuery(function () {
             jQuery('#notifications .dropdown-menu').append(html);
             jQuery('#notifications span.badge').html(data.unread);
 
+            delete localStorage.notified;
             majNotificationsTitle(data.unread);
         });
     });
@@ -55,7 +56,7 @@ jQuery(function () {
 function notify(fillStyle, title, text, preference) {
     var hasPreference = arguments.length > 4;
 	if (!hasPreference || (preference && preference.checked)) {
-		var notif = new Notification(title.replace(/<[^>]+>/gi, { body: text.replace(/<[^>]+>/gi, '') });
+		var notif = new Notification(title.replace(/<[^>]+>/gi), { body: text.replace(/<[^>]+>/gi, '') });
 		setTimeout(notif.close.bind(notif), 8000);
 	}
 }
