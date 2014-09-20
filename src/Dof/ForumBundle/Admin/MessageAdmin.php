@@ -53,12 +53,12 @@ class MessageAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper
+        /*$formMapper
             ->add('owner')
             ->add('updater')
             ->add('topic', null, array('required' => false))
             ->add('content')
-        ;
+        ;*/
     }
 
     /**
@@ -75,5 +75,13 @@ class MessageAdmin extends Admin
             ->add('createdAt')
             ->add('updatedAt')
         ;
+    }
+
+    /**
+     * @param RouteCollection $collection
+     */
+    public function configureRoutes(RouteCollection $collection)
+    {
+      $collection->remove('create');
     }
 }

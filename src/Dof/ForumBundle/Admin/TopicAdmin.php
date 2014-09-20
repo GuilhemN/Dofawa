@@ -85,4 +85,12 @@ class TopicAdmin extends Admin
             ->add('updatedOnLocale')
         ;
     }
+
+    /**
+     * @param RouteCollection $collection
+     */
+    public function configureRoutes(RouteCollection $collection)
+    {
+      $collection->remove('create');
+    }
 }
