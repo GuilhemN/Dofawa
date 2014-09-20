@@ -34,6 +34,7 @@ jQuery(function () {
     });
 
     jQuery('#notifications #checkbox input').on('click', function(){
+        localStorage.setItem('notificationCheckbox', jQuery(this).is(':checked'));
         if(jQuery(this).is(':checked')) {
         	if (!('Notification' in window))
                 var error = true;
@@ -69,9 +70,12 @@ function checkUnreadNotifications(){
         if (document.hidden)
             if(jQuery('#notifications #checkbox input').is(':checked'))
                 for (var i = 0; i < data.notifications.length; i++) {
-                    var notification = data.notifications[i];
+                    if(!jQuery.inArray(notification.id, localStorage.notified)){
+                        var notification = data.notifications[i];
 
-                    notify(warningFillStyle, '', 'Test', notification.message)
+                        notify(warningFillStyle, '', 'Test', notification.message);
+                        localStorage.notified[] = notification.id;
+                    }
                 }
     });
 }
