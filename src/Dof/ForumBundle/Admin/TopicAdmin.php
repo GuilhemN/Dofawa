@@ -8,6 +8,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+use Dof\ForumBundle\Form\MessageType;
+
 class TopicAdmin extends Admin
 {
     /**
@@ -62,7 +64,7 @@ class TopicAdmin extends Admin
             ->add('updater')
             ->add('name')
             ->add('locked', null, array('required' => false))
-            ->add('messages') 
+            ->add('messages', 'collection', array(new MessageType()))
         ;
     }
 
