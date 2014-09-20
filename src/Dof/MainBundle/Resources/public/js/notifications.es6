@@ -55,7 +55,7 @@ jQuery(function () {
 function notify(fillStyle, title, text, preference) {
     var hasPreference = arguments.length > 4;
 	if (!hasPreference || (preference && preference.checked)) {
-		var notif = new Notification(title, { body: text.replace(/<[^>]+>/gi, '') });
+		var notif = new Notification(title.replace(/<[^>]+>/gi, { body: text.replace(/<[^>]+>/gi, '') });
 		setTimeout(notif.close.bind(notif), 8000);
 	}
 }
@@ -72,7 +72,7 @@ function checkUnreadNotifications(){
                 for (var i = 0; i < data.notifications.length; i++) {
                     var notification = data.notifications[i];
                     if(jQuery.inArray(notification.id, getStoredArray(localStorage, 'notified')) == -1){
-                        notify(warningFillStyle, notification.createdAt, notification.message);
+                        notify(warningFillStyle, notification.message, notification.createdAt);
                         addToStoredArray(localStorage, 'notified', notification.id);
                     }
                 }
