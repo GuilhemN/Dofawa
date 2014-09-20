@@ -1,4 +1,6 @@
 var warningFillStyle = '#EECE00';
+if(localStorage.notified == '')
+    localStorage.notified = '{}';
 
 jQuery(function () {
     var unread = jQuery('#notifications span.badge').html();
