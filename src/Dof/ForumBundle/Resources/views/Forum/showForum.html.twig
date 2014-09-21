@@ -16,6 +16,7 @@
 		</div>
 		<table class="table">
 			<tr>
+                <th></th>
                 <th>Topic</th>
                 <th>par</th>
                 <th>le</th>
@@ -23,6 +24,13 @@
             </tr>
 			{% for topic in forum.topics %}
 				<tr>
+                    <td>
+                        {% if topic.isReadBy(user) %}
+                            <span class="glyphicon glyphicon-star"></span>
+                        {% else %}
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        {% endif %}
+                    </td>
                     <td>
                         <a href="{{ path('dof_forum_show_topic', { 'slug' : topic.slug }) }}">
                             {{ topic.getName(locales()) }}

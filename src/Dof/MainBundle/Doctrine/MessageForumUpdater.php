@@ -2,19 +2,37 @@
 
 namespace Dof\MainBundle\Doctrine;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PostFlushEventArgs;
 
 use Dof\ForumBundle\Entity\Message;
+use Dof\UserBundle\Entity\User;
 
 class MessageForumUpdater
 {
+	/**
+	 * @var ContainerInterface
+	 */
+	private $di;
+
+	public function __construct(ContainerInterface $di)
+	{
+		$this->di = $di;
+	}
+
 	public function prePersist(LifecycleEventArgs $args)
 	{
 		$ent = $args->getEntity();
 		if ($ent instanceof Message) {
 
 			$ent->getTopic()->setLastPost(new \DateTime());
+			$ent->getTopic()->cleanReadBy();
+			if($user = $this->di->get('security.context')->getToken()->getUser() !== null)
+			{
+				$ent->getTopic()->addReadBy($user);
+			}
         	$ent->getTopic()->setCountPosts($ent->getTopic()->getCountPosts()+1) ;
 		}
 	}

@@ -4,6 +4,7 @@ namespace Dof\ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use  Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 use XN\Persistence\IdentifiableInterface;
@@ -21,6 +22,7 @@ use Doctrine\Common\Collections\Criteria;
 
 use Dof\ForumBundle\Entity\Forum;
 use Dof\ForumBundle\Entity\Message;
+use Dof\UserBundle\Entity\User;
 
 /**
  * topic
@@ -82,9 +84,15 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $lastPost;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Dof\UserBundle\Entity\User")
+     */
+    private $readBy;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->readBy = new ArrayCollection();
     }
 
     /**
@@ -247,5 +255,57 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     foreach ($this->messages->matching(Criteria::create()->orderBy('createdAt', 'DESC')->setFirstResult( 0 )->setMaxResults(1)) as $message)
         return $message->getCreatedAt();
         return null;
+    }
+
+    /**
+     * Add readBy
+     *
+     * @param User $readBy
+     * @return object
+     */
+    public function addReadBy(User $readBy)
+    {
+        $this->readBy[] = $readBy;
+
+        return $this;
+    }
+
+    /**
+     * Remove readBy
+     *
+     * @param User $readBy
+     * @return object
+     */
+    public function removeReadBy(User $readBy)
+    {
+        $this->readBy->removeElement($readBy);
+
+        return $this;
+    }
+
+    /**
+     * Get readBy
+     *
+     * @return Collection
+     */
+    public function getReadBy()
+    {
+        return $this->readBy;
+    }
+
+    public function cleanReadBy()
+    { 
+        $this->readBy->clean(); 
+    }
+
+    /**
+     * isReadBy
+     *
+     * @param User $user
+     * @return boolean
+     */
+    public function isReadBy(User $user)
+    { 
+        return $this->readBy->exists($user);
     }
 }
