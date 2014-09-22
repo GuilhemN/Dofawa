@@ -294,7 +294,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     public function cleanReadBy()
     { 
-        $this->readBy->clean(); 
+        $this->readBy->clear(); 
     }
 
     /**

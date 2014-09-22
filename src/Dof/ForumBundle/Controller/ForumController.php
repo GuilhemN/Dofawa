@@ -32,6 +32,10 @@ class ForumController extends Controller
 		{
 			$user = $this->getUser();
 		}
+		else
+		{
+			$user = "";
+		}
 
         return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum, 'user' => $user]);
     }
