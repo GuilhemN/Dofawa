@@ -30,7 +30,7 @@ class ForumController extends Controller
     {
     	if($this->get('security.context')->getToken()->getUser() !== null)
 		{
-			$user = $this->get('security.context')->getToken()->getUser();
+			$user = $this->container->get('security.context')->getToken()->getUser();
 		}
         return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum, 'user' => $user]);
     }
