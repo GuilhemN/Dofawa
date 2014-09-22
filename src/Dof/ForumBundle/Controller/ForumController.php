@@ -45,6 +45,8 @@ class ForumController extends Controller
    	*/
    	public function showTopicAction(Topic $topic)
     {
+    	if($this->getUser() != null)
+    		$topic->addReadBy($this->getUser());
         return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic));
     }
 
