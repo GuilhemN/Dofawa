@@ -2,8 +2,6 @@
 
 namespace Dof\ForumBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ForumBundle\Entity\Forum;
@@ -15,15 +13,6 @@ use Dof\ForumBundle\Form\MessageType;
 
 class ForumController extends Controller
 {
-	/**
-	 * @var ContainerInterface
-	 */
-	private $di;
-
-	public function __construct(ContainerInterface $di)
-	{
-		$this->di = $di;
-	}
     public function indexAction()
     {
     	$em = $this->getDoctrine()->getManager();
@@ -39,9 +28,9 @@ class ForumController extends Controller
    	*/
    	public function showForumAction(Forum $forum)
     {
-    	if($user = $this->di->get('security.context')->getToken()->getUser() !== null)
+    	if($this->get('security.context')->getToken()->getUser() !== null)
 		{
-		
+			$user = $this->get('security.context')->getToken()->getUser();
 		}
         return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum, 'user' => $user]);
     }
