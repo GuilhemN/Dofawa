@@ -29,8 +29,9 @@ class MessageForumUpdater
 
 			$ent->getTopic()->setLastPost(new \DateTime());
 			$ent->getTopic()->cleanReadBy();
-			if($user = $this->di->get('security.context')->getToken()->getUser() !== null)
+			if($this->di->get('security.context')->getToken()->getUser() !== null)
 			{
+				$user = $this->di->get('security.context')->getToken()->getUser();
 				$ent->getTopic()->addReadBy($user);
 			}
         	$ent->getTopic()->setCountPosts($ent->getTopic()->getCountPosts()+1) ;

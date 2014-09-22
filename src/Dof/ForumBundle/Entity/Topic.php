@@ -85,6 +85,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     /**
      * @ORM\ManyToMany(targetEntity="Dof\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="Dof_forum_join_topic_user")
      */
     private $readBy;
 
