@@ -305,6 +305,10 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     public function isReadBy(User $user)
     { 
-        return $this->readBy->exists($user);
+        foreach ($this->readBy->toArray() as $by){
+            if($by == $user)
+                return true;
+        }
+        return false;
     }
 }
