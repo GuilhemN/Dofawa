@@ -25,15 +25,10 @@
 			{% for topic in forum.topics %}
 				<tr>
                     <td>
-                        {% if user != ""%}
-
-                            {% if topic.isReadBy(user) %}
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            {% else %}
-                                <span class="glyphicon glyphicon-star"></span>
-                            {% endif %}
+                        {% if app.user is not null and topic.isReadBy(app.user) %}
+                            <span class="glyphicon glyphicon-star-empty"></span>
                         {% else %}
-                            <span class="glyphicon glyphicon-star"></span>
+                              <span class="glyphicon glyphicon-star"></span>
                         {% endif %}
                     </td>
                     <td>
