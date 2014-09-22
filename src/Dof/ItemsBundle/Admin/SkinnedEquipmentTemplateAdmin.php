@@ -84,6 +84,7 @@ class SkinnedEquipmentTemplateAdmin extends Admin
     {
         $showMapper
             ->add('id')
+            ->add('type')
             ->add('obtainmentFr')
             ->add('obtainmentEn')
             ->add('obtainmentDe')

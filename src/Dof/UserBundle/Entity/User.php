@@ -43,35 +43,35 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
      *
      * @ORM\Column(name="point", type="integer", nullable=true)
      */
-    private $point=null;
+    private $point = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="groupe", type="string", length=100, nullable=true)
      */
-    private $groupe=null;
+    private $groupe = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="guilde", type="string", length=100, nullable=true)
      */
-    private $guilde=null;
+    private $guilde = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="lieu", type="string", length=100, nullable=true)
      */
-    private $lieu=null;
+    private $lieu = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="site", type="string", length=120, nullable=true)
      */
-    private $site=null;
+    private $site = null;
 
     /**
      * @var \DateTime
@@ -85,35 +85,35 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
      *
      * @ORM\Column(name="nbvisite", type="integer", nullable=true)
      */
-    private $nbvisite=null;
+    private $nbvisite = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="commentaire", type="text", nullable=true)
      */
-    private $commentaire=null;
+    private $commentaire = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="presentation", type="text", nullable=true)
      */
-    private $presentation=null;
+    private $presentation = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="horaires", type="string", length=100, nullable=true)
      */
-    private $horaires=null;
+    private $horaires = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="differentpseudo", type="string", length=100, nullable=true)
      */
-    private $differentpseudo=null;
+    private $differentpseudo = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
