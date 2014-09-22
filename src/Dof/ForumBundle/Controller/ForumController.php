@@ -45,7 +45,7 @@ class ForumController extends Controller
    	*/
    	public function showTopicAction(Topic $topic)
     {
-    	if($this->getUser() !== null)
+    	if($this->getUser() !== null && !$topic->isReadBy($this->getUser()))
     	{
     		$topic->addReadBy($this->getUser());
     		$em = $this->getDoctrine()->getManager();
