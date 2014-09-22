@@ -28,7 +28,7 @@ class ForumController extends Controller
    	*/
    	public function showForumAction(Forum $forum)
     {
-    	$user = $this->container->get('security.context')->getToken()->getUser()
+    	$user = $this->container->get('security.context')->getToken()->getUser();
         return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum, 'user' => $user]);
     }
 
