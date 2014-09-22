@@ -29,6 +29,6 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: Forum, label: Message}
 
-    dof_forum.controller:
+    dof_forum.controller.forumcontroller:
         class: Dof\ForumBundle\Controller\ForumController
         arguments: [ "@service_container" ]
