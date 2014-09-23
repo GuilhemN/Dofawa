@@ -28,7 +28,15 @@ class ForumController extends Controller
    	*/
    	public function showForumAction(Forum $forum)
     {
-    	$user = $this->container->get('security.context')->getToken()->getUser();
+    	if($this->get('security.context')->getToken()->getUser() !== null)
+		{
+			$user = $this->getUser();
+		}
+		else
+		{
+			$user = "";
+		}
+
         return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum, 'user' => $user]);
     }
 
@@ -37,6 +45,14 @@ class ForumController extends Controller
    	*/
    	public function showTopicAction(Topic $topic)
     {
+    	if($this->getUser() !== null && !$topic->isReadBy($this->getUser()))
+    	{
+    		$topic->addReadBy($this->getUser());
+    		$em = $this->getDoctrine()->getManager();
+		    $em->persist($topic);
+		    $em->flush();
+    	}
+
         return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic));
     }
 

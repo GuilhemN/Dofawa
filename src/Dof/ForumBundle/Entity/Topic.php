@@ -85,6 +85,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     /**
      * @ORM\ManyToMany(targetEntity="Dof\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="Dof_forum_join_topic_user")
      */
     private $readBy;
 
@@ -294,7 +295,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     public function cleanReadBy()
     { 
-        $this->readBy->clean(); 
+        $this->readBy->clear(); 
     }
 
     /**
@@ -305,6 +306,10 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     public function isReadBy(User $user)
     { 
-        return $this->readBy->exists($user);
+        foreach ($this->readBy->toArray() as $by){
+            if($by === $user)
+                return true;
+        }
+        return false;
     }
 }
