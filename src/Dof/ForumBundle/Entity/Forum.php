@@ -157,4 +157,28 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function __toString(){
         return $this->getName();
     }
+
+    /**
+     * unRead
+     *
+     * @param User $user
+     * @return boolean
+     */
+    public function unRead(User $user)
+    { 
+        foreach ($topics as $topic) {
+            foreach ($topic->getReadBy()->toArray() as $by){
+                if($by !== $user)
+                    $result = true;
+                else
+                {
+                    $result = false;
+                    break;
+                }
+            }
+            if($result)
+                return true;
+        }
+        return $result;
+    }
 }
