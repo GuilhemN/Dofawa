@@ -1,0 +1,3 @@
+parameters:
+    current_release_number: '.'
+    beta_release_number: '.'
