@@ -167,6 +167,7 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     public function unRead(User $user)
     { 
+        $result = false;
         foreach ($this->topics as $topic) {
             foreach ($topic->getReadBy()->toArray() as $by){
                 if($by !== $user)
