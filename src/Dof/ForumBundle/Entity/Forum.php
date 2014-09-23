@@ -18,6 +18,7 @@ use XN\L10n\LocalizedDescriptionTrait;
 
 use Dof\ForumBundle\Entity\Category;
 use Dof\ForumBundle\Entity\Topic;
+use Dof\UserBundle\Entity\User;
 
 /**
  * Forum
