@@ -10,9 +10,6 @@ dof_admin_users_homepage: '/admin/users/{page}'   # FIXME
 # Desc: /news/
 dof_articles_homepage: /news/   # FIXME
 
-# Desc: /items/hello/{name}
-dof_items_homepage: '/items/hello/{name}'   # FIXME
-
 # Desc: /
 dof_main_homepage: /   # FIXME
 
