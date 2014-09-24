@@ -18,6 +18,7 @@ use XN\L10n\LocalizedDescriptionTrait;
 
 use Dof\ForumBundle\Entity\Category;
 use Dof\ForumBundle\Entity\Topic;
+use Dof\UserBundle\Entity\User;
 
 /**
  * Forum
@@ -156,5 +157,30 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     public function __toString(){
         return $this->getName();
+    }
+
+    /**
+     * unRead
+     *
+     * @param User $user
+     * @return boolean
+     */
+    public function unRead(User $user)
+    { 
+        $result = false;
+        foreach ($this->topics->toArray() as $topic) {
+            foreach ($topic->getReadBy()->toArray() as $by){
+                if($by !== $user)
+                    $result = true;
+                else
+                {
+                    $result = false;
+                    break;
+                }
+            }
+            if($result)
+                return true;
+        }
+        return $result;
     }
 }
