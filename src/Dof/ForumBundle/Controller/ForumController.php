@@ -37,7 +37,7 @@ class ForumController extends Controller
 			$user = "";
 		}
 		$em = $this->getDoctrine()->getManager();
-		$repo = $em->getRepository('ForumBundle:Topic')
+		$repo = $em->getRepository('ForumBundle:Topic');
 
         return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum, 'user' => $user, 'repo' => $repo]);
     }
