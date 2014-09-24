@@ -30,9 +30,6 @@ dof_graphics_skins_embed: '/graphics/skins/{slug}/embed/{theme}.{format}'
 # Desc: /graphics/skins/data.js
 dof_graphics_skins_js: /graphics/skins/data.js
 
-# Desc: /items/hello/{name}
-dof_items_homepage: '/items/hello/{name}'
-
 # Desc: /
 dof_main_homepage: /
 
