@@ -25,7 +25,7 @@
 			{% for topic in forum.topics %}
 				<tr>
                     <td>
-                        {% if app.user is not null and topic.isReadBy($repo,app.user) %}
+                        {% if app.user is not null and topic.isReadBy(repo,app.user) %}
                             <span class="glyphicon glyphicon-star-empty"></span>
                         {% else %}
                               <span class="glyphicon glyphicon-star"></span>
