@@ -16,7 +16,7 @@ class ItemsController extends Controller
         $perPage = 10;
 
         $count = $repo->countTotal();
-        $items = $repo->findBy([], [], 10, ($page - 1) * $perPage);
+        $items = $repo->findBy([], ['level' => 'ASC'], 10, ($page - 1) * $perPage);
 
         $pagination = array(
    			'page' => $page,
