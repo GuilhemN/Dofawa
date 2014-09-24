@@ -9,6 +9,16 @@ use Dof\ItemsBundle\Entity\ItemTemplate;
 
 class ItemsController extends Controller
 {
+    public function indexAction($page) {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
+
+        $count = $repo->countTotal();
+        $items = $repo->findBy([], [], 0, 10);
+
+        return $this->render('DofItemsBundle:Items:index.html.twig', ['items' => $items, 'count' => $count]);
+    }
+
     /**
      * @ParamConverter("item", options={"repository_method" = "findOneWithJoins"})
      */

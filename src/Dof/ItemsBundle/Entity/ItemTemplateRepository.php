@@ -22,6 +22,19 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		return  /*" COALESCE(" . */ $primary /*. ", " . $secondary .") "*/;
 	}
 
+	/**
+    * Count all items
+    *
+    * @return integer
+    */
+    public function countTotal(){
+
+		return $this->createQueryBuilder('a')
+		    ->select('COUNT(a)')
+		    ->getQuery()
+		    ->getSingleScalarResult();
+    }
+
     public function findByIdWithType($id) {
         return $this
                   ->createQueryBuilder('i')

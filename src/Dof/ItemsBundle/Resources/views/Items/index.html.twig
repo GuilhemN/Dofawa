@@ -1,0 +1,7 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+    {% for item in items %}
+        {% include 'DofItemsBundle::item.html.twig' with {'item': item} %}
+    {% endfor %}
+{% endblock %}
