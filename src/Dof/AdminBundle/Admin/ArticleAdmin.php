@@ -31,7 +31,7 @@ class ArticleAdmin extends Admin
           ->add('keys')
           ->add('category')
           ->add('type', 'choice', array('choices' => $typeValues))
-          ->add('published')
+          ->add('published', null, array('required' => false))
         ;
 
 
