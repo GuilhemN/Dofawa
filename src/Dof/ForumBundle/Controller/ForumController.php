@@ -47,7 +47,10 @@ class ForumController extends Controller
    	*/
    	public function showTopicAction(Topic $topic)
     {
-    	if($this->getUser() !== null && !$topic->isReadBy($this->getUser()))
+    	$em = $this->getDoctrine()->getManager();
+		$repo = $em->getRepository('DofForumBundle:Topic');
+
+    	if($this->getUser() !== null && !$topic->isReadBy($repo, $this->getUser()))
     	{
     		$topic->addReadBy($this->getUser());
     		$em = $this->getDoctrine()->getManager();
