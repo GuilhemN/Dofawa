@@ -24,7 +24,7 @@
         <div class="page-header">
             <h1>{{ 'create' | trans }}</h1>
         </div>
-        {% include 'DofMainBundle::form.html.twig' with {'form': form} %}
+        {{ form(form, { 'style': 'horizontal' }) }}
     </div>
 {% endautoescape %}
 {% endblock %}

@@ -7,6 +7,6 @@
 
 {% block body %}
 {% autoescape  %}
-    {% include 'DofMainBundle::form.html.twig' with {'form': form} %}
+    {{ form(form, { 'style': 'horizontal' }) }}
 {% endautoescape %}
 {% endblock %}
