@@ -17,7 +17,6 @@ class TopicRepository extends EntityRepository
 	function isReadByRepo(Topic $topic, User $user)
 	{
 		$qb = $this->createQueryBuilder('t')
-				->select('t', 'r', 'r')
 				->join('readBy', 'r')
 				->where('r.id = :user')
 				->andWhere('t.id = :topic')
