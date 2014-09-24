@@ -24,8 +24,7 @@ class ArticleRepository extends EntityRepository
 		$qb = $this->createQueryBuilder('a');
 
 		$qb
-			->add('where', 'a.type'.$operator.ArticleType::NEWS .
-				' and a.published=1')
+			->add('where', 'a.type' . $operator . ArticleType::NEWS . 'and a.published=1')
 	  		->add('orderBy', 'a.createdAt DESC, a.id DESC')
 			->setFirstResult( $firstresult )
 			->setMaxResults( $maxresults );
