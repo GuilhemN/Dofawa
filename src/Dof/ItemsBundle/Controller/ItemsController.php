@@ -14,7 +14,7 @@ class ItemsController extends Controller
         $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
 
         $count = $repo->countTotal();
-        $items = $repo->findBy([], [], 0, 10);
+        $items = $repo->findBy([], [], 10, 0);
 
         return $this->render('DofItemsBundle:Items:index.html.twig', ['items' => $items, 'count' => $count]);
     }
