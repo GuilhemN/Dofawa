@@ -301,15 +301,11 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * isReadBy
      *
-     * @param User $user
+     * @param $repo, User $user
      * @return boolean
      */
-    public function isReadBy(User $user)
+    public function isReadBy($repo, User $user)
     { 
-        foreach ($this->readBy->matching(Criteria::create()->where(Criteria::expr()->eq('id', $user->getId()))) as $by){
-                
-                    return true;
-        }
-        return false;
+       return $repo->isReadByRepo($this,$user);
     }
 }
