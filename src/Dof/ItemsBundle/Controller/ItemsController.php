@@ -9,14 +9,27 @@ use Dof\ItemsBundle\Entity\ItemTemplate;
 
 class ItemsController extends Controller
 {
-    public function indexAction() {
+    public function indexAction($page) {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
 
-        $count = $repo->countTotal();
-        $items = $repo->findBy([], [], 10, 0);
+        $perPage = 10;
 
-        return $this->render('DofItemsBundle:Items:index.html.twig', ['items' => $items, 'count' => $count]);
+        $count = $repo->countTotal();
+        $items = $repo->findBy([], [], 10, ($page - 1) * $perPage);
+
+        $pagination = array(
+   			'page' => $page,
+   			'route' => 'dof_items_homepage',
+  			'pages_count' => ceil($count / $perPage),
+   			'route_params' => array()
+   		);
+
+        return $this->render('DofItemsBundle:Items:index.html.twig', [
+            'items' => $items,
+            'count' => $count,
+            'pagination' => $pagination
+            ]);
     }
 
     /**

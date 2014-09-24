@@ -30,8 +30,10 @@ dof_items_qualitydiagram_pdf:
     requirements: { _method: POST }
 
 dof_items_homepage:
-    pattern:   /
-    defaults: { _controller: DofItemsBundle:Items:index}
+    pattern:   /{page}
+    defaults: { _controller: DofItemsBundle:Items:index, page: 1}
+    requirements:
+        page: \d+
 
 dof_items_show:
     pattern: /{slug}
