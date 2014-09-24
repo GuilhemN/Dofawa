@@ -47,11 +47,6 @@ twig:
     globals:
         csrf_serv: "@form.csrf_provider"
         locales: %locales%
-    form:
-        resources:
-            # Par défaut:
-            - form_div_layout.html.twig
-            - DofMainBundle:Form:fields.html.twig
 
 
 # Assetic Configuration

@@ -1,10 +1,10 @@
 {% extends 'DofArticlesBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-  {{ parent() }}
-  <li>Editer {{ article.getName(locales())}}</li>
+    {{ parent() }}
+    <li>Editer {{ article.getName(locales())}}</li>
 {% endblock %}
 
 {% block body %}
-  {{ form(form, { 'style': 'horizontal' }) }}
+    {% include 'DofMainBundle::form.html.twig' with {'form': form} %}
 {% endblock %}
