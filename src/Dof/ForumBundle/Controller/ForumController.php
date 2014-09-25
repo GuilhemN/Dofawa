@@ -19,7 +19,7 @@ class ForumController extends Controller
     	$categories = $em->getRepository('DofForumBundle:Category')->displayOrder()->getQuery()
         	->getResult();
 
-		$repo = $em->getRepository('DofForumBundle:Topic');
+		$repo = $em->getRepository('DofForumBundle:Forum');
 
         return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories, 'repo' => $repo));
     }
