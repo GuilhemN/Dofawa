@@ -52,6 +52,8 @@ class ForumRepository extends EntityRepository
 		$nbtop = $this->createQueryBuilder('f')
 		  		->select('COUNT(t)')
 		  		->join('f.topics', 't')
+		  		->where('f.id = :forum')
+		  		->setParameters(array('forum' => $forum->getId()))
 				->getQuery()->getSingleScalarResult();
 
 		$result = $nbtop - $nb;
