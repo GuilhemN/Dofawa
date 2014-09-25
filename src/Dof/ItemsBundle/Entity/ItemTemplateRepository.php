@@ -35,6 +35,28 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		    ->getSingleScalarResult();
     }
 
+    public function findWithOptions(array $options = array(), array $orders = array(), $limit = null, $offset = null) {
+        $qb = $this->createQueryBuilder('i');
+
+		$qb->join('i.type', 't');
+
+		if(isset($options['type']))
+			$qb
+	        	->where('t.slot = :slot')
+	        	->setParameter('slot', $options['type'])
+			;
+
+		foreach($orders as $column => $order)
+			$qb->addOrderBy('i.' . $column, $order);
+
+		$qb
+        	->getQuery()
+			->setFirstResult($offset)
+			->setMaxResults($limit)
+        	->getResult();
+              ;
+    }
+
     public function findByIdWithType($id) {
         return $this
                   ->createQueryBuilder('i')
