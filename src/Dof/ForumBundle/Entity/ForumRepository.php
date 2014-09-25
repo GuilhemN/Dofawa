@@ -37,7 +37,7 @@ class ForumRepository extends EntityRepository
 		return $qb->getQuery()
         	->getSingleResult();
 	}
-
+ 
 	function isReadByRepo(Forum $forum, User $user)
 	{
 		$qb = $this->createQueryBuilder('f')
