@@ -47,14 +47,14 @@ class ForumRepository extends EntityRepository
 				->where('r.id = :user')
 				->andWhere('f.id = :forum')
 				->setParameters(array('user' => $user->getId(), 'forum' => $forum->getId()))
-				->getQuery()->getResult();
+				->getQuery()->getSingleScalarResult();
 
 		$nbtop = $this->createQueryBuilder('f')
 		  		->select('COUNT(t)')
 		  		->join('f.topics', 't')
-				->getQuery()->getResult();
+				->getQuery()->getSingleScalarResult();
 
-		$result = $nbtop[0] - $nb[0];
+		$result = $nbtop - $nb;
 		if( $result > 0)
 			return true;
 
