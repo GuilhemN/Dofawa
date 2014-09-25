@@ -13,10 +13,10 @@ class ItemsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
 
-        $perPage = 10;
+        $perPage = 15;
 
         $count = $repo->countTotal();
-        $items = $repo->findBy([], ['level' => 'ASC'], 10, ($page - 1) * $perPage);
+        $items = $repo->findBy([], ['level' => 'ASC'], $perPage, ($page - 1) * $perPage);
 
         $pagination = array(
    			'page' => $page,
