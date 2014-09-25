@@ -43,7 +43,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 
 		if(isset($options['type']))
 			$qb
-	        	->where('t.slot IN :slot')
+	        	->where('t.slot IN (:slot)')
 	        	->setParameter('slot', $options['type'])
 			;
 
