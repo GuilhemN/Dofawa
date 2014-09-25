@@ -38,9 +38,9 @@ class ForumRepository extends EntityRepository
         	->getSingleResult();
 	}
   
-	function isReadByRepo(Forum $forum, User $user)
+	function isUnReadRepo(Forum $forum, User $user)
 	{
-		$qb = $this->createQueryBuilder('f')
+		$nb = $this->createQueryBuilder('f')
 		  		->select('COUNT(f)')
 				->join('f.topics', 't')
 				->join('t.readBy', 'r')
@@ -48,8 +48,13 @@ class ForumRepository extends EntityRepository
 				->andWhere('f.id = :forum')
 				->setParameters(array('user' => $user->getId(), 'forum' => $forum->getId()))
 				->getQuery()->getResult();
-			
-		if(!empty($qb))
+
+		$nbtop = $this->createQueryBuilder('f')
+		  		->select('COUNT(t)')
+		  		->join('f.topics', 't')
+				->getQuery()->getResult();
+
+		if(($nbtop - $nb) > 0)
 			return true;
 
 		return false;

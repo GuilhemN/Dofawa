@@ -158,15 +158,15 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function __toString(){
         return $this->getName();
     }
-    
+
     /**
-     * isReadBy
+     * isUnRead
      *
      * @param $repo, User $user
      * @return boolean
      */
-    public function isReadBy($repo, User $user)
+    public function isUnRead($repo, User $user)
     { 
-       return $repo->isReadByRepo($this,$user);
+       return $repo->isUnReadRepo($this,$user);
     }
 }
