@@ -45,7 +45,7 @@ class ForumRepository extends EntityRepository
 				->join('t.readBy', 'r')
 				->where('r.id = :user')
 				->andWhere('t.id = :topic')
-				->setParameters(array('user' => $user->getId(), 'topic' => $topic->getId()))
+				->setParameters(array('user' => $user->getId(), 'topic' => $forum->getTopic->getId()))
 				->getQuery()->getResult();
 			
 		if(!empty($qb))
