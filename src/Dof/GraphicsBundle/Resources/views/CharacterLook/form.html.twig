@@ -1,16 +1,16 @@
 {% extends 'DofGraphicsBundle:CharacterLook:layout.html.twig' %}
 
 {% block style %}
-  {% include 'DofMainBundle::color.css.html.twig' %}
+    {% include 'DofMainBundle::color.css.html.twig' %}
 {% endblock %}
 
 {% block js %}
-  {{ parent() }}
-  <script type="text/javascript" src="{{ path('dof_graphics_skins_js') }}"></script>
-  {% include 'DofMainBundle::color.js.html.twig' %}
-  <script type="text/javascript" src="{{ path('dof_graphics_skins_colors_js') }}"></script>
+    {{ parent() }}
+    <script type="text/javascript" src="{{ path('dof_graphics_skins_js') }}"></script>
+    {% include 'DofMainBundle::color.js.html.twig' %}
+    <script type="text/javascript" src="{{ path('dof_graphics_skins_colors_js') }}"></script>
 {% endblock %}
 
 {% block body %}
-  {{ form(form, { 'style': 'horizontal' }) }}
+    {{ form(form, { 'style': 'horizontal' }) }}
 {% endblock %}

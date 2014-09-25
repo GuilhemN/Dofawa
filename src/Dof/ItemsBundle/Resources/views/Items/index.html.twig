@@ -1,7 +1,7 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
-    {% include 'DofMainBundle::form.html.twig' with {'form': form} only %}
+    {{ form(form, { 'style': 'horizontal' }) }}
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 
     {% for item in items %}
