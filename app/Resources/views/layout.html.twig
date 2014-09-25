@@ -175,6 +175,9 @@
   <script type="text/javascript" src="{{ asset('bundles/dofmain/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
   <script src="{{ asset('bundles/dofmain/js/notifications.min.js') }}"></script>
+  <script type="text/javascript">
+        $(".to-select2").select2();
+  </script>
 
   {% if app.request.query.has('wabbit') %}
     <script src="{{ asset('bundles/dofmain/js/wabbit.min.js') }}"></script>
@@ -209,8 +212,6 @@
       var element2 = document.querySelector('#selectorpublicity');
 
       element2.appendChild(element);
-
-
     </script>
   </div>
   {% endif %}
