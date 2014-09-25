@@ -13,12 +13,14 @@ class ItemsController extends Controller
     public function indexAction($page) {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
+
         $form = $this->createForm(new ItemType());
+        $form->handleRequest($this->get('request'));
 
         $perPage = 15;
 
         $count = $repo->countTotal();
-        $items = $repo->findBy([], ['level' => 'ASC'], $perPage, ($page - 1) * $perPage);
+        $items = $repo->findWithOptions($form->getData(), ['level' => 'ASC'], $perPage, ($page - 1) * $perPage);
 
         $pagination = array(
 			'page' => $page,
