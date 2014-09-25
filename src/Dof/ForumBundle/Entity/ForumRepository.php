@@ -6,7 +6,6 @@ use Doctrine\ORM\EntityRepository;
 use Dof\UserBundle\Entity\User;
 use Dof\ForumBundle\Entity\Forum;
 
-
 /**
  * ForumRepository
  *
