@@ -37,15 +37,16 @@ class ForumRepository extends EntityRepository
 		return $qb->getQuery()
         	->getSingleResult();
 	}
- 
+  
 	function isReadByRepo(Forum $forum, User $user)
 	{
 		$qb = $this->createQueryBuilder('f')
+		  		->select('COUNT(f)')
 				->join('f.topics', 't')
 				->join('t.readBy', 'r')
 				->where('r.id = :user')
-				->andWhere('t.id = :topic')
-				->setParameters(array('user' => $user->getId(), 'topic' => $forum->getTopic()->getId()))
+				->andWhere('f.id = :forum')
+				->setParameters(array('user' => $user->getId(), 'forum' => $forum->getId()))
 				->getQuery()->getResult();
 			
 		if(!empty($qb))
