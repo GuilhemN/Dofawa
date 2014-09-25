@@ -2,6 +2,9 @@
 
 {% block body %}
     {{ form(form, { 'style': 'horizontal' }) }}
+    
+    Il y a {{ count }} résultats.
+
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 
     {% for item in items %}
