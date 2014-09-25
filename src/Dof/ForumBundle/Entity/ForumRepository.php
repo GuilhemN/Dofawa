@@ -56,8 +56,8 @@ class ForumRepository extends EntityRepository
 
 		$result = $nbtop - $nb;
 		if( $result > 0)
-			return true;
+			return false;
 
-		return false;
+		return true;
 	}
 }
