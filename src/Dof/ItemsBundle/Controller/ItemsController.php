@@ -13,7 +13,9 @@ class ItemsController extends Controller
     public function indexAction($page) {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
+
         $form = $this->createForm(new ItemType());
+        $form->handleRequest($this->get('request'));
 
         $perPage = 15;
 
