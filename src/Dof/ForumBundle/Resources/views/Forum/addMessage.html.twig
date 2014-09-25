@@ -11,7 +11,7 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ topic.getName(locales()) }}</h3>
 		</div>
-		{% if !topic.locked %}
+		{% if not topic.locked %}
 			<table class="table">
 	            <form method="post" {{ form_enctype(form) }} >
 	                {{ form_widget(form) }}

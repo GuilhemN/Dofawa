@@ -56,7 +56,7 @@
 	{% endfor %}
 	<center>
 		<a 
-		{% if !topic.getLocked() %}
+		{% if not topic.getLocked() %}
 			href="{{ path('dof_forum_add_message', { 'slug' : topic.slug }) }}"
 			disabled="disabled"
 		{% endif %}
