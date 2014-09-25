@@ -19,7 +19,7 @@ class ItemsController extends Controller
 
         $perPage = 15;
 
-        $count = $repo->countTotal();
+        $count = $repo->countWithOptions($form->getData());
         $items = $repo->findWithOptions($form->getData(), ['level' => 'ASC'], $perPage, ($page - 1) * $perPage);
 
         $pagination = array(
