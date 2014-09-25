@@ -54,7 +54,7 @@ class ForumRepository extends EntityRepository
 		  		->join('f.topics', 't')
 				->getQuery()->getResult();
 
-		$result = $nbtop - $nb;
+		$result = $nbtop[0] - $nb[0];
 		if( $result > 0)
 			return true;
 
