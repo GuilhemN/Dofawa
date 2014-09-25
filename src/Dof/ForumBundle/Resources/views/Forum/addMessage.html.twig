@@ -11,12 +11,16 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ topic.getName(locales()) }}</h3>
 		</div>
-		<table class="table">
-            <form method="post" {{ form_enctype(form) }} >
-                {{ form_widget(form) }}
-                <center><input type="submit" class="btn btn-primary" /></center>
-            </form>
-		</table>
+		{% if !topic.locked %}
+			<table class="table">
+	            <form method="post" {{ form_enctype(form) }} >
+	                {{ form_widget(form) }}
+	                <center><input type="submit" class="btn btn-primary" /></center>
+	            </form>
+			</table>
+		{% else %}
+			<h1>Topic verouillé!</h1>
+		{% endif %}
 	</div>
 {% endautoescape %}
 {% endblock %}

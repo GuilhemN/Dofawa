@@ -55,7 +55,13 @@
 		</div>
 	{% endfor %}
 	<center>
-		<a href="{{ path('dof_forum_add_message', { 'slug' : topic.slug }) }}"><button type="button" class="btn btn-default btn-lg">
+		<a 
+		{% if !topic.getLocked() %}
+			href="{{ path('dof_forum_add_message', { 'slug' : topic.slug }) }}"
+			disabled="disabled"
+		{% endif %}
+		>
+		<button type="button" class="btn btn-default btn-lg">
 		    Repondre
 		</button></a>
 	</center>
