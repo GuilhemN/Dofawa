@@ -158,7 +158,7 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function __toString(){
         return $this->getName();
     }
-
+    
     /**
      * isReadBy
      *

@@ -24,7 +24,6 @@ class ForumController extends Controller
         return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories, 'repo' => $repo));
     }
 
-
     /**
    	* @ParamConverter("forum", options={"repository_method" = "getOrderByDate"})
    	*/
