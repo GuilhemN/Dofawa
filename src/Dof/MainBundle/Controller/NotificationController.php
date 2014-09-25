@@ -11,7 +11,9 @@ class NotificationController extends Controller
 
     public function menuAction()
     {
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
+        if(empty($user))
+            throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
@@ -22,7 +24,10 @@ class NotificationController extends Controller
     }
 
     public function ajaxAction(){
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
+        if(empty($user))
+            throw $this->createAccessDeniedException();
+
         $nm = $this->get('notification_manager');
 
         $em = $this->getDoctrine()->getManager();
@@ -49,7 +54,10 @@ class NotificationController extends Controller
     }
 
     public function checkUnreadAction(){
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
+        if(empty($user))
+            throw $this->createAccessDeniedException();
+        
         $nm = $this->get('notification_manager');
 
         $em = $this->getDoctrine()->getManager();
