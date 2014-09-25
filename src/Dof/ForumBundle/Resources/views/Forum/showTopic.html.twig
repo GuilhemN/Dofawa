@@ -9,7 +9,11 @@
 {% block body %}
 {% autoescape %}
     <div class="page-header">
-      <h1>{{ topic.getName(locales()) }}</h1>
+      <h1>{{ topic.getName(locales()) }}
+      {% if topic.locked %}
+			<b>(Vérouillé)</b>
+	  {% endif %}
+	  </h1>
     </div>
 	{% for message in topic.messages %}
 		<div class="panel panel-default" id="message-{{ message.id }}">
@@ -55,15 +59,18 @@
 		</div>
 	{% endfor %}
 	<center>
-		<a 
-		{% if not topic.getLocked() %}
-			href="{{ path('dof_forum_add_message', { 'slug' : topic.slug }) }}"
-			disabled="disabled"
-		{% endif %}
-		>
+		 
+		{% if topic.getLocked() %}
+			<a disabled="disabled">
+		<button type="button" class="btn btn-default btn-lg">
+		    Vérouillé!
+		</button></a>
+		{% else %}
+			<a href="{{ path('dof_forum_add_message', { 'slug' : topic.slug }) }}">
 		<button type="button" class="btn btn-default btn-lg">
 		    Repondre
 		</button></a>
+		{% endif %}
 	</center>
 {% endautoescape %}
 {% endblock %}

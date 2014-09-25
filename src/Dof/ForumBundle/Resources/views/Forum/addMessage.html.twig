@@ -9,7 +9,11 @@
 {% autoescape %}
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">{{ topic.getName(locales()) }}</h3>
+			<h3 class="panel-title">{{ topic.getName(locales()) }}
+			{% if topic.locked %}
+			<b>(Vérouillé)</b>
+			{% endif %}
+			</h3>
 		</div>
 		{% if not topic.locked %}
 			<table class="table">
