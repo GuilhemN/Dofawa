@@ -6,17 +6,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\ItemsBundle\Entity\ItemTemplate;
+use Dof\ItemsBundle\Form\ItemType;
 
 class ItemsController extends Controller
 {
-    public function indexAction() {
+    public function indexAction($page) {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
+        $form = $this->createForm(new ItemType());
+
+        $perPage = 15;
 
         $count = $repo->countTotal();
-        $items = $repo->findBy([], [], 10, 0);
+        $items = $repo->findBy([], ['level' => 'ASC'], $perPage, ($page - 1) * $perPage);
 
-        return $this->render('DofItemsBundle:Items:index.html.twig', ['items' => $items, 'count' => $count]);
+        $pagination = array(
+			'page' => $page,
+			'route' => 'dof_items_homepage',
+			'pages_count' => ceil($count / $perPage),
+			'route_params' => array()
+		);
+
+        return $this->render('DofItemsBundle:Items:index.html.twig', [
+            'items' => $items,
+            'count' => $count,
+            'pagination' => $pagination,
+            'form' => $form->createView()
+            ]);
     }
 
     /**

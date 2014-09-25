@@ -1,7 +1,12 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
+    {{ form(form, { 'style': 'horizontal' }) }}
+    {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+
     {% for item in items %}
         {% include 'DofItemsBundle::item.html.twig' with {'item': item} %}
     {% endfor %}
+
+    {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 {% endblock %}
