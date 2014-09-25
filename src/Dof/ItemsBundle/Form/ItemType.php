@@ -17,6 +17,7 @@ class ItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->setMethod('get')
             ->add('type', 'choice', array(
                 'choices' => array_flip(ItemSlot::getValues()),
                 'multiple' => true,
