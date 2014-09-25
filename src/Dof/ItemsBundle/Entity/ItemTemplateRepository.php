@@ -68,7 +68,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
     }
 
 	public function countWithOptions($options = array()){
-		$this->findWithOptions($options, array(), null, null, 'count')
+		return $this->findWithOptions($options, array(), null, null, 'count');
 	}
 
     public function findByIdWithType($id) {
