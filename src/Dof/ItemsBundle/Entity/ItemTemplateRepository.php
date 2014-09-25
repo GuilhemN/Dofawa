@@ -35,8 +35,9 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		    ->getSingleScalarResult();
     }
 
-    public function findWithOptions(array $options = array(), array $orders = array(), $limit = null, $offset = null) {
-        $qb = $this->createQueryBuilder('i');
+    public function findWithOptions($options = array(), array $orders = array(), $limit = null, $offset = null) {
+        $options = (array) $options;
+		$qb = $this->createQueryBuilder('i');
 
 		$qb->join('i.type', 't');
 
