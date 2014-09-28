@@ -11,14 +11,14 @@
     <div class="page-header">
       <h1>{{ topic.getName(locales()) }}
       {% if topic.locked %}
-			<b>(Vérouillé)</b>
+			<b>({{ 'topic_lock' | trans({}, 'forum')}})</b>
 	  {% endif %}
 	  </h1>
     </div>
 	{% for message in topic.messages %}
 		<div class="panel panel-default" id="message-{{ message.id }}">
 		  	<div class="panel-body nopadding">
-		  	    <p class="text-right padding-right">{{ message.createdAt | date("h:i:s d/m/Y") }}</p>
+		  	    <p class="text-right padding-right">{{ message.createdAt | date("h:i:s d/m/Y") | date_format()}}</p>
 		    	<table class="table">
 					<tr>
 				        <td rowspan="2" class="col-xs-4">
@@ -36,9 +36,9 @@
 						      	<table>
 						      		<tr><td><a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a></td></tr>
 						      		<tr><td><img src="{{ asset(message.owner.getWebPath()) }}"></td></tr>
-						      		<tr><td>Guilde: {{ message.owner.guilde }}</td></tr>
-						      		<tr><td>Lieu: {{ message.owner.lieu }}</td></tr>
-						      		<tr><td>Inscrit le: {{ message.owner.createdAt | date("d/m/Y") }}</td></tr>
+						      		<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }}: {{ message.owner.guilde }}</td></tr>
+						      		<tr><td>{{ 'inputs.location' | trans({}, 'profile') }}: {{ message.owner.lieu }}</td></tr>
+						      		<tr><td>{{ 'register_at' | trans({}, 'forum')}}: {{ message.owner.createdAt | date("d/m/Y") | date_format()}}</td></tr>
 						      		<tr><td><b>{{ role |default() }}</b></td></tr>
 						      	</table>
 						      </div>
@@ -63,12 +63,12 @@
 		{% if topic.getLocked() %}
 			<a disabled="disabled">
 		<button type="button" class="btn btn-default btn-lg">
-		    Vérouillé!
+		    {{ 'topic_lock' | trans({}, 'forum')}}
 		</button></a>
 		{% else %}
 			<a href="{{ path('dof_forum_add_message', { 'slug' : topic.slug }) }}">
 		<button type="button" class="btn btn-default btn-lg">
-		    Repondre
+		    {{ 'respond' | trans({}, 'forum')}}
 		</button></a>
 		{% endif %}
 	</center>

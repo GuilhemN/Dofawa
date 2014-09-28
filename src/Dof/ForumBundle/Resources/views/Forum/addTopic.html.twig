@@ -2,7 +2,7 @@
 
 {% block breadcrumb %}
     {{ parent() }}<li><a href="{{ path('dof_forum_show_forum', { 'slug' : forum.slug }) }}">{{ forum.getName(locales()) }}</a></li>
-    <li>Nouveau topic</li>
+    <li>{{ 'new_topic' | trans({}, 'forum')}}</li>
 {% endblock %}
 
 {% block body %}

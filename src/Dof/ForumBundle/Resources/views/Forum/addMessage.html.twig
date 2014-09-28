@@ -2,7 +2,7 @@
 
 {% block breadcrumb %}
     {{ parent() }}<li><a href="{{ path('dof_forum_show_forum', { 'slug' : topic.forum.slug }) }}">{{ topic.forum.getName(locales()) }}</a></li>
-    <li><a href="{{ path('dof_forum_show_topic', { 'slug' : topic.slug }) }}">{{ topic.getName(locales()) }}</a></li><li>Nouveau message</li>
+    <li><a href="{{ path('dof_forum_show_topic', { 'slug' : topic.slug }) }}">{{ topic.getName(locales()) }}</a></li><li>{{ 'new_mess' | trans({}, 'forum')}}</li>
 {% endblock %}
 
 {% block body %}
@@ -11,7 +11,7 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ topic.getName(locales()) }}
 			{% if topic.locked %}
-			<b>(Vérouillé)</b>
+			<b>({{ 'topic_lock' | trans({}, 'forum')}})</b>
 			{% endif %}
 			</h3>
 		</div>
@@ -23,7 +23,7 @@
 	            </form>
 			</table>
 		{% else %}
-			<h1>Topic verouillé!</h1>
+			<h1>{{ 'lock_mess' | trans({}, 'forum')}}</h1>
 		{% endif %}
 	</div>
 {% endautoescape %}
