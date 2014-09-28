@@ -18,7 +18,7 @@
 	{% for message in topic.messages %}
 		<div class="panel panel-default" id="message-{{ message.id }}">
 		  	<div class="panel-body nopadding">
-		  	    <p class="text-right padding-right">{{ message.createdAt | date("h:i:s d/m/Y") | date_format()}}</p>
+		  	    <p class="text-right padding-right">{{ message.createdAt | date_format()}}</p>
 		    	<table class="table">
 					<tr>
 				        <td rowspan="2" class="col-xs-4">
@@ -38,7 +38,7 @@
 						      		<tr><td><img src="{{ asset(message.owner.getWebPath()) }}"></td></tr>
 						      		<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }}: {{ message.owner.guilde }}</td></tr>
 						      		<tr><td>{{ 'inputs.location' | trans({}, 'profile') }}: {{ message.owner.lieu }}</td></tr>
-						      		<tr><td>{{ 'register_at' | trans({}, 'forum')}}: {{ message.owner.createdAt | date("d/m/Y") | date_format()}}</td></tr>
+						      		<tr><td>{{ 'register_at' | trans({}, 'forum')}}: {{ message.owner.createdAt | date("d/m/Y") }}</td></tr>
 						      		<tr><td><b>{{ role |default() }}</b></td></tr>
 						      	</table>
 						      </div>
