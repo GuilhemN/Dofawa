@@ -10,9 +10,9 @@
 			<table class="table">
 				<tr>
                     <th></th>
-                    <th>Forum</th>
-                    <th>Description</th>
-                    <th>Nb. topics</th>
+                    <th>{{ 'forum' | trans({}, 'forum')}}</th>
+                    <th>{{ 'Description' | trans({}, 'forum')}}</th>
+                    <th>{{ 'Nbtopics' | trans({}, 'forum')}}</th>
                 </tr>
 			    {% for forum in category.forums %}
 			    	<tr>

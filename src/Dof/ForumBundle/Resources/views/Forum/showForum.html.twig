@@ -8,19 +8,17 @@
 {% block body %}
 {% autoescape %}
 	<div class="panel panel-default">
-        <a style="float: right;" href="{{ path('dof_forum_add_topic', { 'slug' : forum.slug }) }}"><button type="button" class="btn btn-primary">
-            nouveau
-        </button></a>
+        <a style="float: right;" href="{{ path('dof_forum_add_topic', { 'slug' : forum.slug }) }}"><span class="glyphicon glyphicon-plus"></span></a>
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
 		<table class="table">
 			<tr>
                 <th></th>
-                <th>Topic</th>
-                <th>par</th>
-                <th>le</th>
-                <th>Réponse(s)</th>
+                <th>{{ 'topic' | trans({}, 'forum')}}</th>
+                <th class="hidden-xs">{{ 'by' | trans({}, 'forum')}}</th>
+                <th>{{ 'at' | trans({}, 'forum')}}</th>
+                <th class="hidden-xs hidden-sm">{{ 'replies' | trans({}, 'forum')}}</th>
             </tr>
 			{% for topic in forum.topics %}
 				<tr>
@@ -36,7 +34,7 @@
                             {{ topic.getName(locales()) }}
                         </a>
                     </td>
-                    <td>
+                    <td class="hidden-xs">
                         <a href="{{ path('dof_profile_userpage', { 'slug' : topic.owner }) }}">
                             {{ topic.owner }}
                         </a>
@@ -44,10 +42,13 @@
                     <td>
                         {{ topic.getLastPost() | date("h:i:s d/m/Y") }}
                     </td>
-                    <td>{{ topic.getCountPosts()-1 }}</td>
+                    <td class="hidden-xs hidden-sm">{{ topic.getCountPosts()-1 }}</td>
                 </tr>
                 {% else %}
-                    <tr><td>Aucun Topic!</td></tr>
+                    <tr><td></td></tr>
+                    <tr><td>{{ 'notopic' | trans({}, 'forum')}}</td></tr>
+                    <tr><td></td></tr>
+                    <tr><td></td></tr>
 			{% endfor %}
 		</table>
 	</div>
