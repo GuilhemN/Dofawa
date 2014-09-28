@@ -68,16 +68,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "d9b1a37e9351ddde1f19f09a02e3d6ee92e82efd"
+                "reference": "6a6bec0670bb6e71a263b08bc1b98ea242928633"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/d9b1a37e9351ddde1f19f09a02e3d6ee92e82efd",
-                "reference": "d9b1a37e9351ddde1f19f09a02e3d6ee92e82efd",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/6a6bec0670bb6e71a263b08bc1b98ea242928633",
+                "reference": "6a6bec0670bb6e71a263b08bc1b98ea242928633",
                 "shasum": ""
             },
             "require": {
@@ -105,17 +105,6 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
@@ -124,10 +113,16 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
                     "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
-                    "role": "Developer of wrapped JMSSerializerBundle"
+                    "email": "schmittjoh@gmail.com"
                 }
             ],
             "description": "Docblock Annotations Parser",
@@ -137,7 +132,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2014-07-06 15:52:21"
+            "time": "2014-09-25 16:45:30"
         },
         {
             "name": "doctrine/cache",
@@ -610,16 +605,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.4.4",
+            "version": "v2.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "fc19c3b53dcd00e6584db40669fdd699c4671f97"
+                "reference": "c0d3cdbdfbf873871167050ab077e49b1ad02ab0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/fc19c3b53dcd00e6584db40669fdd699c4671f97",
-                "reference": "fc19c3b53dcd00e6584db40669fdd699c4671f97",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/c0d3cdbdfbf873871167050ab077e49b1ad02ab0",
+                "reference": "c0d3cdbdfbf873871167050ab077e49b1ad02ab0",
                 "shasum": ""
             },
             "require": {
@@ -657,23 +652,20 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
                 {
                     "name": "Benjamin Eberlei",
                     "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
                 }
             ],
             "description": "Object-Relational-Mapper for PHP",
@@ -682,7 +674,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-07-11 03:05:53"
+            "time": "2014-09-22 21:58:51"
         },
         {
             "name": "excelwebzone/recaptcha-bundle",
@@ -847,29 +839,28 @@
         {
             "name": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "target-dir": "FOS/UserBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "349b637b2a5f6ec1e871d17b79e01b072fbb081c"
+                "reference": "56bd660f077dd6b8038ebe613551446f3c0d758b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/349b637b2a5f6ec1e871d17b79e01b072fbb081c",
-                "reference": "349b637b2a5f6ec1e871d17b79e01b072fbb081c",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/56bd660f077dd6b8038ebe613551446f3c0d758b",
+                "reference": "56bd660f077dd6b8038ebe613551446f3c0d758b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/form": "~2.1",
-                "symfony/framework-bundle": "~2.1",
-                "symfony/security-bundle": "~2.1"
+                "symfony/form": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/security-bundle": "~2.3"
             },
             "require-dev": {
                 "doctrine/doctrine-bundle": "*",
                 "swiftmailer/swiftmailer": ">=4.3, <6.0",
-                "symfony/validator": "~2.1",
-                "symfony/yaml": "~2.1",
+                "symfony/validator": "~2.3",
+                "symfony/yaml": "~2.3",
                 "twig/twig": "~1.5",
                 "willdurand/propel-typehintable-behavior": "dev-master"
             },
@@ -883,8 +874,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "FOS\\UserBundle": ""
+                "psr-4": {
+                    "FOS\\UserBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -910,7 +901,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-09-20 00:36:25"
+            "time": "2014-09-26 22:23:40"
         },
         {
             "name": "h4cc/wkhtmltoimage-amd64",
@@ -1299,12 +1290,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "08b8052ddebf96ac0a2cba4fc33dfda724248c74"
+                "reference": "2b9043dc1396967ca57b26de113f2e946f6c533d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/08b8052ddebf96ac0a2cba4fc33dfda724248c74",
-                "reference": "08b8052ddebf96ac0a2cba4fc33dfda724248c74",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/2b9043dc1396967ca57b26de113f2e946f6c533d",
+                "reference": "2b9043dc1396967ca57b26de113f2e946f6c533d",
                 "shasum": ""
             },
             "require": {
@@ -1341,7 +1332,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -1355,7 +1346,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-09-08 08:34:57"
+            "time": "2014-09-25 16:22:18"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1417,16 +1408,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/snappy.git",
-                "reference": "d208ff86aea72def58f569cecb61577d466c66b5"
+                "reference": "b275c10e04927d2bb9917de2194ca1a7c0f92267"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/d208ff86aea72def58f569cecb61577d466c66b5",
-                "reference": "d208ff86aea72def58f569cecb61577d466c66b5",
+                "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/b275c10e04927d2bb9917de2194ca1a7c0f92267",
+                "reference": "b275c10e04927d2bb9917de2194ca1a7c0f92267",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
                 "symfony/process": "~2.1"
             },
             "suggest": {
@@ -1468,7 +1461,7 @@
                 "thumbnail",
                 "wkhtmltopdf"
             ],
-            "time": "2014-08-22 13:35:04"
+            "time": "2014-09-22 20:43:48"
         },
         {
             "name": "knplabs/knp-snappy-bundle",
@@ -1605,12 +1598,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "38f4d2ed7135782474628b64e5c1623b649fdac2"
+                "reference": "eb695e51378e35a5efdf71e8ef21597758c43a73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/38f4d2ed7135782474628b64e5c1623b649fdac2",
-                "reference": "38f4d2ed7135782474628b64e5c1623b649fdac2",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/eb695e51378e35a5efdf71e8ef21597758c43a73",
+                "reference": "eb695e51378e35a5efdf71e8ef21597758c43a73",
                 "shasum": ""
             },
             "require": {
@@ -1670,7 +1663,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2014-09-17 09:58:36"
+            "time": "2014-09-22 09:19:19"
         },
         {
             "name": "monolog/monolog",
@@ -1976,17 +1969,17 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.3.5",
+            "version": "v2.4.0",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2"
+                "reference": "d5c0b996a46276d50943a80f95a46b59215a0e68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
-                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/d5c0b996a46276d50943a80f95a46b59215a0e68",
+                "reference": "d5c0b996a46276d50943a80f95a46b59215a0e68",
                 "shasum": ""
             },
             "require": {
@@ -2016,13 +2009,11 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2014-04-28 14:01:06"
+            "time": "2014-09-22 14:56:14"
         },
         {
             "name": "sonata-project/admin-bundle",
@@ -2030,12 +2021,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "d3b00814452c942b40bd87309efe198c6359d873"
+                "reference": "833b050194c4c6ff08a69fd5bc19437f8af62e83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/d3b00814452c942b40bd87309efe198c6359d873",
-                "reference": "d3b00814452c942b40bd87309efe198c6359d873",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/833b050194c4c6ff08a69fd5bc19437f8af62e83",
+                "reference": "833b050194c4c6ff08a69fd5bc19437f8af62e83",
                 "shasum": ""
             },
             "require": {
@@ -2101,7 +2092,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-09-19 13:37:14"
+            "time": "2014-09-25 17:56:28"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -2296,12 +2287,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "422f8a56e7a3b5c1d3d63d120718d64f3af41b0f"
+                "reference": "ce5bd40501c3d69081d6f1fd88a631198945b083"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/422f8a56e7a3b5c1d3d63d120718d64f3af41b0f",
-                "reference": "422f8a56e7a3b5c1d3d63d120718d64f3af41b0f",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/ce5bd40501c3d69081d6f1fd88a631198945b083",
+                "reference": "ce5bd40501c3d69081d6f1fd88a631198945b083",
                 "shasum": ""
             },
             "require": {
@@ -2358,7 +2349,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2014-09-19 08:33:29"
+            "time": "2014-09-25 17:58:38"
         },
         {
             "name": "sonata-project/exporter",
@@ -2752,16 +2743,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.5.4",
+            "version": "v2.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "3a369dddea56596df91977d8c2083e70784852f2"
+                "reference": "2aef97bbc95d0c4ae63537cca81bd6d984427d81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/3a369dddea56596df91977d8c2083e70784852f2",
-                "reference": "3a369dddea56596df91977d8c2083e70784852f2",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/2aef97bbc95d0c4ae63537cca81bd6d984427d81",
+                "reference": "2aef97bbc95d0c4ae63537cca81bd6d984427d81",
                 "shasum": ""
             },
             "require": {
@@ -2862,7 +2853,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-09-03 09:51:48"
+            "time": "2014-09-28 17:33:53"
         },
         {
             "name": "twig/extensions",
