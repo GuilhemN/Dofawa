@@ -28,9 +28,9 @@
 	</select> -->
 
     <ul class="nav nav-tabs" role="tablist">
-  		<li class="active"><a href="#calc1" role="tab" data-toggle="tab">{{ 'criticalHits'|trans({}, 'item') }}</a></li>
-  		<li><a href="#calc2" role="tab" data-toggle="tab">{{ 'pods'|trans({}, 'item') }}</a></li>
- 		<li><a href="#calc3" role="tab" data-toggle="tab">{{ 'initiative'|trans({}, 'item') }}</a></li>
+  		<li class="active"><a href="#calc1" role="tab" data-toggle="tab">{{ 'criticalHits'|trans({}, 'generalTrans') }}</a></li>
+  		<li><a href="#calc2" role="tab" data-toggle="tab">{{ 'pods'|trans({}, 'generalTrans') }}</a></li>
+ 		<li><a href="#calc3" role="tab" data-toggle="tab">{{ 'initiative'|trans({}, 'generalTrans') }}</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -66,7 +66,7 @@
 				<label for="specialisation1"> {{ 'yspe'|trans({}, 'generalTrans') }} n°1 :</label> <input type="text" size="40" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" name="specialisation1" value="0" id="specialisation1"><br>
 				<label for="specialisation2"> {{ 'yspe'|trans({}, 'generalTrans') }} n°2 :</label> <input type="text" size="40" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" name="spacialisation2" value="0" id="specialisation2"><br>	
 				<label for="specialisation1"> {{ 'yspe'|trans({}, 'generalTrans') }} n°3 :</label> <input type="text" onkeydown="calculpods()" onkeyup="calculpods()" onkeypress="calculpods()" size="40" name="specialisation3" value="0" id="specialisation3"><br><br>
-				{{ 'yhave'|trans({}, 'generalTrans') }} <b id="pods">1000</b> {{ 'pods'|trans({}, 'item') }}.
+				{{ 'yhave'|trans({}, 'generalTrans') }} <b id="pods">1000</b> {{ 'pods'|trans({}, 'generalTrans') }}.
 			</form>
 		</div>
 	</div> 
@@ -86,7 +86,7 @@
 				<br><label for="feu">{{ 'yintel'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="0" name="feu" id="feu">
 				<br><label for="eau">{{ 'ychance'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" value="0" name="eau" id="eau">
 				<br><label for="agi">{{ 'yagi'|trans({}, 'generalTrans') }} :</label> <input type="text" size="40" value="0" onkeydown="calculini()" onkeyup="calculini()" onkeypress="calculini()" name="agi" id="agi"><br><br><br>
-				<label for="pvmax">{{ 'yhave'|trans({}, 'generalTrans') }} <b id="initiative">0</b> {{ 'initiative'|trans({}, 'item') }}.</label>
+				<label for="pvmax">{{ 'yhave'|trans({}, 'generalTrans') }} <b id="initiative">0</b> {{ 'initiative'|trans({}, 'generalTrans') }}.</label>
 			</form>
 		</div>
 	</div>

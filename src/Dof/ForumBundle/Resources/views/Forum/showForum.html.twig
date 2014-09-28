@@ -10,7 +10,7 @@
 	<div class="panel panel-default">
         
 		<div class="panel-heading">
-            <a style="float: right;" href="{{ path('dof_forum_add_topic', { 'slug' : forum.slug }) }}"><span class="glyphicon glyphicon-plus"></span>{{ 'new_topic' | trans({}, 'forum')}}</a>
+            <a style="float: right;" href="{{ path('dof_forum_add_topic', { 'slug' : forum.slug }) }}"><span class="glyphicon glyphicon-plus"></span> {{ 'new_topic' | trans({}, 'forum')}}</a>
 			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
 		<table class="table">
