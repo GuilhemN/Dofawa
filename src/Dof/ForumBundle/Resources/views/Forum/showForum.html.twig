@@ -40,7 +40,7 @@
                         </a>
                     </td>
                     <td>
-                        {{ topic.getLastPost() | date("h:i:s d/m/Y") }}
+                        {{ topic.getLastPost() | date("h:i:s d/m/Y") | date_format() }}
                     </td>
                     <td class="hidden-xs hidden-sm">{{ topic.getCountPosts()-1 }}</td>
                 </tr>
