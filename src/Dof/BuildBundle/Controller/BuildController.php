@@ -5,6 +5,7 @@ namespace Dof\BuildBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
+use Dof\UserBundle\Entity\User;
 use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\BuildBundle\Entity\Item;
@@ -100,13 +101,14 @@ class BuildController extends Controller
     }
 
     /**
-     * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
+     * @ParamConverter("stuff", options={"mapping": {"stuff" = "slug"} })
+     * @ParamConverter("user", options={"mapping": {"user" = "slug"} })
      */
-    public function showAction($user, $character, Stuff $stuff){
+    public function showAction(User $user, $character, Stuff $stuff){
         $em = $this->getDoctrine()->getManager();
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
-        $perso = $persoR->findForShow($user, $character);
+        $perso = $persoR->findForShow($user->getSlug(), $character);
 
         if(empty($perso) or $stuff->getCharacter() != $perso)
             throw $this->createNotFoundException();
@@ -125,17 +127,16 @@ class BuildController extends Controller
     }
 
     /**
-     * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
+     * @ParamConverter("stuff", options={"mapping": {"stuff" = "slug"} })
+     * @ParamConverter("user", options={"mapping": {"user" = "slug"} })
      */
-    public function addItemsAction($user, $character, Stuff $stuff){
-        $em = $this->getDoctrine()->getManager();
-        $userE = $em->getRepository('DofUserBundle:user')->findOneBySlug($user);
-        if($this->getUser()->getSlug() !== $userE->getSlug() or $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
+    public function addItemsAction(User $user, $character, Stuff $stuff){
+        if($this->getUser()->getId() != $user->getId() and !$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
             throw $this->createAccessDeniedException();
 
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
-        $perso = $persoR->findForShow($user, $character);
+        $perso = $persoR->findForShow($user->getSlug(), $character);
 
         if(empty($perso) or $stuff->getCharacter() != $perso)
             throw $this->createNotFoundException();
@@ -162,7 +163,7 @@ class BuildController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('dof_build_show', [
-            'user' => $user,
+            'user' => $user->getSlug(),
             'character' => $character,
             'stuff' => $stuff->getSlug()
             ]));
