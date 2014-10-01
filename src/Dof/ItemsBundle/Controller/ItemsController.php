@@ -47,7 +47,7 @@ class ItemsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
-        $perso = $persoR->findForShow($this->getUser(), $character);
+        $perso = $persoR->findForShow($user, $character);
 
         if(empty($perso) or $stuff->getCharacter() != $perso)
             throw $this->createNotFoundException();
