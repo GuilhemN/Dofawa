@@ -122,7 +122,8 @@ class BuildController extends Controller
             'perso' => $perso,
             'stuff' => $stuff,
             'dofus_slots' => $this->dofus_slots,
-            'items_slots' => $this->items_slots
+            'items_slots' => $this->items_slots,
+            'items' => $items
             ]);
     }
 
