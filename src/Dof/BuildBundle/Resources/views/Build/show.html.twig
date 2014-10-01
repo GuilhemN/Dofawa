@@ -26,7 +26,7 @@
             {% for type, slot in dofus_slots %}
             <div class="col-xs-3 col-md-12 col-lg-6">
                 {% if items[slot] is defined %}
-                    <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ item.itemTemplate.getName(locales()) }}">
+                    <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ items[slot].itemTemplate.getName(locales()) }}">
                 {% else %}
                     <a href="{{ path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type})}}" class="thumbnail">
                         <img src="{{ asset('bundles/dofbuild/img/item.jpg') }}" alt="...">
@@ -39,7 +39,7 @@
             {% for type, slot in items_slots %}
             <div class="col-xs-3 col-md-6 col-lg-4">
                 {% if items[slot] is defined %}
-                    <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ item.itemTemplate.getName(locales()) }}">
+                    <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ items[slot].itemTemplate.getName(locales()) }}">
                 {% else %}
                     <a href="{{ path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type})}}" class="thumbnail">
                         <img src="{{ asset('bundles/dofbuild/img/item.jpg') }}" alt="...">
