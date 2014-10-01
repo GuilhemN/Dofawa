@@ -158,8 +158,8 @@ class BuildController extends Controller
             $bItem->setItemTemplate($item);
             $bItem->setSlot($slot);
 
-            $caracts = $bItem->getCharacteritics();
-            foreach($caracts as $caract)
+            $caracts = $bItem->getCharacteristics();
+            foreach(array_keys($caracts) as $caract)
                 $bItem->{ 'set' . ucfirst($caract)}( $item->{'getMax' . ucfirst($caract)}());
 
             $em->persist($bItem);
