@@ -144,7 +144,7 @@ class BuildController extends Controller
 
         $request = $this->get('request');
         $itemsIds = array_slice((array) $request->request->get('items'), 16);
-        $items = $em->getRepository('DofItemsBundle:ItemTemplate')->find($itemsIds);
+        $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
 
         $bItemRepo = $em->getRepository('DofBuildBundle:Item');
         foreach($items as $item) {
