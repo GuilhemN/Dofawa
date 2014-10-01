@@ -21,6 +21,7 @@ use Doctrine\Common\Collections\Criteria;
 
 use Dof\ForumBundle\Entity\Forum;
 use Dof\ForumBundle\Entity\Message;
+use Dof\UserBundle\Entity\User;
 
 /**
  * topic
@@ -82,9 +83,16 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $lastPost;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Dof\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="Dof_forum_join_topic_user")
+     */
+    private $readBy;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->readBy = new ArrayCollection();
     }
 
     /**
@@ -247,5 +255,57 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     foreach ($this->messages->matching(Criteria::create()->orderBy('createdAt', 'DESC')->setFirstResult( 0 )->setMaxResults(1)) as $message)
         return $message->getCreatedAt();
         return null;
+    }
+
+    /**
+     * Add readBy
+     *
+     * @param User $readBy
+     * @return object
+     */
+    public function addReadBy(User $readBy)
+    {
+        $this->readBy[] = $readBy;
+
+        return $this;
+    }
+
+    /**
+     * Remove readBy
+     *
+     * @param User $readBy
+     * @return object
+     */
+    public function removeReadBy(User $readBy)
+    {
+        $this->readBy->removeElement($readBy);
+
+        return $this;
+    }
+
+    /**
+     * Get readBy
+     *
+     * @return Collection
+     */
+    public function getReadBy()
+    {
+        return $this->readBy;
+    }
+
+    public function cleanReadBy()
+    { 
+        $this->readBy->clear(); 
+    }
+
+    /**
+     * isReadBy
+     *
+     * @param $repo, User $user
+     * @return boolean
+     */
+    public function isReadBy($repo, User $user)
+    { 
+       return $repo->isReadByRepo($this,$user);
     }
 }

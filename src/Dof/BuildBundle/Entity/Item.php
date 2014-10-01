@@ -4,7 +4,7 @@ namespace Dof\BuildBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Dof\ItemsBundle\CharacteristicsRangeTrait;
+use Dof\ItemsBundle\CharacteristicsTrait;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -20,7 +20,7 @@ use Dof\ItemsBundle\Entity\ItemTemplate;
  */
 class Item implements IdentifiableInterface, TimestampableInterface
 {
-    use CharacteristicsRangeTrait, TimestampableTrait;
+    use CharacteristicsTrait, TimestampableTrait;
 
     /**
      * @var integer

@@ -5,16 +5,38 @@ namespace Dof\BuildBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
+use Dof\UserBundle\Entity\User;
 use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
+use Dof\BuildBundle\Entity\Item;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
 use Dof\BuildBundle\BuildSlot;
 use Dof\CharactersBundle\Gender;
-use Dof\UserBundle\Entity\Badge;
 
 class BuildController extends Controller
 {
+    protected $dofus_slots = [
+                'dofus1' => BuildSlot::DOFUS1,
+                'dofus2' => BuildSlot::DOFUS2,
+                'dofus3' => BuildSlot::DOFUS3,
+                'dofus4' => BuildSlot::DOFUS4,
+                'dofus5' => BuildSlot::DOFUS5,
+                'dofus6' => BuildSlot::DOFUS6,
+            ];
+    protected $items_slots = [
+                'hat' => BuildSlot::HAT,
+                'cloak' => BuildSlot::CLOAK,
+                'amulet' => BuildSlot::AMULET,
+                'weapon' => BuildSlot::WEAPON,
+                'ring1' => BuildSlot::RING1,
+                'ring2' => BuildSlot::RING2,
+                'belt' => BuildSlot::BELT,
+                'boots' => BuildSlot::BOOTS,
+                'shield' => BuildSlot::SHIELD,
+                'animal' => BuildSlot::ANIMAL,
+            ];
+
     public function indexAction()
     {
         if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
@@ -79,45 +101,79 @@ class BuildController extends Controller
     }
 
     /**
-     * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
+     * @ParamConverter("stuff", options={"mapping": {"stuff" = "slug"} })
+     * @ParamConverter("user", options={"mapping": {"user" = "slug"} })
      */
-    public function showAction($user, $character, Stuff $stuff){
+    public function showAction(User $user, $character, Stuff $stuff){
         $em = $this->getDoctrine()->getManager();
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
-        $perso = $persoR->findForShow($user, $character);
+        $perso = $persoR->findForShow($user->getSlug(), $character);
+
+        if(empty($perso) or $stuff->getCharacter() != $perso)
+            throw $this->createNotFoundException();
 
         $items = array();
         foreach($stuff->getItems() as $item){
             $items[$item->getSlot()] = $item;
         }
 
-        if(empty($perso))
-            throw $this->createNotFoundException();
-
         return $this->render('DofBuildBundle:Build:show.html.twig', [
             'perso' => $perso,
             'stuff' => $stuff,
-            'dofus_slots' => [
-                BuildSlot::DOFUS1,
-                BuildSlot::DOFUS2,
-                BuildSlot::DOFUS3,
-                BuildSlot::DOFUS4,
-                BuildSlot::DOFUS5,
-                BuildSlot::DOFUS6,
-                ],
-            'items_slots' => [
-                BuildSlot::HAT,
-                BuildSlot::CLOAK,
-                BuildSlot::AMULET,
-                BuildSlot::WEAPON,
-                BuildSlot::RING1,
-                BuildSlot::RING2,
-                BuildSlot::BELT,
-                BuildSlot::BOOTS,
-                BuildSlot::SHIELD,
-                BuildSlot::ANIMAL,
-                ]
+            'dofus_slots' => $this->dofus_slots,
+            'items_slots' => $this->items_slots,
+            'items' => $items
             ]);
+    }
+
+    /**
+     * @ParamConverter("stuff", options={"mapping": {"stuff" = "slug"} })
+     * @ParamConverter("user", options={"mapping": {"user" = "slug"} })
+     */
+    public function addItemsAction(User $user, $character, Stuff $stuff){
+        if($this->getUser()->getId() != $user->getId() and !$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
+            throw $this->createAccessDeniedException();
+
+        $em = $this->getDoctrine()->getManager();
+        $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
+
+        $perso = $persoR->findForShow($user->getSlug(), $character);
+
+        if(empty($perso) or $stuff->getCharacter() != $perso)
+            throw $this->createNotFoundException();
+
+        $request = $this->get('request');
+        $itemsIds = (array) $request->request->get('items');
+        $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
+
+        $bItemRepo = $em->getRepository('DofBuildBundle:Item');
+        foreach($items as $item) {
+            $slot = BuildSlot::getBuildSlot($item->getType()->getSlot());
+            $bItem = $bItemRepo->findOneBy(array('stuff' => $stuff, 'slot' => $slot));
+            if($bItem !== null)
+                $em->remove($bItem);
+
+            $bItem = new Item();
+            $bItem->setStuff($stuff);
+            $bItem->setItemTemplate($item);
+            $bItem->setSlot($slot);
+
+            $caracts = $bItem->getCharacteristics();
+            foreach($caracts as $k => &$caract)
+                $caract = $item->{'getMax' . ucfirst($k)}();
+
+            $bItem->setCharacteristics($caracts, true);
+
+            $em->persist($bItem);
+
+        }
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('dof_build_show', [
+            'user' => $user->getSlug(),
+            'character' => $character,
+            'stuff' => $stuff->getSlug()
+            ]));
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "47f0169da6bf86db6b2ebd2af9759107",
+    "hash": "9f3446932fbb45de746ba68557f7dd78",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -838,29 +838,29 @@
         },
         {
             "name": "friendsofsymfony/user-bundle",
-            "version": "v1.3.5",
-            "target-dir": "FOS/UserBundle",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "d66890ad3489e18be153502c5ccc3f2bf5cce442"
+                "reference": "56bd660f077dd6b8038ebe613551446f3c0d758b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/d66890ad3489e18be153502c5ccc3f2bf5cce442",
-                "reference": "d66890ad3489e18be153502c5ccc3f2bf5cce442",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/56bd660f077dd6b8038ebe613551446f3c0d758b",
+                "reference": "56bd660f077dd6b8038ebe613551446f3c0d758b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/framework-bundle": "~2.1",
-                "symfony/security-bundle": "~2.1"
+                "symfony/form": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/security-bundle": "~2.3"
             },
             "require-dev": {
                 "doctrine/doctrine-bundle": "*",
-                "swiftmailer/swiftmailer": "~4.3",
-                "symfony/validator": "~2.1",
-                "symfony/yaml": "~2.1",
+                "swiftmailer/swiftmailer": ">=4.3, <6.0",
+                "symfony/validator": "~2.3",
+                "symfony/yaml": "~2.3",
                 "twig/twig": "~1.5",
                 "willdurand/propel-typehintable-behavior": "dev-master"
             },
@@ -874,8 +874,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "FOS\\UserBundle": ""
+                "psr-4": {
+                    "FOS\\UserBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -901,7 +901,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-09-04 12:28:43"
+            "time": "2014-09-26 22:23:40"
         },
         {
             "name": "h4cc/wkhtmltoimage-amd64",
@@ -2025,12 +2025,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
+<<<<<<< HEAD
                 "reference": "77b1d100d2682557e14b56517e48596c20da3b40"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/77b1d100d2682557e14b56517e48596c20da3b40",
                 "reference": "77b1d100d2682557e14b56517e48596c20da3b40",
+=======
+                "reference": "833b050194c4c6ff08a69fd5bc19437f8af62e83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/833b050194c4c6ff08a69fd5bc19437f8af62e83",
+                "reference": "833b050194c4c6ff08a69fd5bc19437f8af62e83",
+>>>>>>> e2b500bca64cc4fd196106c7c5a03d0f7f30c472
                 "shasum": ""
             },
             "require": {
@@ -2096,7 +2105,11 @@
                 "bootstrap",
                 "sonata"
             ],
+<<<<<<< HEAD
             "time": "2014-10-01 15:20:38"
+=======
+            "time": "2014-09-25 17:56:28"
+>>>>>>> e2b500bca64cc4fd196106c7c5a03d0f7f30c472
         },
         {
             "name": "sonata-project/block-bundle",
@@ -3071,6 +3084,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "friendsofsymfony/user-bundle": 20,
         "jms/i18n-routing-bundle": 20,
         "sonata-project/admin-bundle": 20,
         "sonata-project/doctrine-orm-admin-bundle": 20,

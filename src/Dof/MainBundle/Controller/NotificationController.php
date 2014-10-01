@@ -11,7 +11,9 @@ class NotificationController extends Controller
 
     public function menuAction()
     {
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
+        if(empty($user))
+            throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
@@ -22,7 +24,10 @@ class NotificationController extends Controller
     }
 
     public function ajaxAction(){
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
+        if(empty($user))
+            throw $this->createAccessDeniedException();
+
         $nm = $this->get('notification_manager');
 
         $em = $this->getDoctrine()->getManager();
@@ -33,12 +38,7 @@ class NotificationController extends Controller
             array('createdAt' => 'DESC'),
             6
         );
-        $unread = $repo->countUnread($user);
-
-        $response = $this->createJsonResponse([
-            'notifications' => $nm->transformNotifications($notifications),
-            'unread' => $unread
-        ]);
+        $tNotifications = $nm->transformNotifications($notifications);
 
         foreach($notifications as $notification)
             $notification->setIsRead(true);
@@ -47,18 +47,32 @@ class NotificationController extends Controller
 
         $unread = $repo->countUnread($user);
 
-        return $response;
+        return $this->createJsonResponse([
+            'notifications' => $tNotifications,
+            'unread' => $unread
+        ]);;
     }
 
     public function checkUnreadAction(){
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
+        if(empty($user))
+            throw $this->createAccessDeniedException();
+        
+        $nm = $this->get('notification_manager');
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
+
+        $notifications = $repo->findBy(
+            array('owner' => $user, 'isRead' => false),
+            array('createdAt' => 'ASC'),
+            10
+        );
         $unread = $repo->countUnread($user);
 
         return $this->createJsonResponse([
-            'unread' => $unread
+            'unread' => $unread,
+            'notifications' => $nm->transformNotifications($notifications)
         ]);
     }
 }

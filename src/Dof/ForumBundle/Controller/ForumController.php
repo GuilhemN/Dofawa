@@ -19,16 +19,28 @@ class ForumController extends Controller
     	$categories = $em->getRepository('DofForumBundle:Category')->displayOrder()->getQuery()
         	->getResult();
 
-        return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories));
-    }
+		$repo = $em->getRepository('DofForumBundle:Forum');
 
+        return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories, 'repo' => $repo));
+    }
 
     /**
    	* @ParamConverter("forum", options={"repository_method" = "getOrderByDate"})
    	*/
    	public function showForumAction(Forum $forum)
     {
-        return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum]);
+    	if($this->get('security.context')->getToken()->getUser() !== null)
+		{
+			$user = $this->getUser();
+		}
+		else
+		{
+			$user = "";
+		}
+		$em = $this->getDoctrine()->getManager();
+		$repo = $em->getRepository('DofForumBundle:Topic');
+
+        return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum, 'user' => $user, 'repo' => $repo]);
     }
 
     /**
@@ -36,6 +48,17 @@ class ForumController extends Controller
    	*/
    	public function showTopicAction(Topic $topic)
     {
+    	$em = $this->getDoctrine()->getManager();
+		$repo = $em->getRepository('DofForumBundle:Topic');
+
+    	if($this->getUser() !== null && !$topic->isReadBy($repo, $this->getUser()))
+    	{
+    		$topic->addReadBy($this->getUser());
+    		$em = $this->getDoctrine()->getManager();
+		    $em->persist($topic);
+		    $em->flush();
+    	}
+
         return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic));
     }
 

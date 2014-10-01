@@ -2,21 +2,29 @@
 
 {% block breadcrumb %}
     {{ parent() }}<li><a href="{{ path('dof_forum_show_forum', { 'slug' : topic.forum.slug }) }}">{{ topic.forum.getName(locales()) }}</a></li>
-    <li><a href="{{ path('dof_forum_show_topic', { 'slug' : topic.slug }) }}">{{ topic.getName(locales()) }}</a></li><li>Nouveau message</li>
+    <li><a href="{{ path('dof_forum_show_topic', { 'slug' : topic.slug }) }}">{{ topic.getName(locales()) }}</a></li><li>{{ 'new_mess' | trans({}, 'forum')}}</li>
 {% endblock %}
 
 {% block body %}
 {% autoescape %}
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">{{ topic.getName(locales()) }}</h3>
+			<h3 class="panel-title">{{ topic.getName(locales()) }}
+			{% if topic.locked %}
+			<b>({{ 'topic_lock' | trans({}, 'forum')}})</b>
+			{% endif %}
+			</h3>
 		</div>
-		<table class="table">
-            <form method="post" {{ form_enctype(form) }} >
-                {{ form_widget(form) }}
-                <center><input type="submit" class="btn btn-primary" /></center>
-            </form>
-		</table>
+		{% if not topic.locked %}
+			<table class="table">
+	            <form method="post" {{ form_enctype(form) }} >
+	                {{ form_widget(form) }}
+	                <center><input type="submit" class="btn btn-primary" /></center>
+	            </form>
+			</table>
+		{% else %}
+			<h1>{{ 'lock_mess' | trans({}, 'forum')}}</h1>
+		{% endif %}
 	</div>
 {% endautoescape %}
 {% endblock %}

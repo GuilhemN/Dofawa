@@ -1,7 +1,3 @@
-dof_items_homepage:
-    pattern:   /
-    defaults:  { _controller: DofItemsBundle:Items:index }
-
 dof_items_json_itemtemplate:
     pattern:  /json/item-template/{l1id}/data.json
     defaults: { _controller: DofItemsBundle:ItemTemplateRest:fetch }
@@ -32,6 +28,12 @@ dof_items_qualitydiagram_pdf:
     pattern:  /quality-diagram.pdf
     defaults: { _controller: DofItemsBundle:QualityDiagram:pdf }
     requirements: { _method: POST }
+
+dof_items_homepage:
+    pattern:   /{page}
+    defaults: { _controller: DofItemsBundle:Items:index, page: 1}
+    requirements:
+        page: \d+
 
 dof_items_show:
     pattern: /{slug}

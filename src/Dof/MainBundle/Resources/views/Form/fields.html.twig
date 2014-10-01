@@ -41,7 +41,7 @@
             <label class="control-label col-lg-2 required"{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
                 {{ label|trans({}, translation_domain) }}
             </label>
-            <div class="col-lg-10">
+            <div class="col-lg-10 checkbox">
                 {{ block('checkbox_widget') }}
             </div>
         {% else %}

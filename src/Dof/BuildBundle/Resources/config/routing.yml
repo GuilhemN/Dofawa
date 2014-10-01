@@ -9,3 +9,21 @@ dof_build_show:
         user: '[0-9a-z-]+'
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
+
+dof_build_additem_post:
+    path:     /{user}/{character}/{stuff}/add-items/
+    defaults: { _controller: DofBuildBundle:Build:addItems}
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+        _method: POST
+
+dof_build_additem:
+    path:     /{user}/{character}/{stuff}/add/{type}/{page}
+    defaults: { _controller: DofItemsBundle:Items:showBuildItems, page: 1}
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+        page: \d+

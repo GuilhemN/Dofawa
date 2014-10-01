@@ -31,7 +31,7 @@ class CRUDOwnController extends BaseController{
           throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
       }
 
-      if (false === $this->admin->isGranted('EDITFULL', $object)
+      if ($this->getUser() !== null && false === $this->admin->isGranted('EDITFULL', $object)
         && $object->getOwner()->getId() != $this->get('security.context')->getToken()->getUser()->getId()) {
           throw new AccessDeniedException();
       }

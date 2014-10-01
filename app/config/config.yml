@@ -1,13 +1,12 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: release_parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: @DofAdminBundle/Resources/config/admin.yml }
 
 parameters:
   locales: [fr, en, de, it, es, pt, ru, ja]
-  current_release_number: '2.22'
-  beta_release_number: '2.23'
   current_release_database: dofawa2
   beta_release_database: dofawa3
 
@@ -50,6 +49,8 @@ twig:
         locales: %locales%
     form:
         resources:
+            # Par défaut:
+            - form_div_layout.html.twig
             - DofMainBundle:Form:fields.html.twig
 
 

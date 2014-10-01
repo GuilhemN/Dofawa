@@ -1,4 +1,14 @@
+var warningFillStyle = '#EECE00';
+
 jQuery(function () {
+    if(localStorage.notificationCheckbox = true)
+        jQuery('#notifications #checkbox input').prop('checked', true);
+    else
+        jQuery('#notifications #checkbox input').prop('checked', false);
+
+    if (!('Notification' in window))
+        jQuery('#notifications #checkbox input').remove();
+
     var unread = jQuery('#notifications span.badge').html();
     majNotificationsTitle(unread);
 
@@ -27,55 +37,34 @@ jQuery(function () {
             jQuery('#notifications .dropdown-menu').append(html);
             jQuery('#notifications span.badge').html(data.unread);
 
+            delete localStorage.notified;
             majNotificationsTitle(data.unread);
         });
     });
 
     jQuery('#notifications #checkbox input').on('click', function(){
+        localStorage.notificationCheckbox = jQuery(this).is(':checked');
         if(jQuery(this).is(':checked')) {
-        	if (!('Notification' in window))
-                var error = true;
+        	if (Notification.permission === 'denied')
+                $(this).prop('checked', false);
             else
             	Notification.requestPermission(function (perm) {
-            		if (perm != 'granted')
-            			var error = true;
-            		else
-            			var error = false;
+            		if (perm === 'granted')
+                        return true;
+                    else
+                        jQuery('#notifications #checkbox input').prop('checked', false);
             	});
-
-            if(error)
-                $(this).prop('checked', false);
         }
     });
 });
 
-
-function makeNotificationIcon(fillStyle, icon) { return runTask(function* () {
-	var imgTask = fetchImage(icon);
-	var canvas = document.createElement('canvas');
-	canvas.width = 40;
-	canvas.height = 40;
-	var ctx = canvas.getContext('2d');
-	ctx.fillStyle = (typeof fillStyle == 'function') ? fillStyle(canvas, ctx) : fillStyle;
-	ctx.beginPath();
-	ctx.arc(20, 20, 20, 0, Math.PI * 2.0, false);
-	ctx.closePath();
-	ctx.fill();
-	try {
-		var img = yield imgTask;
-		ctx.drawImage(img, 8, 8, 24, 24);
-	} catch (e) { }
-	return canvas.toDataURL();
-}); }
-
-function notify(fillStyle, icon, title, text, preference) {
-    var hasPreference = arguments.length > 4; return runTask(function* () {
+function notify(fillStyle, title, text, preference) {
+    var hasPreference = arguments.length > 4;
 	if (!hasPreference || (preference && preference.checked)) {
-		var img = yield makeNotificationIcon(fillStyle, icon);
-		var notif = new Notification(title, { body: text, icon: img });
-		setTimeout(notif.close.bind(notif), 8000);
+		var notif = new Notification(title.replace(/<[^>]+>/gi, ''), { body: text.replace(/<[^>]+>/gi, '') });
+		setTimeout(notif.close.bind(notif), 15000);
 	}
-}); }
+}
 
 function checkUnreadNotifications(){
     jQuery.ajax({
@@ -83,6 +72,16 @@ function checkUnreadNotifications(){
     }).done(function(data) {
         jQuery('#notifications span.badge').html(data.unread);
         majNotificationsTitle(data.unread);
+
+        if (document.hidden)
+            if(jQuery('#notifications #checkbox input').is(':checked'))
+                for (var i = 0; i < data.notifications.length; i++) {
+                    var notification = data.notifications[i];
+                    if(jQuery.inArray(notification.id, getStoredArray(localStorage, 'notified')) == -1){
+                        notify(warningFillStyle, notification.message, notification.createdAt);
+                        addToStoredArray(localStorage, 'notified', notification.id);
+                    }
+                }
     });
 }
 
@@ -95,5 +94,19 @@ function majNotificationsTitle(unread){
     else if(unread > 0)
         document.title = '(' + unread + ') ' + document.title;
 }
-
+function getStoredArray(storage, key) {
+    if (key in storage) return JSON.parse(storage[key]);
+    return [ ];
+}
+function getStoredObject(storage, key) {
+    if (key in storage) return JSON.parse(storage[key]);
+    return { };
+}
+function setStoredObject(storage, key, value) {
+    storage[key] = JSON.stringify(value);
+}
+var setStoredArray = setStoredObject;
+function addToStoredArray(storage, key, ...values) {
+    setStoredArray(storage, key, getStoredArray(storage, key).concat(values));
+}
 setInterval(checkUnreadNotifications, 25000)

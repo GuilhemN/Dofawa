@@ -1,0 +1,16 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+    {% if form is defined %}
+        {{ form(form, { 'style': 'horizontal' }) }}
+    {% endif %}
+    Il y a {{ count }} résultats.
+
+    {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+
+    {% for item in items %}
+        {% include 'DofItemsBundle::item.html.twig' with {'item': item, 'slugs': slugs | default('null')} %}
+    {% endfor %}
+
+    {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+{% endblock %}
