@@ -7,11 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
+use Dof\BuildBundle\Entity\Item;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
 use Dof\BuildBundle\BuildSlot;
 use Dof\CharactersBundle\Gender;
-use Dof\UserBundle\Entity\Badge;
 
 class BuildController extends Controller
 {
@@ -122,5 +122,43 @@ class BuildController extends Controller
             'dofus_slots' => $this->dofus_slots,
             'items_slots' => $this->items_slots
             ]);
+    }
+
+    /**
+     * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
+     */
+    public function addItemsAction($user, $character, Stuff $stuff){
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('DofUserBundle:user')->findOneBySlug($user);
+        if($this->getUser()->getSlug() !== $user->getSlug() or $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
+            throw $this->createAccessDeniedException();
+
+        $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
+
+        $perso = $persoR->findForShow($user, $character);
+
+        if(empty($perso) or $stuff->getCharacter() != $perso)
+            throw $this->createNotFoundException();
+
+        $request = $this->get('request');
+        $itemsIds = array_slice((array) $request->request->get('items'), 16);
+        $items = $em->getRepository('DofItemsBundle:ItemTemplate')->find($itemsIds);
+
+        $bItemRepo = $em->getRepository('DofBuildBundle:Item');
+        foreach($items as $item) {
+            $slot = BuildSlot::getBuildSlot($item->getType()->getSlot());
+            $bItem = $bItemRepo->findOneBy(array('stuff' => $stuff, 'slot' => $slot));
+            if($bItem !== null)
+                $em->remove($bItem);
+
+            $bItem = new Item();
+            $bItem->setStuff($stuff);
+            $bItem->setItemTemplate($item);
+            $bItem->setSlot($slot);
+
+            $em->persist($bItem);
+
+        }
+        $em->flush();
     }
 }
