@@ -42,6 +42,6 @@ class ItemType extends AbstractType
      */
     public function getName()
     {
-        return 'dof_itemsbundle_item';
+        return 'items';
     }
 }
