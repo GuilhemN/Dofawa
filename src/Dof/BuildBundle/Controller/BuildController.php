@@ -129,7 +129,7 @@ class BuildController extends Controller
      */
     public function addItemsAction($user, $character, Stuff $stuff){
         $em = $this->getDoctrine()->getManager();
-        $userE = $em->getRepository('DofUserBundle:user')->findOneBySlug($userSlug);
+        $userE = $em->getRepository('DofUserBundle:user')->findOneBySlug($user);
         if($this->getUser()->getSlug() !== $userE->getSlug() or $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
             throw $this->createAccessDeniedException();
 
