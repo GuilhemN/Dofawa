@@ -127,15 +127,15 @@ class BuildController extends Controller
     /**
      * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
      */
-    public function addItemsAction($user, $character, Stuff $stuff){
+    public function addItemsAction($userSlug, $characterSlug, Stuff $stuff){
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('DofUserBundle:user')->findOneBySlug($user);
+        $user = $em->getRepository('DofUserBundle:user')->findOneBySlug($userSlug);
         if($this->getUser()->getSlug() !== $user->getSlug() or $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
             throw $this->createAccessDeniedException();
 
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
-        $perso = $persoR->findForShow($user, $character);
+        $perso = $persoR->findForShow($userSlug, $characterSlug);
 
         if(empty($perso) or $stuff->getCharacter() != $perso)
             throw $this->createNotFoundException();
@@ -160,5 +160,11 @@ class BuildController extends Controller
 
         }
         $em->flush();
+
+        return $this->redirect($this->generateUrl('dof_build_show', [
+            'user' => $userSlug,
+            'character' => $characterSlug,
+            'stuff' => $stuff->getSlug()
+            ]));
     }
 }
