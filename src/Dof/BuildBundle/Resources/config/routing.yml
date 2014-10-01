@@ -11,8 +11,8 @@ dof_build_show:
         stuff: '[0-9a-z-]+'
 
 dof_build_additem_post:
-    path:     /{user}/{character}/{stuff}/add/
-    defaults: { _controller: DofItemsBundle:Items:addItem}
+    path:     /{user}/{character}/{stuff}/add-items/
+    defaults: { _controller: DofBuildBundle:Build:addItems}
     requirements:
         user: '[0-9a-z-]+'
         character: '[0-9a-z-]+'
@@ -21,7 +21,7 @@ dof_build_additem_post:
 
 dof_build_additem:
     path:     /{user}/{character}/{stuff}/add/{type}/{page}
-    defaults: { _controller: DofItemsBundle:Items:addItem, page: 1}
+    defaults: { _controller: DofItemsBundle:Items:showBuildItems, page: 1}
     requirements:
         user: '[0-9a-z-]+'
         character: '[0-9a-z-]+'
