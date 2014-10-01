@@ -143,7 +143,7 @@ class BuildController extends Controller
             throw $this->createNotFoundException();
 
         $request = $this->get('request');
-        $itemsIds = array_slice((array) $request->request->get('items'), 16);
+        $itemsIds = (array) $request->request->get('items');
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
 
         $bItemRepo = $em->getRepository('DofBuildBundle:Item');
