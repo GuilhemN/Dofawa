@@ -7,7 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\ItemsBundle\Entity\ItemTemplate;
 use Dof\ItemsBundle\Form\ItemType;
+
 use Dof\BuildBundle\BuildSlot;
+use Dof\BuildBundle\Entity\PlayerCharacter;
+use Dof\BuildBundle\Entity\Stuff;
+use Dof\GraphicsBundle\Entity\BuildLook;
 
 class ItemsController extends Controller
 {
