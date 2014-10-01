@@ -12,7 +12,7 @@ dof_build_show:
 
 dof_build_additem_post:
     path:     /{user}/{character}/{stuff}/add/
-    defaults: { _controller: DofItemsBundle:Items:addItem}
+    defaults: { _controller: DofItemsBundle:Items:addItems}
     requirements:
         user: '[0-9a-z-]+'
         character: '[0-9a-z-]+'
