@@ -49,7 +49,7 @@ class ItemsController extends Controller
         if(empty($perso) or $stuff->getCharacter() != $perso)
             throw $this->createNotFoundException();
 
-        $params = $this->getItems(['type' => BuildSlot::getItemsSlot($buildSlot)]);
+        $params = $this->getItems(['type' => BuildSlot::getItemsSlot($buildSlot)], $page);
 
 
         return $this->render('DofItemsBundle:Items:index.html.twig',
