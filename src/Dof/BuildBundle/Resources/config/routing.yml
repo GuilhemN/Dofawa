@@ -11,7 +11,7 @@ dof_build_show:
         stuff: '[0-9a-z-]+'
 
 dof_build_additem:
-    path:     /{character}/{stuff}/add/{type}/{page}
+    path:     /{user}/{character}/{stuff}/add/{type}/{page}
     defaults: { _controller: DofItemsBundle:Items:addItem, page: 1}
     requirements:
         user: '[0-9a-z-]+'
