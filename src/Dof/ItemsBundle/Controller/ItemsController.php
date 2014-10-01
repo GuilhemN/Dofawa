@@ -59,7 +59,7 @@ class ItemsController extends Controller
             ['slugs' => [
                 'user' => $user,
                 'character' => $character,
-                'stuff' => $stuff
+                'stuff' => $stuff->getSlug()
                 ]
             ] + $params
             );
