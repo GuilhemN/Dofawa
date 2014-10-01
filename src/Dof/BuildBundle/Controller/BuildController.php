@@ -15,6 +15,27 @@ use Dof\UserBundle\Entity\Badge;
 
 class BuildController extends Controller
 {
+    protected $dofus_slots = [
+                BuildSlot::DOFUS1,
+                BuildSlot::DOFUS2,
+                BuildSlot::DOFUS3,
+                BuildSlot::DOFUS4,
+                BuildSlot::DOFUS5,
+                BuildSlot::DOFUS6,
+            ];
+    protected $items_slots = [
+                BuildSlot::HAT,
+                BuildSlot::CLOAK,
+                BuildSlot::AMULET,
+                BuildSlot::WEAPON,
+                BuildSlot::RING1,
+                BuildSlot::RING2,
+                BuildSlot::BELT,
+                BuildSlot::BOOTS,
+                BuildSlot::SHIELD,
+                BuildSlot::ANIMAL,
+            ];
+
     public function indexAction()
     {
         if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
@@ -92,32 +113,14 @@ class BuildController extends Controller
             $items[$item->getSlot()] = $item;
         }
 
-        if(empty($perso))
+        if(empty($perso) or $stuff->getCharater() != $perso)
             throw $this->createNotFoundException();
 
         return $this->render('DofBuildBundle:Build:show.html.twig', [
             'perso' => $perso,
             'stuff' => $stuff,
-            'dofus_slots' => [
-                BuildSlot::DOFUS1,
-                BuildSlot::DOFUS2,
-                BuildSlot::DOFUS3,
-                BuildSlot::DOFUS4,
-                BuildSlot::DOFUS5,
-                BuildSlot::DOFUS6,
-                ],
-            'items_slots' => [
-                BuildSlot::HAT,
-                BuildSlot::CLOAK,
-                BuildSlot::AMULET,
-                BuildSlot::WEAPON,
-                BuildSlot::RING1,
-                BuildSlot::RING2,
-                BuildSlot::BELT,
-                BuildSlot::BOOTS,
-                BuildSlot::SHIELD,
-                BuildSlot::ANIMAL,
-                ]
+            'dofus_slots' => $this->dofus_slots,
+            'items_slots' => $this->items_slots
             ]);
     }
 }
