@@ -16,24 +16,24 @@ use Dof\UserBundle\Entity\Badge;
 class BuildController extends Controller
 {
     protected $dofus_slots = [
-                BuildSlot::DOFUS1,
-                BuildSlot::DOFUS2,
-                BuildSlot::DOFUS3,
-                BuildSlot::DOFUS4,
-                BuildSlot::DOFUS5,
-                BuildSlot::DOFUS6,
+                'dofus1' => BuildSlot::DOFUS1,
+                'dofus2' => BuildSlot::DOFUS2,
+                'dofus3' => BuildSlot::DOFUS3,
+                'dofus4' => BuildSlot::DOFUS4,
+                'dofus5' => BuildSlot::DOFUS5,
+                'dofus6' => BuildSlot::DOFUS6,
             ];
     protected $items_slots = [
-                BuildSlot::HAT,
-                BuildSlot::CLOAK,
-                BuildSlot::AMULET,
-                BuildSlot::WEAPON,
-                BuildSlot::RING1,
-                BuildSlot::RING2,
-                BuildSlot::BELT,
-                BuildSlot::BOOTS,
-                BuildSlot::SHIELD,
-                BuildSlot::ANIMAL,
+                'hat' => BuildSlot::HAT,
+                'cloak' => BuildSlot::CLOAK,
+                'amulet' => BuildSlot::AMULET,
+                'weapon' => BuildSlot::WEAPON,
+                'ring1' => BuildSlot::RING1,
+                'ring2' => BuildSlot::RING2,
+                'belt' => BuildSlot::BELT,
+                'boots' => BuildSlot::BOOTS,
+                'shield' => BuildSlot::SHIELD,
+                'animal' => BuildSlot::ANIMAL,
             ];
 
     public function indexAction()
@@ -108,13 +108,13 @@ class BuildController extends Controller
 
         $perso = $persoR->findForShow($user, $character);
 
+        if(empty($perso) or $stuff->getCharacter() != $perso)
+            throw $this->createNotFoundException();
+
         $items = array();
         foreach($stuff->getItems() as $item){
             $items[$item->getSlot()] = $item;
         }
-
-        if(empty($perso) or $stuff->getCharacter() != $perso)
-            throw $this->createNotFoundException();
 
         return $this->render('DofBuildBundle:Build:show.html.twig', [
             'perso' => $perso,

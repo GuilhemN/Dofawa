@@ -23,18 +23,18 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            {% for dofus in dofus_slots %}
+            {% for type, slot in dofus_slots %}
             <div class="col-xs-3 col-md-12 col-lg-6">
-                <a href="#" class="thumbnail">
+                <a href="{{ path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type})}}" class="thumbnail">
                   <img src="{{ asset('bundles/dofbuild/img/item.jpg') }}" alt="...">
                 </a>
             </div>
             {% endfor %}
         </div>
         <div class="col-md-8">
-            {% for item in items_slots %}
+            {% for type, slot in items_slots %}
             <div class="col-xs-3 col-md-6 col-lg-4">
-                <a href="#" class="thumbnail">
+                <a href="{{ path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type})}}" class="thumbnail">
                   <img src="{{ asset('bundles/dofbuild/img/item.jpg') }}" alt="...">
                 </a>
             </div>

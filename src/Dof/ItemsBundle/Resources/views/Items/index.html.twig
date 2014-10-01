@@ -1,8 +1,9 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
-    {{ form(form, { 'style': 'horizontal' }) }}
-    
+    {% if form is defined %}
+        {{ form(form, { 'style': 'horizontal' }) }}
+    {% endif %}
     Il y a {{ count }} résultats.
 
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
