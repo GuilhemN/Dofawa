@@ -113,7 +113,7 @@ class BuildController extends Controller
             $items[$item->getSlot()] = $item;
         }
 
-        if(empty($perso) or $stuff->getCharater() != $perso)
+        if(empty($perso) or $stuff->getCharacter() != $perso)
             throw $this->createNotFoundException();
 
         return $this->render('DofBuildBundle:Build:show.html.twig', [
