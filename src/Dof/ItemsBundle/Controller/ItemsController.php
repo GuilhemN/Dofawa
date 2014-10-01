@@ -38,13 +38,16 @@ class ItemsController extends Controller
      * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
      */
     public function addItemAction($user, $character, Stuff $stuff, $type, $page){
+        if($this->getUser()->getSlug() !== $user)
+            throw $this->createAccessDeniedException();
+
         if(($buildSlot = BuildSlot::getValue(strtoupper($type))) === null)
             throw $this->createNotFoundException('Type d\'item non trouvé');
 
         $em = $this->getDoctrine()->getManager();
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
-        $perso = $persoR->findForShow($user, $character);
+        $perso = $persoR->findForShow($this->getUser(), $character);
 
         if(empty($perso) or $stuff->getCharacter() != $perso)
             throw $this->createNotFoundException();
