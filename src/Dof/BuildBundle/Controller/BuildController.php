@@ -162,8 +162,8 @@ class BuildController extends Controller
             foreach($caracts as $k => &$caract)
                 $caract = $item->{'getMax' . ucfirst($k)}();
 
-            $bItem->setCharacteristics($caracts);
-            
+            $bItem->setCharacteristics($caracts, true);
+
             $em->persist($bItem);
 
         }
