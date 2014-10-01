@@ -72,5 +72,11 @@ class ItemsController extends Controller
 			'pages_count' => ceil($count / $perPage),
 			'route_params' => array()
 		);
+
+        return array(
+            'count' => $count,
+            'items' => $items,
+            'pagination' => $pagination
+        );
     }
 }
