@@ -1,107 +1,160 @@
-// main: material.less
+//
+// Buttons
+// --------------------------------------------------
 
-.btn-shadow() {
-    .shadow-z-2();
-    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    &:active:not(.btn-link) {
-        .shadow-z-3();
-    }
-}
+
+// Base styles
+// --------------------------------------------------
 
 .btn {
-    position: relative;
-    padding: 8px 30px;
-    border: 0;
-    margin: 10px 1px;
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  font-weight: @btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+  .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-base);
+  .user-select(none);
 
-    cursor: pointer;
-    border-radius: 4px;
-    text-transform: uppercase;
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      .tab-focus();
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &.focus {
+    color: @btn-default-color;
     text-decoration: none;
-    color: @darkbg-text;
+  }
 
-    &:hover {
-        color: @darkbg-text;
-    }
-    &:hover:not(.btn-link) {
-        .shadow-z-2-hover();
-    }
-    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    &:active:not(.btn-link) {
-        .shadow-z-3();
-    }
-    outline: none !important;
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
 
-    .variations(~":not(.btn-link)", background-color, @btn-default);
-
-}
-// This is needed to style buttons which has not a variation suffix (they must stiled as btn-default)
-.btn-link, .btn:not([class^="btn btn-"]), .btn-default {
-    color: @lightbg-text;
-    &:hover {
-        color: @lightbg-text;
-    }
-}
-.btn:not([class^="btn btn-"]), .btn-default {
-    &:hover {
-        background-color: rgba(255,255,255,0.5);
-    }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none; // Future-proof disabling of clicks
+    .opacity(.65);
+    .box-shadow(none);
+  }
 }
 
-.btn-raised {
-    .btn-shadow();
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btn-default {
+  .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+}
+.btn-primary {
+  .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+}
+// Success appears as green
+.btn-success {
+  .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+}
+// Info appears as blue-green
+.btn-info {
+  .button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+}
+// Warning appears as orange
+.btn-warning {
+  .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+}
+// Danger and error appear as red
+.btn-danger {
+  .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
 }
 
-.open > .dropdown-toggle.btn {
-    .variations(~"", background-color, @btn-default);
-}
-.btn-flat {
-    box-shadow: none !important;
-    &.btn-default:hover {
-        background: none;
+
+// Link buttons
+// -------------------------
+
+// Make a button look and behave like a link
+.btn-link {
+  color: @link-color;
+  font-weight: normal;
+  border-radius: 0;
+
+  &,
+  &:active,
+  &.active,
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: transparent;
+    .box-shadow(none);
+  }
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: transparent;
+  }
+  &:hover,
+  &:focus {
+    color: @link-hover-color;
+    text-decoration: underline;
+    background-color: transparent;
+  }
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus {
+      color: @btn-link-disabled-color;
+      text-decoration: none;
     }
+  }
 }
 
-.btn-group, .btn-group-vertical {
-    position: relative;
-    border-radius: 4px;
-    margin: 10px 1px;
 
-    .btn-shadow();
-    &.open .dropdown-toggle {
-        box-shadow: none;
-    }
-    &.btn-group-raised {
-        .btn-shadow();
-    }
-    .btn, .btn:active, .btn-group {
-        box-shadow: none !important;
-        margin: 0;
-    }
-    .btn:active .caret { margin-left: -1px; }
+// Button Sizes
+// --------------------------------------------------
+
+.btn-lg {
+  // line-height: ensure even-numbered height of button next to large input
+  .button-size(@padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
 }
-.btn-group-flat {
-    box-shadow: none !important;
+.btn-sm {
+  // line-height: ensure proper height of button next to small input
+  .button-size(@padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
+}
+.btn-xs {
+  .button-size(@padding-xs-vertical; @padding-xs-horizontal; @font-size-small; @line-height-small; @border-radius-small);
 }
 
-// Floating Action Button (FAB)
 
-.btn-fab {
-    margin: 0;
-    padding: 15px;
-    font-size: 26px;
-    width: 56px;
-    height: 56px;
-    &, &:hover {
-        .variations(~"", background-color, transparent);
-    }
-    &, .ripple-wrapper {
-        border-radius: 100%;
-    }
-    &.btn-mini {
-        width: 40px;
-        height: 40px;
-        padding: 13px;
-        font-size: 15px;
-    }
+// Block button
+// --------------------------------------------------
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+// Vertically space out multiple block buttons
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
 }

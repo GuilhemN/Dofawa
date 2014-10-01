@@ -1,78 +1,39 @@
-// main: material.less
+// Mixins
+// --------------------------------------------------
 
-// usage: .variations(~" .check", color, transparent);
-.variations(@extra, @property, @default) {
-    // Bootstrap shades
-    &@{extra}, &-default@{extra} {
-        @{property}: @default;
-    }
-    &-primary@{extra} {
-        @{property}: @primary;
-    }
-    &-success@{extra} {
-        @{property}: @success;
-    }
-    &-info@{extra} {
-        @{property}: @info;
-    }
-    &-warning@{extra} {
-        @{property}: @warning;
-    }
-    &-danger@{extra} {
-        @{property}: @danger;
-    }
-    // Material shades
-    &-material-red@{extra} {
-        @{property}: @red;
-    }
-    &-material-pink@{extra} {
-        @{property}: @pink;
-    }
-    &-material-purple@{extra} {
-        @{property}: @purple;
-    }
-    &-material-deeppurple@{extra} {
-        @{property}: @deeppurple;
-    }
-    &-material-indigo@{extra} {
-        @{property}: @indigo;
-    }
-    &-material-lightblue@{extra} {
-        @{property}: @lightblue;
-    }
-    &-material-cyan@{extra} {
-        @{property}: @cyan;
-    }
-    &-material-teal@{extra} {
-        @{property}: @teal;
-    }
-    &-material-lightgreen@{extra} {
-        @{property}: @lightgreen;
-    }
-    &-material-lime@{extra} {
-        @{property}: @lime;
-    }
-    &-material-lightyellow@{extra} {
-        @{property}: @lightyellow;
-    }
-    &-material-orange@{extra} {
-        @{property}: @orange;
-    }
-    &-material-deeporange@{extra} {
-        @{property}: @deeporange;
-    }
-    &-material-grey@{extra} {
-        @{property}: @grey;
-    }
-    &-material-bluegrey@{extra} {
-        @{property}: @bluegrey;
-    }
-    &-material-brown@{extra} {
-        @{property}: @brown;
-    }
-    &-material-lightgrey@{extra} {
-        @{property}: @lightgrey;
-    }
-}
+// Utilities
+@import "mixins/hide-text.less";
+@import "mixins/opacity.less";
+@import "mixins/image.less";
+@import "mixins/labels.less";
+@import "mixins/reset-filter.less";
+@import "mixins/resize.less";
+@import "mixins/responsive-visibility.less";
+@import "mixins/size.less";
+@import "mixins/tab-focus.less";
+@import "mixins/text-emphasis.less";
+@import "mixins/text-overflow.less";
+@import "mixins/vendor-prefixes.less";
 
-@all-variations: ~"-default, -primary, -info, -success, -warning, -danger";
+// Components
+@import "mixins/alerts.less";
+@import "mixins/buttons.less";
+@import "mixins/panels.less";
+@import "mixins/pagination.less";
+@import "mixins/list-group.less";
+@import "mixins/nav-divider.less";
+@import "mixins/forms.less";
+@import "mixins/progress-bar.less";
+@import "mixins/table-row.less";
+
+// Skins
+@import "mixins/background-variant.less";
+@import "mixins/border-radius.less";
+@import "mixins/gradients.less";
+
+// Layout
+@import "mixins/clearfix.less";
+@import "mixins/center-block.less";
+@import "mixins/nav-vertical-align.less";
+@import "mixins/grid-framework.less";
+@import "mixins/grid.less";
