@@ -134,6 +134,7 @@ class BuildController extends Controller
         if($this->getUser()->getId() != $user->getId() and !$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
             throw $this->createAccessDeniedException();
 
+        $em = $this->getDoctrine()->getManager();
         $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
         $perso = $persoR->findForShow($user->getSlug(), $character);
