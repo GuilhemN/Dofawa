@@ -10,15 +10,15 @@
   {% for guild in guilds %}
 
 	  	<div class="panel panel-default">
-		 	<div class="panel-heading">guild.getName()</div>
+		 	<div class="panel-heading">{{guild.getName()}}</div>
 		  	<div class="panel-body">
 		  	</div>
 			<table>
-				<tr><td>Nom de la guilde : </td><td>guild.getName()</td></tr>
-				<tr><td>Serveur : </td><td>guild.getServeur()</td></tr>
-				<tr><td>Niveau de la guilde : </td><td>guild.getLvlguild()</td></tr>
-				<tr><td>Recrutement : </td><td>{% if guild.getRecruitment() %} Oui {% else %} Non {% endif %}</td></tr>
-				<tr><td>Description : </td><td>guild.getDescription()</td></tr>
+				<tr><td><b>Nom de la guilde : </b></td><td>{{guild.getName()}}</td></tr>
+				<tr><td><b>Serveur : </b></td><td>{{guild.getServeur()}}</td></tr>
+				<tr><td><b>Niveau de la guilde : </b></td><td>{{guild.getLvlguild()}}</td></tr>
+				<tr><td><b>Recrutement : </b></td><td>{% if guild.getRecruitment() %} Oui {% else %} Non {% endif %}</td></tr>
+				<tr><td><b>Description : </b></td><td>{{guild.getDescription()}}</td></tr>
 			</table>  
 		</div>
 
