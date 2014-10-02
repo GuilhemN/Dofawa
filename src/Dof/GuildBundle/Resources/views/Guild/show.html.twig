@@ -6,27 +6,23 @@
 
 {% block body %}
 
-<h1><a href="{{path('dof_guild_add')}}">Ajouter une guilde !</a></h1> 
-  {% for guild in guilds %}
-
-	  	<div class="panel panel-default">
+<h1><a href="{{path('dof_guild_home')}}">Retour au guildes !</a></h1> 
+ 	<div class="panel panel-default">
 		 	<div class="panel-heading">{{guild.getName()}}</div>
 		  	<div class="panel-body">
 		  	</div>
 			<table>
 				<tr><td><b>Nom de la guilde : </b></td><td>{{guild.getName()}}</td></tr>
+				<tr><td><b>Date : </b></td><td>{{guild.getCreatedAt() | date("d/m/Y")}}</td></tr>
 				<tr><td><b>Serveur : </b></td><td>{{guild.getServeur()}}</td></tr>
 				<tr><td><b>Niveau de la guilde : </b></td><td>{{guild.getLvlguild()}}</td></tr>
+				<tr><td><b>Niveau minimum de recrutement : </b></td><td>{{guild.getLvlmini()}}</td></tr>
+				<tr><td><b>Nom du meneur : </b></td><td>{{guild.getLeader()}}</td></tr>
 				<tr><td><b>Recrutement : </b></td><td>{% if guild.getRecruitment() %} Oui {% else %} Non {% endif %}</td></tr>
+				<tr><td><b>Spécialité : </b></td><td>{{guild.getSpeciality()}}</td></tr>
 				<tr><td><b>Description : </b></td><td>{{guild.getDescription()}}</td></tr>
+				<tr><td><b>Forum : </b></td><td>{{guild.getForum()}}</td></tr>
 			</table>  
-			<center><a href="{{path('dof_guild_show', { 'slug' : guild.slug })}}"></a></center>
 		</div>
-
-  {% else %}
-      <h2>Pas (encore !) de guilde</h2>
-  {% endfor %}
-
-{% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 
 {% endblock %}

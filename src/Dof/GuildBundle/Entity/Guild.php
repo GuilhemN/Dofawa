@@ -9,6 +9,8 @@ use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
+use XN\Metadata\SluggableInterface;
+use XN\Metadata\SluggableTrait;
 
 /**
  * Guild
@@ -16,9 +18,9 @@ use Dof\UserBundle\OwnableTrait;
  * @ORM\Table(name="dof_guild")
  * @ORM\Entity(repositoryClass="Dof\GuildBundle\Entity\GuildRepository")
  */
-class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInterface
+class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInterface, SluggableInterface
 {
-    use OwnableTrait, TimestampableTrait;
+    use OwnableTrait, TimestampableTrait, SluggableTrait;
 
     /**
      * @var integer

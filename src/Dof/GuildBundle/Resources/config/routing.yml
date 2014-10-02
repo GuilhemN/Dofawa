@@ -4,6 +4,12 @@ dof_guild_home:
     requirements:
       page: \d+
 
+dof_guild_show:
+    path:     /guild/{slug}
+    defaults: { _controller: DofGuildBundle:Guild:show }
+    requirements:
+       slug: '[0-9a-z-]+'
+
 dof_guild_add:
     path:     /add/
     defaults: { _controller: DofGuildBundle:Guild:add }

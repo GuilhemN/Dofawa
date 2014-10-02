@@ -29,6 +29,14 @@ class GuildController extends Controller
         return $this->render('DofGuildBundle:Guild:index.html.twig', array('guilds' => $guilds, 'page' => $page, 'pagination' => $pagination));
     }
 
+    /**
+   	* @ParamConverter("guild")
+   	*/
+    public function showAction(Guild $guild)
+    {
+    	return $this->render('DofGuildBundle:Guild:show.html.twig', array('guild' => $guild));
+    }
+
     public function addAction()
     {
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
