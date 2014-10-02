@@ -22,7 +22,7 @@ class GuildType extends AbstractType
             ->add('recruitment')
             ->add('speciality')
             ->add('description')
-            ->add('forum')
+            ->add('forum') 
         ;
     }
     

@@ -70,7 +70,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
      * @ORM\Column(name="speciality", type="string", length=255)
      */
     private $speciality;
-
+ 
     /**
      * @var text
      *

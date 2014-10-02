@@ -49,7 +49,7 @@ class GuildController extends Controller
 
 		      	return $this->redirect($this->generateUrl('dof_guild_home');
 		    }
-		}
+		} 
     	return $this->render('DofGuildBundle:Guild:add.html.twig', array('form' => $form->createView()))
     }
 }
