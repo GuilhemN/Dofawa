@@ -9,8 +9,6 @@ use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
-use XN\L10n\LocalizedOriginInterface;
-use XN\L10n\LocalizedOriginTrait;
 
 /**
  * Guild
@@ -18,9 +16,9 @@ use XN\L10n\LocalizedOriginTrait;
  * @ORM\Table(name="dof_guild")
  * @ORM\Entity(repositoryClass="Dof\GuildBundle\Entity\GuildRepository")
  */
-class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInterface, LocalizedOriginInterface
+class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInterface
 {
-    use OwnableTrait, TimestampableTrait, LocalizedOriginTrait;
+    use OwnableTrait, TimestampableTrait;
 
     /**
      * @var integer
@@ -58,6 +56,13 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
      * @ORM\Column(name="leader", type="string", length=255)
      */
     private $leader;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
 
     /**
      * @var boolean
@@ -280,5 +285,28 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     public function getForum()
     {
         return $this->forum;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Guild
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
