@@ -15,6 +15,7 @@ class GuildType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name')
             ->add('serveur')
             ->add('lvlguild')
             ->add('lvlmini')
