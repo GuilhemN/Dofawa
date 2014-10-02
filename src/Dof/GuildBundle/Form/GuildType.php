@@ -20,8 +20,8 @@ class GuildType extends AbstractType
             ->add('lvlguild')
             ->add('lvlmini')
             ->add('leader')
-            ->add('recruitment')
-            ->add('speciality')
+            ->add('recruitment', null, array('required' => false))
+            ->add('speciality', array('required' => false))
             ->add('description')
             ->add('forum') 
         ;
