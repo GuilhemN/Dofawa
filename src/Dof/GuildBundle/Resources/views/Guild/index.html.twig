@@ -20,7 +20,6 @@
 				<tr><td><b>Recrutement : </b></td><td>{% if guild.getRecruitment() %} Oui {% else %} Non {% endif %}</td></tr>
 				<tr><td><b>Description : </b></td><td>{{guild.getDescription()}}</td></tr>
 			</table>  
-			<center><a href="{{path('dof_guild_show', { 'slug' : guild.slug })}}">en savoir++</a></center>
 		</div>
 
   {% else %}
