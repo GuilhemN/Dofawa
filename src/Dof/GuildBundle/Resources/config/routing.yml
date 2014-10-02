@@ -1,5 +1,9 @@
-dof_guild_homepage:
+dof_guild_home:
     path:     /{page}
     defaults: { _controller: DofGuildBundle:Guild:index, page: 1 }
     requirements:
     	page: \d+
+
+dof_guild_add:
+    path:     /add/
+    defaults: { _controller: DofGuildBundle:Guild:add }

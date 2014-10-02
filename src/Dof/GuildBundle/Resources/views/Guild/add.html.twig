@@ -1,0 +1,21 @@
+{% extends 'DofGuildBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}<li>Ajout</li>
+{% endblock %}
+
+{% block body %}
+{% autoescape %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3>Ajouter une guilde</h3>
+		</div>
+		<table class="table">
+	        <form method="post" {{ form_enctype(form) }} >
+	            {{ form_widget(form) }}
+	            <center><input type="submit" class="btn btn-primary" /></center>
+	        </form>
+		</table>
+	</div>
+{% endautoescape %}
+{% endblock %}

@@ -4,6 +4,9 @@ namespace Dof\GuildBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Dof\GuildBundle\Entity\Guild;
+use Dof\GuildBundle\Form\GuildType;
+
 class GuildController extends Controller
 {
     public function indexAction($page)
@@ -28,6 +31,25 @@ class GuildController extends Controller
 
     public function addAction()
     {
-    	return $this->render('DofGuildBundle:Guild:add.html.twig', array)
+    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+            throw $this->createAccessDeniedException();
+
+        $guild = new Guild;
+		$form = $this->createForm(new GuildType, $guild);
+
+		$request = $this->get('request');
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+
+		    if ($form->isValid()) {
+
+		    	$em = $this->getDoctrine()->getManager();
+		      	$em->persist($guild);
+		      	$em->flush();
+
+		      	return $this->redirect($this->generateUrl('dof_guild_home');
+		    }
+		}
+    	return $this->render('DofGuildBundle:Guild:add.html.twig', array('form' => $form->createView()))
     }
 }
