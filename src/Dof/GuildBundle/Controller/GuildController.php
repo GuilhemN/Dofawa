@@ -47,9 +47,9 @@ class GuildController extends Controller
 		      	$em->persist($guild);
 		      	$em->flush();
 
-		      	return $this->redirect($this->generateUrl('dof_guild_home');
+		      	return $this->redirect($this->generateUrl('dof_guild_home'));
 		    }
 		} 
-    	return $this->render('DofGuildBundle:Guild:add.html.twig', array('form' => $form->createView()))
+    	return $this->render('DofGuildBundle:Guild:add.html.twig', array('form' => $form->createView()));
     }
 }
