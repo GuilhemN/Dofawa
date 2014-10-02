@@ -174,7 +174,9 @@
   <script type="text/javascript" src="{{ asset('bundles/xnutility/js/utlcat.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('bundles/dofmain/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
-  <script src="{{ asset('bundles/dofmain/js/notifications.min.js') }}"></script>
+  {% if app.user is not null %}
+      <script src="{{ asset('bundles/dofmain/js/notifications.min.js') }}"></script>
+  {% endif %}
   <script type="text/javascript">
         $(".to-select2").select2();
   </script>

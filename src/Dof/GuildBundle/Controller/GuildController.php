@@ -14,6 +14,7 @@ class GuildController extends Controller
 		$repository = $this->getDoctrine()->getRepository('DofGuildBundle:Guild');
 
 		$guilds = $repository->findGuildsWithLimits($firstResult, $guildsPerPage);
+		$countGuilds = $repository->count();
 
 		$pagination = array(
    			'page' => $page,
@@ -23,5 +24,10 @@ class GuildController extends Controller
    		);
 
         return $this->render('DofGuildBundle:Guild:index.html.twig', array('guilds' => $guilds, 'page' => $page, 'pagination' => $pagination));
+    }
+
+    public function addAction()
+    {
+    	return $this->render('DofGuildBundle:Guild:add.html.twig', array)
     }
 }

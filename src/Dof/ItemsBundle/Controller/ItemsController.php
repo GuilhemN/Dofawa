@@ -37,7 +37,7 @@ class ItemsController extends Controller
     /**
      * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
      */
-    public function addItemAction($user, $character, Stuff $stuff, $type, $page){
+    public function showBuildItemsAction($user, $character, Stuff $stuff, $type, $page){
         if($this->getUser()->getSlug() !== $user)
             throw $this->createAccessDeniedException();
 
@@ -56,7 +56,12 @@ class ItemsController extends Controller
 
 
         return $this->render('DofItemsBundle:Items:index.html.twig',
-            [] + $params
+            ['slugs' => [
+                'user' => $user,
+                'character' => $character,
+                'stuff' => $stuff->getSlug()
+                ]
+            ] + $params
             );
     }
 

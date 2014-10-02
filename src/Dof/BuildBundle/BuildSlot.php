@@ -76,7 +76,7 @@ class BuildSlot extends Enum
 	}
 
 	public static function getBuildSlot($itemSlot){
-		if(!ItemSlot::isValid($buildSlot))
+		if(!ItemSlot::isValid($itemSlot))
 			return;
 
 		return self::getInversedRelations()[$itemSlot];

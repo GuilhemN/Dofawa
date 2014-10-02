@@ -22,4 +22,12 @@ class GuildRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+	public function count()
+    {
+        return $this->createQueryBuilder('g')
+            ->select('COUNT(g)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }
