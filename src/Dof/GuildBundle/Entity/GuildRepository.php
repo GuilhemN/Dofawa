@@ -16,7 +16,7 @@ class GuildRepository extends EntityRepository
 	{
 		$qb = $this->createQueryBuilder('g');
 
-		$qb->add('orderBy', 'g.name DESC')
+		$qb->orderBy('g.name', 'DESC')
 		   ->setFirstResult( $firstresult )
 		   ->setMaxResults( $maxresults );
 
