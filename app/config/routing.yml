@@ -1,3 +1,7 @@
+dof_guild:
+    resource: "@DofGuildBundle/Resources/config/routing.yml"
+    prefix:   /guild
+
 dof_forum:
     resource: "@DofForumBundle/Resources/config/routing.yml"
     prefix:   /forum
