@@ -1,11 +1,11 @@
 {% extends '::layout.html.twig' %}
 
 {% block breadcrumb %}
-  <li>Guildes</li>
+  {{ parent() }}<li>Voir</li>
 {% endblock %}
 
 {% block body %}
-
+{% autoescape %}
 <h2><a href="{{path('dof_guild_home')}}">Retour au guildes !</a></h2> 
  	<div class="panel panel-default">
 		 	<div class="panel-heading">{{guild.getName()}}</div>
@@ -24,5 +24,5 @@
 				<tr><td><b>Forum : </b></td><td>{{guild.getForum()}}</td></tr>
 			</table>  
 		</div>
-
+{% endautoescape %}
 {% endblock %}

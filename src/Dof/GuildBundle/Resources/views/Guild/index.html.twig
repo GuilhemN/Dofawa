@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-
+{% autoescape %}
 <h2><a href="{{path('dof_guild_add')}}">Ajouter une guilde !</a></h2> 
   {% for guild in guilds %}
 
@@ -28,5 +28,5 @@
   {% endfor %}
 
 {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
-
+{% endautoescape %}
 {% endblock %}
