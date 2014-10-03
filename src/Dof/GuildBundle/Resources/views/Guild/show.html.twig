@@ -1,7 +1,7 @@
-{% extends '::layout.html.twig' %}
+{% extends 'DofGuildBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-  {{ parent() }}<li>Voir</li>
+  {{ parent() }}<li>Details</li>
 {% endblock %}
 
 {% block body %}
@@ -10,19 +10,19 @@
  	<div class="panel panel-default">
 		 	<div class="panel-heading">{{guild.getName()}}</div>
 		  	<div class="panel-body">
-		  	</div>
-			<table>
-				<tr><td><b>Nom de la guilde : </b></td><td>{{guild.getName()}}</td></tr>
-				<tr><td><b>Date : </b></td><td>{{guild.getCreatedAt() | date("d/m/Y")}}</td></tr>
-				<tr><td><b>Serveur : </b></td><td>{{guild.getServeur()}}</td></tr>
-				<tr><td><b>Niveau de la guilde : </b></td><td>{{guild.getLvlguild()}}</td></tr>
-				<tr><td><b>Niveau minimum de recrutement : </b></td><td>{{guild.getLvlmini()}}</td></tr>
-				<tr><td><b>Nom du meneur : </b></td><td>{{guild.getLeader()}}</td></tr>
-				<tr><td><b>Recrutement : </b></td><td>{% if guild.getRecruitment() %} Oui {% else %} Non {% endif %}</td></tr>
-				<tr><td><b>Spécialité : </b></td><td>{{guild.getSpeciality()}}</td></tr>
-				<tr><td><b>Description : </b></td><td>{{guild.getDescription()}}</td></tr>
-				<tr><td><b>Forum : </b></td><td>{{guild.getForum()}}</td></tr>
-			</table>  
+				<table>
+					<tr><td><b>Nom de la guilde : </b></td><td>{{guild.getName()}}</td></tr>
+					<tr><td><b>Date : </b></td><td>{{guild.getCreatedAt() | date("d/m/Y")}}</td></tr>
+					<tr><td><b>Serveur : </b></td><td>{{guild.getServeur()}}</td></tr>
+					<tr><td><b>Niveau de la guilde : </b></td><td>{{guild.getLvlguild()}}</td></tr>
+					<tr><td><b>Niveau minimum de recrutement : </b></td><td>{{guild.getLvlmini()}}</td></tr>
+					<tr><td><b>Nom du meneur : </b></td><td>{{guild.getLeader()}}</td></tr>
+					<tr><td><b>Recrutement : </b></td><td>{% if guild.getRecruitment() %} Oui {% else %} Non {% endif %}</td></tr>
+					<tr><td><b>Spécialité : </b></td><td>{{guild.getSpeciality()}}</td></tr>
+					<tr><td><b>Description : </b></td><td>{{guild.getDescription()}}</td></tr>
+					<tr><td><b>Forum : </b></td><td>{{guild.getForum()}}</td></tr>
+				</table> 
+			</div> 
 		</div>
 {% endautoescape %}
 {% endblock %}
