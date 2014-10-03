@@ -5,7 +5,7 @@ dof_guild_home:
       page: \d+
 
 dof_guild_show:
-    path:     /guild/{slug}
+    path:     /{slug}
     defaults: { _controller: DofGuildBundle:Guild:show }
     requirements:
        slug: '[0-9a-z-]+'

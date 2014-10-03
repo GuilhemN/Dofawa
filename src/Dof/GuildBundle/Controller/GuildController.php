@@ -3,6 +3,7 @@
 namespace Dof\GuildBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\GuildBundle\Entity\Guild;
 use Dof\GuildBundle\Form\GuildType;
