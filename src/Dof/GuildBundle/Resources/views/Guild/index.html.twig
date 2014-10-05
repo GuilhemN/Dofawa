@@ -1,0 +1,32 @@
+{% extends '::layout.html.twig' %}
+
+{% block breadcrumb %}
+  <li>Guildes</li>
+{% endblock %}
+
+{% block body %}
+{% autoescape %}
+<h2><a href="{{path('dof_guild_add')}}">Ajouter une guilde !</a></h2> 
+  {% for guild in guilds %}
+
+	  	<div class="panel panel-default">
+		 	<div class="panel-heading">{{guild.getName()}}</div>
+		  	<div class="panel-body">
+				<table>
+					<tr><td><b>Nom de la guilde : </b></td><td>{{guild.getName()}}</td></tr>
+					<tr><td><b>Serveur : </b></td><td>{{guild.getServeur()}}</td></tr>
+					<tr><td><b>Niveau de la guilde : </b></td><td>{{guild.getLvlguild()}}</td></tr>
+					<tr><td><b>Recrutement : </b></td><td>{% if guild.getRecruitment() %} Oui {% else %} Non {% endif %}</td></tr>
+					<tr><td><b>Description : </b></td><td>{{guild.getDescription()}}</td></tr>
+				</table> 
+				<center><a href="{{ path('dof_guild_show', { 'slug' : guild.slug }) }}"><span class="glyphicon glyphicon-plus"></span> Voir</a></center>
+			</div>
+		</div>
+
+  {% else %}
+      <h2>Pas (encore !) de guilde</h2>
+  {% endfor %}
+
+{% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+{% endautoescape %}
+{% endblock %}
