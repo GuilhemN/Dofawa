@@ -150,7 +150,7 @@ class Translator extends BaseTranslator {
         if (isset($this->language_fallbacks_by_domain[$domain]))
             return array_merge([ $locale ], self::getForLocale($this->language_fallbacks_by_domain[$domain], $locale));
         if (is_array($this->language_fallbacks))
-            return array_merge([ $locale ], self::getForLocale($this->language_fallbacks, $locale));
+            return array_merge([ $locale ], (array) self::getForLocale($this->language_fallbacks, $locale));
         return [ $locale ];
     }
 
