@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9f3446932fbb45de746ba68557f7dd78",
+    "hash": "5cf5a2240992b096832a3b7b8b8e7880",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -237,7 +237,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -334,7 +334,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -537,7 +537,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -591,7 +591,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -838,29 +838,30 @@
         },
         {
             "name": "friendsofsymfony/user-bundle",
-            "version": "dev-master",
+            "version": "v2.0.0-alpha1",
+            "target-dir": "FOS/UserBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "56bd660f077dd6b8038ebe613551446f3c0d758b"
+                "reference": "5a53273c3ae4e3f128c71522cd8398515718bbb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/56bd660f077dd6b8038ebe613551446f3c0d758b",
-                "reference": "56bd660f077dd6b8038ebe613551446f3c0d758b",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/5a53273c3ae4e3f128c71522cd8398515718bbb8",
+                "reference": "5a53273c3ae4e3f128c71522cd8398515718bbb8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/form": "~2.3",
-                "symfony/framework-bundle": "~2.3",
-                "symfony/security-bundle": "~2.3"
+                "symfony/form": "~2.1",
+                "symfony/framework-bundle": "~2.1",
+                "symfony/security-bundle": "~2.1"
             },
             "require-dev": {
                 "doctrine/doctrine-bundle": "*",
                 "swiftmailer/swiftmailer": ">=4.3, <6.0",
-                "symfony/validator": "~2.3",
-                "symfony/yaml": "~2.3",
+                "symfony/validator": "~2.1",
+                "symfony/yaml": "~2.1",
                 "twig/twig": "~1.5",
                 "willdurand/propel-typehintable-behavior": "dev-master"
             },
@@ -874,8 +875,8 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "FOS\\UserBundle\\": ""
+                "psr-0": {
+                    "FOS\\UserBundle": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -901,7 +902,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-09-26 22:23:40"
+            "time": "2014-09-26 15:02:08"
         },
         {
             "name": "h4cc/wkhtmltoimage-amd64",
@@ -1286,16 +1287,16 @@
         },
         {
             "name": "knplabs/knp-menu",
-            "version": "dev-master",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "2b9043dc1396967ca57b26de113f2e946f6c533d"
+                "reference": "5758d0026d7ed00c8dd4727e413918cf2dc74c1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/2b9043dc1396967ca57b26de113f2e946f6c533d",
-                "reference": "2b9043dc1396967ca57b26de113f2e946f6c533d",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/5758d0026d7ed00c8dd4727e413918cf2dc74c1a",
+                "reference": "5758d0026d7ed00c8dd4727e413918cf2dc74c1a",
                 "shasum": ""
             },
             "require": {
@@ -1346,11 +1347,11 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-09-25 16:22:18"
+            "time": "2014-08-01 09:50:16"
         },
         {
             "name": "knplabs/knp-menu-bundle",
-            "version": "dev-master",
+            "version": "v2.0.0",
             "target-dir": "Knp/Bundle/MenuBundle",
             "source": {
                 "type": "git",
@@ -1522,16 +1523,16 @@
         },
         {
             "name": "kriswallsmith/assetic",
-            "version": "v1.1.2",
+            "version": "v1.2.0-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "735cffd3982c6e8cdebe292d5db39d077f65890f"
+                "reference": "5bea57990f7ddbeb3d57e7ef96eae9ddd56c4297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/735cffd3982c6e8cdebe292d5db39d077f65890f",
-                "reference": "735cffd3982c6e8cdebe292d5db39d077f65890f",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/5bea57990f7ddbeb3d57e7ef96eae9ddd56c4297",
+                "reference": "5bea57990f7ddbeb3d57e7ef96eae9ddd56c4297",
                 "shasum": ""
             },
             "require": {
@@ -1546,7 +1547,9 @@
                 "leafo/scssphp": "*",
                 "leafo/scssphp-compass": "*",
                 "mrclay/minify": "*",
+                "patchwork/jsqueeze": "*",
                 "phpunit/phpunit": "~3.7",
+                "psr/log": "~1.0",
                 "ptachoire/cssembed": "*",
                 "twig/twig": "~1.6"
             },
@@ -1554,13 +1557,14 @@
                 "leafo/lessphp": "Assetic provides the integration with the lessphp LESS compiler",
                 "leafo/scssphp": "Assetic provides the integration with the scssphp SCSS compiler",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin",
+                "patchwork/jsqueeze": "Assetic provides the integration with the JSqueeze JavaScript compressor",
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "twig/twig": "Assetic provides the integration with the Twig templating engine"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -1589,7 +1593,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-07-19 00:03:27"
+            "time": "2014-07-08 11:30:40"
         },
         {
             "name": "liip/imagine-bundle",
@@ -1667,21 +1671,24 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.10.0",
+            "version": "1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "25b16e801979098cb2f120e697bfce454b18bf23"
+                "reference": "ec3961874c43840e96da3a8a1ed20d8c73d7e5aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/25b16e801979098cb2f120e697bfce454b18bf23",
-                "reference": "25b16e801979098cb2f120e697bfce454b18bf23",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/ec3961874c43840e96da3a8a1ed20d8c73d7e5aa",
+                "reference": "ec3961874c43840e96da3a8a1ed20d8c73d7e5aa",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
                 "psr/log": "~1.0"
+            },
+            "provide": {
+                "psr/log-implementation": "1.0.0"
             },
             "require-dev": {
                 "aws/aws-sdk-php": "~2.4, >2.4.8",
@@ -1689,7 +1696,8 @@
                 "graylog2/gelf-php": "~1.0",
                 "phpunit/phpunit": "~3.7.0",
                 "raven/raven": "~0.5",
-                "ruflin/elastica": "0.90.*"
+                "ruflin/elastica": "0.90.*",
+                "videlalvaro/php-amqplib": "~2.4"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -1699,12 +1707,13 @@
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
-                "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
+                "videlalvaro/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.10.x-dev"
+                    "dev-master": "1.11.x-dev"
                 }
             },
             "autoload": {
@@ -1720,8 +1729,7 @@
                 {
                     "name": "Jordi Boggiano",
                     "email": "j.boggiano@seld.be",
-                    "homepage": "http://seld.be",
-                    "role": "Developer"
+                    "homepage": "http://seld.be"
                 }
             ],
             "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
@@ -1731,7 +1739,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-06-04 16:30:04"
+            "time": "2014-09-30 13:30:58"
         },
         {
             "name": "nikic/php-parser",
@@ -2021,12 +2029,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "833b050194c4c6ff08a69fd5bc19437f8af62e83"
+                "reference": "8a022aa4a647c43a73c663d28e15221754a58889"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/833b050194c4c6ff08a69fd5bc19437f8af62e83",
-                "reference": "833b050194c4c6ff08a69fd5bc19437f8af62e83",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/8a022aa4a647c43a73c663d28e15221754a58889",
+                "reference": "8a022aa4a647c43a73c663d28e15221754a58889",
                 "shasum": ""
             },
             "require": {
@@ -2092,7 +2100,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-09-25 17:56:28"
+            "time": "2014-10-05 11:34:38"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -2287,12 +2295,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "ce5bd40501c3d69081d6f1fd88a631198945b083"
+                "reference": "090c4a4b233b3e1af21b6ca54e2eb7be19233d9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/ce5bd40501c3d69081d6f1fd88a631198945b083",
-                "reference": "ce5bd40501c3d69081d6f1fd88a631198945b083",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/090c4a4b233b3e1af21b6ca54e2eb7be19233d9d",
+                "reference": "090c4a4b233b3e1af21b6ca54e2eb7be19233d9d",
                 "shasum": ""
             },
             "require": {
@@ -2349,7 +2357,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2014-09-25 17:58:38"
+            "time": "2014-10-04 22:02:48"
         },
         {
             "name": "sonata-project/exporter",
@@ -2465,20 +2473,20 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.2.2",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "e02f71a35436af4bd58a1bd90116089e632e29e1"
+                "reference": "b86b927dfefdb56ab0b22d1350033d9a38e9f205"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/e02f71a35436af4bd58a1bd90116089e632e29e1",
-                "reference": "e02f71a35436af4bd58a1bd90116089e632e29e1",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/b86b927dfefdb56ab0b22d1350033d9a38e9f205",
+                "reference": "b86b927dfefdb56ab0b22d1350033d9a38e9f205",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.4"
+                "php": ">=5.3.3"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9.1"
@@ -2486,7 +2494,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.2-dev"
+                    "dev-master": "5.3-dev"
                 }
             },
             "autoload": {
@@ -2513,25 +2521,24 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-09-20 07:17:36"
+            "time": "2014-10-04 05:53:18"
         },
         {
             "name": "symfony/assetic-bundle",
-            "version": "v2.3.0",
-            "target-dir": "Symfony/Bundle/AsseticBundle",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle.git",
-                "reference": "146dd3cb46b302bd471560471c6aaa930483dac1"
+                "reference": "c07c0e500fe255ac0211eea9d0446c139f12da9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/146dd3cb46b302bd471560471c6aaa930483dac1",
-                "reference": "146dd3cb46b302bd471560471c6aaa930483dac1",
+                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/c07c0e500fe255ac0211eea9d0446c139f12da9c",
+                "reference": "c07c0e500fe255ac0211eea9d0446c139f12da9c",
                 "shasum": ""
             },
             "require": {
-                "kriswallsmith/assetic": "~1.1",
+                "kriswallsmith/assetic": "~1.2",
                 "php": ">=5.3.0",
                 "symfony/framework-bundle": "~2.1"
             },
@@ -2540,22 +2547,22 @@
                 "symfony/console": "~2.1",
                 "symfony/css-selector": "~2.1",
                 "symfony/dom-crawler": "~2.1",
-                "symfony/form": "~2.1",
                 "symfony/twig-bundle": "~2.1",
                 "symfony/yaml": "~2.1"
             },
             "suggest": {
+                "kriswallsmith/spork": "v0.2",
                 "symfony/twig-bundle": "~2.1"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1.x-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Symfony\\Bundle\\AsseticBundle": ""
+                "psr-4": {
+                    "Symfony\\Bundle\\AsseticBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2576,7 +2583,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-05-16 05:32:23"
+            "time": "2014-09-03 23:37:07"
         },
         {
             "name": "symfony/icu",
@@ -3065,7 +3072,7 @@
     "aliases": [
 
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
         "jms/i18n-routing-bundle": 20,
@@ -3084,7 +3091,7 @@
         "willdurand/js-translation-bundle": 0,
         "liip/imagine-bundle": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "platform": {
         "php": ">=5.3.3"
     },
