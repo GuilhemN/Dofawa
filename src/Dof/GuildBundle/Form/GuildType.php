@@ -15,13 +15,13 @@ class GuildType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', array('label' => 'Nom de la guilde'))
+            ->add('name', null,array('label' => 'Nom de la guilde'))
             ->add('serveur')
-            ->add('lvlguild', array('label' => 'Niveau de la guilde'))
-            ->add('lvlmini', array('label' => 'Niveau minimum de recrutement'))
-            ->add('leader', array('label' => 'Meneur'))
+            ->add('lvlguild', null,array('label' => 'Niveau de la guilde'))
+            ->add('lvlmini', null,array('label' => 'Niveau minimum de recrutement'))
+            ->add('leader', null,array('label' => 'Meneur'))
             ->add('recruitment', null, array('required' => false, 'label' => 'Recrutement (on/off)'))
-            ->add('speciality', array('label' => 'Spécialité de la guilde'))
+            ->add('speciality', null,array('label' => 'Spécialité de la guilde'))
             ->add('description')
             ->add('forum') 
         ;
