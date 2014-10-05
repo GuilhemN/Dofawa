@@ -41,7 +41,7 @@ class SecurityController extends BaseController
      */
     protected function renderModuleLogin(array $data, $module = '')
     {
-        $template = sprintf('DofUserBundle:Security:loginmodule.html.twig');
+        $template = 'DofUserBundle:Security:loginmodule.html.twig';
 
         return $this->container->get('templating')->renderResponse($template, $data);
     }
