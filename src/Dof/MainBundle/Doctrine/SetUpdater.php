@@ -16,14 +16,10 @@ class SetUpdater
 		if ($ent instanceof ItemSet) {
 			$em = $args->getEntityManager();
 
-			$id = $em->getRepository('DofItemsBundle:ItemSet')->getMinimalId() - 1;
-			$ent->setId($id);
-		}
-		elseif ($ent instanceof EquipmentTemplate) {
-			$em = $args->getEntityManager();
-
-			$id = $em->getRepository('DofItemsBundle:ItemSet')->getMinimalId() - 1;
-			$ent->setId($id);
+			if($ent->getId() === null){
+				$id = $em->getRepository('DofItemsBundle:ItemSet')->getMinimalId() - 1;
+				$ent->setId($id);
+			}
 		}
 	}
 	public function preRemove(LifecycleEventArgs $args)
