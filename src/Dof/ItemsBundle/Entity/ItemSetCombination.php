@@ -141,7 +141,7 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     {
         $this->effects->removeElement($effects);
 
-        return $this;
+        return $this; 
     }
 
     /**
