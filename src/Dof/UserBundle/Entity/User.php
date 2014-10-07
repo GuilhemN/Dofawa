@@ -15,6 +15,8 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\Metadata\OwnableInterface;
+use XN\Security\TOTPAuthenticatableInterface;
+use XN\Security\TOTPAuthenticatableTrait;
 use Dof\UserBundle\OwnableTrait;
 
 use FOS\MessageBundle\Model\ParticipantInterface;
@@ -25,7 +27,7 @@ use FOS\MessageBundle\Model\ParticipantInterface;
  * @ORM\Table(name="dof_user")
  * @ORM\Entity(repositoryClass="Dof\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser implements ParticipantInterface, IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, MinorColumnsInterface
+class User extends BaseUser implements ParticipantInterface, IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, TOTPAuthenticatableInterface, MinorColumnsInterface
 {
     /**
      * @var integer
@@ -36,7 +38,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
      */
     protected $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait, TOTPAuthenticatableTrait;
 
     /**
      * @var integer
@@ -506,7 +508,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
 
     public function getMinorColumns()
     {
-        return array('lastLogin', 'nbvisite');
+        return array('lastLogin', 'totpLastTrialStamp', 'totpLastSuccessStamp', 'totpTrialCount', 'nbvisite');
     }
 
     public function __toString()

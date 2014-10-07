@@ -1,6 +1,7 @@
 parameters:
     xn.utility.twig_extension.class: XN\UtilityBundle\Twig\UtilityExtension
     xn.utility.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
+    xn.utility.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
 
     xn.utility.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
     xn.utility.doctrine.ownable_updater.class: XN\UtilityBundle\Doctrine\OwnableUpdater
@@ -19,6 +20,12 @@ services:
         class: %xn.utility.json_request_listener.class%
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    xn.utility.totp_authentication_listener:
+        class: %xn.utility.totp_authentication_listener.class%
+        arguments: [ "@doctrine.orm.default_entity_manager", 3 ]
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onSecurityInteractiveLogin }
 
 #    xn.utility.doctrine.identifiable_updater:
 #        class:     "%xn.utility.doctrine.identifiable_updater.class%"
