@@ -22,7 +22,22 @@ class SetUpdater
 			}
 		}
 		elseif($ent instanceof EquipmentTemplate && $ent->getSet() !== null){
+			$em = $args->getEntityManager();
+			$set = $ent->getSet();
+			$set->removeItem($ent);
 
+			$maxLevel = 0;
+			foreach($set->getItems() as $item){
+				if($maxLevel < $item->getLevel())
+					$maxLevel = $item->getLevel();
+				if($item->getLevel() == 200)
+					break;
+			}
+
+			$set->setLevel($maxLevel);
+			$set->setItemCount(count($set->getItems()));
+
+			$em->persist($set);
 		}
 	}
 	public function preRemove(LifecycleEventArgs $args)
