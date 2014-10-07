@@ -155,8 +155,12 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     }
 
     public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
-        foreach($primaryFields as $k => $v)
+        foreach($primaryFields as $k => $v){
+			if(!isset($caracts[$v['primaryBonus']]))
+				$caracts[$v['primaryBonus']] = 0;
+
             $caracts[$v['primaryBonus']] += $this->{'get' . ucfirst($k)}() * $v['weight'];
+        }
 
         return $caracts;
     }

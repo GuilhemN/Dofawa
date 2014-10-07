@@ -228,9 +228,12 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 
         $biggestCombination = null;
 
-        foreach($primaryFields as $k => $v)
+        foreach($primaryFields as $k => $v){
+			if(!isset($caracts[$v['primaryBonus']]))
+				$caracts[$v['primaryBonus']] = 0;
+			
             $caracts[$v['primaryBonus']] += ($this->{'getMax' . ucfirst($k)}() + $this->{'getMin' . ucfirst($k)}()) / 2 * $v['weight'];
-
+		}
         return $caracts;
     }
 

@@ -21,6 +21,9 @@ class SetUpdater
 				$ent->setId($id);
 			}
 		}
+		elseif($ent instanceof EquipmentTemplate && $ent->getSet() !== null){
+
+		}
 	}
 	public function preRemove(LifecycleEventArgs $args)
 	{
