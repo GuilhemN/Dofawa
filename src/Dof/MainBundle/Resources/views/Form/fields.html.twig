@@ -38,11 +38,13 @@
             {% if label is empty %}
                 {% set label = name|humanize %}
             {% endif %}
-            <label class="control-label col-lg-3 required"{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-                {{ label|trans({}, translation_domain) }}
-            </label>
-            <div class="col-lg-9 checkbox">
-                {{ block('checkbox_widget') }}
+            <div class="row">
+                <label class="control-label col-lg-3 required"{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                    {{ label|trans({}, translation_domain) }}
+                </label>
+                <div class="col-lg-9 checkbox">
+                    {{ block('checkbox_widget') }}
+                </div>
             </div>
         {% else %}
             {{ block('checkbox_widget') }}
