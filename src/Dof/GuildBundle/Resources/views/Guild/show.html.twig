@@ -23,7 +23,7 @@
 					<tr><td><b>Forum : </b></td><td>{{guild.getForum()}}</td></tr>
 				</table> 
 				{% if app.user is not null %}
-					<div class="center-block"><a href="{{path('dof_guild_register', {'slug' : guild.slug })}}">S'inscrire</a></div>
+					<p class="text-center"><a href="{{path('dof_guild_register', {'slug' : guild.slug })}}"><span class="glyphicon glyphicon-plus"></span> S'inscrire</a></p>
 				{% endif %}
 			</div> 
 		</div>
