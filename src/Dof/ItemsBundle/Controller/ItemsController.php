@@ -38,7 +38,7 @@ class ItemsController extends Controller
      * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
      */
     public function showBuildItemsAction($user, $character, Stuff $stuff, $type, $page){
-        if($this->getUser()->getSlug() !== $user)
+        if(($user = $this->getUser()) === null or $user->getSlug() !== $user)
             throw $this->createAccessDeniedException();
 
         if(($buildSlot = BuildSlot::getValue(strtoupper($type))) === null)
