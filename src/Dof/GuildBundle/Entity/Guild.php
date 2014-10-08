@@ -12,6 +12,8 @@ use Dof\UserBundle\OwnableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Guild
  *
@@ -42,6 +44,12 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
      * @var integer
      *
      * @ORM\Column(name="lvlguild", type="integer")
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 200,
+     *      minMessage = "Le level doit être compris entre 1 et 200.",
+     *      maxMessage = "Le level doit être compris entre 1 et 200."
+     * )
      */
     private $lvlguild;
 
@@ -49,6 +57,12 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
      * @var integer
      *
      * @ORM\Column(name="lvlmini", type="integer")
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 200,
+     *      minMessage = "Le level doit être compris entre 1 et 200.",
+     *      maxMessage = "Le level doit être compris entre 1 et 200."
+     * )
      */
     private $lvlmini;
 
