@@ -13,3 +13,9 @@ dof_guild_show:
 dof_guild_add:
     path:     /add/
     defaults: { _controller: DofGuildBundle:Guild:add }
+
+dof_guild_register:
+    path:     /register/{slug}
+    defaults: { _controller: DofGuildBundle:Guild:register }
+    requirements:
+       slug: '[0-9a-z-]+'
