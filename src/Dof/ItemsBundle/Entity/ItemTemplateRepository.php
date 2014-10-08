@@ -42,7 +42,10 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		if($type == 'count')
 			$qb->select(array('COUNT(i)'));
 
-		$qb->join('i.type', 't');
+		$qb
+			->join('i.type', 't')
+			->addOrderBy('i.level', 'DESC')
+		;
 
 		if(isset($options['type']))
 			$qb
