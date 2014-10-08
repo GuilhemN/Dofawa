@@ -77,12 +77,12 @@ class GuildController extends Controller
         else
         {
         	$user->setGuilde($guild->getName());
-        	
+
         	$em = $this->getDoctrine()->getManager();
 		    $em->persist($user);
 		    $em->flush();
         }
 
-    	return $this->render('DofGuildBundle:Guild:register.html.twig', array('guild' => $guild, 'registred' => $registred));
+    	return $this->render('DofGuildBundle:Guild:register.html.twig', array('guild' => $guild, 'registred' => $registred, 'user' => $user));
     }
 }
