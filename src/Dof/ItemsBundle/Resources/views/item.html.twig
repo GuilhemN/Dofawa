@@ -113,7 +113,7 @@
             {% endif %}
             {{ item.getDescription(locales())}}
 
-            {% if slugs is defined and slugs is not empty %}
+            {% if slugs is defined and slugs is not null %}
                 <hr />
                 <form method="POST" action="{{ path('dof_build_additem_post', {'user': slugs.user, 'character': slugs.character, 'stuff': slugs.stuff}) }}">
                     <input name="items[]" type="hidden" value="{{ item.id }}">
