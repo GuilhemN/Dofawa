@@ -9,7 +9,7 @@
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 
     {% for item in items %}
-        {% include 'DofItemsBundle::item.html.twig' with {'item': item, 'slugs': slugs | default('null')} %}
+        {% include 'DofItemsBundle::item.html.twig' with {'item': item, 'slugs': slugs | default(null)} %}
     {% endfor %}
 
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
