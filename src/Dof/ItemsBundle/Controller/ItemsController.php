@@ -46,8 +46,8 @@ class ItemsController extends Controller
 
         return $this->render('DofItemsBundle:Items:index.html.twig',
             ['slugs' => [
-                'user' => $user,
-                'character' => $character,
+                'user' => $user->getSlug(),
+                'character' => $character->getSlug(),
                 'stuff' => $stuff->getSlug()
                 ]
             ] + $params
