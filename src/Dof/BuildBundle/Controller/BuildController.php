@@ -102,13 +102,13 @@ class BuildController extends Controller
 
     public function showAction(Stuff $buildStuff, PlayerCharacter $character){
         $items = array();
-        foreach($stuff->getItems() as $item){
+        foreach($buildStuff->getItems() as $item){
             $items[$item->getSlot()] = $item;
         }
 
         return $this->render('DofBuildBundle:Build:show.html.twig', [
             'perso' => $perso,
-            'stuff' => $stuff,
+            'stuff' => $buildStuff,
             'dofus_slots' => $this->dofus_slots,
             'items_slots' => $this->items_slots,
             'items' => $items

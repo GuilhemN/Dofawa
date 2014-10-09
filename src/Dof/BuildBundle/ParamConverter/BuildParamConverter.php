@@ -66,7 +66,7 @@ class BuildParamConverter implements ParamConverterInterface
             throw new NotFoundHttpException('Build non trouvé.');
         }
 
-        $request->attributes->set('stuff', $stuff);
+        $request->attributes->set('buildStuff', $stuff);
         $request->attributes->set('character', $character = $stuff->getCharacter());
         $request->attributes->set('user', $character->getOwner());
 
@@ -81,8 +81,8 @@ class BuildParamConverter implements ParamConverterInterface
         if (null === $configuration->getClass()) {
             return false;
         }
-
-        return "Dof\BuildBundle\Entity\Stuff" === $configuration->getClass() && $configuration->getName() == 'buildStuff';
+        die($configuration->getClass());
+        return "Dof\BuildBundle\Entity\Stuff" === $configuration->getClass();
     }
 
     /**
