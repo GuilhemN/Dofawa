@@ -130,9 +130,7 @@ class BuildController extends Controller
 
         $bItemRepo = $em->getRepository('DofBuildBundle:Item');
         foreach($items as $k => $item) {
-            if(!is_numeric($k))
-                $slot = BuildSlot::getValue(strtoupper($k));
-            else
+            if(($slot = BuildSlot::getValue(strtoupper($k))) === null)
                 $slot = BuildSlot::getBuildSlot($item->getType()->getSlot())[0];
 
             $bItem = $bItemRepo->findOneBy(array('stuff' => $stuff, 'slot' => $slot));
