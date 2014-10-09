@@ -154,7 +154,8 @@ class BuildController extends Controller
         }
         $em->flush();
 
-        $stuff = $em->getRepository('DofBuildBundle:stuff')->findOneBy(array('id' => $stuff->getId()))->updatePrimaryBonus();
+        $stuff = $em->getRepository('DofBuildBundle:stuff')->findOneBy(array('id' => $stuff->getId()));
+        $stuff->updatePrimaryBonus();
         $em->flush($stuff);
 
         return $this->redirect($this->generateUrl('dof_build_show', [
