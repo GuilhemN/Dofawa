@@ -70,7 +70,7 @@ class BuildParamConverter implements ParamConverterInterface
         $request->attributes->set('user', $user = $character->getOwner());
 
         $request->attributes->set('canSee', true);
-        $request->attributes->set('canWrite', $user == $this->getSecurityContext->getToken()->getUser());
+        $request->attributes->set('canWrite', $user == $this->getSecurityContext()->getToken()->getUser());
 
         return true;
     }
