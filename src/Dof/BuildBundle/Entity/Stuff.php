@@ -11,6 +11,9 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
+use Dof\ItemsBundle\PrimaryBonusInterface;
+use Dof\ItemsBundle\PrimaryBonusTrait;
+
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\BuildBundle\Entity\PlayerCharacter;
@@ -23,9 +26,9 @@ use Dof\GraphicsBundle\Entity\BuildLook;
  * @ORM\Table(name="dof_build_stuff")
  * @ORM\Entity(repositoryClass="Dof\BuildBundle\Entity\StuffRepository")
  */
-class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableInterface, PrimaryBonusInterface
 {
-    use TimestampableTrait, SluggableTrait;
+    use TimestampableTrait, SluggableTrait, PrimaryBonusTrait;
 
     /**
      * @var integer
@@ -180,6 +183,13 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getLook()
     {
         return $this->look;
+    }
+
+    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
+        foreach($this->getItems() as $item)
+            $caracts = $item->getCharacteristicsForPrimaryBonus($primaryFields, $caracts);
+
+        return $caracts;
     }
 
     public function __toString()

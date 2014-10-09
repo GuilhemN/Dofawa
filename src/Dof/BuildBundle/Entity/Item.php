@@ -148,4 +148,8 @@ class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonu
 
         return $caracts;
     }
+
+    public function getCascadeForPrimaryBonus(){
+        return $this->stuff;
+    }
 }
