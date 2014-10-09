@@ -43,20 +43,14 @@ class ItemsController extends Controller
 
         $params = $this->getItems(['type' => BuildSlot::getItemsSlot($buildSlot)], $page);
 
-        $slugs = [
-                'user' => $user->getSlug(),
-                'character' => $character->getSlug(),
-                'stuff' => $stuff->getSlug()
-            ];
         return $this->render('DofItemsBundle:Items:index.html.twig',
             $params +
             [
-                'slugs' => $slugs,
-                'pagination' =>
-                    array_replace($params['pagination'],
-                    [
-                        'route' => 'dof_build_additem'
-                    ])
+                'slugs' => [
+                    'user' => $user->getSlug(),
+                    'character' => $character->getSlug(),
+                    'stuff' => $stuff->getSlug()
+                ]
             ]
             );
     }
@@ -72,7 +66,7 @@ class ItemsController extends Controller
 
         $pagination = array(
 			'page' => $page,
-			'route' => 'dof_items_homepage',
+			'route' => $this->get('request')->attributes->get('_route'),
 			'pages_count' => ceil($count / $perPage),
 			'route_params' => $this->get('request')->attributes->get('_route_params')
 		);
