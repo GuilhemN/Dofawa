@@ -11,19 +11,14 @@
     </a>
     <!-- Modal -->
     <div class="modal fade" id="modalItem-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="modalItem-{{ item.id }}Label" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="modalItem-{{ item.id }}Label">{{ itemTemplate.getName(locales()) }}</h4>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        {% for bonus in item.primaryBonus %}
-                            <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
-                        {% endfor %}
-                    </p>
-                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item} only %}
+                    {% include 'DofItemsBundle::item.html.twig' with {'item': itemTemplate} only %}
                 </div>
                 <div class="modal-footer">
                     <a href="{{ change_item_link }}" class="btn btn-default" >Change</a>

@@ -34,6 +34,7 @@ services:
         class: "%dof.main.doctrine.primary_bonus_updater.class%"
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preRemove }
             - { name: doctrine.event_listener, event: onFlush }
 
     dof.main.doctrine.message_notification:

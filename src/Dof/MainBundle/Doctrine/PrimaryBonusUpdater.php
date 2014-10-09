@@ -24,6 +24,11 @@ class PrimaryBonusUpdater
 		}
 	}
 
+	public function preRemove(LifecycleEventArgs $args)
+	{
+		$this->prePersist($args);
+	}
+	
 	public function onFlush(OnFlushEventArgs $args)
 	{
 		$em = $args->getEntityManager();
