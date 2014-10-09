@@ -100,19 +100,7 @@ class BuildController extends Controller
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
 
-    /**
-     * @ParamConverter("stuff", options={"mapping": {"stuff" = "slug"} })
-     * @ParamConverter("user", options={"mapping": {"user" = "slug"} })
-     */
-    public function showAction(User $user, $character, Stuff $stuff){
-        $em = $this->getDoctrine()->getManager();
-        $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
-
-        $perso = $persoR->findForShow($user->getSlug(), $character);
-
-        if(empty($perso) or $stuff->getCharacter() != $perso)
-            throw $this->createNotFoundException();
-
+    public function showAction(Stuff $buildStuff, PlayerCharacter $character){
         $items = array();
         foreach($stuff->getItems() as $item){
             $items[$item->getSlot()] = $item;

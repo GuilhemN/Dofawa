@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class StuffRepository extends EntityRepository
 {
+    public function findParamConverter($user, $character, $stuff) {
+        return $this
+                  ->createQueryBuilder('s')
+                  ->select(array('s', 'c', 'u'))
+                  ->join('s.character', 'c')
+                  ->join('c.owner', 'u')
+                  ->where('s.slug = :stuff and c.slug = :character and u.slug = :user')
+                  ->getQuery()
+                  ->setParameter('user', $user)
+                  ->setParameter('character', $character)
+                  ->setParameter('perso', $stuff)
+                  ->getSingleResult()
+              ;
+    }
 }
