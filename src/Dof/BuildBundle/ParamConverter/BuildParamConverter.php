@@ -65,7 +65,7 @@ class BuildParamConverter implements ParamConverterInterface
             throw new NotFoundHttpException('Build non trouvé.');
         }
 
-        $request->attributes->set('buildStuff', $stuff);
+        $request->attributes->set('stuff', $stuff);
         $request->attributes->set('character', $character = $stuff->getCharacter());
         $request->attributes->set('user', $user = $character->getOwner());
 
