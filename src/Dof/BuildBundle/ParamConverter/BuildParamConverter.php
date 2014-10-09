@@ -44,7 +44,6 @@ class BuildParamConverter implements ParamConverterInterface
     {
         $name    = $configuration->getName();
         $class   = $configuration->getClass();
-        $options = $this->getOptions($configuration);
 
         if (!$request->attributes->has('user') or
             !$request->attributes->has('character') or
