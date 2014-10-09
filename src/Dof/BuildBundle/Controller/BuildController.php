@@ -129,8 +129,12 @@ class BuildController extends Controller
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
 
         $bItemRepo = $em->getRepository('DofBuildBundle:Item');
-        foreach($items as $item) {
-            $slot = BuildSlot::getBuildSlot($item->getType()->getSlot());
+        foreach($items as $k => $item) {
+            if(!is_numeric($k))
+                $slot = BuildSlot::getValue(strtoupper($k));
+            else
+                $slot = BuildSlot::getBuildSlot($item->getType()->getSlot())[0];
+
             $bItem = $bItemRepo->findOneBy(array('stuff' => $stuff, 'slot' => $slot));
             if($bItem !== null)
                 $em->remove($bItem);

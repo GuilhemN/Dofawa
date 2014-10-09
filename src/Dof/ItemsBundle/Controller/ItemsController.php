@@ -50,7 +50,8 @@ class ItemsController extends Controller
                     'user' => $user->getSlug(),
                     'character' => $character->getSlug(),
                     'stuff' => $stuff->getSlug()
-                ]
+                ],
+                'build_slot' => $type
             ]
             );
     }

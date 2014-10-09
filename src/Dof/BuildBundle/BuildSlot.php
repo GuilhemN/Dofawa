@@ -67,9 +67,9 @@ class BuildSlot extends Enum
 		foreach(self::getRelations() as $k => $v){
 			if(is_array($v))
 				foreach($v as $v2)
-					$return[$v2] = $k;
-			else
-				$return[$v] = $k;
+					$v = $v2;
+					
+			$return[$v][] = $k;
 		}
 
 		return $return;
