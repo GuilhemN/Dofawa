@@ -65,7 +65,7 @@ class ItemsController extends Controller
         $perPage = 15;
 
         $count = $repo->countWithOptions($options);
-        $items = $repo->findWithOptions($options, ['level' => 'ASC', 'name' . ucfirst($this->get('request')->getLocale())], $perPage, ($page - 1) * $perPage);
+        $items = $repo->findWithOptions($options, ['level' => 'DESC', 'name' . ucfirst($this->get('request')->getLocale()) => 'ASC'], $perPage, ($page - 1) * $perPage);
 
         $pagination = array(
 			'page' => $page,
