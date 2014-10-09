@@ -21,14 +21,20 @@
                     {% include 'DofItemsBundle::item.html.twig' with {'item': item, display: 'modal', type: 'build'} only %}
                 </div>
                 <div class="modal-footer">
+                    {% if can_write %}
                     <a href="{{ change_item_link }}" class="btn btn-default" >Change</a>
+                    {% endif %}
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 {% else %}
+    {% if can_write %}
     <a href="{{ change_item_link }}" class="thumbnail">
+    {% endif %}
         <img src="{{ asset('bundles/dofbuild/img/item.jpg') }}" alt="...">
+    {% if can_write %}
     </a>
+    {% endif %}
 {% endif %}

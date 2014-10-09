@@ -3,7 +3,6 @@
 namespace Dof\BuildBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\UserBundle\Entity\User;
 use Dof\BuildBundle\Entity\PlayerCharacter;
@@ -100,7 +99,10 @@ class BuildController extends Controller
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
 
-    public function showAction(Stuff $buildStuff, PlayerCharacter $character){
+    public function showAction(Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+        if(!$canSee)
+            throw $this->createAccessDeniedException();
+
         $items = array();
         foreach($buildStuff->getItems() as $item){
             $items[$item->getSlot()] = $item;
@@ -111,25 +113,14 @@ class BuildController extends Controller
             'stuff' => $buildStuff,
             'dofus_slots' => $this->dofus_slots,
             'items_slots' => $this->items_slots,
-            'items' => $items
+            'items' => $items,
+            'can_write' => $canWrite
             ]);
     }
 
-    /**
-     * @ParamConverter("stuff", options={"mapping": {"stuff" = "slug"} })
-     * @ParamConverter("user", options={"mapping": {"user" = "slug"} })
-     */
-    public function addItemsAction(User $user, $character, Stuff $stuff){
-        if($this->getUser()->getId() != $user->getId() and !$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
+    public function addItemsAction(Stuff $stuf, PlayerCharacter $character, User $user, $canWrite){
+        if(!$canWrite)
             throw $this->createAccessDeniedException();
-
-        $em = $this->getDoctrine()->getManager();
-        $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
-
-        $perso = $persoR->findForShow($user->getSlug(), $character);
-
-        if(empty($perso) or $stuff->getCharacter() != $perso)
-            throw $this->createNotFoundException();
 
         $request = $this->get('request');
         $itemsIds = (array) $request->request->get('items');

@@ -34,23 +34,12 @@ class ItemsController extends Controller
         return $this->render('DofItemsBundle:Items:show.html.twig', ['item' => $item]);
     }
 
-    /**
-     * @ParamConverter("stuff", class="DofBuildBundle:Stuff", options={"mapping": {"stuff" = "slug"} })
-     */
-    public function showBuildItemsAction($user, $character, Stuff $stuff, $type, $page){
-        if(($u = $this->getUser()) === null or $u->getSlug() !== $user)
+    public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite){
+        if(!$canWrite)
             throw $this->createAccessDeniedException();
 
         if(($buildSlot = BuildSlot::getValue(strtoupper($type))) === null)
             throw $this->createNotFoundException('Type d\'item non trouvé');
-
-        $em = $this->getDoctrine()->getManager();
-        $persoR = $em->getRepository('DofBuildBundle:PlayerCharacter');
-
-        $perso = $persoR->findForShow($user, $character);
-
-        if(empty($perso) or $stuff->getCharacter() != $perso)
-            throw $this->createNotFoundException();
 
         $params = $this->getItems(['type' => BuildSlot::getItemsSlot($buildSlot)], $page);
 
