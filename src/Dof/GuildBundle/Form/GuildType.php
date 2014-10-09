@@ -22,9 +22,9 @@ class GuildType extends AbstractType
             ->add('lvlmini', null,array('label' => 'Niveau minimum de recrutement','attr' => array('min' => '1', 'max' => '200', 'step' => '1')))
             ->add('leader', null,array('label' => 'Meneur'))
             ->add('recruitment', null, array('required' => false, 'label' => 'Recrutement (on/off)'))
-            ->add('speciality', null,array('label' => 'Spécialité de la guilde'))
+            ->add('speciality', null,array('required' => false,'label' => 'Spécialité de la guilde'))
             ->add('description')
-            ->add('forum') 
+            ->add('forum', null,array('required' => false)) 
         ;
     }
     

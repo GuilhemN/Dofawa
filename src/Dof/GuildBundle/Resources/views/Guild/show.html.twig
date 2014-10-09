@@ -22,6 +22,9 @@
 					<tr><td><b>Description : </b></td><td>{{guild.getDescription()}}</td></tr>
 					<tr><td><b>Forum : </b></td><td>{{guild.getForum()}}</td></tr>
 				</table> 
+				{% if app.user is not null %}
+					<p class="text-center"><a href="{{path('dof_guild_register', {'slug' : guild.slug })}}"><span class="glyphicon glyphicon-plus"></span> S'inscrire</a></p>
+				{% endif %}
 			</div> 
 		</div>
 {% endautoescape %}

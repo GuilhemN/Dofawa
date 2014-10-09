@@ -1,0 +1,24 @@
+{% extends 'DofGuildBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}<li><a href="{{ path('dof_guild_show', {'slug' : guild.slug }) }}">{{guild.getName()}}</a></li><li>S'inscrire</li>
+{% endblock %}
+
+{% block body %}
+{% autoescape %}
+	<div class="panel panel-default">
+		<div class="panel-heading"><h3>S'inscrire dans {{guild.getName()}}</h3></div>
+			<div class="panel-body">
+				{% if registred %}
+
+					<h2>Vous êtes déjà dans la guilde : {{user.getGuilde()}}</h2>
+					<a href="{{ path('dof_guild_show', {'slug' : guild.slug }) }}"><span class="glyphicon glyphicon-chevron-left"></span>Retourner à la fiche de la guilde</a>
+					<a style="float:right" href="{{ path('fos_user_profile_edit') }}">Modifier son profile<span class="glyphicon glyphicon-chevron-right"></span></a>
+				{% else %}
+					<h2>Vous avez bien été inscrit dans la guilde: {{guild.getName()}}</h2>
+					<a href="{{ path('dof_guild_show', {'slug' : guild.slug }) }}"><span class="glyphicon glyphicon-chevron-left"></span>Retourner à la fiche de la guilde</a>
+				{% endif %}
+			</div>
+	</div>
+{% endautoescape %}
+{% endblock %}

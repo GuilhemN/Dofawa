@@ -61,4 +61,28 @@ class GuildController extends Controller
 		} 
     	return $this->render('DofGuildBundle:Guild:add.html.twig', array('form' => $form->createView()));
     }
+
+    /**
+   	* @ParamConverter("guild")
+   	*/
+    public function registerAction(Guild $guild)
+    {
+    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+            throw $this->createAccessDeniedException();
+        $registred = false;
+
+        $user = $this->getUser();
+        if($user->getGuilde() != "")
+        	$registred = true;
+        else
+        {
+        	$user->setGuilde($guild->getName());
+
+        	$em = $this->getDoctrine()->getManager();
+		    $em->persist($user);
+		    $em->flush();
+        }
+
+    	return $this->render('DofGuildBundle:Guild:register.html.twig', array('guild' => $guild, 'registred' => $registred, 'user' => $user));
+    }
 }

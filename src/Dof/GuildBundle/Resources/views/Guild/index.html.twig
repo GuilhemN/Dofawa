@@ -19,7 +19,7 @@
 					<tr><td><b>Recrutement : </b></td><td>{% if guild.getRecruitment() %} Oui {% else %} Non {% endif %}</td></tr>
 					<tr><td><b>Description : </b></td><td>{{guild.getDescription()}}</td></tr>
 				</table> 
-				<center><a href="{{ path('dof_guild_show', { 'slug' : guild.slug }) }}"><span class="glyphicon glyphicon-plus"></span> Voir</a></center>
+				<p class="text-center"><a href="{{ path('dof_guild_show', { 'slug' : guild.slug }) }}"><span class="glyphicon glyphicon-plus"></span> Voir / s'inscrire</a></p>
 			</div>
 		</div>
 
