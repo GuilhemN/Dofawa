@@ -16,6 +16,7 @@ class PrimaryBonusUpdater
 		$em = $args->getEntityManager();
 		if ($ent instanceof PrimaryBonusInterface) {
 			$ent->updatePrimaryBonus();
+			$cascadeClass = $ent->getCascadeForPrimaryBonus();
 			if($cascadeClass != null){
 				$cascadeClass->updatePrimaryBonus();
 				$em->persist($cascadeClass);
