@@ -70,7 +70,7 @@ class ItemsController extends Controller
 			'page' => $page,
 			'route' => 'dof_items_homepage',
 			'pages_count' => ceil($count / $perPage),
-			'route_params' => $request->attributes->get('_route_params')
+			'route_params' => $this->get('request')->attributes->get('_route_params')
 		);
 
         return array(
