@@ -126,11 +126,12 @@ class BuildController extends Controller
         $request = $this->get('request');
 
         $itemsIds = (array) $request->request->get('items');
+        $rel = array_flip($itemsIds);
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
 
         $bItemRepo = $em->getRepository('DofBuildBundle:Item');
         foreach($items as $k => $item) {
-            if(($slot = BuildSlot::getValue(strtoupper($k))) === null)
+            if(($slot = BuildSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
                 $slot = BuildSlot::getBuildSlot($item->getType()->getSlot())[0];
 
             $bItem = $bItemRepo->findOneBy(array('stuff' => $stuff, 'slot' => $slot));
