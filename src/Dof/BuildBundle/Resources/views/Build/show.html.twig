@@ -42,7 +42,7 @@
             <div class="col-xs-3 col-md-6 col-lg-4">
                 {% if items[slot] is defined %}
                     <div class="thumbnail">
-                        <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ items[slot].itemTemplate.getName(locales()) }}">
+                        <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ items[slot].itemTemplate.getName(locales()) }}" title="{{ items[slot].itemTemplate.getName(locales()) }}">
                     </div>
                 {% else %}
                     <a href="{{ path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type})}}" class="thumbnail">
