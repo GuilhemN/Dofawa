@@ -1,7 +1,8 @@
+{% set change_item_link = path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type}) %}
+
 {% if items[slot] is defined %}
     {% set item = items[slot] %}
     {% set itemTemplate = item.itemTemplate %}
-    {% set change_item_link = path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type}) %}
 
     <a data-toggle="modal" data-target="#modalItem-{{ item.id }}" href="#">
         <div class="thumbnail">
