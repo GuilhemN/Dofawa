@@ -20,9 +20,9 @@ class StuffRepository extends EntityRepository
                   ->join('c.owner', 'u')
                   ->where('s.slug = :stuff and c.slug = :character and u.slug = :user')
                   ->getQuery()
-                  ->setParameter('user', $user)
+                  ->setParameter('stuff', $stuff)
                   ->setParameter('character', $character)
-                  ->setParameter('perso', $stuff)
+                  ->setParameter('user', $user)
                   ->getSingleResult()
               ;
     }

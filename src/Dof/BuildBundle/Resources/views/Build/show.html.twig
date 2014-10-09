@@ -4,8 +4,8 @@
 
 {% block breadcrumb %}
     {{ parent() }}
-    <li><a href="{{ path('dof_profile_userpage', {'slug': perso.owner.slug}) }}">{{ perso.owner.username }}</a></li>
-    <li>{{ perso.name }}</li>
+    <li><a href="{{ path('dof_profile_userpage', {'slug': character.owner.slug}) }}">{{ character.owner.username }}</a></li>
+    <li>{{ character.name }}</li>
     <li>{{ stuff.name }}</li>
 {% endblock %}
 
@@ -13,7 +13,7 @@
 {% autoescape %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><strong>{{ perso.name }}</strong>, {{ 'level' | trans({'%level%': perso.level}, 'item')}}</h3>
+            <h3 class="panel-title"><strong>{{ character.name }}</strong>, {{ 'level' | trans({'%level%': character.level}, 'item')}}</h3>
         </div>
         <div class="panel-body text-center">
             {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
@@ -30,14 +30,14 @@
         <div class="col-md-4">
             {% for type, slot in dofus_slots %}
                 <div class="col-xs-3 col-md-12 col-lg-6">
-                    {% include 'DofBuildBundle::slot.html.twig' with {'items': items, 'slot': slot, 'perso': perso, 'stuff': stuff} %}
+                    {% include 'DofBuildBundle::slot.html.twig' with {'items': items, 'slot': slot, 'perso': character, 'stuff': stuff} %}
                 </div>
             {% endfor %}
         </div>
         <div class="col-md-8">
             {% for type, slot in items_slots %}
                 <div class="col-xs-3 col-md-6 col-lg-4">
-                    {% include 'DofBuildBundle::slot.html.twig' with {'items': items, 'slot': slot, 'perso': perso, 'stuff': stuff} %}
+                    {% include 'DofBuildBundle::slot.html.twig' with {'items': items, 'slot': slot, 'perso': character, 'stuff': stuff} %}
                 </div>
             {% endfor %}
         </div>
