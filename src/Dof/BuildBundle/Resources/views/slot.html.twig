@@ -1,6 +1,8 @@
 {% if items[slot] is defined %}
     {% set item = items[slot] %}
     {% set itemTemplate = item.itemTemplate %}
+    {% set change_item_link = path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type}) %}
+
     <a data-toggle="modal" data-target="#modalItem-{{ item.id }}" href="#">
         <div class="thumbnail">
             <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ itemTemplate.getName(locales()) }}" title="{{ itemTemplate.getName(locales()) }}">
@@ -18,13 +20,14 @@
             {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item} only %}
           </div>
           <div class="modal-footer">
+            <a href="{{ change_item_link }}" class="btn btn-default" data-dismiss="modal">Change</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
 {% else %}
-    <a href="{{ path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type})}}" class="thumbnail">
+    <a href="{{ change_item_link }}" class="thumbnail">
         <img src="{{ asset('bundles/dofbuild/img/item.jpg') }}" alt="...">
     </a>
 {% endif %}
