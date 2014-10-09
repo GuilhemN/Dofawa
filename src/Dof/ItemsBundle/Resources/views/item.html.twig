@@ -5,10 +5,9 @@
 {% endif %}
 
 {% if type | default('item') == 'item' %}
-    {% set primary_bonus = item.primaryBonus %}
     {#% set item = item %#}
 {% elseif type == 'build' %}
-    {% set primary_bonus = item.primaryBonus %}
+    {% set item_primary_bonus = item %}
     {% set item_caracts = item %}
     {% set item = item.itemTemplate %}
 {% endif %}
@@ -39,7 +38,7 @@
                         </p>
                         {% if item.isEquipment() %}
                             <p>
-                            {% for bonus in primary_bonus %}
+                            {% for bonus in (item_primary_bonus | default(item) ).primaryBonus %}
                                 <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
                             {% endfor %}
                             </p>
