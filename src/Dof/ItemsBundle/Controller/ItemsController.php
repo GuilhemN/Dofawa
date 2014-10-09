@@ -11,7 +11,7 @@ use Dof\ItemsBundle\Form\ItemType;
 use Dof\BuildBundle\BuildSlot;
 use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
-use Dof\GraphicsBundle\Entity\BuildLook;
+use Dof\UserBundle\Entity\User;
 
 class ItemsController extends Controller
 {
