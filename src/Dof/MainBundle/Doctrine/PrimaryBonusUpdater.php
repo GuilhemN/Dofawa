@@ -9,6 +9,20 @@ use Dof\ItemsBundle\PrimaryBonusInterface;
 
 class PrimaryBonusUpdater
 {
+
+	public function prePersist(LifecycleEventArgs $args)
+	{
+		$ent = $args->getEntity();
+		$em = $args->getEntityManager();
+		if ($ent instanceof PrimaryBonusInterface) {
+			$ent->updatePrimaryBonus();
+			if($cascadeClass != null){
+				$cascadeClass->updatePrimaryBonus();
+				$em->persist($cascadeClass);
+			}
+		}
+	}
+
 	public function onFlush(OnFlushEventArgs $args)
 	{
 		$em = $args->getEntityManager();
