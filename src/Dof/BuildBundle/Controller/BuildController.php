@@ -124,7 +124,7 @@ class BuildController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $request = $this->get('request');
-        
+
         $itemsIds = (array) $request->request->get('items');
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
 
@@ -154,7 +154,7 @@ class BuildController extends Controller
 
         return $this->redirect($this->generateUrl('dof_build_show', [
             'user' => $user->getSlug(),
-            'character' => $character,
+            'character' => $character->getSlug(),
             'stuff' => $stuff->getSlug()
             ]));
     }

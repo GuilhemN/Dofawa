@@ -43,14 +43,18 @@ class ItemsController extends Controller
 
         $params = $this->getItems(['type' => BuildSlot::getItemsSlot($buildSlot)], $page);
 
-
-        return $this->render('DofItemsBundle:Items:index.html.twig',
-            ['slugs' => [
+        $slugs = [
                 'user' => $user->getSlug(),
                 'character' => $character->getSlug(),
                 'stuff' => $stuff->getSlug()
-                ]
-            ] + $params
+            ];
+        return $this->render('DofItemsBundle:Items:index.html.twig',
+            $params +
+            [
+                'slugs' => $slugs,
+                'route_params' => $slugs + ['type' => $type],
+                'route' => 'dof_build_additem'
+            ]
             );
     }
 
@@ -61,7 +65,7 @@ class ItemsController extends Controller
         $perPage = 15;
 
         $count = $repo->countWithOptions($options);
-        $items = $repo->findWithOptions($options, ['level' => 'ASC'], $perPage, ($page - 1) * $perPage);
+        $items = $repo->findWithOptions($options, ['level' => 'ASC', 'name' . ucfirst($this->get('request')->getLocale())], $perPage, ($page - 1) * $perPage);
 
         $pagination = array(
 			'page' => $page,
