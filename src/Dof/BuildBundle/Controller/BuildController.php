@@ -104,13 +104,13 @@ class BuildController extends Controller
             throw $this->createAccessDeniedException();
 
         $items = array();
-        foreach($buildStuff->getItems() as $item){
+        foreach($stuff->getItems() as $item){
             $items[$item->getSlot()] = $item;
         }
 
         return $this->render('DofBuildBundle:Build:show.html.twig', [
             'character' => $character,
-            'stuff' => $buildStuff,
+            'stuff' => $stuff,
             'dofus_slots' => $this->dofus_slots,
             'items_slots' => $this->items_slots,
             'items' => $items,
