@@ -35,12 +35,12 @@
     {% endset %}
 
     {% if can_write %}
-    <a href="{{ change_item_link }}" class="thumbnail">
-        {{ image | raw}}
-    </a>
-    {% elseif %}
-    <span class="thumbnail">
-        {{ image | raw}}
-    </span>
+        <a href="{{ change_item_link }}" class="thumbnail">
+            {{ image | raw}}
+        </a>
+    {% else %}
+        <span class="thumbnail">
+            {{ image | raw}}
+        </span>
     {% endif %}
 {% endif %}
