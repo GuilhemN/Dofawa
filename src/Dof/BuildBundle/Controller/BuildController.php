@@ -122,7 +122,9 @@ class BuildController extends Controller
         if(!$canWrite)
             throw $this->createAccessDeniedException();
 
+        $em = $this->getDoctrine()->getManager();
         $request = $this->get('request');
+        
         $itemsIds = (array) $request->request->get('items');
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
 
