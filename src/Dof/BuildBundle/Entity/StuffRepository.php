@@ -13,17 +13,23 @@ use Doctrine\ORM\EntityRepository;
 class StuffRepository extends EntityRepository
 {
     public function findParamConverter($user, $character, $stuff) {
-        return $this
-                  ->createQueryBuilder('s')
-                  ->select(array('s', 'c', 'u'))
-                  ->join('s.character', 'c')
-                  ->join('c.owner', 'u')
-                  ->where('s.slug = :stuff and c.slug = :character and u.slug = :user')
-                  ->getQuery()
-                  ->setParameter('stuff', $stuff)
-                  ->setParameter('character', $character)
-                  ->setParameter('user', $user)
-                  ->getSingleResult()
-              ;
+        $qb = $this
+              ->createQueryBuilder('s')
+              ->select(array('s', 'c', 'u'))
+              ->join('s.character', 'c')
+              ->join('c.owner', 'u')
+              ->where('s.slug = :stuff and c.slug = :character and u.slug = :user')
+              ->getQuery()
+              ->setParameter('stuff', $stuff)
+              ->setParameter('character', $character)
+              ->setParameter('user', $user);
+
+        try {
+            $return = $qb->getSingleResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+            $return = null;
+        }
+
+        return $return;
     }
 }
