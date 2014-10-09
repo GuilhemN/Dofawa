@@ -17,10 +17,6 @@ class PrimaryBonusUpdater
 		if ($ent instanceof PrimaryBonusInterface) {
 			$ent->updatePrimaryBonus();
 			$cascadeClass = $ent->getCascadeForPrimaryBonus();
-			if($cascadeClass != null){
-				$cascadeClass->updatePrimaryBonus();
-				$em->persist($cascadeClass);
-			}
 		}
 	}
 
@@ -28,7 +24,7 @@ class PrimaryBonusUpdater
 	{
 		$this->prePersist($args);
 	}
-	
+
 	public function onFlush(OnFlushEventArgs $args)
 	{
 		$em = $args->getEntityManager();

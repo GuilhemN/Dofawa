@@ -168,6 +168,7 @@ class BuildController extends Controller
             $em->persist($bItem);
 
         }
+        $stuff->updatePrimaryBonus();
         $em->flush();
 
         return $this->redirect($this->generateUrl('dof_build_show', [
