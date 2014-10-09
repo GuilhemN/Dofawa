@@ -19,8 +19,8 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        {% for bonus in set.primaryBonus %}
-                        <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
+                        {% for bonus in item.primaryBonus %}
+                            <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
                         {% endfor %}
                     </p>
                     {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item} only %}
