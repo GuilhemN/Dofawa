@@ -118,7 +118,7 @@ class BuildController extends Controller
             ]);
     }
 
-    public function addItemsAction(Stuff $stuf, PlayerCharacter $character, User $user, $canWrite){
+    public function addItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite){
         if(!$canWrite)
             throw $this->createAccessDeniedException();
 
