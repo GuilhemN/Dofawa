@@ -34,7 +34,7 @@ class ItemsController extends Controller
         return $this->render('DofItemsBundle:Items:show.html.twig', ['item' => $item]);
     }
 
-    public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite){
+    public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite, $type){
         if(!$canWrite)
             throw $this->createAccessDeniedException();
 
