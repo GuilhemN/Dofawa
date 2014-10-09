@@ -18,7 +18,7 @@
                     <h4 class="modal-title" id="modalItem-{{ item.id }}Label">{{ itemTemplate.getName(locales()) }}</h4>
                 </div>
                 <div class="modal-body">
-                    {% include 'DofItemsBundle::item.html.twig' with {'item': itemTemplate, display: 'modal'} only %}
+                    {% include 'DofItemsBundle::item.html.twig' with {'item': item, display: 'modal', type: 'build'} only %}
                 </div>
                 <div class="modal-footer">
                     <a href="{{ change_item_link }}" class="btn btn-default" >Change</a>

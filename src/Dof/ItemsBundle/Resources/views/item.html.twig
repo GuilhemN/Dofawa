@@ -3,6 +3,15 @@
 {% if display is not defined %}
     {% set display = 'normal' %}
 {% endif %}
+{% if type | default('item') == 'item' %}
+    {% set primary_bonus = item.primaryBonus %}
+    {#% set item = item %#}
+{% elseif type == 'build' %}
+    {% set primary_bonus = item.primaryBonus %}
+    {% set item_caracts = item %}
+    {% set item = item.itemTemplate %}
+{% endif %}
+
 
 {% autoescape  %}
     {% if display != 'modal' %}
@@ -29,7 +38,7 @@
                         </p>
                         {% if item.isEquipment() %}
                             <p>
-                            {% for bonus in item.primaryBonus %}
+                            {% for bonus in primary_bonus %}
                                 <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
                             {% endfor %}
                             </p>
@@ -48,7 +57,7 @@
                             {% set item_content %}
                                 {{ item_content }}
                                 <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item} %}
+                                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item_caracts | default('item')} %}
                                 </div>
                             {% endset %}
 
