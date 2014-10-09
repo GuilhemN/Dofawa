@@ -30,14 +30,14 @@
         <div class="col-md-4">
             {% for type, slot in dofus_slots %}
                 <div class="col-xs-3 col-md-12 col-lg-6">
-                    {% include 'DofBuildBundle::slot.html.twig' with {'items': items, 'slot': slot, 'perso': character, 'stuff': stuff} %}
+                    {% include 'DofBuildBundle::slot.html.twig' with {'items': items, 'slot': slot, 'character': character, 'stuff': stuff} %}
                 </div>
             {% endfor %}
         </div>
         <div class="col-md-8">
             {% for type, slot in items_slots %}
                 <div class="col-xs-3 col-md-6 col-lg-4">
-                    {% include 'DofBuildBundle::slot.html.twig' with {'items': items, 'slot': slot, 'perso': character, 'stuff': stuff} %}
+                    {% include 'DofBuildBundle::slot.html.twig' with {'items': items, 'slot': slot, 'character': character, 'stuff': stuff} %}
                 </div>
             {% endfor %}
         </div>
