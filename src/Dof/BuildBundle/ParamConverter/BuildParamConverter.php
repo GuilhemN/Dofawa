@@ -78,10 +78,9 @@ class BuildParamConverter implements ParamConverterInterface
      */
     public function supports(ParamConverter $configuration)
     {
-        if (null === $configuration->getClass()) {
+        if (null === $configuration->getClass())
             return false;
-        }
-        die($configuration->getClass());
+
         return "Dof\BuildBundle\Entity\Stuff" === $configuration->getClass();
     }
 
