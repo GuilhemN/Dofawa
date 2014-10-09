@@ -12,15 +12,18 @@ use XN\Metadata\TimestampableTrait;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\ItemsBundle\Entity\ItemTemplate;
 
+use Dof\ItemsBundle\PrimaryBonusInterface;
+use Dof\ItemsBundle\PrimaryBonusTrait;
+
 /**
  * Item
  *
  * @ORM\Table(name="dof_build_item")
  * @ORM\Entity(repositoryClass="Dof\BuildBundle\Entity\ItemRepository")
  */
-class Item implements IdentifiableInterface, TimestampableInterface
+class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonusInterface
 {
-    use CharacteristicsTrait, TimestampableTrait;
+    use CharacteristicsTrait, TimestampableTrait, PrimaryBonusTrait;
 
     /**
      * @var integer
@@ -133,5 +136,16 @@ class Item implements IdentifiableInterface, TimestampableInterface
     public function getSlot()
     {
         return $this->slot;
+    }
+
+    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
+        foreach($primaryFields as $k => $v){
+			if(!isset($caracts[$v['primaryBonus']]))
+				$caracts[$v['primaryBonus']] = 0;
+
+            $caracts[$v['primaryBonus']] += $this->{'get' . ucfirst($k)}() * $v['weight'];
+        }
+
+        return $caracts;
     }
 }
