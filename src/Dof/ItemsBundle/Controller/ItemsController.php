@@ -49,11 +49,15 @@ class ItemsController extends Controller
                 'stuff' => $stuff->getSlug()
             ];
         return $this->render('DofItemsBundle:Items:index.html.twig',
-            array_replace($params,
+            $params +
             [
                 'slugs' => $slugs,
-                'route' => 'dof_build_additem'
-            ])
+                'pagination' =>
+                    $params['pagination'] +
+                    [
+                        'route' => 'dof_build_additem'
+                    ]
+            ]
             );
     }
 
