@@ -107,7 +107,7 @@ class BuildController extends Controller
         }
 
         return $this->render('DofBuildBundle:Build:show.html.twig', [
-            'perso' => $perso,
+            'perso' => $character,
             'stuff' => $buildStuff,
             'dofus_slots' => $this->dofus_slots,
             'items_slots' => $this->items_slots,
