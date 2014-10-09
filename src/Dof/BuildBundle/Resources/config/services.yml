@@ -11,4 +11,4 @@ services:
         class: Dof\BuildBundle\ParamConverter\BuildParamConverter
         arguments: ['@service_container']
         tags:
-            - { name: request.param_converter}
+            - { name: request.param_converter, priority: 1}
