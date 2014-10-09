@@ -52,7 +52,6 @@ class ItemsController extends Controller
             $params +
             [
                 'slugs' => $slugs,
-                'route_params' => $slugs + ['type' => $type],
                 'route' => 'dof_build_additem'
             ]
             );
@@ -71,7 +70,7 @@ class ItemsController extends Controller
 			'page' => $page,
 			'route' => 'dof_items_homepage',
 			'pages_count' => ceil($count / $perPage),
-			'route_params' => array()
+			'route_params' => $request->attributes->get('_route_params')
 		);
 
         return array(
