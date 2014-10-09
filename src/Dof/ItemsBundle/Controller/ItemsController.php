@@ -53,10 +53,10 @@ class ItemsController extends Controller
             [
                 'slugs' => $slugs,
                 'pagination' =>
-                    $params['pagination'] +
+                    array_replace($params['pagination'],
                     [
                         'route' => 'dof_build_additem'
-                    ]
+                    ])
             ]
             );
     }
