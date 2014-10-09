@@ -1,0 +1,30 @@
+{% if items[slot] is defined %}
+    {% set item = items[slot] %}
+    {% set itemTemplate = item.itemTemplate %}
+    <a data-toggle="modal" data-target="#modalItem-{{ item.id }}" href="#">
+        <div class="thumbnail">
+            <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ itemTemplate.getName(locales()) }}" title="{{ itemTemplate.getName(locales()) }}">
+        </div>
+    </a>
+    <!-- Modal -->
+    <div class="modal fade" id="modalItem-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="modalItem-{{ item.id }}Label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="modalItem-{{ item.id }}Label">{{ itemTemplate.getName(locales()) }}</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% else %}
+    <a href="{{ path('dof_build_additem', {'user': perso.owner.slug, 'character': perso.slug, 'stuff': stuff.slug, 'type': type})}}" class="thumbnail">
+        <img src="{{ asset('bundles/dofbuild/img/item.jpg') }}" alt="...">
+    </a>
+{% endif %}
