@@ -1,29 +1,29 @@
 {% extends 'DofGuildBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-  {{ parent() }}<li>Details</li>
+  {{ parent() }}<li>{{ 'details' | trans({},'guild') }}</li>
 {% endblock %}
 
 {% block body %}
 {% autoescape %}
-<h2><a href="{{path('dof_guild_home')}}">Retour au guildes !</a></h2> 
+<h2><a href="{{path('dof_guild_home')}}">{{ 'back_to_guild' | trans({},'guild') }} !</a></h2> 
  	<div class="panel panel-default">
 		 	<div class="panel-heading">{{guild.getName()}}</div>
 		  	<div class="panel-body">
 				<table>
-					<tr><td><b>Nom de la guilde : </b></td><td>{{guild.getName()}}</td></tr>
+					<tr><td><b>{{ 'name_guild' | trans({},'guild') }} : </b></td><td>{{guild.getName()}}</td></tr>
 					<tr><td><b>Date : </b></td><td>{{guild.getCreatedAt() | date("d/m/Y")}}</td></tr>
-					<tr><td><b>Serveur : </b></td><td>{{guild.getServeur()}}</td></tr>
-					<tr><td><b>Niveau de la guilde : </b></td><td>{{guild.getLvlguild()}}</td></tr>
-					<tr><td><b>Niveau minimum de recrutement : </b></td><td>{{guild.getLvlmini()}}</td></tr>
-					<tr><td><b>Nom du meneur : </b></td><td>{{guild.getLeader()}}</td></tr>
-					<tr><td><b>Recrutement : </b></td><td>{% if guild.getRecruitment() %} Oui {% else %} Non {% endif %}</td></tr>
-					<tr><td><b>Spécialité : </b></td><td>{{guild.getSpeciality()}}</td></tr>
-					<tr><td><b>Description : </b></td><td>{{guild.getDescription()}}</td></tr>
-					<tr><td><b>Forum : </b></td><td>{{guild.getForum()}}</td></tr>
+					<tr><td><b>{{ 'serv' | trans({},'guild') }} : </b></td><td>{{guild.getServeur()}}</td></tr>
+					<tr><td><b>{{ 'lvl_guild' | trans({},'guild') }} : </b></td><td>{{guild.getLvlguild()}}</td></tr>
+					<tr><td><b>{{ 'lvl_min_rec' | trans({},'guild') }} : </b></td><td>{{guild.getLvlmini()}}</td></tr>
+					<tr><td><b>{{ 'leader' | trans({},'guild') }} : </b></td><td>{{guild.getLeader()}}</td></tr>
+					<tr><td><b>{{ 'recruitment' | trans({},'guild') }} : </b></td><td>{% if guild.getRecruitment() %} {{ 'yes' | trans({},'guild') }} {% else %} {{ 'no' | trans({},'guild') }} {% endif %}</td></tr>
+					<tr><td><b>{{ 'specialty' | trans({},'guild') }} : </b></td><td>{{guild.getSpeciality()}}</td></tr>
+					<tr><td><b>{{ 'description' | trans({},'guild') }} : </b></td><td>{{guild.getDescription()}}</td></tr>
+					<tr><td><b>{{ 'forum' | trans({},'guild') }} : </b></td><td>{{guild.getForum()}}</td></tr>
 				</table> 
 				{% if app.user is not null %}
-					<p class="text-center"><a href="{{path('dof_guild_register', {'slug' : guild.slug })}}"><span class="glyphicon glyphicon-plus"></span> S'inscrire</a></p>
+					<p class="text-center"><a href="{{path('dof_guild_register', {'slug' : guild.slug })}}"><span class="glyphicon glyphicon-plus"></span> {{ 'register' | trans({},'guild') }}</a></p>
 				{% endif %}
 			</div> 
 		</div>
