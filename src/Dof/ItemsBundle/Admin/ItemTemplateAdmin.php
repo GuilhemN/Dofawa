@@ -25,6 +25,7 @@ class ItemTemplateAdmin extends Admin
             ->add('release')
             ->add('preliminary')
             ->add('deprecated')
+            ->add('release')
         ;
     }
 
@@ -37,6 +38,7 @@ class ItemTemplateAdmin extends Admin
             ->add('id')
             ->add('level')
             ->add('nameFr')
+            ->add('release')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -54,6 +56,10 @@ class ItemTemplateAdmin extends Admin
     {
         $formMapper
             ->add('nameFr', null, ['disabled' => true])
+            ->add('visible', null, ['required' => false])
+            ->add('release', null, ['disabled' => true])
+            ->add('preliminary', null, ['disabled' => true])
+            ->add('deprecated', null, ['disabled' => true])
             ->add('obtainmentFr')
             ->add('obtainmentEn')
             ->add('obtainmentDe')
@@ -62,7 +68,6 @@ class ItemTemplateAdmin extends Admin
             ->add('obtainmentPt')
             ->add('obtainmentJa')
             ->add('obtainmentRu')
-            ->add('visible')
         ;
     }
 
@@ -73,6 +78,7 @@ class ItemTemplateAdmin extends Admin
     {
         $showMapper
             ->add('id')
+            ->add('release')
             ->add('obtainmentFr')
             ->add('obtainmentEn')
             ->add('obtainmentDe')
