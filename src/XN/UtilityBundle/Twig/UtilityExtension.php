@@ -48,7 +48,7 @@ class UtilityExtension extends \Twig_Extension
 
 	public function getName()
 	{
-		return 'xn.utility.twig_extension';
+		return 'xn.twig_extension';
 	}
 
 	public function es6Asset($path, $packageName = null)

@@ -1,59 +1,66 @@
 parameters:
-    xn.utility.twig_extension.class: XN\UtilityBundle\Twig\UtilityExtension
-    xn.utility.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
-    xn.utility.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
+    xn.twig_extension.class: XN\UtilityBundle\Twig\UtilityExtension
+    xn.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
+    xn.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
+    xn.grammar.class: XN\Grammar\ParserFactory
 
-    xn.utility.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
-    xn.utility.doctrine.ownable_updater.class: XN\UtilityBundle\Doctrine\OwnableUpdater
-    xn.utility.doctrine.localized_origin_updater.class: XN\UtilityBundle\Doctrine\LocalizedOriginUpdater
-    xn.utility.doctrine.sluggable_updater.class: XN\UtilityBundle\Doctrine\SluggableUpdater
-    xn.utility.doctrine.timestampable_updater.class: XN\UtilityBundle\Doctrine\TimestampableUpdater
+    xn.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
+    xn.doctrine.ownable_updater.class: XN\UtilityBundle\Doctrine\OwnableUpdater
+    xn.doctrine.localized_origin_updater.class: XN\UtilityBundle\Doctrine\LocalizedOriginUpdater
+    xn.doctrine.sluggable_updater.class: XN\UtilityBundle\Doctrine\SluggableUpdater
+    xn.doctrine.timestampable_updater.class: XN\UtilityBundle\Doctrine\TimestampableUpdater
+    xn.doctrine.primary_bonus_updater.class: XN\UtilityBundle\Doctrine\PrimaryBonusUpdater
+    xn.doctrine.message_notification.class: XN\UtilityBundle\Doctrine\MessageNotification
 
 services:
-    xn.utility.twig_extension:
-        class: %xn.utility.twig_extension.class%
+    xn.twig_extension:
+        class: %xn.twig_extension.class%
         arguments: [ "@service_container" ]
         tags:
             - { name: twig.extension }
 
-    xn.utility.json_request_listener:
-        class: %xn.utility.json_request_listener.class%
+    xn.json_request_listener:
+        class: %xn.json_request_listener.class%
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
-    xn.utility.totp_authentication_listener:
-        class: %xn.utility.totp_authentication_listener.class%
+    xn.totp_authentication_listener:
+        class: %xn.totp_authentication_listener.class%
         arguments: [ "@doctrine.orm.default_entity_manager", 3 ]
         tags:
             - { name: kernel.event_listener, event: security.interactive_login, method: onSecurityInteractiveLogin }
 
-#    xn.utility.doctrine.identifiable_updater:
-#        class:     "%xn.utility.doctrine.identifiable_updater.class%"
-#        arguments: [ "@xn.utility.id_generator" ]
+    xn.grammar:
+        class: %xn.grammar.class%
+        arguments: [ "@annotation_reader" ]
+
+#    xn.doctrine.identifiable_updater:
+#        class:     "%xn.doctrine.identifiable_updater.class%"
+#        arguments: [ "@xn.id_generator" ]
 #        tags:
 #            - { name: doctrine.event_listener, event: prePersist }
 
-    xn.utility.doctrine.ownable_updater:
-        class:     "%xn.utility.doctrine.ownable_updater.class%"
+    xn.doctrine.ownable_updater:
+        class:     "%xn.doctrine.ownable_updater.class%"
         arguments: [ "@service_container" ]
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }
 
-    xn.utility.doctrine.localized_origin_updater:
-        class:     "%xn.utility.doctrine.localized_origin_updater.class%"
+    xn.doctrine.localized_origin_updater:
+        class:     "%xn.doctrine.localized_origin_updater.class%"
         arguments: [ "@service_container" ]
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }
 
-    xn.utility.doctrine.sluggable_updater:
-        class: "%xn.utility.doctrine.sluggable_updater.class%"
+    xn.doctrine.sluggable_updater:
+        class: "%xn.doctrine.sluggable_updater.class%"
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
-    xn.utility.doctrine.timestampable_updater:
-        class: "%xn.utility.doctrine.timestampable_updater.class%"
+    xn.doctrine.timestampable_updater:
+        class: "%xn.doctrine.timestampable_updater.class%"
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }
