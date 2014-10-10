@@ -56,7 +56,7 @@ class ItemTemplateAdmin extends Admin
         $formMapper
             ->add('nameFr', null, ['disabled' => true])
             ->add('visible', null, ['required' => false])
-            ->add('release', null, ['disabled' => true])
+            ->add('release', null, ['required' => false])
             ->add('preliminary', null, ['disabled' => true])
             ->add('deprecated', null, ['disabled' => true])
             ->add('obtainmentFr')
