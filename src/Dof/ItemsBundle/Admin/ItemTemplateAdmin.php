@@ -25,7 +25,6 @@ class ItemTemplateAdmin extends Admin
             ->add('release')
             ->add('preliminary')
             ->add('deprecated')
-            ->add('release')
         ;
     }
 
@@ -78,7 +77,6 @@ class ItemTemplateAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('release')
             ->add('obtainmentFr')
             ->add('obtainmentEn')
             ->add('obtainmentDe')
