@@ -140,7 +140,7 @@
             {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <hr />
                 <div class="text-center">
-                    <a href="{{ path('admin_dof_items_itemtemplate_edit', {'id': item.id}) }}">
+                    <a class="btn btn-default" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': item.id}) }}">
                         Editer
                     </a>
                 </div>

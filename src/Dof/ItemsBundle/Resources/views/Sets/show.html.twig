@@ -7,11 +7,11 @@
 
 {% block body %}
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-        <a href="{{ path('admin_dof_items_itemset_edit', {'id': set.id}) }}">
+        <a class="btn btn-primary" href="{{ path('admin_dof_items_itemset_edit', {'id': set.id}) }}">
             Editer
         </a>
     {% endif %}
-    
+
     <div class="well well-sm text-center">
         <div class="page-header nopadding marginbottom">
           <h1>{{ set.getName(locales()) }} <small>{{ 'level' | trans({'%level%': set.level}, 'item') }}</small></h1>
