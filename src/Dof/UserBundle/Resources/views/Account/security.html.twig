@@ -11,12 +11,12 @@
     Connexion en 2 étapes : {% if app.user.totpSecretKey is not empty %}Activée{% else %}Désactivée{% endif %}
         <a href="#" id="doubleAuth">Paramètres</a>
 
-    <div class="modal fade" id="doubleAuth" tabindex="-1" role="dialog" aria-labelledby="doubleAuthLabel" aria-hidden="true">
+    <div class="modal fade" id="doubleAuthModal" tabindex="-1" role="dialog" aria-labelledby="doubleAuthModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="doubleAuthLabel">Connexion en 2 étapes</h4>
+                    <h4 class="modal-title" id="doubleAuthModalLabel">Connexion en 2 étapes</h4>
                 </div>
                 <div class="modal-body">
                     <div id="qr-code"></div>
@@ -34,8 +34,8 @@
     <script type="text/javascript">
         $(function(){
             $('#doubleAuth').on('click', function(){
-                $('#doubleAuth modal-body #qr-code').qrcode("test");
-                $('#doubleAuth').modal();
+                $('#doubleAuthModal modal-body #qr-code').qrcode("test");
+                $('#doubleAuthModal').modal();
                 return false
             });
         });
