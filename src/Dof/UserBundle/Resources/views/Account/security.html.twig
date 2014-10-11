@@ -7,4 +7,6 @@
 
 {% block body %}
     Mot de passe : <a href="{{ path('fos_user_change_password')}}">Modifier mon mot de passe</a>
+    <br />
+    Validation en 2 étapes : {% if app.user.totpSecretKey is not empty %}Activée{% else %}Désativée{% endif %} Configurer
 {% endblock %}
