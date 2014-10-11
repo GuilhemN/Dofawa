@@ -51,6 +51,10 @@ dof_items:
     resource: "@DofItemsBundle/Resources/config/routing.yml"
     prefix:   /items
 
+dof_user_account:
+    resource: "@DofUserBundle/Resources/config/routing/account.yml"
+    prefix:   /account
+
 # To get the application root path :
 # PHP :
 #     $dic->get('router')->generate('root')

@@ -1,0 +1,3 @@
+dof_user_account_security:
+    path: /security
+    defaults: { _controller: DofUserBundle:Account:security }

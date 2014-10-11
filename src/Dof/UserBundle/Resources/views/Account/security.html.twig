@@ -1,0 +1,10 @@
+{% extends 'DofUserBundle:Account:layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>Sécurité</li>
+{% endblock %}
+
+{% block body %}
+    Mot de passe : <a href="{{ path('fos_user_change_password')}}">Modifier mon mot de passe</a>
+{% endblock %}
