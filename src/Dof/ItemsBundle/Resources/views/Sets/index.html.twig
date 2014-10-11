@@ -18,12 +18,14 @@
                 {% for set in sets %}
                     <tr>
                         <td>
-                            {% if set.preliminary %}
-                                <span class="label label-danger">Béta</span>
-                            {% endif %}
-                            {% if set.release != 1 %}
-                                <span class="label label-default hidden-xs">{{ set.release }}</span>
-                            {% endif %}
+                            <div class="pull-right">
+                                {% if set.preliminary %}
+                                    <span class="label label-danger">Béta</span>
+                                {% endif %}
+                                {% if set.release != 1 %}
+                                    <span class="label label-default hidden-xs">{{ set.release }}</span>
+                                {% endif %}
+                            </div>
                             <a href="{{ path('dof_set_show', {'slug': set.slug}) }}">
                                 {{ set.getName(locales()) }}
                             </a>
