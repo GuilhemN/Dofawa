@@ -8,5 +8,17 @@
 {% block body %}
     Mot de passe : <a href="{{ path('fos_user_change_password')}}">Modifier mon mot de passe</a>
     <br />
-    Validation en 2 étapes : {% if app.user.totpSecretKey is not empty %}Activée{% else %}Désativée{% endif %} Configurer
+    Validation en 2 étapes : {% if app.user.totpSecretKey is not empty %}Activée{% else %}Désactivée{% endif %}
+        <a href="#" id="doubleAuth">Paramètres</a>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(function(){
+            $('#doubleAuth').on('click', function(){
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript" src="{{ asset('bundles/dofmain/js/jquery-qrcode.min.js') }}"></script>
 {% endblock %}
