@@ -7,9 +7,12 @@
 
 {% block body %}
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-        <a class="btn btn-primary" href="{{ path('admin_dof_items_itemset_edit', {'id': set.id}) }}">
-            Editer
-        </a>
+        <div class="text-center">
+            <a class="btn btn-primary" href="{{ path('admin_dof_items_itemset_edit', {'id': set.id}) }}">
+                Editer
+            </a>
+        </div>
+        <hr/>
     {% endif %}
 
     <div class="well well-sm text-center">
