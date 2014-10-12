@@ -1,3 +1,8 @@
+{% if app.user.totpSecretKey is not empty %}
+<div class="alert alert-danger" role="alert">
+    <strong>Attention !</strong> Si vous validez ce code, l'ancien ne fonctionnera plus.
+</div>
+{% endif %}
 <b>Tout d'abord, vous devez installer une de ces applications :</b><br />
 
 Pour Android, iOS, et Blackberry: <a href="https://support.google.com/accounts/answer/1066447?hl=fr">Google Authenticator</a><br />
@@ -8,13 +13,13 @@ Puis rentrer le code suivant :<br/>
 <div class="well well-sm">
     {{ secret }}
 </div>
-<br><br>
 Ou scanner ce QR code :
 <div data-key="otpauth://totp/Dofawa:{{ app.user.username | e('html_attr') }}?secret={{ secret }}&amp;issuer=Dofawa" id="qr-code">
 </div>
 <br><br>
-Une fois votre compte renseigné dans l'application, saisissez le code à 6 chiffres généré par l'application :<br>
+<div id="totp-errors"></div>
+Une fois votre compte renseigné, saisissez le code à 6 chiffres généré par l'application :<br>
 <form onsubmit="return checkTotp()">
     <input type="text" name="_totp" /><br>
-    <button value="Vérifier et Sauvegarder" type="submit" class="btn btn-primary"></button>
+    <button type="submit" class="btn btn-primary">Vérifier et Sauvegarder</button>
 </form>

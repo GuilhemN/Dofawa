@@ -17,9 +17,9 @@ security:
                 use_referer: true
             logout:
                 path: fos_user_security_logout
-                target: /%locale%/
+                target: /
             anonymous:    true
- 
+
     access_control:
         - { path: "fos_user_security_login", role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: "fos_user_security_check", role: IS_AUTHENTICATED_ANONYMOUSLY }
