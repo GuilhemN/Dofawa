@@ -10,7 +10,7 @@ class TOTPGenerator {
         $secretkey = TOTPAuthenticationListener::base32_decode($seed);
 
         // Use the algorithm to generate the totp code
-        return $secretkey;
+        return $seed;
     }
     public function generateRandomString($length = 32)
     {
