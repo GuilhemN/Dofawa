@@ -10,3 +10,9 @@ Puis rentrer le code suivant :<br/>
 Ou scanner ce QR code :
 <div data-key="otpauth://totp/Dofawa:{{ app.user.username | e('html_attr') }}?secret={{ secret }}&amp;issuer=Dofawa" id="qr-code">
 </div>
+<br><br>
+Une fois votre compte renseigné dans l'application, saisissez le code à 6 chiffres généré par l'application.<br>
+<form onsubmit="checkTotp()">
+    <input type="text" name="_totp" /><br>
+    <button type="submit" class="btn btn-primary"></button>
+</form>

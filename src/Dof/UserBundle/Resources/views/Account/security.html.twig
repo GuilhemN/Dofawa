@@ -35,17 +35,26 @@
         $(function(){
             $('#doubleAuth').on('click', function(){
                 $.get( Routing.generate("dof_user_account_security_doubleAuth"), function(data) {
-                        $('#doubleAuthModal .modal-body').html(data);
-                        var qrcode = $('#doubleAuthModal .modal-body #qr-code');
-                        qrcode.qrcode(qrcode.attr('data-key'));
-                        $('#doubleAuthModal').modal();
-                    })
-                    .fail(function() {
-                        alert( "error" );
-                    });
+                    $('#doubleAuthModal .modal-body').html(data);
+                    var qrcode = $('#doubleAuthModal .modal-body #qr-code');
+                    qrcode.qrcode(qrcode.attr('data-key'));
+                    $('#doubleAuthModal').modal('show');
+                })
+                .fail(function() {
+                    alert( "error" );
+                });
                 return false;
             });
         });
+
+        function checkTotp(){
+            $.post(Routing.generate('dof_user_account_security_doubleAuth_check'), { "_totp": $('input[name="_totp"]').val()}, function( data ) {
+                if(data.success){
+                    $('#doubleAuthModal').modal('hide');
+                    location.reload();
+                }
+            }, "json");
+        }
     </script>
     <script type="text/javascript" src="{{ asset('bundles/dofmain/js/jquery-qrcode.min.js') }}"></script>
 {% endblock %}
