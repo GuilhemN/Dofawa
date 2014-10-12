@@ -13,7 +13,7 @@ class TOTPAuthenticationListener
 	private $em;
 	private $maxTrials;
 
-	public static $lut = [
+	private static $lut = [
 		"A" => 0,	"B" => 1,
 		"C" => 2,	"D" => 3,
 		"E" => 4,	"F" => 5,
@@ -98,7 +98,7 @@ class TOTPAuthenticationListener
 		return self::oath_truncate($hash);
 	}
 
-	private static function base32_decode($b32)
+	public static function base32_decode($b32)
 	{
 
 		$b32 	= strtoupper($b32);
