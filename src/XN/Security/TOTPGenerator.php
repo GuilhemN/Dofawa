@@ -14,8 +14,8 @@ class TOTPGenerator {
     }
     public function generateRandomString($length = 32)
     {
-        $characters = $this->tokenCharacterString;
-        $randomString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567g';
+        $randomString = '';
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, strlen($characters) - 1)];
         }
