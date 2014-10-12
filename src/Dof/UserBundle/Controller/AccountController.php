@@ -32,7 +32,9 @@ class AccountController extends Controller
 
         $secret = TOTPGenerator::genSecret();
 
-        $this->get('session')->set('totp_secret', $secret);
+        $session = $this->get('session');
+        $session->start();
+        $session->set('totp_secret', $secret);
 
         return $this->render('DofUserBundle:Account:doubleAuth.html.twig', ['secret' => $secret]);
     }
@@ -47,6 +49,7 @@ class AccountController extends Controller
 
         $totp = trim($this->get('request')->request->get('_totp'));
         $session = $this->get('session');
+        $session->start();
 
         if($session->has('totp_secret')){
             $key = $session->get('totp_secret');
