@@ -37,7 +37,7 @@
             Routing.generate('dof_user_account_check_user_hasDoubleAuth'),
             {'_username': $('input[name="_username"]').val()},
             function(data){
-                if(data){
+                if(data == '1'){
                     $('.totp-field input').attr('required', 'required');
                     $('.totp-field').show();
                 }
