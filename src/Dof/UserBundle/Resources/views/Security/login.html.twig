@@ -33,20 +33,25 @@
 <script type="text/javascript" src="{{ asset('bundles/xnutility/js/jquery-2.1.1.min.js') }}"></script>
 <script>
     function checkForTOTPField(){
-        $.post(
-            Routing.generate('dof_user_account_check_user_hasDoubleAuth'),
-            {'_username': $('input[name="_username"]').val()},
-            function(data){
-                if(data == '1'){
-                    $('.totp-field input').attr('required', 'required');
-                    $('.totp-field').show();
-                }
-                else{
-                    $('.totp-field input').removeAttr('required');
-                    $('.totp-field').hide();
-                }
-            }
-        );
+		if(username != '')
+	        $.post(
+	            Routing.generate('dof_user_account_check_user_hasDoubleAuth'),
+	            {'_username': username},
+	            function(data){
+	                if(data == '1'){
+	                    $('.totp-field input').attr('required', 'required');
+	                    $('.totp-field').show();
+	                }
+	                else{
+	                    $('.totp-field input').removeAttr('required');
+	                    $('.totp-field').hide();
+	                }
+	            }
+	        );
+		else {
+            $('.totp-field input').removeAttr('required');
+            $('.totp-field').hide();
+		}
     }
 
     $(function(){
