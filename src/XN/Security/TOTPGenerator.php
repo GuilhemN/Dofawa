@@ -8,7 +8,7 @@ class TOTPGenerator {
         $length = 16;
 
         while($length--)
-            $secret .= array_search(mt_rand(0, 31), TOTPAuthenticationListener::$lut);
+            $secret .= mt_rand(0, 31);
 
         return $secret;
     }
