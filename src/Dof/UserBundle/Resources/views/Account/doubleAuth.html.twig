@@ -1,18 +1,20 @@
-Tout d'abord, vous devez installer une de ces applications :<br />
+<b>Tout d'abord, vous devez installer une de ces applications :</b><br />
 
 Pour Android, iOS, et Blackberry: <a href="https://support.google.com/accounts/answer/1066447?hl=fr">Google Authenticator</a><br />
 Pour Android et iOS: <a href="http://guide.duosecurity.com/third-party-accounts">Duo Mobile</a>
 Pour Windows Phone: <a href="http://www.windowsphone.com/fr-fr/store/app/authenticator/021dd79f-0598-e011-986b-78e7d1fa76f8">Authenticator</a>
-<br>
+<br><br>
 Puis rentrer le code suivant :<br/>
-{{ secret }}
+<div class="well well-sm">
+    {{ secret }}
+</div>
 <br><br>
 Ou scanner ce QR code :
 <div data-key="otpauth://totp/Dofawa:{{ app.user.username | e('html_attr') }}?secret={{ secret }}&amp;issuer=Dofawa" id="qr-code">
 </div>
 <br><br>
-Une fois votre compte renseigné dans l'application, saisissez le code à 6 chiffres généré par l'application.<br>
+Une fois votre compte renseigné dans l'application, saisissez le code à 6 chiffres généré par l'application :<br>
 <form onsubmit="return checkTotp()">
     <input type="text" name="_totp" /><br>
-    <button type="submit" class="btn btn-primary"></button>
+    <button value="Vérifier et Sauvegarder" type="submit" class="btn btn-primary"></button>
 </form>
