@@ -36,7 +36,7 @@
             $('#doubleAuth').on('click', function(){
                 $.get( Routing.generate("dof_user_account_security_doubleAuth"), function(data) {
                         $('#doubleAuthModal .modal-body').html(data);
-                        $('#doubleAuthModal .modal-body #qr-code').qrcode($(this).getAttribute('data-key'));
+                        $('#doubleAuthModal .modal-body #qr-code').qrcode($(this).attr('data-key'));
                         $('#doubleAuthModal').modal();
                     })
                     .fail(function() {
