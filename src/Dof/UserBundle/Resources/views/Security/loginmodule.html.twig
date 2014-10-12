@@ -13,7 +13,7 @@
 	<br><br>
 	<label><input id="remember_me" name="_remember_me" value="on" type="checkbox" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
 </form>
-<script>
+<script defer>
     function checkForTOTPField(){
 		var username = $('input[name="_username"]').val();
 		if(username != '')
