@@ -4,7 +4,7 @@ dof_user_account_security:
 
 dof_user_account_security_doubleAuth_check:
     path: /security/doubleauth/check
-    defaults: { _controller: DofUserBundle:Account:doubleAuth }
+    defaults: { _controller: DofUserBundle:Account:checkTotp }
     requirements:
         _method: POST
     options:
