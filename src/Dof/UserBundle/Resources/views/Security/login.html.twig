@@ -14,10 +14,8 @@
     <tr><td><label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label></td></tr>
     <tr><td><input type="password" id="password" name="_password" required="required" /></td></tr>
 
-    <div id="totp-field">
-        <tr><td><label for="totp">Code de vérification <noscript>(si activé)</noscript></label></td></tr>
-        <tr><td><input type="text" id="totp" name="_totp" /></td></tr>
-    </div>
+    <tr class="totp-field"><td><label for="totp">Code de vérification <noscript>(si activé)</noscript></label></td></tr>
+    <tr class="totp-field"><td><input type="text" id="totp" name="_totp" /></td></tr>
     <br>
     <tr><td><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
     <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label></td></tr>
@@ -40,12 +38,12 @@
             {'_username': $('input[name="_username"]').val()},
             function(data){
                 if(data){
-                    $('#totp-field input').attr('required', 'required');
-                    $('#totp-field').show();
+                    $('.totp-field input').attr('required', 'required');
+                    $('.totp-field').show();
                 }
                 else{
-                    $('#totp-field input').removeAttr('required');
-                    $('#totp-field').hide();
+                    $('.totp-field input').removeAttr('required');
+                    $('.totp-field').hide();
                 }
             }
         );
