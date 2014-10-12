@@ -6,7 +6,7 @@ use XN\UtilityBundle\TOTPAuthenticationListener;
 class TOTPGenerator {
     public static function genSecret($randomString = null){
         // Decode a random string into binary
-        $seed = $randomString ? $randomString : $this->generateRandomString();
+        $seed = $randomString ? $randomString : self::generateRandomString();
         $secretkey = TOTPAuthenticationListener::base32_decode($seed);
 
         // Use the algorithm to generate the totp code
