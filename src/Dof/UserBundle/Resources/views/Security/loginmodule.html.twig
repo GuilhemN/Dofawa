@@ -37,8 +37,8 @@
 		}
     }
 
-    $(function(){
+    window.onload = function (){
         $('input[name="_username"]').on('change', checkForTOTPField);
         checkForTOTPField();
-    });
+    };
 </script>
