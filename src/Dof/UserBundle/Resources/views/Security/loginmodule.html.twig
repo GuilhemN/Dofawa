@@ -4,7 +4,7 @@
 
     <input  type="text" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" id="username" name="_username" value="{{ last_username }}">
     <input type="password" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" id="password" name="_password"><br>
-    <input type="number" placeholder="Code de validation" id="_totp" name="_totp"><br>
+    <input type="text" placeholder="Code de validation" id="_totp" name="_totp"><br>
 	<button type="submit" id="btnLogin" class="btn">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
 
 	<br><br>
