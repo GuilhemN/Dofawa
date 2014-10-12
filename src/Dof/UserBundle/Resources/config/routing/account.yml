@@ -1,3 +1,9 @@
 dof_user_account_security:
     path: /security
     defaults: { _controller: DofUserBundle:Account:security }
+
+dof_user_account_security_doubleAuth:
+    path: /security/doubleauth
+    defaults: { _controller: DofUserBundle:Account:doubleAuth }
+    options:
+        expose: true

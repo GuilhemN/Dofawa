@@ -34,9 +34,15 @@
     <script type="text/javascript">
         $(function(){
             $('#doubleAuth').on('click', function(){
-                $('#doubleAuthModal .modal-body #qr-code').qrcode("test");
-                $('#doubleAuthModal').modal();
-                return false
+                $.get( Routing.generate("dof_user_account_security_doubleAuth"), function(data) {
+                        $('#doubleAuthModal .modal-body').html(data);
+                        $('#doubleAuthModal .modal-body #qr-code').qrcode($(this).getAttribute('data-key'));
+                        $('#doubleAuthModal').modal();
+                    })
+                    .fail(function() {
+                        alert( "error" );
+                    });
+                return false;
             });
         });
     </script>
