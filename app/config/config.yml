@@ -11,9 +11,9 @@ parameters:
   beta_release_database: dofawa3
 
 jms_i18n_routing:
-    default_locale: en
+    default_locale: fr
     locales: %locales%
-    strategy: prefix
+    strategy: prefix_except_default
 
 framework:
     #esi:             ~
