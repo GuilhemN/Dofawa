@@ -8,5 +8,5 @@ Puis rentrer le code suivant :<br/>
 {{ secret }}
 <br><br>
 Ou scanner ce QR code :
-<div data-key="otpauth://totp/Dofawa:{{ app.user.username | e('html_attr') }}?secret={{ secret }}" id="qr-code">
+<div data-key="otpauth://totp/Dofawa:{{ app.user.username | e('html_attr') }}?secret={{ secret }}&amp;issuer=Dofawa" id="qr-code">
 </div>
