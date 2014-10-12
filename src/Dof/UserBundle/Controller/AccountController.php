@@ -77,6 +77,7 @@ class AccountController extends Controller
                 $response = [
                     'success' => false,
                     'error' => 'bad_totp',
+                    'key' => $key,
                     'totp' => $totp,
                     't1' => TOTPAuthenticationListener::hash($stamp, $key),
                     't2' => TOTPAuthenticationListener::hash($stamp + 1, $key),
