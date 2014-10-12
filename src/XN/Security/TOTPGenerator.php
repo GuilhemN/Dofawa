@@ -4,7 +4,7 @@ namespace XN\Security;
 use XN\UtilityBundle\TOTPAuthenticationListener;
 
 class TOTPGenerator {
-    public function genSecret($lenght = 16){
+    public function genSecret($length = 16){
         if( $length < 16 || $length % 8 != 0 )
             $length = 16;
 
