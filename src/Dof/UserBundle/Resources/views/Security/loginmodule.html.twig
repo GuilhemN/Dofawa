@@ -4,9 +4,35 @@
 
     <input  type="text" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" id="username" name="_username" value="{{ last_username }}">
     <input type="password" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" id="password" name="_password"><br>
-    <input type="text" placeholder="Code de validation" id="_totp" name="_totp"><br>
+    <div class="totp-field">
+		<input type="text" placeholder="Code de validation" id="_totp" name="_totp">
+	</div>
+	<br>
 	<button type="submit" id="btnLogin" class="btn">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
 
 	<br><br>
 	<label><input id="remember_me" name="_remember_me" value="on" type="checkbox" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
 </form>
+<script>
+    function checkForTOTPField(){
+        $.post(
+            Routing.generate('dof_user_account_check_user_hasDoubleAuth'),
+            {'_username': $('input[name="_username"]').val()},
+            function(data){
+                if(data == '1'){
+                    $('.totp-field input').attr('required', 'required');
+                    $('.totp-field').show();
+                }
+                else{
+                    $('.totp-field input').removeAttr('required');
+                    $('.totp-field').hide();
+                }
+            }
+        );
+    }
+
+    $(function(){
+        $('input[name="_username"]').on('change', checkForTOTPField);
+        checkForTOTPField();
+    });
+</script>
