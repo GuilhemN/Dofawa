@@ -67,6 +67,8 @@ class AccountController extends Controller
 
     		if ($totpStamp !== null && ($user->getTOTPLastSuccessStamp() === null || $totpStamp > $user->getTOTPLastSuccessStamp())){
                 $user->setTOTPSecretKey($key);
+                $this->getDoctrine()->getManager()->flush($user);
+
                 $response = [
                     'success' => true
                 ];
@@ -74,7 +76,11 @@ class AccountController extends Controller
             else
                 $response = [
                     'success' => false,
-                    'error' => 'bad_totp'
+                    'error' => 'bad_totp',
+                    'totp' => $totp,
+                    't1' => TOTPAuthenticationListener::hash($stamp, $key),
+                    't2' => TOTPAuthenticationListener::hash($stamp + 1, $key),
+                    't3' => TOTPAuthenticationListener::hash($stamp - 1, $key)
                 ];
         }
         else
