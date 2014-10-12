@@ -15,3 +15,11 @@ dof_user_account_security_doubleAuth:
     defaults: { _controller: DofUserBundle:Account:doubleAuth }
     options:
         expose: true
+
+dof_user_account_check_user_hasDoubleAuth:
+    path: /check/doubleAuth
+    defaults: { _controller: DofUserBundle:Account:checkHasDoubleAuth }
+    requirements:
+        _method: POST
+    options:
+        expose: true

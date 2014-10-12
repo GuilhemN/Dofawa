@@ -11,6 +11,7 @@ use FOS\UserBundle\Model\UserInterface;
 use XN\Security\TOTPGenerator;
 use XN\UtilityBundle\TOTPAuthenticationListener;
 use XN\Common\AjaxControllerTrait;
+use Symfony\Component\HttpFoundation\Response;
 
 class AccountController extends Controller
 {
@@ -86,5 +87,17 @@ class AccountController extends Controller
             ];
 
         return $this->createJsonResponse($response);
+    }
+
+    public function checkHasDoubleAuthAction(){
+        $em = $this->getDoctrine()->getManager();
+        $username = $this->get('request')->request->get('_username');
+
+        $user = $em->getRepository('DofUserBundle:User')->findOneBy(array('username' => $username));
+
+        if($user === null or $user->getTotpSecretKey() == (null or 0))
+            return new Response('0');
+
+        return new Response('1');
     }
 }
