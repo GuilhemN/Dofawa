@@ -4,7 +4,7 @@ namespace XN\Security;
 use XN\UtilityBundle\TOTPAuthenticationListener;
 
 class TOTPGenerator {
-    public static function genSecret($lenght = 16){
+    public static function genSecret($length = 16){
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
