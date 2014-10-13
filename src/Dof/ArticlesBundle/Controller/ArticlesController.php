@@ -66,7 +66,7 @@ class ArticlesController extends Controller
                   $typeNb = ArticleType::NEWS;
                 break;
       }
-
+ 
       $newArticle = new Article();
 
       $request = $this->get('request');
