@@ -24,12 +24,12 @@ class MonsterImporter extends AbstractGameDataImporter
             'MIN(g.level) as min_level, MAX(g.level) as max_level, ' .
             'MIN(g.lifePoints) as min_life_points, MAX(g.lifePoints) as max_life_points, ' .
             'MIN(g.actionPoints) as min_action_points, MAX(g.actionPoints) as max_action_points, ' .
-            'MIN(g.movementPoints) as min_movement_points, MAX(g.movementPoints) as max_movement_points ' .
+            'MIN(g.movementPoints) as min_movement_points, MAX(g.movementPoints) as max_movement_points, ' .
 
-            'MIN(g.earthResistance) as min_earth_resistance, MAX(g.earthResistance) as max_earth_resistance ' .
-            'MIN(g.airResistance) as min_air_resistance, MAX(g.airResistance) as max_air_resistance ' .
-            'MIN(g.fireResistance) as min_fire_resistance, MAX(g.fireResistance) as max_fire_resistance ' .
-            'MIN(g.waterResistance) as min_water_resistance, MAX(g.waterResistance) as max_water_resistance ' .
+            'MIN(g.earthResistance) as min_earth_resistance, MAX(g.earthResistance) as max_earth_resistance, ' .
+            'MIN(g.airResistance) as min_air_resistance, MAX(g.airResistance) as max_air_resistance, ' .
+            'MIN(g.fireResistance) as min_fire_resistance, MAX(g.fireResistance) as max_fire_resistance, ' .
+            'MIN(g.waterResistance) as min_water_resistance, MAX(g.waterResistance) as max_water_resistance, ' .
             'MIN(g.neutralResistance) as min_neutral_resistance, MAX(g.neutralResistance) as max_neutral_resistance ' .
             $this->generateD2ISelects('name', $locales) .
             ' FROM ' . $db . '.D2O_Monster o' .
