@@ -24,7 +24,8 @@ class MonsterImporter extends AbstractGameDataImporter
             $this->generateD2ISelects('name', $locales) .
             ' FROM ' . $db . '.D2O_Monster o' .
             ' JOIN ' . $db . '.D2O_Monster_grade g on g.monsterId = o.id' .
-            $this->generateD2IJoins('name', $db, $locales));
+            $this->generateD2IJoins('name', $db, $locales) .
+            ' GROUP BY o.id');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
