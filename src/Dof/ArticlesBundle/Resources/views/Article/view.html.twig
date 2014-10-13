@@ -12,7 +12,7 @@
   </a>
   {% endif %}
   {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-  <a class="btn btn-primary" href="{{ path('dof_articles_edit', {'id' : article.id }) }}">
+  <a class="btn btn-primary" href="{{ path('dof_articles_edit', {'id' : article.id, 'type' : 'article' }) }}">
     Editer
   </a>
   {% endif %}
