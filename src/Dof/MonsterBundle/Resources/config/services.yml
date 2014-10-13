@@ -1,0 +1,4 @@
+services:
+#    dof_monster.example:
+#        class: Dof\MonsterBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
