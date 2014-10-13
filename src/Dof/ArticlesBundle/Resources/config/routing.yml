@@ -1,9 +1,9 @@
 dof_articles_view:
-    pattern:  {type}/view/{slug}
+    pattern:  view/{type}/{slug}
     defaults: { _controller: DofArticlesBundle:Articles:view }
 
 dof_articles_edit:
-    pattern:  {type}/edit/{id}
+    pattern:  edit/{type}/{id}
     defaults: { _controller: DofArticlesBundle:Articles:edit }
     requirements:
       id: \d+
