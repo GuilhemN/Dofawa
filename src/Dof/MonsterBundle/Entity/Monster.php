@@ -45,6 +45,48 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $maxLevel;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="min_life_points", type="integer")
+     */
+    private $minLifePoints;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_life_points", type="integer")
+     */
+    private $maxLifePoints;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="min_action_points", type="integer")
+     */
+    private $minActionPoints;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_action_points", type="integer")
+     */
+    private $maxActionPoints;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="min_mouvement_points", type="integer")
+     */
+    private $minMouvementPoints;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_mouvement_points", type="integer")
+     */
+    private $maxMouvementPoints;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="visible", type="boolean")
@@ -120,6 +162,144 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
         return $this->maxLevel;
     }
 
+
+    /**
+     * Set minLifePoints
+     *
+     * @param integer $minLifePoints
+     * @return Monster
+     */
+    public function setMinLifePoints($minLifePoints)
+    {
+        $this->minLifePoints = $minLifePoints;
+
+        return $this;
+    }
+
+    /**
+     * Get minLifePoints
+     *
+     * @return integer
+     */
+    public function getMinLifePoints()
+    {
+        return $this->minLifePoints;
+    }
+
+    /**
+     * Set maxLifePoints
+     *
+     * @param integer $maxLifePoints
+     * @return Monster
+     */
+    public function setMaxLifePoints($maxLifePoints)
+    {
+        $this->maxLifePoints = $maxLifePoints;
+
+        return $this;
+    }
+
+    /**
+     * Get maxLifePoints
+     *
+     * @return integer
+     */
+    public function getMaxLifePoints()
+    {
+        return $this->maxLifePoints;
+    }
+
+    /**
+     * Set minActionPoints
+     *
+     * @param integer $minActionPoints
+     * @return Monster
+     */
+    public function setMinActionPoints($minActionPoints)
+    {
+        $this->minActionPoints = $minActionPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get minActionPoints
+     *
+     * @return integer
+     */
+    public function getMinActionPoints()
+    {
+        return $this->minActionPoints;
+    }
+
+    /**
+     * Set maxActionPoints
+     *
+     * @param integer $maxActionPoints
+     * @return Monster
+     */
+    public function setMaxActionPoints($maxActionPoints)
+    {
+        $this->maxActionPoints = $maxActionPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get maxActionPoints
+     *
+     * @return integer
+     */
+    public function getMaxActionPoints()
+    {
+        return $this->maxActionPoints;
+    }
+
+    /**
+     * Set minMouvementPoints
+     *
+     * @param integer $minMouvementPoints
+     * @return Monster
+     */
+    public function setMinMouvementPoints($minMouvementPoints)
+    {
+        $this->minMouvementPoints = $minMouvementPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get minMouvementPoints
+     *
+     * @return integer
+     */
+    public function getMinMouvementPoints()
+    {
+        return $this->minMouvementPoints;
+    }
+    
+    /**
+     * Set maxMouvementPoints
+     *
+     * @param integer $maxMouvementPoints
+     * @return Monster
+     */
+    public function setMaxMouvementPoints($maxMouvementPoints)
+    {
+        $this->maxMouvementPoints = $maxMouvementPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get maxMouvementPoints
+     *
+     * @return integer
+     */
+    public function getMaxMouvementPoints()
+    {
+        return $this->maxMouvementPoints;
+    }
     /**
      * Set visible
      *

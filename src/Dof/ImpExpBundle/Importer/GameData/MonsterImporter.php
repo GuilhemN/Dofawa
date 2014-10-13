@@ -20,7 +20,11 @@ class MonsterImporter extends AbstractGameDataImporter
         if (!$beta && $write)
             $this->dm->createQuery('UPDATE DofMonsterBundle:Monster s SET s.deprecated = true')->execute();
 
-        $stmt = $conn->query('SELECT o.*, MIN(g.level) as min_level, MAX(g.level) as max_level' .
+        $stmt = $conn->query('SELECT o.*, ' .
+            'MIN(g.level) as min_level, MAX(g.level) as max_level,' .
+            'MIN(g.lifePoints) as min_life_points, MAX(g.lifePoints) as max_life_points,' .
+            'MIN(g.actionPoints) as min_action_points, MAX(g.actionPoints) as max_action_points,' .
+            'MIN(g.movementPoints) as min_movement_points, MAX(g.movementPoints) as max_movement_points,' .
             $this->generateD2ISelects('name', $locales) .
             ' FROM ' . $db . '.D2O_Monster o' .
             ' JOIN ' . $db . '.D2O_Monster_grade g on g.monsterId = o.id' .
@@ -47,8 +51,18 @@ class MonsterImporter extends AbstractGameDataImporter
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+
                 $tpl->setMinLevel($row['min_level']);
                 $tpl->setMaxLevel($row['max_level']);
+
+                $tpl->setMinLifePoints($row['min_life_points']);
+                $tpl->setMaxLifePoints($row['max_life_points']);
+
+                $tpl->setMinActionPoints($row['min_action_points']);
+                $tpl->setMaxActionPoints($row['min_action_points']);
+                $tpl->setMinMouvementPoints($row['max_movement_points']);
+                $tpl->setMaxMouvementPoints($row['max_movement_points']);
+
                 $this->dm->persist($tpl);
             }
             ++$rowsProcessed;
