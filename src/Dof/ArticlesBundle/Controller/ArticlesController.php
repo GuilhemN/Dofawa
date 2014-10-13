@@ -92,7 +92,7 @@ class ArticlesController extends Controller
       }
 
       return $this->render('DofArticlesBundle:Article:edit.html.twig', array(
-        'newArticle' => $newArticle,
+        'type' =>$type,'newArticle' => $newArticle,
         'form' => $form->createView()
       ));
     }
@@ -123,7 +123,7 @@ class ArticlesController extends Controller
       }
 
       return $this->render('DofArticlesBundle:Article:add.html.twig', array(
-        'article' => $article,
+        'type' =>$type,'article' => $article,
         'form' => $form->createView()
       ));
     }
