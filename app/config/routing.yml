@@ -1,6 +1,6 @@
 dof_monster:
     resource: "@DofMonsterBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /monsters
 
 dof_guild:
     resource: "@DofGuildBundle/Resources/config/routing.yml"
@@ -79,6 +79,7 @@ root:
 dof_articles:
     resource: "@DofArticlesBundle/Resources/config/routing.yml"
     prefix:   /
+    prefix:   /news
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

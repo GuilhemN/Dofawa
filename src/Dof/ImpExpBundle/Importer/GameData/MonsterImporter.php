@@ -24,7 +24,13 @@ class MonsterImporter extends AbstractGameDataImporter
             'MIN(g.level) as min_level, MAX(g.level) as max_level, ' .
             'MIN(g.lifePoints) as min_life_points, MAX(g.lifePoints) as max_life_points, ' .
             'MIN(g.actionPoints) as min_action_points, MAX(g.actionPoints) as max_action_points, ' .
-            'MIN(g.movementPoints) as min_movement_points, MAX(g.movementPoints) as max_movement_points ' .
+            'MIN(g.movementPoints) as min_movement_points, MAX(g.movementPoints) as max_movement_points, ' .
+
+            'MIN(g.earthResistance) as min_earth_resistance, MAX(g.earthResistance) as max_earth_resistance, ' .
+            'MIN(g.airResistance) as min_air_resistance, MAX(g.airResistance) as max_air_resistance, ' .
+            'MIN(g.fireResistance) as min_fire_resistance, MAX(g.fireResistance) as max_fire_resistance, ' .
+            'MIN(g.waterResistance) as min_water_resistance, MAX(g.waterResistance) as max_water_resistance, ' .
+            'MIN(g.neutralResistance) as min_neutral_resistance, MAX(g.neutralResistance) as max_neutral_resistance ' .
             $this->generateD2ISelects('name', $locales) .
             ' FROM ' . $db . '.D2O_Monster o' .
             ' JOIN ' . $db . '.D2O_Monster_grade g on g.monsterId = o.id' .
@@ -62,6 +68,17 @@ class MonsterImporter extends AbstractGameDataImporter
                 $tpl->setMaxActionPoints($row['max_action_points']);
                 $tpl->setMinMovementPoints($row['min_movement_points']);
                 $tpl->setMaxMovementPoints($row['max_movement_points']);
+
+                $tpl->setMinEarthResistance($row['min_earth_resistance']);
+                $tpl->setMaxEarthResistance($row['max_earth_resistance']);
+                $tpl->setMinAirResistance($row['min_air_resistance']);
+                $tpl->setMaxAirResistance($row['max_air_resistance']);
+                $tpl->setMinFireResistance($row['min_fire_resistance']);
+                $tpl->setMaxFireResistance($row['max_fire_resistance']);
+                $tpl->setMinWaterResistance($row['min_water_resistance']);
+                $tpl->setMaxWaterResistance($row['max_water_resistance']);
+                $tpl->setMinNeutralResistance($row['min_neutral_resistance']);
+                $tpl->setMaxNeutralResistance($row['max_neutral_resistance']);
 
                 $this->dm->persist($tpl);
             }
