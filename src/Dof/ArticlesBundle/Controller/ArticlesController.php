@@ -94,7 +94,7 @@ class ArticlesController extends Controller
           $article->AddEdit($newArticle);
           $em = $this->getDoctrine()->getManager();
           $em->persist($newArticle);
-          $em->persist($article);
+         // $em->persist($article);
           $em->flush();
 
           return $this->render('DofArticlesBundle:Article:success.html.twig', array('type' =>$type, 'action'=>'editer'));
