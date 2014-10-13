@@ -75,9 +75,9 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * @var integer
      *
-     * @ORM\Column(name="min_mouvement_points", type="integer")
+     * @ORM\Column(name="min_movement_points", type="integer")
      */
-    private $minMouvementPoints;
+    private $minMovementPoints;
 
     /**
      * @var integer
@@ -256,49 +256,49 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set minMouvementPoints
+     * Set minMovementPoints
      *
-     * @param integer $minMouvementPoints
+     * @param integer $minMovementPoints
      * @return Monster
      */
-    public function setMinMouvementPoints($minMouvementPoints)
+    public function setMinMovementPoints($minMovementPoints)
     {
-        $this->minMouvementPoints = $minMouvementPoints;
+        $this->minMovementPoints = $minMovementPoints;
 
         return $this;
     }
 
     /**
-     * Get minMouvementPoints
+     * Get minMovementPoints
      *
      * @return integer
      */
-    public function getMinMouvementPoints()
+    public function getMinMovementPoints()
     {
-        return $this->minMouvementPoints;
+        return $this->minMovementPoints;
     }
-    
+
     /**
-     * Set maxMouvementPoints
+     * Set maxMovementPoints
      *
-     * @param integer $maxMouvementPoints
+     * @param integer $maxMovementPoints
      * @return Monster
      */
-    public function setMaxMouvementPoints($maxMouvementPoints)
+    public function setMaxMovementPoints($maxMovementPoints)
     {
-        $this->maxMouvementPoints = $maxMouvementPoints;
+        $this->maxMovementPoints = $maxMovementPoints;
 
         return $this;
     }
 
     /**
-     * Get maxMouvementPoints
+     * Get maxMovementPoints
      *
      * @return integer
      */
-    public function getMaxMouvementPoints()
+    public function getMaxMovementPoints()
     {
-        return $this->maxMouvementPoints;
+        return $this->maxMovementPoints;
     }
     /**
      * Set visible
