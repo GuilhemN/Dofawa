@@ -59,8 +59,8 @@ class MonsterImporter extends AbstractGameDataImporter
                 $tpl->setMaxLifePoints($row['max_life_points']);
 
                 $tpl->setMinActionPoints($row['min_action_points']);
-                $tpl->setMaxActionPoints($row['min_action_points']);
-                $tpl->setMinMovementPoints($row['max_movement_points']);
+                $tpl->setMaxActionPoints($row['max_action_points']);
+                $tpl->setMinMovementPoints($row['min_movement_points']);
                 $tpl->setMaxMovementPoints($row['max_movement_points']);
 
                 $this->dm->persist($tpl);
