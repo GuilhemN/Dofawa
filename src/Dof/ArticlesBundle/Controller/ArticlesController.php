@@ -51,31 +51,41 @@ class ArticlesController extends Controller
       if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
         throw new AccessDeniedException();
 
-      $newArticle = new Article;
-      $newArticle = $article;
-
       switch ($type) {
-        case 'tutorial':
-            $typeNb = ArticleType::TUTORIAL;
-          break;
-        case 'quest':
-            $typeNb = ArticleType::QUEST;
-          break;
-        case 'dungeon':
-            $typeNb = ArticleType::DUNGEON;
-          break;  
+              case 'tutorial':
+                  $typeNb = ArticleType::TUTORIAL;
+                break;
+              case 'quest':
+                  $typeNb = ArticleType::QUEST;
+                break;
+              case 'dungeon':
+                  $typeNb = ArticleType::DUNGEON;
+                break;  
 
-        default:
-            $typeNb = ArticleType::NEWS;
-          break;
+              default:
+                  $typeNb = ArticleType::NEWS;
+                break;
       }
+
+      $newArticle = new Article();
+
+      $request = $this->get('request');
+      if ($request->getMethod() != 'POST') {
+        $newArticle->setDescriptionFr($article->getDescriptionFr());
+        $newArticle->setType($article->getType());
+        $newArticle->setCategory($article->getCategory());
+        $newArticle->setPublished(false);
+        $newArticle->setKeys($article->getKeys());
+        $newArticle->addOriginalArticle($article);
+      }
+
+      
 
       if($typeNb != $article->getType())
         return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId())));
 
       $form = $this->createForm('dof_articlesbundle_article', $newArticle);
 
-      $request = $this->get('request');
       if ($request->getMethod() == 'POST') {
         $form->bind($request);
 
