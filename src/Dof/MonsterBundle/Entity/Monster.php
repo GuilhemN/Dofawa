@@ -11,7 +11,6 @@ use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
 use XN\L10n\LocalizedNameTrait;
-use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 /**
  * Monster
@@ -21,7 +20,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  */
 class Monster implements IdentifiableInterface, TimestampableInterface, SluggableInterface
 {
-    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, ReleaseBoundTrait;
+    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
      * @var integer
