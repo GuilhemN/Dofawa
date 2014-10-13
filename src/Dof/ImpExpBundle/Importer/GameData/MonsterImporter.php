@@ -23,7 +23,7 @@ class MonsterImporter extends AbstractGameDataImporter
         $stmt = $conn->query('SELECT o.*, MIN(g.level) as min_level, MAX(g.level) as max_level' .
             $this->generateD2ISelects('name', $locales) .
             ' FROM ' . $db . '.D2O_Monster o' .
-            ' LEFT ' . $db . '.D2O_Monster_grade g on g.monsterId = o.id' .
+            ' JOIN ' . $db . '.D2O_Monster_grade g on g.monsterId = o.id' .
             $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
