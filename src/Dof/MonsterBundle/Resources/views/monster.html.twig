@@ -1,0 +1,34 @@
+{% autoescape  %}
+    <div class="panel panel-default item">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ monster.getName(locales())}} <font size="2">Niveau : {{ monster.minLevel }} {% if monster.maxLevel != monster.minLevel %}- {{ monster.maxLevel}}{% endif %}</font></h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                {# Left column #}
+                <div class="col-sm-3">
+                    <a href="{{ path('dof_monster_show', {'slug': monster.slug}) }}" class="thumbnail">
+                        <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ monster.getName(locales()) }}">
+                    </a>
+                    <div class="text-center">
+                        <p>
+                            {% if monster.preliminary %}
+                                <span class="label label-danger">Bêta</span>
+                            {% endif %}
+                            {% if monster.release != 1 %}
+                                <span class="label label-default hidden-xs">{{ item.release }}</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                {# Right column #}
+                <div class="col-sm-9">
+                    This is a test
+                {# Close right column #}
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endautoescape %}
