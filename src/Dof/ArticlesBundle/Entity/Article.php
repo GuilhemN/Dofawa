@@ -73,10 +73,16 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $journal;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ArticlesBundle\Entity\Article")
+     * @ORM\OneToMany(targetEntity="Dof\ArticlesBundle\Entity\Article", mappedBy="originalArticle")
      * @ORM\JoinColumn(nullable=true)
      */
     private $edits;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\ArticlesBundle\Entity\Article", inversedBy="edits")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $originalArticle;
 
     public function __construct()
     {
