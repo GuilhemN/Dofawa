@@ -8,32 +8,89 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ArticlesBundle\Entity\Article;
+use Dof\ArticlesBundle\ArticleType;
 
 class ArticlesController extends Controller
 {
   /**
    * @ParamConverter("article", options={"mapping": {"slug": "slug"}})
    */
-    public function viewAction(Article $article)
+    public function viewAction($type, Article $article)
     {
+      if(ArticleType::strtoupper($type) != $article->getType())
+        return $this->redirect($this->generateUrl('dof_articles_view', array('slug' => $article->getSlug())));
+
       return $this->render('DofArticlesBundle:Article:view.html.twig', array(
-        'article' => $article
+        'article' => $article, 'type'=>$type
       ));
     }
 
 
-      /**
-       * @ParamConverter("article", options={"mapping": {"id": "id"}})
-       */
-    public function editAction(Article $article)
+    /**
+    * @ParamConverter("article", options={"mapping": {"id": "id"}})
+    */
+    public function editAction($type, Article $article)
     {
 
       if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
         throw new AccessDeniedException();
 
-      $form = $this->createForm('dof_articlesbundle_article', $article);
+      $newArticle = new Article;
+      $newArticle = $article;
+
+      if(ArticleType::strtoupper($type) != $article->getType())
+        return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId())));
+
+      $form = $this->createForm('dof_articlesbundle_article', $newArticle);
+
+      $request = $this->get('request');
+      if ($request->getMethod() == 'POST') {
+        $form->bind($request);
+
+        if ($form->isValid()) {
+
+          $article->AddEdit($newArticle);
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($newArticle);
+          $em->persist($article);
+          $em->flush();
+
+          return $this->render('DofArticlesBundle:Article:success.html.twig', array('type' =>$type, 'action'=>'editer'));
+        }
+      }
 
       return $this->render('DofArticlesBundle:Article:edit.html.twig', array(
+        'newArticle' => $newArticle,
+        'form' => $form->createView()
+      ));
+    }
+
+    public function AddAction($type)
+    {
+
+      if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
+        throw new AccessDeniedException();
+
+      $article = new Article;
+
+      $form = $this->createForm('dof_articlesbundle_article', $article);
+
+      $request = $this->get('request');
+      if ($request->getMethod() == 'POST') {
+        $form->bind($request);
+
+        if ($form->isValid()) {
+
+          $article->AddEdit($article);
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($article);
+          $em->flush();
+
+          return $this->render('DofArticlesBundle:Article:success.html.twig', array('type' =>$type, 'action'=>'ajouter'));
+        }
+      }
+
+      return $this->render('DofArticlesBundle:Article:add.html.twig', array(
         'article' => $article,
         'form' => $form->createView()
       ));

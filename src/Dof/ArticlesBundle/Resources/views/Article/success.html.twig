@@ -1,0 +1,18 @@
+{% extends 'DofArticlesBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+  <li>{{ type }}</li>
+  <li>{{action}}</li>
+{% endblock %}
+
+{% block body %}
+  <div class="panel panel-success">
+  <div class="panel-body">
+    {% if type == "news" %}
+    	L'article à bien été ajouté, un modérateur va le vérifier sous peu!
+    {% else %}
+    	Le tutoriel à bien été ajouté, un modérateur va le vérifier sous peu!
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

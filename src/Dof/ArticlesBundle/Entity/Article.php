@@ -3,6 +3,8 @@
 namespace Dof\ArticlesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
@@ -70,6 +72,16 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $journal;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\ArticlesBundle\Entity\Article")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $edits;
+
+    public function __construct()
+    {
+        $this->edits = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -199,5 +211,41 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function __toString()
     {
         return $this->getNameFr();
+    }
+    
+    /**
+     * Add edits
+     *
+     * @param Article $edits
+     * @return object
+     */
+    public function addEdit(Article $edits)
+    {
+        $this->edits[] = $edits;
+
+        return $this;
+    }
+
+    /**
+     * Remove edits
+     *
+     * @param Article $edits
+     * @return object
+     */
+    public function removeEdit(Article $edits)
+    {
+        $this->edits->removeElement($edits);
+
+        return $this;
+    }
+
+    /**
+     * Get edits
+     *
+     * @return Collection
+     */
+    public function getEdits()
+    {
+        return $this->edits;
     }
 }

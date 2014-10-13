@@ -78,7 +78,7 @@ root:
 
 dof_articles:
     resource: "@DofArticlesBundle/Resources/config/routing.yml"
-    prefix:   /news
+    prefix:   /
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

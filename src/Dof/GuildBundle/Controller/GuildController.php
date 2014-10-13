@@ -43,7 +43,7 @@ class GuildController extends Controller
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
 
-        $guild = new Guild;
+    $guild = new Guild;
 		$form = $this->createForm(new GuildType, $guild);
 
 		$request = $this->get('request');

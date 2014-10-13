@@ -1,7 +1,7 @@
 {% extends 'DofArticlesBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-  {{ parent() }}
+  <li>{{ type }}</li>
   <li>{{ article.getName(locales()) }}</li>
 {% endblock %}
 
