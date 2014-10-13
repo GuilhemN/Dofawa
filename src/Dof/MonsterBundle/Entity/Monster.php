@@ -87,6 +87,76 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $maxMouvementPoints;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="min_earth_resistance", type="integer")
+     */
+    private $minEarthResistance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_earth_resistance", type="integer")
+     */
+    private $maxEarthResistance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="min_air_resistance", type="integer")
+     */
+    private $minAirResistance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_air_resistance", type="integer")
+     */
+    private $maxAirResistance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="min_fire_resistance", type="integer")
+     */
+    private $minFireResistance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_fire_resistance", type="integer")
+     */
+    private $maxFireResistance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="min_water_resistance", type="integer")
+     */
+    private $minWaterResistance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_water_resistance", type="integer")
+     */
+    private $maxWaterResistance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="min_neutral_resistance", type="integer")
+     */
+    private $minNeutralResistance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_neutral_resistance", type="integer")
+     */
+    private $maxNeutralResistance;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="visible", type="boolean")
@@ -300,6 +370,237 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         return $this->maxMovementPoints;
     }
+
+    /**
+     * Set minEarthResistance
+     *
+     * @param integer $minEarthResistance
+     * @return Monster
+     */
+    public function setMinEarthResistance($minEarthResistance)
+    {
+        $this->minEarthResistance = $minEarthResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get minEarthResistance
+     *
+     * @return integer
+     */
+    public function getMinEarthResistance()
+    {
+        return $this->minEarthResistance;
+    }
+
+    /**
+     * Set maxEarthResistance
+     *
+     * @param integer $maxEarthResistance
+     * @return Monster
+     */
+    public function setMaxEarthResistance($maxEarthResistance)
+    {
+        $this->maxEarthResistance = $maxEarthResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get maxEarthResistance
+     *
+     * @return integer
+     */
+    public function getMaxEarthResistance()
+    {
+        return $this->maxEarthResistance;
+    }
+
+    /**
+     * Set minAirResistance
+     *
+     * @param integer $minAirResistance
+     * @return Monster
+     */
+    public function setMinAirResistance($minAirResistance)
+    {
+        $this->minAirResistance = $minAirResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get minAirResistance
+     *
+     * @return integer
+     */
+    public function getMinAirResistance()
+    {
+        return $this->minAirResistance;
+    }
+
+    /**
+     * Set maxAirResistance
+     *
+     * @param integer $maxAirResistance
+     * @return Monster
+     */
+    public function setMaxAirResistance($maxAirResistance)
+    {
+        $this->maxAirResistance = $maxAirResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get maxAirResistance
+     *
+     * @return integer
+     */
+    public function getMaxAirResistance()
+    {
+        return $this->maxAirResistance;
+    }
+
+    /**
+     * Set minFireResistance
+     *
+     * @param integer $minFireResistance
+     * @return Monster
+     */
+    public function setMinFireResistance($minFireResistance)
+    {
+        $this->minFireResistance = $minFireResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get minFireResistance
+     *
+     * @return integer
+     */
+    public function getMinFireResistance()
+    {
+        return $this->minFireResistance;
+    }
+
+    /**
+     * Set maxFireResistance
+     *
+     * @param integer $maxFireResistance
+     * @return Monster
+     */
+    public function setMaxFireResistance($maxFireResistance)
+    {
+        $this->maxFireResistance = $maxFireResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get maxFireResistance
+     *
+     * @return integer
+     */
+    public function getMaxFireResistance()
+    {
+        return $this->maxFireResistance;
+    }
+
+    /**
+     * Set minWaterResistance
+     *
+     * @param integer $minWaterResistance
+     * @return Monster
+     */
+    public function setMinWaterResistance($minWaterResistance)
+    {
+        $this->minWaterResistance = $minWaterResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get minWaterResistance
+     *
+     * @return integer
+     */
+    public function getMinWaterResistance()
+    {
+        return $this->minWaterResistance;
+    }
+
+    /**
+     * Set maxWaterResistance
+     *
+     * @param integer $maxWaterResistance
+     * @return Monster
+     */
+    public function setMaxWaterResistance($maxWaterResistance)
+    {
+        $this->maxWaterResistance = $maxWaterResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get maxWaterResistance
+     *
+     * @return integer
+     */
+    public function getMaxWaterResistance()
+    {
+        return $this->maxWaterResistance;
+    }
+
+    /**
+     * Set minNeutralResistance
+     *
+     * @param integer $minNeutralResistance
+     * @return Monster
+     */
+    public function setMinNeutralResistance($minNeutralResistance)
+    {
+        $this->minNeutralResistance = $minNeutralResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get minNeutralResistance
+     *
+     * @return integer
+     */
+    public function getMinNeutralResistance()
+    {
+        return $this->minNeutralResistance;
+    }
+
+    /**
+     * Set maxNeutralResistance
+     *
+     * @param integer $maxNeutralResistance
+     * @return Monster
+     */
+    public function setMaxNeutralResistance($maxNeutralResistance)
+    {
+        $this->maxNeutralResistance = $maxNeutralResistance;
+
+        return $this;
+    }
+
+    /**
+     * Get maxNeutralResistance
+     *
+     * @return integer
+     */
+    public function getMaxNeutralResistance()
+    {
+        return $this->maxNeutralResistance;
+    }
+
     /**
      * Set visible
      *
