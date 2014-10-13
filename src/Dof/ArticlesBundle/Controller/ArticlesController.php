@@ -17,7 +17,23 @@ class ArticlesController extends Controller
    */
     public function viewAction($type, Article $article)
     {
-      if(ArticleType::strtoupper($type) != $article->getType())
+      switch ($type) {
+        case 'tutorial':
+            $typeNb = ArticleType::TUTORIAL;
+          break;
+        case 'quest':
+            $typeNb = ArticleType::QUEST;
+          break;
+        case 'dungeon':
+            $typeNb = ArticleType::DUNGEON;
+          break;  
+
+        default:
+            $typeNb = ArticleType::NEWS;
+          break;
+      }
+
+      if($typeNb != $article->getType())
         return $this->redirect($this->generateUrl('dof_articles_view', array('slug' => $article->getSlug())));
 
       return $this->render('DofArticlesBundle:Article:view.html.twig', array(
@@ -38,7 +54,23 @@ class ArticlesController extends Controller
       $newArticle = new Article;
       $newArticle = $article;
 
-      if(ArticleType::strtoupper($type) != $article->getType())
+      switch ($type) {
+        case 'tutorial':
+            $typeNb = ArticleType::TUTORIAL;
+          break;
+        case 'quest':
+            $typeNb = ArticleType::QUEST;
+          break;
+        case 'dungeon':
+            $typeNb = ArticleType::DUNGEON;
+          break;  
+
+        default:
+            $typeNb = ArticleType::NEWS;
+          break;
+      }
+
+      if($typeNb != $article->getType())
         return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId())));
 
       $form = $this->createForm('dof_articlesbundle_article', $newArticle);
