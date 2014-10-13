@@ -71,6 +71,7 @@ class ArticlesController extends Controller
 
       $request = $this->get('request');
       if ($request->getMethod() != 'POST') {
+        $newArticle->setNameFr($article->getNameFr());
         $newArticle->setDescriptionFr($article->getDescriptionFr());
         $newArticle->setType($article->getType());
         $newArticle->setCategory($article->getCategory());
