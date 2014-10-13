@@ -106,7 +106,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     public function setMaxLevel($maxLevel)
     {
-        $this->minLevel = $minLevel;
+        $this->maxLevel = $maxLevel;
 
         return $this;
     }
