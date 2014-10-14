@@ -68,9 +68,9 @@ class ArticlesController extends Controller
       }
  
       $newArticle = new Article();
-
+      $newArticle = clone $article;
       $request = $this->get('request');
-      if ($request->getMethod() != 'POST') {
+      /*if ($request->getMethod() != 'POST') {
         $newArticle->setNameFr($article->getNameFr());
         $newArticle->setDescriptionFr($article->getDescriptionFr());
         $newArticle->setType($article->getType());
@@ -78,7 +78,7 @@ class ArticlesController extends Controller
         $newArticle->setPublished(false);
         $newArticle->setKeys($article->getKeys());
         $newArticle->addOriginalArticle($article);
-      }
+      }*/
 
       
 
@@ -95,7 +95,7 @@ class ArticlesController extends Controller
           $article->AddEdit($newArticle);
           $em = $this->getDoctrine()->getManager();
           $em->persist($newArticle);
-         // $em->persist($article);
+          $em->persist($article);
           $em->flush();
 
           return $this->render('DofArticlesBundle:Article:success.html.twig', array('type' =>$type, 'action'=>'editer'));
