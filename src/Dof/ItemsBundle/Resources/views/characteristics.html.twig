@@ -1,21 +1,23 @@
 {% trans_default_domain 'item' %}
 
-{% for name, value in item.characteristics %}
-    {% if value | is_array %}
-        {% set min = value.min %}
-        {% set max = value.max %}
-    {% else %}
-        {% set min = value %}
-        {% set max = value %}
-    {% endif %}
+{% if updatable | default(false) == false %}
+    {% for name, value in item.characteristics %}
+        {% if value | is_array %}
+            {% set min = value.min %}
+            {% set max = value.max %}
+        {% else %}
+            {% set min = value %}
+            {% set max = value %}
+        {% endif %}
 
-    {% if min != 0 or max != 0 %}
-        {% set range %}
-            {% if min != max %}
-                {{ min}} {{ 'to' | trans }}
-            {% endif %}
-            {{ max }}
-        {% endset %}
-        {{ name | trans({'%1%': range}) }}<br>
-    {% endif %}
-{% endfor %}
+        {% if min != 0 or max != 0 %}
+            {% set range %}
+                {% if min != max %}
+                    {{ min}} {{ 'to' | trans }}
+                {% endif %}
+                {{ max }}
+            {% endset %}
+            {{ name | trans({'%1%': range}) }}<br>
+        {% endif %}
+    {% endfor %}
+{% endif %}
