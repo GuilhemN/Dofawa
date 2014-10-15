@@ -57,7 +57,7 @@
                             {% set item_content %}
                                 {{ item_content }}
                                 <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item_caracts | default(item)} only %}
+                                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item_caracts | default(item), 'updatable': type == 'build' and can_write} only %}
                                 </div>
                             {% endset %}
 
