@@ -20,4 +20,13 @@
             {{ name | trans({'%1%': range}) }}<br>
         {% endif %}
     {% endfor %}
+{% else %}
+    {% for name, value in item.characteristics %}
+        {% if value != 0 %}
+            {% set range %}
+                <input type="number" value="{{ value }}"> 
+            {% endset %}
+            {{ name | trans({'%1%': range}) | raw }}<br>
+        {% endif %}
+    {% endfor %}
 {% endif %}
