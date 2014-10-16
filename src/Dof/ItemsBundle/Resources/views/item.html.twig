@@ -5,7 +5,7 @@
 {% endif %}
 
 {% if type | default('item') == 'item' %}
-    {#% set item = item %#}
+    {% set type = 'item' %#}
 {% elseif type == 'build' %}
     {% set item_primary_bonus = item %}
     {% set item_caracts = item %}
