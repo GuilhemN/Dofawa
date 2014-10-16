@@ -1,6 +1,6 @@
 <ul class="pagination">
     {% set params = pagination.route_params | default({}) | merge({'page': 1}) %}
-    {% set queryString = (app.request.queryString ? ("?" ~ app.request.queryString) : "" %}
+    {% set queryString = (app.request.queryString ? ("?" ~ app.request.queryString) : "") %}
 
     {# Retour au début/précédent #}
     {% if pagination.page > 1 %}
