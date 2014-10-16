@@ -41,7 +41,8 @@ abstract class Enum
         return $values;
     }
     public static function getPrefixedValues($prefix, $case_lower = true){
-        foreach($array = self::getValues($case_lower) as &$v)
+        $array = self::getValues($case_lower);
+        foreach($array as &$v)
             $v = $prefix . $v;
 
         return $array;
