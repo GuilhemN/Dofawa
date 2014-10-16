@@ -36,6 +36,7 @@ equipments:
     living_item: Living Item
     mount: Mount
     pet: Pet
+    weapon: Weapon
 
 animals:
     main: "Animal|Animals"

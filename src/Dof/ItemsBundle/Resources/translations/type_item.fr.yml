@@ -36,6 +36,17 @@ equipments:
     living_item: Objet Vivant
     mount: Monture
     pet: Familier
+    weapon: Arme
+    resource: Ressource
+    quest: Quête
+    follower: Suiveur
+    sidekick: Multiman
+    useable: Consommable
+    mutation: Objet de Mutation
+    boost: Boost
+    blessing: Bénédiction
+    curse: Malédiction
+    rp_buff: Roleplay Buffs
 
 animals:
     main: "Animal|Animaux"
