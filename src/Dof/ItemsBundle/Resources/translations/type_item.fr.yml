@@ -23,14 +23,19 @@ weapons:
 equipments:
     main: "Equipement|Equipements"
 
-    amulet: "Amulette|Amulettes"
-    ring: "Anneau|Anneaux"
-    belt: "Ceinture|Ceintures"
+    amulet: "Amulette"
+    ring: "Anneau"
+    belt: "Ceinture"
     boots: Bottes
-    shield: "Bouclier|Boucliers"
-    hat: "Coiffe|Coiffes"
-    cloak: "Cape|Capes"
-    backpack: "Sac|Sacs"
+    shield: "Bouclier"
+    hat: "Coiffe"
+    cloak: "Cape"
+    backpack: "Sac"
+
+    dofus: Dofus
+    living_item: Objet Vivant
+    mount: Monture
+    pet: Familier
 
 animals:
     main: "Animal|Animaux"

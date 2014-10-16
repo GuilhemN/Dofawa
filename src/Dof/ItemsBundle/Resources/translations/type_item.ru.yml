@@ -17,11 +17,11 @@ weapons:
 equipments:
     main: Обмундирование
 
-    amulet: "Амулет|Амулеты"
-    ring: "Кольцо|Кольца́"
-    belt: "Пояс|Пояса́"
+    amulet: "Амулет"
+    ring: "Кольцо"
+    belt: "Пояс"
     boots: Ботинки
-    shield: "Щит|Щита́"
-    hat: "Шапка|Шапки"
-    cloak: "Плащ|Плаща́"
-    backpack: "Рюкзак|Рюкзака́"
+    shield: "Щит"
+    hat: "Шапка"
+    cloak: "Плащ"
+    backpack: "Рюкзак"

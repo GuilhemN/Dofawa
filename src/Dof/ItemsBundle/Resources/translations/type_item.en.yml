@@ -23,14 +23,19 @@ weapons:
 equipments:
     main: "Equipment|Equipments"
 
-    amulet: "Amulet|Amulets"
-    ring: "Ring|Rings"
-    belt: "Belt|Belt"
+    amulet: "Amulet"
+    ring: "Ring"
+    belt: "Belt"
     boots: Boots
-    shield: "Shield|Shields"
-    hat: "Hat|Hats"
-    cloak: "Cloak|Cloaks"
-    backpack: "Backpack|Backpacks"
+    shield: "Shield"
+    hat: "Hat"
+    cloak: "Cloak"
+    backpack: "Backpack"
+
+    dofus: Dofus
+    living_item: Living Item
+    mount: Mount
+    pet: Pet
 
 animals:
     main: "Animal|Animals"

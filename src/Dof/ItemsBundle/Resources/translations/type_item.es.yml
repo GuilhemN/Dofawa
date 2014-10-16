@@ -17,11 +17,11 @@ weapons:
 equipments:
     main: Equipo
 
-    amulet: "Amuleto|Amuletos"
-    ring: "Anillo|Anillos"
-    belt: "Cinturón|Cinturones"
+    amulet: "Amuleto"
+    ring: "Anillo"
+    belt: "Cinturón"
     boots: Botas
-    shield: "Escudo|Escudos"
-    hat: "Sombrero|Sombreros"
-    cloak: "Capa|Capas"
-    backpack: "Mochila|Mochilas"
+    shield: "Escudo"
+    hat: "Sombrero"
+    cloak: "Capa"
+    backpack: "Mochila"

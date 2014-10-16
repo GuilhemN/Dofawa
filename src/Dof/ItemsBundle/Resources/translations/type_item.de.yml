@@ -17,11 +17,11 @@ weapons:
 equipments:
     main: "Ausrüstung|Ausrüstunge"
 
-    amulet: "Amulett|Amulette"
-    ring: "Ring|Ringe"
+    amulet: "Amulett"
+    ring: "Ring"
     belt: Gürtel
     boots: Stiefel
-    shield: "Schild|Schilde"
-    hat: "Hut|Hüte"
-    cloak: "Umhang|Umhänge"
-    backpack: "Rucksack|Rucksäcke"
+    shield: "Schild"
+    hat: "Hut"
+    cloak: "Umhang"
+    backpack: "Rucksack"

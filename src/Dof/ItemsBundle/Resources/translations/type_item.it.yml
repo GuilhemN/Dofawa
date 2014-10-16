@@ -17,11 +17,11 @@ weapons:
 equipments:
     main: "Equipaggiamento|Equipaggiamenti"
 
-    amulet: "Amuleto|Amuleti"
-    ring: "Anello|Anelli"
-    belt: "Cintura|Cinture"
+    amulet: "Amuleto"
+    ring: "Anello"
+    belt: "Cintura"
     boots: Stivali
-    shield: "Scudo|Scudi"
-    hat: "Cappello|Cappelli"
-    cloak: "Mantello|Mantelli"
-    backpack: "Zaino|Zaini"
+    shield: "Scudo"
+    hat: "Cappello"
+    cloak: "Mantello"
+    backpack: "Zaino"
