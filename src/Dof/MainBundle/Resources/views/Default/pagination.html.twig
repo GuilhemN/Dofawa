@@ -1,6 +1,6 @@
 <ul class="pagination">
-    {% set pagination.route_params = pagination.route_params | default({}) %}
-    
+    {% set pagination['route_params'] = pagination.route_params | default({}) %}
+
     {# Retour au début/précédent #}
     {% if pagination.page > 1 %}
     <li><a href="{{ path(pagination.route, pagination.route_params|merge({'page': 1})) ~ app.request.queryString }}">&laquo;&laquo;</a></li>
