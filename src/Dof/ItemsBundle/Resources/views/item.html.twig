@@ -53,11 +53,11 @@
                     <ul class="nav nav-tabs" role="tablist">
                         {% if item.isEquipment() %}
                             {# Charactéristiques #}
-                            <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Caracts</a></li>
+                            <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
                             {% set item_content %}
                                 {{ item_content }}
                                 <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item_caracts | default(item), 'updatable': type == 'build' and can_write} only %}
+                                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item_caracts | default(item), 'updatable': type == 'build' and can_write | default(false)} only %}
                                 </div>
                             {% endset %}
 

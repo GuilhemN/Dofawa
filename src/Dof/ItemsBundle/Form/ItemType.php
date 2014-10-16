@@ -10,7 +10,7 @@ use Dof\ItemsBundle\ItemSlot;
 
 class ItemType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -19,9 +19,10 @@ class ItemType extends AbstractType
         $builder
             ->setMethod('get')
             ->add('type', 'choice', array(
-                'choices' => array_flip(ItemSlot::getValues()),
+                'choices' => array_flip(ItemSlot::getPrefixedValues('equipments.')),
                 'multiple' => true,
-                'attr'=> array('class' => 'to-select2', 'data-placeholder' => 'Sélectionner un type d\'item')
+                'attr'=> array('class' => 'to-select2', 'data-placeholder' => 'Sélectionner un type d\'item'),
+                'translation_domain' => 'type_item'
                 ))
             ->add('submit', 'submit')
         ;

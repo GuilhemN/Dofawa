@@ -27,13 +27,20 @@ abstract class Enum
         return $name;
     }
 
-    public static function getValues()
+    public static function getValues($case_lower = false)
     {
         static $values = null;
         if ($values === null) {
             $clazz = new \ReflectionClass(get_called_class());
             $values = $clazz->getConstants();
         }
+
+        if($case_lower)
+            $values = array_change_key_case($values);
+
         return $values;
+    }
+    public static function getPrefixedValues($prefix, $case_lower = true){
+        return array_map(function($value) { return $prefix . $value; }, self::getValues($case_lower));
     }
 }
