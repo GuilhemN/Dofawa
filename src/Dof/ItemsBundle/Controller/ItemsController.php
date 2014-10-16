@@ -68,8 +68,7 @@ class ItemsController extends Controller
         $pagination = array(
 			'page' => $page,
 			'route' => $this->get('request')->attributes->get('_route'),
-			'pages_count' => ceil($count / $perPage),
-			'route_params' => $this->get('request')->attributes->get('_route_params')
+			'pages_count' => ceil($count / $perPage)
 		);
 
         return array(
