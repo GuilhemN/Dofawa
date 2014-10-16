@@ -4,7 +4,7 @@
 
     {# Retour au début/précédent #}
     {% if pagination.page > 1 %}
-    <li><a href="{{ path(pagination.route, params)) ~ queryString }}">&laquo;&laquo;</a></li>
+    <li><a href="{{ path(pagination.route, params) ~ queryString }}">&laquo;&laquo;</a></li>
     <li><a href="{{ path(pagination.route, params | merge({'page': pagination.page-1})) ~ queryString }}">&laquo;</a></li>
     {% endif %}
 
