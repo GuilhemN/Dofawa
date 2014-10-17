@@ -17,23 +17,7 @@ class ArticlesController extends Controller
    */
     public function viewAction($type, Article $article)
     {
-      switch ($type) {
-        case 'tutorial':
-            $typeNb = ArticleType::TUTORIAL;
-          break;
-        case 'quest':
-            $typeNb = ArticleType::QUEST;
-          break;
-        case 'dungeon':
-            $typeNb = ArticleType::DUNGEON;
-          break;  
-
-        default:
-            $typeNb = ArticleType::NEWS;
-          break;
-      }
-
-      if($typeNb != $article->getType())
+      if($type != strtolower(ArticleType::getName($article->getType())))
         return $this->redirect($this->generateUrl('dof_articles_view', array('slug' => $article->getSlug(),'type'=> strtolower(ArticleType::getName($article->getType())))));
 
       return $this->render('DofArticlesBundle:Article:view.html.twig', array(
@@ -50,22 +34,6 @@ class ArticlesController extends Controller
 
       if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
         throw new AccessDeniedException();
-
-      switch ($type) {
-              case 'tutorial':
-                  $typeNb = ArticleType::TUTORIAL;
-                break;
-              case 'quest':
-                  $typeNb = ArticleType::QUEST;
-                break;
-              case 'dungeon':
-                  $typeNb = ArticleType::DUNGEON;
-                break;  
-
-              default:
-                  $typeNb = ArticleType::NEWS;
-                break;
-      }
  
       $newArticle = new Article();
       $newArticle = clone $article;
@@ -82,7 +50,7 @@ class ArticlesController extends Controller
 
       
 
-      if($typeNb != $article->getType())
+      if($type != strtolower(ArticleType::getName($article->getType())))
         return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId(),'type'=> strtolower(ArticleType::getName($article->getType())))));
 
       $form = $this->createForm('dof_articlesbundle_article', $newArticle);
