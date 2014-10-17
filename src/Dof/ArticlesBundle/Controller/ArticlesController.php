@@ -34,7 +34,7 @@ class ArticlesController extends Controller
       }
 
       if($typeNb != $article->getType())
-        return $this->redirect($this->generateUrl('dof_articles_view', array('slug' => $article->getSlug())));
+        return $this->redirect($this->generateUrl('dof_articles_view', array('slug' => $article->getSlug(),'type'=> strtolower(ArticleType::getName($article->getType())))));
 
       return $this->render('DofArticlesBundle:Article:view.html.twig', array(
         'article' => $article, 'type'=>$type
@@ -83,7 +83,7 @@ class ArticlesController extends Controller
       
 
       if($typeNb != $article->getType())
-        return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId())));
+        return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId(),'type'=> strtolower(ArticleType::getName($article->getType())))));
 
       $form = $this->createForm('dof_articlesbundle_article', $newArticle);
 
