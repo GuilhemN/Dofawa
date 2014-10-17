@@ -93,6 +93,7 @@ class ArticlesController extends Controller
         if ($form->isValid()) {
 
           $article->AddEdit($newArticle);
+          $newArticle->setSlug(null);
           $em = $this->getDoctrine()->getManager();
           $em->persist($newArticle);
           $em->persist($article);
