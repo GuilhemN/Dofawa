@@ -40,7 +40,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * @var string
      *
-     * @ORM\Column(name="keys", type="string", length=150)
+     * @ORM\Column(name="keys_", type="string", length=150)
      */
     private $keys;
 
