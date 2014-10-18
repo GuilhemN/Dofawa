@@ -62,7 +62,7 @@ class ArticlesController extends Controller
 
           $article->AddEdit($newArticle);
           $newArticle->setSlug(null);
-          $newArticle->setPublished(false);
+          $newArticle->setPublished(0);
           $em = $this->getDoctrine()->getManager();
           $em->persist($newArticle);
           $em->persist($article);
