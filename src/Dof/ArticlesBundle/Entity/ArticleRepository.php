@@ -14,17 +14,13 @@ use Dof\ArticlesBundle\ArticleType;
  */
 class ArticleRepository extends EntityRepository
 {
-	public function findArticlesWithLimits($is_news = false, $firstresult = 0, $maxresults=10)
+	public function findArticlesWithLimits($type = 4, $firstresult = 0, $maxresults=10)
 	{
-		if($is_news)
-			$operator = ' = ';
-		else
-			$operator = ' != ';
-
+		
 		$qb = $this->createQueryBuilder('a');
 
 		$qb
-			->add('where', 'a.type' . $operator . ArticleType::NEWS . 'and a.published=1')
+			->add('where', 'a.type ='.$type. 'and a.published=1')
 	  		->add('orderBy', 'a.createdAt DESC, a.id DESC')
 			->setFirstResult( $firstresult )
 			->setMaxResults( $maxresults );
@@ -41,15 +37,11 @@ class ArticleRepository extends EntityRepository
     *
     * @return integer
     */
-    public function countTotal($is_news = false){
-		if($is_news)
-			$operator = ' = ';
-		else
-			$operator = ' != ';
+    public function countTotal($type = 4){
 
 		return $this->createQueryBuilder('a')
 		    ->select('COUNT(a)')
-			->where('a.published=1 and a.type ' . $operator . ArticleType::NEWS)
+			->where('a.published=1 and a.type =' . $type)
 		    ->getQuery()
 		    ->getSingleScalarResult();
     }

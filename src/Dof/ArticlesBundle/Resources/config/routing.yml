@@ -17,3 +17,7 @@ dof_articles_archive:
 dof_articles_add:
     pattern:  /add/{type}
     defaults: { _controller: DofArticlesBundle:Articles:add }
+
+dof_articles_viewType:
+    pattern:  view/{type}
+    defaults: { _controller: DofArticlesBundle:Articles:viewType }

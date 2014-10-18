@@ -1,7 +1,7 @@
 {% extends 'DofArticlesBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-  <li>{{ type }}</li>
+  <li><a href="{{ path('dof_articles_viewType', { 'type' : type }) }}">{{ type }}</a></li>
   <li>{{ article.getName(locales()) }}</li>
 {% endblock %}
 

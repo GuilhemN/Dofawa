@@ -38,17 +38,6 @@ class ArticlesController extends Controller
       $newArticle = new Article();
       $newArticle = clone $article;
       $request = $this->get('request');
-      /*if ($request->getMethod() != 'POST') {
-        $newArticle->setNameFr($article->getNameFr());
-        $newArticle->setDescriptionFr($article->getDescriptionFr());
-        $newArticle->setType($article->getType());
-        $newArticle->setCategory($article->getCategory());
-        $newArticle->setPublished(false);
-        $newArticle->setKeys($article->getKeys());
-        $newArticle->addOriginalArticle($article);
-      }*/
-
-      
 
       if($type != strtolower(ArticleType::getName($article->getType())))
         return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId(),'type'=> strtolower(ArticleType::getName($article->getType())))));
@@ -106,6 +95,35 @@ class ArticlesController extends Controller
       return $this->render('DofArticlesBundle:Article:add.html.twig', array(
         'type' =>$type,'article' => $article,
         'form' => $form->createView()
+      ));
+    }
+
+    public function viewTypeAction($type)
+    {
+      switch ($type) {
+        case strtolower(ArticleType::getName(3)):
+          $viewType = ArticleType::DUNGEON;
+          break;
+
+        case strtolower(ArticleType::getName(2)):
+          $viewType = ArticleType::QUEST;
+          break;
+
+        case strtolower(ArticleType::getName(1)):
+          $viewType = ArticleType::TUTORIAL;
+          break;
+        
+        default:
+          $viewType = ArticleType::NEWS;
+          $type = strtolower(ArticleType::getName(4));
+          break;
+      }
+
+      $em = $this->getDoctrine()->getManager();
+      $articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits($viewType, 0, 20);
+
+      return $this->render('DofArticlesBundle:Article:viewType.html.twig', array(
+        'articles' => $articles, 'type'=>$type
       ));
     }
 }

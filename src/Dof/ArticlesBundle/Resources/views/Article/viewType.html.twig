@@ -1,13 +1,13 @@
-{% extends "::layout.html.twig" %}
+{% extends 'DofArticlesBundle::layout.html.twig' %}
 
-{% block modelbody %}
+{% block breadcrumb %}
+  <li>{{ type }}</li>
 {% endblock %}
 
-{% block differentdisplay %}
+{% block body %}
 
     <div class="row">
 		{% for article in articles %}
-			{% set type = 'news' %}
 			{% include 'DofArticlesBundle:Article:box.html.twig' %}
 		{% else %}
 			<li>Pas (encore !) d'articles</li>

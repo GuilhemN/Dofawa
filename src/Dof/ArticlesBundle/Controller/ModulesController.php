@@ -15,12 +15,12 @@ class ModulesController extends Controller
     	$trad='menuright.'.$type;
 
       if($type == 'news')
-        $boolean = true;
+        $modType = 4;
       else
-        $boolean = false;
+        $modType = "1 and a.type = 2 and a.type = 3";
 
     	$em = $this->getDoctrine()->getManager();
-    	$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits($boolean, 0, 11);
+    	$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits($modType, 0, 11);
 
         return $this->render('DofArticlesBundle:Modules:news.html.twig', array(
           'articles' => $articles,
