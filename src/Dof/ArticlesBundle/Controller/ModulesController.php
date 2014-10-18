@@ -17,7 +17,7 @@ class ModulesController extends Controller
       if($type == 'news')
         $modType = 4;
       else
-        $modType = "1 and a.type = 2 and a.type = 3";
+        $modType = "1 or a.type = 2 or a.type = 3";
 
     	$em = $this->getDoctrine()->getManager();
     	$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits($modType, 0, 11);
