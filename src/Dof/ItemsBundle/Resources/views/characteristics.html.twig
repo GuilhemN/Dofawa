@@ -24,7 +24,7 @@
     <form method="POST">
         {% set caractsnull = {} %}
         {% for name, value in item.characteristics %}
-            <span data-name="{{ name }}" {% if value == 0 %} style="display:hidden;"{% endif %}>
+            <span data-name="{{ name }}" {% if value == 0 %} style="display: none;"{% endif %}>
                 {% set range %}
                     <input name="caracts[{{ name }}]" type="number" value="{{ value }}">
                 {% endset %}
