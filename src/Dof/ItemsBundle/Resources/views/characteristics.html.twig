@@ -24,7 +24,7 @@
     <form method="POST">
         {% set caractsnull = {} %}
         {% for name, value in item.characteristics %}
-            <span{% if value == 0 %} class="hidden"{% endif %}>
+            <span data-name="{{ name }}" {% if value == 0 %} class="hidden"{% endif %}>
                 {% set range %}
                     <input name="caracts[{{ name }}]" type="number" value="{{ value }}">
                 {% endset %}
@@ -45,5 +45,6 @@
         {% for caract, name in caractsnull %}
         <option name="{{ caract }}">{{ name }}</option>
         {% endfor %}
-    </select>
+    </select><br>
+    <button class="add-build-fm">Ajouter</button>
 {% endif %}

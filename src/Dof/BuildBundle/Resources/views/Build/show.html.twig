@@ -46,11 +46,17 @@
 {% endblock %}
 
 {% block js %}
-    {% if app.request.method == 'POST' and app.request.request.has('slot') %}
     <script type="text/javascript">
         $(function(){
-            $('#modalItem-{{ app.request.request.get('slot') | e('js') }}').modal('show');
+            {% if app.request.method == 'POST' and app.request.request.has('slot') %}
+                $('#modalItem-{{ app.request.request.get('slot') | e('js') }}').modal('show');
+            {% endif %}
+            $('.add-build-fm').on('click', function(){
+                var itemBody = $(this).parent();
+                var fmCaract = itemBody.find('select.build-fm').val();
+
+                itemBody('[data-name="' + fmCaract + '"]').show();
+            });
         });
     </script>
-    {% endif %}
 {% endblock %}
