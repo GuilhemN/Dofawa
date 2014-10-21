@@ -139,6 +139,7 @@ class BuildController extends Controller
         $itemsIds = (array) $request->request->get('items');
         $rel = array_flip($itemsIds);
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
+        $look = $stuff->getLook();
 
         $bItemRepo = $em->getRepository('DofBuildBundle:Item');
         foreach($items as $k => $item) {
@@ -153,6 +154,17 @@ class BuildController extends Controller
             $bItem->setStuff($stuff);
             $bItem->setItemTemplate($item);
             $bItem->setSlot($slot);
+
+            if($slot == BuildSlot::WEAPON)
+                $look->setWeapon($item);
+            elseif($slot == BuildSlot::SHIELD)
+                $look->setShield($item);
+            elseif($slot == BuildSlot::HAT)
+                $look->setHat($item);
+            elseif($slot == BuildSlot::CLOAK)
+                $look->setCloak($item);
+            elseif($slot == BuildSlot::ANIMAL)
+                $look->setAnimal($item);
 
             $caracts = $bItem->getCharacteristics();
             foreach($caracts as $k => &$caract)
