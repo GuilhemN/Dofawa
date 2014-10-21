@@ -40,23 +40,23 @@ class ItemsController extends Controller
 
         if(($buildSlot = BuildSlot::getValue(strtoupper($type))) === null)
             throw $this->createNotFoundException('Type d\'item non trouvé');
-
-        $params = $this->getItems(['type' => BuildSlot::getItemsSlot($buildSlot)], $page);
+        $slugs = [
+                    'user' => $user->getSlug(),
+                    'character' => $character->getSlug(),
+                    'stuff' => $stuff->getSlug()
+                ];
+        $params = $this->getItems(['type' => BuildSlot::getItemsSlot($buildSlot)], $page, $slugs + ['type' => $type]);
 
         return $this->render('DofItemsBundle:Items:index.html.twig',
             $params +
             [
-                'slugs' => [
-                    'user' => $user->getSlug(),
-                    'character' => $character->getSlug(),
-                    'stuff' => $stuff->getSlug()
-                ],
+                'slugs' => $slugs,
                 'build_slot' => $type
             ]
             );
     }
 
-    protected function getItems($options, $page) {
+    protected function getItems($options, $page, array $params = array()) {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
 
@@ -68,7 +68,8 @@ class ItemsController extends Controller
         $pagination = array(
 			'page' => $page,
 			'route' => $this->get('request')->attributes->get('_route'),
-			'pages_count' => ceil($count / $perPage)
+			'pages_count' => ceil($count / $perPage),
+            'route_params' => $params
 		);
 
         return array(

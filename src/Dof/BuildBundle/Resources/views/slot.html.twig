@@ -4,13 +4,13 @@
     {% set item = items[slot] %}
     {% set itemTemplate = item.itemTemplate %}
 
-    <a data-toggle="modal" data-target="#modalItem-{{ item.id }}" href="#">
+    <a data-toggle="modal" data-target="#modalItem-{{ slot }}" href="#">
         <div class="thumbnail">
             <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ itemTemplate.getName(locales()) }}" title="{{ itemTemplate.getName(locales()) }}">
         </div>
     </a>
     <!-- Modal -->
-    <div class="modal fade" id="modalItem-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="modalItem-{{ item.id }}Label" aria-hidden="true">
+    <div class="modal fade" id="modalItem-{{ slot }}" tabindex="-1" role="dialog" aria-labelledby="modalItem-{{ slot }}Label" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">

@@ -30,6 +30,7 @@
                 {{ name | trans({'%1%': range}) | raw }}<br />
             {% endif %}
         {% endfor %}
+        <input type="hidden" name="slot" value="{{ item.slot }}">
         <br />
         <button class="btn btn-primary" type="submit">Mettre à jour</button>
     </form>
