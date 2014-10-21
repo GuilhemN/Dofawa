@@ -23,12 +23,12 @@
 {% else %}
     <form method="POST">
         {% for name, value in item.characteristics %}
-            {% if value != 0 %}
+            <span{% if value == 0 %} class="hidden"{% endif %}>
                 {% set range %}
                     <input name="caracts[{{ name }}]" type="number" value="{{ value }}">
                 {% endset %}
                 {{ name | trans({'%1%': range}) | raw }}<br />
-            {% endif %}
+            </span>
         {% endfor %}
         <input type="hidden" name="slot" value="{{ item.slot }}">
         <br />
