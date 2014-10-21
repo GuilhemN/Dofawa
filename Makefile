@@ -1,8 +1,8 @@
-JSXC = /usr/local/bin/jsx
-TRACEUR = /usr/local/bin/traceur
+JSXC = /usr/bin/env jsx
+TRACEUR = /usr/bin/env traceur
 CLOSURE = app/memoclosure.sh
-LESSC = /usr/local/bin/lessc
-CSSMIN = /usr/local/bin/cssmin
+LESSC = /usr/bin/env lessc
+CSSMIN = /usr/bin/env cssmin
 GZIP = /bin/gzip
 RM = /bin/rm
 LN = /bin/ln
