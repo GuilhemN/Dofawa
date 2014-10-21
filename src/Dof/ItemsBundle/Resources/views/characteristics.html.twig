@@ -21,12 +21,16 @@
         {% endif %}
     {% endfor %}
 {% else %}
-    {% for name, value in item.characteristics %}
-        {% if value != 0 %}
-            {% set range %}
-                <input name="caracts[{{ name }}]" type="number" value="{{ value }}"> 
-            {% endset %}
-            {{ name | trans({'%1%': range}) | raw }}<br>
-        {% endif %}
-    {% endfor %}
+    <form method="POST" action="#">
+        {% for name, value in item.characteristics %}
+            {% if value != 0 %}
+                {% set range %}
+                    <input name="caracts[{{ name }}]" type="number" value="{{ value }}">
+                {% endset %}
+                {{ name | trans({'%1%': range}) | raw }}<br />
+            {% endif %}
+        {% endfor %}
+        <br />
+        <input type="submit" value="Mettre à jour">
+    </form>
 {% endif %}
