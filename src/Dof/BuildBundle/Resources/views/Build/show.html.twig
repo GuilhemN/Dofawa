@@ -55,7 +55,7 @@
                 var itemBody = $(this).parent();
                 var fmCaract = itemBody.find('select.build-fm').val();
 
-                itemBody('[data-name="' + fmCaract + '"]').show();
+                itemBody.find('[data-name="' + fmCaract + '"]').show();
             });
         });
     </script>
