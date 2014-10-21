@@ -56,6 +56,7 @@
                 var fmCaract = itemBody.find('select.build-fm').val();
 
                 itemBody.find('[data-name="' + fmCaract + '"]').show();
+                itemBody.find('select option[value="' + fmCaract + '"]').remove();
             });
         });
     </script>
