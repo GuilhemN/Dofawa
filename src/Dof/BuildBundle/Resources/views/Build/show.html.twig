@@ -44,3 +44,13 @@
     </div>
 {% endautoescape %}
 {% endblock %}
+
+{% block js %}
+    {% if app.request.method == 'POST' and app.request.request.has('slot') %}
+    <script type="text/javascript">
+        $(function(){
+            $('#modalItem-{{ app.request.request.get('slot') | e('js') }}').modal('show');
+        });
+    </script>
+    {% endif %}
+{% endblock %}

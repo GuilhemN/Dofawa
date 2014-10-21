@@ -22,16 +22,23 @@
     {% endfor %}
 {% else %}
     <form method="POST">
+        {% set caractsnull = {} %}
         {% for name, value in item.characteristics %}
             <span{% if value == 0 %} class="hidden"{% endif %}>
                 {% set range %}
                     <input name="caracts[{{ name }}]" type="number" value="{{ value }}">
                 {% endset %}
                 {{ name | trans({'%1%': range}) | raw }}<br />
+
+            {% if value == 0 %}
+                {% set caractsnull = caractsnull + {(name): name | trans({'%1%': ''})}%}
+            {% endif %}
             </span>
         {% endfor %}
         <input type="hidden" name="slot" value="{{ item.slot }}">
         <br />
         <button class="btn btn-primary" type="submit">Mettre à jour</button>
     </form>
+    <br />
+    Nouvel effet :
 {% endif %}
