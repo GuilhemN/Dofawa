@@ -109,10 +109,10 @@ class BuildController extends Controller
         }
 
         $request = $this->get('request');
-        if ($request->isMethod('POST') && isset($items[$request->request->get('slot')]))
+        if ($canWrite && $request->isMethod('POST') && isset($items[$request->request->get('slot')]))
         {
             $em = $this->getDoctrine()->getManager();
-            
+
             $item = $items[$request->request->get('slot')];
             $item->setCharacteristics($request->request->get('caracts'), true);
 
