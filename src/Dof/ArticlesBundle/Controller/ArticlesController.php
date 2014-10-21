@@ -17,24 +17,8 @@ class ArticlesController extends Controller
    */
     public function viewAction($type, Article $article)
     {
-      switch ($type) {
-        case 'tutorial':
-            $typeNb = ArticleType::TUTORIAL;
-          break;
-        case 'quest':
-            $typeNb = ArticleType::QUEST;
-          break;
-        case 'dungeon':
-            $typeNb = ArticleType::DUNGEON;
-          break;  
-
-        default:
-            $typeNb = ArticleType::NEWS;
-          break;
-      }
-
-      if($typeNb != $article->getType())
-        return $this->redirect($this->generateUrl('dof_articles_view', array('slug' => $article->getSlug())));
+      if($type != strtolower(ArticleType::getName($article->getType())))
+        return $this->redirect($this->generateUrl('dof_articles_view', array('slug' => $article->getSlug(),'type'=> strtolower(ArticleType::getName($article->getType())))));
 
       return $this->render('DofArticlesBundle:Article:view.html.twig', array(
         'article' => $article, 'type'=>$type
@@ -50,40 +34,13 @@ class ArticlesController extends Controller
 
       if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
         throw new AccessDeniedException();
-
-      switch ($type) {
-              case 'tutorial':
-                  $typeNb = ArticleType::TUTORIAL;
-                break;
-              case 'quest':
-                  $typeNb = ArticleType::QUEST;
-                break;
-              case 'dungeon':
-                  $typeNb = ArticleType::DUNGEON;
-                break;  
-
-              default:
-                  $typeNb = ArticleType::NEWS;
-                break;
-      }
  
       $newArticle = new Article();
       $newArticle = clone $article;
       $request = $this->get('request');
-      /*if ($request->getMethod() != 'POST') {
-        $newArticle->setNameFr($article->getNameFr());
-        $newArticle->setDescriptionFr($article->getDescriptionFr());
-        $newArticle->setType($article->getType());
-        $newArticle->setCategory($article->getCategory());
-        $newArticle->setPublished(false);
-        $newArticle->setKeys($article->getKeys());
-        $newArticle->addOriginalArticle($article);
-      }*/
 
-      
-
-      if($typeNb != $article->getType())
-        return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId())));
+      if($type != strtolower(ArticleType::getName($article->getType())))
+        return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId(),'type'=> strtolower(ArticleType::getName($article->getType())))));
 
       $form = $this->createForm('dof_articlesbundle_article', $newArticle);
 
@@ -93,6 +50,8 @@ class ArticlesController extends Controller
         if ($form->isValid()) {
 
           $article->AddEdit($newArticle);
+          $newArticle->setSlug(null);
+          $newArticle->setPublished(0);
           $em = $this->getDoctrine()->getManager();
           $em->persist($newArticle);
           $em->persist($article);
@@ -136,6 +95,35 @@ class ArticlesController extends Controller
       return $this->render('DofArticlesBundle:Article:add.html.twig', array(
         'type' =>$type,'article' => $article,
         'form' => $form->createView()
+      ));
+    }
+
+    public function viewTypeAction($type)
+    {
+      switch ($type) {
+        case strtolower(ArticleType::getName(3)):
+          $viewType = ArticleType::DUNGEON;
+          break;
+
+        case strtolower(ArticleType::getName(2)):
+          $viewType = ArticleType::QUEST;
+          break;
+
+        case strtolower(ArticleType::getName(1)):
+          $viewType = ArticleType::TUTORIAL;
+          break;
+        
+        default:
+          $viewType = ArticleType::NEWS;
+          $type = strtolower(ArticleType::getName(4));
+          break;
+      }
+
+      $em = $this->getDoctrine()->getManager();
+      $articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits($viewType, 0, 20);
+
+      return $this->render('DofArticlesBundle:Article:viewType.html.twig', array(
+        'articles' => $articles, 'type'=>$type
       ));
     }
 }

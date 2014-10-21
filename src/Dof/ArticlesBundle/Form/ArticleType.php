@@ -29,7 +29,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('name' . $req->getLocale(), null, array('label' => 'Titre'))
             ->add('keys', null, array('label' => 'Mots clés'))
-            ->add('category', null, array('required' => false,'label' => 'Categorie'))
+            ->add('category', null, array('label' => 'Categorie'))
             ->add('type', 'choice', [ 'choices' => array_flip(ArticleEnum::getValues())])
             ->add('description' . $req->getLocale(), 'textarea')
             ->add('submit', 'submit')

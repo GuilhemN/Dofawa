@@ -11,14 +11,14 @@ class ArchiveController extends Controller
 		$translator = $this->get('translator');
 
 		$repository = $this->getDoctrine()->getRepository('DofArticlesBundle:Article');
-		$countArticles = $repository->countTotal(true);
+		$countArticles = $repository->countTotal(4);
 		$articlesPerPage = 15;
 		$firstResult = ($page - 1) * $articlesPerPage;
 
 		if($firstResult > $countArticles)
             throw $this->createNotFoundException('This page does not exist.');
 
-		$articles = $repository->findArticlesWithLimits(true, $firstResult, $articlesPerPage);
+		$articles = $repository->findArticlesWithLimits(4, $firstResult, $articlesPerPage);
 
 		foreach ($articles as $k => &$article) {
 			$content = $article->getDescription($translator->getLocales());
