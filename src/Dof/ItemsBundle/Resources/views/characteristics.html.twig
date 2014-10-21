@@ -41,4 +41,9 @@
     </form>
     <br />
     Nouvel effet :
+    <select class="build-fm">
+        {% for caract, name in caractsnull %}
+        <option name="{{ caract }}">{{ name }}</option>
+        {% endfor %}
+    </select>
 {% endif %}
