@@ -21,7 +21,7 @@
         {% endif %}
     {% endfor %}
 {% else %}
-    <form method="POST" action="#">
+    <form method="POST">
         {% for name, value in item.characteristics %}
             {% if value != 0 %}
                 {% set range %}
