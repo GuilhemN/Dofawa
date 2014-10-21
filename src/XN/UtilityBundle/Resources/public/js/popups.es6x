@@ -130,7 +130,7 @@ var dialog = wrapAsync(function* dialog(options) {
 				htButton = <button class={ 'block' + (('className' in button) ? (' ' + button.className) : '') }>{ button.label }</button>;
 				node.appendChild(htButton);
 			} else {
-				htButton = <input type="button" value={ button.label } class={ button.className } />;
+				htButton = <input type="button" class="btn" value={ button.label } class={ button.className } />;
 				if (btnRow === null) {
 					btnRow = <div class="buttons" />;
 					node.appendChild(btnRow);
