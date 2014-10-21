@@ -108,6 +108,17 @@ class BuildController extends Controller
             $items[$item->getSlot()] = $item;
         }
 
+        $request = $this->get('request');
+        if ($request->isMethod('POST') && isset($items[$request->request->get('slot')]))
+        {
+            $em = $this->getDoctrine()->getManager();
+            
+            $item = $items[$request->request->get('slot')];
+            $item->setCharacteristics($request->request->get('caracts'), true);
+
+            $em->persist($item);
+            $em->flush($item);
+        }
         return $this->render('DofBuildBundle:Build:show.html.twig', [
             'character' => $character,
             'stuff' => $stuff,
