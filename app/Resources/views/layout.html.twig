@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}Dofawa{% endblock %}</title>
+    <meta charset="utf-8">
+    <title>{% block title %}Dofawa{% endblock %}</title>
 
-  <link rel="stylesheet" href="{{ asset('bundles/xnutility/css/utlcat.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('bundles/dofmain/css/newmain.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/xnutility/css/utlcat.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/dofmain/css/newmain.min.css') }}">
 
-  {# HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries #}
-  {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+    {# HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries #}
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
 
-  {% block style %}
-  {% endblock %}
+    {% block style %}
+    {% endblock %}
 
-  <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
-  <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="DESCRIPTION" content="Dofawa est un fan site dédié à l'univers de dofus avec de nombreux tutoriels, conseils et astuces pour Dofus et ses donjons " />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="DESCRIPTION" content="Dofawa est un fan site dédié à l'univers de dofus avec de nombreux tutoriels, conseils et astuces pour Dofus et ses donjons " />
 
-  <meta name="KEYWORDS" content="dofus ,astuces, quêtes, donjon, dofus build , tutoriels dofus , calculateur dofus, secrets, solutions, dofus tutoriels , donjons dofus , succès dofus, dofus fan site , astuces kamas , dofus frigost , dofus 2.0, élevage dofus, builds dofus, avatars dofus" />
+    <meta name="KEYWORDS" content="dofus ,astuces, quêtes, donjon, dofus build , tutoriels dofus , calculateur dofus, secrets, solutions, dofus tutoriels , donjons dofus , succès dofus, dofus fan site , astuces kamas , dofus frigost , dofus 2.0, élevage dofus, builds dofus, avatars dofus" />
 
-  {% for locale in locales %}
-  <link rel="alternate" hreflang="{{ locale }}" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale }) ) }}" />
-  {% endfor %}
+    {% for locale in locales %}
+    <link rel="alternate" hreflang="{{ locale }}" href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale }) ) }}" />
+    {% endfor %}
 
-  {% if not is_granted('ROLE_AD_FREE') %}
-  <script defer type="text/javascript" src="http://c.ad6media.fr/l.js"></script>
-  {% endif %}
-  <script type="text/javascript" defer async>
+    {% if not is_granted('ROLE_AD_FREE') %}
+    <script defer type="text/javascript" src="http://c.ad6media.fr/l.js"></script>
+    {% endif %}
+    <script type="text/javascript" defer async>
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-36904065-1']);
@@ -36,186 +36,191 @@
     _gaq.push(['_trackPageview']);
 
     (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 
-  </script>
+    </script>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
-  {# Menu #}
-  {% include 'include/menu.html.twig' %}
+    {# Menu #}
+    {% include 'include/menu.html.twig' %}
+    {% if in_update and is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="jumbotron">
+      <h1>Le site est en train de se mettre à jour !</h1>
+      <p>Il va falloir patienter ...</p>
+    </div>
+    {% endif %}
+    {# Contenu principal #}
+    <div class="container sm-autowidth" style="margin-top: 60px;">
+        <div class="row">
+            {# Colonne principale, à gauche #}
+            <div class="col-sm-7 col-lg-8 nopadding" itemscope itemtype="http://schema.org/mainContentOfPage">
+                <section class="col-xs-12 col-sm-11 content-box nopadding">
+                    <header>
+                        <ol class="breadcrumb" itemscope itemtype="http://schema.org/breadcrumb">
+                            {% block breadcrumb %}
+                            <li><a href="{{ path('dof_main_homepage') }}">{{ 'nav.home' | trans()}}</a></li>
+                            {% endblock %}
+                        </ol>
+                    </header>
 
-  {# Contenu principal #}
-  <div class="container sm-autowidth" style="margin-top: 60px;">
-    <div class="row">
-      {# Colonne principale, à gauche #}
-      <div class="col-sm-7 col-lg-8 nopadding" itemscope itemtype="http://schema.org/mainContentOfPage">
-        <section class="col-xs-12 col-sm-11 content-box nopadding">
-          <header>
-            <ol class="breadcrumb" itemscope itemtype="http://schema.org/breadcrumb">
-              {% block breadcrumb %}
-              <li><a href="{{ path('dof_main_homepage') }}">{{ 'nav.home' | trans()}}</a></li>
-              {% endblock %}
-            </ol>
-          </header>
+                    {# Contenu principal #}
+                    {% block modelbody %}
+                    <div class="content">
+                        {% block body %}
+                        {{ bodyContent | default }}
+                        {% endblock body %}
+                        <div class="clearfix"></div>
+                    </div>
+                    {% endblock modelbody %}
 
-          {# Contenu principal #}
-          {% block modelbody %}
-          <div class="content">
-            {% block body %}
-              {{ bodyContent | default }}
-            {% endblock body %}
-            <div class="clearfix"></div>
-          </div>
-          {% endblock modelbody %}
+                    <div class="marginbottom"></div>
+                    {# page spéciale #}
+                    {% block differentdisplay %}
+                    {% endblock %}
 
-          <div class="marginbottom"></div>
-          {# page spéciale #}
-          {% block differentdisplay %}
-          {% endblock %}
-
-        </section>
-        <div class="col-sm-1 hidden-xs"></div>
-      </div>
-      <div class="visible-xs" style="height: 20px; clear: both;"></div>
-      <div class="col-sm-5 col-lg-4 content-box">
-        {# Colonne de droite (pub + bonus) #}
-        <section class="row content-box">
-          {% if not is_granted('ROLE_AD_FREE') %}
-          <header>
-            {{ 'layout.ad' | trans }}
-          </header>
-          <div class="content sm-nopadding">
-            {# Publicité placée dans ce div #}
-            <div id="selectorpublicity" style="text-align: center;">
+                </section>
+                <div class="col-sm-1 hidden-xs"></div>
             </div>
-          </div>
-          {% endif %}
-          {{ render(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'news'})) }}
-          {{ render(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'tutoriels'})) }}
-        </section>
-      </div>
+            <div class="visible-xs" style="height: 20px; clear: both;"></div>
+            <div class="col-sm-5 col-lg-4 content-box">
+                {# Colonne de droite (pub + bonus) #}
+                <section class="row content-box">
+                    {% if not is_granted('ROLE_AD_FREE') %}
+                    <header>
+                        {{ 'layout.ad' | trans }}
+                    </header>
+                    <div class="content sm-nopadding">
+                        {# Publicité placée dans ce div #}
+                        <div id="selectorpublicity" style="text-align: center;">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {{ render(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'news'})) }}
+                    {{ render(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'tutoriels'})) }}
+                </section>
+            </div>
+        </div>
+
+    </div>
+    <div class="bottom">
+        <div class="container">
+            {# Tabs #}
+            <div class="row">
+                <div class="col-md-4">
+                    <h3><span class="glyphicon glyphicon-link"></span> {{ 'footer.links' }}</h3>
+                    <p>
+                        <a href="https://www.facebook.com/dofawa.fr">Facebook</a><br>
+                        <a href="https://twitter.com/Dofawa_fr">Twitter</a><br>
+                        <br>
+                        <a href="http://www.dofus.com/{{ app.request.getLocale() }}">Site officiel</a><br>
+                        <a href="http://forum.dofus.com/{{ app.request.getLocale() }}">Forum officiel</a>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h3><span class="glyphicon glyphicon-pushpin"></span> {{ 'footer.partners' | trans }}</h3>
+                    <p>
+                        <a href="http://www.krozmotion.fr/">Krozmotion</a><br>
+                        <a href="http://dofus2.org/">Dofus2</a><br>
+                        <a href="http://www.chomp42.com/">Chomp42</a><br>
+                        <a href="http://lytrix.fr/">Lytrix</a><br>
+                        <a href="http://www.dofastuces.fr/">Dofastuces</a><br>
+                        <a href="http://the-pure-hearts.e-monsite.com/">The pure hearts</a><br>
+                        <a href="http://www.youtube.com/user/Capitemflam/">Capitemflam</a><br>
+                        <a href="http://fr.twitch.tv/colerykke_tv">Colerykke</a><br>
+                        <a href="http://www.forum-umbrea-mortalis.com/index.php">Umbrea Mortalis</a>
+
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h3><span class="glyphicon glyphicon-user"></span> {{ 'footer.theteam' | trans }}</h3>
+                    <p>
+                        <a href="https://twitter.com/Dofawa_fr">Skarwild</a><br>
+                        <a href="https://twitter.com/EnerGetick_">Ener-Getick</a><br>
+                        <a href="http://exter-n.fr">Exter-N</a><br>
+                        <a href="https://twitter.com/menthosaire">Menthosaire</a><br>
+                        <a href="https://twitter.com/Mansot06">Mansot</a><br>
+                    </p>
+                </div>
+            </div>
+            {# Copyright #}
+            <div class="row">
+                <div class="col-md-12">
+                    <h3><span class="glyphicon glyphicon-copyright-mark"></span> Dofawa</h3>
+                    <p>{{ 'footer.copyright' | trans }}</p>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-  </div>
-  <div class="bottom">
-    <div class="container">
-      {# Tabs #}
-      <div class="row">
-        <div class="col-md-4">
-          <h3><span class="glyphicon glyphicon-link"></span> {{ 'footer.links' }}</h3>
-          <p>
-            <a href="https://www.facebook.com/dofawa.fr">Facebook</a><br>
-            <a href="https://twitter.com/Dofawa_fr">Twitter</a><br>
-            <br>
-            <a href="http://www.dofus.com/{{ app.request.getLocale() }}">Site officiel</a><br>
-            <a href="http://forum.dofus.com/{{ app.request.getLocale() }}">Forum officiel</a>
-          </p>
-        </div>
-        <div class="col-md-4">
-          <h3><span class="glyphicon glyphicon-pushpin"></span> {{ 'footer.partners' | trans }}</h3>
-          <p>
-            <a href="http://www.krozmotion.fr/">Krozmotion</a><br>
-            <a href="http://dofus2.org/">Dofus2</a><br>
-            <a href="http://www.chomp42.com/">Chomp42</a><br>
-            <a href="http://lytrix.fr/">Lytrix</a><br>
-            <a href="http://www.dofastuces.fr/">Dofastuces</a><br>
-            <a href="http://the-pure-hearts.e-monsite.com/">The pure hearts</a><br>
-            <a href="http://www.youtube.com/user/Capitemflam/">Capitemflam</a><br>
-            <a href="http://fr.twitch.tv/colerykke_tv">Colerykke</a><br>
-            <a href="http://www.forum-umbrea-mortalis.com/index.php">Umbrea Mortalis</a>
+    <div id="popup-overlay"></div>
 
-          </p>
-        </div>
-        <div class="col-md-4">
-          <h3><span class="glyphicon glyphicon-user"></span> {{ 'footer.theteam' | trans }}</h3>
-          <p>
-            <a href="https://twitter.com/Dofawa_fr">Skarwild</a><br>
-            <a href="https://twitter.com/EnerGetick_">Ener-Getick</a><br>
-            <a href="http://exter-n.fr">Exter-N</a><br>
-            <a href="https://twitter.com/menthosaire">Menthosaire</a><br>
-            <a href="https://twitter.com/Mansot06">Mansot</a><br>
-          </p>
-        </div>
-      </div>
-      {# Copyright #}
-      <div class="row">
-        <div class="col-md-12">
-          <h3><span class="glyphicon glyphicon-copyright-mark"></span> Dofawa</h3>
-          <p>{{ 'footer.copyright' | trans }}</p>
-        </div>
+    {% block popups %}
+    {% endblock %}
 
-      </div>
-    </div>
-  </div>
-
-  <div id="popup-overlay"></div>
-
-  {% block popups %}
-  {% endblock %}
-
-  <script type="text/javascript">
-  var clicky_site_ids = clicky_site_ids || [];
-  clicky_site_ids.push(100753725);
-  (function() {
-    var s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.async = true;
-    s.src = '//static.getclicky.com/js';
-    ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
-  })();
-  </script>
-  <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100753725ns.gif" /></p></noscript>
-  <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-  <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/jquery-2.1.1.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/xnutility/js/utlcat.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/dofmain/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
-  {% if app.user is not null %}
-      <script src="{{ asset('bundles/dofmain/js/notifications.min.js') }}"></script>
-  {% endif %}
-  <script type="text/javascript">
-        $(".to-select2").select2();
-  </script>
-
-  {% if app.request.query.has('wabbit') %}
-    <script src="{{ asset('bundles/dofmain/js/wabbit.min.js') }}"></script>
-  {% endif %}
-
-  {% block js %}
-  {% endblock %}
-
-
-  {% if not is_granted('ROLE_AD_FREE') %}
-  {# Publicité #}
-  <div id="recup_publicity">
-    <script defer async type='text/javascript'>
-      document.MAX_ct0 ='';
-      var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
-      var m3_r = Math.floor(Math.random()*99999999999);
-      document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
-      document.write ("zoneid=120565");document.write("&amp;nodis=1");
-      document.write ('&amp;cb=' + m3_r);
-      if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
-      document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
-      document.write ("&amp;loc=" + escape(window.location));
-      if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
-      if (document.context) document.write ("&context=" + escape(document.context));
-      if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
-        document.write ("&amp;ct0=" + escape(document.MAX_ct0));
-      }
-      if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
-      document.write ("'></scr"+"ipt>");
-
-      var element = document.querySelector('#recup_publicity');
-      var element2 = document.querySelector('#selectorpublicity');
-
-      element2.appendChild(element);
+    <script type="text/javascript">
+    var clicky_site_ids = clicky_site_ids || [];
+    clicky_site_ids.push(100753725);
+    (function() {
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = '//static.getclicky.com/js';
+        ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+    })();
     </script>
-  </div>
-  {% endif %}
+    <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100753725ns.gif" /></p></noscript>
+    <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/xnutility/js/jquery-2.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/xnutility/js/utlcat.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dofmain/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+    {% if app.user is not null %}
+    <script src="{{ asset('bundles/dofmain/js/notifications.min.js') }}"></script>
+    {% endif %}
+    <script type="text/javascript">
+    $(".to-select2").select2();
+    </script>
+
+    {% if app.request.query.has('wabbit') %}
+    <script src="{{ asset('bundles/dofmain/js/wabbit.min.js') }}"></script>
+    {% endif %}
+
+    {% block js %}
+    {% endblock %}
+
+
+    {% if not is_granted('ROLE_AD_FREE') %}
+    {# Publicité #}
+    <div id="recup_publicity">
+        <script defer async type='text/javascript'>
+        document.MAX_ct0 ='';
+        var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+        var m3_r = Math.floor(Math.random()*99999999999);
+        document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+        document.write ("zoneid=120565");document.write("&amp;nodis=1");
+        document.write ('&amp;cb=' + m3_r);
+        if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+        document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+        document.write ("&amp;loc=" + escape(window.location));
+        if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+        if (document.context) document.write ("&context=" + escape(document.context));
+        if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+            document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+        }
+        if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+        document.write ("'></scr"+"ipt>");
+
+        var element = document.querySelector('#recup_publicity');
+        var element2 = document.querySelector('#selectorpublicity');
+
+        element2.appendChild(element);
+        </script>
+    </div>
+    {% endif %}
 </body>
 </html>
