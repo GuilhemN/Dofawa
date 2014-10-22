@@ -46,11 +46,19 @@
 <body itemscope itemtype="http://schema.org/WebPage">
     {# Menu #}
     {% include 'include/menu.html.twig' %}
-    {% if in_update and is_granted('ROLE_SUPER_ADMIN') %}
-    <div class="jumbotron">
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="jumbotron" style="display:none;" id="in_update">
       <h1>Le site est en train de se mettre à jour !</h1>
       <p>Il va falloir patienter ...</p>
     </div>
+    <script defer type="text/javascript">
+        jQuery(function() {
+            $.get( Routing.generate('root') + "in_update.php", function( data ) {
+                if(data)
+                    $('#in_update').show()
+            });
+        });
+    </script>
     {% endif %}
     {# Contenu principal #}
     <div class="container sm-autowidth" style="margin-top: 60px;">
