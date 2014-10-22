@@ -1,2 +1,2 @@
 <?php
-echo file_exists('../../update');
+echo file_exists('../../update'); 
