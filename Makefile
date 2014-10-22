@@ -1,6 +1,6 @@
 JSXC = /usr/bin/env jsx
 TRACEUR = /usr/bin/env traceur
-CLOSURE = app/memoclosure.sh
+YUICOMPRESSOR = /usr/bin/java -jar app/Resources/java/yuicompressor.jar
 LESSC = /usr/bin/env lessc
 CSSMIN = /usr/bin/env cssmin
 GZIP = /bin/gzip
@@ -12,7 +12,7 @@ TRUE = /bin/true
 JX6FLAGS = --harmony
 JXFLAGS =
 TRFLAGS =
-CLFLAGS =
+YUFLAGS =
 LCFLAGS =
 CMFLAGS =
 GZFLAGS = -9 -n
@@ -91,7 +91,7 @@ src/XN/UtilityBundle/Resources/public/js/utlcat.js: $(shell bash -c "echo src/XN
 
 # And now for our uglifying our JavaScripts
 %.min.js: %.js
-	$(CLOSURE) $(CLFLAGS) $< > $@
+	$(YUICOMPRESSOR) $(YUFLAGS) $< > $@
 
 # Pre-compression
 %.gz: %
