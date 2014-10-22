@@ -47,9 +47,9 @@
     {# Menu #}
     {% include 'include/menu.html.twig' %}
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-    <div class="jumbotron" style="display:none;" id="in_update">
-      <h1>Le site est en train de se mettre à jour !</h1>
-      <p>Il va falloir patienter ...</p>
+    <div class="alert alert-info" role="alert" style="display:none;" id="in_update">
+        <b>Le site est en train de se mettre à jour !</b>
+        Il va falloir patienter ...
     </div>
     {% endif %}
     {# Contenu principal #}
@@ -223,7 +223,7 @@
     </div>
     {% endif %}
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-    <script defer type="text/javascript"> 
+    <script defer type="text/javascript">
         jQuery(function() {
             $.get( Routing.generate('root') + "in_update.php", function( data ) {
                 if(data)
