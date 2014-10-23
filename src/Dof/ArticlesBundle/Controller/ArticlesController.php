@@ -186,6 +186,7 @@ class ArticlesController extends Controller
       if (!$this->get('security.context')->isGranted('ROLE_REDACTOR'))
         throw new AccessDeniedException();
       $newArticle = true;
+      $diff = null;
       if(!empty($article->getOriginalArticle()))
       {
         $original = $article->getOriginalArticle();
