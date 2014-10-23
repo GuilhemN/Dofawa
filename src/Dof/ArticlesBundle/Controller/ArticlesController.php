@@ -48,11 +48,10 @@ class ArticlesController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
-
-          $article->addEdit($newArticle);
           $newArticle->setSlug(null);
           $newArticle->setPublished(0);
           $newArticle->addOriginalArticle($article);
+          $article->addEdit($newArticle);
           $em = $this->getDoctrine()->getManager();
           $em->persist($newArticle);
           $em->persist($article);
@@ -83,8 +82,7 @@ class ArticlesController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
-
-          $article->AddEdit($article);
+          $article->setPublished(0);
           $em = $this->getDoctrine()->getManager();
           $em->persist($article);
           $em->flush();
