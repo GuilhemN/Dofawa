@@ -2,16 +2,22 @@
 
 {% block breadcrumb %}
   {{ parent() }}
-  <li>List des propositions: {{ type }}</li>
+  <li>Liste des propositions: {{ type }}</li>
 {% endblock %}
 
 {% block body %}
+<ul>
+	<li><a href="{{ path('dof_articles_addList', { 'type' : 'news', 'page' : '1' }) }}">Voir les propositions de news</a></li>
+	<li><a href="{{ path('dof_articles_addList', { 'type' : 'tutorial', 'page' : '1' }) }}">Voir les propositions de tutoriels</a></li>
+	<li><a href="{{ path('dof_articles_addList', { 'type' : 'dungeon', 'page' : '1' }) }}">Voir les propositions de donjons</a></li>
+	<li><a href="{{ path('dof_articles_addList', { 'type' : 'quest', 'page' : '1' }) }}">Voir les propositions de quêtes</a></li>
+</ul>
 {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 <ul class="list-group">
   {% for article in articles %}
-      <li class="list-group-item"><a href="{{ path('dof_articles_view', { 'slug' : article.slug, 'type' : 'article' }) }}">{{ article.getName(locales()) }}</a><span class="badge hidden-sm hidden-md">le {{ article.createdAt | date("d/m/Y") }}</span></li>
+      <li class="list-group-item"><a href="{{ path('dof_articles_view', { 'slug' : article.slug, 'type' : type }) }}">{{ article.getName(locales()) }}</a><span class="badge hidden-sm hidden-md">le {{ article.createdAt | date("d/m/Y") }}</span></li>
   {% else %}
-      <li>Pas (encore !) d'articles</li>
+      <li class="list-group-item">Pas (encore !) d'articles</li>
   {% endfor %}
 </ul>
 {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}

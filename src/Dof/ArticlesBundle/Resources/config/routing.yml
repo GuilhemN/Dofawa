@@ -27,3 +27,7 @@ dof_articles_addList:
     defaults: { _controller: DofArticlesBundle:Articles:addList, page: 1 }
     requirements:
       page: \d+
+
+dof_articles_valid:
+    pattern:  valid/{slug}
+    defaults: { _controller: DofArticlesBundle:Articles:valid }

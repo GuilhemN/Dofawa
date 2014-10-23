@@ -12,7 +12,7 @@ use Dof\ArticlesBundle\ArticleType;
 
 class ArticlesController extends Controller
 {
-  /**
+   /**
    * @ParamConverter("article", options={"mapping": {"slug": "slug"}})
    */
     public function viewAction($type, Article $article)
@@ -177,4 +177,27 @@ class ArticlesController extends Controller
     ));
 
   }
+
+  /**
+   * @ParamConverter("article", options={"mapping": {"slug": "slug"}})
+   */
+    public function validAction(Article $article)
+    {
+      if (!$this->get('security.context')->isGranted('ROLE_REDACTOR'))
+        throw new AccessDeniedException();
+      $newArticle = true;
+      if(!empty($article->getOriginalArticle()))
+      {
+        $original = $article->getOriginalArticle();
+        $diff[0] = xdiff_string_diff($original->getName(), $article->getName(), 1);
+        $diff[1] = xdiff_string_diff($original->getDescription(), $article->getDescription(), 1);
+        $newArticle = false;
+      }
+        
+      return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
+        'article' => $article,
+        'diff' => $diff,
+        'newArticle' => $newArticle
+      ));
+    }
 }
