@@ -23,7 +23,7 @@ dof_articles_viewType:
     defaults: { _controller: DofArticlesBundle:Articles:viewType }
 
 dof_articles_addList:
-    pattern:  /addListe/{type}/{page}
-    defaults: { _controller: DofArticlesBundle:Archive:archive, page: 1 }
+    pattern:  /addList/{type}/{page}
+    defaults: { _controller: DofArticlesBundle:Articles:addList, page: 1 }
     requirements:
       page: \d+
