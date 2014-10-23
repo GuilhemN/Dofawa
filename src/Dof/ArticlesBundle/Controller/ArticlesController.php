@@ -50,7 +50,7 @@ class ArticlesController extends Controller
         if ($form->isValid()) {
           $newArticle->setSlug(null);
           $newArticle->setPublished(0);
-          $newArticle->addOriginalArticle($article);
+          $newArticle->setOriginalArticle($article);
           $article->addEdit($newArticle);
           $em = $this->getDoctrine()->getManager();
           $em->persist($newArticle);
