@@ -39,7 +39,7 @@
 
     {% for key,diff in diffs %}
       {% if  key % 2 != 0 and diff != "---"%}
-        {{ diff | slice(2, length)}}<br>
+        {{ diff[2:] }}<br>
       {% endif %}
     {% endfor %}
     </div>
