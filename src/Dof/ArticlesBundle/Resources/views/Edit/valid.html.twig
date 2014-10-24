@@ -36,8 +36,8 @@
     <div class="well well-lg" itemprop="articleBody">
     {% set a = 1 %}
     {% for key,diff in diffs %}
-      {% if  key % 2 != 0 %}
-        {{ diff }}
+      {% if  key % 2 != 0 and diff != "---"%}
+        {{ diff }}<br>
       {% endif %}
     {% endfor %}
     </div>

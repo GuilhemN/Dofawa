@@ -198,7 +198,14 @@ class ArticlesController extends Controller
         //exec('rm /tmp/validation/article.txt');
         $newArticle = false;
       }
-        
+      foreach ($diffs as $key => $diff) {
+          $diff = substr($diff, 2);
+          if($diff == "---" || $key == 0 || $diff == "")
+          {
+            unset($diffs[$key]);
+            $diffs = array_values($diffs);
+          }
+        }  
       return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
         'article' => $article,
         'diffs' => $diffs,
