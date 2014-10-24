@@ -190,8 +190,10 @@ class ArticlesController extends Controller
       {
         exec('cd /');
         exec('cd tmp/validation');
-        exec('echo "'.escapeshellarg($original->getDescription()).'" > original.txt');
-        exec('echo "'.escapeshellarg($article->getDescription()).'" > article.txt');
+        //'.escapeshellarg($original->getDescription()).'
+        exec('echo "bonjour" > original.txt');
+        //'.escapeshellarg($article->getDescription()).'
+        exec('echo "bonsoir" > article.txt');
         $command = 'diff original.txt article.txt';
         exec($command, $diff);
         //exec('rm original.txt');
