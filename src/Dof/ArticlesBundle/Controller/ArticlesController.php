@@ -189,7 +189,7 @@ class ArticlesController extends Controller
       if(!empty($original))
       {
         exec('cd /');
-        exec('cd tmp');
+        exec('cd tmp/validation');
         exec('echo "'.escapeshellarg($original->getDescription()).'" > original.txt');
         exec('echo "'.escapeshellarg($article->getDescription()).'" > article.txt');
         $command = 'diff original.txt article.txt';
