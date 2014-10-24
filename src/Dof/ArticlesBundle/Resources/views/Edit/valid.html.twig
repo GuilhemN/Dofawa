@@ -39,7 +39,16 @@
 
     {% for key,diff in diffs %}
       {% if  key % 2 != 0 and diff != "---"%}
-        {{ diff[2:] }}<br>
+        {% set a = true %}
+        {% if a %}
+          <h3>Avant:</h3>
+          {{ diff[2:] }}<br>
+          {% set a = false %}
+        {% else %}
+          <h3>Avant:</h3>
+          {{ diff[2:] }}<br>
+          {% set a = true %}
+        {% endif %}
       {% endif %}
     {% endfor %}
     </div>
