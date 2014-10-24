@@ -184,7 +184,7 @@ class ArticlesController extends Controller
       if (!$this->get('security.context')->isGranted('ROLE_REDACTOR'))
         throw new AccessDeniedException();
       $newArticle = true;
-      $diff = null;
+      $diffs = null;
       $original = $article->getOriginalArticle();
       if(!empty($original))
       {
@@ -193,7 +193,7 @@ class ArticlesController extends Controller
         $descArticle = $article->getDescription();
         exec('echo '.escapeshellarg($descArticle).' > /tmp/validation/article.txt');
         $command = 'diff /tmp/validation/original.txt /tmp/validation/article.txt';
-        exec($command, $diff);
+        exec($command, $diffs);
         //exec('rm /tmp/validation/original.txt');
         //exec('rm /tmp/validation/article.txt');
         $newArticle = false;
@@ -201,7 +201,7 @@ class ArticlesController extends Controller
         
       return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
         'article' => $article,
-        'diff' => $diff,
+        'diff' => $diffs,
         'newArticle' => $newArticle
       ));
     }
