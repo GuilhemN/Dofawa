@@ -199,7 +199,7 @@ class ArticlesController extends Controller
         $newArticle = false;
       }
       foreach ($diffs as $key => $diff) {
-          $diff = substr($diff, 2);
+          $diff = substr($diff, 2, strlen($diff));
           if($diff == "---" || $key == 0 || $diff == "")
           {
             unset($diffs[$key]);
