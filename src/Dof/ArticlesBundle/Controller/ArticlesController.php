@@ -188,13 +188,11 @@ class ArticlesController extends Controller
       $original = $article->getOriginalArticle();
       if(!empty($original))
       {
-        exec('cd /');
-        exec('cd tmp/validation');
         //'.escapeshellarg($original->getDescription()).'
-        exec('echo "bonjour" > original.txt');
+        exec('echo "bonjour" > /tmp/validation/original.txt');
         //'.escapeshellarg($article->getDescription()).'
-        exec('echo "bonsoir" > article.txt');
-        $command = 'diff original.txt article.txt';
+        exec('echo "bonsoir" > /tmp/validation/article.txt');
+        $command = 'diff /tmp/validation/original.txt /tmp/validation/article.txt';
         exec($command, $diff);
         //exec('rm original.txt');
         //exec('rm article.txt');
