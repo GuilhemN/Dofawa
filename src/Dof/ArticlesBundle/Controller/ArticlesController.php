@@ -194,8 +194,8 @@ class ArticlesController extends Controller
         exec('echo "'.$descArticle.'" > /tmp/validation/article.txt');
         $command = 'diff /tmp/validation/original.txt /tmp/validation/article.txt';
         exec($command, $diff);
-        exec('rm /tmp/validation/original.txt');
-        exec('rm /tmp/validation/article.txt');
+        //exec('rm /tmp/validation/original.txt');
+        //exec('rm /tmp/validation/article.txt');
         $newArticle = false;
       }
         
