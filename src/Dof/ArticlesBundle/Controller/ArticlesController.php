@@ -200,11 +200,11 @@ class ArticlesController extends Controller
       }
       foreach ($diffs as $key => $diff) {
           $diff = substr($diff, 2, strlen($diff));
-          if($diff == "---" || $key == 0 || $diff == "")
+          /*if($diff == "---" || $key == 0 || $diff == "")
           {
             unset($diffs[$key]);
             $diffs = array_values($diffs);
-          }
+          }*/
         }  
       return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
         'article' => $article,
