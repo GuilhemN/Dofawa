@@ -201,7 +201,7 @@ class ArticlesController extends Controller
         
       return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
         'article' => $article,
-        'diff' => $diffs,
+        'diffs' => $diffs,
         'newArticle' => $newArticle
       ));
     }
