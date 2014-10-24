@@ -194,8 +194,8 @@ class ArticlesController extends Controller
         exec('echo "'.$article->getDescription().'" > article.txt');
         $command = 'diff original.txt article.txt';
         exec($command, $diff);
-        exec('rm original.txt');
-        exec('rm article.txt');
+        //exec('rm original.txt');
+        //exec('rm article.txt');
         $newArticle = false;
       }
         
