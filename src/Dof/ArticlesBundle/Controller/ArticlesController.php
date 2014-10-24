@@ -194,17 +194,9 @@ class ArticlesController extends Controller
         exec('echo '.escapeshellarg($descArticle).' > /tmp/validation/article.txt');
         $command = 'diff /tmp/validation/original.txt /tmp/validation/article.txt';
         exec($command, $diffs);
-        //exec('rm /tmp/validation/original.txt');
-        //exec('rm /tmp/validation/article.txt');
         $newArticle = false;
       }
-      foreach ($diffs as $key => $diff) {
-          /*if($diff == "---" || $key == 0 || $diff == "")
-          {
-            unset($diffs[$key]);
-            $diffs = array_values($diffs);
-          }*/
-        }  
+
       return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
         'article' => $article,
         'diffs' => $diffs,
