@@ -26,7 +26,7 @@
   <article itemscope itemtype="http://schema.org/Article">
     <div class="page-header">
       <h1>
-        <span itemprop="name">{{ diff[0] }}</span>
+        <span itemprop="name">{{ article.getName(locales()) }}</span>
         <small>
           <time itemprop="dateCreated" datetime="{{ article.createdAt | date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
         </small>
@@ -34,7 +34,7 @@
       By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a>
     </div>
     <div class="well well-lg" itemprop="articleBody">
-      {{ diff[1] }}
+      {{ diff }}
     </div>
   </article>
 

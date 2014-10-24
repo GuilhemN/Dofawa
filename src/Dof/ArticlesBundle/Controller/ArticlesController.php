@@ -185,11 +185,14 @@ class ArticlesController extends Controller
         throw new AccessDeniedException();
       $newArticle = true;
       $diff = null;
-      if(!empty($article->getOriginalArticle()))
+      $original = $article->getOriginalArticle();
+      if(!empty($original))
       {
-        $original = $article->getOriginalArticle();
-        $diff[0] = xdiff_string_diff($original->getName(), $article->getName(), 1);
-        $diff[1] = xdiff_string_diff($original->getDescription(), $article->getDescription(), 1);
+        exec('cd /');
+        exec('cd temp');
+        exec('echo "'.$original->getDescription(locales()).'" > original.txt');
+        exec('echo "'.$article->getDescription(locales()).'" > article.txt');
+        $diff = exec('diff original.txt article.txt');
         $newArticle = false;
       }
         
