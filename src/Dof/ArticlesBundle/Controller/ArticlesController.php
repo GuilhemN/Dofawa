@@ -193,6 +193,8 @@ class ArticlesController extends Controller
         exec('echo "'.$original->getDescription(locales()).'" > original.txt');
         exec('echo "'.$article->getDescription(locales()).'" > article.txt');
         $diff = exec('diff original.txt article.txt');
+        exec('rm original.txt');
+        exec('rm article.txt');
         $newArticle = false;
       }
         
