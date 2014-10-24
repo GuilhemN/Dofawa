@@ -190,8 +190,8 @@ class ArticlesController extends Controller
       {
         exec('cd /');
         exec('cd temp');
-        exec('echo "'.$original->getDescription(locales()).'" > original.txt');
-        exec('echo "'.$article->getDescription(locales()).'" > article.txt');
+        exec('echo "'.$original->getDescription().'" > original.txt');
+        exec('echo "'.$article->getDescription().'" > article.txt');
         $diff = exec('diff original.txt article.txt');
         exec('rm original.txt');
         exec('rm article.txt');
