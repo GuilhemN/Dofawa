@@ -34,7 +34,12 @@
       By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a>
     </div>
     <div class="well well-lg" itemprop="articleBody">
-      {{ dump(diff) }}
+    {% set a = 1 %}
+    {% for key,diff in diffs %}
+      {% if  key % 2 != 0 %}
+        {{ diff }}
+      {% endif %}
+    {% endfor %}
     </div>
   </article>
 
