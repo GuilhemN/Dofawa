@@ -35,18 +35,14 @@
     </div>
     <div class="well well-lg" itemprop="articleBody">
 
-    {% set a = true %}
     {% for key,diff in diffs %}
       {% if  key % 2 != 0 and diff != "---"%}
-        
-        {% if a %}
+        {% if diff[:2] == "< " %}
           <h3>Avant:</h3>
           {{ diff[2:] }}<br>
-          {% set a = false %}
         {% else %}
           <h3>Après:</h3>
           {{ diff[2:] }}<br>
-          {% set a = true %}
         {% endif %}
       {% endif %}
     {% endfor %}
