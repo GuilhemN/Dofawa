@@ -92,9 +92,9 @@
                         {{ 'nav.universe.title' | trans() }} <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Quêtes</a></li>
-                        <li><a href="#">Tutoriels</a></li>
-                        <li><a href="#">Donjons</a></li>
+                        <li><a href="{{ path('dof_articles_viewType', { 'type' : 'quest' }) }}">Quêtes</a></li>
+                        <li><a href="{{ path('dof_articles_viewType', { 'type' : 'tutorial' }) }}">Tutoriels</a></li>
+                        <li><a href="{{ path('dof_articles_viewType', { 'type' : 'dungeon' }) }}">Donjons</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

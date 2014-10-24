@@ -256,27 +256,14 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Add originalArticle
+     * Set originalArticle
      *
-     * @param Article $originalArticle
-     * @return object
+     * @param string $originalArticle
+     * @return Article
      */
-    public function addOriginalArticle(Article $originalArticle)
+    public function setOriginalArticle($originalArticle)
     {
-        $this->originalArticle[] = $originalArticle;
-
-        return $this;
-    }
-
-    /**
-     * Remove originalArticle
-     *
-     * @param Article $originalArticle
-     * @return object
-     */
-    public function removeOriginalArticle(Article $originalArticle)
-    {
-        $this->originalArticle->removeElement($originalArticle);
+        $this->originalArticle = $originalArticle;
 
         return $this;
     }
@@ -284,7 +271,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * Get originalArticle
      *
-     * @return Collection
+     * @return string
      */
     public function getOriginalArticle()
     {

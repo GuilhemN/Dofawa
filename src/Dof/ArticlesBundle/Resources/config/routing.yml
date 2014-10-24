@@ -21,3 +21,13 @@ dof_articles_add:
 dof_articles_viewType:
     pattern:  view/{type}
     defaults: { _controller: DofArticlesBundle:Articles:viewType }
+
+dof_articles_addList:
+    pattern:  /addList/{type}/{page}
+    defaults: { _controller: DofArticlesBundle:Articles:addList, page: 1 }
+    requirements:
+      page: \d+
+
+dof_articles_valid:
+    pattern:  valid/{slug}
+    defaults: { _controller: DofArticlesBundle:Articles:valid }
