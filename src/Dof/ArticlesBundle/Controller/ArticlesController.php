@@ -187,6 +187,8 @@ class ArticlesController extends Controller
     $diffs = null;
     $original = $article->getOriginalArticle();
 
+    $type = strtolower(ArticleType::getName($article->getType()));
+
     $request = $this->get('request');
     if ($request->getMethod() == 'POST') {
 
@@ -229,7 +231,7 @@ class ArticlesController extends Controller
     return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
       'article' => $article,
       'diffs' => $diffs,
-      'type' => strtolower(ArticleType::getName($article->getType())),
+      'type' => $type,
       'newArticle' => $newArticle
     ));
   }
