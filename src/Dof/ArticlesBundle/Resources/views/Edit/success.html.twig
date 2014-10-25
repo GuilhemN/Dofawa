@@ -8,10 +8,10 @@
 {% block body %}
   <div class="panel panel-success">
   <div class="panel-body">
-    {% if type == "news" %}
-    	L'article a bien été ajouté, un modérateur va le vérifier sous peu!
+    {% if action != "Validation" & action != "Suppression" %}
+    	{{ type }} ajouté, un modérateur va le vérifier sous peu!
     {% else %}
-    	Le tutoriel a bien été ajouté, un modérateur va le vérifier sous peu!
+    	{{ action }} avec succès!
     {% endif %}
   </div>
 </div>

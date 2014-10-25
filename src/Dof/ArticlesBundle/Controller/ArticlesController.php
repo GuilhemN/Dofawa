@@ -193,22 +193,26 @@ class ArticlesController extends Controller
       $em = $this->getDoctrine()->getManager();
 
       if($request->get('action') == 'valider'){
-        $original->setArchive(1);
-        $article->setPublished(1);
-
-        $edits = $original->getEdits();
-        foreach ($edits as $edit) {
-          $edit->setOriginalArticle($article);
+        if(!empty($original)){
+          $original->setArchive(1);
+          $edits = $original->getEdits();
+          foreach ($edits as $edit) {
+            $edit->setOriginalArticle($article);
+          }
+          $em->persist($original);
         }
+        $article->setPublished(1);
         $em->persist($article);
-        $em->persist($original);
         $em->flush();
+        return $this->render('DofArticlesBundle:Edit:success.html.twig', array('type' =>$type, 'action'=>'Validation'));
       }
       if ($request->get('action') == 'supprimer'){
         $article->setArchive(1);
         $em->persiste($article);
         $em->flush();
+        return $this->render('DofArticlesBundle:Edit:success.html.twig', array('type' =>$type, 'action'=>'Suppression'));
       }
+
     }
 
     if(!empty($original))
@@ -225,6 +229,7 @@ class ArticlesController extends Controller
     return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
       'article' => $article,
       'diffs' => $diffs,
+      'type' => strtolower(ArticleType::getName($article->getType())),
       'newArticle' => $newArticle
     ));
   }

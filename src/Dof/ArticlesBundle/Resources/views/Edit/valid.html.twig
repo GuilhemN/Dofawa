@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<a href="{{ path('dof_articles_addList', {'page' : '1' }) }}"><span class="glyphicon glyphicon-chevron-left"></span>Retour à la liste</a>
+<a href="{{ path('dof_articles_addList', {'page' : '1', 'type' : type }) }}"><span class="glyphicon glyphicon-chevron-left"></span>Retour à la liste</a>
 <form method="post">
   <select name="action">
     <option value="valider"></option>
