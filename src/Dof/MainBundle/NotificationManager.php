@@ -64,7 +64,6 @@ class NotificationManager
                     'dynamic' => array('%name%' => 'article.name')
                 ),
                 'path' => 'dof_main_homepage',
-                )
             ),
         ];
 
