@@ -9,7 +9,7 @@ dof_articles_edit:
       id: \d+
 
 dof_articles_archive:
-    pattern:  /{page}
+    pattern:  /archive/{page}
     defaults: { _controller: DofArticlesBundle:Archive:archive, page: 1 }
     requirements:
       page: \d+
