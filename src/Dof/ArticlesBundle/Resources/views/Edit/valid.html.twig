@@ -14,6 +14,7 @@
   <input type="submit" class="btn btn-primary text-center" value="Envoyer">
 </form>
 {% if newArticle %}
+  <h2>Nouvelle proposition:</h2>
   <article itemscope itemtype="http://schema.org/Article">
     <div class="page-header">
       <h1>
@@ -22,7 +23,7 @@
           <time itemprop="dateCreated" datetime="{{ article.createdAt | date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
         </small>
       </h1>
-      By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a> Edité par <a href="{{ path('dof_profile_userpage', {'slug' : article.updater.slug}) }}">{{ article.updater.username }}</a>
+      By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a>
     </div>
     <div class="well well-lg" itemprop="articleBody">
       {{ article.getDescription(locales()) | raw }}
@@ -38,7 +39,7 @@
           <time itemprop="dateCreated" datetime="{{ article.createdAt | date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
         </small>
       </h1>
-      By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a>
+      By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a> Edité par <a href="{{ path('dof_profile_userpage', {'slug' : article.updater.slug}) }}">{{ article.updater.username }}</a>
     </div>
     <div class="well well-lg" itemprop="articleBody">
 
