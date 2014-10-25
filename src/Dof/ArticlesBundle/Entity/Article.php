@@ -17,6 +17,7 @@ use Dof\UserBundle\OwnableTrait;
 //Traduction Titre/Description
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
+use XN\Metadata\MinorColumnsInterface;
 
 /**
  * Article
@@ -24,7 +25,7 @@ use XN\L10n\LocalizedDescriptionTrait;
  * @ORM\Table(name="dof_articles")
  * @ORM\Entity(repositoryClass="Dof\ArticlesBundle\Entity\ArticleRepository")
  */
-class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
+class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, MinorColumnsInterface
 {
     /**
      * @var integer
@@ -306,5 +307,10 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getArchive()
     {
         return $this->archive;
+    }
+
+    public function getMinorColumns()
+    {
+        return array('updater');
     }
 }
