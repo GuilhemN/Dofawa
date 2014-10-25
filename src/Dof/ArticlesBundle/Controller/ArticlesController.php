@@ -177,30 +177,55 @@ class ArticlesController extends Controller
   }
 
   /**
-   * @ParamConverter("article", options={"mapping": {"slug": "slug"}})
-   */
-    public function validAction(Article $article)
-    {
-      if (!$this->get('security.context')->isGranted('ROLE_REDACTOR'))
-        throw new AccessDeniedException();
-      $newArticle = true;
-      $diffs = null;
-      $original = $article->getOriginalArticle();
-      if(!empty($original))
-      {
-        $descOriginal = $original->getDescription();
-        exec('echo '.escapeshellarg($descOriginal).' > /tmp/validation/original.txt');
-        $descArticle = $article->getDescription();
-        exec('echo '.escapeshellarg($descArticle).' > /tmp/validation/article.txt');
-        $command = 'diff /tmp/validation/original.txt /tmp/validation/article.txt';
-        exec($command, $diffs);
-        $newArticle = false;
-      }
+  * @ParamConverter("article", options={"mapping": {"slug": "slug"}})
+  */
+  public function validAction(Article $article)
+  {
+    if (!$this->get('security.context')->isGranted('ROLE_REDACTOR'))
+      throw new AccessDeniedException();
+    $newArticle = true;
+    $diffs = null;
+    $original = $article->getOriginalArticle();
 
-      return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
-        'article' => $article,
-        'diffs' => $diffs,
-        'newArticle' => $newArticle
-      ));
+    $request = $this->get('request');
+    if ($request->getMethod() == 'POST') {
+
+      $em = $this->getDoctrine()->getManager();
+
+      if($request->get('action') == 'valider'){
+        $original->setArchive(1);
+        $article->setPublished(1);
+
+        $edits = $original->getEdits();
+        foreach ($edits as $edit) {
+          $edit->setOriginalArticle($article);
+        }
+        $em->persist($article);
+        $em->persist($original);
+        $em->flush();
+      }
+      if ($request->get('action') == 'supprimer'){
+        $article->setArchive(1);
+        $em->persiste($article);
+        $em->flush();
+      }
     }
+
+    if(!empty($original))
+    {
+      $descOriginal = $original->getDescription();
+      exec('echo '.escapeshellarg($descOriginal).' > /tmp/validation/original.txt');
+      $descArticle = $article->getDescription();
+      exec('echo '.escapeshellarg($descArticle).' > /tmp/validation/article.txt');
+      $command = 'diff /tmp/validation/original.txt /tmp/validation/article.txt';
+      exec($command, $diffs);
+      $newArticle = false;
+    }
+
+    return $this->render('DofArticlesBundle:Edit:valid.html.twig', array(
+      'article' => $article,
+      'diffs' => $diffs,
+      'newArticle' => $newArticle
+    ));
+  }
 }

@@ -84,6 +84,13 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $originalArticle;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="archive", type="boolean")
+     */
+    private $archive;
+
     public function __construct()
     {
         $this->edits = new ArrayCollection();
@@ -276,5 +283,28 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getOriginalArticle()
     {
         return $this->originalArticle;
+    }
+
+    /**
+     * Set archive
+     *
+     * @param integer $archive
+     * @return Article
+     */
+    public function setArchive($archive)
+    {
+        $this->archive = $archive;
+
+        return $this;
+    }
+
+    /**
+     * Get archive
+     *
+     * @return integer
+     */
+    public function getArchive()
+    {
+        return $this->archive;
     }
 }

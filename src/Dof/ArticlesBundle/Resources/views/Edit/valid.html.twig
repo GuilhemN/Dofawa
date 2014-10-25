@@ -5,7 +5,14 @@
 {% endblock %}
 
 {% block body %}
-
+<a href="{{ path('dof_articles_addList', {'page' : '1' }) }}"><span class="glyphicon glyphicon-chevron-left"></span>Retour à la liste</a>
+<form method="post">
+  <select name="action">
+    <option value="valider"></option>
+    <option value="supprimer"></option>
+  </select>
+  <input type="submit" class="btn btn-primary text-center" value="Envoyer">
+</form>
 {% if newArticle %}
   <article itemscope itemtype="http://schema.org/Article">
     <div class="page-header">
@@ -15,7 +22,7 @@
           <time itemprop="dateCreated" datetime="{{ article.createdAt | date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
         </small>
       </h1>
-      By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a>
+      By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a> Edité par <a href="{{ path('dof_profile_userpage', {'slug' : article.updater.slug}) }}">{{ article.updater.username }}</a>
     </div>
     <div class="well well-lg" itemprop="articleBody">
       {{ article.getDescription(locales()) | raw }}

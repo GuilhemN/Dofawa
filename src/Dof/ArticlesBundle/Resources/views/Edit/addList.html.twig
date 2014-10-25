@@ -6,12 +6,13 @@
 {% endblock %}
 
 {% block body %}
-<ul>
-	<li><a href="{{ path('dof_articles_addList', { 'type' : 'news', 'page' : '1' }) }}">Voir les propositions de news</a></li>
-	<li><a href="{{ path('dof_articles_addList', { 'type' : 'tutorial', 'page' : '1' }) }}">Voir les propositions de tutoriels</a></li>
-	<li><a href="{{ path('dof_articles_addList', { 'type' : 'dungeon', 'page' : '1' }) }}">Voir les propositions de donjons</a></li>
-	<li><a href="{{ path('dof_articles_addList', { 'type' : 'quest', 'page' : '1' }) }}">Voir les propositions de quêtes</a></li>
-</ul>
+<h3>Liste des propositions</h3>
+<div class="btn-group">
+  <a href="{{ path('dof_articles_addList', { 'type' : 'news', 'page' : '1' }) }}"><button type="button" class="btn btn-default">News</button></a>
+  <a href="{{ path('dof_articles_addList', { 'type' : 'tutorial', 'page' : '1' }) }}"><button type="button" class="btn btn-default">Tutoriels</button></a>
+  <a href="{{ path('dof_articles_addList', { 'type' : 'dungeon', 'page' : '1' }) }}"><button type="button" class="btn btn-default">Donjons</button></a>
+  <a href="{{ path('dof_articles_addList', { 'type' : 'quest', 'page' : '1' }) }}"><button type="button" class="btn btn-default">Quêtes</button></a>
+</div>
 {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 <ul class="list-group">
   {% for article in articles %}
