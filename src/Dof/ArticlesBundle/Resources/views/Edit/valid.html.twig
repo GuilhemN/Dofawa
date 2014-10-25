@@ -7,7 +7,7 @@
 {% block body %}
 <a href="{{ path('dof_articles_addList', {'page' : '1', 'type' : type }) }}"><span class="glyphicon glyphicon-chevron-left"></span>Retour à la liste</a>
 {% if not newArticle %}
-  <a target="blank" style="float:right" href="{{ path('dof_articles_view'), {'slug' : article.getOriginalArticle().getSlug() } }}">Article original<span class="glyphicon glyphicon-chevron-right"></span></a>
+  <a target="blank" style="float:right" href="{{ path('dof_articles_view', {'slug' : article.getOriginalArticle().getSlug() }) }}">Article original<span class="glyphicon glyphicon-chevron-right"></span></a>
 {% endif %}
 <form method="post">
   <select name="action">
