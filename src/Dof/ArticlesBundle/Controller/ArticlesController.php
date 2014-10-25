@@ -213,7 +213,7 @@ class ArticlesController extends Controller
       }
       if ($request->get('action') == 'supprimer'){
         $article->setArchive(1);
-        $em->persiste($article);
+        $em->persist($article);
         $em->flush();
         $this->get('notification_manager')->addNotification($article, 'news.deleted', $article->getUpdater());
         return $this->render('DofArticlesBundle:Edit:success.html.twig', array('type' =>$type, 'action'=>'Suppression'));
