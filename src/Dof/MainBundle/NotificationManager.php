@@ -47,6 +47,25 @@ class NotificationManager
                 ),
                 'path' => 'dof_main_homepage',
             ),
+            'news.valided' => array(
+                'translationString' => 'news.valided',
+                'translationParams' => array(
+                    'dynamic' => array('%name%' => 'article.name')
+                ),
+                'path' => 'dof_articles_view',
+                'pathParams' => array(
+                    'static' => array(),
+                    'dynamic' => array('slug' => 'article.slug', 'type' => 'news')
+                )
+            ),
+            'news.deleted' => array(
+                'translationString' => 'news.deleted',
+                'translationParams' => array(
+                    'dynamic' => array('%name%' => 'article.name')
+                ),
+                'path' => 'dof_main_homepage',
+                )
+            ),
         ];
 
     public function __construct(ContainerInterface $di)

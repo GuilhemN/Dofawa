@@ -9,6 +9,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ArticlesBundle\Entity\Article;
 use Dof\ArticlesBundle\ArticleType;
+use Dof\MainBundle\Entity\Notification;
+use Dof\MainBundle\NotificationType;
 
 class ArticlesController extends Controller
 {
@@ -206,12 +208,14 @@ class ArticlesController extends Controller
         $article->setPublished(1);
         $em->persist($article);
         $em->flush();
+        $this->get('notification_manager')->addNotification($article, 'news.valided', $article->getUpdater());
         return $this->render('DofArticlesBundle:Edit:success.html.twig', array('type' =>$type, 'action'=>'Validation'));
       }
       if ($request->get('action') == 'supprimer'){
         $article->setArchive(1);
         $em->persiste($article);
         $em->flush();
+        $this->get('notification_manager')->addNotification($article, 'news.deleted', $article->getUpdater());
         return $this->render('DofArticlesBundle:Edit:success.html.twig', array('type' =>$type, 'action'=>'Suppression'));
       }
 
