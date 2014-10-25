@@ -6,6 +6,9 @@
 
 {% block body %}
 <a href="{{ path('dof_articles_addList', {'page' : '1', 'type' : type }) }}"><span class="glyphicon glyphicon-chevron-left"></span>Retour à la liste</a>
+{% if not newArticle %}
+  <a target="blank" style="float:right" href="{{ path('dof_articles_view'), {'slug' : article.getOriginalArticle().getSlug() } }}">Article original<span class="glyphicon glyphicon-chevron-right"></span></a>
+{% endif %}
 <form method="post">
   <select name="action">
     <option value="valider">Valider</option>
@@ -14,7 +17,7 @@
   <input type="submit" class="btn btn-primary text-center" value="Envoyer">
 </form>
 {% if newArticle %}
-  <h2>Nouvelle proposition:</h2>
+  <h2>Nouvelle proposition: ({{ type }})</h2>
   <article itemscope itemtype="http://schema.org/Article">
     <div class="page-header">
       <h1>
@@ -25,12 +28,20 @@
       </h1>
       By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a>
     </div>
+
+    <div class="well well-lg" itemprop="articleBody">
+    <h3>Mots clés :</h3>
+      {{ article.getKeys() | raw }}
+    <h3>Categorie :</h3>
+      {{ article.getCategory() | raw }}
+    </div>
+
     <div class="well well-lg" itemprop="articleBody">
       {{ article.getDescription(locales()) | raw }}
     </div>
   </article>
 {% else %}
-  <h2>Différences avec l'article original:</h2>
+  <h2>Différences avec l'article original: ({{ type }})</h2>
   <article itemscope itemtype="http://schema.org/Article">
     <div class="page-header">
       <h1>
@@ -41,6 +52,14 @@
       </h1>
       By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a> Edité par <a href="{{ path('dof_profile_userpage', {'slug' : article.updater.slug}) }}">{{ article.updater.username }}</a>
     </div>
+
+    <div class="well well-lg" itemprop="articleBody">
+    <h3>Mots clés :</h3>
+      {{ article.getKeys() | raw }}
+    <h3>Categorie :</h3>
+      {{ article.getCategory() | raw }}
+    </div>
+
     <div class="well well-lg" itemprop="articleBody">
 
     {% for key,diff in diffs %}
