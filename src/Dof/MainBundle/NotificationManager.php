@@ -54,8 +54,8 @@ class NotificationManager
                 ),
                 'path' => 'dof_articles_view',
                 'pathParams' => array(
-                    'static' => array(),
-                    'dynamic' => array('slug' => 'slug', 'type' => 'news')
+                    'static' => array('type' => 'news'),
+                    'dynamic' => array('slug' => 'slug')
                 )
             ),
             'news.deleted' => array(
