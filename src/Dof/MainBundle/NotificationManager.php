@@ -50,7 +50,7 @@ class NotificationManager
             'news.valided' => array(
                 'translationString' => 'news.valided',
                 'translationParams' => array(
-                    'dynamic' => array('%name%' => 'article.name')
+                    'dynamic' => array('%name%' => 'name')
                 ),
                 'path' => 'dof_articles_view',
                 'pathParams' => array(
@@ -61,7 +61,7 @@ class NotificationManager
             'news.deleted' => array(
                 'translationString' => 'news.deleted',
                 'translationParams' => array(
-                    'dynamic' => array('%name%' => 'article.name')
+                    'dynamic' => array('%name%' => 'name')
                 ),
                 'path' => 'dof_main_homepage',
             ),

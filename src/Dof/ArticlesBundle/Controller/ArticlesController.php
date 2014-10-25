@@ -53,6 +53,7 @@ class ArticlesController extends Controller
           $newArticle->setSlug(null);
           $newArticle->setPublished(0);
           $newArticle->setOriginalArticle($article);
+          $newArticle->setUpdater($this->getUser());
           $article->addEdit($newArticle);
           $em = $this->getDoctrine()->getManager();
           $em->persist($newArticle);
@@ -85,6 +86,7 @@ class ArticlesController extends Controller
 
         if ($form->isValid()) {
           $article->setPublished(0);
+          $article->setUpdater($this->getUser());
           $em = $this->getDoctrine()->getManager();
           $em->persist($article);
           $em->flush();
