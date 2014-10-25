@@ -8,7 +8,7 @@
 {% block body %}
   <div class="panel panel-success">
   <div class="panel-body">
-    {% if action != "Validation" & action != "Suppression" %}
+    {% if action != "Validation" and action != "Suppression" %}
     	{{ type }} ajouté, un modérateur va le vérifier sous peu!
     {% else %}
     	{{ action }} avec succès!
