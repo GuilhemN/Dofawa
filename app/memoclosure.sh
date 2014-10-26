@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APPDIR="$(dirname "$(dirname "$0")")"
-MD5="$(md5 -t "$1" | head -c 56)"
+MD5="$(md5sum -t "$1" | head -c 56)"
 TMPDIR="$APPDIR/tmp/build/memoclosure"
 
 mkdir -p "$TMPDIR"
