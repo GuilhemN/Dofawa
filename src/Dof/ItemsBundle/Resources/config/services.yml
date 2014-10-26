@@ -22,3 +22,9 @@ services:
         arguments: [~, Dof\ItemsBundle\Entity\ItemSet, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Items, label: Set}
+
+    dof_items.admin.animal_template:
+        class: Dof\ItemsBundle\Admin\AnimalTemplateAdmin
+        arguments: [~, Dof\ItemsBundle\Entity\AnimalTemplate, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Items, label: AnimalTemplate}
