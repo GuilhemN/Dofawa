@@ -8,6 +8,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+use Dof\ItemsBundle\AnimalColorizationType;
+
 class AnimalTemplateAdmin extends Admin
 {
     /**
@@ -58,7 +60,7 @@ class AnimalTemplateAdmin extends Admin
         $formMapper
             ->add('nameFr')
             ->add('bone')
-            ->add('colorizationType', 'choice', ['choices' => array_flip(Dof\ItemsBundle\AnimalColorizationType::getValues())])
+            ->add('colorizationType', 'choice', ['choices' => array_flip(AnimalColorizationType::getValues())])
             ->add('size')
         ;
     }
