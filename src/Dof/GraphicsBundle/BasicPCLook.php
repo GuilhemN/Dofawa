@@ -290,7 +290,7 @@ class BasicPCLook
         if ($this->animal !== null && $this->animal->getBone() !== null) {
             $aniLook = new EntityLook();
             $aniLook->setBone($this->animal->getBone());
-            $aniLook->setScale(($this->animal->getSize() !== null) ? $this->animal->getSize() / 100 : 100);
+            $aniLook->setScale(($this->animal->getSize() !== null) ? $this->animal->getSize() / 100 : 1);
             switch ($this->animal->getColorizationType()) {
                 case AnimalColorizationType::CHAMELEON:
                     foreach ($this->colors as $index => $color)
