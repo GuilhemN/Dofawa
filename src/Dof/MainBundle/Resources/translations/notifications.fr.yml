@@ -1,5 +1,5 @@
 message.receive: <strong>%by%</strong> vient de vous envoyer un message privé.
 badge.receive: Vous avez reçu un nouveau Badge : <strong>%name%</strong>
 welcome: Bienvenue %name% sur Dofawa !
-news.valided: "L'article <strong>%name%</strong> a bien était validé !"
-news.deleted: "L'article <strong>%name%</strong> n'a pas était accepté !"
+news.valided: "L'article <strong>%name%</strong> a bien été validé !"
+news.deleted: "L'article <strong>%name%</strong> n'a pas été accepté !"
