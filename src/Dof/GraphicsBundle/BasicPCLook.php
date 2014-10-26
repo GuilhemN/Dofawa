@@ -287,7 +287,7 @@ class BasicPCLook
             $pcLook->addSkin($skin);
         foreach ($this->colors as $index => $color)
             $pcLook->setColor($index, $color);
-        if ($this->animal !== null) {
+        if ($this->animal !== null && $this->animal->getBone() !== null) {
             $aniLook = new EntityLook();
             $aniLook->setBone($this->animal->getBone());
             $aniLook->setScale($this->animal->getSize() / 100);
