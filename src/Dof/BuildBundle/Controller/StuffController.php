@@ -4,6 +4,9 @@ namespace Dof\BuildBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Dof\UserBundle\Entity\User;
+use Dof\BuildBundle\Entity\PlayerCharacter;
+use Dof\BuildBundle\Entity\Stuff;
 use Dof\BuildBundle\Entity\Item;
 
 use Dof\BuildBundle\BuildSlot;
