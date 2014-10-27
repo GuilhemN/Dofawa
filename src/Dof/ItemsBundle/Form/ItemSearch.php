@@ -13,7 +13,7 @@ class ItemSearch extends AbstractType
     private $isTypeUpdatable;
     private $defaultTypes;
 
-    public function __contruct($isTypeUpdatable = true){
+    public function __construct($isTypeUpdatable = true){
         $this->isTypeUpdatable = $isTypeUpdatable;
     }
 
@@ -25,7 +25,7 @@ class ItemSearch extends AbstractType
     {
         $builder
             ->setMethod('get')
-            ->add('name', 'text', ['trim' => true])
+            ->add('name', 'text', ['trim' => true, 'required' => false])
             ->add('type', 'choice', array(
                 'disabled' => !$this->isTypeUpdatable,
                 'choices' => ItemSlot::getPrefixedNames('equipments.'),
