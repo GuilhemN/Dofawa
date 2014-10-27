@@ -46,7 +46,7 @@ class ItemsController extends Controller
                     'stuff' => $stuff->getSlug()
                 ];
 
-        $form = $this->createForm(new ItemSearch(false, (array) BuildSlot::getItemsSlot($buildSlot)));
+        $form = $this->createForm(new ItemSearch(false));
         $form->handleRequest($this->get('request'));
 
         $params = $this->getItems(array_merge((array) $form->getData(), ['type' => BuildSlot::getItemsSlot($buildSlot)]), $page, $slugs + ['type' => $type]);
@@ -67,8 +67,9 @@ class ItemsController extends Controller
 
         $perPage = 15;
 
-        $count = $repo->countWithOptions($options);
-        $items = $repo->findWithOptions($options, ['level' => 'DESC', 'name' . ucfirst($this->get('request')->getLocale()) => 'ASC'], $perPage, ($page - 1) * $perPage);
+        $locale = $this->get('translator')->getLocale();
+        $count = $repo->countWithOptions($options, $locale);
+        $items = $repo->findWithOptions($options, ['level' => 'DESC', 'name' . ucfirst($this->get('request')->getLocale()) => 'ASC'], $perPage, ($page - 1) * $perPage, $locale);
 
         $pagination = array(
 			'page' => $page,

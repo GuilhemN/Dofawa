@@ -35,7 +35,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 		    ->getSingleScalarResult();
     }
 
-    public function findWithOptions($options = array(), array $orders = array(), $limit = null, $offset = null, $type = 'normal') {
+    public function findWithOptions($options = array(), array $orders = array(), $limit = null, $offset = null, $locale = 'fr', $type = 'normal') {
         $options = (array) $options;
 		$qb = $this->createQueryBuilder('i');
 
@@ -47,9 +47,14 @@ class ItemTemplateRepository extends FilterableEntityRepository
 			->addOrderBy('i.level', 'DESC')
 		;
 
+		if(isset($options['name']))
+			$qb
+	        	->andWhere('i.name' . ucfirst($locale).' LIKE :name')
+	        	->setParameter('name', '%' . $options['name'] . '%')
+			;
 		if(isset($options['type']))
 			$qb
-	        	->where('t.slot IN (:slot)')
+	        	->andWhere('t.slot IN (:slot)')
 	        	->setParameter('slot', $options['type'])
 			;
 
@@ -70,8 +75,8 @@ class ItemTemplateRepository extends FilterableEntityRepository
 	              ;
     }
 
-	public function countWithOptions($options = array()){
-		return $this->findWithOptions($options, array(), null, null, 'count');
+	public function countWithOptions($options = array(), $locale = 'fr'){
+		return $this->findWithOptions($options, array(), null, null, $locale, 'count');
 	}
 
     public function findByIdWithType($id) {
