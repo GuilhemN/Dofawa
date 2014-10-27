@@ -47,9 +47,9 @@ class ItemsController extends Controller
                 ];
 
         $request = $this->get('request');
+        $request->query->set('items[type]', (array) BuildSlot::getItemsSlot($buildSlot));
         $form = $this->createForm(new ItemSearch(false));
         $form->handleRequest($request);
-        $request->query->set('items[type]', (array) BuildSlot::getItemsSlot($buildSlot));
 
         $params = $this->getItems(array_merge($form->getData(), ['type' => BuildSlot::getItemsSlot($buildSlot)]), $page, $slugs + ['type' => $type]);
 
