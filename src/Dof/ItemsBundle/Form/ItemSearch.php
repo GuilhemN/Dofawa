@@ -11,8 +11,11 @@ use Dof\ItemsBundle\ItemSlot;
 class ItemSearch extends AbstractType
 {
     private $isTypeUpdatable;
-    public function __contruct($isTypeUpdatable = true){
+    private $defaultTypes;
+
+    public function __contruct($isTypeUpdatable = true, array $defaultTypes = array()){
         $this->isTypeUpdatable = $isTypeUpdatable;
+        $this->defaultTypes = $defaultTypes;
     }
 
     /**
@@ -28,7 +31,8 @@ class ItemSearch extends AbstractType
                 'choices' => ItemSlot::getPrefixedNames('equipments.'),
                 'multiple' => true,
                 'attr'=> array('class' => 'to-select2', 'data-placeholder' => 'Sélectionner un type d\'item'),
-                'translation_domain' => 'type_item'
+                'translation_domain' => 'type_item',
+                'data' => $this->defaultTypes
                 ))
             ->add('submit', 'submit')
         ;
