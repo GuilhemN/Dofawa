@@ -53,6 +53,7 @@ class ItemsController extends Controller
         return $this->render('DofItemsBundle:Items:index.html.twig',
             $params +
             [
+                'form' => $form->createView(),
                 'slugs' => $slugs,
                 'build_slot' => $type
             ]
