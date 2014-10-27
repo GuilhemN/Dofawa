@@ -100,91 +100,58 @@ class BuildController extends Controller
     }
 
     public function showAction(Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
-        if(!$canSee)
+        if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
-        $items = array();
+        $em = $this->getDoctrine()->getManager(); // Entity manager
+        $items = []; $caracts = []; $sets = []; $bonus = []; // Initialisation des tableaux de valeurs
+
+        // Pré-traitement des items et caracts
         foreach($stuff->getItems() as $item){
             $items[$item->getSlot()] = $item;
-        }
+            foreach($item->getCharacteristics() as $k => $v)
+                $caracts[$k] += $v;
 
+            // Panos et nombres d'items associés dans le stuff
+            if($item->getItemTemplate()->getSet() !== null)
+                $sets[$item->getItemTemplate()->getId()]++;
+        }
+        // Bonus de panos
+        $setBonusRepo = $em->getRepository('DofItemsBundle:ItemSetCombination');
+        foreach($sets as $set => $v)
+            if(($b = $setBonusRepo->findOneBy(array('set' => $set, 'itemCount' => $v))) !== null)
+                $bonus[] = $b;
+
+        foreach($bonus as $b)
+            foreach($bonus->getCharacteristics() as $k => $v)
+                $caracts[$k] += $v;
+
+        //Modification d'un item
         $request = $this->get('request');
         if ($canWrite && $request->isMethod('POST') && isset($items[$request->request->get('slot')]))
         {
-            $em = $this->getDoctrine()->getManager();
-
             $item = $items[$request->request->get('slot')];
             $item->setCharacteristics($request->request->get('caracts'), true);
 
             $em->persist($item);
             $em->flush($item);
         }
+
+
         return $this->render('DofBuildBundle:Build:show.html.twig', [
+            // Perso
             'character' => $character,
             'stuff' => $stuff,
+
+            // Items
             'dofus_slots' => $this->dofus_slots,
             'items_slots' => $this->items_slots,
             'items' => $items,
+            'bonus' => $bonus,
+            'caracts' => $caracts,
+
+            // Permissions
             'can_write' => $canWrite
             ]);
-    }
-
-    public function addItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite){
-        if(!$canWrite)
-            throw $this->createAccessDeniedException();
-
-        $em = $this->getDoctrine()->getManager();
-        $request = $this->get('request');
-
-        $itemsIds = (array) $request->request->get('items');
-        $rel = array_flip($itemsIds);
-        $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
-        $look = $stuff->getLook();
-
-        $bItemRepo = $em->getRepository('DofBuildBundle:Item');
-        foreach($items as $k => $item) {
-            if(($slot = BuildSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
-                $slot = BuildSlot::getBuildSlot($item->getType()->getSlot())[0];
-                
-            $bItem = $bItemRepo->findOneBy(array('stuff' => $stuff, 'slot' => $slot));
-            if($bItem !== null)
-                $em->remove($bItem);
-
-            $bItem = new Item();
-            $bItem->setStuff($stuff);
-            $bItem->setItemTemplate($item);
-            $bItem->setSlot($slot);
-
-            if($slot == BuildSlot::WEAPON)
-                $look->setWeapon($item);
-            elseif($slot == BuildSlot::SHIELD)
-                $look->setShield($item);
-            elseif($slot == BuildSlot::HAT)
-                $look->setHat($item);
-            elseif($slot == BuildSlot::CLOAK)
-                $look->setCloak($item);
-            elseif($slot == BuildSlot::ANIMAL)
-                $look->setAnimal($item);
-
-            $caracts = $bItem->getCharacteristics();
-            foreach($caracts as $k => &$caract)
-                $caract = $item->{'getMax' . ucfirst($k)}();
-
-            $bItem->setCharacteristics($caracts, true);
-
-            $em->persist($bItem);
-
-        }
-        $em->flush();
-
-        $stuff = $em->getRepository('DofBuildBundle:stuff')->findOneBy(array('id' => $stuff->getId()));
-        $stuff->updatePrimaryBonus();
-        $em->flush($stuff);
-
-        return $this->redirect($this->generateUrl('dof_build_show', [
-            'user' => $user->getSlug(),
-            'character' => $character->getSlug(),
-            'stuff' => $stuff->getSlug()
-            ]));
     }
 }
