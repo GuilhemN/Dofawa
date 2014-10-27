@@ -46,8 +46,11 @@ class ItemsController extends Controller
                     'stuff' => $stuff->getSlug()
                 ];
 
+        $request = $this->get('request');
         $form = $this->createForm(new ItemSearch(false));
-        $form->handleRequest($this->get('request'));
+        $form->handleRequest($request);
+        $request->query->set('items[type]', (array) BuildSlot::getItemsSlot($buildSlot));
+
         $params = $this->getItems(array_merge($form->getData(), ['type' => BuildSlot::getItemsSlot($buildSlot)]), $page, $slugs + ['type' => $type]);
 
         return $this->render('DofItemsBundle:Items:index.html.twig',
