@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\ItemsBundle\Entity\ItemTemplate;
-use Dof\ItemsBundle\Form\ItemType;
+use Dof\ItemsBundle\Form\ItemSearch;
 
 use Dof\BuildBundle\BuildSlot;
 use Dof\BuildBundle\Entity\PlayerCharacter;
@@ -16,7 +16,7 @@ use Dof\UserBundle\Entity\User;
 class ItemsController extends Controller
 {
     public function indexAction($page) {
-        $form = $this->createForm(new ItemType());
+        $form = $this->createForm(new ItemSearch());
         $form->handleRequest($this->get('request'));
 
         $params = $this->getItems($form->getData(), $page);
@@ -45,7 +45,10 @@ class ItemsController extends Controller
                     'character' => $character->getSlug(),
                     'stuff' => $stuff->getSlug()
                 ];
-        $params = $this->getItems(['type' => BuildSlot::getItemsSlot($buildSlot)], $page, $slugs + ['type' => $type]);
+
+        $form = $this->createForm(new ItemSearch(false));
+        $form->handleRequest($this->get('request'));
+        $params = $this->getItems($form->getData() + ['type' => BuildSlot::getItemsSlot($buildSlot)], $page, $slugs + ['type' => $type]);
 
         return $this->render('DofItemsBundle:Items:index.html.twig',
             $params +

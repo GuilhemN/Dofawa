@@ -8,8 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Dof\ItemsBundle\ItemSlot;
 
-class ItemType extends AbstractType
+class ItemSearch extends AbstractType
 {
+    private $isTypeUpdatable;
+    public function __contruct($isTypeUpdatable = true){
+        $this->isTypeUpdatable = $isTypeUpdatable;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -19,6 +24,7 @@ class ItemType extends AbstractType
         $builder
             ->setMethod('get')
             ->add('type', 'choice', array(
+                'disabled' => !$this->isTypeUpdatable,
                 'choices' => ItemSlot::getPrefixedNames('equipments.'),
                 'multiple' => true,
                 'attr'=> array('class' => 'to-select2', 'data-placeholder' => 'Sélectionner un type d\'item'),
