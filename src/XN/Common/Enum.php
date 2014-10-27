@@ -41,6 +41,6 @@ abstract class Enum
         return $values;
     }
     public static function getPrefixedNames($prefix, $case_lower = true){
-        return array_map(function ($v) use ($prefix) { return $prefix . $v; }, self::getValues($case_lower));
+        return array_map(function ($v) use ($prefix) { return $prefix . $v; }, array_flip(self::getValues($case_lower)));
     }
 }
