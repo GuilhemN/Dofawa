@@ -22,9 +22,10 @@
     <br>
     <td><input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" /></td>
     <tr>
-    	<td><a href="{{path('fos_user_registration_register')}}"><div class="submit">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</div></a></td>
+    	<td><a href="{{path('fos_user_resetting')}}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></td>
     </tr>
     <br>
+    <td><a href="{{path('fos_user_registration_register')}}"><div class="submit">{{ 'forgot'|trans({}, 'profile') }}</div></a></td>
 	</table>
 </form>
 
