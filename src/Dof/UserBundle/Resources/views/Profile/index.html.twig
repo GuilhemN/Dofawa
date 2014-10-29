@@ -33,7 +33,7 @@
 			<div class="row">
 			{% for badge in badges %}
 			  <div class="col-xs-6 col-md-3">
-			    <img src="{{ asset('uploads/badges/' ~ badge.getWebPath()) }}" alt="" class="img-circle img-responsive">
+			    <img src="{{ asset('' ~ badge.getWebPath()) }}" title="{{ badge.getDescription(locales()) }}" class="img-circle img-responsive">
 			    {{ badge.name }}
 			  </div>
 			  {% else %}

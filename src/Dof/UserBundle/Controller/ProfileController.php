@@ -42,7 +42,8 @@ class ProfileController extends BaseController
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException();
         }
-
-        return $this->container->get('templating')->renderResponse('DofUserBundle:Profile:index.html.twig', array('user' => $user));
+        $em = $this->getDoctrine()->getManager();
+        $badges = $em->getRepository('DofMainBundle:BadgeLevel')->getBadgeUser($user);
+        return $this->container->get('templating')->renderResponse('DofUserBundle:Profile:index.html.twig', array('user' => $user, 'badges' => $badges));
     }
 }
