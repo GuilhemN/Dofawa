@@ -54,7 +54,7 @@ trait PrimaryBonusTrait
 
         foreach($elements as $element)
             if($biggestCaract === null or $caracts[$element] > $biggestCaract)
-                $biggestCaract = $caracts[$element];
+                $biggestCaract = @$caracts[$element];
 
         if($biggestCaract < 0)
             $biggestCaract = 0;
