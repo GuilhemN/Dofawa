@@ -33,7 +33,7 @@
 			<div class="row">
 			{% for badge in badges %}
 			  <div class="col-xs-6 col-md-3">
-			    <img src="../../../../../web/uploads/badges/{{ badge.path }}" title="{{ badge.getDescription(local()) }}" class="img-circle">
+			    <img src="../../../../../web/uploads/badges/{{ badge.path }}" title="{{ badge.getDescription(locales()) }}" class="img-circle">
 			    {{ badge.name }}
 			  </div>
 			{% endfor %}
