@@ -17,6 +17,6 @@ class ServiceWithContainer
     }
     protected function getSecurityContext()
     {
-        return $this->container->get('security.context');
+        return $this->di->get('security.context');
     }
 }
