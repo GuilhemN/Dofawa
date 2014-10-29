@@ -11,6 +11,9 @@ use Dof\ForumBundle\Entity\Message;
 use Dof\ForumBundle\Form\MessageTopicType;
 use Dof\ForumBundle\Form\MessageType;
 
+use Dof\MainBundle\Entity\Badge;
+use Dof\MainBundle\BadgeType;
+
 class ForumController extends Controller
 {
     public function indexAction()
@@ -84,6 +87,9 @@ class ForumController extends Controller
 		    	$em = $this->getDoctrine()->getManager();
 		      	$em->persist($message);
 		      	$em->flush();
+
+            // Badge
+            $this->get('badge_manager')->addBadge('forum-message');
 
 		      	return $this->redirect($this->generateUrl('dof_forum_show_topic', array('slug' => $topic->getSlug())).'#message-'.$message->getId());
 		    }
