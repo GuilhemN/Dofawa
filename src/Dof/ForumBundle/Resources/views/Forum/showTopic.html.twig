@@ -39,7 +39,7 @@
 						      		<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }}: {{ message.owner.guilde }}</td></tr>
 						      		<tr><td>{{ 'inputs.location' | trans({}, 'profile') }}: {{ message.owner.lieu }}</td></tr>
 						      		<tr><td>{{ 'register_at' | trans({}, 'forum')}}: {{ message.owner.createdAt | date("d/m/Y") }}</td></tr>
-						      		<tr><td>Message(s): {{ countUser[message.owner] }}</td></tr>
+						      		<tr><td>Message(s): {{ countUser[message.owner.id] }}</td></tr>
 						      		<tr><td><b>{{ role |default() }}</b></td></tr>
 						      	</table>
 						      </div>
