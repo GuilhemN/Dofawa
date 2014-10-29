@@ -13,6 +13,7 @@ use Dof\ForumBundle\Form\MessageType;
 
 use Dof\MainBundle\Entity\Badge;
 use Dof\MainBundle\BadgeType;
+use Dof\UserBundle\Entity\Badge;
 
 class ForumController extends Controller
 {
@@ -52,7 +53,8 @@ class ForumController extends Controller
    	public function showTopicAction(Topic $topic)
     {
     	$em = $this->getDoctrine()->getManager();
-		$repo = $em->getRepository('DofForumBundle:Topic');
+		  $repo = $em->getRepository('DofForumBundle:Topic');
+      $badge = $em->getRepository('DofMainBundle:Badge')->findOneBySlugWithLevels('forum-message');
 
     	if($this->getUser() !== null && !$topic->isReadBy($repo, $this->getUser()))
     	{
@@ -62,7 +64,15 @@ class ForumController extends Controller
 		    $em->flush();
     	}
 
-        return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic));
+      foreach ($topic->getMessages() as $message) {
+        $uBadge = $em->getRepository('DofUserBundle:Badge')->findOneBy(array('badge' => $badge, 'owner' => $message->getOwner()));
+        if($uBadge === null)
+          $countUser[$message->getOwner()] = '0';
+        else
+          $countUser[$message->getOwner()] = $uBadge->getCount();
+      }
+
+      return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic, 'countUser' => $countUser));
     }
 
     /**
