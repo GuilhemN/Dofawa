@@ -103,33 +103,19 @@ class BuildController extends Controller
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
-        $em = $this->getDoctrine()->getManager(); // Entity manager
-        $items = []; $caracts = []; $sets = []; $bonus = []; // Initialisation des tableaux de valeurs
+        $bm = $this->get('build_manager');
+        $items = [];
 
-        // Pré-traitement des items et caracts
-        foreach($stuff->getItems() as $item){
+        // Pré-traitement des items
+        foreach($stuff->getItems() as $item)
             $items[$item->getSlot()] = $item;
-            foreach($item->getCharacteristics() as $k => $v)
-                $caracts[$k] += $v;
-
-            // Panos et nombres d'items associés dans le stuff
-            if($item->getItemTemplate()->getSet() !== null)
-                $sets[$item->getItemTemplate()->getId()]++;
-        }
-        // Bonus de panos
-        $setBonusRepo = $em->getRepository('DofItemsBundle:ItemSetCombination');
-        foreach($sets as $set => $v)
-            if(($b = $setBonusRepo->findOneBy(array('set' => $set, 'itemCount' => $v))) !== null)
-                $bonus[] = $b;
-
-        foreach($bonus as $b)
-            foreach($bonus->getCharacteristics() as $k => $v)
-                $caracts[$k] += $v;
+        $characteristics = $bm->getCharacteristics($stuff, $bonus);
 
         //Modification d'un item
         $request = $this->get('request');
         if ($canWrite && $request->isMethod('POST') && isset($items[$request->request->get('slot')]))
         {
+            $em = $this->getDoctrine()->getManager();
             $item = $items[$request->request->get('slot')];
             $item->setCharacteristics($request->request->get('caracts'), true);
 
@@ -137,19 +123,16 @@ class BuildController extends Controller
             $em->flush($item);
         }
 
-
         return $this->render('DofBuildBundle:Build:show.html.twig', [
             // Perso
             'character' => $character,
             'stuff' => $stuff,
-
             // Items
             'dofus_slots' => $this->dofus_slots,
             'items_slots' => $this->items_slots,
             'items' => $items,
             'bonus' => $bonus,
-            'caracts' => $caracts,
-
+            'characteristics' => $characteristics,
             // Permissions
             'can_write' => $canWrite
             ]);

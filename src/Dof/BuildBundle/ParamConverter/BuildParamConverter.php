@@ -11,28 +11,20 @@
 
 namespace Dof\BuildBundle\ParamConverter;
 
+use XN\Common\ServiceWithContainer;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * DoctrineParamConverter.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class BuildParamConverter implements ParamConverterInterface
+class BuildParamConverter extends ServiceWithContainer implements ParamConverterInterface
 {
-    /**
-     * @var \Symfony\Component\DependencyInjection\ContainerInterface
-     */
-    protected $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
 
     /**
      * {@inheritdoc}
@@ -42,8 +34,8 @@ class BuildParamConverter implements ParamConverterInterface
      */
     public function apply(Request $request, ParamConverter $configuration)
     {
-        $name    = $configuration->getName();
-        $class   = $configuration->getClass();
+        $name  = $configuration->getName();
+        $class = $configuration->getClass();
 
         if (!$request->attributes->has('user') or
             !$request->attributes->has('character') or
@@ -51,15 +43,12 @@ class BuildParamConverter implements ParamConverterInterface
             )
             throw new \LogicException('Paramètres manquants dans la route pour récupérer le playerCharacter (doit contenir user, character et stuff).');
 
-        $em = $this->getEntityManager();
-        $repository = $em->getRepository('DofBuildBundle:Stuff');
-
-        $slugs = [
-            'user' => $request->attributes->get('user'),
-            'character' => $request->attributes->get('character'),
-            'stuff' => $request->attributes->get('stuff'),
-            ];
-        $stuff = $repository->findParamConverter($slugs['user'], $slugs['character'], $slugs['stuff']);
+        $bm = $this->di->get('build_manager');
+        $stuff = $bm->getBySlugs(
+                    $request->attributes->get('user'),
+                    $request->attributes->get('character'),
+                    $request->attributes->get('stuff')
+                );
 
         if (null === $stuff) {
             throw new NotFoundHttpException('Build non trouvé.');
@@ -69,8 +58,8 @@ class BuildParamConverter implements ParamConverterInterface
         $request->attributes->set('character', $character = $stuff->getCharacter());
         $request->attributes->set('user', $user = $character->getOwner());
 
-        $request->attributes->set('canSee', true);
-        $request->attributes->set('canWrite', $user == $this->getSecurityContext()->getToken()->getUser() || $this->getSecurityContext()->isGranted('ROLE_SUPER_ADMIN'));
+        $request->attributes->set('canSee', $bm->canSee($stuff));
+        $request->attributes->set('canWrite', $bm->canWrite($stuff));
 
         return true;
     }
@@ -84,21 +73,5 @@ class BuildParamConverter implements ParamConverterInterface
             return false;
 
         return "Dof\BuildBundle\Entity\Stuff" === $configuration->getClass();
-    }
-
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getEntityManager()
-    {
-        return $this->container->get('doctrine.orm.default_entity_manager');
-    }
-
-    /**
-     * @return \Symfony\Component\Security\Core\SecurityContext
-     */
-    protected function getSecurityContext()
-    {
-        return $this->container->get('security.context');
     }
 }
