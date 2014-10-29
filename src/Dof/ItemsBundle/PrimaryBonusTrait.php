@@ -52,9 +52,12 @@ trait PrimaryBonusTrait
 
         $biggestCaract = null;
 
-        foreach($elements as $element)
+        foreach($elements as $element){
+            if(!isset($caracts[$element]))
+                $caracts[$element] = 0;
             if($biggestCaract === null or $caracts[$element] > $biggestCaract)
-                $biggestCaract = @$caracts[$element];
+                $biggestCaract = $caracts[$element];
+        }
 
         if($biggestCaract < 0)
             $biggestCaract = 0;
