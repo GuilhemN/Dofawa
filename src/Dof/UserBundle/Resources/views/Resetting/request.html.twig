@@ -1,0 +1,9 @@
+{% extends "::layout.html.twig" %}
+
+{% block breadcrumb %}
+	<li><a href="{{ path('fos_user_profile_show') }}">{{ 'forgot'|trans({}, 'profile') }}</a></li>
+{% endblock %}
+
+{% block body %}
+{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+{% endblock body %}

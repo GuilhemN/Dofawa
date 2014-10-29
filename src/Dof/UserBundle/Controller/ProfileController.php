@@ -15,6 +15,11 @@ use FOS\UserBundle\Model\UserInterface;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use Dof\MainBundle\Entity\Badge;
+use Dof\MainBundle\BadgeType;
+use Dof\UserBundle\Entity\Badge as UserBadge;
+
+
 class ProfileController extends BaseController
 {
 	/**
@@ -22,7 +27,10 @@ class ProfileController extends BaseController
 	 */
     public function userpageAction(User $user)
     {
-        return $this->container->get('templating')->renderResponse('DofUserBundle:Profile:index.html.twig', array('user' => $user));
+        $em = $this->getDoctrine()->getManager();
+        $badges = $em->getRepository('DofMainBundle:BadgeLevel')->getBadgeUser($user);
+
+        return $this->container->get('templating')->renderResponse('DofUserBundle:Profile:index.html.twig', array('user' => $user, 'badges' => $badges));
     }
 
     /**

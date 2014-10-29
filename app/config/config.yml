@@ -110,6 +110,9 @@ fos_user:
     registration:
         form:
             type: dof_user_registration
+    resetting:
+        form:
+            type: dof_user_resetting
 
 fos_message:
     db_driver: orm

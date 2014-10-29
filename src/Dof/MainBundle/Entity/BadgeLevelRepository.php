@@ -3,6 +3,7 @@
 namespace Dof\MainBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Dof\UserBundle\Entity\User;
 
 /**
  * BadgeLevelRepository
@@ -12,4 +13,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class BadgeLevelRepository extends EntityRepository
 {
+	public function getBadgeUser(User $user)
+	{
+		return $this
+                  ->createQueryBuilder('l')
+                  ->select('l', 'b', 'ub')
+                  ->join('l.badge', 'b')
+                  ->join('b.userBadges', 'ub')
+                  ->where('ub.owner = :user')
+                  ->getQuery()
+                  ->setParameter('user', $user)
+                  ->getResult();
+              ;
+	}
 }

@@ -27,6 +27,23 @@
 	</div><!--/panel-->
 </div>
 
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="row">
+			{% for badge in badges %}
+			  <div class="col-xs-6 col-md-3">
+			    <img src="{{ asset('uploads/badges/' ~ badge.getWebPath()) }}" alt="" class="img-circle img-responsive">
+			    {{ badge.name }}
+			  </div>
+			  {% else %}
+			  <h3 class="text-center">Aucun badge !</h3>
+			{% endfor %}
+			</div>
+		</div><!--/panel-body-->
+	</div><!--/panel-->
+</div>
+
 {% if app.user is not null and app.user.id == user.id %}
 	{# Edition du profil #}
 	<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">{{ 'edit' | trans({}, 'generalTrans') }}</a>
