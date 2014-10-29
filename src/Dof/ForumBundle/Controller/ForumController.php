@@ -65,11 +65,14 @@ class ForumController extends Controller
     	}
 
       foreach ($topic->getMessages() as $message) {
-        $uBadge = $em->getRepository('DofUserBundle:Badge')->findOneBy(array('badge' => $badge, 'owner' => $message->getOwner()));
-        if($uBadge === null)
-          $countUser[$message->getOwner()->getId()] = '0';
-        else
-          $countUser[$message->getOwner()->getId()] = $uBadge->getCount();
+        if(!isset($countUser[$message->getOwner()->getId()]))
+        {
+          $uBadge = $em->getRepository('DofUserBundle:Badge')->findOneBy(array('badge' => $badge, 'owner' => $message->getOwner()));
+          if($uBadge === null)
+            $countUser[$message->getOwner()->getId()] = '0';
+          else
+            $countUser[$message->getOwner()->getId()] = $uBadge->getCount();
+        }
       }
 
       return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic, 'countUser' => $countUser));
