@@ -23,7 +23,7 @@ class BadgeLevelRepository extends EntityRepository
                   ->where('ub.owner = :user')
                   ->getQuery()
                   ->setParameter('user', $user)
-                  ->getSingleResult();
+                  ->getResult();
               ;
 	}
 }
