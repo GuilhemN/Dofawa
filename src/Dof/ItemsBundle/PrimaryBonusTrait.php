@@ -52,9 +52,12 @@ trait PrimaryBonusTrait
 
         $biggestCaract = null;
 
-        foreach($elements as $element)
+        foreach($elements as $element){
+            if(!isset($caracts[$element]))
+                $caracts[$element] = 0;
             if($biggestCaract === null or $caracts[$element] > $biggestCaract)
                 $biggestCaract = $caracts[$element];
+        }
 
         if($biggestCaract < 0)
             $biggestCaract = 0;
@@ -66,7 +69,7 @@ trait PrimaryBonusTrait
                 $itemPrimaryBonus[ ] = $element;
 
         foreach($this->getPrimaryCharacteristics() as $field)
-            if($caracts[$field] > 0)
+            if(@$caracts[$field] > 0)
                 $itemPrimaryBonus[ ] = $field;
 
         $this->primaryBonus = $itemPrimaryBonus;
