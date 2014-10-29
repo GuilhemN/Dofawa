@@ -13,7 +13,7 @@ use Dof\ForumBundle\Form\MessageType;
 
 use Dof\MainBundle\Entity\Badge;
 use Dof\MainBundle\BadgeType;
-use Dof\UserBundle\Entity\Badge;
+use Dof\UserBundle\Entity\Badge as UserBadge;
 
 class ForumController extends Controller
 {
