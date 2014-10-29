@@ -38,7 +38,7 @@ class BuildManager extends ServiceWithContainer
 
         foreach($stuff->getItems() as $item){
             foreach($item->getCharacteristics() as $k => $v)
-                $caracts[$k] += $v;
+                $return[$k] += $v;
 
             // Panos et nombres d'items associés dans le stuff
             if($item->getItemTemplate()->getSet() !== null)
