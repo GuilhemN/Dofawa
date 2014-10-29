@@ -3,6 +3,7 @@
 namespace Dof\MainBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Dof\UserBundle\Entity\User;
 
 /**
  * BadgeLevelRepository
