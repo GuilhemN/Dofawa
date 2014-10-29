@@ -17,7 +17,7 @@ class BadgeRepository extends EntityRepository
 	{
 		return $this
                   ->createQueryBuilder('ub')
-                  ->select(array('ub', 'b', 'l'))
+                  ->select('l')
                   ->join('ub.badge', 'b')
                   ->join('b.levels', 'l')
                   ->where('ub.owner = :user')
