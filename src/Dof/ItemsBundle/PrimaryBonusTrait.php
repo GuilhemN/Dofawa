@@ -69,7 +69,7 @@ trait PrimaryBonusTrait
                 $itemPrimaryBonus[ ] = $element;
 
         foreach($this->getPrimaryCharacteristics() as $field)
-            if($caracts[$field] > 0)
+            if(@$caracts[$field] > 0)
                 $itemPrimaryBonus[ ] = $field;
 
         $this->primaryBonus = $itemPrimaryBonus;
