@@ -6,6 +6,8 @@ use XN\Common\ServiceWithContainer;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\UserBundle\Entity\User;
 
+use Dof\ItemsBundle\CharacteristicsMetadata;
+
 class BuildManager extends ServiceWithContainer
 {
     public function getBySlugs($user, $character, $stuff){
@@ -34,7 +36,8 @@ class BuildManager extends ServiceWithContainer
 
     public function getCharacteristics(Stuff $stuff, &$bonus){
         $em = $this->getEntityManager();
-        $return = []; $sets = []; $bonus = [];
+        $return = array_map(function () { return 0; }, CharacteristicsMetadata::getAll());
+        $sets = []; $bonus = [];
 
         foreach($stuff->getItems() as $item){
             foreach($item->getCharacteristics() as $k => $v)
