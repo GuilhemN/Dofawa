@@ -13,17 +13,4 @@ use Dof\UserBundle\Entity\User;
  */
 class BadgeRepository extends EntityRepository
 {
-	public function getBadgeUser(User $user)
-	{
-		return $this
-                  ->createQueryBuilder('ub')
-                  ->select('ub', 'b', 'l')
-                  ->join('ub.badge', 'b')
-                  ->join('b.levels', 'l')
-                  ->where('ub.owner = :user')
-                  ->getQuery()
-                  ->setParameter('user', $user)
-                  ->getSingleResult();
-              ;
-	}
 }

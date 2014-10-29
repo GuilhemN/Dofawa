@@ -28,7 +28,7 @@ class ProfileController extends BaseController
     public function userpageAction(User $user)
     {
         $em = $this->getDoctrine()->getManager();
-        $badges = $em->getRepository('DofUserBundle:Badge')->getBadgeUser($user);
+        $badges = $em->getRepository('DofMainBundle:Badge')->getBadgeUser($user);
 
         return $this->container->get('templating')->renderResponse('DofUserBundle:Profile:index.html.twig', array('user' => $user, 'badges' => $badges));
     }
