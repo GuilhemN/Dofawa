@@ -12,8 +12,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemSetRepository extends EntityRepository
 {
-    public function findForSearch(array $data, $locale = 'fr'){
-        $criteria = (array) $criteria;
+    public function findForSearch($data, $locale = 'fr'){
+        $data = (array) $data;
         $qb = $this
                   ->createQueryBuilder('s')
                   ->addOrderBy('s.level', 'desc')
