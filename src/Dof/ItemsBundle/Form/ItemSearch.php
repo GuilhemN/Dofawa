@@ -33,7 +33,7 @@ class ItemSearch extends AbstractType
                 'attr'=> array('class' => 'to-select2', 'data-placeholder' => 'Sélectionner un type d\'item'),
                 'translation_domain' => 'type_item'
                 ))
-            ->add('maj', 'text', ['required' => false, 'placeholder' => 'ex: 2.22'])
+            ->add('maj', 'text', ['required' => false, 'attr' => ['placeholder' => 'ex: 2.22']])
             ->add('submit', 'submit')
         ;
     }
