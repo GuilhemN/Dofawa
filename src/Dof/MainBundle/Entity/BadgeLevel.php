@@ -178,7 +178,6 @@ class BadgeLevel implements TimestampableInterface
     {
         // the file property can be empty if the field is not required
         if (null === $this->getFile()) {
-            throw new Exception("Test 1", 1);
             return;
         }
 
@@ -188,6 +187,7 @@ class BadgeLevel implements TimestampableInterface
         // use the original file name here but you should
         // sanitize it at least to avoid any security issues
 
+            throw new Exception("Test 2", 1);
         // move takes the target directory and then the
         // target filename to move to
         $this->getFile()->move(
