@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ItemSetType extends AbstractType
+class SetSearch extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,11 +15,8 @@ class ItemSetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('level', 'number', array('required' => false))
-            ->add('itemCount', 'number', array('required' => false))
-            ->add('release', 'checkbox', array('required' => false))
-            ->add('preliminary', 'checkbox', array('required' => false))
-            ->add('nameFr', 'text', array('required' => false))
+            ->setMethod('GET')
+            ->add('name', 'text', array('required' => false))
             ->add('submit', 'submit')
         ;
     }
