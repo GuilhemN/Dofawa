@@ -1,5 +1,6 @@
-<form action="{{ path("fos_user_security_check", {'_target_path': app.request.uri}) }}" method="post">
+<form action="{{ path("fos_user_security_check") }}" method="post">
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    <input type="hidden" name="_target_path" value="{{ app.request.uri | e('html_attr') }}" />
 
 
     <input  type="text" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" id="username" name="_username" value="{{ last_username }}">
