@@ -47,7 +47,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 			->addOrderBy('i.level', 'DESC')
 		;
 
-		if(isset($options['name']))
+		if(!empty($options['name']))
 			$qb
 	        	->andWhere('i.name' . ucfirst($locale).' LIKE :name')
 	        	->setParameter('name', '%' . $options['name'] . '%')
@@ -56,6 +56,11 @@ class ItemTemplateRepository extends FilterableEntityRepository
 			$qb
 	        	->andWhere('t.slot IN (:slot)')
 	        	->setParameter('slot', $options['type'])
+			;
+		if(!empty($options['maj']))
+			$qb
+	        	->andWhere('i.release' . ucfirst($locale).' LIKE :release')
+	        	->setParameter('release', '%' . $options['maj'] . '%')
 			;
 
 		foreach($orders as $column => $order)
