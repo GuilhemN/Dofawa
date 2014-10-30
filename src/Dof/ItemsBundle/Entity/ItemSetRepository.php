@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemSetRepository extends EntityRepository
 {
-    protected function findForSearch(array $data, $locale = 'fr'){
+    public function findForSearch(array $data, $locale = 'fr'){
         $criteria = (array) $criteria;
         $qb = $this
                   ->createQueryBuilder('s')
