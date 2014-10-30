@@ -15,14 +15,20 @@ class ItemSetRepository extends EntityRepository
     public function findForSearch($data, $locale = 'fr'){
         $data = (array) $data;
         $qb = $this
-                  ->createQueryBuilder('s')
-                  ->addOrderBy('s.level', 'desc')
+                ->createQueryBuilder('s')
+                ->addOrderBy('s.level', 'desc')
             ;
 
         if(!empty($data['name']))
             $qb
-                ->andWhere('s.name' . ucfirst($locale). ' LIKE :name')
-                ->setParameter('name', $data['name'])
+                ->andWhere('s.name' . ucfirst($locale) . ' LIKE :name')
+                ->setParameter('name', '%' . $data['name'] . '%')
+            ;
+
+        if(!empty($data['maj']))
+            $qb
+                ->andWhere('s.release = :release')
+                ->setParameter('release', $data['maj'])
             ;
 
         return $qb

@@ -17,6 +17,7 @@ class SetSearch extends AbstractType
         $builder
             ->setMethod('GET')
             ->add('name', 'text', array('required' => false))
+            ->add('maj', 'text', array('required' => false, 'attr' => ['placeholder' => 'ex: 2.22']))
             ->add('submit', 'submit')
         ;
     }
