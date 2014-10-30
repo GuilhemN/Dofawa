@@ -19,42 +19,42 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/dofmain/images/flag/' ~ app.request.locale ~ '.png') }}" alt="" /><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'fr'}) ) }}">
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'fr'}) ) ~ (app.request.queryString ? ("?" ~ app.request.queryString) : "") }}">
                                 Français
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) ) }}">
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'en'}) ) ~ (app.request.queryString ? ("?" ~ app.request.queryString) : "") }}">
                                 English
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'de'}) ) }}">
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'de'}) ) ~ (app.request.queryString ? ("?" ~ app.request.queryString) : "") }}">
                                 Deutsch
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'it'}) ) }}">
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'it'}) ) ~ (app.request.queryString ? ("?" ~ app.request.queryString) : "") }}">
                                 Italiano
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) }}">
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'es'}) ) ~ (app.request.queryString ? ("?" ~ app.request.queryString) : "") }}">
                                 Español
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'pt'}) ) }}">
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'pt'}) ) ~ (app.request.queryString ? ("?" ~ app.request.queryString) : "") }}">
                                 Português
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) ) }}">
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ru'}) ) ~ (app.request.queryString ? ("?" ~ app.request.queryString) : "") }}">
                                 Ру́сский
                             </a>
                         </li>
                         <li>
-                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ja'}) ) }}">
+                            <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ja'}) ) ~ (app.request.queryString ? ("?" ~ app.request.queryString) : "") }}">
                                 日本語
                             </a>
                         </li>
