@@ -1,7 +1,6 @@
 <form action="{{ path("fos_user_security_check") }}" method="post">
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-
     <input  type="text" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" id="username" name="_username" value="{{ last_username }}">
     <input type="password" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" id="password" name="_password"><br>
     <div class="totp-field">

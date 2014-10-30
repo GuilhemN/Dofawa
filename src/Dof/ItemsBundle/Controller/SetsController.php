@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Dof\ItemsBundle\Entity\ItemSet;
-use Dof\ItemsBundle\Form\ItemSetType;
+use Dof\ItemsBundle\Form\SetSearch;
 
 class SetsController extends Controller
 {
@@ -14,17 +14,13 @@ class SetsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemSet');
 
-        $form = $this->createForm(new ItemSetType());
+        $form = $this->createForm(new SetSearch());
 
         $form->handleRequest($this->get('request'));
 
         $searchFields = [];
-        if($form->isValid())
-        foreach($form->getData() as $k => $v)
-            if(!empty($v))
-                $searchFields[$k] = $v;
 
-        $sets = $repo->findWithJoins($searchFields, 'list');
+        $sets = $repo->findForSearch($form->getData(), $this->get('translator')->getLocale());
 
         return $this->render('DofItemsBundle:Sets:index.html.twig', [
             'sets' => $sets,

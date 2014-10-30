@@ -12,6 +12,31 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemSetRepository extends EntityRepository
 {
+    public function findForSearch($data, $locale = 'fr'){
+        $data = (array) $data;
+        $qb = $this
+                ->createQueryBuilder('s')
+                ->addOrderBy('s.level', 'desc')
+            ;
+
+        if(!empty($data['name']))
+            $qb
+                ->andWhere('s.name' . ucfirst($locale) . ' LIKE :name')
+                ->setParameter('name', '%' . $data['name'] . '%')
+            ;
+
+        if(!empty($data['maj']))
+            $qb
+                ->andWhere('s.release = :release')
+                ->setParameter('release', $data['maj'])
+            ;
+
+        return $qb
+        	->getQuery()
+        	->getResult()
+        ;
+    }
+
     public function findOneWithJoins($criteria = array()){
         $qb = $this->queryWithJoins($criteria);
 
