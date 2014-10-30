@@ -59,7 +59,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 			;
 		if(!empty($options['maj']))
 			$qb
-	        	->andWhere('i.release' . ucfirst($locale).' LIKE :release')
+	        	->andWhere('i.release LIKE :release')
 	        	->setParameter('release', '%' . $options['maj'] . '%')
 			;
 
