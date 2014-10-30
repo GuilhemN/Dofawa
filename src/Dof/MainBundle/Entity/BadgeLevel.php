@@ -178,6 +178,7 @@ class BadgeLevel implements TimestampableInterface
     {
         // the file property can be empty if the field is not required
         if (null === $this->getFile()) {
+            throw new Exception("Test 1", 1);
             return;
         }
 
