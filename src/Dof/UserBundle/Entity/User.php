@@ -26,6 +26,7 @@ use FOS\MessageBundle\Model\ParticipantInterface;
  *
  * @ORM\Table(name="dof_user")
  * @ORM\Entity(repositoryClass="Dof\UserBundle\Entity\UserRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser implements ParticipantInterface, IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, TOTPAuthenticatableInterface, MinorColumnsInterface
 {
@@ -469,8 +470,8 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
      */
     public function upload()
     {
@@ -500,7 +501,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * @ORM\PreRemove
+     * @ORM\PreRemove()
      */
     public function removeUpload(){
         @unlink($this->getAbsolutePath());

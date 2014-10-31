@@ -21,7 +21,7 @@ use Dof\MainBundle\Entity\Badge;
  *
  * @ORM\Table("dof_badge_levels")
  * @ORM\Entity(repositoryClass="Dof\MainBundle\Entity\BadgeLevelRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\HasLifecycleCallbacks
  */
 class BadgeLevel implements TimestampableInterface
 {
@@ -171,8 +171,8 @@ class BadgeLevel implements TimestampableInterface
     }
 
     /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
      */
     public function upload()
     {
@@ -203,7 +203,7 @@ class BadgeLevel implements TimestampableInterface
     }
 
     /**
-     * @ORM\PreRemove
+     * @ORM\PreRemove()
      */
     public function removeUpload(){
         @unlink($this->getAbsolutePath());
