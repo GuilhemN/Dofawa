@@ -13,8 +13,8 @@
 {% autoescape %}
     <h3><strong>{{ character.name }}</strong>, {{ 'level' | trans({'%level%': character.level}, 'item')}}</h3>
     <ul class="nav nav-tabs" role="tablist"> 
-        <li><a href="{{ path('dof_build_show', {'user' : user, 'character' : character, 'stuff' : stuff}) }}" role="tab" data-toggle="tab">Build</a></li>
-        <li class="active"><a href="{{ path('dof_build_show_carac', {'user' : user, 'character' : character, 'stuff' : stuff}) }}" role="tab" data-toggle="tab">Caractéristiques</a></li>
+        <li><a href="{{ path('dof_build_show', {'user' : user, 'character' : character, 'stuff' : stuff.getSlug()}) }}">Build</a></li>
+        <li class="active"><a href="{{ path('dof_build_show_carac', {'user' : user, 'character' : character, 'stuff' : stuff.getSlug()}) }}">Caractéristiques</a></li>
     </ul>
     <div class="panel panel-default">
         <table class="table">

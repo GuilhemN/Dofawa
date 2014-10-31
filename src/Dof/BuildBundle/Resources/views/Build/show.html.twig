@@ -12,8 +12,8 @@
 {% block body %}
 {% autoescape %}
     <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="{{ path('dof_build_show', {'user' : user, 'character' : character, 'stuff' : stuff.getSlug()}) }}" role="tab" data-toggle="tab">Build</a></li>
-        <li><a href="{{ path('dof_build_show_carac', {'user' : user, 'character' : character, 'stuff' : stuff.getSlug()}) }}" role="tab" data-toggle="tab">Caractéristiques</a></li>
+        <li class="active"><a href="{{ path('dof_build_show', {'user' : user, 'character' : character, 'stuff' : stuff.getSlug()}) }}">Build</a></li>
+        <li><a href="{{ path('dof_build_show_carac', {'user' : user, 'character' : character, 'stuff' : stuff.getSlug()}) }}">Caractéristiques</a></li>
     </ul>
     <div class="panel panel-default">
         <div class="panel-heading">
