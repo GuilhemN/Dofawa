@@ -11,6 +11,10 @@
 
 {% block body %}
 {% autoescape %}
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="{{ path('dof_build_show', {'user' : user, 'character' : character, 'stuff' : stuff}) }}" role="tab" data-toggle="tab">Build</a></li>
+        <li><a href="{{ path('dof_build_show_carac', {'user' : user, 'character' : character, 'stuff' : stuff}) }}" role="tab" data-toggle="tab">Caractéristiques</a></li>
+    </ul>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><strong>{{ character.name }}</strong>, {{ 'level' | trans({'%level%': character.level}, 'item')}}</h3>
@@ -25,65 +29,22 @@
             </p>
         </div>
     </div>
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#build" role="tab" data-toggle="tab">Build</a></li>
-        <li><a href="#caracs" role="tab" data-toggle="tab">Caractéristiques</a></li>
-    </ul>
-    <div class="tab-content">
-        <!-- Onglet Build -->
-        <div class="tab-pane active" id="build">
-            <div class="row">
-                <div class="col-md-4">
-                    {% for type, slot in dofus_slots %}
-                        <div class="col-xs-3 col-md-12 col-lg-6">
-                        {% include 'DofBuildBundle::slot.html.twig' %}
-                        </div>
-                    {% endfor %}
+
+    <div class="row">
+        <div class="col-md-4">
+            {% for type, slot in dofus_slots %}
+                <div class="col-xs-3 col-md-12 col-lg-6">
+                {% include 'DofBuildBundle::slot.html.twig' %}
                 </div>
-                <div class="col-md-8">
-                    {% for type, slot in items_slots %}
-                        <div class="col-xs-3 col-md-6 col-lg-4">
-                            {% include 'DofBuildBundle::slot.html.twig' %}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
+                {% endfor %}
         </div>
-        <!-- Fin Onglet Build -->
-        <!-- Onglet Carac -->
-        <div class="tab-pane" id="caracs">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><strong>{{ character.name }}</strong>, {{ 'level' | trans({'%level%': character.level}, 'item')}}</h3>
+        <div class="col-md-8">
+            {% for type, slot in items_slots %}
+                <div class="col-xs-3 col-md-6 col-lg-4">
+                    {% include 'DofBuildBundle::slot.html.twig' %}
                 </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Caractéristique</th><th>Total</th>
-                        </tr>
-                    </thead>
-                        <tr>
-                            <td>{{ 'vitality' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.vitality }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ 'wisdom' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.wisdom }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ 'strength' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.strength }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ 'intelligence' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.intelligence }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ 'chance' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.chance }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ 'agility' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.agility }}</td>
-                        </tr>
-                </table>
-            </div>
+            {% endfor %}
         </div>
-        <!-- Fin Onglet Carac -->
     </div>
 {% endautoescape %}
 {% endblock %}

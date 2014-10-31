@@ -99,7 +99,7 @@ class BuildController extends Controller
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
 
-    public function showAction(Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+    public function showAction(User $user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
@@ -134,7 +134,23 @@ class BuildController extends Controller
             'bonus' => $bonus,
             'characteristics' => $characteristics,
             // Permissions
-            'can_write' => $canWrite
+            'can_write' => $canWrite,
+            'user' => $user
+            ]);
+    }
+
+    public function caracsAction(User $user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+        if(!$canSee) // Si n'a pas le droit de voir ce build
+            throw $this->createAccessDeniedException();
+
+        $bm = $this->get('build_manager');
+        $characteristics = $bm->getCharacteristics($stuff, $bonus);
+
+        return $this->render('DofBuildBundle:Build:caracs.html.twig', [
+            'characteristics' => $characteristics,
+            'character' => $character,
+            'stuff' => $stuff,
+            'user' => $user
             ]);
     }
 }
