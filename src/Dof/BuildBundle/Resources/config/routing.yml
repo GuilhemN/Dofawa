@@ -2,6 +2,7 @@ dof_build_homepage:
     path:     /
     defaults: { _controller: DofBuildBundle:Build:index }
 
+# Affichage des builds
 dof_build_show:
     path:     /{user}/{character}/{stuff}
     defaults: { _controller: DofBuildBundle:Build:show }
@@ -10,6 +11,16 @@ dof_build_show:
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
 
+
+dof_build_show_characteristics:
+    path:     /{user}/{character}/{stuff}/characteristics
+    defaults: { _controller: DofBuildBundle:Build:showCharacteristics }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+
+# Ajout dans les builds
 dof_build_additem_post:
     path:     /{user}/{character}/{stuff}/add-items/
     defaults: { _controller: DofBuildBundle:Stuff:addItems}
@@ -27,11 +38,3 @@ dof_build_additem:
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
         page: \d+
-
-dof_build_show_carac:
-    path:     /{user}/{character}/{stuff}/characteristics
-    defaults: { _controller: DofBuildBundle:Build:caracs }
-    requirements:
-        user: '[0-9a-z-]+'
-        character: '[0-9a-z-]+'
-        stuff: '[0-9a-z-]+'

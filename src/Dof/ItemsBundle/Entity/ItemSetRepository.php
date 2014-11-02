@@ -24,7 +24,6 @@ class ItemSetRepository extends EntityRepository
                 ->andWhere('s.name' . ucfirst($locale) . ' LIKE :name')
                 ->setParameter('name', '%' . $data['name'] . '%')
             ;
-
         if(!empty($data['maj']))
             $qb
                 ->andWhere('s.release = :release')

@@ -139,14 +139,14 @@ class BuildController extends Controller
             ]);
     }
 
-    public function caracsAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+    public function showCharacteristicsAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
         $bm = $this->get('build_manager');
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
 
-        return $this->render('DofBuildBundle:Build:caracs.html.twig', [
+        return $this->render('DofBuildBundle:Build:showCharacteristics.html.twig', [
             'characteristics' => $characteristics,
             'character' => $character,
             'stuff' => $stuff,
