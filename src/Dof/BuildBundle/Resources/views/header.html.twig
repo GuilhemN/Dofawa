@@ -29,13 +29,13 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
-                            <tr><td><img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""></td>{{ pdv }}</tr>
-                            <tr><td><img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""></td>{% if character.level > 100 %} {{ characteristics.ap + 7 }} {% else %} {{ characteristics.ap + 6 }} {% endif %}</tr>
-                            <tr><td><img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""></td>{{ characteristics.mp + 3 }}</tr>
-                            <tr><td><img src="{{ asset('bundles/dofitems/img/initiative.png') }}" alt=""></td>{{ ini }}</tr>
-                            <tr><td><img src="{{ asset('bundles/dofitems/img/prospecting.png') }}" alt=""></td>{{ characteristics.prospecting + 100 }}</tr>
-                            <tr><td><img src="{{ asset('bundles/dofitems/img/range.png') }}" alt=""></td>{{ characteristics.range }}</tr>
-                            <tr><td><img src="{{ asset('bundles/dofitems/img/summons.png') }}" alt=""></td>{{ characteristics.summons }}</tr>
+                            <tr><td><img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""></td><td>{{ pdv }}</td></tr>
+                            <tr><td><img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""></td><td>{% if character.level > 100 %} {{ characteristics.ap + 7 }} {% else %} {{ characteristics.ap + 6 }} {% endif %}</td></tr>
+                            <tr><td><img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""></td><td>{{ characteristics.mp + 3 }}</td></tr>
+                            <tr><td><img src="{{ asset('bundles/dofitems/img/initiative.png') }}" alt=""></td><td>{{ ini }}</td></tr>
+                            <tr><td><img src="{{ asset('bundles/dofitems/img/prospecting.png') }}" alt=""></td><td>{{ characteristics.prospecting + 100 }}</td></tr>
+                            <tr><td><img src="{{ asset('bundles/dofitems/img/range.png') }}" alt=""></td><td>{{ characteristics.range }}</td></tr>
+                            <tr><td><img src="{{ asset('bundles/dofitems/img/summons.png') }}" alt=""></td><td>{{ characteristics.summons }}</td></tr>
                         </table>
                     </div>
                 </div>
