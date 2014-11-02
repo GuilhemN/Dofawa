@@ -1,0 +1,23 @@
+{% set slugs = {
+    'user': user.slug,
+    'character': character.slug,
+    'stuff': stuff.slug
+} %}
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="{{ path('dof_build_show', slugs) }}">Build</a></li>
+    <li><a href="{{ path('dof_build_show_characteristics', slugs) }}">Caractéristiques</a></li>
+</ul>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><strong>{{ character.name }}</strong>, {{ 'level' | trans({'%level%': character.level}, 'item')}}</h3>
+    </div>
+    <div class="panel-body text-center">
+        {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
+            'look': stuff.look.toEntityLook()} only %}
+        <p>
+            {% for bonus in stuff.primaryBonus %}
+                <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
+            {% endfor %}
+        </p>
+    </div>
+</div>

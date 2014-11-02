@@ -11,11 +11,8 @@
 
 {% block body %}
 {% autoescape %}
-    <h3><strong>{{ character.name }}</strong>, {{ 'level' | trans({'%level%': character.level}, 'item')}}</h3>
-    <ul class="nav nav-tabs" role="tablist">
-        <li><a href="{{ path('dof_build_show', {'user' : user.slug, 'character' : character.slug, 'stuff' : stuff.slug}) }}">Build</a></li>
-        <li class="active"><a href="{{ path('dof_build_show_characteristics', {'user' : user.slug, 'character' : character.slug, 'stuff' : stuff.slug}) }}">Caractéristiques</a></li>
-    </ul>
+    {% include 'DofBuildBundle::header.html.twig' %}
+    
     <div class="panel panel-default">
         <table class="table">
             <thead>
