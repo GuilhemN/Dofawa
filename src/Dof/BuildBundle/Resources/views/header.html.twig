@@ -4,8 +4,12 @@
     'stuff': stuff.slug
 } %}
 <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="{{ path('dof_build_show', slugs) }}">Build</a></li>
-    <li><a href="{{ path('dof_build_show_characteristics', slugs) }}">Caractéristiques</a></li>
+    <li {{ is_current_page('dof_build_show') }}>
+        <a href="{{ path('dof_build_show', slugs) }}">Build</a>
+    </li>
+    <li {{ is_current_page('dof_build_show_characteristics') }}>
+        <a href="{{ path('dof_build_show_characteristics', slugs) }}">Caractéristiques</a>
+    </li>
 </ul>
 <div class="panel panel-default">
     <div class="panel-heading">
