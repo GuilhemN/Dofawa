@@ -40,7 +40,7 @@ equipments:
     resource: Ressource
     quest: Quête
     follower: Suiveur
-    sidekick: Multiman
+    sidekick: Compagnon
     useable: Consommable
     mutation: Objet de Mutation
     boost: Boost
