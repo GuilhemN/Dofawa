@@ -18,20 +18,20 @@ class BuildManager extends ServiceWithContainer
 
     public function canSee(Stuff $stuff, $user = null){
         if($user !== null && !($user instanceof User))
-            throw new \InvalidArgumentException('The canSee function of the build Manager only accept instance of User or null for $user. Given ' . gettype($user) . 'type.');
+            throw new \InvalidArgumentException('The canSee function of the build Manager only accept instance of User or null for $user. Given ' . gettype($user) . '.');
         if($user === null)
             $user = $this->getSecurityContext()->getToken()->getUser();
 
-        return $stuff->isVisible() or $this->canWrite($stuff, $user);
+        return $stuff->isVisible() or ($user !== 'anon.' && $this->canWrite($stuff, $user));
     }
 
     public function canWrite(Stuff $stuff, $user = null){
         if($user !== null && !($user instanceof User))
-            throw new \InvalidArgumentException('The canWrite function of the build Manager only accept instance of User or null for $user. Given ' . gettype($user) . 'type.');
+            throw new \InvalidArgumentException('The canWrite function of the build Manager only accept instance of User or null for $user. Given ' . gettype($user) . '.');
         if($user === null)
             $user = $this->getSecurityContext()->getToken()->getUser();
 
-        return $user == $stuff->getCharacter()->getOwner() || $this->getSecurityContext()->isGranted('ROLE_SUPER_ADMIN');
+        return $user !== 'anon.' && ($user == $stuff->getCharacter()->getOwner() || $this->getSecurityContext()->isGranted('ROLE_SUPER_ADMIN'));
     }
 
     public function getCharacteristics(Stuff $stuff, &$bonus){
