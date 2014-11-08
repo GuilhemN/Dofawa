@@ -155,6 +155,11 @@ class BuildController extends Controller
             $stuff->setChance($stuffData['chance']);
             $stuff->setAgility($stuffData['agility']);
 
+            if($stuff['visible'])
+                $stuff->setVisible(true);
+            else
+                $stuff->setVisible(false);
+
             $this->getDoctrine()->getManager()->flush();
         }
 

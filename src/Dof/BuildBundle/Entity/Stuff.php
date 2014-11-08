@@ -65,6 +65,13 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $look;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="visible", type="boolean")
+     */
+    private $visible;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="vitality", type="integer")
@@ -225,6 +232,39 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getLook()
     {
         return $this->look;
+    }
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     * @return Stuff
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean
+     */
+    public function isVisible()
+    {
+        return $this->visible;
     }
 
     /**
