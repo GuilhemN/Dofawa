@@ -19,61 +19,61 @@
         </div>
         <div class="panel-body">
             <div class="form-group">
-                <label for="stuffName" class="col-sm-2 control-label">Nom</label>
-                <div class="col-sm-10">
+                <label for="stuffName" class="col-sm-3 control-label">Nom</label>
+                <div class="col-sm-9">
                     <input type="text" class="form-control" name="stuff[name]" id="stuffName" required value="{{ stuff.name }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="stuffVitality" class="col-sm-2 control-label">
+                <label for="stuffVitality" class="col-sm-3 control-label">
                     <img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ 'vitality' | trans({'%1%': ''},'item') }}
                 </label>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" name="stuff[vitality]" class="form-control" id="stuffVitality" value="{{ stuff.vitality }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="stuffWisdom" class="col-sm-2 control-label">
+                <label for="stuffWisdom" class="col-sm-3 control-label">
                     <img src="{{ asset('bundles/dofitems/img/wisdom.png') }}" alt=""> {{ 'wisdom' | trans({'%1%': ''},'item') }}
                 </label>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" name="stuff[wisdom]" class="form-control" id="stuffWisdom" value="{{ stuff.wisdom }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="stuffStrength" class="col-sm-2 control-label">
+                <label for="stuffStrength" class="col-sm-3 control-label">
                     <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ 'strength' | trans({'%1%': ''},'item') }}
                 </label>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" name="stuff[strength]" class="form-control" id="stuffStrength" value="{{ stuff.strength }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="stuffIntelligence" class="col-sm-2 control-label">
+                <label for="stuffIntelligence" class="col-sm-3 control-label">
                     <img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt=""> {{ 'intelligence' | trans({'%1%': ''},'item') }}
                 </label>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" name="stuff[intelligence]" class="form-control" id="stuffIntelligence" value="{{ stuff.intelligence }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="stuffChance" class="col-sm-2 control-label">
+                <label for="stuffChance" class="col-sm-3 control-label">
                     <img src="{{ asset('bundles/dofitems/img/water.png') }}" alt=""> {{ 'chance' | trans({'%1%': ''},'item') }}
                 </label>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" name="stuff[chance]" class="form-control" id="stuffChance" value="{{ stuff.chance }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="stuffAgility" class="col-sm-2 control-label">
+                <label for="stuffAgility" class="col-sm-3 control-label">
                     <img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ 'agility' | trans({'%1%': ''},'item') }}
                 </label>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" name="stuff[agility]" class="form-control" id="stuffAgility" value="{{ stuff.agility }}">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-sm-offset-3 col-sm-9">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="stuff[visibility]"> Visible

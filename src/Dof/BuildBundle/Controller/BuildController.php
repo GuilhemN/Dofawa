@@ -145,15 +145,15 @@ class BuildController extends Controller
 
         $request = $this->getRequest();
         if($request->isMethod('POST') && $request->request->has('stuff')){
-            $stuff = $request->request->get('stuff');
-            if(!empty($stuff['name']))
-                $stuff->setName($stuff['name']);
-            $stuff->setVitality($stuff['vitality']);
-            $stuff->setWisdom($stuff['wisdom']);
-            $stuff->setStrength($stuff['strength']);
-            $stuff->setIntelligence($stuff['intelligence']);
-            $stuff->setChance($stuff['chance']);
-            $stuff->setAgility($stuff['agility']);
+            $stuffData = $request->request->get('stuff');
+            if(!empty($stuffData['name']))
+                $stuff->setName($stuffData['name']);
+            $stuff->setVitality($stuffData['vitality']);
+            $stuff->setWisdom($stuffData['wisdom']);
+            $stuff->setStrength($stuffData['strength']);
+            $stuff->setIntelligence($stuffData['intelligence']);
+            $stuff->setChance($stuffData['chance']);
+            $stuff->setAgility($stuffData['agility']);
 
             $this->getDoctrine()->getManager()->flush();
         }
