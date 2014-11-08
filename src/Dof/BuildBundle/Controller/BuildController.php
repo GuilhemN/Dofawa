@@ -155,7 +155,7 @@ class BuildController extends Controller
             $stuff->setChance($stuffData['chance']);
             $stuff->setAgility($stuffData['agility']);
 
-            if($stuffData['visible'])
+            if(isset($stuffData['visible']))
                 $stuff->setVisible(true);
             else
                 $stuff->setVisible(false);
