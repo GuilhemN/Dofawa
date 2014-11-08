@@ -64,6 +64,48 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $look;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="vitality", type="integer")
+     */
+    private $vitality;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="wisdom", type="integer")
+     */
+    private $wisdom;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="strength", type="integer")
+     */
+    private $strength;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="intelligence", type="integer")
+     */
+    private $intelligence;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="chance", type="integer")
+     */
+    private $chance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="agility", type="integer")
+     */
+    private $agility;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -183,6 +225,144 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getLook()
     {
         return $this->look;
+    }
+
+    /**
+     * Set vitality
+     *
+     * @param integer $vitality
+     * @return Stuff
+     */
+    public function setVitality($vitality)
+    {
+        $this->vitality = $vitality;
+
+        return $this;
+    }
+
+    /**
+     * Get vitality
+     *
+     * @return integer
+     */
+    public function getVitality()
+    {
+        return $this->vitality;
+    }
+
+    /**
+     * Set wisdom
+     *
+     * @param integer $wisdom
+     * @return Stuff
+     */
+    public function setWisdom($wisdom)
+    {
+        $this->wisdom = $wisdom;
+
+        return $this;
+    }
+
+    /**
+     * Get wisdom
+     *
+     * @return integer
+     */
+    public function getWisdom()
+    {
+        return $this->wisdom;
+    }
+
+    /**
+     * Set strength
+     *
+     * @param integer $strength
+     * @return Stuff
+     */
+    public function setStrength($strength)
+    {
+        $this->strength = $strength;
+
+        return $this;
+    }
+
+    /**
+     * Get strength
+     *
+     * @return integer
+     */
+    public function getStrength()
+    {
+        return $this->strength;
+    }
+
+    /**
+     * Set intelligence
+     *
+     * @param integer $intelligence
+     * @return Stuff
+     */
+    public function setIntelligence($intelligence)
+    {
+        $this->intelligence = $intelligence;
+
+        return $this;
+    }
+
+    /**
+     * Get intelligence
+     *
+     * @return integer
+     */
+    public function getIntelligence()
+    {
+        return $this->intelligence;
+    }
+
+    /**
+     * Set chance
+     *
+     * @param integer $chance
+     * @return Stuff
+     */
+    public function setChance($chance)
+    {
+        $this->chance = $chance;
+
+        return $this;
+    }
+
+    /**
+     * Get chance
+     *
+     * @return integer
+     */
+    public function getChance()
+    {
+        return $this->chance;
+    }
+
+    /**
+     * Set agility
+     *
+     * @param integer $agility
+     * @return Stuff
+     */
+    public function setAgility($agility)
+    {
+        $this->agility = $agility;
+
+        return $this;
+    }
+
+    /**
+     * Get agility
+     *
+     * @return integer
+     */
+    public function getAgility()
+    {
+        return $this->agility;
     }
 
     public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){

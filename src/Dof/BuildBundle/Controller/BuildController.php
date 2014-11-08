@@ -143,6 +143,21 @@ class BuildController extends Controller
         if(!$canWrite) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
 
+        $request = $this->getRequest();
+        if($request->isMethod('POST') && $request->request->has('stuff')){
+            $stuff = $request->request->get('stuff');
+            if(!empty($stuff['name']))
+                $stuff->setName($stuff['name']);
+            $stuff->setVitality($stuff['vitality']);
+            $stuff->setWisdom($stuff['wisdom']);
+            $stuff->setStrength($stuff['strength']);
+            $stuff->setIntelligence($stuff['intelligence']);
+            $stuff->setChance($stuff['chance']);
+            $stuff->setAgility($stuff['agility']);
+
+            $this->getDoctrine()->getManager()->flush();
+        }
+
         return $this->render('DofBuildBundle:Build:configuration.html.twig', [
             'character' => $character,
             'stuff' => $stuff,
