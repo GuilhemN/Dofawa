@@ -98,8 +98,8 @@
                         </div>
                     </div>
                     {% endif %}
-                    {{ render(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'news'})) }}
-                    {{ render(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'tutoriels'})) }}
+                    {{ render_esi(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'news'})) }}
+                    {{ render_esi(controller('DofArticlesBundle:Modules:moduleRight', {'type': 'tutoriels'})) }}
                 </section>
             </div>
         </div>
