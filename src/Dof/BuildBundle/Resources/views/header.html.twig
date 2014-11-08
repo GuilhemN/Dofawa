@@ -6,6 +6,11 @@
 {% set pdv = 55 + (5 * character.level) + characteristics.vitality %}
 {% set ini = characteristics.strength + characteristics.intelligence + characteristics.chance + characteristics.agility + characteristics.initiative %}
 <ul class="nav nav-tabs" role="tablist">
+    {% if can_write | default(false) %}
+    <li {{ is_current_page('dof_build_edit') | raw }}>
+        <a href="{{ path('dof_build_edit', slugs) }}">Configuration</a>
+    </li>
+    {% endif %}
     <li {{ is_current_page('dof_build_show') | raw }}>
         <a href="{{ path('dof_build_show', slugs) }}">Build</a>
     </li>
@@ -44,6 +49,6 @@
                 <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
             {% endfor %}
         </p>
-        
+
     </div>
 </div>

@@ -20,6 +20,15 @@ dof_build_show_characteristics:
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
 
+
+dof_build_edit:
+    path:     /{user}/{character}/{stuff}/configuration
+    defaults: { _controller: DofBuildBundle:Build:configuration }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+
 # Ajout dans les builds
 dof_build_additem_post:
     path:     /{user}/{character}/{stuff}/add-items/

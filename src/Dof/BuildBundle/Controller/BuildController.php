@@ -139,6 +139,18 @@ class BuildController extends Controller
             ]);
     }
 
+    public function configurationAction(Stuff $stuff, $canWrite){
+        if(!$canWrite) // Si n'a pas le droit de modifier ce build
+            throw $this->createAccessDeniedException();
+
+        return $this->render('DofBuildBundle:Build:showCharacteristics.html.twig', [
+            'character' => $character,
+            'stuff' => $stuff,
+            'user' => $user,
+            'can_write' => $canWrite,
+            ]);
+    }
+
     public function showCharacteristicsAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
@@ -150,7 +162,8 @@ class BuildController extends Controller
             'characteristics' => $characteristics,
             'character' => $character,
             'stuff' => $stuff,
-            'user' => $user
+            'user' => $user,
+            'can_write' => $canWrite,
             ]);
     }
 }
