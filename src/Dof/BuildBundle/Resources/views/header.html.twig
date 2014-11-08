@@ -26,10 +26,11 @@
     <div class="panel-body text-center">
         <div class="row">
             <div class="col-xs-0 col-md-4"></div>
-            <div class="col-xs-6 col-md-4">
+            <div class="{% if characteristics is defined %}col-xs-6 col-md-4{% endif %}">
                 {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
                 'look': stuff.look.toEntityLook()} only %}
             </div>
+            {% if characteristics is defined %}
             <div class="col-xs-6 col-md-4">
                 <div class="panel panel-default">
                     <table class="table">
@@ -43,6 +44,7 @@
                     </table>
                 </div>
             </div>
+            {% endif %}
         </div>
         <p>
             {% for bonus in stuff.primaryBonus %}
