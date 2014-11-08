@@ -3,8 +3,6 @@
     'character': character.slug,
     'stuff': stuff.slug
 } %}
-{% set pdv = 55 + (5 * character.level) + characteristics.vitality %}
-{% set ini = characteristics.strength + characteristics.intelligence + characteristics.chance + characteristics.agility + characteristics.initiative %}
 <ul class="nav nav-tabs" role="tablist">
     {% if can_write | default(false) %}
     <li {{ is_current_page('dof_build_edit') | raw }}>
@@ -31,6 +29,9 @@
                 'look': stuff.look.toEntityLook()} only %}
             </div>
             {% if characteristics is defined %}
+            {% set pdv = 55 + (5 * character.level) + characteristics.vitality %}
+            {% set ini = characteristics.strength + characteristics.intelligence + characteristics.chance + characteristics.agility + characteristics.initiative %}
+
             <div class="col-xs-6 col-md-4">
                 <div class="panel panel-default">
                     <table class="table">
