@@ -139,11 +139,11 @@ class BuildController extends Controller
             ]);
     }
 
-    public function configurationAction(Stuff $stuff, $canWrite){
+    public function configurationAction($user, Stuff $stuff, PlayerCharacter $character, $canWrite){
         if(!$canWrite) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
 
-        return $this->render('DofBuildBundle:Build:showCharacteristics.html.twig', [
+        return $this->render('DofBuildBundle:Build:configuration.html.twig', [
             'character' => $character,
             'stuff' => $stuff,
             'user' => $user,
