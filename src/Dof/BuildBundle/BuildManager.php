@@ -18,7 +18,7 @@ class BuildManager extends ServiceWithContainer
 
     public function canSee(Stuff $stuff, $user = null){
         if($user !== null && !($user instanceof User))
-            throw new \InvalidArgumentException('The canSee function of the build Manager only accept instance of User or null for $user.');
+            throw new \InvalidArgumentException('The canSee function of the build Manager only accept instance of User or null for $user. Given ' . gettype($user) . 'type.');
         if($user === null)
             $user = $this->getSecurityContext()->getToken()->getUser();
 
@@ -27,7 +27,7 @@ class BuildManager extends ServiceWithContainer
 
     public function canWrite(Stuff $stuff, $user = null){
         if($user !== null && !($user instanceof User))
-            throw new \InvalidArgumentException('The canWrite function of the build Manager only accept instance of User or null for $user.');
+            throw new \InvalidArgumentException('The canWrite function of the build Manager only accept instance of User or null for $user. Given ' . gettype($user) . 'type.');
         if($user === null)
             $user = $this->getSecurityContext()->getToken()->getUser();
 
