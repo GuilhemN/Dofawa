@@ -74,9 +74,11 @@ class BuildController extends Controller
 
             // Relations
             $character->addStuff($stuff);
+            $character->setVisible(true);
             $stuff->setCharacter($character);
 
             $stuff->setLook($look);
+            $stuff->setVisible(true);
             $look->setStuff($stuff);
 
             // Persistance
