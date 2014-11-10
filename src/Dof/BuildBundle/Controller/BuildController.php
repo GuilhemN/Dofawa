@@ -143,10 +143,10 @@ class BuildController extends Controller
         if(!$canWrite) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
 
-        $stuffForm = $this->createFormBuilder($stuff, array ( 'attr' => array ( 'name' => 'stuff') ))
+        $stuffForm = $this->createFormBuilder($stuff, array ( 'attr' => array ( 'name' => 'stuff', 'id' => 'stuff') ))
             ->add('name')
         ;
-        $characterForm = $this->createFormBuilder($stuff, array ( 'attr' => array ( 'name' => 'character') ))
+        $characterForm = $this->createFormBuilder($stuff, array ( 'attr' => array ( 'name' => 'character', 'id' => 'character') ))
             ->add('name')
         ;
         $form = $this->createFormBuilder()
