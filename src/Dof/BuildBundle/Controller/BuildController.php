@@ -154,20 +154,16 @@ class BuildController extends Controller
             $stuff->setIntelligence($stuffData['intelligence']);
             $stuff->setChance($stuffData['chance']);
             $stuff->setAgility($stuffData['agility']);
+            $stuff->setVisible(isset($stuffData['visibility']) ? true : false);
 
             $characterData = $request->request->get('character');
             if(!empty($characterData['name']))
                 $character->setName($characterData['name']);
-
             $level = floor($characterData['level']);
             if($level > 200 || $level < 1)
                 $level = 1;
             $character->setLevel($level);
-
-            if(isset($stuffData['visible']))
-                $stuff->setVisible(true);
-            else
-                $stuff->setVisible(false);
+            $stuff->setVisible(isset($characterData['visibility']) ? true : false);
 
             $this->getDoctrine()->getManager()->flush();
         }

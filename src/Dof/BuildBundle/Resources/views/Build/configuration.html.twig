@@ -76,7 +76,7 @@
                 <div class="col-sm-offset-3 col-sm-9">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="stuff[visibility]"> Public
+                            <input {% if stuff.visible %}checked {%endif%}type="checkbox" name="stuff[visibility]"> Public
                         </label>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                 <div class="col-sm-offset-3 col-sm-9">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="character[visibility]"> Public
+                            <input {% if character.visible %}checked {%endif%}type="checkbox" name="character[visibility]"> Public
                         </label>
                     </div>
                 </div>
