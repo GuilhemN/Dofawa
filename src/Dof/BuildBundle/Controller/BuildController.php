@@ -144,8 +144,11 @@ class BuildController extends Controller
     public function configurationAction($user, Stuff $stuff, PlayerCharacter $character, $canWrite){
         if(!$canWrite) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
-
+        $em = $this->getDoctrine()->getManager();
         $request = $this->getRequest();
+
+        $breedR = $em->getRepository('DofCharactersBundle:Breed');
+
         if($request->isMethod('POST') && $request->request->has('stuff')){
             $stuffData = $request->request->get('stuff');
             if(!empty($stuffData['name']))
@@ -166,11 +169,14 @@ class BuildController extends Controller
                 $level = 1;
             $character->setLevel($level);
             $character->setVisible(isset($characterData['visibility']) ? true : false);
+            if(($breed = $breedR->findOneById($characterData['breed'])) !== null)
+                $character->setBreed($breed);
 
             $this->getDoctrine()->getManager()->flush();
         }
 
         return $this->render('DofBuildBundle:Build:configuration.html.twig', [
+            'breeds' => $breedR->findAll(),
             'character' => $character,
             'stuff' => $stuff,
             'user' => $user,

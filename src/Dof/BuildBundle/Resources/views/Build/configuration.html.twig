@@ -104,6 +104,16 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="characterBreed" class="col-sm-3 control-label">Classe</label>
+                <div class="col-sm-9">
+                    <select name="character[breed]" id="characterBreed">
+                        {% for breed in breeds %}
+                        <option value="{{ breed.id }}">{{ breed.getName(locales()) }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
                     <div class="checkbox">
                         <label>

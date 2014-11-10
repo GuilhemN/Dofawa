@@ -13,7 +13,10 @@ class BuildManager extends ServiceWithContainer
     public function getBySlugs($user, $character, $stuff){
         $em = $this->getEntityManager();
         $repository = $em->getRepository('DofBuildBundle:Stuff');
-        return $repository->findParamConverter($user, $character, $stuff);
+        $stuff = $repository->findParamConverter($user, $character, $stuff);
+
+        $stuff->getLook()->setBreed($stuff->getCharacter()->getBreed());
+        return $stuff;
     }
 
     public function canSee(Stuff $stuff, $user = null){
