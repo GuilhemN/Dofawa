@@ -179,7 +179,6 @@ class BuildController extends Controller
         }
 
         return $this->render('DofBuildBundle:Build:configuration.html.twig', [
-            'breeds' => $breedR->findAll(),
             'character' => $character,
             'stuff' => $stuff,
             'user' => $user,
