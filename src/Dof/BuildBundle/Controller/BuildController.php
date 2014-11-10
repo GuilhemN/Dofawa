@@ -165,7 +165,7 @@ class BuildController extends Controller
             if($level > 200 || $level < 1)
                 $level = 1;
             $character->setLevel($level);
-            $stuff->setVisible(isset($characterData['visibility']) ? true : false);
+            $character->setVisible(isset($characterData['visibility']) ? true : false);
 
             $this->getDoctrine()->getManager()->flush();
         }
