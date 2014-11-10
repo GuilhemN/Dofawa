@@ -143,6 +143,21 @@ class BuildController extends Controller
         if(!$canWrite) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
 
+        $stuffForm = $this->createFormBuilder($stuff)
+            ->add('name')
+            ->add('dueDate', 'date')
+        ;
+        $characterForm = $this->createFormBuilder($stuff)
+            ->add('name')
+            ->add('dueDate', 'date')
+        ;
+        $form = $this->createFormBuilder()
+            ->add($stuffForm)
+            ->add($characterForm)
+            ->add('Enregistrer', 'submit')
+            ->getForm()
+        ;
+
         $request = $this->getRequest();
         if($request->isMethod('POST') && $request->request->has('stuff')){
             $stuffData = $request->request->get('stuff');
@@ -168,6 +183,7 @@ class BuildController extends Controller
             'stuff' => $stuff,
             'user' => $user,
             'can_write' => $canWrite,
+            'form' => $form->getView()
             ]);
     }
 
