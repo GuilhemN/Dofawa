@@ -143,19 +143,6 @@ class BuildController extends Controller
         if(!$canWrite) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
 
-        $stuffForm = $this->get('form.factory')->createNamedBuilder('form', 'stuff')
-            ->add('name', 'text')
-        ;
-        $characterForm = $this->get('form.factory')->createNamedBuilder('form', 'character')
-            ->add('name', 'text')
-        ;
-        $form = $this->createFormBuilder()
-            ->add($stuffForm)
-            ->add($characterForm)
-            ->add('Enregistrer', 'submit')
-            ->getForm()
-        ;
-
         $request = $this->getRequest();
         if($request->isMethod('POST') && $request->request->has('stuff')){
             $stuffData = $request->request->get('stuff');
@@ -167,6 +154,15 @@ class BuildController extends Controller
             $stuff->setIntelligence($stuffData['intelligence']);
             $stuff->setChance($stuffData['chance']);
             $stuff->setAgility($stuffData['agility']);
+
+            $stuffData = $request->request->get('character');
+            if(!empty($characterData['name']))
+                $character->setName($characterData['name']);
+
+            $level = floor($characterData['level']);
+            if($level > 200 || $level < 1)
+                $level = 1;
+            $character->setLevel($level);
 
             if(isset($stuffData['visible']))
                 $stuff->setVisible(true);
@@ -181,7 +177,6 @@ class BuildController extends Controller
             'stuff' => $stuff,
             'user' => $user,
             'can_write' => $canWrite,
-            'form' => $form->createView()
             ]);
     }
 

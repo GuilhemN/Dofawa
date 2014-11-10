@@ -12,8 +12,115 @@
 {% block body %}
 {% autoescape %}
 {% include 'DofBuildBundle::header.html.twig' %}
-
-{{ form(form) }}
-
+<form method="POST">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Stuff</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="stuffName" class="col-sm-3 control-label">Nom</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="stuff[name]" id="stuffName" required value="{{ stuff.name }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="stuffVitality" class="col-sm-3 control-label">
+                    <img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ 'vitality' | trans({'%1%': ''},'item') }}
+                </label>
+                <div class="col-sm-9">
+                    <input type="number" name="stuff[vitality]" class="form-control" id="stuffVitality" value="{{ stuff.vitality }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="stuffWisdom" class="col-sm-3 control-label">
+                    <img src="{{ asset('bundles/dofitems/img/wisdom.png') }}" alt=""> {{ 'wisdom' | trans({'%1%': ''},'item') }}
+                </label>
+                <div class="col-sm-9">
+                    <input type="number" name="stuff[wisdom]" class="form-control" id="stuffWisdom" value="{{ stuff.wisdom }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="stuffStrength" class="col-sm-3 control-label">
+                    <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ 'strength' | trans({'%1%': ''},'item') }}
+                </label>
+                <div class="col-sm-9">
+                    <input type="number" name="stuff[strength]" class="form-control" id="stuffStrength" value="{{ stuff.strength }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="stuffIntelligence" class="col-sm-3 control-label">
+                    <img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt=""> {{ 'intelligence' | trans({'%1%': ''},'item') }}
+                </label>
+                <div class="col-sm-9">
+                    <input type="number" name="stuff[intelligence]" class="form-control" id="stuffIntelligence" value="{{ stuff.intelligence }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="stuffChance" class="col-sm-3 control-label">
+                    <img src="{{ asset('bundles/dofitems/img/water.png') }}" alt=""> {{ 'chance' | trans({'%1%': ''},'item') }}
+                </label>
+                <div class="col-sm-9">
+                    <input type="number" name="stuff[chance]" class="form-control" id="stuffChance" value="{{ stuff.chance }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="stuffAgility" class="col-sm-3 control-label">
+                    <img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ 'agility' | trans({'%1%': ''},'item') }}
+                </label>
+                <div class="col-sm-9">
+                    <input type="number" name="stuff[agility]" class="form-control" id="stuffAgility" value="{{ stuff.agility }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="stuff[visibility]"> Public
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Personnage</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="characterName" class="col-sm-3 control-label">Nom</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="character[name]" id="characterName" required value="{{ character.name }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="characterLevel" class="col-sm-3 control-label">Level</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="character[level]" id="characterLevel" required value="{{ character.name }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="character[visibility]"> Public
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 {% endautoescape %}
 {% endblock %}
