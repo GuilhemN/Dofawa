@@ -153,6 +153,7 @@ class BuildController extends Controller
             ->add($stuffForm)
             ->add($characterForm)
             ->add('Enregistrer', 'submit')
+            ->getForm()
         ;
 
         $request = $this->getRequest();
