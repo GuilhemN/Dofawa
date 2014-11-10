@@ -148,7 +148,13 @@ class BuildController extends Controller
             throw $this->createAccessDeniedException();
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(new ConfigurationForm ());
+        $form = $this->createForm(new ConfigurationForm (), [
+            'title' => $stuff->getName(),
+            'stuffVisibility' => $stuff->getVisible(),
+            'name' => $character->getName(),
+            'characterVisibility' => $character->getVisible(),
+            'level' => $character->getLevel()
+        ]);
         $form->handleRequest($this->get('request'));
 
         if($form->isValid()){

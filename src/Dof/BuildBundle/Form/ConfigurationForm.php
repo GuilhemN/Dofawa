@@ -21,12 +21,12 @@ class ConfigurationForm extends AbstractType
         $builder
             // Stuff
             ->add('title', 'text', ['required' => true, 'trim' => true])
-            ->add('stuffVisibility', 'boolean')
+            ->add('stuffVisibility', 'checkbox')
 
             // Character
             ->add('name', 'text', ['required' => true, 'trim' => true])
-            ->add('characterVisibility', 'boolean')
-            ->add('level', null, array(
+            ->add('characterVisibility', 'checkbox')
+            ->add('level', 'number', array(
                 'data' => '1',
                 'attr' => array('min' => '1', 'max' => '200', 'step' => '1'))
             )
