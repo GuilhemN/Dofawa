@@ -208,6 +208,16 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
         return $this->visible;
     }
 
+    /**
+     * Get visible
+     *
+     * @return boolean
+     */
+    public function isVisible()
+    {
+        return $this->visible;
+    }
+
     public function __toString()
     {
       return $this->getName();
