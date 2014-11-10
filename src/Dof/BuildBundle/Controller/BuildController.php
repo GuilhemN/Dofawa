@@ -13,6 +13,8 @@ use Dof\GraphicsBundle\Entity\BuildLook;
 use Dof\BuildBundle\BuildSlot;
 use Dof\CharactersBundle\Gender;
 
+use Dof\BuildBundle\Form\ConfigurationForm;
+
 class BuildController extends Controller
 {
     protected $dofus_slots = [
@@ -146,7 +148,7 @@ class BuildController extends Controller
             throw $this->createAccessDeniedException();
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(new Dof\BuildBundle\Form\ConfigurationForm());
+        $form = $this->createForm(new ConfigurationForm ());
         $form->handleRequest($this->get('request'));
 
         if($form->isValid()){
