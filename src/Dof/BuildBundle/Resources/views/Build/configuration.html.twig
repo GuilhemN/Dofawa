@@ -108,7 +108,7 @@
                 <div class="col-sm-9">
                     <select name="character[breed]" id="characterBreed">
                         {% for breed in breeds %}
-                        <option value="{{ breed.id }}">{{ breed.getName(locales()) }}</option>
+                        <option {% if character.breed.id = breed.id %}selected {% endif %}value="{{ breed.id }}">{{ breed.getName(locales()) }}</option>
                         {% endfor %}
                     </select>
                 </div>
