@@ -183,7 +183,7 @@ class BuildController extends Controller
             'stuff' => $stuff,
             'user' => $user,
             'can_write' => $canWrite,
-            'form' => $form->createView();
+            'form' => $form->createView()
             ]);
     }
 
