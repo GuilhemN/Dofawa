@@ -145,32 +145,27 @@ class BuildController extends Controller
         if(!$canWrite) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
         $em = $this->getDoctrine()->getManager();
-        $request = $this->getRequest();
 
-        $breedR = $em->getRepository('DofCharactersBundle:Breed');
+        $form = $this->createForm(new Dof\BuildBundle\ConfigurationForm());
+        $form->handleRequest($this->get('request'));
 
-        if($request->isMethod('POST') && $request->request->has('stuff')){
-            $stuffData = $request->request->get('stuff');
-            if(!empty($stuffData['name']))
-                $stuff->setName($stuffData['name']);
+        if($form->isValid()){
+            $data = $form->getData();
+            if(!empty($data['title']))
+                $stuff->setName($data['title']);/*
             $stuff->setVitality($stuffData['vitality']);
             $stuff->setWisdom($stuffData['wisdom']);
             $stuff->setStrength($stuffData['strength']);
             $stuff->setIntelligence($stuffData['intelligence']);
             $stuff->setChance($stuffData['chance']);
-            $stuff->setAgility($stuffData['agility']);
-            $stuff->setVisible(isset($stuffData['visibility']) ? true : false);
+            $stuff->setAgility($stuffData['agility']);*/
+            $stuff->setVisible($data['stuffVisibility']);
 
             $characterData = $request->request->get('character');
-            if(!empty($characterData['name']))
-                $character->setName($characterData['name']);
-            $level = floor($characterData['level']);
-            if($level > 200 || $level < 1)
-                $level = 1;
-            $character->setLevel($level);
-            $character->setVisible(isset($characterData['visibility']) ? true : false);
-            if(($breed = $breedR->findOneById($characterData['breed'])) !== null)
-                $character->setBreed($breed);
+            if(!empty($data['name']))
+                $character->setName($data['name']);
+            $character->setLevel($data['level']);
+            $character->setVisible($data['characterVisibility']);
 
             $this->getDoctrine()->getManager()->flush();
         }
