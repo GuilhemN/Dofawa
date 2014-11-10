@@ -155,7 +155,7 @@ class BuildController extends Controller
             $stuff->setChance($stuffData['chance']);
             $stuff->setAgility($stuffData['agility']);
 
-            $stuffData = $request->request->get('character');
+            $characterData = $request->request->get('character');
             if(!empty($characterData['name']))
                 $character->setName($characterData['name']);
 
