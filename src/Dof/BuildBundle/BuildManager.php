@@ -22,7 +22,7 @@ class BuildManager extends ServiceWithContainer
         if($user === null)
             $user = $this->getSecurityContext()->getToken()->getUser();
 
-        return $stuff->isVisible() or ($user !== 'anon.' && $this->canWrite($stuff, $user));
+        return $stuff->isVisible() && $stuff->getCharacter()->isVisible() or ($user !== 'anon.' && $this->canWrite($stuff, $user));
     }
 
     public function canWrite(Stuff $stuff, $user = null){
