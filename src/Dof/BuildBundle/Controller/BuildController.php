@@ -145,11 +145,9 @@ class BuildController extends Controller
 
         $stuffForm = $this->createFormBuilder($stuff)
             ->add('name')
-            ->add('dueDate', 'date')
         ;
         $characterForm = $this->createFormBuilder($stuff)
             ->add('name')
-            ->add('dueDate', 'date')
         ;
         $form = $this->createFormBuilder()
             ->add($stuffForm)
