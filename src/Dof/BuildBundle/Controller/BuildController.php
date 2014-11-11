@@ -151,10 +151,17 @@ class BuildController extends Controller
         $form = $this->createForm(new ConfigurationForm ($this->get('translator')->getLocale()), [
             'title' => $stuff->getName(),
             'stuffVisibility' => $stuff->getVisible(),
+            'vitality' => $stuff->getVitality(),
+            'wisdom' => $stuff->getWisdom(),
+            'strength' => $stuff->getStrength(),
+            'intelligence' => $stuff->getIntelligence(),
+            'chance' => $stuff->getChance(),
+            'agility' => $stuff->getAgility(),
+
             'name' => $character->getName(),
             'characterVisibility' => $character->getVisible(),
             'level' => $character->getLevel(),
-            'breed' => $character->getBreed()
+            'breed' => $character->getBreed(),
         ]);
         $form->handleRequest($this->get('request'));
 
