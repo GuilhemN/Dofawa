@@ -5,6 +5,7 @@ namespace Dof\BuildBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Dof\CharactersBundle\Gender;
 
@@ -22,16 +23,30 @@ class ConfigurationForm extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $caractOptions = [
+                'precision' => 0,
+                'attr' => array('min' => '0', 'max' => '999', 'step' => '1'),
+                'contraints' => new Assert\Range(['min' => 0, 'max' => 999]),
+                'translation_domain' => 'item'
+            ];
         $builder
             // Stuff
             ->add('title', 'text', ['required' => true, 'trim' => true])
             ->add('stuffVisibility', 'checkbox', ['label' => 'Visible', 'required' => false])
+            ->add('vitality', 'number', $caractOption)
+            ->add('wisdom', 'number', $caractOption)
+            ->add('strength', 'number', $caractOption)
+            ->add('intelligence', 'number', $caractOption)
+            ->add('chance', 'number', $caractOption)
+            ->add('agility', 'number', $caractOption)
 
             // Character
             ->add('name', 'text', ['required' => true, 'trim' => true])
             ->add('characterVisibility', 'checkbox', ['label' => 'Visible', 'required' => false])
             ->add('level', 'number', array(
-                'attr' => array('min' => '1', 'max' => '200', 'step' => '1'))
+                'attr' => array('min' => '1', 'max' => '200', 'step' => '1'),
+                'contraints' => new Assert\Range(['min' => 1, 'max' => 200])
+                )
             )
             ->add('breed', 'entity', ['class' => 'DofCharactersBundle:Breed', 'property' => 'name' . ucfirst($this->locale)])
             ->add('gender', 'choice', array(

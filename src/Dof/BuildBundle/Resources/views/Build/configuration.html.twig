@@ -22,54 +22,12 @@
         </div>
         <div class="panel-body">
             {{ form_row(form.title) }}
-            <div class="form-group">
-                <label for="stuffVitality" class="col-sm-3 control-label">
-                    <img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ 'vitality' | trans({'%1%': ''},'item') }}
-                </label>
-                <div class="col-sm-9">
-                    <input type="number" name="stuff[vitality]" class="form-control" id="stuffVitality" value="{{ stuff.vitality }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="stuffWisdom" class="col-sm-3 control-label">
-                    <img src="{{ asset('bundles/dofitems/img/wisdom.png') }}" alt=""> {{ 'wisdom' | trans({'%1%': ''},'item') }}
-                </label>
-                <div class="col-sm-9">
-                    <input type="number" name="stuff[wisdom]" class="form-control" id="stuffWisdom" value="{{ stuff.wisdom }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="stuffStrength" class="col-sm-3 control-label">
-                    <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ 'strength' | trans({'%1%': ''},'item') }}
-                </label>
-                <div class="col-sm-9">
-                    <input type="number" name="stuff[strength]" class="form-control" id="stuffStrength" value="{{ stuff.strength }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="stuffIntelligence" class="col-sm-3 control-label">
-                    <img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt=""> {{ 'intelligence' | trans({'%1%': ''},'item') }}
-                </label>
-                <div class="col-sm-9">
-                    <input type="number" name="stuff[intelligence]" class="form-control" id="stuffIntelligence" value="{{ stuff.intelligence }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="stuffChance" class="col-sm-3 control-label">
-                    <img src="{{ asset('bundles/dofitems/img/water.png') }}" alt=""> {{ 'chance' | trans({'%1%': ''},'item') }}
-                </label>
-                <div class="col-sm-9">
-                    <input type="number" name="stuff[chance]" class="form-control" id="stuffChance" value="{{ stuff.chance }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="stuffAgility" class="col-sm-3 control-label">
-                    <img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ 'agility' | trans({'%1%': ''},'item') }}
-                </label>
-                <div class="col-sm-9">
-                    <input type="number" name="stuff[agility]" class="form-control" id="stuffAgility" value="{{ stuff.agility }}">
-                </div>
-            </div>
+            {{ form_row(form.vitality) }}
+            {{ form_row(form.wisdom) }}
+            {{ form_row(form.strength) }}
+            {{ form_row(form.intelligence) }}
+            {{ form_row(form.chance) }}
+            {{ form_row(form.agility) }}
             {{ form_row(form.stuffVisibility) }}
         </div>
     </div>

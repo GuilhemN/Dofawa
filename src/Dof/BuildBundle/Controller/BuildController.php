@@ -163,13 +163,12 @@ class BuildController extends Controller
             if(!empty($data['title']))
                 $stuff->setName($data['title']);
 
-            $stuffData = $request->request->get('stuff');
-            $stuff->setVitality($stuffData['vitality']);
-            $stuff->setWisdom($stuffData['wisdom']);
-            $stuff->setStrength($stuffData['strength']);
-            $stuff->setIntelligence($stuffData['intelligence']);
-            $stuff->setChance($stuffData['chance']);
-            $stuff->setAgility($stuffData['agility']);
+            $stuff->setVitality($data['vitality']);
+            $stuff->setWisdom($data['wisdom']);
+            $stuff->setStrength($data['strength']);
+            $stuff->setIntelligence($data['intelligence']);
+            $stuff->setChance($data['chance']);
+            $stuff->setAgility($data['agility']);
             $stuff->setVisible($data['stuffVisibility']);
 
             if(!empty($data['name']))
