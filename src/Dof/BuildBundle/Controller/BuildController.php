@@ -153,7 +153,8 @@ class BuildController extends Controller
             'stuffVisibility' => $stuff->getVisible(),
             'name' => $character->getName(),
             'characterVisibility' => $character->getVisible(),
-            'level' => $character->getLevel()
+            'level' => $character->getLevel(),
+            'breed' => $character->getBreed()
         ]);
         $form->handleRequest($this->get('request'));
 
