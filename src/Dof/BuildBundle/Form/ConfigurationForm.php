@@ -33,12 +33,12 @@ class ConfigurationForm extends AbstractType
             // Stuff
             ->add('title', 'text', ['required' => true, 'trim' => true])
             ->add('stuffVisibility', 'checkbox', ['label' => 'Visible', 'required' => false])
-            ->add('vitality', 'number', $caractOption)
-            ->add('wisdom', 'number', $caractOption)
-            ->add('strength', 'number', $caractOption)
-            ->add('intelligence', 'number', $caractOption)
-            ->add('chance', 'number', $caractOption)
-            ->add('agility', 'number', $caractOption)
+            ->add('vitality', 'number', $caractOptions)
+            ->add('wisdom', 'number', $caractOptions)
+            ->add('strength', 'number', $caractOptions)
+            ->add('intelligence', 'number', $caractOptions)
+            ->add('chance', 'number', $caractOptions)
+            ->add('agility', 'number', $caractOptions)
 
             // Character
             ->add('name', 'text', ['required' => true, 'trim' => true])
