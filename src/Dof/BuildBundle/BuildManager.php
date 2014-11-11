@@ -14,8 +14,7 @@ class BuildManager extends ServiceWithContainer
         $em = $this->getEntityManager();
         $repository = $em->getRepository('DofBuildBundle:Stuff');
         $stuff = $repository->findParamConverter($user, $character, $stuff);
-
-        $stuff->getLook()->setBreed($stuff->getCharacter()->getBreed());
+        
         return $stuff;
     }
 
