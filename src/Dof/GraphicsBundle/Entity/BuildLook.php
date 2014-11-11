@@ -62,4 +62,9 @@ class BuildLook extends BasicPCLook
     {
         return $this->stuff;
     }
+
+    public function getBreed()
+    {
+        return $this->stuff->getCharacter()->getBreed();
+    }
 }
