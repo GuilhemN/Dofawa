@@ -26,7 +26,7 @@ class ConfigurationForm extends AbstractType
         $caractOptions = [
                 'precision' => 0,
                 'attr' => array('min' => '0', 'max' => '999', 'step' => '1'),
-                'contraints' => new Assert\Range(['min' => 0, 'max' => 999]),
+                'constraints' => new Assert\Range(['min' => 0, 'max' => 999]),
                 'translation_domain' => 'item'
             ];
         $builder
@@ -45,7 +45,7 @@ class ConfigurationForm extends AbstractType
             ->add('characterVisibility', 'checkbox', ['label' => 'Visible', 'required' => false])
             ->add('level', 'number', array(
                 'attr' => array('min' => '1', 'max' => '200', 'step' => '1'),
-                'contraints' => new Assert\Range(['min' => 1, 'max' => 200])
+                'constraints' => new Assert\Range(['min' => 1, 'max' => 200])
                 )
             )
             ->add('breed', 'entity', ['class' => 'DofCharactersBundle:Breed', 'property' => 'name' . ucfirst($this->locale)])
