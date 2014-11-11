@@ -65,5 +65,17 @@
                 </tr>
         </table>
     </div>
+        <div class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Caracts Secondaires</th><th class="text-right"></th><th class="text-right">Total</th>
+                </tr>
+            </thead>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt="">{{ 'neutralResistance' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.percentNeutralResistance }} %</td><td class="text-right">{{ characteristics.neutralResistance }}</td>
+                </tr>
+        </table>
+    </div>
 {% endautoescape %}
 {% endblock %}
