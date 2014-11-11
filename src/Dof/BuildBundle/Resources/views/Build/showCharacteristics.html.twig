@@ -65,5 +65,37 @@
                 </tr>
         </table>
     </div>
+        <div class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr> <th>Caractéristiques Secondaires</th><th>Total</th>
+                </tr>
+            </thead>
+               <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/fuite.png') }}" alt="">{{ 'Fuite' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.fuite }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/tacle.png') }}" alt="">{{ 'Tacle' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.tacle }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/soin.png') }}" alt="">{{ 'Soin' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.soin }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt="">{{ 'CC' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.cc }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/retraitpa.png') }}" alt="">{{ 'Retrait Pa' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.retraitPa }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/retraitpm.png') }}" alt="">{{ 'Retrait Pm' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.retraitPm }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/esquivepa.png') }}" alt="">{{ 'Esquive Pa' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.esquivePa }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/esquivepm.png') }}" alt="">{{ 'Esquive Pm' | trans({'%1%': ''},'item') }}</td><td>{{ characteristics.esquivePm }}</td>
+                </tr>
+        </table>
+    </div>
 {% endautoescape %}
 {% endblock %}
