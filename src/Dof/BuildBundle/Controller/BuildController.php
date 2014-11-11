@@ -148,7 +148,7 @@ class BuildController extends Controller
             throw $this->createAccessDeniedException();
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(new ConfigurationForm (), [
+        $form = $this->createForm(new ConfigurationForm ($this->get('translator')->getLocale()), [
             'title' => $stuff->getName(),
             'stuffVisibility' => $stuff->getVisible(),
             'name' => $character->getName(),
@@ -175,6 +175,7 @@ class BuildController extends Controller
                 $character->setName($data['name']);
             $character->setLevel($data['level']);
             $character->setVisible($data['characterVisibility']);
+            $character->setBreed($data['breed']);
 
             $this->getDoctrine()->getManager()->flush();
         }

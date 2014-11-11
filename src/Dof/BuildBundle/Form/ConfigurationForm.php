@@ -10,7 +10,11 @@ use Dof\CharactersBundle\Gender;
 
 class ConfigurationForm extends AbstractType
 {
-    public function __construct() {}
+    private $locale;
+
+    public function __construct($locale) {
+        $this->locale = $locale;
+    }
 
     /**
      * @param FormBuilderInterface $builder
@@ -29,7 +33,7 @@ class ConfigurationForm extends AbstractType
             ->add('level', 'number', array(
                 'attr' => array('min' => '1', 'max' => '200', 'step' => '1'))
             )
-            // ->add('breed')
+            ->add('breed', 'entity', ['class' => 'DofCharactersBundle:Breed', 'property' => 'name' . ucfirst($this->locale)])
             ->add('gender', 'choice', array(
                   'label' => 'gender',
                   'choices'   => array_flip(Gender::getValues()),
