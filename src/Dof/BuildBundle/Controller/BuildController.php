@@ -148,6 +148,8 @@ class BuildController extends Controller
             throw $this->createAccessDeniedException();
         $em = $this->getDoctrine()->getManager();
 
+        $look = $stuff->getLook();
+
         $form = $this->createForm(new ConfigurationForm ($this->get('translator')->getLocale()), [
             'title' => $stuff->getName(),
             'stuffVisibility' => $stuff->getVisible(),
@@ -162,6 +164,8 @@ class BuildController extends Controller
             'characterVisibility' => $character->getVisible(),
             'level' => $character->getLevel(),
             'breed' => $character->getBreed(),
+            'gender' => $look->getGender(),
+            'face' => $look->getFace()->getLabel()
         ]);
         $form->handleRequest($this->get('request'));
 
