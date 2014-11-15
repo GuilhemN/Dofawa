@@ -1,6 +1,13 @@
 {% trans_default_domain 'item' %}
 
 {% if updatable | default(false) == false %}
+    {# Affichage des dégats de l'arme #}
+    {% if item.isWeapon() %}
+        {% for  item.damageRow in  item.damageRows %}
+            {{ item.damageRow }}
+        {% endfor %}
+    {% endif %}
+
     {% for name, value in item.characteristics %}
         {% if value | is_array %}
             {% set min = value.min %}
