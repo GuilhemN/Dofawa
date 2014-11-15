@@ -14,7 +14,8 @@
                     {% endif %}
                     {{ max }}
                 {% endset %}
-                {{ {{ damageRow.element | Element }} | trans({'%1%': range}) }}<br>
+                {% set element = (damageRow.element | Element) %}
+                {{ (damageRow.element | Element) | trans({'%1%': range}) }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
