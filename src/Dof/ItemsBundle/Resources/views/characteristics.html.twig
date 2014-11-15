@@ -3,8 +3,8 @@
 {% if updatable | default(false) == false %}
     {# Affichage des dégats de l'arme #}
     {% if item.isWeapon() %}
-        {% for  item.damageRow in  item.damageRows %}
-            {{ item.damageRow }}
+        {% for  damageRow in  item.damageRows %}
+            {{ damageRow }}
         {% endfor %}
     {% endif %}
 
