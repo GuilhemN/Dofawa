@@ -63,3 +63,10 @@ pushbackResistance: %1% Dommages Poussée
 trapPower: %1% Puissance Pièges
 trapDamage: %1% Dommages Pièges
 pods: %1% Pods
+
+neutral: %1% Dégats neutre
+earth: %1% Dégats terre
+fire: %1% Dégats feu
+water: %1% Dégats eau
+air: %1% Dégats air
+heal: %1% PV rendus
