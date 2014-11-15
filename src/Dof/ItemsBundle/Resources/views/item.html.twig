@@ -135,8 +135,8 @@
                 <hr />
                 <div class="panel panel-default">
                     <table class="table">
-                        <tr><td><img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""></td><td>{{ item.apCost }}</td></tr>
-                        <tr><td><img src="{{ asset('bundles/dofitems/img/range.png') }}" alt=""></td><td>
+                        <tr><td>{{ 'ap' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ item.apCost }}</td></tr>
+                        <tr><td>{{ 'range' | trans({'%1%': ''},'item') }}</td><td class="text-right">
                                 {% if item.minCastRange != 0 or item.maxCastRange != 0 %}
                                     {% if item.minCastRange != item.maxCastRange %}
                                         {{ item.minCastRange }} {{ 'to' | trans }}
@@ -145,11 +145,10 @@
                                 {% else %}
                                     0
                                 {% endif %}
-                            <td>
                         </td></tr>
-                        <tr><td>{{ 'criticalHitsBonus' | trans }}</td><td>{{ item.criticalHitBonus }}</td></tr>
-                        <tr><td><img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt=""></td><td>1/{{ item.criticalHitDenominator }}</td></tr>
-                        <tr><td>{{ 'maxCastsPerTurn' }}</td><td>1/{{ item.maxCastsPerTurn }}</td></tr>
+                        <tr><td>{{ 'criticalHitsBonus' | trans }}</td><td class="text-right">{{ item.criticalHitBonus }}</td></tr>
+                        <tr><td>{{ 'criticalHits' | trans({'%1%': ''},'item') }}</td><td class="text-right">1/{{ item.criticalHitDenominator }}</td></tr>
+                        <tr><td>{{ 'maxCastsPerTurn' | trans }}</td><td class="text-right">{{ item.maxCastsPerTurn }}</td></tr>
                     </table>
                 </div>
             {% endif %}
