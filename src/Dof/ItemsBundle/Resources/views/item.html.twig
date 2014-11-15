@@ -131,6 +131,29 @@
             {% endif %}
             {{ item.getDescription(locales())}}
 
+            {% if item.isWeapon() %}
+                <hr />
+                <div class="panel panel-default">
+                    <table class="table">
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""></td><td>{{ item.apCost }}</td></tr>
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/range.png') }}" alt=""></td><td>
+                                {% if item.minCastRange != 0 or item.maxCastRange != 0 %}
+                                    {% if item.minCastRange != item.maxCastRange %}
+                                        {{ item.minCastRange }} {{ 'to' | trans }}
+                                    {% endif %}
+                                    {{ item.maxCastRange }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            <td>
+                        </td></tr>
+                        <tr><td>{{ 'criticalHitsBonus' | trans }}</td><td>{{ item.criticalHitBonus }}</td></tr>
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt=""></td><td>1/{{ item.criticalHitDenominator }}</td></tr>
+                        <tr><td>{{ 'maxCastsPerTurn' }}</td><td>1/{{ item.maxCastsPerTurn }}</td></tr>
+                    </table>
+                </div>
+            {% endif %}
+
             {% if slugs is defined and slugs is not empty %}
                 <hr />
                 <form method="POST" action="{{ path('dof_build_additem_post', {'user': slugs.user, 'character': slugs.character, 'stuff': slugs.stuff}) }}">

@@ -70,3 +70,5 @@ fire: %1% Dégats feu
 water: %1% Dégats eau
 air: %1% Dégats air
 heal: %1% PV rendus
+criticalHitsBonus: Bonus CC
+maxCastsPerTurn: Coups par tour

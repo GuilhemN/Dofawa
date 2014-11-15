@@ -17,8 +17,9 @@
                 {{ (damageRow.element | element) | trans({'%1%': range}) }}<br>
             {% endif %}
         {% endfor %}
+        <hr />
     {% endif %}
-
+    
     {% for name, value in item.characteristics %}
         {% if value | is_array %}
             {% set min = value.min %}
