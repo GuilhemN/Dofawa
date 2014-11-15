@@ -3,25 +3,20 @@
 {% if updatable | default(false) == false %}
     {# Affichage des dégats de l'arme #}
     {% if item.isWeapon() %}
-        {% for name, value in item.damageRows %}
-        {% if value | is_array %}
-            {% set min = value.min %}
-            {% set max = value.max %}
-        {% else %}
-            {% set min = value %}
-            {% set max = value %}
-        {% endif %}
+        {% for damageRow in item.damageRows %}
+            {% set min = damageRow.min %}
+            {% set max = damageRow.max %}
 
-        {% if min != 0 or max != 0 %}
-            {% set range %}
-                {% if min != max %}
-                    {{ min}} {{ 'to' | trans }}
-                {% endif %}
-                {{ max }}
-            {% endset %}
-            {{ name | trans({'%1%': range}) }}<br>
-        {% endif %}
-    {% endfor %}
+            {% if min != 0 or max != 0 %}
+                {% set range %}
+                    {% if min != max %}
+                        {{ min}} {{ 'to' | trans }}
+                    {% endif %}
+                    {{ max }}
+                {% endset %}
+                {{ {{ damageRow.element | Element }} | trans({'%1%': range}) }}<br>
+            {% endif %}
+        {% endfor %}
     {% endif %}
 
     {% for name, value in item.characteristics %}
