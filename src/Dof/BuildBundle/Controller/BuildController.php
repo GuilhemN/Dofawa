@@ -215,4 +215,31 @@ class BuildController extends Controller
             'can_write' => $canWrite,
             ]);
     }
+
+    public function showWeaponDamagesAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+        if(!$canSee) // Si n'a pas le droit de voir ce build
+            throw $this->createAccessDeniedException();
+
+        $bm = $this->get('build_manager');
+        $characteristics = $bm->getCharacteristics($stuff, $bonus);
+
+        foreach($stuff->getItems() as $item){
+            if($item->isWeapon())
+                $weapon = $item;
+            else
+                $weapon = "";
+        }
+         
+
+        return $this->render('DofBuildBundle:Build:showWeaponDamages.html.twig', [
+            'characteristics' => $characteristics,
+            'character' => $character,
+            'weapon' => $weapon,
+            'stuff' => $stuff,
+            'user' => $user,
+            'can_write' => $canWrite,
+            ]);
+    }
+
+    
 }

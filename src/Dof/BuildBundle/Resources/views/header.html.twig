@@ -15,6 +15,9 @@
     <li {{ is_current_page('dof_build_show_characteristics') | raw }}>
         <a href="{{ path('dof_build_show_characteristics', slugs) }}">Caractéristiques</a>
     </li>
+    <li {{ is_current_page('dof_build_show_weapondamages') | raw }}>
+        <a href="{{ path('dof_build_show_weapondamages', slugs) }}">Arme</a>
+    </li>
 </ul>
 
 <div class="panel panel-default">

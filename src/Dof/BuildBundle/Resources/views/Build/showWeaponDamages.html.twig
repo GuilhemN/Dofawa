@@ -1,0 +1,84 @@
+{% extends 'DofBuildBundle::layout.html.twig' %}
+
+{% trans_default_domain "build" %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('dof_profile_userpage', {'slug': character.owner.slug}) }}">{{ character.owner.username }}</a></li>
+    <li>{{ character.name }}</li>
+    <li>{{ stuff.name }}</li>
+{% endblock %}
+
+{% block body %}
+{% autoescape %}
+    {% include 'DofBuildBundle::header.html.twig' %}
+    {% if weapon != "" %}
+    	{% include 'DofItemsBundle::item.html.twig' with {'item': weapon} %}
+
+    	<div class="panel panel-default">
+	        <table class="table">
+	            <thead>
+	                <tr> <th>Element</th><th>Normaux</th><th>Critiques</th>
+	                </tr>
+	            </thead>
+
+	            {% for damageRow in item.damageRows %}
+		            {% set min = damageRow.min %}
+		            {% set max = damageRow.max %}
+
+		            {% if (damageRow.element | element) == "neutral" %}
+		            	{% set carac = characteristics.strength %}
+		            	{% set domFix = characteristics.neutralDamage %}
+		            {% elseif (damageRow.element | element) == "earth" %}
+		            	{% set carac = characteristics.strength %}
+		            	{% set domFix = characteristics.earthDamage %}
+		            {% elseif (damageRow.element | element) == "fire" %}
+		            	{% set carac = characteristics.intelligence %}
+		            	{% set domFix = characteristics.fireDamage %}
+		            {% elseif (damageRow.element | element) == "water" %}
+		            	{% set carac = characteristics.chance %}
+		            	{% set domFix = characteristics.waterDamage %}
+		            {% elseif (damageRow.element | element) == "air" %}
+		            	{% set carac = characteristics.agility %}
+		            	{% set domFix = characteristics.airDamage %}
+		            {% elseif (damageRow.element | element) == "heal" %}
+		            	{% set carac = characteristics.intelligence %}
+		            	{% set heal = characteristics.heals %}
+		            {% endif %}
+
+		            {% if min != 0 or max != 0 %}
+		                {% if min != max %}
+		                    {% set damages %}
+		                    	{{ min * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }} 
+		                    	{{ 'to' | trans({}, 'items') }}
+		                    	{{ max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
+		                    {% endset %}
+
+		                    {% set critical %}
+		                    	{{ (min + weapon.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }} 
+		                    	{{ 'to' | trans({}, 'items') }}
+		                    	{{ (max + weapon.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
+		                    {% endset %}
+		                {% else %}
+		                   	{% set damages %}
+		                   		{{ max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
+		                    {% endset %}
+
+		                    {% set critical %}
+		                    	{{ (max + weapon.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
+		                    {% endset %}
+		                {% endif %}
+		            {% endif %}
+		            <tr>
+		            	<td>{{ (damageRow.element | element) | trans({'%1%': range}, 'items') }}</td><td>{{ damages }}</td><td>{{ critical }}</td>
+		            </tr>
+		        {% endfor %}
+
+	        </table>
+	    </div>
+
+    {% else %}
+    	<h2>Ajouter un corps à corps</h2>
+    {% endif %}
+{% endautoescape %}
+{% endblock %}

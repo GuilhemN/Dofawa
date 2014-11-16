@@ -20,6 +20,13 @@ dof_build_show_characteristics:
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
 
+dof_build_show_weapondamages:
+    path:     /{user}/{character}/{stuff}/weaponDamages
+    defaults: { _controller: DofBuildBundle:Build:showWeaponDamages }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
 
 dof_build_edit:
     path:     /{user}/{character}/{stuff}/configuration
