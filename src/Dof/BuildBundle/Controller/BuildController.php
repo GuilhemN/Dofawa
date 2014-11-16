@@ -226,8 +226,6 @@ class BuildController extends Controller
         foreach($stuff->getItems() as $item){
             if($item->getSlot() == 11)
                 $weapon = $item;
-            else
-                $weapon = "";
         }
          
 
