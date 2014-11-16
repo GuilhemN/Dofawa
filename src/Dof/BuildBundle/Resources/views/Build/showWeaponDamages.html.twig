@@ -22,7 +22,7 @@
 	                </tr>
 	            </thead>
 
-	            {% for damageRow in item.damageRows %}
+	            {% for damageRow in weapon.damageRows %}
 		            {% set min = damageRow.min %}
 		            {% set max = damageRow.max %}
 
@@ -50,13 +50,13 @@
 		                {% if min != max %}
 		                    {% set damages %}
 		                    	{{ min * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }} 
-		                    	{{ 'to' | trans({}, 'items') }}
+		                    	{{ 'to' | trans({}, 'item') }}
 		                    	{{ max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
 		                    {% endset %}
 
 		                    {% set critical %}
 		                    	{{ (min + weapon.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }} 
-		                    	{{ 'to' | trans({}, 'items') }}
+		                    	{{ 'to' | trans({}, 'item') }}
 		                    	{{ (max + weapon.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
 		                    {% endset %}
 		                {% else %}
@@ -70,7 +70,7 @@
 		                {% endif %}
 		            {% endif %}
 		            <tr>
-		            	<td>{{ (damageRow.element | element) | trans({'%1%': range}, 'items') }}</td><td>{{ damages }}</td><td>{{ critical }}</td>
+		            	<td>{{ (damageRow.element | element) | trans({'%1%': range}, 'item') }}</td><td>{{ damages }}</td><td>{{ critical }}</td>
 		            </tr>
 		        {% endfor %}
 
@@ -78,7 +78,7 @@
 	    </div>
 
     {% else %}
-    	<h2>Ajouter un corps à corps</h2>
+    	<h2>Ajouter un corps à corps à votre Stuff</h2>
     {% endif %}
 {% endautoescape %}
 {% endblock %}
