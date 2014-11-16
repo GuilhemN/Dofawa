@@ -224,7 +224,7 @@ class BuildController extends Controller
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
 
         foreach($stuff->getItems() as $item){
-            if($item->getClass() == "weapon")
+            if($item->getSlot() == 11)
                 $weapon = $item;
             else
                 $weapon = "";
