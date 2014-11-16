@@ -13,7 +13,7 @@
 {% autoescape %}
     {% include 'DofBuildBundle::header.html.twig' %}
     {% if weapon != "" %}
-    	{% include 'DofItemsBundle::item.html.twig' with {'item': weapon, display: '', type: 'build', 'can_write': canWrite} only %}
+    	{% include 'DofItemsBundle::item.html.twig' with {'item': weapon, display: '', type: 'build', 'can_write': can_write} only %}
 
     	<div class="panel panel-default">
 	        <table class="table">
