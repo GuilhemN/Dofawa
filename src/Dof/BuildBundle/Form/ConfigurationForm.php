@@ -54,14 +54,12 @@ class ConfigurationForm extends AbstractType
                   'choices'   => array_flip(Gender::getValues()),
                   'required'  => true,
                   'expanded'  => true,
-                  'mapped' => false,
                   'translation_domain' => 'gender'
               ))
             ->add('face', 'choice', array(
                 'label' => 'face',
                 'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
                 'required' => true,
-                'mapped' => false,
                 'translation_domain' => 'face'
             ))
         ;

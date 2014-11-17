@@ -47,6 +47,13 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="face_label", type="string", length=1, nullable=false)
+     */
+    private $faceLabel = 'I';
+
+    /**
      * @ORM\ManyToOne(targetEntity="Dof\BuildBundle\Entity\PlayerCharacter", inversedBy="stuffs")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
@@ -150,6 +157,30 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getName()
     {
         return $this->name;
+    }
+
+
+    /**
+     * Set faceLabel
+     *
+     * @param string $faceLabel
+     * @return Stuff
+     */
+    public function setFaceLabel($faceLabel)
+    {
+        $this->faceLabel = $faceLabel;
+
+        return $this;
+    }
+
+    /**
+     * Get faceLabel
+     *
+     * @return string
+     */
+    public function getFaceLabel()
+    {
+        return $this->faceLabel;
     }
 
     /**

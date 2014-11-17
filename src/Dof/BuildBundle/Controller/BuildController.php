@@ -52,23 +52,14 @@ class BuildController extends Controller
         $form->handleRequest($this->get('request'));
 
         if($form->isValid()){
-            $faces = $em->getRepository('Dof\CharactersBundle\Entity\Face');
-
             $character = $form->getData();
             $stuff = new Stuff();
             $look = new BuildLook();
 
             $dform = $this->get('request')->request->get('dof_buildbundle_playercharacter');
 
-            $breed = $character->getBreed();
-
-            // Récupération du bon visage
-            $face = $faces->findOneBy(array('breed' => $breed, 'label' => $dform['face'], 'gender' => $dform['gender']));
-
             // Apparence du 1er personnage
             $look->setColors($breed->{'get'.strtolower(ucfirst(Gender::getName($dform['gender']))).'DefaultColors'}());
-            $look->setBreed($breed);
-            $look->setFace($face);
             $look->setGender($dform['gender']);
 
             // Ajout d'un nom au premier stuff
@@ -81,6 +72,7 @@ class BuildController extends Controller
 
             $stuff->setLook($look);
             $stuff->setVisible(true);
+            $stuff->setFaceLabel($dform['face']);
             $look->setStuff($stuff);
 
             // Persistance
@@ -181,6 +173,7 @@ class BuildController extends Controller
             $stuff->setChance($data['chance']);
             $stuff->setAgility($data['agility']);
             $stuff->setVisible($data['stuffVisibility']);
+            $stuff->setFaceLabel($data['face']);
 
             if(!empty($data['name']))
                 $character->setName($data['name']);
@@ -227,7 +220,7 @@ class BuildController extends Controller
             if($item->getSlot() == 11)
                 $weapon = $item;
         }
-         
+
 
         return $this->render('DofBuildBundle:Build:showWeaponDamages.html.twig', [
             'characteristics' => $characteristics,
@@ -239,5 +232,5 @@ class BuildController extends Controller
             ]);
     }
 
-    
+
 }
