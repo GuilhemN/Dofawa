@@ -17,7 +17,7 @@ class BuildManager extends ServiceWithContainer
 
         $stuff = $repository->findParamConverter($user, $character, $stuff);
 
-        $face = $faces->findOneBy(array('breed' => $character->getBreed(), 'label' => $stuff->getFaceLabel, 'gender' => $stuff->getLook()->getGender()));
+        $face = $faces->findOneBy(array('breed' => $stuff->getCharacter()->getBreed(), 'label' => $stuff->getFaceLabel, 'gender' => $stuff->getLook()->getGender()));
         $stuff->getLook()->setFace($face);
 
         return $stuff;
