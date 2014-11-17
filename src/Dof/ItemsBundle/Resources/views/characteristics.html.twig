@@ -2,7 +2,7 @@
 
 {% if updatable | default(false) == false %}
     {# Affichage des dégats de l'arme #}
-    {% if item.isWeapon() %}
+    {% if item.isWeapon() is defined and item.isWeapon() %}
         {% for damageRow in item.damageRows %}
             {% set min = damageRow.min %}
             {% set max = damageRow.max %}
@@ -19,7 +19,7 @@
         {% endfor %}
         <hr />
     {% endif %}
-    
+
     {% for name, value in item.characteristics %}
         {% if value | is_array %}
             {% set min = value.min %}

@@ -157,11 +157,12 @@ class BuildController extends Controller
             'level' => $character->getLevel(),
             'breed' => $character->getBreed(),
             'gender' => $look->getGender(),
-            'face' => $look->getFace()->getLabel()
+            'face' => $stuff->getFaceLabel()
         ]);
         $form->handleRequest($this->get('request'));
 
         if($form->isValid()){
+            $bm = $this->get('build_manager');
             $data = $form->getData();
             if(!empty($data['title']))
                 $stuff->setName($data['title']);
@@ -182,6 +183,7 @@ class BuildController extends Controller
             $character->setBreed($data['breed']);
 
             $this->getDoctrine()->getManager()->flush();
+            $stuff = $bm->reloadStuff($stuff);
         }
 
         return $this->render('DofBuildBundle:Build:configuration.html.twig', [
