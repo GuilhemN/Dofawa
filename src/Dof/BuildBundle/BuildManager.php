@@ -19,6 +19,7 @@ class BuildManager extends ServiceWithContainer
 
         $face = $faces->findOneBy(array('breed' => $stuff->getCharacter()->getBreed(), 'label' => $stuff->getFaceLabel(), 'gender' => $stuff->getLook()->getGender()));
         $stuff->getLook()->setFace($face);
+        $stuff->getLook()->setBreed($stuff->getCharacter()->getBreed());
 
         return $stuff;
     }
