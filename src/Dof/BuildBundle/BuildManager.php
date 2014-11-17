@@ -10,12 +10,26 @@ use Dof\ItemsBundle\CharacteristicsMetadata;
 
 class BuildManager extends ServiceWithContainer
 {
+    public function reloadStuff(Stuff $stuff){
+        $em = $this->getEntityManager();
+        $stuffs = $em->getRepository('DofBuildBundle:Stuff');
+
+        return $this->transformStuff($stuffs->findOneById($stuff->getId()));
+
+    }
+
     public function getBySlugs($user, $character, $stuff){
         $em = $this->getEntityManager();
         $repository = $em->getRepository('DofBuildBundle:Stuff');
-        $faces = $em->getRepository('DofCharactersBundle:Face');
 
         $stuff = $repository->findParamConverter($user, $character, $stuff);
+
+        return $this->transformStuff($stuff);
+    }
+
+    protected function transformStuff(Stuff $stuff){
+        $em = $this->getEntityManager();
+        $faces = $em->getRepository('DofCharactersBundle:Face');
 
         $face = $faces->findOneBy(array('breed' => $stuff->getCharacter()->getBreed(), 'label' => $stuff->getFaceLabel(), 'gender' => $stuff->getLook()->getGender()));
         $stuff->getLook()->setFace($face);

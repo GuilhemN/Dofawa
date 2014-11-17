@@ -182,6 +182,7 @@ class BuildController extends Controller
             $character->setBreed($data['breed']);
 
             $this->getDoctrine()->getManager()->flush();
+            $stuff = $bm->reloadStuff($stuff);
         }
 
         return $this->render('DofBuildBundle:Build:configuration.html.twig', [
