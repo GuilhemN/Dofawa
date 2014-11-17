@@ -162,6 +162,7 @@ class BuildController extends Controller
         $form->handleRequest($this->get('request'));
 
         if($form->isValid()){
+            $bm = $this->get('build_manager');
             $data = $form->getData();
             if(!empty($data['title']))
                 $stuff->setName($data['title']);
