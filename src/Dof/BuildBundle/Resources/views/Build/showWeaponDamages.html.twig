@@ -13,7 +13,7 @@
 {% autoescape %}
     {% include 'DofBuildBundle::header.html.twig' %}
     {% if weapon != "" %}
-    	{% include 'DofItemsBundle::item.html.twig' with {'item': weapon, display: '', type: 'build', 'can_write': can_write} only %}
+    	{% include 'DofItemsBundle::item.html.twig' with {'item': weapon, display: '', type: 'build', 'can_write': ''} only %}
 
     	<div class="panel panel-default">
 	        <table class="table">
@@ -72,6 +72,8 @@
 		            <tr>
 		            	<td>{{ (damageRow.element | element) | trans({'%1%': range}, 'item') }}</td><td>{{ damages }}</td><td>{{ critical }}</td>
 		            </tr>
+		        {% else %}
+		        	torlorlrz
 		        {% endfor %}
 
 	        </table>
