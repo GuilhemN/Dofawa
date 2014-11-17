@@ -12,6 +12,8 @@
 {% block body %}
 {% autoescape %}
 {% include 'DofBuildBundle::header.html.twig' %}
+
+{% set style = { 'style': 'horizontal' } %}
 <form method="POST">
     <div class="text-center">
         <button type="submit" class="btn btn-default">Enregistrer</button>
@@ -21,14 +23,14 @@
             <h3 class="panel-title">Stuff</h3>
         </div>
         <div class="panel-body">
-            {{ form_row(form.title) }}
-            {{ form_row(form.vitality) }}
-            {{ form_row(form.wisdom) }}
-            {{ form_row(form.strength) }}
-            {{ form_row(form.intelligence) }}
-            {{ form_row(form.chance) }}
-            {{ form_row(form.agility) }}
-            {{ form_row(form.stuffVisibility) }}
+            {{ form_row(form.title, style) }}
+            {{ form_row(form.vitality, style) }}
+            {{ form_row(form.wisdom, style) }}
+            {{ form_row(form.strength, style) }}
+            {{ form_row(form.intelligence, style) }}
+            {{ form_row(form.chance, style) }}
+            {{ form_row(form.agility, style) }}
+            {{ form_row(form.stuffVisibility, style) }}
         </div>
     </div>
     <div class="panel panel-default">
@@ -36,10 +38,10 @@
             <h3 class="panel-title">Personnage</h3>
         </div>
         <div class="panel-body">
-            {{ form_row(form.name) }}
-            {{ form_row(form.level) }}
-            {{ form_row(form.breed) }}
-            {{ form_row(form.characterVisibility) }}
+            {{ form_row(form.name, style) }}
+            {{ form_row(form.level, style) }}
+            {{ form_row(form.breed, style) }}
+            {{ form_row(form.characterVisibility, style) }}
         </div>
     </div>
     <div class="text-center">
