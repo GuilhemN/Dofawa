@@ -157,7 +157,7 @@ class BuildController extends Controller
             'level' => $character->getLevel(),
             'breed' => $character->getBreed(),
             'gender' => $look->getGender(),
-            'face' => $look->getFace()->getLabel()
+            'face' => $stuff->getFaceLabel()
         ]);
         $form->handleRequest($this->get('request'));
 
