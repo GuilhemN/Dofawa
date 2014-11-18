@@ -70,7 +70,7 @@
 		                {% endif %}
 		            {% endif %}
 		            <tr>
-		            	<td>{{ (damageRow.element | element) | trans({'%1%': ''}, 'item') }}</td><td>{{ damages }}</td><td>{{ critical }}</td>
+		            	<td>{{ (damageRow.element | element) | trans({'%1%': ''}, 'item') }}</td><td>{{ damages | round(0, 'floor') }}</td><td>{{ critical }}</td>
 		            </tr>
 		        {% else %}
 		        {% endfor %}
