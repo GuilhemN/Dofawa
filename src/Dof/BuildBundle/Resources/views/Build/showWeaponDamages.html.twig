@@ -49,32 +49,31 @@
 		            {% if min != 0 or max != 0 %}
 		                {% if min != max %}
 		                    {% set damages %}
-		                    	{{ min * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }} 
+		                    	{{ (min * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }} 
 		                    	{{ 'to' | trans({}, 'item') }}
-		                    	{{ max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
+		                    	{{ (max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }}
 		                    {% endset %}
 
 		                    {% set critical %}
-		                    	{{ (min + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }} 
+		                    	{{ ((min + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }} 
 		                    	{{ 'to' | trans({}, 'item') }}
-		                    	{{ (max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
+		                    	{{ ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }}
 		                    {% endset %}
 		                {% else %}
 		                   	{% set damages %}
-		                   		{{ max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
+		                   		{{ (max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix)  | round(0, 'floor') }}
 		                    {% endset %}
 
 		                    {% set critical %}
-		                    	{{ (max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix }}
+		                    	{{ ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix)  | round(0, 'floor') }}
 		                    {% endset %}
 		                {% endif %}
 		            {% endif %}
 		            <tr>
-		            	<td>{{ (damageRow.element | element) | trans({'%1%': ''}, 'item') }}</td><td>{{ damages | round(0, 'floor') }}</td><td>{{ critical }}</td>
+		            	<td>{{ (damageRow.element | element) | trans({'%1%': ''}, 'item') }}</td><td>{{ damages }}</td><td>{{ critical}}</td>
 		            </tr>
 		        {% else %}
 		        {% endfor %}
-
 	        </table>
 	    </div>
 
