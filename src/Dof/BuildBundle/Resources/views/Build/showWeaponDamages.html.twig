@@ -55,9 +55,9 @@
 		                    {% endset %}
 
 		                    {% set critical %}
-		                    	{{ ((min + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }} 
+		                    	{{ ((min + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') }} 
 		                    	{{ 'to' | trans({}, 'item') }}
-		                    	{{ ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }}
+		                    	{{ ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') }}
 		                    {% endset %}
 		                {% else %}
 		                   	{% set damages %}
@@ -65,7 +65,7 @@
 		                    {% endset %}
 
 		                    {% set critical %}
-		                    	{{ ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix)  | round(0, 'floor') }}
+		                    	{{ ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage)  | round(0, 'floor') }}
 		                    {% endset %}
 		                {% endif %}
 		            {% endif %}
