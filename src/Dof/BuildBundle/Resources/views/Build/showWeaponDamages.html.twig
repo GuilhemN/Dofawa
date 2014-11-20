@@ -70,7 +70,7 @@
 		                {% endif %}
 		            {% endif %}
 		            <tr>
-		            	<td><img class="img-responsive" src="{{ asset('bundles/dofitems/img/{{ (damageRow.element | element) }}.png') }}" alt=" ">{{ (damageRow.element | element) | trans({'%1%': ''}, 'item') }}</td><td>{{ damages }}</td><td>{{ critical}}</td>
+		            	<td><img class="img-responsive" src="{{ asset('bundles/dofitems/img/'{{ (damageRow.element | element) }}'.png') }}" alt=" ">{{ (damageRow.element | element) | trans({'%1%': ''}, 'item') }}</td><td>{{ damages }}</td><td>{{ critical}}</td>
 		            </tr>
 		        {% else %}
 		        {% endfor %}
