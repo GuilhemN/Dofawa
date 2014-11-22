@@ -182,6 +182,8 @@ class BuildController extends Controller
             $character->setVisible($data['characterVisibility']);
             $character->setBreed($data['breed']);
 
+            $look->setGender($data['gender']);
+
             $this->getDoctrine()->getManager()->flush();
             $stuff = $bm->reloadStuff($stuff);
         }
