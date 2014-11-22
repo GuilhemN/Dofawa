@@ -189,7 +189,7 @@ class BuildController extends Controller
         }
 
         return $this->render('DofBuildBundle:Build:configuration.html.twig', [
-            'character' => $character,
+            'character' => $stuff->getCharacter(),
             'stuff' => $stuff,
             'user' => $user,
             'can_write' => $canWrite,
