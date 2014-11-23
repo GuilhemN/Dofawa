@@ -15,9 +15,13 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
     const CURRENT_DATA_SET = 'spell_rank_effects';
     const BETA_DATA_SET = 'beta_spell_rank_effects';
 
+    private $paramLoader;
+
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
+
+        $this->paramLoader->setEnabled(false);
 
         $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_SpellLevel_effect o');
         $nEffects = $stmt->fetchAll();
@@ -78,5 +82,11 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
         }
         if ($output && $progress)
             $progress->finish();
+
+        $this->paramLoader->setEnabled(true);
+    }
+
+    public function setParamLoader($paramLoader){
+        $this->paramLoader = $paramLoader;
     }
 }
