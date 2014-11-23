@@ -104,3 +104,11 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: monsters }
             - { name: dof_imp_exp.importer, provides: beta_monsters }
+
+    # EffectTemplate
+    dof_imp_exp.importer.effect_templates:
+        class: Dof\ImpExpBundle\Importer\GameData\EffectTemplateImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: effect_templates }
+            - { name: dof_imp_exp.importer, provides: beta_effect_templates }

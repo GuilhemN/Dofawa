@@ -39,7 +39,7 @@ class State
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +62,7 @@ class State
     /**
      * Get preventsSpellUsage
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getPreventsSpellUsage()
     {
@@ -85,7 +85,7 @@ class State
     /**
      * Get preventsWeaponUsage
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getPreventsWeaponUsage()
     {

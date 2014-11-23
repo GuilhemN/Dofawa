@@ -29,7 +29,6 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -52,7 +51,7 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
     /**
      * @var integer
      *
-     * @ORM\Column(name="operator", type="integer")
+     * @ORM\Column(name="operator", type="integer", nullable=true)
      */
     private $operator;
 
@@ -77,14 +76,14 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
 	public function setId($id)
 	{
 		$this->id = $id;
-		
+
 		return $this;
 	}
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -107,7 +106,7 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
     /**
      * Get characteristic
      *
-     * @return integer 
+     * @return integer
      */
     public function getCharacteristic()
     {
@@ -130,7 +129,7 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
     /**
      * Get element
      *
-     * @return integer 
+     * @return integer
      */
     public function getElement()
     {
@@ -153,7 +152,7 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
     /**
      * Get operator
      *
-     * @return integer 
+     * @return integer
      */
     public function getOperator()
     {
