@@ -39,13 +39,17 @@ class EffectTemplateImporter extends AbstractGameDataImporter
                 $tpl = new EffectTemplate();
                 $tpl->setDeprecated(true);
                 $tpl->setId($row['id']);
+
+                if($row['descriptionId'] === 0)
+                    $tpl->setDescriptionFr('');
             }
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
                 if (!$tpl->getRelease())
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
+                if($row['descriptionId'] !== 0)
+                    $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
                 $tpl->setCharacteristic(($row['characteristic'] === 'null') ? null : $row['characteristic']);
                 $tpl->setElement(($row['elementId'] == -1) ? null : $row['elementId']);
                 if ($row['operator'] == '+')
