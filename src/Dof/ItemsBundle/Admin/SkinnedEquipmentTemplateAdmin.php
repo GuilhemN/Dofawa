@@ -72,7 +72,7 @@ class SkinnedEquipmentTemplateAdmin extends Admin
             ->add('level', null, ['disabled' => true])
             ->add('visible', null, ['required' => false])
             ->add('release', null)
-            ->add('preliminary', null)
+            ->add('preliminary', null, ['required' => false])
             ->add('deprecated', null, ['disabled' => true])
         ;
     }
