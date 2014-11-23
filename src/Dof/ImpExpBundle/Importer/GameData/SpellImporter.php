@@ -41,7 +41,7 @@ class SpellImporter extends AbstractGameDataImporter
                 $tpl->setId($row['id']);
                 $tpl->setPubliclyVisible(false);
 
-                if(empty($row['nameId']))
+                if(empty($row['nameId']) or empty($row['nameFr']))
                     $tpl->setNameFr('-');
                 if(empty($row['descriptionId']) or empty($row['descriptionFr']))
                     $tpl->setDescriptionFr('-');
