@@ -181,7 +181,8 @@ trait EffectTrait
      */
     public function addFragment($fragments)
     {
-        $this->getFragments()[] = $fragments;
+        $frags = $this->getFragments();
+        $frags[] = $fragments;
 
         return $this;
     }
