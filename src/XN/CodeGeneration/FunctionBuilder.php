@@ -14,7 +14,7 @@ class FunctionBuilder
 	public function __construct($args)
 	{
 		$this->locals = new SymbolAllocator();
-		$this->labels = [ [ 0, 0 ] ];
+		$this->labels = [ [ 0, 0, 0, 0 ] ];
 		$this->targets = [ true ];
 		$this->ops = [ ];
 		$this->stackH = 0;
@@ -56,7 +56,7 @@ class FunctionBuilder
 	public function allocateLabel()
 	{
 		$labelId = count($this->labels);
-		$this->labels[$labelId] = [ null, null ];
+		$this->labels[$labelId] = [ null, null, 0, 0 ];
 		return $labelId;
 	}
 	public function markLabel($labelId)
@@ -80,6 +80,18 @@ class FunctionBuilder
 		if (!isset($this->labels[$labelId]))
 			throw new \LogicException("Unknown label");
 		return $this->labels[$labelId][0] !== null;
+	}
+	public function getForwardBranchCount($labelId)
+	{
+		if (!isset($this->labels[$labelId]))
+			throw new \LogicException("Unknown label");
+		return $this->labels[$labelId][2];
+	}
+	public function getBackwardBranchCount($labelId)
+	{
+		if (!isset($this->labels[$labelId]))
+			throw new \LogicException("Unknown label");
+		return $this->labels[$labelId][3];
 	}
 	
 	private function setLabelStackH($labelId, &$stackH)
@@ -156,6 +168,7 @@ class FunctionBuilder
 		if (!isset($this->labels[$labelId]))
 			throw new \LogicException("Unknown label");
 		$this->setLabelStackH($labelId, $this->stackH);
+		++$this->labels[$labelId][($this->labels[$labelId][0] === null) ? 2 : 3];
 		$this->ops[] = [ OpCodes::BR, $labelId ];
 		$this->stackH = null;
 		return $this;
@@ -176,6 +189,7 @@ class FunctionBuilder
 			++$this->stackH;
 			throw $e;
 		}
+		++$this->labels[$labelId][($this->labels[$labelId][0] === null) ? 2 : 3];
 		$this->ops[] = [ OpCodes::BRFALSE, $labelId ];
 		return $this;
 	}
@@ -195,6 +209,7 @@ class FunctionBuilder
 			++$this->stackH;
 			throw $e;
 		}
+		++$this->labels[$labelId][($this->labels[$labelId][0] === null) ? 2 : 3];
 		$this->ops[] = [ OpCodes::BRTRUE, $labelId ];
 		return $this;
 	}
@@ -668,31 +683,46 @@ class FunctionBuilder
 			throw new \LogicException("Dead code");
 		if ($this->stackH != 0)
 			throw new \LogicException("Stack must be empty when entering a try block");
+		if ($catchLabelId === null && $finallyLabelId === null)
+			throw new \LogicException("A try block must have at least a catch block or a finally block");
+		if ($endLabelId === null)
+			throw new \LogicException("A try block must have an end label");
 		if ($catchLabelId !== null) {
-			$catchStackH = 0;
-			$this->setLabelStackH($catchLabelId, $catchStackH);
+			if (!isset($this->labels[$catchLabelId]))
+				throw new \LogicException("Unknown label");
+			if ($this->labels[$catchLabelId][0] !== null)
+				throw new \LogicException("Catch block label must not be marked when opening a try block");
+			$this->labels[$catchLabelId][1] = 0;
+			++$this->labels[$catchLabelId][2];
 			if ($exVarName === null)
 				throw new \LogicException("There must be an exception variable if there is a catch block");
 			if (!$this->isLocalUsed($exVarName))
 				throw new \LogicException("Unknown local");
 		}
 		if ($finallyLabelId !== null) {
-			$finallyStackH = 0;
-			$this->setLabelStackH($finallyLabelId, $finallyStackH);
+			if (!isset($this->labels[$finallyLabelId]))
+				throw new \LogicException("Unknown label");
+			if ($this->labels[$finallyLabelId][0] !== null)
+				throw new \LogicException("Finally block label must not be marked when opening a try block");
+			$this->labels[$finallyLabelId][1] = 0;
+			++$this->labels[$finallyLabelId][2];
 		}
-		if ($endLabelId !== null) {
-			$endStackH = 0;
-			$this->setLabelStackH($endLabelId, $endStackH);
-		}
+		if (!isset($this->labels[$endLabelId]))
+			throw new \LogicException("Unknown label");
+		if ($this->labels[$endLabelId][0] !== null)
+			throw new \LogicException("Finally block label must not be marked when opening a try block");
+		$this->labels[$endLabelId][1] = 0;
+		++$this->labels[$endLabelId][2];
 		$this->ops[] = [ OpCodes::TRYEX, $catchLabelId, $exVarName, $finallyLabelId, $endLabelId ];
 		return $this;
 	}
 
 	public function generate(PHPEmitter $emitter)
 	{
+		$stack = [ ];
 		foreach ($this->ops as $pc => $op) {
 			if (isset($this->targets[$pc]))
-				$emitter->emitln('L' . $pc . ':');
+				$emitter->emitln('// L' . $pc . ':');
 			$emitter->emit('// ' . OpCodes::getName($op[0]));
 			$first = true;
 			foreach ($op as $arg) {
@@ -703,6 +733,116 @@ class FunctionBuilder
 				$emitter->emit(' ')->emitValue($arg);
 			}
 			$emitter->emitln();
+			switch ($op[0]) {
+				case OpCode::ADD:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 14, false, '+', $o1, $o2 ];
+					break;
+				case OpCodes::ARROW:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ -1, false, '=>', $o1, $o2 ];
+					break;
+				case OpCodes::BAND:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 10, false, '&', $o1, $o2 ];
+					break;
+				case OpCodes::BNOT:
+					$o1 = array_pop($stack);
+					$stack[] = [ 18, true, '~', $o1 ];
+					break;
+				case OpCodes::BOR:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 8, false, '|', $o1, $o2 ];
+					break;
+				case OpCodes::BR:
+					// TODO
+					break;
+				case OpCodes::BRFALSE:
+					// TODO
+					break;
+				case OpCodes::BRTRUE:
+					// TODO
+					break;
+				case OpCodes::BXOR:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 9, false, '^', $o1, $o2 ];
+					break;
+				case OpCodes::CALL:
+					// TODO
+					break;
+				case OpCodes::CALLI:
+					// TODO
+					break;
+				case OpCodes::CALLMETHOD:
+					// TODO
+					break;
+				case OpCodes::CALLSTATIC:
+					// TODO
+					break;
+				case OpCodes::CALLSTATICI:
+					// TODO
+					break;
+				case OpCodes::CALLSTATICCI:
+					// TODO
+					break;
+				case OpCodes::CALLSTATICCII:
+					// TODO
+					break;
+				case OpCodes::CEQ:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 11, null, '==', $o1, $o2 ];
+					break;
+				case OpCodes::CGE:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 12, null, '>=', $o1, $o2 ];
+					break;
+				case OpCodes::CGT:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 12, null, '>', $o1, $o2 ];
+					break;
+				case OpCodes::CLE:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 12, null, '<=', $o1, $o2 ];
+					break;
+				case OpCodes::CLT:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 12, null, '<', $o1, $o2 ];
+					break;
+				case OpCodes::CNE:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 11, null, '!=', $o1, $o2 ];
+					break;
+				case OpCodes::CONV:
+					$o1 = array_pop($stack);
+					$stack[] = [ 18, true, '(' . $op[1] . ')', $o1 ];
+					break;
+				case OpCodes::CSTRICTEQ:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 11, null, '===', $o1, $o2 ];
+					break;
+				case OpCodes::CSTRICTNE:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 11, null, '!==', $o1, $o2 ];
+					break;
+				case OpCodes::DIV:
+					$o2 = array_pop($stack);
+					$o1 = array_pop($stack);
+					$stack[] = [ 15, false, '/', $o1, $o2 ];
+					break;
+			}
 		}
 	}
 }

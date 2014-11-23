@@ -1,7 +1,9 @@
 parameters:
-#    dof_characters.example.class: Dof\CharactersBundle\Example
+    dof_characters.effect_param_loader.class: Dof\CharactersBundle\EffectParamLoader
 
 services:
-#    dof_characters.example:
-#        class: %dof_characters.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    dof_characters.effect_param_loader:
+        class: %dof_characters.effect_param_loader.class%
+        arguments: [ @translator ]
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
