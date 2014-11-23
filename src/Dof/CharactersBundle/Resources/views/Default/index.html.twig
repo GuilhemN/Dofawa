@@ -6,9 +6,9 @@
         <br>
         {% for effect in spell.effects %}
         EffectTemplate {{ effect.effectTemplate.id }}<br>
-        P1 {{ effect.param1 }}<br>
-        P2 {{ effect.param4 }}<br>
-        P3 {{ effect.param3 }}<br><br>
+        P1 {% if effect.param1 is iterable %}Object {{ effect.param1.id }}{% else %}{{ effect.param1 }}{% endif %}<br>
+        P2 {% if effect.param2 is iterable %}Object {{ effect.param2.id }}{% else %}{{ effect.param2 }}{% endif %}<br>
+        P3 {% if effect.param3 is iterable %}Object {{ effect.param3.id }}{% else %}{{ effect.param3 }}{% endif %}<br><br>
         {% endfor %}
     </body>
 </html>
