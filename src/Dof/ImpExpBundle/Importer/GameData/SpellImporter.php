@@ -41,6 +41,8 @@ class SpellImporter extends AbstractGameDataImporter
                 $tpl->setId($row['id']);
                 $tpl->setPubliclyVisible(false);
 
+                if(empty($row['nameId']))
+                    $tpl->setNameFr('-');
                 if(empty($row['descriptionId']))
                     $tpl->setDescriptionFr('-');
             }
@@ -49,6 +51,8 @@ class SpellImporter extends AbstractGameDataImporter
                 if (!$tpl->getRelease())
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
+                if(!empty($row['nameId']))
+                    $this->copyI18NProperty($tpl, 'setName', $row, 'name');
                 if(!empty($row['descriptionId']))
                     $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
 
