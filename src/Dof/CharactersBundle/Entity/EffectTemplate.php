@@ -44,7 +44,7 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
     /**
      * @var integer
      *
-     * @ORM\Column(name="element", type="integer")
+     * @ORM\Column(name="element", type="integer", nullable=true)
      */
     private $element;
 
