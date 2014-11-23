@@ -11,7 +11,7 @@
         P3 {% if is_object(effect.param3) %}{{ get_class(effect.param3) }} {{ effect.param3.id }}{% else %}{{ effect.param3 }}{% endif %}<br>
         Fragments :
         {% for fragment in effect.fragments %}
-            {{ get_class(effect.param3) }} {{ effect.param3.id }}<br>
+        {% if is_object(effect.param3) %}{{ get_class(effect.param3) }} {{ effect.param3.id }}{% else %}{{ effect.param3 }}{% endif %}<br>
         {% endfor %}
         <br><br>
         {% endfor %}
