@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($id)
+    public function testAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $spellRank = $em->getRepository('DofCharactersBundle:SpellRank')->findOneById($id);
