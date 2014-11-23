@@ -1,6 +1,10 @@
 <?php
 namespace Dof\CharactersBundle;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\ObjectManager;
+
 use Symfony\Component\Translation\TranslatorInterface;
 
 use Doctrine\ORM\Mapping as ORM;
