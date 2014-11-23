@@ -28,6 +28,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
 			new \Twig_SimpleFunction('region', [ $this, 'getRegion' ]),
 			new \Twig_SimpleFunction('is_object', 'is_object'),
+			new \Twig_SimpleFunction('get_class', 'get_class'),
 		);
 	}
 
