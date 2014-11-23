@@ -24,8 +24,8 @@ class SpellImporter extends AbstractGameDataImporter
         $this->generateD2ISelects('description', $locales) .
         $this->generateD2ISelects('name', $locales) .
         ' FROM ' . $db . '.D2O_Spell o' .
-        $this->generateD2ISelects('name', $locales) .
-        $this->generateD2ISelects('description', $locales));
+        $this->generateD2IJoins('name', $db, $locales) .
+        $this->generateD2IJoins('description', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
