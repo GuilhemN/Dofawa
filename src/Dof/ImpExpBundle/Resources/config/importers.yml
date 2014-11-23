@@ -137,7 +137,7 @@ services:
 
 
     dof_imp_exp.importer.states:
-        class: Dof\ImpExpBundle\Importer\GameData\State
+        class: Dof\ImpExpBundle\Importer\GameData\StateImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
             - { name: dof_imp_exp.importer, provides: states }
