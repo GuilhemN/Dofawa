@@ -110,6 +110,29 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     {
         return $this->id;
     }
+    
+    /**
+    * Set spellRank
+    *
+    * @param SpellRank $spellRank
+    * @return SpellRankEffect
+    */
+    public function setSpellRank(SpellRank $spellRank)
+    {
+        $this->spellRank = $spellRank;
+
+        return $this;
+    }
+
+    /**
+    * Get spellRank
+    *
+    * @return SpellRank
+    */
+    public function getSpellRank()
+    {
+        return $this->spellRank;
+    }
 
     /**
      * Set order

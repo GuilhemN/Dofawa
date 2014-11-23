@@ -449,4 +449,76 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     {
         return $this->obtainmentLevel;
     }
+
+    /**
+    * Add stateRequirements
+    *
+    * @param SpellRankStateRequirement $stateRequirements
+    * @return SpellRank
+    */
+    public function addStateRequirement(SpellRankStateRequirement $stateRequirements)
+    {
+        $this->stateRequirements[] = $stateRequirements;
+
+        return $this;
+    }
+
+    /**
+    * Remove stateRequirements
+    *
+    * @param SpellRankStateRequirement $stateRequirements
+    * @return SpellRank
+    */
+    public function removeStateRequirement(SpellRankStateRequirement $stateRequirements)
+    {
+        $this->stateRequirements->removeElement($stateRequirements);
+
+        return $this;
+    }
+
+    /**
+    * Get stateRequirements
+    *
+    * @return Collection
+    */
+    public function getStateRequirements()
+    {
+        return $this->stateRequirements;
+    }
+
+    /**
+    * Add effects
+    *
+    * @param SpellRankEffect $effects
+    * @return SpellRank
+    */
+    public function addEffect(SpellRankEffect $effects)
+    {
+        $this->effects[] = $effects;
+
+        return $this;
+    }
+
+    /**
+    * Remove effects
+    *
+    * @param SpellRankEffect $effects
+    * @return SpellRank
+    */
+    public function removeEffect(SpellRankEffect $effects)
+    {
+        $this->effects->removeElement($effects);
+
+        return $this;
+    }
+
+    /**
+    * Get effects
+    *
+    * @return Collection
+    */
+    public function getEffects()
+    {
+        return $this->effects;
+    }
 }

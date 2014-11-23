@@ -28,38 +28,41 @@ class SpellRankImporter extends AbstractGameDataImporter
         if ($output && $progress)
         $progress->start($output, count($all));
         foreach ($all as $row) {
-            $tpl = $repo->find($row['id']);
             $spell = $spellRepo->find($row['spellId']);
+            if ($spell->isPreliminary() != $beta)
+                continue;
+
+            $tpl = $repo->find($row['id']);
             if ($tpl === null) {
                 $tpl = new SpellRank();
                 $tpl->setId($row['id']);
             }
-            if ($spell->isPreliminary() == $beta) {
-                $tpl->setSpell($spell);
-                $tpl->setRank($row['grade']);
+            
+            $tpl->setSpell($spell);
+            $tpl->setRank($row['grade']);
 
-                $tpl->setNeedsFreeCell($row['needFreeCell']);
-                $tpl->setNeedsTakenCell($row['needTakenCell']);
-                $tpl->setNeedsFreeTrapCell($row['needFreeTrapCell']);
-                $tpl->setModifiableCastRange($row['rangeCanBeBoosted']);
-                $tpl->setMaxEffectStack($row['maxStack']);
-                $tpl->setMaxCastsPerTarget($row['maxCastPerTarget']);
-                $tpl->setCooldown($row['minCastInterval']);
-                $tpl->setInitialCooldown($row['initialCooldown']);
-                $tpl->setGlobalCooldown($row['globalCooldown']);
-                $tpl->setObtainmentLevel($row['minPlayerLevel']);
+            $tpl->setNeedsFreeCell($row['needFreeCell']);
+            $tpl->setNeedsTakenCell($row['needTakenCell']);
+            $tpl->setNeedsFreeTrapCell($row['needFreeTrapCell']);
+            $tpl->setModifiableCastRange($row['rangeCanBeBoosted']);
+            $tpl->setMaxEffectStack($row['maxStack']);
+            $tpl->setMaxCastsPerTarget($row['maxCastPerTarget']);
+            $tpl->setCooldown($row['minCastInterval']);
+            $tpl->setInitialCooldown($row['initialCooldown']);
+            $tpl->setGlobalCooldown($row['globalCooldown']);
+            $tpl->setObtainmentLevel($row['minPlayerLevel']);
 
-                $tpl->setCriticalHitDenominator($row['criticalHitProbability']);
-                $tpl->setMaxCastsPerTurn($row['maxCastPerTurn']);
-                $tpl->setApCost($row['apCost']);
-                $tpl->setMinCastRange($row['minRange']);
-                $tpl->setMaxCastRange($row['range']);
-                $tpl->setSightCast($row['castTestLos']);
-                $tpl->setLineCast($row['castInLine']);
-                $tpl->setDiagonalCast($row['castInDiagonal']);
+            $tpl->setCriticalHitDenominator($row['criticalHitProbability']);
+            $tpl->setMaxCastsPerTurn($row['maxCastPerTurn']);
+            $tpl->setApCost($row['apCost']);
+            $tpl->setMinCastRange($row['minRange']);
+            $tpl->setMaxCastRange($row['range']);
+            $tpl->setSightCast($row['castTestLos']);
+            $tpl->setLineCast($row['castInLine']);
+            $tpl->setDiagonalCast($row['castInDiagonal']);
 
-                $this->dm->persist($tpl);
-            }
+            $this->dm->persist($tpl);
+
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {
                 $this->dm->flush();
