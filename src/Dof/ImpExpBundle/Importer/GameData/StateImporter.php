@@ -37,13 +37,15 @@ class StateImporter extends AbstractGameDataImporter
                 $tpl = new State();
                 $tpl->setDeprecated(true);
                 $tpl->setId($row['id']);
+                $tpl->setNameFr('État ' . $row['id']);
             }
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
                 if (!$tpl->getRelease())
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                if($row['nameFr'])
+                    $this->copyI18NProperty($tpl, 'setName', $row, 'name');
 
                 $tpl->setPreventsSpellUsage($row['preventsSpellCast']);
                 $tpl->setPreventsWeaponUsage($row['preventsFight']);
