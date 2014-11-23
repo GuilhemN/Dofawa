@@ -17,10 +17,8 @@ class SpellRankImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-        if (!$beta && $write)
-        $this->dm->createQuery('UPDATE DofCharactersBundle:Spell s SET s.deprecated = true')->execute();
 
-        $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Spell o');
+        $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_SpellLevel o');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
@@ -37,8 +35,6 @@ class SpellRankImporter extends AbstractGameDataImporter
                 $tpl->setId($row['id']);
             }
             if ($spell->isPreliminary() == $beta) {
-                $tpl->setDeprecated(false);
-                if (!$tpl->getRelease())
                 $tpl->setSpell($spell);
                 $tpl->setRank($row['grade']);
 
