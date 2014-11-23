@@ -23,13 +23,13 @@ class SpellImporter extends AbstractGameDataImporter
         $stmt = $conn->query('SELECT o.*' .
         $this->generateD2ISelects('description', $locales) .
         $this->generateD2ISelects('name', $locales) .
-        ' FROM ' . $db . '.D2O_Effect o' .
+        ' FROM ' . $db . '.D2O_Spell o' .
         $this->generateD2ISelects('name', $locales) .
         $this->generateD2ISelects('description', $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
-        $repo = $this->dm->getRepository('DofCharactersBundle:EffectTemplate');
+        $repo = $this->dm->getRepository('DofCharactersBundle:Spell');
         $rowsProcessed = 0;
         if ($output && $progress)
         $progress->start($output, count($all));
@@ -54,7 +54,7 @@ class SpellImporter extends AbstractGameDataImporter
 
                 $tpl->setTypeId($row['typeId']);
                 $tpl->setIconId($row['iconId']);
-                
+
                 $this->dm->persist($tpl);
             }
             ++$rowsProcessed;
