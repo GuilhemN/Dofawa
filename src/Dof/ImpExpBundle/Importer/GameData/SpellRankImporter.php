@@ -9,7 +9,7 @@ use Dof\ImpExpBundle\ImporterFlags;
 
 use Dof\CharactersBundle\Entity\SpellRank;
 
-class SpellImporter extends AbstractGameDataImporter
+class SpellRankImporter extends AbstractGameDataImporter
 {
     const CURRENT_DATA_SET = 'spell_ranks';
     const BETA_DATA_SET = 'beta_spell_ranks';
