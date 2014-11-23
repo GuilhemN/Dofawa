@@ -120,3 +120,10 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: spells }
             - { name: dof_imp_exp.importer, provides: beta_spells }
+
+    dof_imp_exp.importer.spell_ranks:
+        class: Dof\ImpExpBundle\Importer\GameData\SpellRankImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: spell_ranks, requires: spells }
+            - { name: dof_imp_exp.importer, provides: beta_spell_ranks, requires: beta_spells }

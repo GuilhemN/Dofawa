@@ -49,9 +49,9 @@ class SpellImporter extends AbstractGameDataImporter
                 if (!$tpl->getRelease())
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                if(!empty($row['nameId']) && !empty($row['nameFr']))
+                if(!empty($row['nameId']))
                     $this->copyI18NProperty($tpl, 'setName', $row, 'name');
-                if(!empty($row['descriptionId']) && !empty($row['descriptionFr']))
+                if(!empty($row['descriptionId']))
                     $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
 
                 $tpl->setTypeId($row['typeId']);
