@@ -9,6 +9,8 @@ use XN\Persistence\IdentifiableInterface;
 use Dof\CharactersBundle\EffectInterface;
 use Dof\CharactersBundle\EffectTrait;
 
+use Dof\Common\GameTemplateString;
+
 /**
  * SpellRankEffect
  *
@@ -360,4 +362,34 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     {
         return $this->critical;
     }
+
+	public function getDescription($locale = 'fr')
+	{
+		$desc = $this->getEffectTemplate()->expandDescription([
+			'1' => $this->getParam1(),
+			'2' => $this->getParam2(),
+			'3' => $this->getParam3()
+		], $locale);
+		array_unshift($desc, [ '[' . $this->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
+		$desc[] = [ ' (' . implode(', ', $this->targets) . ' sur ' . $this->areaOfEffect . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
+		if ($this->duration)
+			$desc[] = [ ' (' . $this->duration . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
+		if ($this->delay)
+			$desc[] = [ ' (dans ' . $this->delay . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
+		if (implode(',', $this->triggers) != 'I')
+			array_unshift($desc, [ 'Déclenché (' . implode(', ', $this->triggers) . ') : ', GameTemplateString::COMES_FROM_TEMPLATE ]);
+		return $desc;
+	}
+
+	public function getPlainTextDescription($locale = 'fr')
+	{
+		return implode('', array_map(function (array $row) {
+			return $row[0];
+		}, $this->getDescription($locale)));
+	}
+
+	public function __toString()
+	{
+		return $this->getPlainTextDescription();
+	}
 }

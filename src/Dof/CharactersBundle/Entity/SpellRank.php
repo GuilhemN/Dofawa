@@ -521,4 +521,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     {
         return $this->effects;
     }
+
+	public function __toString()
+	{
+		return $this->spell . ' [' . $this->rank . ']';
+	}
 }

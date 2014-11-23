@@ -52,38 +52,41 @@ class EffectParamLoader
                     $param3 = $param3->getId();
                 $ent->getFragments()->clear();
                 foreach ($tpl->getRelations() as $rel) {
-                    $isValid = $rel->getColumn1() !== null || $rel->getColumn2() !== null || $rel->getColumn3() !== null;
+                    if ($rel->getColumn1() === null && $rel->getColumn2() === null && $rel->getColumn3() === null)
+						continue;
                     $isReplacement =
                         $rel->getColumn1() === 'id' && $rel->getColumn2() === null && $rel->getColumn3() === null ||
                         $rel->getColumn1() === null && $rel->getColumn2() === 'id' && $rel->getColumn3() === null ||
                         $rel->getColumn1() === null && $rel->getColumn2() === null && $rel->getColumn3() === 'id';
-                    $isFragment = $rel->isFragment();
-                    if ($isValid && ($isReplacement || $isFragment)) {
-                        $repo = $em->getRepository($rel->getTargetEntity());
-                        if ($isReplacement) {
-                            if ($rel->getColumn1() !== null) {
-                                $target = $repo->find($param1);
-                                $ent->setParam1($target);
-                            } elseif ($rel->getColumn2() !== null) {
-                                $target = $repo->find($param2);
-                                $ent->setParam2($target);
-                            } else {
-                                $target = $repo->find($param3);
-                                $ent->setParam3($target);
-                            }
-                        } else {
-                            $criteria = [ ];
-                            if ($rel->getColumn1() !== null)
-                                $criteria[$rel->getColumn1()] = $param1;
-                            if ($rel->getColumn2() !== null)
-                                $criteria[$rel->getColumn2()] = $param2;
-                            if ($rel->getColumn3() !== null)
-                                $criteria[$rel->getColumn3()] = $param3;
-                            $target = $repo->findOneBy($criteria);
-                        }
-                        if ($isFragment)
-                            $ent->addFragment($target);
-                    }
+                    if (!$isReplacement && !$rel->isFragment())
+						continue;
+					$repo = $em->getRepository($rel->getTargetEntity());
+					if ($isReplacement) {
+						if ($rel->getColumn1() !== null) {
+							$target = $repo->find($param1);
+							if ($target)
+								$ent->setParam1($target);
+						} elseif ($rel->getColumn2() !== null) {
+							$target = $repo->find($param2);
+							if ($target)
+								$ent->setParam2($target);
+						} else {
+							$target = $repo->find($param3);
+							if ($target)
+								$ent->setParam3($target);
+						}
+					} else {
+						$criteria = [ ];
+						if ($rel->getColumn1() !== null)
+							$criteria[$rel->getColumn1()] = $param1;
+						if ($rel->getColumn2() !== null)
+							$criteria[$rel->getColumn2()] = $param2;
+						if ($rel->getColumn3() !== null)
+							$criteria[$rel->getColumn3()] = $param3;
+						$target = $repo->findOneBy($criteria);
+					}
+					if ($rel->isFragment() && $target)
+						$ent->addFragment($target);
                 }
             }
         }

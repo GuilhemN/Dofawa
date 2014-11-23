@@ -64,7 +64,7 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
                 $effect->setTargets(explode(',', $row['targetMask']));
                 $effect->setDuration($row['duration']);
                 $effect->setDelay($row['delay']);
-                $effect->setTriggers(explode(',', $row['triggers']));
+                $effect->setTriggers(explode('|', $row['triggers']));
                 $effect->setHidden($row['hidden']);
                 $effect->setCritical($row['critical']);
 
