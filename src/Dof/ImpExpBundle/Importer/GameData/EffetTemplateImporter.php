@@ -41,7 +41,7 @@ class EffectTemplateImporter extends AbstractGameDataImporter
                 $tpl->setId($row['id']);
 
                 if($row['descriptionId'] === 0)
-                    $tpl->setDescriptionFr('');
+                    $tpl->setDescriptionFr(' ');
             }
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
