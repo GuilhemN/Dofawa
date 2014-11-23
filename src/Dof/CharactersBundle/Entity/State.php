@@ -4,6 +4,8 @@ namespace Dof\CharactersBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\Persistence\IdentifiableInterface;
+
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
@@ -13,7 +15,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_states")
  * @ORM\Entity(repositoryClass="Dof\CharactersBundle\Entity\StateRepository")
  */
-class State
+class State implements IdentifiableInterface
 {
     use LocalizedNameTrait, ReleaseBoundTrait;
 
