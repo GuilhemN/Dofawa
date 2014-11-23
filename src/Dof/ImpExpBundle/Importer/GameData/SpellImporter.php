@@ -41,7 +41,7 @@ class SpellImporter extends AbstractGameDataImporter
                 $tpl->setId($row['id']);
                 $tpl->setPubliclyVisible(false);
 
-                $tpl->setNameFr('-');
+                $tpl->setNameFr('Sort sans nom');
                 $tpl->setDescriptionFr('-');
             }
             if ($tpl->isDeprecated()) {
