@@ -37,6 +37,10 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
         $rankRepo = $this->dm->getRepository('DofCharactersBundle:SpellRank');
         $effectRepo = $this->dm->getRepository('DofCharactersBundle:EffectTemplate');
 
+        $rowsProcessed = 0;
+        if ($output && $progress)
+            $progress->start($output, count($ranksEffects));
+
         foreach ($ranksEffects as $rank => $effects) {
             $rank = $rankRepo->find($rank);
             if($rank === null || ($rank->getSpell()->isPreliminary() ^ $beta))
@@ -65,6 +69,14 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
                 $effect->setParam3($row['value']);
 
             });
+
+            ++$rowsProcessed;
+            if (($rowsProcessed % 150) == 0) {
+                if ($output && $progress)
+                    $progress->advance(150);
+            }
         }
+        if ($output && $progress)
+            $progress->finish();
     }
 }
