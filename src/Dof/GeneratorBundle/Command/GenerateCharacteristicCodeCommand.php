@@ -33,7 +33,7 @@ class GenerateCharacteristicCodeCommand extends ContainerAwareCommand
 		$twig = $this->getContainer()->get('twig');
 
 		$stmt = $db->prepare(<<<'EOQ'
-SELECT idesc.value description, o.id, o.characteristic, o.bonusType FROM dofus2.D2O_Effect o
+SELECT idesc.value description, o.id, o.characteristic, o.bonusType FROM dofawa2.D2O_Effect o
 JOIN dofus2.D2I_en idesc ON o.descriptionId = idesc.id
 WHERE o.id IN (SELECT DISTINCT effectId FROM dofus2.D2O_Item_possibleEffect)
 AND o.characteristic <> 0

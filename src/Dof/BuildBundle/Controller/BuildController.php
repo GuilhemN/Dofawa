@@ -182,12 +182,14 @@ class BuildController extends Controller
             $character->setVisible($data['characterVisibility']);
             $character->setBreed($data['breed']);
 
+            $look->setGender($data['gender']);
+
             $this->getDoctrine()->getManager()->flush();
             $stuff = $bm->reloadStuff($stuff);
         }
 
         return $this->render('DofBuildBundle:Build:configuration.html.twig', [
-            'character' => $character,
+            'character' => $stuff->getCharacter(),
             'stuff' => $stuff,
             'user' => $user,
             'can_write' => $canWrite,
