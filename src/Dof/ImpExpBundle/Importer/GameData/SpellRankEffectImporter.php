@@ -51,7 +51,7 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
                 $effect->setEffectTemplate($effectTemplate);
 
                 $effect->setOrder($row['_index1']);
-                $effect->setProbability($row['range'] / 100);
+                $effect->setProbability($row['random'] / 100);
                 $effect->setAreaOfEffect($row['rawZone']);
                 $effect->setTargets(explode(',', $row['targetMask']));
                 $effect->setDuration($row['duration']);
