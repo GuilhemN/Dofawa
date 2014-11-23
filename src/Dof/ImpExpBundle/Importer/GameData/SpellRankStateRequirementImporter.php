@@ -51,7 +51,7 @@ class SpellRankStateRequirementImporter extends AbstractGameDataImporter
                 $stateR->setSpellRank($rank);
                 return $stateR;
             }, function ($stateR, $row) use($stateRepo){
-                $state = $stateR->find($row['value']);
+                $stateR = $stateRepo->find($row['value']);
                 $stateR->setState($state);
                 $stateR->setRequirement($row['requirement']);
             });
