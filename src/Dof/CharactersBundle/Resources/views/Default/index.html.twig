@@ -8,7 +8,12 @@
         EffectTemplate {{ effect.effectTemplate.id }}<br>
         P1 {% if is_object(effect.param1) %}{{ get_class(effect.param1) }} {{ effect.param1.id }}{% else %}{{ effect.param1 }}{% endif %}<br>
         P2 {% if is_object(effect.param2) %}{{ get_class(effect.param2) }} {{ effect.param2.id }}{% else %}{{ effect.param2 }}{% endif %}<br>
-        P3 {% if is_object(effect.param3) %}{{ get_class(effect.param3) }} {{ effect.param3.id }}{% else %}{{ effect.param3 }}{% endif %}<br><br>
+        P3 {% if is_object(effect.param3) %}{{ get_class(effect.param3) }} {{ effect.param3.id }}{% else %}{{ effect.param3 }}{% endif %}<br>
+        Fragments :
+        {% for fragment in effect.fragments %}
+            {{ get_class(effect.param3) }} {{ effect.param3.id }}<br>
+        {% endfor %}
+        <br><br>
         {% endfor %}
     </body>
 </html>
