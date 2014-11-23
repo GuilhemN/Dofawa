@@ -1,3 +1,7 @@
-dof_characters_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: DofCharactersBundle:Default:index }
+#dof_characters_homepage:
+#    pattern:  /hello/{name}
+#    defaults: { _controller: DofCharactersBundle:Default:index }
+
+dof_characters_spell_test:
+    pattern:  /spell/{id}
+    defaults: { _controller: DofCharactersBundle:Default:test }

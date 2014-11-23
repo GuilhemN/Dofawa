@@ -22,9 +22,9 @@ dof_translation:
 #    resource: "@DofMessageBundle/Resources/config/routing.yml"
 #    prefix:   /
 
-#dof_characters:
-#    resource: "@DofCharactersBundle/Resources/config/routing.yml"
-#    prefix:   /characters
+dof_characters:
+    resource: "@DofCharactersBundle/Resources/config/routing.yml"
+    prefix:   /characters
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
