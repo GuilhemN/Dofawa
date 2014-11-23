@@ -40,7 +40,7 @@ class EffectTemplateImporter extends AbstractGameDataImporter
                 $tpl->setDeprecated(true);
                 $tpl->setId($row['id']);
 
-                if($row['descriptionId'] === 0)
+                if(empty($row['descriptionId']))
                     $tpl->setDescriptionFr('-');
             }
             if ($tpl->isDeprecated()) {
@@ -48,7 +48,7 @@ class EffectTemplateImporter extends AbstractGameDataImporter
                 if (!$tpl->getRelease())
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                if($row['descriptionId'] !== 0)
+                if(!empty($row['descriptionId']))
                     $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
                 $tpl->setCharacteristic(($row['characteristic'] === 'null') ? null : $row['characteristic']);
                 $tpl->setElement(($row['elementId'] == -1) ? null : $row['elementId']);
