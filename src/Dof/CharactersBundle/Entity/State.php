@@ -109,4 +109,9 @@ class State implements IdentifiableInterface
     {
         return $this->preventsWeaponUsage;
     }
+    
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
