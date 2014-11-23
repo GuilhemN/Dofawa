@@ -6,6 +6,7 @@ use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\ImpExpBundle\ImporterFlags;
+use XN\Persistence\CollectionSynchronizationHelper;
 
 use Dof\CharactersBundle\Entity\SpellRankEffect;
 
