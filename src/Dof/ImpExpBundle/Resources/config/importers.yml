@@ -135,10 +135,16 @@ services:
             - { name: dof_imp_exp.importer, provides: spell_rank_effects, requires: spell_ranks }
             - { name: dof_imp_exp.importer, provides: beta_spell_rank_effects, requires: beta_spell_ranks }
 
-
     dof_imp_exp.importer.states:
         class: Dof\ImpExpBundle\Importer\GameData\StateImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
             - { name: dof_imp_exp.importer, provides: states }
             - { name: dof_imp_exp.importer, provides: beta_states }
+
+    dof_imp_exp.importer.spell_rank_states:
+        class: Dof\ImpExpBundle\Importer\GameData\SpellRankStateRequirementImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: spell_rank_states, requires: 'states spell_ranks' }
+            - { name: dof_imp_exp.importer, provides: beta_spell_rank_states, requires: 'beta_states beta_spell_ranks' }
