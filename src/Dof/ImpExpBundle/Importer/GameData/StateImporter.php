@@ -36,6 +36,7 @@ class StateImporter extends AbstractGameDataImporter
             if ($tpl === null) {
                 $tpl = new State();
                 $tpl->setDeprecated(true);
+                $tpl->setId($row['id']);
             }
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
