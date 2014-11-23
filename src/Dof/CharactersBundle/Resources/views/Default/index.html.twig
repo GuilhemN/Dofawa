@@ -1,10 +1,14 @@
-SpellRank: {{ spell.id }}<br>
-<br>
-<b>Effets:</b>
-<br>
-{% for effect in spell.effects %}
-EffectTemplate {{ effect.effectTemplate.id }}<br>
-P1 {{ effect.param1 }}<br>
-P2 {{ effect.param4 }}<br>
-P3 {{ effect.param3 }}<br><br>
-{% endfor %}
+<html>
+    <body>
+        SpellRank: {{ spell.id }}<br>
+        <br>
+        <b>Effets:</b>
+        <br>
+        {% for effect in spell.effects %}
+        EffectTemplate {{ effect.effectTemplate.id }}<br>
+        P1 {{ effect.param1 }}<br>
+        P2 {{ effect.param4 }}<br>
+        P3 {{ effect.param3 }}<br><br>
+        {% endfor %}
+    </body>
+</html>
