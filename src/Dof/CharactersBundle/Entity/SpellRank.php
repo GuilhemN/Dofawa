@@ -137,8 +137,8 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
 
     public function __construct()
     {
-        $this->stateRequirements = new Collection();
-        $this->effects = new Collection();
+        $this->stateRequirements = new ArrayCollection();
+        $this->effects = new ArrayCollection();
     }
 
     /**
