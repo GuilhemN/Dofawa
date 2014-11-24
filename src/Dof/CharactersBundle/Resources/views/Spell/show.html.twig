@@ -13,7 +13,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-3">
-                <a href="/items/dofus-des-veilleurs" class="thumbnail">
+                <a href="{{ path('dof_spell_show', {'slug': spell.slug}) }}" class="thumbnail">
                     <img class="img-responsive" src="/bundles/dofitems/img/default.png" alt="Dofus des Veilleurs">
                 </a>
                 <div class="text-center">
@@ -60,7 +60,7 @@
             {% for breed in spell.breeds %}
                 {{ breed.getName(locales()) }}
                 {% if not loop.last %}
-                    | 
+                    |
                 {% endif %}
             {% endfor %}
 
