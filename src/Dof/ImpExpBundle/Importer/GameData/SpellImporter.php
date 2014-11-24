@@ -29,7 +29,16 @@ class SpellImporter extends AbstractGameDataImporter
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
+        $stmt = $conn->query('SELECT * FROM ' . $db . '.D2O_Breed_breedSpellId');
+        $breedSpells = $stmt->fetchAll();
+        $stmt->closeCursor();
+
+        $joins = array();
+        foreach($breedSpells as $join)
+            $joins[$join['value']][] = $join['id'];
+
         $repo = $this->dm->getRepository('DofCharactersBundle:Spell');
+        $breedRepo = $this->dm->getRepository('DofCharactersBundle:Breed');
         $rowsProcessed = 0;
         if ($output && $progress)
         $progress->start($output, count($all));
@@ -56,6 +65,13 @@ class SpellImporter extends AbstractGameDataImporter
 
                 $tpl->setTypeId($row['typeId']);
                 $tpl->setIconId($row['iconId']);
+
+                if(isset($joins[$row['id']]))
+                    foreach($joins[$row['id']] as $breedId){
+                        $breed = $breedRepo->find($breedId);
+                        if($breed !== null)
+                            $tpl->addBreed($breed);
+                    }
 
                 $this->dm->persist($tpl);
             }

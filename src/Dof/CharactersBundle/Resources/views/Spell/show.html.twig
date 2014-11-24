@@ -13,7 +13,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-3">
-                <a href="/items/dofus-des-veilleurs" class="thumbnail">
+                <a href="{{ path('dof_spell_show', {'slug': spell.slug}) }}" class="thumbnail">
                     <img class="img-responsive" src="/bundles/dofitems/img/default.png" alt="Dofus des Veilleurs">
                 </a>
                 <div class="text-center">
@@ -33,14 +33,14 @@
             <div class="col-sm-9">
                 <ul class="nav nav-tabs" role="tablist">
                     {% for rank in spell.ranks %}
-                    <li {% if loop.first %}class="active"{% endif %}><a href="#rank-{{ rank.rank }}" role="tab" data-toggle="tab">Niveau {{ rank.rank }}</a></li>
+                    <li {% if loop.first %}class="active"{% endif %}><a href="#rank-{{ rank.rank }}" role="tab" data-toggle="tab">Rang {{ rank.rank }}</a></li>
                     {% endfor %}
                 </ul>
                 <div class="tab-content">
                     {% for rank in spell.ranks %}
                     <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank-{{ rank.rank }}">
                         <b>Effets :</b><br>
-                        {% for effect in rank.effects if !effect.critical %}
+                        {% for effect in rank.effects if not effect.critical %}
                         {{ effect.getPlainTextDescription() }}<br>
                         {% endfor %}
                         <br>
@@ -55,6 +55,16 @@
             </div>
         </div>
         <hr />
+        {% if spell.breeds is not empty %}
+            <b>Classes :</b>
+            {% for breed in spell.breeds %}
+                {{ breed.getName(locales()) }}
+                {% if not loop.last %}
+                    |
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endif %}
         {{ spell.getDescription(locales()) }}
     </div>
 </div>

@@ -118,8 +118,8 @@ services:
         class: Dof\ImpExpBundle\Importer\GameData\SpellImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
-            - { name: dof_imp_exp.importer, provides: spells }
-            - { name: dof_imp_exp.importer, provides: beta_spells }
+            - { name: dof_imp_exp.importer, provides: spells, requires: breeds }
+            - { name: dof_imp_exp.importer, provides: beta_spells, requires: beta_breeds }
 
     dof_imp_exp.importer.spell_ranks:
         class: Dof\ImpExpBundle\Importer\GameData\SpellRankImporter

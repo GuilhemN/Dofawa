@@ -240,10 +240,16 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $softCaps;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="Dof\CharactersBundle\Entity\Spell", inversedBy="breeds")
+    */
+    private $spells;
+
     public function __construct()
     {
         $this->faces = new ArrayCollection();
         $this->softCaps = new ArrayCollection();
+        $this->spells = new ArrayCollection();
     }
 
     /**
@@ -1062,6 +1068,42 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getSoftCaps()
     {
         return $this->softCaps;
+    }
+    
+    /**
+    * Add spells
+    *
+    * @param Spell $spells
+    * @return Breed
+    */
+    public function addSpell(Spell $spells)
+    {
+        $this->spells[] = $spells;
+
+        return $this;
+    }
+
+    /**
+    * Remove spells
+    *
+    * @param Spell $spells
+    * @return Breed
+    */
+    public function removeSpell(Spell $spells)
+    {
+        $this->spells->removeElement($spells);
+
+        return $this;
+    }
+
+    /**
+    * Get spells
+    *
+    * @return Collection
+    */
+    public function getSpells()
+    {
+        return $this->spells;
     }
 
     public function __toString()
