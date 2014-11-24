@@ -40,12 +40,12 @@
                     {% for rank in spell.ranks %}
                     <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank-{{ rank.rank }}">
                         <b>Effets :</b><br>
-                        {% for effect in rank.effects if effect.critical == false %}
+                        {% for effect in rank.effects if not effect.critical %}
                         {{ effect }}<br>
                         {% endfor %}
                         <br>
                         <b>Effets CC :</b><br>
-                        {% for effect in rank.effects if effect.critical == true %}
+                        {% for effect in rank.effects if effect.critical %}
                         {{ effect }}<br>
                         {% endfor %}
                     </div>
@@ -55,6 +55,16 @@
             </div>
         </div>
         <hr />
+        {% if spell.breeds is not empty %}
+            Classes :
+            {% for breed in spell.breeds %}
+                {{ breed.getName(locales()) }}
+                {% if not loop.last %}
+                    | 
+                {% endif %}
+            {% endfor %}
+
+        {% endif %}
         {{ spell.getDescription(locales()) }}
     </div>
 </div>
