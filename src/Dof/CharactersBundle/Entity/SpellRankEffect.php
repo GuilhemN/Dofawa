@@ -406,6 +406,6 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 
 	public function __toString()
 	{
-		return $this->getPlainTextDescription();
+		return $this->getNormalDescription();
 	}
 }
