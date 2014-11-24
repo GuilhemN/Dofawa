@@ -65,9 +65,16 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $ranks;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="Dof\CharactersBundle\Entity\Breed")
+    * @ORM\JoinTable(name="dof_breed_spells")
+    */
+    private $breeds;
+
     public function __construct()
     {
         $this->ranks = new ArrayCollection();
+        $this->breeds = new ArrayCollection();
     }
 
     /**
@@ -206,6 +213,42 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getRanks()
     {
         return $this->ranks;
+    }
+    
+    /**
+    * Add breeds
+    *
+    * @param Breed $breeds
+    * @return Spell
+    */
+    public function addBreed(Breed $breeds)
+    {
+        $this->breeds[] = $breeds;
+
+        return $this;
+    }
+
+    /**
+    * Remove breeds
+    *
+    * @param Breed $breeds
+    * @return Spell
+    */
+    public function removeBreed(Breed $breeds)
+    {
+        $this->breeds->removeElement($breeds);
+
+        return $this;
+    }
+
+    /**
+    * Get breeds
+    *
+    * @return Collection
+    */
+    public function getBreeds()
+    {
+        return $this->breeds;
     }
 
     public function __toString()
