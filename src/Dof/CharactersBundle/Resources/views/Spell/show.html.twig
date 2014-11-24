@@ -56,14 +56,14 @@
         </div>
         <hr />
         {% if spell.breeds is not empty %}
-            Classes :
+            <b>Classes :</b>
             {% for breed in spell.breeds %}
                 {{ breed.getName(locales()) }}
                 {% if not loop.last %}
                     |
                 {% endif %}
             {% endfor %}
-
+            <br>
         {% endif %}
         {{ spell.getDescription(locales()) }}
     </div>
