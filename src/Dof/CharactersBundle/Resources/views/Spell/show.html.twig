@@ -40,12 +40,12 @@
                     {% for rank in spell.ranks %}
                     <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank-{{ rank.rank }}">
                         <b>Effets :</b><br>
-                        {% for effect in rank.effects if effect.critical == false %}
-                        {{ effect }}<br>
+                        {% for effect in rank.effects if !effect.critical %}
+                        {{ effect.getPlainTextDescription() }}<br>
                         {% endfor %}
                         <br>
                         <b>Effets CC :</b><br>
-                        {% for effect in rank.effects if effect.critical == true %}
+                        {% for effect in rank.effects if effect.critical %}
                         {{ effect }}<br>
                         {% endfor %}
                     </div>
