@@ -34,7 +34,7 @@ class SpellImporter extends AbstractGameDataImporter
         $stmt->closeCursor();
 
         $joins = array();
-        foreach($breadSpells as $join)
+        foreach($breedSpells as $join)
             $joins[$join['value']][] = $join['id'];
 
         $repo = $this->dm->getRepository('DofCharactersBundle:Spell');
