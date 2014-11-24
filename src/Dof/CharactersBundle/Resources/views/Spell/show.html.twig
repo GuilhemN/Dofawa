@@ -16,11 +16,11 @@
             </a>
             <div class="text-center">
                 <p>
-                    {% if item.preliminary %}
+                    {% if spell.preliminary %}
                     <span class="label label-danger">Bêta</span>
                     {% endif %}
-                    {% if item.release != 1 %}
-                    <span class="label label-default hidden-xs">{{ item.release }}</span>
+                    {% if spell.release != 1 %}
+                    <span class="label label-default hidden-xs">{{ spell.release }}</span>
                     {% endif %}
                 </p>
                 <p>
