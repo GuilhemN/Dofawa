@@ -1,0 +1,47 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+
+<div class="panel-heading">
+    <h3 class="panel-title">
+        {{ spell.getName(locales()) }} <font size="2"></font>
+        <span class="pull-right"></span>
+    </h3>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="/items/dofus-des-veilleurs" class="thumbnail">
+                <img class="img-responsive" src="/bundles/dofitems/img/default.png" alt="Dofus des Veilleurs">
+            </a>
+            <div class="text-center">
+                <p>
+                    {% if item.preliminary %}
+                    <span class="label label-danger">Bêta</span>
+                    {% endif %}
+                    {% if item.release != 1 %}
+                    <span class="label label-default hidden-xs">{{ item.release }}</span>
+                    {% endif %}
+                </p>
+                <p>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#caracts-item16061" role="tab" data-toggle="tab">Effets</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="caracts-item16061">
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <hr />
+    {{ spell.getDescription(locales()) }}
+</div>
+
+{% endblock %}
