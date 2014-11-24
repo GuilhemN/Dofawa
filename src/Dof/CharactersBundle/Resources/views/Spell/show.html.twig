@@ -41,7 +41,7 @@
                     <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank-{{ rank.rank }}">
                         <b>Effets :</b><br>
                         {% for effect in rank.effects if not effect.critical %}
-                        {{ effect.getPlainTextDescription() }}<br>
+                        {{ effect.getPlainTextDescription(locales()) }}<br>
                         {% endfor %}
                         <br>
                         <b>Effets CC :</b><br>
