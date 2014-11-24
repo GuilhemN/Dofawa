@@ -33,7 +33,7 @@
             <div class="col-sm-9">
                 <ul class="nav nav-tabs" role="tablist">
                     {% for rank in spell.ranks %}
-                    <li {% if loop.first %}class="active"{% endif %}><a href="#rank-{{ rank.rank }}" role="tab" data-toggle="tab">Niveau {{ rank.rank }}</a></li>
+                    <li {% if loop.first %}class="active"{% endif %}><a href="#rank-{{ rank.rank }}" role="tab" data-toggle="tab">Rang {{ rank.rank }}</a></li>
                     {% endfor %}
                 </ul>
                 <div class="tab-content">
