@@ -1,3 +1,5 @@
 dof_spell_show:
     pattern:  /spell/{slug}
     defaults: { _controller: DofCharactersBundle:Spell:show }
+    requirements:
+       slug: '[0-9a-z-]+'
