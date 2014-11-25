@@ -66,6 +66,7 @@ class SpellImporter extends AbstractGameDataImporter
                 $tpl->setTypeId($row['typeId']);
                 $tpl->setIconId($row['iconId']);
 
+                $tpl->getBreeds()->clear();
                 if(isset($joins[$row['id']]))
                     foreach($joins[$row['id']] as $breedId){
                         $breed = $breedRepo->find($breedId);
