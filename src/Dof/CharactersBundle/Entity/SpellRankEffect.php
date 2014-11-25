@@ -387,7 +387,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 	{
 		return implode('', array_map(function (array $row) {
 			return $row[0];
-		}, $this->getDescription($locale)));
+		}, $this->getDescription($locale, $type)));
 	}
 
 	public function __toString()
