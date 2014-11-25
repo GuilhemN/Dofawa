@@ -42,9 +42,9 @@
                         <b>Effets :</b><br>
                         {% for effect in rank.effects if not effect.critical %}
                             {% if is_granted('ROLE_SPELL_XRAY') %}
-                                {{ effect.description }}
+                                {{ effect.getPlainTextDescription(app.request.locale, 'full') }}
                             {% else %}
-                                {{ effect.simpleDescription }}
+                                {{ effect.getPlainTextDescription(app.request.locale) }}
                             {% endif %}
                             <br>
                         {% endfor %}
@@ -52,9 +52,9 @@
                         <b>Effets CC :</b><br>
                         {% for effect in rank.effects if effect.critical %}
                             {% if is_granted('ROLE_SPELL_XRAY') %}
-                                {{ effect.description }}
+                                {{ effect.getPlainTextDescription(app.request.locale, 'full') }}
                             {% else %}
-                                {{ effect.simpleDescription }}
+                                {{ effect.getPlainTextDescription(app.request.locale) }}
                             {% endif %}
                             <br>
                         {% endfor %}
