@@ -66,7 +66,7 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $ranks;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\CharactersBundle\Entity\Breed")
+    * @ORM\ManyToMany(targetEntity="Dof\CharactersBundle\Entity\Breed", inversedBy="spells")
     * @ORM\JoinTable(name="dof_breed_spells")
     */
     private $breeds;
@@ -214,7 +214,7 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     {
         return $this->ranks;
     }
-    
+
     /**
     * Add breeds
     *
