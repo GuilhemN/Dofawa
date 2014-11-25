@@ -387,6 +387,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
             '2' => $this->getParam2(),
             '3' => $this->getParam3()
         ], $locale);
+        array_unshift($desc, [ GameTemplateString::COMES_FROM_TEMPLATE ]);
         if ($this->duration)
         $desc[] = [ ' (' . $this->duration . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
         if ($this->delay)
