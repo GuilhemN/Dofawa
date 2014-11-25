@@ -61,28 +61,28 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * @var integer
      *
-     * @ORM\Column(name="min_action_points", type="integer")
+     * @ORM\Column(name="min_action_points", type="integer", nullable=true)
      */
     private $minActionPoints;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="max_action_points", type="integer")
+     * @ORM\Column(name="max_action_points", type="integer", nullable=true)
      */
     private $maxActionPoints;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="min_movement_points", type="integer")
+     * @ORM\Column(name="min_movement_points", type="integer", nullable=true)
      */
     private $minMovementPoints;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="max_movement_points", type="integer")
+     * @ORM\Column(name="max_movement_points", type="integer", nullable=true)
      */
     private $maxMouvementPoints;
 
