@@ -30,12 +30,12 @@
             <div class="col-sm-10">
                 <ul class="nav nav-tabs" role="tablist">
                     {% for rank in spell.ranks %}
-                    <li {% if loop.first %}class="active"{% endif %}><a href="#rank-{{ rank.rank }}" role="tab" data-toggle="tab">Rang {{ rank.rank }}</a></li>
+                    <li {% if loop.first %}class="active"{% endif %}><a href="#rank{{ spell.id }}-{{ rank.rank }}" role="tab" data-toggle="tab">Rang {{ rank.rank }}</a></li>
                     {% endfor %}
                 </ul>
                 <div class="tab-content">
                     {% for rank in spell.ranks %}
-                    <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank-{{ rank.rank }}">
+                    <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
                         <b>Effets :</b><br>
                         {% for effect in rank.effects if not effect.critical and (not effect.hidden or is_granted('ROLE_SPELL_XRAY')) %}
                             {% if is_granted('ROLE_SPELL_XRAY') %}
