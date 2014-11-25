@@ -241,7 +241,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $softCaps;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\CharactersBundle\Entity\Spell", inversedBy="breeds")
+    * @ORM\ManyToMany(targetEntity="Dof\CharactersBundle\Entity\Spell", mappedBy="breeds")
     */
     private $spells;
 
@@ -1069,7 +1069,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     {
         return $this->softCaps;
     }
-    
+
     /**
     * Add spells
     *
