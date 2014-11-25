@@ -112,7 +112,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     {
         return $this->id;
     }
-    
+
     /**
     * Set spellRank
     *
@@ -380,6 +380,21 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 			array_unshift($desc, [ 'Déclenché (' . implode(', ', $this->triggers) . ') : ', GameTemplateString::COMES_FROM_TEMPLATE ]);
 		return $desc;
 	}
+
+    public function getSimpleDescription($locale = 'fr'){
+        $desc = $this->getEffectTemplate()->expandDescription([
+            '1' => $this->getParam1(),
+            '2' => $this->getParam2(),
+            '3' => $this->getParam3()
+        ], $locale);
+        if ($this->duration)
+        $desc[] = [ ' (' . $this->duration . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
+        if ($this->delay)
+        $desc[] = [ ' (dans ' . $this->delay . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
+        if (implode(',', $this->triggers) != 'I')
+        array_unshift($desc, [ 'Déclenché (' . implode(', ', $this->triggers) . ') : ', GameTemplateString::COMES_FROM_TEMPLATE ]);
+        return $desc;
+    }
 
 	public function getPlainTextDescription($locale = 'fr')
 	{

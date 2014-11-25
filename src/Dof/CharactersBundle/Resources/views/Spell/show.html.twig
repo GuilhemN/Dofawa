@@ -41,12 +41,22 @@
                     <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank-{{ rank.rank }}">
                         <b>Effets :</b><br>
                         {% for effect in rank.effects if not effect.critical %}
-                        {{ effect }}<br>
+                            {% if is_granted('ROLE_SPELL_XRAY') %}
+                                {{ effect.description }}
+                            {% else %}
+                                {{ effect.simpleDescription }}
+                            {% endif %}
+                            <br>
                         {% endfor %}
                         <br>
                         <b>Effets CC :</b><br>
                         {% for effect in rank.effects if effect.critical %}
-                        {{ effect }}<br>
+                            {% if is_granted('ROLE_SPELL_XRAY') %}
+                                {{ effect.description }}
+                            {% else %}
+                                {{ effect.simpleDescription }}
+                            {% endif %}
+                            <br>
                         {% endfor %}
                     </div>
                     {% endfor %}
