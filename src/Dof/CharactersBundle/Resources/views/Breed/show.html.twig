@@ -1,0 +1,7 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+{% for spell in breed.spells %}
+    {% include 'DofCharactersBundle::spell.html.twig' %}
+{% endfor %}
+{% endblock %}
