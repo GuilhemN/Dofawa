@@ -43,7 +43,7 @@
                         {% for effect in rank.effects if not effect.critical %}
                             {% if is_granted('ROLE_SPELL_XRAY') %}
                                 {{ effect.getPlainTextDescription(app.request.locale, 'full') }}
-                            {% else %}
+                            {% elseif not effect.hidden %}
                                 {{ effect.getPlainTextDescription(app.request.locale) }}
                             {% endif %}
                             <br>
