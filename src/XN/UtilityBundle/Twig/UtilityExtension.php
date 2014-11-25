@@ -28,7 +28,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
 			new \Twig_SimpleFunction('region', [ $this, 'getRegion' ]),
 			new \Twig_SimpleFunction('is_object', 'is_object'),
-			new \Twig_SimpleFunction('get_class', 'get_class'),
+			new \Twig_SimpleFunction('classOf', 'getClassName'),
 		);
 	}
 
@@ -105,5 +105,11 @@ class UtilityExtension extends \Twig_Extension
 
 	public function formatDate(\Datetime $datetime, $type = 'medium', $textual = true, $locale = null){
 		return DateFormat::formatDate($this->container->get('translator'), $datetime, $type, $textual, $locale);
+	}
+
+	public function getClassName($class){
+		$nClass = get_class($class);
+		$pos = strrchr($nClass, '\\');
+		return ($pos === false) ? $nClass : substr($nClass, $pos + 1);
 	}
 }
