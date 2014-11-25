@@ -71,7 +71,7 @@
 		                {% endif %}
 		            {% endif %}
 		            <tr>
-		            	<td><img class="img-responsive" src="{{ asset('bundles/dofitems/img/' ~ element ~ '.png') }}" alt=" ">{{ element | trans({'%1%': ''}, 'item') }}</td><td>{{ damages }}</td><td>{{ critical}}</td>
+		            	<td><img src="{{ asset('bundles/dofitems/img/' ~ element ~ '.png') }}" alt=" ">{{ element | trans({'%1%': ''}, 'item') }}</td><td>{{ damages }}</td><td>{{ critical}}</td>
 		            </tr>
 		        {% else %}
 		        {% endfor %}
