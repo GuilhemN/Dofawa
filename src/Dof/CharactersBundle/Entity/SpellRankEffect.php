@@ -389,11 +389,11 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
         ], $locale);
         array_unshift($desc, [ GameTemplateString::COMES_FROM_TEMPLATE ]);
         if ($this->duration)
-        $desc[] = [ ' (' . $this->duration . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
+            $desc[] = [ ' (' . $this->duration . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
         if ($this->delay)
-        $desc[] = [ ' (dans ' . $this->delay . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
+            $desc[] = [ ' (dans ' . $this->delay . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
         if (implode(',', $this->triggers) != 'I')
-        array_unshift($desc, [ 'Déclenché (' . implode(', ', $this->triggers) . ') : ', GameTemplateString::COMES_FROM_TEMPLATE ]);
+            array_unshift($desc, [ 'Déclenché (' . implode(', ', $this->triggers) . ') : ', GameTemplateString::COMES_FROM_TEMPLATE ]);
         return $desc;
     }
 
