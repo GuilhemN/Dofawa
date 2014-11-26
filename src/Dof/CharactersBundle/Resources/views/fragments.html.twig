@@ -1,5 +1,4 @@
 {% for fragment in effect.fragments %}
-    {{ classOf(fragment) }}
     {% if classOf(fragment) == 'Spell' %}
         <div class="well well-sm well-fragment">
             {% for effect in fragment.ranks[0].effects %}
