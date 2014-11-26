@@ -12,6 +12,8 @@ use XN\Persistence\IdentifiableInterface;
 use Dof\CharactersBundle\EffectInterface;
 use Dof\CharactersBundle\EffectTrait;
 
+use Dof\Common\GameTemplateString;
+
 /**
  * ItemTemplateEffect
  *
