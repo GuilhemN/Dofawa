@@ -67,7 +67,9 @@
                                 <b>Caractéristiques :</b><br>
                                 <table>
                                     <tr><td>Coût en PA: </td><td>{{ rank.apCost }}</td></tr>
-                                    <tr><td>Portée: </td><td>{% if rank.minCastRange == rank.maxCastRange %}{{ rank.minCastRange }}{% else %}{{ rank.minCastRange }} - {{ rank.maxCastRange }}{% endif %}</td></tr>
+                                    <tr><td>Portée: </td><td>{% if rank.minCastRange == rank.maxCastRange %}{{ rank.minCastRange }}{% else %}{{ rank.minCastRange }} - {{ rank.maxCastRange }}{% endif %}
+                                    {% if rank.modifiableCastRange %}<span title="Portée modifiable" class="glyphicon glyphicon-eye-close"></span>{% endif %}
+                                    </td></tr>
                                 </table>
                             </div>
 
