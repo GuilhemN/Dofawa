@@ -1,4 +1,5 @@
 {% for fragment in effect.fragments %}
+    {{ classOf(fragment) }}
     {% if classOf(fragment) == 'Spell' %}
         <div class="well well-sm">
             {{ fragment.getName(locales()) }}
