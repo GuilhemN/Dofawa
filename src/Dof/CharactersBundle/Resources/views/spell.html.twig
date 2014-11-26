@@ -66,9 +66,9 @@
                             <div class="col-md-6">
                                 <b>Caractéristiques :</b><br>
                                 <table>
-                                    <tr><td>Coût en PA: </td><td>{{ rank.apCost }}</td></tr>
-                                    <tr><td>Portée: </td><td>{% if rank.minCastRange == rank.maxCastRange %}{{ rank.minCastRange }}{% else %}{{ rank.minCastRange }} - {{ rank.maxCastRange }}{% endif %}
-                                    {% if rank.modifiableCastRange %}<span title="Portée modifiable" class="glyphicon glyphicon-eye-close"></span>{% endif %}
+                                    <tr><td>Coût en PA: </td><td> {{ rank.apCost }}</td></tr>
+                                    <tr><td>Portée: </td><td>{% if rank.minCastRange == rank.maxCastRange %} {{ rank.minCastRange }}{% else %} {{ rank.minCastRange }} - {{ rank.maxCastRange }}{% endif %}
+                                    {% if rank.modifiableCastRange %}<span title="Portée modifiable" class="glyphicon glyphicon-eye-open"></span>{% endif %}
                                     </td></tr>
                                 </table>
                             </div>
@@ -77,14 +77,14 @@
                             <div class="col-md-6">
                                 <b>Autres caractéristiques :</b><br>
                                 <table>
-                                    <tr><td>Coups critiques: </td><td>1/{{ rank.criticalHitDenominator }}</td></tr>
-                                    <tr><td>Lancé(s) par tour par cible: </td><td>{{ rank.maxCastsPerTarget }}</td></tr>
-                                    <tr><td>PO modifiable: </td><td>{% if rank.modifiableCastRange %}Oui{% else %}Non{% endif %}</td></tr>
-                                    <tr><td>Lancer en ligne: </td><td>{% if rank.lineCast %}Oui{% else %}Non{% endif %}</td></tr>
-                                    <tr><td>Lancers par tour: </td><td>{{ rank.maxCastsPerTurn }}</td></tr>
-                                    <tr><td>Tours entre deux lancers: </td><td>{{ rank.cooldown }}</td></tr>
-                                    <tr><td>Ligne de vue: </td><td>{% if rank.sightCast %}Oui{% else %}Non{% endif %}</td></tr>
-                                    <tr><td>Cellules libres: </td><td>{% if rank.needsFreeCell %}Oui{% else %}Non{% endif %}</td></tr>
+                                    <tr><td>Coups critiques: </td><td> {% if rank.criticalHitDenominator != 0 %}1/{{ rank.criticalHitDenominator }}{% else %} Aucun{% endif %}</td></tr>
+                                    <tr><td>Lancé(s) par tour par cible: </td><td> {% if rank.maxCastsPerTarget != 0 %}{{ rank.maxCastsPerTarget }}{% else %} Aucun{% endif %}</td></tr>
+                                    <tr><td>PO modifiable: </td><td>{% if rank.modifiableCastRange %} Oui{% else %} Non{% endif %}</td></tr>
+                                    <tr><td>Lancer en ligne: </td><td>{% if rank.lineCast %} Oui{% else %} Non{% endif %}</td></tr>
+                                    <tr><td>Lancer(s) par tour: </td><td> {% if rank.maxCastsPerTurn != 0 %}{{ rank.maxCastsPerTurn }}{% else %} -{% endif %}</td></tr>
+                                    <tr><td>Tours entre deux lancers: </td><td> {{ rank.cooldown }}</td></tr>
+                                    <tr><td>Ligne de vue: </td><td>{% if rank.sightCast %} Oui{% else %} Non{% endif %}</td></tr>
+                                    <tr><td>Cellules libres: </td><td>{% if rank.needsFreeCell %} Oui{% else %} Non{% endif %}</td></tr>
                                 </table>
                             </div>
                         </div>
@@ -95,9 +95,9 @@
                             <div class="col-md-12">
                                 <b>Caractéristiques :</b><br>
                                 <table>
-                                    <tr><td>Coût en PA: </td><td>{{ rank.apCost }}</td></tr>
-                                    <tr><td>Portée: </td><td>{% if rank.minCastRange == rank.maxCastRange %}{{ rank.minCastRange }}{% else %}{{ rank.minCastRange }} - {{ rank.maxCastRange }}{% endif %}
-                                    {% if rank.modifiableCastRange %}<span title="Portée modifiable" class="glyphicon glyphicon-eye-close"></span>{% endif %}</td></tr>
+                                    <tr><td>Coût en PA: </td><td> {{ rank.apCost }}</td></tr>
+                                    <tr><td>Portée: </td><td>{% if rank.minCastRange == rank.maxCastRange %} {{ rank.minCastRange }}{% else %} {{ rank.minCastRange }} - {{ rank.maxCastRange }}{% endif %}
+                                    {% if rank.modifiableCastRange %}<span title="Portée modifiable" class="glyphicon glyphicon-eye-open"></span>{% endif %}</td></tr>
                                 </table>
                             </div>
 
@@ -106,14 +106,14 @@
                             <div class="col-md-12">
                                 <b>Autres caractéristiques :</b><br>
                                 <table>
-                                    <tr><td>Coups critiques: </td><td>1/{{ rank.criticalHitDenominator }}</td></tr>
-                                    <tr><td>Lancé(s) par tour par cible: </td><td>{{ rank.maxCastsPerTarget }}</td></tr>
-                                    <tr><td>PO modifiable: </td><td>{% if rank.modifiableCastRange %}Oui{% else %}Non{% endif %}</td></tr>
-                                    <tr><td>Lancer en ligne: </td><td>{% if rank.lineCast %}Oui{% else %}Non{% endif %}</td></tr>
-                                    <tr><td>Lancers par tour: </td><td>{{ rank.maxCastsPerTurn }}</td></tr>
-                                    <tr><td>Tours entre deux lancers: </td><td>{{ rank.cooldown }}</td></tr>
-                                    <tr><td>Ligne de vue: </td><td>{% if rank.sightCast %}Oui{% else %}Non{% endif %}</td></tr>
-                                    <tr><td>Cellules libres: </td><td>{% if rank.needsFreeCell %}Oui{% else %}Non{% endif %}</td></tr>
+                                    <tr><td>Coups critiques: </td><td> {% if rank.criticalHitDenominator != 0 %}1/{{ rank.criticalHitDenominator }}{% else %} Aucun{% endif %}</td></tr>
+                                    <tr><td>Lancer(s) par tour par cible: </td><td> {% if rank.maxCastsPerTarget != 0 %}{{ rank.maxCastsPerTarget }}{% else %} Aucun{% endif %}</td></tr>
+                                    <tr><td>PO modifiable: </td><td>{% if rank.modifiableCastRange %} Oui{% else %} Non{% endif %}</td></tr>
+                                    <tr><td>Lancer en ligne: </td><td>{% if rank.lineCast %} Oui{% else %} Non{% endif %}</td></tr>
+                                    <tr><td>Lancer(s) par tour: </td><td> {% if rank.maxCastsPerTurn != 0 %}{{ rank.maxCastsPerTurn }}{% else %} -{% endif %}</td></tr>
+                                    <tr><td>Tours entre deux lancers: </td><td> {% if rank.cooldown != 0 %} {{ rank.cooldown }}{% else %} Aucun{% endif %}</td></tr>
+                                    <tr><td>Ligne de vue: </td><td>{% if rank.sightCast %} Oui{% else %} Non{% endif %}</td></tr>
+                                    <tr><td>Cellules libres: </td><td>{% if rank.needsFreeCell %} Oui{% else %} Non{% endif %}</td></tr>
                                 </table>
                             </div>
                         </div>
