@@ -9,13 +9,16 @@ use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
 
+use Dof\CharactersBundle\EffectInterface;
+use Dof\CharactersBundle\EffectTrait;
+
 /**
  * ItemTemplateEffect
  *
  * @ORM\Table(name="dof_item_template_effects")
  * @ORM\Entity(repositoryClass="ItemTemplateEffectRepository")
  */
-class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface
+class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, EffectInterface
 {
     /**
      * @var integer
@@ -26,7 +29,7 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface
      */
     private $id;
 
-    use ImportableTrait;
+    use ImportableTrait, EffectTrait;
 
     /**
      * @var ItemTemplate
@@ -49,27 +52,6 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface
      * @ORM\Column(name="type", type="integer")
      */
     private $type;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="param1", type="integer")
-     */
-    private $param1;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="param2", type="integer")
-     */
-    private $param2;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="param3", type="integer")
-     */
-    private $param3;
 
     /**
      * Get id
@@ -148,75 +130,6 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * Set param1
-     *
-     * @param integer $param1
-     * @return ItemTemplateEffect
-     */
-    public function setParam1($param1)
-    {
-        $this->param1 = $param1;
-
-        return $this;
-    }
-
-    /**
-     * Get param1
-     *
-     * @return integer
-     */
-    public function getParam1()
-    {
-        return $this->param1;
-    }
-
-    /**
-     * Set param2
-     *
-     * @param integer $param2
-     * @return ItemTemplateEffect
-     */
-    public function setParam2($param2)
-    {
-        $this->param2 = $param2;
-
-        return $this;
-    }
-
-    /**
-     * Get param2
-     *
-     * @return integer
-     */
-    public function getParam2()
-    {
-        return $this->param2;
-    }
-
-    /**
-     * Set param3
-     *
-     * @param integer $param3
-     * @return ItemTemplateEffect
-     */
-    public function setParam3($param3)
-    {
-        $this->param3 = $param3;
-
-        return $this;
-    }
-
-    /**
-     * Get param3
-     *
-     * @return integer
-     */
-    public function getParam3()
-    {
-        return $this->param3;
     }
 
     public function exportData($full = true, $locale = 'fr')
