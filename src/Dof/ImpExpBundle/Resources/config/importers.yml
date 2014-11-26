@@ -72,7 +72,9 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: item_template_effects, requires: "item_templates effect_templates" }
             - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: "beta_item_templates beta_effect_templates" }
-
+        calls:
+            - [ setParamLoader, [ "@dof_characters.effect_param_loader" ] ]
+            
     # DofItemsBundle:ItemComponent
     dof_imp_exp.importer.item_components:
         class: Dof\ImpExpBundle\Importer\GameData\ItemComponentImporter
