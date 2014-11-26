@@ -78,7 +78,7 @@
                             <tr><td>PO modifiable: </td><td>{% if rank.modifiableCastRange %}Oui{% else %}Non{% endif %}</td></tr>
                             <tr><td>Lancer en ligne: </td><td>{% if rank.lineCast %}Oui{% else %}Non{% endif %}</td></tr>
                             <tr><td>Lancers par tour: </td><td>{{ rank.maxCastsPerTurn }}</td></tr>
-                            <tr><td>Tours entre deux lancers: </td><td>{{ cooldown }}</td></tr>
+                            <tr><td>Tours entre deux lancers: </td><td>{{ rank.cooldown }}</td></tr>
                             <tr><td>Ligne de vue: </td><td>{% if rank.sightCast %}Oui{% else %}Non{% endif %}</td></tr>
                             <tr><td>Cellules libres: </td><td>{% if rank.needsFreeCell %}Oui{% else %}Non{% endif %}</td></tr>
                         </table>
