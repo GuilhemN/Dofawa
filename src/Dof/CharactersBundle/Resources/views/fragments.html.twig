@@ -1,8 +1,11 @@
 {% for fragment in effect.fragments %}
     {{ classOf(fragment) }}
     {% if classOf(fragment) == 'Spell' %}
-        <div class="well well-sm">
-            {{ fragment.getName(locales()) }}
+        <div class="well well-sm well-fragment">
+            {% for effect in fragment.ranks[0].effects %}
+                {{ effect.getPlainTextDescription(app.request.locale, is_granted('ROLE_SPELL_XRAY')) }}
+                <br />
+            {% endfor %}
         </div>
     {% endif %}
 {% endfor %}
