@@ -1,11 +1,35 @@
 {% trans_default_domain 'item' %}
 
-{% if updatable | default(false) == false %}
-    {# Affichage des dégats de l'arme #}
-    {% if item.isWeapon() is defined and item.isWeapon() %}
-        {% for damageRow in item.damageRows %}
-            {% set min = damageRow.min %}
-            {% set max = damageRow.max %}
+{# Effets des équipements #}
+{% if item.equipment is not defined or item.equipment %}
+    {% if updatable | default(false) == false %}
+        {# Affichage des dégats de l'arme #}
+        {% if item.weapon is defined and item.weapon %}
+            {% for damageRow in item.damageRows %}
+                {% set min = damageRow.min %}
+                {% set max = damageRow.max %}
+
+                {% if min != 0 or max != 0 %}
+                    {% set range %}
+                        {% if min != max %}
+                            {{ min}} {{ 'to' | trans }}
+                        {% endif %}
+                        {{ max }}
+                    {% endset %}
+                    {{ (damageRow.element | element) | trans({'%1%': range}) }}<br />
+                {% endif %}
+            {% endfor %}
+            <hr />
+        {% endif %}
+
+        {% for name, value in item.characteristics %}
+            {% if value | is_array %}
+                {% set min = value.min %}
+                {% set max = value.max %}
+            {% else %}
+                {% set min = value %}
+                {% set max = value %}
+            {% endif %}
 
             {% if min != 0 or max != 0 %}
                 {% set range %}
@@ -14,56 +38,40 @@
                     {% endif %}
                     {{ max }}
                 {% endset %}
-                {{ (damageRow.element | element) | trans({'%1%': range}) }}<br>
+                {{ name | trans({'%1%': range}) }}<br />
             {% endif %}
         {% endfor %}
-        <hr />
-    {% endif %}
+    {% else %}
+        <form method="POST">
+            {% set caractsnull = {} %}
+            {% for name, value in item.characteristics %}
+                <span data-name="{{ name }}" {% if value == 0 %} style="display: none;"{% endif %}>
+                    {% set range %}
+                        <input name="caracts[{{ name }}]" type="number" value="{{ value }}">
+                    {% endset %}
+                    {{ name | trans({'%1%': range}) | raw }}<br />
 
-    {% for name, value in item.characteristics %}
-        {% if value | is_array %}
-            {% set min = value.min %}
-            {% set max = value.max %}
-        {% else %}
-            {% set min = value %}
-            {% set max = value %}
-        {% endif %}
-
-        {% if min != 0 or max != 0 %}
-            {% set range %}
-                {% if min != max %}
-                    {{ min}} {{ 'to' | trans }}
+                {% if value == 0 %}
+                    {% set caractsnull = caractsnull + {(name): name | trans({'%1%': ''})}%}
                 {% endif %}
-                {{ max }}
-            {% endset %}
-            {{ name | trans({'%1%': range}) }}<br>
-        {% endif %}
-    {% endfor %}
-{% else %}
-    <form method="POST">
-        {% set caractsnull = {} %}
-        {% for name, value in item.characteristics %}
-            <span data-name="{{ name }}" {% if value == 0 %} style="display: none;"{% endif %}>
-                {% set range %}
-                    <input name="caracts[{{ name }}]" type="number" value="{{ value }}">
-                {% endset %}
-                {{ name | trans({'%1%': range}) | raw }}<br />
-
-            {% if value == 0 %}
-                {% set caractsnull = caractsnull + {(name): name | trans({'%1%': ''})}%}
-            {% endif %}
-            </span>
-        {% endfor %}
-        <input type="hidden" name="slot" value="{{ item.slot }}">
+                </span>
+            {% endfor %}
+            <input type="hidden" name="slot" value="{{ item.slot }}">
+            <br />
+            <button class="btn btn-primary" type="submit">Mettre à jour</button>
+        </form>
         <br />
-        <button class="btn btn-primary" type="submit">Mettre à jour</button>
-    </form>
-    <br />
-    Nouvel effet :
-    <select class="build-fm">
-        {% for caract, name in caractsnull %}
-        <option value="{{ caract }}">{{ name }}</option>
-        {% endfor %}
-    </select><br>
-    <button class="add-build-fm">Ajouter</button>
+        Nouvel effet :
+        <select class="build-fm">
+            {% for caract, name in caractsnull %}
+            <option value="{{ caract }}">{{ name }}</option>
+            {% endfor %}
+        </select><br>
+        <button class="add-build-fm">Ajouter</button>
+    {% endif %}
 {% endif %}
+
+{# Tous les items #}
+{% for effect in item.effects %}
+    {{ effect.getPlainTextDescription(app.request.locale) }}<br />
+{% endfor %}

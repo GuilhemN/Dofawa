@@ -19,6 +19,8 @@ class ItemEffectImporter extends AbstractGameDataImporter
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
+        $this->paramLoader->setEnabled(false);
+        
         $items = [ ];
         $stmt = $conn->query('SELECT o.id, o._index1, o.effectId, o.diceNum, o.diceSide, o.value FROM ' . $db . '.D2O_Item_possibleEffect o');
         foreach ($stmt->fetchAll() as $row) {
@@ -38,6 +40,7 @@ class ItemEffectImporter extends AbstractGameDataImporter
         ksort($items);
         $itemRepo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
         $effectRepo = $this->dm->getRepository('DofCharactersBundle:EffectTemplate');
+
         $rowsProcessed = 0;
         if ($output && $progress)
             $progress->start($output, count($items));
@@ -74,9 +77,9 @@ class ItemEffectImporter extends AbstractGameDataImporter
                 $effect = $effectRepo->find($row['type']);
                 if($effect !== null)
                     $fx->setEffectTemplate($effect);
-                $fx->setRawParam1($row['param1']);
-                $fx->setRawParam2($row['param2']);
-                $fx->setRawParam3($row['param3']);
+                $fx->setParam1($row['param1']);
+                $fx->setParam2($row['param2']);
+                $fx->setParam3($row['param3']);
             });
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {
@@ -88,5 +91,11 @@ class ItemEffectImporter extends AbstractGameDataImporter
         }
         if ($output && $progress)
             $progress->finish();
+
+        $this->paramLoader->setEnabled(true);
+    }
+
+    public function setParamLoader($paramLoader){
+        $this->paramLoader = $paramLoader;
     }
 }

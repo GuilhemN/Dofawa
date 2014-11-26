@@ -47,13 +47,6 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
     private $order;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="type", type="integer")
-     */
-    private $type;
-
-    /**
      * Get id
      *
      * @return integer
@@ -109,33 +102,10 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
         return $this->order;
     }
 
-    /**
-     * Set type
-     *
-     * @param integer $type
-     * @return ItemTemplateEffect
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return integer
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
     public function exportData($full = true, $locale = 'fr')
     {
         return [
-            'type' => $this->type,
+            'effect' => $this->effectTemplate->getId(),
             'param1' => $this->param1,
             'param2' => $this->param2,
             'param3' => $this->param3
@@ -147,5 +117,29 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
         return false;
+    }
+
+    public function getDescription($locale = 'fr', $type = 'simple')
+    {
+        $desc = $this->getEffectTemplate()->expandDescription([
+            '1' => $this->getParam1(),
+            '2' => $this->getParam2(),
+            '3' => $this->getParam3()
+        ], $locale);
+        if($type == 'full')
+            array_unshift($desc, [ '[' . $this->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
+        return $desc;
+    }
+
+    public function getPlainTextDescription($locale = 'fr')
+    {
+        return implode('', array_map(function (array $row) {
+            return $row[0];
+        }, $this->getDescription($locale)));
+    }
+
+    public function __toString()
+    {
+        return $this->getPlainTextDescription();
     }
 }

@@ -70,9 +70,11 @@ services:
         class: Dof\ImpExpBundle\Importer\GameData\ItemEffectImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
-            - { name: dof_imp_exp.importer, provides: item_template_effects, requires: item_templates }
-            - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: beta_item_templates }
-
+            - { name: dof_imp_exp.importer, provides: item_template_effects, requires: "item_templates effect_templates" }
+            - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: "beta_item_templates beta_effect_templates" }
+        calls:
+            - [ setParamLoader, [ "@dof_characters.effect_param_loader" ] ]
+            
     # DofItemsBundle:ItemComponent
     dof_imp_exp.importer.item_components:
         class: Dof\ImpExpBundle\Importer\GameData\ItemComponentImporter
@@ -132,8 +134,8 @@ services:
         class: Dof\ImpExpBundle\Importer\GameData\SpellRankEffectImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
-            - { name: dof_imp_exp.importer, provides: spell_rank_effects, requires: spell_ranks }
-            - { name: dof_imp_exp.importer, provides: beta_spell_rank_effects, requires: beta_spell_ranks }
+            - { name: dof_imp_exp.importer, provides: spell_rank_effects, requires: "spell_ranks effect_templates" }
+            - { name: dof_imp_exp.importer, provides: beta_spell_rank_effects, requires: "beta_spell_ranks beta_effect_templates" }
         calls:
             - [ setParamLoader, [ "@dof_characters.effect_param_loader" ] ]
 
