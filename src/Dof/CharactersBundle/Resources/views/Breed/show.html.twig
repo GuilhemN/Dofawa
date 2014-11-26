@@ -1,5 +1,14 @@
 {% extends '::layout.html.twig' %}
 
+{% block breadcrumb %}
+    <li>Classes</li>
+    <li>
+        <a href="{{ path('dof_characters_show', {'slug': breed.slug}) }}">
+            {{ breed.getName(locales()) }}
+        </a>
+    </li>
+{% endblock %}
+
 {% block body %}
 {% for spell in breed.spells %}
     {% include 'DofCharactersBundle::spell.html.twig' %}
