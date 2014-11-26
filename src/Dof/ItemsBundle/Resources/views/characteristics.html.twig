@@ -73,5 +73,5 @@
 
 {# Tous les items #}
 {% for effect in item.effects %}
-    {{ effect.getPlainTextDescription(app.request.locale) }}<br />
+    {{ effect.getPlainTextDescription(app.request.locale, is_granted('ROLE_SPELL_XRAY')) }}<br />
 {% endfor %}

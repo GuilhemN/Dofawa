@@ -119,23 +119,23 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
         return false;
     }
 
-    public function getDescription($locale = 'fr', $type = 'simple')
+    public function getDescription($locale = 'fr', $full = false)
     {
         $desc = $this->getEffectTemplate()->expandDescription([
             '1' => $this->getParam1(),
             '2' => $this->getParam2(),
             '3' => $this->getParam3()
         ], $locale);
-        if($type == 'full')
+        if($full)
             array_unshift($desc, [ '[' . $this->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
         return $desc;
     }
 
-    public function getPlainTextDescription($locale = 'fr')
+    public function getPlainTextDescription($locale = 'fr', $full = false)
     {
         return implode('', array_map(function (array $row) {
             return $row[0];
-        }, $this->getDescription($locale)));
+        }, $this->getDescription($locale, $full)));
     }
 
     public function __toString()
