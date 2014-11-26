@@ -51,7 +51,7 @@
                             <div class="panel panel-default" class="col-sm-3">
                                 <table class="table">
                                     <tr><td style="padding:1px;">{{ 'ap' | trans({'%1%': ''},'item') }}: {{ item.apCost }} <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> <br>({{ item.maxCastsPerTurn }} {{ 'maxCastsPerTurn' | trans }})</td></tr>
-                                    <tr><td style="padding:1px;">{{ 'range' | trans({'%1%': ''},'item') }}: 
+                                    <tr><td style="padding:1px;">{{ 'range' | trans({'%1%': ''},'item') }}:
                                             {% if item.minCastRange != 0 or item.maxCastRange != 0 %}
                                                 {% if item.minCastRange != item.maxCastRange %}
                                                     {{ item.minCastRange }} {{ 'to' | trans }}
@@ -73,26 +73,24 @@
                     {% set item_content = '' %}
                     {# Menu tabs #}
                     <ul class="nav nav-tabs" role="tablist">
-                        {% if item.isEquipment() %}
-                            {# Charactéristiques #}
-                            <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
+                        {# Charactéristiques #}
+                        <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
+                        {% set item_content %}
+                            {{ item_content }}
+                            <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                                {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item_caracts | default(item), 'updatable': type == 'build' and can_write | default(false)} %}
+                            </div>
+                        {% endset %}
+
+                        {% if item.criteria is not empty %}
+                            {# Conditions #}
+                            <li><a href="#conditions-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
                             {% set item_content %}
                                 {{ item_content }}
-                                <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                                    {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item_caracts | default(item), 'updatable': type == 'build' and can_write | default(false)} %}
+                                <div class="tab-pane" id="conditions-item{{ item.id }}">
+                                    {{ item.criteria }}
                                 </div>
                             {% endset %}
-
-                            {% if item.criteria is not empty %}
-                                {# Conditions #}
-                                <li><a href="#conditions-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
-                                {% set item_content %}
-                                    {{ item_content }}
-                                    <div class="tab-pane" id="conditions-item{{ item.id }}">
-                                        {{ item.criteria }}
-                                    </div>
-                                {% endset %}
-                            {% endif %}
                         {% endif %}
 
                         {# Nourriture familier #}
