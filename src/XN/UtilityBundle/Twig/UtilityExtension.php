@@ -109,7 +109,7 @@ class UtilityExtension extends \Twig_Extension
 
 	public function getClassName($class){
 		$nClass = get_class($class);
-		$pos = strrchr($nClass, '\\');
+		$pos = strrpos($nClass, '\\');
 		return ($pos === false) ? $nClass : substr($nClass, $pos + 1);
 	}
 }
