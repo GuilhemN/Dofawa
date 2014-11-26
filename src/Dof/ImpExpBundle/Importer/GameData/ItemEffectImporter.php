@@ -38,6 +38,7 @@ class ItemEffectImporter extends AbstractGameDataImporter
         ksort($items);
         $itemRepo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
         $effectRepo = $this->dm->getRepository('DofCharactersBundle:EffectTemplate');
+
         $rowsProcessed = 0;
         if ($output && $progress)
             $progress->start($output, count($items));
@@ -74,9 +75,9 @@ class ItemEffectImporter extends AbstractGameDataImporter
                 $effect = $effectRepo->find($row['type']);
                 if($effect !== null)
                     $fx->setEffectTemplate($effect);
-                $fx->setRawParam1($row['param1']);
-                $fx->setRawParam2($row['param2']);
-                $fx->setRawParam3($row['param3']);
+                $fx->setParam1($row['param1']);
+                $fx->setParam2($row['param2']);
+                $fx->setParam3($row['param3']);
             });
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {
