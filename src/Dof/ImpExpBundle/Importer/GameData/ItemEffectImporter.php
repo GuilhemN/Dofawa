@@ -71,7 +71,9 @@ class ItemEffectImporter extends AbstractGameDataImporter
                 return $fx;
             }, function ($fx, $row) use ($effectRepo) {
                 $fx->setOrder($row['order']);
-                $fx->setEffectTemplate($effectRepo->find($row['type']));
+                $effect = $effectRepo->find($row['type']);
+                if($effect !== null)
+                    $fx->setEffectTemplate($effect);
                 $fx->setRawParam1($row['param1']);
                 $fx->setRawParam2($row['param2']);
                 $fx->setRawParam3($row['param3']);
