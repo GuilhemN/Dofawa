@@ -1,6 +1,6 @@
 {% autoescape %}
 {% if spell.publiclyVisible or is_granted('ROLE_SPELL_XRAY') %}
-<div class="panel panel-default item" date-id="spell-{{ spell.id }}">
+<div class="panel panel-default item" id="spell-{{ spell.id }}">
     <div class="panel-heading">
         <h3 class="panel-title">
             {{ spell.getName(locales()) }} <font size="2"></font>
@@ -38,11 +38,11 @@
                     {% if loop.first %}
                     <script type="text/javascript">
                     window.onload = function() {
-                        $('[data-id="spell-{{ spell.id }}"] [data-type="level"]').html('{{ rank.obtainmentLevel }}');
+                        $('#spell-{{ spell.id }} [data-type="level"]').html('{{ rank.obtainmentLevel }}');
                     }
                     </script>
                     {% endif %}
-                    <div onclick="$('[data-id=\'spell-{{ spell.id }}\'] [data-type=\'level\']').html('{{ rank.obtainmentLevel }}') " class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
+                    <div onclick="$('#spell-{{ spell.id }} [data-type=&quot;level&quot;]').html('{{ rank.obtainmentLevel }}') " class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
                         <b>Effets :</b><br>
                         {% for effect in rank.effects if not effect.critical and (not effect.hidden or is_granted('ROLE_SPELL_XRAY')) %}
                             {% if is_granted('ROLE_SPELL_XRAY') %}
