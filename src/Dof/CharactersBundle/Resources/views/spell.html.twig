@@ -65,7 +65,9 @@
         {% if spell.breeds is not empty %}
             <b>Classes :</b>
             {% for breed in spell.breeds %}
-                {{ breed.getName(locales()) }}
+                <a href="{{ path('dof_characters_show', {'slug': breed.slug}) }}">
+                    {{ breed.getName(locales()) }}
+                </a>
                 {% if not loop.last %}
                 |
                 {% endif %}
