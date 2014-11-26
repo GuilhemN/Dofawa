@@ -47,13 +47,6 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
     private $order;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="type", type="integer")
-     */
-    private $type;
-
-    /**
      * Get id
      *
      * @return integer
@@ -109,33 +102,10 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
         return $this->order;
     }
 
-    /**
-     * Set type
-     *
-     * @param integer $type
-     * @return ItemTemplateEffect
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return integer
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
     public function exportData($full = true, $locale = 'fr')
     {
         return [
-            'type' => $this->type,
+            'effect' => $this->effectTemplate->getId(),
             'param1' => $this->param1,
             'param2' => $this->param2,
             'param3' => $this->param3
