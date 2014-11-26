@@ -37,7 +37,9 @@
                     {% for rank in spell.ranks %}
                     {% if loop.first %}
                     <script type="text/javascript">
-                    $('[data-id="spell-{{ spell.id }}"] [data-type="level"]').html('{{ rank.obtainmentLevel }}');
+                    window.onload = function() {
+                        $('[data-id="spell-{{ spell.id }}"] [data-type="level"]').html('{{ rank.obtainmentLevel }}');
+                    }
                     </script>
                     {% endif %}
                     <div onclick="$('[data-id=\'spell-{{ spell.id }}\'] [data-type=\'level\']').html('{{ rank.obtainmentLevel }}') " class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
