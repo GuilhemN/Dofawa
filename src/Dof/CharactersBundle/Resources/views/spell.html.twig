@@ -4,7 +4,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">
             {{ spell.getName(locales()) }} <font size="2"></font>
-            <span class="pull-right"></span>
+            <span class="pull-right" data-name="level"></span>
         </h3>
     </div>
     <div class="panel-body">
@@ -35,7 +35,12 @@
                 </ul>
                 <div class="tab-content">
                     {% for rank in spell.ranks %}
-                    <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
+                    {% if loop.first %}
+                    <script type="text/javascript">
+                    importData($(this.parentNode.parentNode.parentNode.parentNode.parentNode), { level: '{{ rank.obtainmentLevel }}'});
+                    </script>
+                    {% endif %}
+                    <div onclick="importData($(this.parentNode.parentNode.parentNode.parentNode.parentNode), { level: '{{ rank.obtainmentLevel }}'})"class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
                         <b>Effets :</b><br>
                         {% for effect in rank.effects if not effect.critical and (not effect.hidden or is_granted('ROLE_SPELL_XRAY')) %}
                             {% if is_granted('ROLE_SPELL_XRAY') %}
