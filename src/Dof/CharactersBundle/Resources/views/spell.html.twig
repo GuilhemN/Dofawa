@@ -80,11 +80,11 @@
                                 <b>Autres caractéristiques :</b><br>
                                 <table>
                                     <tr><td>Coups critiques : </td><td class="padLeftTab"> {% if rank.criticalHitDenominator != 0 %}1/{{ rank.criticalHitDenominator }}{% else %} Aucun{% endif %}</td></tr>
-                                    <tr><td>Lancé(s) par tour par cible : </td><td class="padLeftTab"> {% if rank.maxCastsPerTarget != 0 %}{{ rank.maxCastsPerTarget }}{% else %} Aucun{% endif %}</td></tr>
+                                    {% if rank.maxCastsPerTarget != 0 %}<tr><td>Lancé(s) par tour par cible : </td><td class="padLeftTab"> {{ rank.maxCastsPerTarget }}</td></tr>{% endif %}
                                     <tr><td>PO modifiable : </td><td class="padLeftTab">{% if rank.modifiableCastRange %} Oui{% else %} Non{% endif %}</td></tr>
                                     <tr><td>Lancer en ligne : </td><td class="padLeftTab">{% if rank.lineCast %} Oui{% else %} Non{% endif %}</td></tr>
-                                    <tr><td>Lancer(s) par tour : </td><td class="padLeftTab"> {% if rank.maxCastsPerTurn != 0 %}{{ rank.maxCastsPerTurn }}{% else %} -{% endif %}</td></tr>
-                                    <tr><td>Tours entre deux lancers : </td><td class="padLeftTab"> {{ rank.cooldown }}</td></tr>
+                                    {% if rank.maxCastsPerTurn != 0 %}<tr><td>Lancer(s) par tour : </td><td class="padLeftTab"> {{ rank.maxCastsPerTurn }}</td></tr>{% endif %}
+                                    {% if rank.cooldown != 0 %}<tr><td>Tours entre deux lancers : </td><td class="padLeftTab"> {{ rank.cooldown }}</td></tr>{% endif %}
                                     <tr><td>Ligne de vue : </td><td class="padLeftTab">{% if rank.sightCast %} Oui{% else %} Non{% endif %}</td></tr>
                                     <tr><td>Cellules libres : </td><td class="padLeftTab">{% if rank.needsFreeCell %} Oui{% else %} Non{% endif %}</td></tr>
                                 </table>
