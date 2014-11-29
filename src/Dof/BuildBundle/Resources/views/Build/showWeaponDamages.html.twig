@@ -12,7 +12,7 @@
 {% block body %}
 {% autoescape %}
     {% include 'DofBuildBundle::header.html.twig' %}
-    {% if weapon != "" %}
+    {% if weapon is not null %}
     	{% include 'DofItemsBundle::item.html.twig' with {'item': weapon, display: '', type: 'build', 'can_write': ''} only %}
 
     	<div class="panel panel-default">
@@ -50,13 +50,13 @@
 		            {% if min != 0 or max != 0 %}
 		                {% if min != max %}
 		                    {% set damages %}
-		                    	{{ (min * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }} 
+		                    	{{ (min * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }}
 		                    	{{ 'to' | trans({}, 'item') }}
 		                    	{{ (max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }}
 		                    {% endset %}
 
 		                    {% set critical %}
-		                    	{{ ((min + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') }} 
+		                    	{{ ((min + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') }}
 		                    	{{ 'to' | trans({}, 'item') }}
 		                    	{{ ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') }}
 		                    {% endset %}
@@ -79,7 +79,7 @@
 	    </div>
 
     {% else %}
-    	<h2>Ajouter un corps à corps à votre Stuff</h2>
+    	<h2>Aucune arme n'est équipée.</h2>
     {% endif %}
 {% endautoescape %}
 {% endblock %}

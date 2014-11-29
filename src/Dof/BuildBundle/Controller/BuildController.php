@@ -56,7 +56,7 @@ class BuildController extends Controller
             $stuff = new Stuff();
             $look = new BuildLook();
             $breed = $character->getBreed();
-            
+
             $dform = $this->get('request')->request->get('dof_buildbundle_playercharacter');
 
             // Apparence du 1er personnage
@@ -227,7 +227,8 @@ class BuildController extends Controller
                 break;
             }
         }
-
+        if(!isset($weapon))
+            $weapon = null;
 
         return $this->render('DofBuildBundle:Build:showWeaponDamages.html.twig', [
             'characteristics' => $characteristics,
