@@ -10,7 +10,7 @@
 
 {# Effets des équipements #}
 {% if type == 'build'  or itemEntity.equipment %}
-    {% if updatable | default(false) == false %}
+    {% if not updatable | default(false) %}
         {# Affichage des dégats de l'arme #}
         {% if itemEntity.weapon %}
             {% for damageRow in itemEntity.damageRows %}
@@ -68,14 +68,6 @@
             <br />
             <button class="btn btn-primary" type="submit">Mettre à jour</button>
         </form>
-        <br />
-        Nouvel effet :
-        <select class="build-fm">
-            {% for caract, name in caractsnull %}
-            <option value="{{ caract }}">{{ name }}</option>
-            {% endfor %}
-        </select><br>
-        <button class="add-build-fm">Ajouter</button>
     {% endif %}
 {% endif %}
 
@@ -85,3 +77,14 @@
     {% include 'DofCharactersBundle::fragments.html.twig' %}
     <br />
 {% endfor %}
+
+{% if type == 'build' and updatable | default(false) %}
+    <br />
+    Nouvel effet :
+    <select class="build-fm">
+        {% for caract, name in caractsnull %}
+        <option value="{{ caract }}">{{ name }}</option>
+        {% endfor %}
+    </select><br>
+    <button class="add-build-fm">Ajouter</button>
+{% endif %}
