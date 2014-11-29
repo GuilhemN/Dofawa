@@ -65,9 +65,6 @@
                 </span>
             {% endfor %}
             <input type="hidden" name="slot" value="{{ item.slot }}">
-            <br />
-            <button class="btn btn-primary" type="submit">Mettre à jour</button>
-        </form>
     {% endif %}
 {% endif %}
 
@@ -79,6 +76,9 @@
 {% endfor %}
 
 {% if type == 'build' and updatable | default(false) %}
+    <br />
+    <button class="btn btn-primary" type="submit">Mettre à jour</button>
+    </form>
     <br />
     Nouvel effet :
     <select class="build-fm">
