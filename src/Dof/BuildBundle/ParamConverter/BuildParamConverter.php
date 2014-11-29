@@ -54,7 +54,7 @@ class BuildParamConverter extends ServiceWithContainer implements ParamConverter
             throw new NotFoundHttpException('Build non trouvé.');
         }
 
-        $request->attributes->set('stuff', $stuff);
+        $request->attributes->set($configuration->getName(), $stuff);
         $request->attributes->set('character', $character = $stuff->getCharacter());
         $request->attributes->set('user', $user = $character->getOwner());
 
@@ -72,6 +72,6 @@ class BuildParamConverter extends ServiceWithContainer implements ParamConverter
         if (null === $configuration->getClass())
             return false;
 
-        return "Dof\BuildBundle\Entity\Stuff" === $configuration->getClass();
+        return $configuration->getName() === "stuff" && "Dof\BuildBundle\Entity\Stuff" === $configuration->getClass();
     }
 }

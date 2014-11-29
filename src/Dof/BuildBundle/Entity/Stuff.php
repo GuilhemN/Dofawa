@@ -131,6 +131,19 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
         $this->agility = 0;
     }
 
+    public function __clone()
+    {
+        if($this->id){
+            $this->id = null;
+            $this->look = clone $this->look;
+            $this->slug = null;
+
+            $this->items = new ArrayCollection();
+            $this->primaryBonus = array();
+            $this->createdAt = null;
+        }
+    }
+
 
     /**
      * Get id

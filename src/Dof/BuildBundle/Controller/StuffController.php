@@ -9,6 +9,8 @@ use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\BuildBundle\Entity\Item;
 
+use Dof\GraphicsBundle\Entity\BuildLook;
+
 use Dof\BuildBundle\BuildSlot;
 
 class StuffController extends Controller
@@ -70,5 +72,27 @@ class StuffController extends Controller
             'character' => $character->getSlug(),
             'stuff' => $stuff->getSlug()
             ]));
+    }
+
+    public function createStuff(Stuff $oldStuff){
+        $bm = $this->get('build_manager');
+        $em = $this->getDoctrine()->getManager();
+        $name = $this->get('request')->request->get('name');
+
+        if(!$bm->canWrite($oldStuff) or empty($name))
+            throw $this->createAccessDeniedException();
+
+        $stuff = clone $oldStuff;
+        $stuff->setName($name);
+        $em->persist($stuff->getLook());
+        $em->persist($stuff);
+
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('dof_build_show', array(
+            'user' => $character->getUser()->getSlug(),
+            'character' => $character->getSlug(),
+            'stuff' => $stuff->getSlug()
+        )));
     }
 }

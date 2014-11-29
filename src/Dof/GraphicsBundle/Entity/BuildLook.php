@@ -67,4 +67,9 @@ class BuildLook extends BasicPCLook
     {
         return $this->stuff->getCharacter()->getBreed();
     }
+
+    public function __clone() {
+        if($this->id)
+            $this->id = null;
+    }
 }

@@ -54,3 +54,11 @@ dof_build_additem:
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
         page: \d+
+
+
+dof_build_create_stuff:
+    path:     /create-stuff/{stuff}/
+    defaults: { _controller: DofBuildBundle:Stuff:createStuff}
+    requirements:
+        stuff: '[0-9a-z-]+'
+        _method: POST
