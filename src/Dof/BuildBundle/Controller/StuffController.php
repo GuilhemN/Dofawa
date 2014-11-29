@@ -103,7 +103,7 @@ class StuffController extends Controller
         $look->setStuff($stuff);
         $stuff->setLook($look);
 
-        $em->persist($look());
+        $em->persist($look);
         $em->persist($stuff);
 
         $em->flush();
