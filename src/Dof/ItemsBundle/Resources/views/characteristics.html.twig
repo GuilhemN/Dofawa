@@ -1,11 +1,19 @@
 {% trans_default_domain 'item' %}
 
+{% if classOf(item) == 'Item' %}
+    {% set type = 'build' %}
+    {% set itemEntity = item.itemTemplate %}
+{% else %}
+    {% set type = 'normal' %}
+    {% set itemEntity = item %}
+{% endif %}
+
 {# Effets des équipements #}
-{% if item.equipment is not defined or item.equipment %}
+{% if type == 'build'  or itemEntity.equipment %}
     {% if updatable | default(false) == false %}
         {# Affichage des dégats de l'arme #}
-        {% if item.weapon is defined and item.weapon %}
-            {% for damageRow in item.damageRows %}
+        {% if itemEntity.weapon %}
+            {% for damageRow in itemEntity.damageRows %}
                 {% set min = damageRow.min %}
                 {% set max = damageRow.max %}
 
@@ -72,7 +80,7 @@
 {% endif %}
 
 {# Tous les items #}
-{% for effect in item.effects %}
+{% for effect in itemEntity.effects %}
     {{ effect.getPlainTextDescription(app.request.locale, is_granted('ROLE_SPELL_XRAY')) }}
     {% include 'DofCharactersBundle::fragments.html.twig' %}
     <br />
