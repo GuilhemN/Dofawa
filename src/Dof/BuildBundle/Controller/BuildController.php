@@ -55,7 +55,8 @@ class BuildController extends Controller
             $character = $form->getData();
             $stuff = new Stuff();
             $look = new BuildLook();
-
+            $breed = $character->getBreed();
+            
             $dform = $this->get('request')->request->get('dof_buildbundle_playercharacter');
 
             // Apparence du 1er personnage
