@@ -4,22 +4,8 @@
 
 {% block body %}
 {% autoescape  %}
-    <div class="row">
-        {% for character in characters %}
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
-                    'look': character.stuffs[0].look.toEntityLook()
-                } only %}
-                <div class="caption">
-                    <h3>{{ character.name }}</h3>
-                    <p>{{ 'level' | trans({'%level%': character.level}, 'item')}}</p>
-                    <p><a href="{{ path('dof_build_show', {'user': character.owner.slug, 'character': character.slug, 'stuff': character.stuffs[0].slug}) }}" class="btn btn-primary" role="button">See</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+    {% include 'DofBuildBundle::list.html.twig' with {'characters': characters} only %}
+
     <div class="well">
         <div class="page-header">
             <h1>{{ 'create' | trans }}</h1>
