@@ -123,7 +123,6 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="SpellRankStateRequirement", mappedBy="spellRank")
-     * @ORM\OrderBy({ "state" = "ASC" })
      */
     private $stateRequirements;
 
