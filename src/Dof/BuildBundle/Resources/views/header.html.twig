@@ -33,7 +33,7 @@
 <div class="modal fade new-stuff-modal" tabindex="-1" role="dialog" aria-labelledby="createStuffModal" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <form action="{{ path('dof_build_create_stuff', {'stuff': stuff.slug}) }}" method="POST">
+            <form action="{{ path('dof_build_create_stuff', {'slug': stuff.slug}) }}" method="POST">
                 Nom : <input type="text" name="name" /><br>
                 <input type="submit" class="btn" value="Créer"/>
             </form>
