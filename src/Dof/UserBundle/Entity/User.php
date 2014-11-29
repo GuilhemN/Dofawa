@@ -3,7 +3,10 @@
 namespace Dof\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
+
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -20,6 +23,7 @@ use XN\Security\TOTPAuthenticatableTrait;
 use Dof\UserBundle\OwnableTrait;
 
 use FOS\MessageBundle\Model\ParticipantInterface;
+use Dof\BuildBundle\Entity\PlayerCharacter;
 
 /**
  * User
@@ -134,6 +138,16 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
      */
     private $file;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\PlayerCharacter", mappedBy="owner")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $builds;
+
+    public function __construct()
+    {
+        $this->builds = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -505,6 +519,42 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
      */
     public function removeUpload(){
         @unlink($this->getAbsolutePath());
+    }
+
+    /**
+    * Add builds
+    *
+    * @param PlayerCharacter $builds
+    * @return object
+    */
+    public function addBuild(PlayerCharacter $builds)
+    {
+        $this->builds[] = $builds;
+
+        return $this;
+    }
+
+    /**
+    * Remove builds
+    *
+    * @param PlayerCharacter $builds
+    * @return object
+    */
+    public function removeBuild(PlayerCharacter $builds)
+    {
+        $this->builds->removeElement($builds);
+
+        return $this;
+    }
+
+    /**
+    * Get builds
+    *
+    * @return Collection
+    */
+    public function getBuilds()
+    {
+        return $this->builds;
     }
 
     public function getMinorColumns()
