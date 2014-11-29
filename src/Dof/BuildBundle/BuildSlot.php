@@ -35,7 +35,8 @@ class BuildSlot extends Enum
 		return [
 			self::ANIMAL => [
 				ItemSlot::PET,
-				ItemSlot::MOUNT
+				ItemSlot::MOUNT,
+				ItemSlot::USEABLE // FIXME
 			],
 			self::DOFUS1 => ItemSlot::DOFUS,
 			self::DOFUS2 => ItemSlot::DOFUS,
@@ -68,7 +69,7 @@ class BuildSlot extends Enum
 			if(is_array($v))
 				foreach($v as $v2)
 					$v = $v2;
-					
+
 			$return[$v][] = $k;
 		}
 
