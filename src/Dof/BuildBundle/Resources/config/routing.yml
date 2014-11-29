@@ -57,8 +57,8 @@ dof_build_additem:
 
 
 dof_build_create_stuff:
-    path:     /create-stuff/{stuff}/
+    path:     /create-stuff/{slug}/
     defaults: { _controller: DofBuildBundle:Stuff:createStuff}
     requirements:
-        stuff: '[0-9a-z-]+'
+        slug: '[0-9a-z-]+'
         _method: POST
