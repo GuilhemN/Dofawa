@@ -124,6 +124,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     {
         $this->items = new ArrayCollection();
         $this->vitality = 0;
+        $this->wisdom = 0;
         $this->strength = 0;
         $this->intelligence = 0;
         $this->chance = 0;
