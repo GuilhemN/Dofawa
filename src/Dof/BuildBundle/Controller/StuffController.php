@@ -89,6 +89,7 @@ class StuffController extends Controller
 
         $em->flush();
 
+        $character = $stuff->getCharacter();
         return $this->redirect($this->generateUrl('dof_build_show', array(
             'user' => $character->getUser()->getSlug(),
             'character' => $character->getSlug(),
