@@ -91,7 +91,7 @@ class StuffController extends Controller
 
         $character = $stuff->getCharacter();
         return $this->redirect($this->generateUrl('dof_build_show', array(
-            'user' => $character->getUser()->getSlug(),
+            'user' => $character->getOwner()->getSlug(),
             'character' => $character->getSlug(),
             'stuff' => $stuff->getSlug()
         )));
