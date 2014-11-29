@@ -74,7 +74,7 @@ class StuffController extends Controller
             ]));
     }
 
-    public function createStuff(Stuff $oldStuff){
+    public function createStuffAction(Stuff $oldStuff){
         $bm = $this->get('build_manager');
         $em = $this->getDoctrine()->getManager();
         $name = $this->get('request')->request->get('name');

@@ -21,7 +21,7 @@
     <li role="presentation" class="dropdown">
         <a aria-expanded="false" href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">Stuffs <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-            <li data-toggle="modal" data-target=".new-stuff-modal">Créer</li>
+            <li data-toggle="modal" data-target=".new-stuff-modal"><a>Créer</a></li>
             <li class="divider"></li>
             {% for s in character.stuffs %}
             <li{% if s == stuff %} class="active"{% endif %}><a href="{{ path('dof_build_show', slugs | merge({'stuff': s.slug})) }}" tabindex="-1" role="tab" id="dropdown1-tab" data-toggle="tab" aria-controls="dropdown1">{{ s.name }}</a></li>
