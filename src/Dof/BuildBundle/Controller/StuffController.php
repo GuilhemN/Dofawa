@@ -82,9 +82,28 @@ class StuffController extends Controller
         if(!$bm->canWrite($oldStuff) or empty($name))
             throw $this->createAccessDeniedException();
 
-        $stuff = clone $oldStuff;
+        $stuff = new Stuff;
         $stuff->setName($name);
-        $em->persist($stuff->getLook());
+        $stuff->setFaceLabel($oldStuff->getFaceLabel());
+        $stuff->setCharacter($oldStuff->getCharacter());
+        $stuff->setVisible($oldStuff->getVisible());
+
+        $stuff->setVitality($oldStuff->getVitality());
+        $stuff->setWisdom($oldStuff->getWisdom());
+        $stuff->setStrength($oldStuff->getStrength());
+        $stuff->setIntelligence($oldStuff->getIntelligence());
+        $stuff->setChance($oldStuff->getChance());
+        $stuff->setAgility($oldStuff->getAgility());
+
+        $oldLook = $oldStuff->getLook();
+        $look = new BuildLook();
+        $look->setGender($oldLook->getGender());
+        $look->setColors($oldLook->getColors());
+
+        $look->setStuff($stuff);
+        $stuff->setLook($look);
+
+        $em->persist($look());
         $em->persist($stuff);
 
         $em->flush();
