@@ -87,6 +87,7 @@ trait EffectTrait
     {
         $securityContext = $this->di->get('security.context');
         $translator = $this->di->get('translator');
+        $router = $this->di->get('router');
         return implode('', array_map(function (array $row) {
             if($row[1] === GameTemplateString::COMES_FROM_TEMPLATE)
                 return htmlspecialchars($row[0]);
@@ -97,7 +98,7 @@ trait EffectTrait
                     $name = $row[0];
 
                 if($row[0] instanceOf \Dof\CharactersBundle\Entity\Spell && ($row[0]->isPubliclyVisible() or $securityContext->isGranted('ROLE_SPELL_XRAY') ))
-                    return '<a href="' . $this->get('router')->generate('dof_spell_show', array('slug' => $row[0]->getSlug())) . '">' . $name . '</a>';
+                    return '<a href="' . $router->generate('dof_spell_show', array('slug' => $row[0]->getSlug())) . '">' . $name . '</a>';
                 else
                     return $name;
             }
