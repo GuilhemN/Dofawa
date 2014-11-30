@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\CharatersBundle\Entity\Emoticon;
+use Dof\CharactersBundle\Entity\Emoticon;
 
 class EmoticonImporter extends AbstractGameDataImporter
 {
