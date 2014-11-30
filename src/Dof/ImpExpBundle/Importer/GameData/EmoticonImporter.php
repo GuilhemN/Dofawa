@@ -45,7 +45,7 @@ class EmoticonImporter extends AbstractGameDataImporter
             $this->copyI18NProperty($emoticon, 'setName', $row, 'name');
             $this->copyI18NProperty($emoticon, 'setShortcut', $row, 'shortcut');
 
-            if(empty($emoticon))
+            if($emoticon->getNameFr() == ('' or null))
                 $emoticon->setNameFr('Emote');
 
             $this->dm->persist($emoticon);
