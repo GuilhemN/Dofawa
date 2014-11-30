@@ -1,12 +1,16 @@
 <?php
 namespace Dof\CharactersBundle;
 
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Dof\CharactersBundle\Entity\EffectTemplate;
 
 interface EffectInterface
 {
+    public function getDescription($locale = 'fr', $full = false);
+    public function getPlainTextDescription($locale = 'fr');
+    public function getHtmlDescription();
+
     public function getEffectTemplate();
     public function setEffectTemplate(EffectTemplate $effectTemplate);
 
@@ -23,6 +27,6 @@ interface EffectInterface
     public function addFragment($fragment);
     public function removeFragment($fragment);
 
-    public function getTranslator();
-    public function setTranslator(TranslatorInterface $translator);
+    public function getContainer();
+    public function setContainer(ContainerInterface $di);
 }

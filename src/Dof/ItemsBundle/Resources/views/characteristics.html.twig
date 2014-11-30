@@ -70,7 +70,7 @@
 
 {# Tous les items #}
 {% for effect in itemEntity.effects %}
-    {{ effect.getPlainTextDescription(app.request.locale, is_granted('ROLE_SPELL_XRAY')) }}
+    {{ effect.htmlDescription }}
     {% include 'DofCharactersBundle::fragments.html.twig' %}
     <br />
 {% endfor %}

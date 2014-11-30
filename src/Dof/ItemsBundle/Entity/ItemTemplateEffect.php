@@ -133,13 +133,6 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
         return $desc;
     }
 
-    public function getPlainTextDescription($locale = 'fr', $full = false)
-    {
-        return implode('', array_map(function (array $row) {
-            return $row[0];
-        }, $this->getDescription($locale, $full)));
-    }
-
     public function __toString()
     {
         return $this->getPlainTextDescription();
