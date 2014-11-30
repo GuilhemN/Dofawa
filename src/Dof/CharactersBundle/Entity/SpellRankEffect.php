@@ -11,8 +11,6 @@ use Dof\CharactersBundle\EffectTrait;
 
 use Dof\Common\GameTemplateString;
 
-use XN\L10n\LocalizedNameInterface;
-use XN\L10n\LocalizedNameTrait;
 /**
  * SpellRankEffect
  *
@@ -21,7 +19,7 @@ use XN\L10n\LocalizedNameTrait;
  * })
  * @ORM\Entity(repositoryClass="SpellRankEffectRepository")
  */
-class SpellRankEffect implements IdentifiableInterface, EffectInterface, LocalizedNameInterface
+class SpellRankEffect implements IdentifiableInterface, EffectInterface
 {
     /**
      * @var integer
