@@ -50,7 +50,7 @@ class ItemSetEffectImporter extends AbstractGameDataImporter
                 $combo = new ItemSetCombination();
                 $combo->setSet($set);
                 return $combo;
-            }, function ($combo, $row) use ($combos) {
+            }, function ($combo, $row) use ($combos, $effectRepo) {
                 $combo->setItemCount($row);
                 $effects = $combos[$row];
                 ksort($effects);
