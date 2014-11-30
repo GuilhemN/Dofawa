@@ -20,7 +20,7 @@ class EffectParamLoader extends ServiceWithContainer
 
     public function __construct(ContainerInterface $di)
     {
-        parent::__contruct($di);
+        parent::__construct($di);
         $this->enabled = true;
     }
 
