@@ -1,13 +1,20 @@
 <?php
 namespace XN\Graphics;
 
-class Color
+use XN\Persistence\IdentifiableInterface;
+
+class Color implements IdentifiableInterface
 {
 	private $rgb;
 
 	public function __construct($rgb = 0)
 	{
 		$this->rgb = $rgb;
+	}
+
+	public function getId()
+	{
+		return $this->rgb;
 	}
 
 	public function getRed()
