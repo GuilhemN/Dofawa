@@ -92,7 +92,7 @@ trait EffectTrait
             if($row[1] === GameTemplateString::COMES_FROM_TEMPLATE)
                 return htmlspecialchars($row[0]);
             else {
-                if($row[0] instanceOf \XN\L10n\LocalizedNameTrait)
+                if($row[0] instanceOf \XN\L10n\LocalizedNameInterface)
                     $name = $row[0]->getName($translator->getLocales());
                 else
                     $name = $row[0];

@@ -16,6 +16,7 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
@@ -30,7 +31,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
  */
-class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface
+class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, LocalizedNameInterface
 {
     /**
      * @var integer

@@ -15,6 +15,7 @@ use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
 //Traduction Titre/Description
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use XN\Metadata\MinorColumnsInterface;
@@ -25,7 +26,7 @@ use XN\Metadata\MinorColumnsInterface;
  * @ORM\Table(name="dof_articles")
  * @ORM\Entity(repositoryClass="Dof\ArticlesBundle\Entity\ArticleRepository")
  */
-class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, MinorColumnsInterface
+class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, MinorColumnsInterface, LocalizedNameInterface
 {
     /**
      * @var integer
@@ -226,7 +227,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         return $this->getNameFr();
     }
-    
+
     /**
      * Add edits
      *

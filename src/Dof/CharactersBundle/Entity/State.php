@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 use XN\Persistence\IdentifiableInterface;
 
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
@@ -15,7 +16,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_states")
  * @ORM\Entity(repositoryClass="Dof\CharactersBundle\Entity\StateRepository")
  */
-class State implements IdentifiableInterface
+class State implements IdentifiableInterface, LocalizedNameInterface
 {
     use LocalizedNameTrait, ReleaseBoundTrait;
 
@@ -109,7 +110,7 @@ class State implements IdentifiableInterface
     {
         return $this->preventsWeaponUsage;
     }
-    
+
     public function __toString()
     {
         return $this->getName();

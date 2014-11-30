@@ -13,6 +13,7 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
@@ -23,7 +24,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_breeds")
  * @ORM\Entity(repositoryClass="BreedRepository")
  */
-class Breed implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class Breed implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
 {
     /**
      * @var integer

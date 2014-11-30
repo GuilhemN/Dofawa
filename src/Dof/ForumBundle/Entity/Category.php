@@ -15,6 +15,7 @@ use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
 //Traduction Titre/Description
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 
@@ -26,7 +27,7 @@ use Dof\ForumBundle\Entity\Forum;
  * @ORM\Table(name="dof_forum_category")
  * @ORM\Entity(repositoryClass="Dof\ForumBundle\Entity\CategoryRepository")
  */
-class Category implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class Category implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
 {
     use TimestampableTrait, SluggableTrait, OwnableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 

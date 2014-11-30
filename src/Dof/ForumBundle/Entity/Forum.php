@@ -13,6 +13,7 @@ use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
 //Traduction Titre/Description
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 
@@ -26,7 +27,7 @@ use Dof\UserBundle\Entity\User;
  * @ORM\Table(name="dof_forum_forums")
  * @ORM\Entity(repositoryClass="Dof\ForumBundle\Entity\ForumRepository")
  */
-class Forum implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class Forum implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
 {
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
@@ -166,7 +167,7 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
      * @return boolean
      */
     public function isUnRead($repo, User $user)
-    { 
+    {
        return $repo->isUnReadRepo($this,$user);
     }
 }

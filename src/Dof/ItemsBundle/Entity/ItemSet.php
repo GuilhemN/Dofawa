@@ -18,6 +18,7 @@ use XN\Metadata\SluggableTrait;
 use Dof\ItemsBundle\PrimaryBonusInterface;
 use Dof\ItemsBundle\PrimaryBonusTrait;
 
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
@@ -27,7 +28,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_item_sets")
  * @ORM\Entity(repositoryClass="ItemSetRepository")
  */
-class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, PrimaryBonusInterface
+class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, PrimaryBonusInterface, LocalizedNameInterface
 {
     /**
      * @var integer
