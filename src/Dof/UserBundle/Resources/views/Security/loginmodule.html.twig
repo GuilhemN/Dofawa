@@ -10,7 +10,7 @@
 	<button type="submit" id="btnLogin" class="btn">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
 
 	<br><br>
-	<label><input id="remember_me" name="_remember_me" value="on" type="checkbox" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+	<label><input id="remember_me" checked name="_remember_me" value="on" type="checkbox" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
 </form>
 <script defer>
     function checkForTOTPField(){
