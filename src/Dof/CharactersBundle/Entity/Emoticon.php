@@ -25,12 +25,11 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+    * @var integer
+    *
+    * @ORM\Column(name="id", type="integer")
+    * @ORM\Id
+    */
     private $id;
 
     /**
@@ -104,11 +103,25 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     */
     private $shortcutRu;
 
+
     /**
-     * Get id
-     *
-     * @return integer
-     */
+    * Set id
+    *
+    * @param integer $id
+    * @return Emoticon
+    */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+    * Get id
+    *
+    * @return integer
+    */
     public function getId()
     {
         return $this->id;
