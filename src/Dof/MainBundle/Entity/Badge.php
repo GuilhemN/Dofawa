@@ -11,6 +11,7 @@ use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 
 //Traduction Titre/Description
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 
@@ -23,7 +24,7 @@ use Dof\UserBundle\Entity\Badge as UserBadge;
  * @ORM\Table(name="dof_badges")
  * @ORM\Entity(repositoryClass="Dof\MainBundle\Entity\BadgeRepository")
  */
-class Badge implements IdentifiableInterface, TimestampableInterface
+class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedNameInterface
 {
     use TimestampableTrait, LocalizedNameTrait;
     /**
