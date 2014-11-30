@@ -30,7 +30,7 @@ class ItemEffectImporter extends AbstractGameDataImporter
             FROM ' . $db . '.D2O_Pet_possibleEffect o
             WHERE o.effectId IN (SELECT id FROM ' . $db . '.D2O_Effect)
             ');
-        foreach ($stmt->fetchAll() + $smtp2->getAll() as $row) {
+        foreach ($stmt->fetchAll() + $smtp2->fetchAll() as $row) {
             $itemId = intval($row['id']);
             $order = intval($row['_index1']);
             if (!isset($items[$itemId]))
