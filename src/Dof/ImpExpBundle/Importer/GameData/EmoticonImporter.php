@@ -7,6 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\ImpExpBundle\ImporterFlags;
 
+use XN\Common\Inflector;
 use Dof\CharactersBundle\Entity\Emoticon;
 
 class EmoticonImporter extends AbstractGameDataImporter
@@ -45,7 +46,7 @@ class EmoticonImporter extends AbstractGameDataImporter
             $this->copyI18NProperty($emoticon, 'setName', $row, 'name');
             $this->copyI18NProperty($emoticon, 'setShortcut', $row, 'shortcut');
 
-            if($emoticon->getNameFr() == ('' or null))
+            if(!Inflector::slugify(strval($emoticon)))
                 $emoticon->setNameFr('Emote');
 
             $this->dm->persist($emoticon);
