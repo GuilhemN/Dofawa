@@ -9,10 +9,10 @@
 {% endif %}
 
 {# Effets des équipements #}
-{% if type == 'build'  or itemEntity.equipment %}
+{% if itemEntity.equipment is not defined or itemEntity.equipment %}
     {% if not updatable | default(false) %}
         {# Affichage des dégats de l'arme #}
-        {% if itemEntity.weapon %}
+        {% if itemEntity.weapon is not defined or itemEntity.weapon %}
             {% for damageRow in itemEntity.damageRows %}
                 {% set min = damageRow.min %}
                 {% set max = damageRow.max %}

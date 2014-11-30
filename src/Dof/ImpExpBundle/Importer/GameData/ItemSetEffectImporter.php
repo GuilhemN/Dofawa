@@ -40,6 +40,7 @@ class ItemSetEffectImporter extends AbstractGameDataImporter
         $stmt->closeCursor();
         ksort($sets);
         $setRepo = $this->dm->getRepository('DofItemsBundle:ItemSet');
+        $effectRepo = $this->dm->getRepository('DofCharactersBundle:EffectTemplate');
         foreach ($sets as $set => $combos) {
             $set = $setRepo->find($set);
             if ($set === null || ($set->isPreliminary() ^ $beta))
@@ -59,9 +60,11 @@ class ItemSetEffectImporter extends AbstractGameDataImporter
                     $fx = new ItemSetEffect();
                     $fx->setCombination($combo);
                     return $fx;
-                }, function ($fx, $row) {
+                }, function ($fx, $row) use ($effectRepo) {
                     $fx->setOrder($row['order']);
-                    $fx->setType($row['type']);
+                    $effect = $effectRepo->find($row['type']);
+                    if($effect !== null)
+                        $fx->setEffectTemplate($effect);
                     $fx->setParam1($row['param1']);
                     $fx->setParam2($row['param2']);
                     $fx->setParam3($row['param3']);
