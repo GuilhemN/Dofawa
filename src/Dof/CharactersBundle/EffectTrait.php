@@ -88,7 +88,7 @@ trait EffectTrait
         $securityContext = $this->di->get('security.context');
         $translator = $this->di->get('translator');
         $router = $this->di->get('router');
-        return implode('', array_map(function (array $row) {
+        return implode('', array_map(function (array $row) use ($translator, $router, $securityContext) {
             if($row[1] === GameTemplateString::COMES_FROM_TEMPLATE)
                 return htmlspecialchars($row[0]);
             else {
