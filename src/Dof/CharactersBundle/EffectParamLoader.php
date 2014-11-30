@@ -6,15 +6,10 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 
 use XN\Persistence\IdentifiableInterface;
+use XN\Common\ServiceWithContainer;
 
-class EffectParamLoader
+class EffectParamLoader extends ServiceWithContainer
 {
-    /**
-     * @var TranslatorInterface
-     *
-     * Translator for injecting into effect entities, for stringification
-     */
-    private $translator;
 
     /**
      * @var boolean
@@ -24,18 +19,12 @@ class EffectParamLoader
      */
     private $enabled;
 
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-        $this->enabled = true;
-    }
-
     public function postLoad(LifecycleEventArgs $args)
     {
         $em = $args->getEntityManager();
         $ent = $args->getEntity();
         if ($ent instanceof EffectInterface) {
-            $ent->setTranslator($this->translator);
+            $ent->setContainer($this->di);
             if ($this->enabled) {
                 // Docs say associations are not loaded when postLoad is called
                 // Code seems to say that they actually are ...

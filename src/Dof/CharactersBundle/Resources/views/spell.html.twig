@@ -43,14 +43,14 @@
                     <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
                         <b>Effets :</b><br>
                         {% for effect in rank.effects if not effect.critical and (not effect.hidden or is_granted('ROLE_SPELL_XRAY')) %}
-                            {{ effect.getPlainTextDescription(app.request.locale, is_granted('ROLE_SPELL_XRAY')) }}
+                            {{ effect.getHtmlDescription(is_granted('ROLE_SPELL_XRAY')) | raw }}
                             {% include 'DofCharactersBundle::fragments.html.twig' %}
                             <br />
                         {% endfor %}
                         <br>
                         <b>Effets CC :</b><br>
                         {% for effect in rank.effects if effect.critical %}
-                            {{ effect.getPlainTextDescription(app.request.locale, is_granted('ROLE_SPELL_XRAY')) }}
+                            {{ effect.getHtmlDescription(is_granted('ROLE_SPELL_XRAY')) | raw }}
                             {% include 'DofCharactersBundle::fragments.html.twig' %}
                             <br>
                         {% endfor %}

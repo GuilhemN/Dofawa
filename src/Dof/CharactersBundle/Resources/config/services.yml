@@ -4,6 +4,6 @@ parameters:
 services:
     dof_characters.effect_param_loader:
         class: %dof_characters.effect_param_loader.class%
-        arguments: [ @translator ]
+        arguments: [ @service_container ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }

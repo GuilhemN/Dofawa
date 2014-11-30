@@ -5,7 +5,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -65,9 +65,9 @@ trait EffectTrait
     private $fragments;
 
     /**
-     * @var TranslatorInterface
+     * @var ContainerInterface
      */
-    private $translator;
+    private $di;
 
     /**
      * Set effectTemplate
@@ -213,25 +213,25 @@ trait EffectTrait
     }
 
     /**
-     * Set translator
+     * Set container
      *
-     * @param TranslatorInterface $translator
+     * @param ContainerInterface $di
      * @return object
      */
-    public function setTranslator(TranslatorInterface $translator)
+    public function setContainer(ContainerInterface $di)
     {
-        $this->translator = $translator;
+        $this->di = $di;
 
         return $this;
     }
 
     /**
-     * Get translator
+     * Get container
      *
-     * @return TranslatorInterface
+     * @return ContainerInterface
      */
-    public function getTranslator()
+    public function getContainer()
     {
-        return $this->translator;
+        return $this->di;
     }
 }
