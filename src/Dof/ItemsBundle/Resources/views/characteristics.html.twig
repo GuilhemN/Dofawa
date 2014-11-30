@@ -12,7 +12,7 @@
 {% if itemEntity.equipment is not defined or itemEntity.equipment %}
     {% if not updatable | default(false) %}
         {# Affichage des dégats de l'arme #}
-        {% if itemEntity.weapon is not defined or itemEntity.weapon %}
+        {% if itemEntity.weapon is defined and itemEntity.weapon %}
             {% for damageRow in itemEntity.damageRows %}
                 {% set min = damageRow.min %}
                 {% set max = damageRow.max %}
