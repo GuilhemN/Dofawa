@@ -17,7 +17,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
 /**
  * Emoticon
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_emoticons")
  * @ORM\Entity(repositoryClass="Dof\CharactersBundle\Entity\EmoticonRepository")
  */
 class Emoticon implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
