@@ -35,14 +35,19 @@ class EmoticonImporter extends AbstractGameDataImporter
 
         foreach ($all as $row) {
             $emoticon = $repo->find($row['id']);
-            if ($emoticon === null)
+            if ($emoticon === null){
                 $emoticon = new Emoticon();
+            }
 
             $emoticon->setId($row['id']);
             $emoticon->setOrder($row['order']);
             $emoticon->setAura($row['aura']);
             $this->copyI18NProperty($emoticon, 'setName', $row, 'name');
             $this->copyI18NProperty($emoticon, 'setShortcut', $row, 'shortcut');
+
+            if($emoticon->getNameFr() === null)
+                $emoticon->setNameFr('Emote');
+            
             $this->dm->persist($emoticon);
 
             ++$rowsProcessed;
