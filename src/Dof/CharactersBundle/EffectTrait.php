@@ -96,9 +96,12 @@ trait EffectTrait
                 else
                     $name = $row[0];
 
-                return $name;
+                if($row[0] instanceOf \Dof\CharactersBundle\Entity\Spell && ($row[0]->isPubliclyVisible() or $securityContext->isGranted('ROLE_SPELL_XRAY') ))
+                    return '<a href="' . $this->get('router')->generate('dof_spell_show', array('slug' => $row[0]->getSlug())) . '">' . $name . '</a>';
+                else
+                    return $name;
             }
-        }, $this->getDescription($translator->getLocale(), $securityContext->isGranted('ROLE_SPELL_XRAY'))));
+        }, $this->getDescription($translator->getLocale(), $securityContext->isGranted('ROLE_XRAY'))));
     }
 
     /**

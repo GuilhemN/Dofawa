@@ -70,7 +70,7 @@
 
 {# Tous les items #}
 {% for effect in itemEntity.effects %}
-    {{ effect.htmlDescription }}
+    {{ effect.htmlDescription | raw }}
     {% include 'DofCharactersBundle::fragments.html.twig' %}
     <br />
 {% endfor %}
