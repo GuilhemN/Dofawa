@@ -6,12 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 
 use XN\Persistence\IdentifiableInterface;
 
+/*
+Ancienne colonne unique :
+ @ORM\Table(name="dof_effect_template_relations", uniqueConstraints={
+     @ORM\UniqueConstraint(name="UQ_etr_effect_entity", columns={ "effectTemplate_id", "target_entity" })
+ })
+*/
+
 /**
  * EffectTemplateRelation
  *
- * @ORM\Table(name="dof_effect_template_relations", uniqueConstraints={
- *     @ORM\UniqueConstraint(name="UQ_etr_effect_entity", columns={ "effectTemplate_id", "target_entity" })
- * })
  * @ORM\Entity(repositoryClass="EffectTemplateRelationRepository")
  */
 class EffectTemplateRelation implements IdentifiableInterface
