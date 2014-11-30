@@ -26,7 +26,11 @@ class ItemEffectImporter extends AbstractGameDataImporter
             FROM ' . $db . '.D2O_Item_possibleEffect o
             WHERE o.effectId IN (SELECT id FROM ' . $db . '.D2O_Effect)
             ');
-        foreach ($stmt->fetchAll() as $row) {
+        $stmt2 = $conn->query('SELECT o.id, o._index1, o.effectId, o.diceNum, o.diceSide, o.value
+            FROM ' . $db . '.D2O_Pet_possibleEffect o
+            WHERE o.effectId IN (SELECT id FROM ' . $db . '.D2O_Effect)
+            ');
+        foreach ($stmt->fetchAll() + $smtp2->getAll() as $row) {
             $itemId = intval($row['id']);
             $order = intval($row['_index1']);
             if (!isset($items[$itemId]))
@@ -40,6 +44,7 @@ class ItemEffectImporter extends AbstractGameDataImporter
             ];
         }
         $stmt->closeCursor();
+        $stmt2->closeCursor();
         ksort($items);
         $itemRepo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
         $effectRepo = $this->dm->getRepository('DofCharactersBundle:EffectTemplate');
