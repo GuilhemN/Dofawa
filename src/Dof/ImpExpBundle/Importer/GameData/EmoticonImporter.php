@@ -37,9 +37,9 @@ class EmoticonImporter extends AbstractGameDataImporter
             $emoticon = $repo->find($row['id']);
             if ($emoticon === null){
                 $emoticon = new Emoticon();
+                $emoticon->setId($row['id']);
             }
 
-            $emoticon->setId($row['id']);
             $emoticon->setOrder($row['order']);
             $emoticon->setAura($row['aura']);
             $this->copyI18NProperty($emoticon, 'setName', $row, 'name');

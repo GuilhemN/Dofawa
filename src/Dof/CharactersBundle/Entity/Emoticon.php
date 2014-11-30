@@ -409,6 +409,6 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     public function __toString(){
-        return $this->nameFr;
+        return $this->shortcutFr;
     }
 }
