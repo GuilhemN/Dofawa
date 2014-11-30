@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
 
 use Dof\CharactersBundle\Entity\EffectTemplate;
+use Dof\Common\GameTemplateString;
 
 trait EffectTrait
 {
