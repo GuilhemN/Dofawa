@@ -23,11 +23,13 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
 
         $this->paramLoader->setEnabled(false);
 
-        $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_SpellLevel_effect o');
+        $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_SpellLevel_effect o
+            WHERE o.effectId IN (SELECT id FROM ' . $db . '.D2O_Effect)');
         $nEffects = $stmt->fetchAll();
         $stmt->closeCursor();
 
-        $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_SpellLevel_criticalEffect o');
+        $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_SpellLevel_criticalEffect o
+            WHERE o.effectId IN (SELECT id FROM ' . $db . '.D2O_Effect)');
         $cEffects = $stmt->fetchAll();
         $stmt->closeCursor();
 

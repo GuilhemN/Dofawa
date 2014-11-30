@@ -20,7 +20,9 @@ class ItemSetEffectImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $sets = [ ];
-        $stmt = $conn->query('SELECT o.id, o._index1, o._index2, o.effectId, o.diceNum, o.diceSide, o.value FROM ' . $db . '.D2O_ItemSet_effect o');
+        $stmt = $conn->query('SELECT o.id, o._index1, o._index2, o.effectId, o.diceNum, o.diceSide, o.value
+            FROM ' . $db . '.D2O_ItemSet_effect o
+            WHERE o.effectId IN (SELECT id FROM ' . $db . '.D2O_Effect)');
         foreach ($stmt->fetchAll() as $row) {
             $setId = intval($row['id']);
             $itemCount = intval($row['_index1']);
@@ -63,8 +65,7 @@ class ItemSetEffectImporter extends AbstractGameDataImporter
                 }, function ($fx, $row) use ($effectRepo) {
                     $fx->setOrder($row['order']);
                     $effect = $effectRepo->find($row['type']);
-                    if($effect !== null)
-                        $fx->setEffectTemplate($effect);
+                    $fx->setEffectTemplate($effect);
                     $fx->setParam1($row['param1']);
                     $fx->setParam2($row['param2']);
                     $fx->setParam3($row['param3']);
