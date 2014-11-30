@@ -27,7 +27,7 @@ class EmoticonImporter extends AbstractGameDataImporter
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
-        $repo = $this->dm->getRepository('DofCharacterBundle:Emoticon');
+        $repo = $this->dm->getRepository('DofCharactersBundle:Emoticon');
 
         $rowsProcessed = 0;
         if ($output && $progress)
