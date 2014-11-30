@@ -74,7 +74,7 @@ services:
             - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: "beta_item_templates beta_effect_templates" }
         calls:
             - [ setParamLoader, [ "@dof_characters.effect_param_loader" ] ]
-            
+
     # DofItemsBundle:ItemComponent
     dof_imp_exp.importer.item_components:
         class: Dof\ImpExpBundle\Importer\GameData\ItemComponentImporter
@@ -152,3 +152,11 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: spell_rank_states, requires: 'states spell_ranks' }
             - { name: dof_imp_exp.importer, provides: beta_spell_rank_states, requires: 'beta_states beta_spell_ranks' }
+
+    # DofCharactersBundle:Emoticon
+    dof_imp_exp.importer.emoticons:
+        class: Dof\ImpExpBundle\Importer\GameData\EmoticonImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: emoticons }
+            - { name: dof_imp_exp.importer, provides: beta_emoticons }
