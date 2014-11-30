@@ -21,7 +21,7 @@ class EmoticonImporter extends AbstractGameDataImporter
         $stmt = $conn->query('SELECT o.*' .
         $this->generateD2ISelects('name', $locales) .
         $this->generateD2ISelects('shortcut', $locales) .
-        ' FROM ' . $db . '.D2O_Job o' .
+        ' FROM ' . $db . '.D2O_Emoticon o' .
         $this->generateD2IJoins('name', $db, $locales) .
         $this->generateD2IJoins('shortcut', $db, $locales));
         $all = $stmt->fetchAll();
