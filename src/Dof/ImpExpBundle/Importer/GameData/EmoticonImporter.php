@@ -35,7 +35,7 @@ class EmoticonImporter extends AbstractGameDataImporter
 
         foreach ($all as $row) {
             $emoticon = $repo->find($row['id']);
-            if ($job === null)
+            if ($emoticon === null)
                 $emoticon = new Emoticon();
 
             $emoticon->setId($row['id']);
