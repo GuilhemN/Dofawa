@@ -6,16 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 use XN\Persistence\IdentifiableInterface;
 
-use XN\L10n\LocalizedNameInterface;
-use XN\L10n\LocalizedNameTrait;
-
 /**
  * Face
  *
  * @ORM\Table(name="dof_breed_faces")
  * @ORM\Entity(repositoryClass="FaceRepository")
  */
-class Face implements IdentifiableInterface, LocalizedNameInterface
+class Face implements IdentifiableInterface
 {
     /**
      * @var integer
