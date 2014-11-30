@@ -39,7 +39,7 @@ class DumpSpellRankEffectsCommand extends ContainerAwareCommand
 			return;
 		}
 		foreach ($rank->getEffects() as $fx) {
-			$output->writeln($indent . $fx);
+			$output->writeln($indent . $fx->getPlainTextDescription(/*$this->getContainer()->get('translator')->getLocale()*/'fr', true));
 			if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
 				$output->writeln($indent . '  P1 : ' . $fx->getParam1());
 				$output->writeln($indent . '  P2 : ' . $fx->getParam2());
