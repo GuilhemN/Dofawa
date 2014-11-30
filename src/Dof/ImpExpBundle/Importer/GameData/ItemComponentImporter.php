@@ -59,7 +59,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
             foreach($v as $recipeRow){
                 $ingredient = $repo->find($recipeRow['ingredient']);
 
-                if($ingredient === null || ($ingredient->isPreliminary() ^ $beta))
+                if($ingredient === null)
                     continue;
 
                 $component = new ItemComponent();
