@@ -1,9 +1,8 @@
 <?php
 namespace Dof\CharactersBundle;
 
-use Symfony\Component\Translation\TranslatorInterface;
-
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Common\ServiceWithContainer;
@@ -18,6 +17,12 @@ class EffectParamLoader extends ServiceWithContainer
      * for example when importing data
      */
     private $enabled;
+
+    public function __construct(ContainerInterface $di)
+    {
+        parent::__contruct($di);
+        $this->enabled = true;
+    }
 
     public function postLoad(LifecycleEventArgs $args)
     {

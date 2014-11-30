@@ -89,7 +89,7 @@ trait EffectTrait
         $translator = $this->di->get('translator');
         return implode('', array_map(function (array $row) {
             if($row[1] === GameTemplateString::COMES_FROM_TEMPLATE)
-            return htmlspecialchars($row[0]);
+                return htmlspecialchars($row[0]);
             else {
                 if($row[0] instanceOf LocalizedNameTrait)
                     $name = $row[0]->getName($translator->getLocales());
