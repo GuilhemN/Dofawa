@@ -20,7 +20,7 @@ class EmoticonImporter extends AbstractGameDataImporter
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
 
         if (!$beta && $write)
-            $this->dm->createQuery('UPDATE DofItemsBundle:ItemTemplate s SET s.deprecated = true')->execute();
+            $this->dm->createQuery('UPDATE DofCharactersBundle:Emoticon s SET s.deprecated = true')->execute();
 
         $stmt = $conn->query('SELECT o.*' .
         $this->generateD2ISelects('name', $locales) .
