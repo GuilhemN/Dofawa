@@ -394,4 +394,8 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
             default: return null;
         }
     }
+
+    public function __toString(){
+        return $this->nameFr;
+    }
 }
