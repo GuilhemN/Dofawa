@@ -7,6 +7,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use XN\Persistence\IdentifiableInterface;
 use XN\Common\ServiceWithContainer;
 
+use XN\Graphics\ColorPseudoRepository;
+use XN\Common\NullPseudoRepository;
+
 class EffectParamLoader extends ServiceWithContainer
 {
 
@@ -54,7 +57,11 @@ class EffectParamLoader extends ServiceWithContainer
                         $rel->getColumn1() === null && $rel->getColumn2() === null && $rel->getColumn3() === 'id';
                     if (!$isReplacement && !$rel->isFragment())
 						continue;
-					$repo = $em->getRepository($rel->getTargetEntity());
+					$type = $rel->getTargetEntity();
+					if (strpos($type, ':') === false)
+						$repo = $this->getPseudoRepository($type);
+					else
+						$repo = $em->getRepository($type);
 					if ($isReplacement) {
 						if ($rel->getColumn1() !== null) {
 							$target = $repo->find($param1);
@@ -85,6 +92,17 @@ class EffectParamLoader extends ServiceWithContainer
             }
         }
     }
+
+	public function getPseudoRepository($type)
+	{
+		switch ($type)
+		{
+			case 'color':
+				return new ColorPseudoRepository();
+			default:
+				return new NullPseudoRepository();
+		}
+	}
 
     public function setEnabled($enabled)
     {
