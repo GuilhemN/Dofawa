@@ -200,7 +200,7 @@ class Areas
 	public static function getDiagonalTransversalLinePolygons($max){
 		if (!$max)
 			return self::getPointPolygons();
-		$polys = [self::getPointPolygons()];
+		$polys = self::getPointPolygons();
 		for ($i = 1; $i <= $max; ++$i) {
 			$polys[] = [[-$i, -$i], [-$i + 1, -$i], [-$i + 1, -$i + 1], [-$i, -$i + 1]];
 			$polys[] = [[$i, $i], [$i + 1, $i], [$i + 1, $i + 1], [$i, $i + 1]];
