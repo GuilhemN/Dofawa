@@ -10,3 +10,10 @@ dof_spell_show:
     defaults: { _controller: DofCharactersBundle:Spell:show }
     requirements:
        slug: '[0-9a-z-]+'
+
+dof_area_render_glyphtrap:
+    pattern:  /area/{area}/{color}.svg
+    defaults: { _controller: DofCharactersBundle:Area:renderGlyphTrap }
+    requirements:
+        area: '[0-9A-Za-z_-]+'
+        color: '[0-9a-f]{6}'

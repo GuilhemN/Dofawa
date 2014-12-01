@@ -45,6 +45,8 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFilter('hex2bin', 'hex2bin'),
 			new \Twig_SimpleFilter('is_array', 'is_array'),
 			new \Twig_SimpleFilter('date_format', [ $this, 'formatDate' ]),
+			new \Twig_SimpleFilter('base64url_encode', array('XN\Common\UrlSafeBase64', 'encode')),
+			new \Twig_SimpleFilter('base64url_decode', array('XN\Common\UrlSafeBase64', 'decode')),
 		);
 	}
 

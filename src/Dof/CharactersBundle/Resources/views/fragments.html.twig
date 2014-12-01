@@ -1,10 +1,17 @@
+{% if effect.param1 is color %}
+<div><img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: effect.param1.hex[1:] }) }}" alt="" /></div>
+{% endif %}
+{% if effect.param2 is color %}
+<div><img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: effect.param2.hex[1:] }) }}" alt="" /></div>
+{% endif %}
+{% if effect.param3 is color %}
+<div><img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: effect.param3.hex[1:] }) }}" alt="" /></div>
+{% endif %}
 {% for fragment in effect.fragments %}
     {% if classOf(fragment) == 'Spell' %}
-        <div class="well well-sm well-fragment">
-            {% for effect in fragment.ranks[0].effects %}
-                {{ effect.getPlainTextDescription(app.request.locale, is_granted('ROLE_SPELL_XRAY')) }}
-                <br />
-            {% endfor %}
-        </div>
+	{% include 'DofCharactersBundle:Fragment:spell.html.twig' with { fragment: fragment.ranks[0] } %}
+    {% endif %}
+    {% if classOf(fragment) == 'SpellRank' %}
+	{% include 'DofCharactersBundle:Fragment:spellRank.html.twig' %}
     {% endif %}
 {% endfor %}

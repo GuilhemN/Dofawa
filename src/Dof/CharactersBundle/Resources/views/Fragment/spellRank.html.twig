@@ -1,0 +1,6 @@
+<div class="well well-sm well-fragment">
+	{% for effect in fragment.effects if not effect.critical and (not effect.hidden or is_granted('ROLE_SPELL_XRAY')) %}
+		{{ effect.htmlDescription | raw }}
+		<br />
+	{% endfor %}
+</div>

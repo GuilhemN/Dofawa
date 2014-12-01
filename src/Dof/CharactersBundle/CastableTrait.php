@@ -298,6 +298,11 @@ trait CastableTrait
         return $this->diagonalCast;
     }
 
+	public function getCastArea()
+	{
+		return Areas::makeCastArea($this->minCastRange, $this->maxCastRange, $this->lineCast, $this->diagonalCast);
+	}
+
     protected function exportCastableData($full = true)
     {
         return $full ? [
@@ -308,7 +313,8 @@ trait CastableTrait
             'maxCastRange' => $this->maxCastRange,
             'sightCast' => $this->sightCast,
             'lineCast' => $this->lineCast,
-            'diagonalCast' => $this->diagonalCast
+            'diagonalCast' => $this->diagonalCast,
+			'castArea' => $this->getCastArea()
         ] : [ ];
     }
 }
