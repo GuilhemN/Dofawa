@@ -376,7 +376,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     		$desc[] = [ ' (' . implode(', ', $this->targets) . ' sur ' . $this->areaOfEffect . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
 	    }
         if ($this->duration)
-			$desc[] = [ ' (' . $translator->transChoice('duration', $this->duration, [], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
+			$desc[] = [ ' (' . $translator->transChoice('duration', $this->duration, ['%count%' => $this->duration], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
 		if ($this->delay)
 			$desc[] = [ ' (dans ' . $this->delay . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
 		if (implode(',', $this->triggers) != 'I'){
