@@ -365,6 +365,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 
 	public function getDescription($locale = 'fr', $full = false)
 	{
+        $translator = $this->di->get('translator');
 		$desc = $this->getEffectTemplate()->expandDescription([
 			'1' => $this->getParam1(),
 			'2' => $this->getParam2(),
@@ -375,7 +376,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     		$desc[] = [ ' (' . implode(', ', $this->targets) . ' sur ' . $this->areaOfEffect . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
 	    }
         if ($this->duration)
-			$desc[] = [ ' (' . $this->duration . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
+			$desc[] = [ ' (' . $translator->transChoice('duration', $this->duration, [], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
 		if ($this->delay)
 			$desc[] = [ ' (dans ' . $this->delay . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
 		if (implode(',', $this->triggers) != 'I'){
