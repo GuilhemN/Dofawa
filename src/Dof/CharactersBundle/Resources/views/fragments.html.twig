@@ -8,14 +8,14 @@
 {% if effect.param3 is color %}
     {% set color = effect.param3.hex[1:] %}
 {% endif %}
-<img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: color | default('dddddd') }) }}" style="width: 45px;" alt="" />
+<img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: color | default('8E8080') }) }}" style="width: 45px;" alt="" />
 
 {# Fragments #}
 {% for fragment in effect.fragments %}
     {% if classOf(fragment) == 'Spell' %}
-	{% include 'DofCharactersBundle:Fragment:spell.html.twig' with { fragment: fragment.ranks[0] } %}
+    	{% include 'DofCharactersBundle:Fragment:spellRank.html.twig' with { fragment: fragment.ranks[0] } %}
     {% endif %}
     {% if classOf(fragment) == 'SpellRank' %}
-	{% include 'DofCharactersBundle:Fragment:spellRank.html.twig' %}
+    	{% include 'DofCharactersBundle:Fragment:spellRank.html.twig' %}
     {% endif %}
 {% endfor %}
