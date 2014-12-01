@@ -48,6 +48,8 @@ class Areas
 				return self::getTransversalLinePolygons($params[0]);
 			case AreaShape::LINE:
 				return self::getLinePolygons($params[0]);
+			case AreaShape::DIAGONAL_TRANSVERSAL_LINE:
+				return self::getDiagonalTransversalLinePolygons($params[0]);
 			default:
 				throw new \LogicException('Not implemented');
 		}
@@ -177,21 +179,31 @@ class Areas
 	{
 		if (!$max)
 			return self::getPointPolygons();
-		$poly0 = [
+		$poly = [
 			[ -$max, 0 ], [ $max + 1, 0 ],
 			[ $max + 1, 1 ], [ -$max, 1 ]
 		];
-		return [ $poly0 ];
+		return [ $poly ];
 	}
 
 	public static function getLinePolygons($max)
 	{
 		if (!$max)
 			return self::getPointPolygons();
-		$poly0 = [
+		$poly = [
 			[ 1, $max + 1], [ 0, $max + 1 ],
 			[ 0, 0 ], [ 1, 0 ]
 		];
-		return [ $poly0 ];
+		return [ $poly ];
+	}
+
+	public static function getDiagonalTransversalLinePolygons($max){
+		if (!$max)
+			return self::getPointPolygons();
+		$polys = [[[0, 0], [1, 1]]];
+		for ($i = 1; $i <= $max; ++$i) {
+			$polys[] = [[-$i, -$i], [-$i + 1, -$i + 1]];
+			$polys[] = [[$i, $i], [$i + 1, $i + 1]];
+		}
 	}
 }
