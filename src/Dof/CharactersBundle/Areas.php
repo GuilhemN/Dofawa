@@ -46,6 +46,8 @@ class Areas
 				return self::getStarPolygons($params[0], $params[1]);
 			case AreaShape::TRANSVERSAL_LINE:
 				return self::getTransversalLinePolygons($params[0]);
+			case AreaShape::LINE:
+				return self::getLinePolygons($params[0]);
 			default:
 				throw new \LogicException('Not implemented');
 		}
@@ -176,9 +178,20 @@ class Areas
 		if (!$max)
 			return self::getPointPolygons();
 		$poly0 = [
-			[ -$max, 0 ], [ 0, 0], [ $max, 0 ],
-			[ $max, 1 ], [ 0, 1 ], [ -$max, 1 ]
+			[ -$max, 0 ], [ $max, 0 ],
+			[ $max, 1 ], [ -$max, 1 ]
 		];
-		return [ $poly0 ]; 
+		return [ $poly0 ];
+	}
+
+	public static function getLinePolygons($max)
+	{
+		if (!$max)
+			return self::getPointPolygons();
+		$poly0 = [
+			[ 0, -$max ], [ 0, $max ],
+			[ 0, 0 ], [ 1, 0 ]
+		];
+		return [ $poly0 ];
 	}
 }
