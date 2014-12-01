@@ -179,6 +179,6 @@ class Areas
 			[ -$max, 0 ], [ 0, 0], [ $max, 0 ],
 			[ $max, 1 ], [ 0, 1 ], [ -$max, 1 ]
 		];
-		return [ $poly0 ];
+		return [ $poly0 ]; 
 	}
 }
