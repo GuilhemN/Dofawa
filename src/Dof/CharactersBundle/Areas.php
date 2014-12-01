@@ -44,6 +44,12 @@ class Areas
 				if (!isset($params[1]))
 					$params[1] = 0;
 				return self::getStarPolygons($params[0], $params[1]);
+			case AreaShape::TRANSVERSAL_LINE:
+				return self::getTransversalLinePolygons($params[0]);
+			case AreaShape::LINE:
+				return self::getLinePolygons($params[0]);
+			case AreaShape::DIAGONAL_TRANSVERSAL_LINE:
+				return self::getDiagonalTransversalLinePolygons($params[0]);
 			default:
 				throw new \LogicException('Not implemented');
 		}
@@ -137,7 +143,7 @@ class Areas
 		}
 		return $polys;
 	}
-	
+
 	public static function getStarPolygons($max, $min)
 	{
 		if ($min > $max)
@@ -167,5 +173,37 @@ class Areas
 	{
 		$shape = $line ? ($diagonal ? '*' : 'X') : ($diagonal ? '+' : 'C');
 		return $shape . $maxRange . (($minRange > 0) ? (',' . $minRange) : '');
+	}
+
+	public static function getTransversalLinePolygons($max)
+	{
+		if (!$max)
+			return self::getPointPolygons();
+		$poly = [
+			[ -$max, 0 ], [ $max + 1, 0 ],
+			[ $max + 1, 1 ], [ -$max, 1 ]
+		];
+		return [ $poly ];
+	}
+
+	public static function getLinePolygons($max)
+	{
+		if (!$max)
+			return self::getPointPolygons();
+		$poly = [
+			[ 1, $max + 1], [ 0, $max + 1 ],
+			[ 0, 0 ], [ 1, 0 ]
+		];
+		return [ $poly ];
+	}
+
+	public static function getDiagonalTransversalLinePolygons($max){
+		if (!$max)
+			return self::getPointPolygons();
+		$polys = [[[0, 0], [1, 1]]];
+		for ($i = 1; $i <= $max; ++$i) {
+			$polys[] = [[-$i, -$i], [-$i + 1, -$i + 1]];
+			$polys[] = [[$i, $i], [$i + 1, $i + 1]];
+		}
 	}
 }

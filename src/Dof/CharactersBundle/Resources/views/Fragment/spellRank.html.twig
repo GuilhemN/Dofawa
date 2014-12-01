@@ -1,6 +1,9 @@
 <div class="well well-sm well-fragment">
-	{% for effect in fragment.effects if not effect.critical and (not effect.hidden or is_granted('ROLE_SPELL_XRAY')) %}
-		{{ effect.htmlDescription | raw }}
-		<br />
-	{% endfor %}
+	<b>Effets :</b><br>
+	{% include 'DofCharactersBundle::effects.html.twig' with {'effects': fragment.normalEffects} %}
+	{% if fragment.criticalEffects is not empty %}
+		<br>
+		<b>Effets CC :</b><br>
+		{% include 'DofCharactersBundle::effects.html.twig' with {'effects': fragment.criticalEffects} %}
+	{% endif %}
 </div>

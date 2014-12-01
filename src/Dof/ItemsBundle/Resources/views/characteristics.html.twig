@@ -65,15 +65,11 @@
                 </span>
             {% endfor %}
             <input type="hidden" name="slot" value="{{ item.slot }}">
-    {% endif %}
+    {% endif %} 
 {% endif %}
 
 {# Tous les items #}
-{% for effect in itemEntity.effects %}
-    {{ effect.htmlDescription | raw }}
-    {% include 'DofCharactersBundle::fragments.html.twig' %}
-    <br />
-{% endfor %}
+{% include 'DofCharactersBundle::effects.html.twig' with {'effects': itemEntity.effects} %}
 
 {% if type == 'build' and updatable | default(false) %}
     <br />
