@@ -1,14 +1,15 @@
-
-{% if effect.param1 is color %}
-{% set color = effect.param1.hex[1:] %}
-{% endif %}
-{% if effect.param2 is color %}
-{% set color = effect.param2.hex[1:] %}
-{% endif %}
-{% if effect.param3 is color %}
-    {% set color = effect.param3.hex[1:] %}
-{% endif %}
-<img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: color | default('8e8080') }) }}" style="width: 45px;" alt="" />
+{% if effect.areaOfEffect is defined %}
+    {% if effect.param1 is color %}
+    {% set color = effect.param1.hex[1:] %}
+    {% endif %}
+    {% if effect.param2 is color %}
+    {% set color = effect.param2.hex[1:] %}
+    {% endif %}
+    {% if effect.param3 is color %}
+        {% set color = effect.param3.hex[1:] %}
+    {% endif %}
+    <img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: color | default('8e8080') }) }}" style="width: 45px;" alt="" />
+{% endif %} 
 
 {# Fragments #}
 {% for fragment in effect.fragments %}
