@@ -79,8 +79,8 @@
                                         {% set heal = characteristics.heals %}
                                     {% endif %}
 
-                                    {% set min = effect.rawParam1 %}
-                                    {% set max = effect.rawParam2 %}
+                                    {% set min = effect.param1 %}
+                                    {% set max = effect.param2 %}
 
                                     {{ min * (100 + carac + characteristics.power) / 100 + domFix }}
 
@@ -135,8 +135,8 @@
                                         {% set heal = characteristics.heals %}
                                     {% endif %}
 
-                                    {% set min = effect.rawParam1 %}
-                                    {% set max = effect.rawParam2 %}
+                                    {% set min = effect.param1 %}
+                                    {% set max = effect.param2 %}
 
                                     {{ min * (100 + carac + characteristics.power) / 100 + domFix }}
 
