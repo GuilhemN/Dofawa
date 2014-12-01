@@ -521,6 +521,30 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
         return $this->effects;
     }
 
+    /**
+    * Get effects
+    *
+    * @return Collection
+    */
+    public function getNormalEffects()
+    {
+        return array_filter($this->effects, function($v){
+            return !$v->isCritical();
+        });
+    }
+
+    /**
+    * Get effects
+    *
+    * @return Collection
+    */
+    public function getCriticalEffects()
+    {
+        return array_filter($this->effects, function($v){
+            return $v->isCritical();
+        });
+    }
+
 	public function __toString()
 	{
 		return $this->spell . ' [' . $this->rank . ']';

@@ -42,18 +42,10 @@
                     {% for rank in spell.ranks %}
                     <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
                         <b>Effets :</b><br>
-                        {% for effect in rank.effects if not effect.critical and (not effect.hidden or is_granted('ROLE_SPELL_XRAY')) %}
-                            {{ effect.htmlDescription | raw }}
-                            {% include 'DofCharactersBundle::fragments.html.twig' %}
-                            <br />
-                        {% endfor %}
+                        {% include 'DofCharactersBundle::effects.html.twig', {'effects': rank.normalEffects} %}
                         <br>
                         <b>Effets CC :</b><br>
-                        {% for effect in rank.effects if effect.critical %}
-                            {{ effect.htmlDescription | raw }}
-                            {% include 'DofCharactersBundle::fragments.html.twig' %}
-                            <br>
-                        {% endfor %}
+                        {% include 'DofCharactersBundle::effects.html.twig', {'effects': rank.criticalEffects} %}
                         <div class="row">
                             {# carcteristiques du sort #}
                             <hr />

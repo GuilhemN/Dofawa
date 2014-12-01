@@ -69,11 +69,7 @@
 {% endif %}
 
 {# Tous les items #}
-{% for effect in itemEntity.effects %}
-    {{ effect.htmlDescription | raw }}
-    {% include 'DofCharactersBundle::fragments.html.twig' %}
-    <br />
-{% endfor %}
+{% include 'DofCharactersBundle::effects.html.twig', {'effects': itemEntity.effects} %}
 
 {% if type == 'build' and updatable | default(false) %}
     <br />

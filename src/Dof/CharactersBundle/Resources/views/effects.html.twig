@@ -1,0 +1,5 @@
+{% for effect in effects if not effect.hidden or is_granted('ROLE_SPELL_XRAY') %}
+    {{ effect.htmlDescription | raw }}
+    {% include 'DofCharactersBundle::fragments.html.twig' %}
+    <br />
+{% endfor %}
