@@ -205,5 +205,7 @@ class Areas
 			$polys[] = [[-$i, -$i], [-$i + 1, -$i + 1]];
 			$polys[] = [[$i, $i], [$i + 1, $i + 1]];
 		}
+		
+		return $polys;
 	}
 }
