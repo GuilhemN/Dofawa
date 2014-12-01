@@ -528,7 +528,7 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     */
     public function getNormalEffects()
     {
-        return array_filter($this->effects, function($v){
+        return array_filter($this->effects->toArray(), function($v){
             return !$v->isCritical();
         });
     }
@@ -540,7 +540,7 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     */
     public function getCriticalEffects()
     {
-        return array_filter($this->effects, function($v){
+        return array_filter($this->effects->toArray(), function($v){
             return $v->isCritical();
         });
     }
