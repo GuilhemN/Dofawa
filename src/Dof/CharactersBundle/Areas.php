@@ -178,8 +178,8 @@ class Areas
 		if (!$max)
 			return self::getPointPolygons();
 		$poly0 = [
-			[ -$max, 0 ], [ $max, 0 ],
-			[ $max, 1 ], [ -$max, 1 ]
+			[ -$max, 0 ], [ $max + 1, 0 ],
+			[ $max + 1, 1 ], [ -$max, 1 ]
 		];
 		return [ $poly0 ];
 	}
