@@ -240,5 +240,21 @@ class BuildController extends Controller
             ]);
     }
 
+    public function showSpellsDamagesAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+        if(!$canSee) // Si n'a pas le droit de voir ce build
+            throw $this->createAccessDeniedException();
+
+        $bm = $this->get('build_manager');
+        $characteristics = $bm->getCharacteristics($stuff, $bonus);
+
+        return $this->render('DofBuildBundle:Build:showSpellsDamages.html.twig', [
+            'characteristics' => $characteristics,
+            'character' => $character,
+            'stuff' => $stuff,
+            'user' => $user,
+            'can_write' => $canWrite,
+            ]);
+
+    }
 
 }

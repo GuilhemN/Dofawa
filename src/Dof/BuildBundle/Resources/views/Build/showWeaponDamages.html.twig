@@ -25,7 +25,7 @@
 	            {% for damageRow in weapon.itemTemplate.damageRows %}
 		            {% set min = damageRow.min %}
 		            {% set max = damageRow.max %}
-		            	{% set element = (damageRow.element | element) %}
+		            {% set element = (damageRow.element | element) %}
 
 		            {% if element == "neutral" %}
 		            	{% set carac = characteristics.strength %}
