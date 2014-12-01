@@ -9,7 +9,7 @@
         {% set color = effect.param3.hex[1:] %}
     {% endif %}
     <img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: color | default('8e8080') }) }}" style="width: 45px;" alt="" />
-{% endif %}
+{% endif %} 
 
 {# Fragments #}
 {% for fragment in effect.fragments %}
