@@ -1,12 +1,12 @@
 {# Param couleurs #}
 {% if effect.param1 is color %}
-    <img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: effect.param1.hex[1:] }) }}" style="width: 45x;" alt="" />
+    <img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: effect.param1.hex[1:] }) }}" style="width: 45px;" alt="" />
 {% endif %}
 {% if effect.param2 is color %}
-    <img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: effect.param2.hex[1:] }) }}" style="width: 45x;" alt="" />
+    <img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: effect.param2.hex[1:] }) }}" style="width: 45px;" alt="" />
 {% endif %}
 {% if effect.param3 is color %}
-    <img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: effect.param3.hex[1:] }) }}" style="width: 45x;" alt="" />
+    <img src="{{ path('dof_area_render_glyphtrap', { area: effect.areaOfEffect|base64url_encode, color: effect.param3.hex[1:] }) }}" style="width: 45px;" alt="" />
 {% endif %}
 
 {# Fragments #}
