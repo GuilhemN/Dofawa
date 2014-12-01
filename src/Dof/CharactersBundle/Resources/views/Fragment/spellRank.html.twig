@@ -1,8 +1,9 @@
 <div class="well well-sm well-fragment">
 	<b>Effets :</b><br>
 	{% include 'DofCharactersBundle::effects.html.twig' with {'effects': fragment.normalEffects} %}
-	<br>
-	<b>Effets CC :</b><br>
-	{% include 'DofCharactersBundle::effects.html.twig' with {'effects': fragment.criticalEffects} %}
-
+	{% if fragment.criticalEffects is not empty %}
+		<br>
+		<b>Effets CC :</b><br>
+		{% include 'DofCharactersBundle::effects.html.twig' with {'effects': fragment.criticalEffects} %}
+	{% endif %}
 </div>
