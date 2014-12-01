@@ -28,6 +28,14 @@ dof_build_show_weapondamages:
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
 
+dof_build_show_spellsDamages:
+    path:     /{user}/{character}/{stuff}/spellsDamages
+    defaults: { _controller: DofBuildBundle:Build:showSpellsDamages }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+
 dof_build_edit:
     path:     /{user}/{character}/{stuff}/configuration
     defaults: { _controller: DofBuildBundle:Build:configuration }
