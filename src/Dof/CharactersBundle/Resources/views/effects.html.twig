@@ -28,7 +28,7 @@
 		    	{{ minMax(min, max, characteristics.intelligence, characteristics.heals) }}
 		    {% else %}
 		    {# si sort de dégat #}
-			    {{ minMax(min, max, effectList[effect.effectTemplate.id][2] + characteristics.power, effectList[effect.effectTemplate.id][3]) }}
+			    {{ minMax(min, max, characteristics[effectList[effect.effectTemplate.id][2]] + characteristics.power, characteristics[effectList[effect.effectTemplate.id][3]]) }}
 			{% endif %}
 		{% endif %}
 

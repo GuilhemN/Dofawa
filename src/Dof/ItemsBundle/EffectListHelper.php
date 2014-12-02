@@ -101,19 +101,19 @@ class EffectListHelper
         static $map = null;
         if ($map === null)
             $map = [
-                 91 => [ Element::WATER  , true  ],
-                 92 => [ Element::EARTH  , true  ],
-                 93 => [ Element::AIR    , true  ],
-                 94 => [ Element::FIRE   , true  ],
-                 95 => [ Element::NEUTRAL, true  ],
-                 96 => [ Element::WATER  , false ],
-                 97 => [ Element::EARTH  , false ],
-                 98 => [ Element::AIR    , false ],
-                 99 => [ Element::FIRE   , false ],
-                100 => [ Element::NEUTRAL, false ],
-                101 => [ Element::AP_LOSS, false ],
-                108 => [ Element::HEAL   , false ],
-                646 => [ Element::HEAL   , false ]
+                 91 => [ Element::WATER  , true, "chance"       , "waterDamage"      ],
+                 92 => [ Element::EARTH  , true, "strength"     , "earthDamage"      ],
+                 93 => [ Element::AIR    , true, "agility"      , "airDamage"        ],
+                 94 => [ Element::FIRE   , true, "intelligence" , "fireDamage"       ],
+                 95 => [ Element::NEUTRAL, true, "strength"     , "neutralDamage"    ],
+                 96 => [ Element::WATER  , false, "chance"      , "waterDamage"      ],
+                 97 => [ Element::EARTH  , false, "strength"    , "earthDamage"      ],
+                 98 => [ Element::AIR    , false, "agility"     , "airDamage"        ],
+                 99 => [ Element::FIRE   , false, "intelligence", "fireDamage"       ],
+                100 => [ Element::NEUTRAL, false, "strength"    , "neutralDamage"    ],
+                101 => [ Element::AP_LOSS, false, "apReduction" , "apLossResistance" ],
+                108 => [ Element::HEAL   , false, "intelligence", "heals"            ],
+                646 => [ Element::HEAL   , false, "intelligence", "heals"            ]
             ];
         return $map;
     }
