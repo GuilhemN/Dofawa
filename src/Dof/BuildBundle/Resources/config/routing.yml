@@ -29,7 +29,7 @@ dof_build_show_weapondamages:
         stuff: '[0-9a-z-]+'
 
 dof_build_show_spellsDamages:
-    path:     /{user}/{character}/{stuff}/spellsDamages
+    path:     /{user}/{character}/{stuff}/spell-damages
     defaults: { _controller: DofBuildBundle:Build:showSpellsDamages }
     requirements:
         user: '[0-9a-z-]+'
