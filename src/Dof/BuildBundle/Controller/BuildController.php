@@ -15,6 +15,8 @@ use Dof\CharactersBundle\Gender;
 
 use Dof\BuildBundle\Form\ConfigurationForm;
 
+use Dof\ItemsBundle\EffectListHelper;
+
 class BuildController extends Controller
 {
     protected $dofus_slots = [
@@ -243,9 +245,24 @@ class BuildController extends Controller
     public function showSpellsDamagesAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
-
+        $EffectListHelper = new EffectListHelper();
         $bm = $this->get('build_manager');
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
+
+        $EffectList = $EffectListHelper->getDamageMap();
+        
+        array_push($EffectList[91], $characteristics->getChance());
+        array_push($EffectList[92], $characteristics->getStrength());
+        array_push($EffectList[93], $characteristics->getAgility());
+        array_push($EffectList[94], $characteristics->getIntelligence());
+        array_push($EffectList[95], $characteristics->getStrength());
+        array_push($EffectList[96], $characteristics->getChance());
+        array_push($EffectList[97], $characteristics->getStrength());
+        array_push($EffectList[98], $characteristics->getAgility());
+        array_push($EffectList[99], $characteristics->getIntelligence());
+        array_push($EffectList[100], $characteristics->getStrength());
+        array_push($EffectList[108], $characteristics->getIntelligence());
+        array_push($EffectList[646], $characteristics->getIntelligence());
 
         return $this->render('DofBuildBundle:Build:showSpellsDamages.html.twig', [
             'characteristics' => $characteristics,
@@ -253,6 +270,8 @@ class BuildController extends Controller
             'stuff' => $stuff,
             'user' => $user,
             'can_write' => $canWrite,
+            'effectList' => $EffectList ,
+            'spellBuild' => true,
             ]);
 
     }

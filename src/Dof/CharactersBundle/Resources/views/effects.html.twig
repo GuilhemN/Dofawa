@@ -6,7 +6,38 @@
     {% if firstCall | default(false) %}
         {% set stack = {} %}
     {% endif %}
-    {{ effect.htmlDescription | raw }}
+
+    {% if spellBuild and effectList[effect.effectTemplate.id] != "" %}
+    	{% set min = effect.param1 %}
+		{% set max = effect.param2 %}
+		{% if min != 0 or max != 0 %}
+		    {% if min != max %}
+		    	{# si sort de soin #}
+		    	{% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %}
+		    		{{ min * (100 + characteristics.intelligence ) / 100 + characteristics.heals }}
+		    		{{ 'to' | trans({}, 'item') }}
+		    		{{ max * (100 + characteristics.intelligence ) / 100 + characteristics.heals }}
+		    	{% else %}
+		    	{# si sort de dégat #}
+			    	{{ (min * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + Dommages Fixes) | round(0, 'floor') }}
+			    	{{ 'to' | trans({}, 'item') }}
+			    	{{ (max * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + Dommages Fixes) | round(0, 'floor') }}
+			    {% endif %}
+		    {% else %}
+		    	{# si sort de soin #}
+		    	{% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %}
+		    		{{ max * (100 + characteristics.intelligence ) / 100 + characteristics.heals }}
+		    	{% else %}
+		    	{# si sort de dégat #}
+		    		{{ (max * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + Dommages Fixes) | round(0, 'floor') }}
+		    	{% endif %}
+		    {% endif %}
+		{% endif %}
+
+    {% else %}
+    	{{ effect.htmlDescription | raw }}
+    {% endif %}
+
     {% include 'DofCharactersBundle::fragments.html.twig' with {'effect': effect, 'stack': stack} only %}
     <br /> 
 {% endfor %}
