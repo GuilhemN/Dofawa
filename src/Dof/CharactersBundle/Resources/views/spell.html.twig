@@ -42,11 +42,11 @@
                     {% for rank in spell.ranks %}
                     <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
                         <b>Effets :</b><br>
-                        {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.normalEffects} %}
+                        {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.normalEffects, 'defaultStack': [ rank ]} %}
                         {% if rank.criticalEffects is not empty %}
                             <br>
                             <b>Effets CC :</b><br>
-                            {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.criticalEffects} %}
+                            {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.criticalEffects, 'defaultStack': [ rank ]} %}
                         {% endif %}
                         <div class="row">
                             {# carcteristiques du sort #}
