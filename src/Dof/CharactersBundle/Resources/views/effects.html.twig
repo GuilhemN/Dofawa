@@ -10,7 +10,7 @@
         {% endif %}
     {% endif %}
 
-    {% if character is defined and effectList[effect.effectTemplate.id] != "" %}
+    {% if character is defined and effectList[effect.effectTemplate.id] is defined %}
     	{% set min = effect.param1 %}
 		{% set max = effect.param2 %}
 		{% if min != 0 or max != 0 %}
