@@ -6,7 +6,7 @@
     {% if firstCall | default(false) %}
         {% set stack = {} %}
         {% if defaultStack is defined %}
-            {% set stack = defaultStack %}
+            {% set stack = defaultStack %} 
         {% endif %}
     {% endif %}
 
@@ -17,9 +17,9 @@
 		    {% if min != max %}
 		    	{# si sort de soin #}
 		    	{% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %}
-		    		{{ min * (100 + characteristics.intelligence ) / 100 + characteristics.heals }}
+		    		{{ min * ( 100 + characteristics.intelligence ) / 100 + characteristics.heals }}
 		    		{{ 'to' | trans({}, 'item') }}
-		    		{{ max * (100 + characteristics.intelligence ) / 100 + characteristics.heals }}
+		    		{{ max * ( 100 + characteristics.intelligence ) / 100 + characteristics.heals }}
 		    	{% else %}
 		    	{# si sort de dégat #}
 			    	{{ (min * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + effectList[effect.effectTemplate.id][3]) | round(0, 'floor') }}
@@ -29,7 +29,7 @@
 		    {% else %}
 		    	{# si sort de soin #}
 		    	{% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %}
-		    		{{ max * (100 + characteristics.intelligence ) / 100 + characteristics.heals }}
+		    		{{ max * ( 100 + characteristics.intelligence ) / 100 + characteristics.heals }}
 		    	{% else %}
 		    	{# si sort de dégat #}
 		    		{{ (max * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + effectList[effect.effectTemplate.id][3]) | round(0, 'floor') }}
