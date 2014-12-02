@@ -4,7 +4,7 @@ namespace Dof\ItemsBundle;
 
 class EffectListHelper
 {
-    private function __construct() { }
+    public function __construct() { }
 
     public static function extractCharacteristics(array &$list)
     {
