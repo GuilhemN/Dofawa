@@ -29,8 +29,8 @@
 		    {# si sort de dégat #}
 			    {{ spellEffect.minMax(min, max, characteristics[effectList[effect.effectTemplate.id][2]] + characteristics.power, characteristics[effectList[effect.effectTemplate.id][3]]) }}
 			{% endif %}
+			{{ effect.setParm1(minEffet).setParm2(maxEffet).htmlDescription | raw }}
 		{% endif %}
-		{{ effect.setParm1(minEffet).setParm2(maxEffet).htmlDescription | raw }}
     {% else %}
     	{{ effect.htmlDescription | raw }}
     {% endif %}
