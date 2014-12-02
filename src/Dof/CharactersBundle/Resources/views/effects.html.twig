@@ -6,34 +6,11 @@
     {% if firstCall | default(false) %}
         {% set stack = {} %}
         {% if defaultStack is defined %}
-            {% set stack = defaultStack %} 
+            {% set stack = defaultStack %}
         {% endif %}
     {% endif %}
-
-    {% if character is defined and effectList[effect.effectTemplate.id] is defined %}
-    	{% set min = effect.param1 %}
-		{% set max = effect.param2 %}
-		{% if min != 0 or max != 0 %}
-
-			{% macro minMax(min, max, caract, domHeal) %}
-			    {% set minEffet = (min * (100 + caract) / 100 + domHeal) | round(0, 'floor') %}
-			    {% if min != max %}
-			        {% set  maxEffet = (max * (100 + caract) / 100 + domHeal) | round(0, 'floor') %}
-			    {% endif %}
-			{% endmacro %}
-			{% import _self as spellEffect %}
-		    {# si sort de soin #}
-		    {% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %}
-		    	{{ spellEffect.minMax(min, max, characteristics.intelligence, characteristics.heals) }}
-		    {% else %}
-		    {# si sort de dégat #}
-			    {{ spellEffect.minMax(min, max, characteristics[effectList[effect.effectTemplate.id][2]] + characteristics.power, characteristics[effectList[effect.effectTemplate.id][3]]) }}
-			{% endif %}
-			{{ effect.setParm1(minEffet).setParm2(maxEffet).htmlDescription | raw }}
-		{% endif %}
-    {% else %}
-    	{{ effect.htmlDescription | raw }}
-    {% endif %}
+    
+	{{ effect.htmlDescription | raw }}
 
     {% include 'DofCharactersBundle::fragments.html.twig' with {'effect': effect, 'stack': stack} only %}
     <br />
