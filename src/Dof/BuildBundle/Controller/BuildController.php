@@ -284,7 +284,6 @@ class BuildController extends Controller
             'user' => $user,
             'can_write' => $canWrite,
             'effectList' => $EffectList ,
-            'spellBuild' => true,
             ]);
 
     }
