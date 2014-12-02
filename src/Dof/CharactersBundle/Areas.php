@@ -50,6 +50,8 @@ class Areas
 				return self::getLinePolygons($params[0]);
 			case AreaShape::DIAGONAL_TRANSVERSAL_LINE:
 				return self::getDiagonalTransversalLinePolygons($params[0]);
+			case AreaShape::ARC:
+				return self::getArcPolygons($params[0]);
 			default:
 				throw new \LogicException('Not implemented');
 		}
@@ -200,9 +202,22 @@ class Areas
 	public static function getDiagonalTransversalLinePolygons($max){
 		if (!$max)
 			return self::getPointPolygons();
-		$polys = [self::getPointPolygons()];
+		$polys = self::getPointPolygons();
 		for ($i = 1; $i <= $max; ++$i) {
 			$polys[] = [[-$i, -$i], [-$i + 1, -$i], [-$i + 1, -$i + 1], [-$i, -$i + 1]];
+			$polys[] = [[$i, $i], [$i + 1, $i], [$i + 1, $i + 1], [$i, $i + 1]];
+		}
+
+		return $polys;
+	}
+
+	public static function getArcPolygons($max){
+		if (!$max)
+			return self::getPointPolygons();
+
+		$polys = self::getPointPolygons();
+		for ($i = 1; $i <= $max; ++$i) {
+			$polys[] = [[-$i, $i], [-$i + 1, $i], [-$i + 1, $i + 1], [-$i, $i + 1]];
 			$polys[] = [[$i, $i], [$i + 1, $i], [$i + 1, $i + 1], [$i, $i + 1]];
 		}
 
