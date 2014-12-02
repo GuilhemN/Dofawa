@@ -16,9 +16,9 @@
 		{% if min != 0 or max != 0 %}
 
 			{% macro minMax(min, max, caract, domHeal) %}
-			    {% effect.setParam1((min * (100 + caract) / 100 + domHeal) | round(0, 'floor')) %}
+			    {% set minEffet = (min * (100 + caract) / 100 + domHeal) | round(0, 'floor') %}
 			    {% if min != max %}
-			        {% effect.setParam2((max * (100 + caract) / 100 + domHeal) | round(0, 'floor')) %}
+			        {% set  maxEffet = (max * (100 + caract) / 100 + domHeal) | round(0, 'floor') %}
 			    {% endif %}
 			{% endmacro %}
 			{% import _self as spellEffect %}
@@ -30,7 +30,7 @@
 			    {{ spellEffect.minMax(min, max, characteristics[effectList[effect.effectTemplate.id][2]] + characteristics.power, characteristics[effectList[effect.effectTemplate.id][3]]) }}
 			{% endif %}
 		{% endif %}
-		{{ effect.htmlDescription | raw }}
+		{{ effect.setParm1(minEffet).setParm2(maxEffet).htmlDescription | raw }}
     {% else %}
     	{{ effect.htmlDescription | raw }}
     {% endif %}
