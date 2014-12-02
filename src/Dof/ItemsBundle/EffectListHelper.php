@@ -96,7 +96,7 @@ class EffectListHelper
         }
         return $map;
     }
-    private static function getDamageMap()
+    public static function getDamageMap()
     {
         static $map = null;
         if ($map === null)
