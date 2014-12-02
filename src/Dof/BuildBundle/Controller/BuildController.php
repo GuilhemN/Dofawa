@@ -251,6 +251,7 @@ class BuildController extends Controller
 
         $EffectList = $EffectListHelper->getDamageMap();
         
+        // Ajout des caracts
         array_push($EffectList[91], $characteristics->getChance());
         array_push($EffectList[92], $characteristics->getStrength());
         array_push($EffectList[93], $characteristics->getAgility());
@@ -263,6 +264,18 @@ class BuildController extends Controller
         array_push($EffectList[100], $characteristics->getStrength());
         array_push($EffectList[108], $characteristics->getIntelligence());
         array_push($EffectList[646], $characteristics->getIntelligence());
+
+        // Ajout des dommages
+        array_push($EffectList[91], $characteristics->getWaterDamage());
+        array_push($EffectList[92], $characteristics->getEarthDamage());
+        array_push($EffectList[93], $characteristics->getAirDamage());
+        array_push($EffectList[94], $characteristics->getFireDamage());
+        array_push($EffectList[95], $characteristics->getNeutralDamage());
+        array_push($EffectList[91], $characteristics->getWaterDamage());
+        array_push($EffectList[92], $characteristics->getEarthDamage());
+        array_push($EffectList[93], $characteristics->getAirDamage());
+        array_push($EffectList[94], $characteristics->getFireDamage());
+        array_push($EffectList[95], $characteristics->getNeutralDamage());
 
         return $this->render('DofBuildBundle:Build:showSpellsDamages.html.twig', [
             'characteristics' => $characteristics,

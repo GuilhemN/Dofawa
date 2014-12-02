@@ -22,9 +22,9 @@
 		    		{{ max * (100 + characteristics.intelligence ) / 100 + characteristics.heals }}
 		    	{% else %}
 		    	{# si sort de dégat #}
-			    	{{ (min * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + Dommages Fixes) | round(0, 'floor') }}
+			    	{{ (min * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + effectList[effect.effectTemplate.id][3]) | round(0, 'floor') }}
 			    	{{ 'to' | trans({}, 'item') }}
-			    	{{ (max * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + Dommages Fixes) | round(0, 'floor') }}
+			    	{{ (max * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + effectList[effect.effectTemplate.id][3]) | round(0, 'floor') }}
 			    {% endif %}
 		    {% else %}
 		    	{# si sort de soin #}
@@ -32,7 +32,7 @@
 		    		{{ max * (100 + characteristics.intelligence ) / 100 + characteristics.heals }}
 		    	{% else %}
 		    	{# si sort de dégat #}
-		    		{{ (max * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + Dommages Fixes) | round(0, 'floor') }}
+		    		{{ (max * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + effectList[effect.effectTemplate.id][3]) | round(0, 'floor') }}
 		    	{% endif %}
 		    {% endif %}
 		{% endif %}
