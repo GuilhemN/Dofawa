@@ -14,27 +14,22 @@
     	{% set min = effect.param1 %}
 		{% set max = effect.param2 %}
 		{% if min != 0 or max != 0 %}
-		    {% if min != max %}
-		    	{# si sort de soin #}
-		    	{% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %}
-		    		{{ min * ( 100 + characteristics.intelligence ) / 100 + characteristics.heals }}
-		    		{{ 'to' | trans({}, 'item') }}
-		    		{{ max * ( 100 + characteristics.intelligence ) / 100 + characteristics.heals }}
-		    	{% else %}
-		    	{# si sort de dégat #}
-			    	{{ (min * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + effectList[effect.effectTemplate.id][3]) | round(0, 'floor') }}
-			    	{{ 'to' | trans({}, 'item') }}
-			    	{{ (max * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + effectList[effect.effectTemplate.id][3]) | round(0, 'floor') }}
+
+			{% macro minMax(min, max, caract, domHeal) %}
+			    {{ (min * (100 + caract) / 100 + domHeal) | round(0, 'floor') }}
+			    {% if min != max %}
+			        {{ 'to' | trans({}, 'item') }}
+			        {{ (max * (100 + caract) / 100 + domHeal) | round(0, 'floor') }}
 			    {% endif %}
+			{% endmacro %}
+
+		    {# si sort de soin #}
+		    {% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %}
+		    	{{ minMax(min, max, characteristics.intelligence, characteristics.heals) }}
 		    {% else %}
-		    	{# si sort de soin #}
-		    	{% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %}
-		    		{{ max * ( 100 + characteristics.intelligence ) / 100 + characteristics.heals }}
-		    	{% else %}
-		    	{# si sort de dégat #}
-		    		{{ (max * (100 + effectList[effect.effectTemplate.id][2] + characteristics.power) / 100 + effectList[effect.effectTemplate.id][3]) | round(0, 'floor') }}
-		    	{% endif %}
-		    {% endif %} 
+		    {# si sort de dégat #}
+			    {{ minMax(min, max, effectList[effect.effectTemplate.id][2] + characteristics.power, effectList[effect.effectTemplate.id][3]) }}
+			{% endif %}
 		{% endif %}
 
     {% else %}
