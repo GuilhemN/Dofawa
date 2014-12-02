@@ -6,7 +6,7 @@
     {% if firstCall | default(false) %}
         {% set stack = {} %}
         {% if defaultStack is defined %}
-            {% set stack = defaultStack %}
+            {% set stack = defaultStack %} 
         {% endif %}
     {% endif %}
 
@@ -28,7 +28,7 @@
 			    {% endif %}
 		    {% else %}
 		    	{# si sort de soin #}
-		    	{% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %} 
+		    	{% if effect.effectTemplate.id == 108 or effect.effectTemplate.id == 646 %}
 		    		{{ max * ( 100 + characteristics.intelligence ) / 100 + characteristics.heals }}
 		    	{% else %}
 		    	{# si sort de dégat #}
