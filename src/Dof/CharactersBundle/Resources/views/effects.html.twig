@@ -5,6 +5,9 @@
 {% for effect in effects if effect.hidden is not defined or not effect.hidden or is_granted('ROLE_SPELL_XRAY') %}
     {% if firstCall | default(false) %}
         {% set stack = {} %}
+        {% if defaultStack is defined %}
+            {% set stack = defaultStack %}
+        {% endif %}
     {% endif %}
     {{ effect.htmlDescription | raw }}
     {% include 'DofCharactersBundle::fragments.html.twig' with {'effect': effect, 'stack': stack} only %}
