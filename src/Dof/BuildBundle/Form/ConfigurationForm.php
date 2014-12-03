@@ -31,24 +31,24 @@ class ConfigurationForm extends AbstractType
             ];
         $builder
             // Stuff
-            ->add('title', 'text', ['required' => true, 'trim' => true])
+            ->add('title', 'text', ['required' => true, 'trim' => true, 'label' => 'title', 'translation_domain' => 'generalTrans'])
             ->add('stuffVisibility', 'checkbox', ['label' => 'Visible', 'required' => false])
-            ->add('vitality', 'number', $caractOptions)
-            ->add('wisdom', 'number', $caractOptions)
-            ->add('strength', 'number', $caractOptions)
-            ->add('intelligence', 'number', $caractOptions)
-            ->add('chance', 'number', $caractOptions)
-            ->add('agility', 'number', $caractOptions)
+            ->add('vitality', 'number', $caractOptions+['label' => 'vitality', 'translation_domain' => 'item'])
+            ->add('wisdom', 'number', $caractOptions+['label' => 'wisdom', 'translation_domain' => 'item'])
+            ->add('strength', 'number', $caractOptions+['label' => 'strength', 'translation_domain' => 'item'])
+            ->add('intelligence', 'number', $caractOptions+['label' => 'intelligence', 'translation_domain' => 'item'])
+            ->add('chance', 'number', $caractOptions+['label' => 'chance', 'translation_domain' => 'item'])
+            ->add('agility', 'number', $caractOptions+['label' => 'agility', 'translation_domain' => 'item'])
 
             // Character
-            ->add('name', 'text', ['required' => true, 'trim' => true])
+            ->add('name', 'text', ['required' => true, 'trim' => true, 'label' => 'name', 'translation_domain' => 'generalTrans'])
             ->add('characterVisibility', 'checkbox', ['label' => 'Visible', 'required' => false])
             ->add('level', 'number', array(
                 'attr' => array('min' => '1', 'max' => '200', 'step' => '1'),
-                'constraints' => new Assert\Range(['min' => 1, 'max' => 200])
+                'constraints' => new Assert\Range(['min' => 1, 'max' => 200]),, 'label' => 'list.level', 'translation_domain' => 'item'
                 )
             )
-            ->add('breed', 'entity', ['class' => 'DofCharactersBundle:Breed', 'property' => 'name' . ucfirst($this->locale)])
+            ->add('breed', 'entity', ['class' => 'DofCharactersBundle:Breed', 'property' => 'name' . ucfirst($this->locale), 'label' => 'breed', 'translation_domain' => 'breed'])
             ->add('gender', 'choice', array(
                   'label' => 'gender',
                   'choices'   => array_flip(Gender::getValues()),
