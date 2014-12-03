@@ -20,6 +20,7 @@ class AreaShape extends Enum
 	const NEGATED_CIRCLE = 'I';
 	const HOLLOW_DIAGONAL_CROSS = '#';
 	const ARC = 'U';
+	const DIAGONAL_LINE = '/'; // not sure
 	const DIAGONAL_TRANSVERSAL_LINE = '-';
 	const RING = 'O';
 	const STAR = '*';
