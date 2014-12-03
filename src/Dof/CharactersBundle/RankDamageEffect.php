@@ -32,8 +32,8 @@ class RankDamageEffect implements EffectInterface
     }
 
     private function calcParam($param, $row, array $characteristics){
-        $caract = ($charact > 0) ? $characteristics[$row[2]] : 0;
-        $bonus = ($charact > 0) ? $characteristics[$row[3]] : 0;
+        $caract = ($characteristics[$row[2]] > 0) ? $characteristics[$row[2]] : 0;
+        $bonus = ($characteristics[$row[3]] > 0) ? $characteristics[$row[3]] : 0;
         return $this->effect->{ 'getParam' . $param }() * (100 + $caract) / 100 + $bonus;
     }
 
