@@ -25,7 +25,7 @@ class RankDamageEffect implements EffectInterface
         $this->di = $this->effect->getContainer();
     }
 
-    public function applyCharateristics(array $characteristics){ 
+    public function applyCharateristics(array $characteristics){
         $row = EffectListHelper::getDamageMap()[$this->effect->getEffectTemplate()->getId()];
         $this->param1 = floor($this->effect->getParam1() * (100 + $characteristics[$row[2]]) / 100 + $characteristics[$row[3]]);
         $this->param2 = floor($this->effect->getParam2() * (100 + $characteristics[$row[2]]) / 100 + $characteristics[$row[3]]);

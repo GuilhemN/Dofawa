@@ -534,14 +534,14 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
         return $this->damageEffects;
     }
 
-    public function getDamageNormalEffects()
+    public function getNormalDamageEffects()
     {
         return array_filter($this->damageEffects, function($v){
             return !$v->isCritical();
         });
     }
 
-    public function getDamageCriticalEffects()
+    public function getCriticalDamageEffects()
     {
         return array_filter($this->damageEffects, function($v){
             return $v->isCritical();
