@@ -64,4 +64,8 @@ class RankDamageEffect implements EffectInterface
     public function getAreaOfEffect(){
         return $this->effect->getAreaOfEffect();
     }
+
+    public function isCritical(){
+        return $this->effect->isCritical();
+    }
 }
