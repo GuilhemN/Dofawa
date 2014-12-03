@@ -39,15 +39,15 @@ class RankDamageEffect implements EffectInterface
         ], $locale);
         if($full){
             array_unshift($desc, [ '[' . $this->effect->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
-            $desc[] = [ ' (' . implode(', ', $this->effect->targets) . ' sur ' . $this->effect->areaOfEffect . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
+            $desc[] = [ ' (' . implode(', ', $this->effect->getTargets()) . ' sur ' . $this->effect->areaOfEffect . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
         }
-        if ($this->effect->duration)
-        $desc[] = [ ' (' . $translator->transChoice('duration', $this->effect->duration, ['%count%' => $this->effect->duration], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
-        if ($this->effect->delay)
-        $desc[] = [ ' (dans ' . $this->effect->delay . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
-        if (implode(',', $this->effect->triggers) != 'I'){
+        if ($this->effect->getDuration())
+        $desc[] = [ ' (' . $translator->transChoice('duration', $this->effect->getDuration(), ['%count%' => $this->effect->duration], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
+        if ($this->effect->getDelay())
+        $desc[] = [ ' (dans ' . $this->effect->getDelay() . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
+        if (implode(',', $this->effect->getTriggers()) != 'I'){
             if($full)
-            $triggers = '(' . implode(', ', $this->effect->triggers) . ') ';
+            $triggers = '(' . implode(', ', $this->effect->getTriggers()) . ') ';
             else
             $triggers = '';
             array_unshift($desc, [ 'Déclenché ' . $triggers . ': ', GameTemplateString::COMES_FROM_TEMPLATE ]);
