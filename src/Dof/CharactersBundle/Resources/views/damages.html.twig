@@ -9,7 +9,7 @@
         {% set minHeals = 0 %} {% set maxHeals = 0 %}
         {% for effect in effects if effect.hidden is not defined or not effect.hidden or is_granted('ROLE_SPELL_XRAY') %}
         <tr>
-            {% if effect.type == (0 or 1) %}
+            {% if effect.type == 0 or effect.type == 1) %}
                 {% set minDamages = minDamages + effect.param1 %}
                 {% set maxDamages = maxDamages + effect.param2 %}
             {% endif %}
@@ -28,7 +28,7 @@
         {% if maxDamages > 0 %}
         <tr>
             <td>Total dégâts</td>
-            <td>De {{ minDamages }} à {{ maxDamages }}</td> 
+            <td>De {{ minDamages }} à {{ maxDamages }}</td>
         </tr>
         {% endif %}
         {% if maxHeals > 0 %}
