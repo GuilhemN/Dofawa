@@ -69,10 +69,11 @@
                                                 {{ rank.minCastRange }} - {{ rank.maxCastRange }}
                                             {% endif %}
                                         {% if rank.modifiableCastRange %} modifiable{% endif %}
+										<br />
+										<img src="{{ path('dof_area_render_normal', { area: rank.castArea|base64url_encode, type: 'cast' }) }}" style="width: 90px;" alt="" />
                                         </td>
                                     </tr>
                                 </table>
-								<img src="{{ path('dof_area_render_normal', { area: rank.castArea|base64url_encode, type: 'cast' }) }}" style="width: 90px;" alt="" />
                             </div>
 
                             {# carcteristiques secondaires du sort #}
