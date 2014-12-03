@@ -22,12 +22,58 @@
                     </div>
                 </div>
 
+                {% macro effect(min,max) %}
+                    {{ min }}
+                    {% if min != max %}
+                        {{ 'to' | trans({}, 'item') }}
+                        {{ max }}
+                    {% endif %}
+                {% endmacro %}
+                {% import _self as monsterEffect %}
+
                 {# Right column #}
-                <div class="col-sm-9">
-                    <img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monster.minLifePoints }} à {{ monster.maxLifePoints }}<br />
-                    <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monster.minActionPoints }} à {{ monster.maxActionPoints }}<br />
-                    <img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monster.minMovementPoints }} à {{ monster.maxMovementPoints }}<br />
-                {# Close right column #}
+                <div class="row">
+                    <div class="col-lg-3">
+                        <table>
+                            <tr>
+                                <td>{{ 'vitality' | trans({'%1%': ''}, 'item') }}: </td>
+                                <td class="padLeftTab"><img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monsterEffect.effect( monster.minLifePoints , monster.maxLifePoints) }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'ap' | trans({'%1%': ''}, 'item') }}: </td>
+                                <td class="padLeftTab"><img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monsterEffect.effect( monster.minActionPoints , monster.maxActionPoints) }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'mp' | trans({'%1%': ''}, 'item') }}: </td>
+                                <td class="padLeftTab"><img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monsterEffect.effect( monster.minMovementPoints , monster.maxMovementPoints) }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <table>
+                            <tr>
+                                <td><img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ monsterEffect.effect( monster.minEarthResistance , monster.maxEarthResistance) }}</td>
+                                <td>{{ 'percentEarthResistance' | trans({'%1%': ''}, 'item') }}</td>
+                            </tr>
+                            <tr>
+                                <td><img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ monsterEffect.effect( monster.minAirResistance , monster.maxAirResistance) }}</td>
+                                <td>{{ 'percentAirResistance' | trans({'%1%': ''}, 'item') }}</td>
+                            </tr>
+                            <tr>
+                                <td><img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt=""> {{ monsterEffect.effect( monster.minFireResistance , monster.maxFireResistance) }}</td>
+                                <td>{{ 'percentFireResistance' | trans({'%1%': ''}, 'item') }}</td>
+                            </tr>
+                            <tr>
+                                <td><img src="{{ asset('bundles/dofitems/img/water.png') }}" alt=""> {{ monsterEffect.effect( monster.minWaterResistance , monster.maxWaterResistance) }}</td>
+                                <td>{{ 'percentWaterResistance' | trans({'%1%': ''}, 'item') }}</td>
+                            </tr> 
+                            <tr>
+                                <td><img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt=""> {{ monsterEffect.effect( monster.minNeutralResistance , monster.maxNeutralResistance) }}</td>
+                                <td>{{ 'percentNeutralResistance' | trans({'%1%': ''}, 'item') }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    {# Close right column #}
                 </div>
             </div>
 
