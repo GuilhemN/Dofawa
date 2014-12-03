@@ -17,7 +17,7 @@ security:
                 use_referer: true
             logout:
                 path: fos_user_security_logout
-                use_referer: true
+                target: /
             anonymous:    true
 
     access_control:
