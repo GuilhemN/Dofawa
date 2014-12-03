@@ -54,7 +54,6 @@
                         {% endif %}
                         {% if rank.criticalDamageEffects is not empty %}
                             <br>
-                            <b>Effets réels CC :</b><br>
                             {% include 'DofCharactersBundle::damages.html.twig' with {'effects': rank.criticalDamageEffects, 'critical': true} %}
                         {% endif %}
                         <div class="row">

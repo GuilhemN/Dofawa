@@ -27,8 +27,14 @@ class RankDamageEffect implements EffectInterface
 
     public function applyCharateristics(array $characteristics){
         $row = EffectListHelper::getDamageMap()[$this->effect->getEffectTemplate()->getId()];
-        $this->param1 = floor($this->effect->getParam1() * (100 + $characteristics[$row[2]]) / 100 + $characteristics[$row[3]]);
-        $this->param2 = floor($this->effect->getParam2() * (100 + $characteristics[$row[2]]) / 100 + $characteristics[$row[3]]);
+        $this->param1 = calcParam(1, $row, $characteristics);
+        $this->param2 = calcParam(2, $row, $characteristics);
+    }
+
+    private function calcParam($param, $row, array $characteristics){
+        $caract = ($charact > 0) ? $characteristics[$row[2]] : 0;
+        $bonus = ($charact > 0) ? $characteristics[$row[3]] : 0;
+        return $this->effect->{ 'getParam' . $param }() * (100 + $caract) / 100 + $bonus;
     }
 
     public function getDescription($locale = 'fr', $full = false)
@@ -41,7 +47,7 @@ class RankDamageEffect implements EffectInterface
         ], $locale);
         if($full){
             array_unshift($desc, [ '[' . $this->effect->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
-            $desc[] = [ ' (' . implode(', ', $this->effect->getTargets()) . ' sur ' . $this->effect->getAreaOfEffect() . ')', GameTemplateString::COMES_FROM_TEMPLATE ]; 
+            $desc[] = [ ' (' . implode(', ', $this->effect->getTargets()) . ' sur ' . $this->effect->getAreaOfEffect() . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
         }
         if ($this->effect->getDuration())
         $desc[] = [ ' (' . $translator->transChoice('duration', $this->effect->getDuration(), ['%count%' => $this->effect->getDuration()], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
