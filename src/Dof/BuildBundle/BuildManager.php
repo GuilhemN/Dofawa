@@ -23,6 +23,9 @@ class BuildManager extends ServiceWithContainer
 
         $stuff = $repository->findOneBySlug($slug);
 
+        if($stuff === null)
+            return null;
+
         return $this->transformStuff($stuff);
     }
 
