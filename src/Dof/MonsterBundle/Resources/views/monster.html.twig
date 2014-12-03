@@ -33,19 +33,19 @@
 
                 {# Right column #}
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <table>
                             <tr>
-                                <td>{{ 'vitality' | trans({'%1%': ''}, 'item') }}</td>
-                                <td><img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monsterEffect.effect( monster.minLifePoints , monster.maxLifePoints) }}</td>
+                                <td>{{ 'vitality' | trans({'%1%': ''}, 'item') }}: </td>
+                                <td class="padLeftTab"><img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monsterEffect.effect( monster.minLifePoints , monster.maxLifePoints) }}</td>
                             </tr>
                             <tr>
-                                <td>{{ 'ap' | trans({'%1%': ''}, 'item') }}</td>
-                                <td><img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monsterEffect.effect( monster.minActionPoints , monster.maxActionPoints) }}</td>
+                                <td>{{ 'ap' | trans({'%1%': ''}, 'item') }}: </td>
+                                <td class="padLeftTab"><img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monsterEffect.effect( monster.minActionPoints , monster.maxActionPoints) }}</td>
                             </tr>
                             <tr>
-                                <td>{{ 'mp' | trans({'%1%': ''}, 'item') }}</td>
-                                <td><img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monsterEffect.effect( monster.minMovementPoints , monster.maxMovementPoints) }}</td>
+                                <td>{{ 'mp' | trans({'%1%': ''}, 'item') }}: </td>
+                                <td class="padLeftTab"><img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monsterEffect.effect( monster.minMovementPoints , monster.maxMovementPoints) }}</td>
                             </tr>
                         </table>
                     </div>
