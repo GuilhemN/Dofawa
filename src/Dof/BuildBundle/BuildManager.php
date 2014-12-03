@@ -21,11 +21,11 @@ class BuildManager extends ServiceWithContainer
         $em = $this->getEntityManager();
         $repository = $em->getRepository('DofBuildBundle:Stuff');
 
-        $stuff = $repository->findBySlug($slug);
+        $stuff = $repository->findOneBySlug($slug);
 
         return $this->transformStuff($stuff);
     }
-    
+
     public function getBySlugs($user, $character, $stuff){
         $em = $this->getEntityManager();
         $repository = $em->getRepository('DofBuildBundle:Stuff');
