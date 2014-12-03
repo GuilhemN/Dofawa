@@ -50,13 +50,11 @@
                         {% endif %}
                         {% if rank.normalDamageEffects is not empty %}
                             <br>
-                            <b>Effets réels :</b><br>
-                            {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.normalDamageEffects, 'defaultStack': [ rank ]} %}
+                            {% include 'DofCharactersBundle::damages.html.twig' with {'effects': rank.normalDamageEffects} %}
                         {% endif %}
                         {% if rank.criticalDamageEffects is not empty %}
                             <br>
-                            <b>Effets réels CC :</b><br>
-                            {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.criticalDamageEffects, 'defaultStack': [ rank ]} %}
+                            {% include 'DofCharactersBundle::damages.html.twig' with {'effects': rank.criticalDamageEffects, 'critical': true} %}
                         {% endif %}
                         <div class="row">
                             {# carcteristiques du sort #}
