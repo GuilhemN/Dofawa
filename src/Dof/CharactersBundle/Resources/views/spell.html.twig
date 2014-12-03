@@ -48,10 +48,15 @@
                             <b>Effets CC :</b><br>
                             {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.criticalEffects, 'defaultStack': [ rank ]} %}
                         {% endif %}
-                        {% if rank.damageEffects is not empty %}
+                        {% if rank.normalDamageEffects is not empty %}
                             <br>
                             <b>Effets réels :</b><br>
-                            {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.damageEffects, 'defaultStack': [ rank ]} %}
+                            {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.normalDamageEffects, 'defaultStack': [ rank ]} %}
+                        {% endif %}
+                        {% if rank.criticalDamageEffects is not empty %}
+                            <br>
+                            <b>Effets réels CC :</b><br>
+                            {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.criticalDamageEffects, 'defaultStack': [ rank ]} %}
                         {% endif %}
                         <div class="row">
                             {# carcteristiques du sort #}
@@ -95,7 +100,7 @@
                     {% endfor %}
                 </div>
             </div>
-        </div> 
+        </div>
         <hr />
         {% if spell.breeds is not empty %}
             <b>Classes :</b>
