@@ -46,12 +46,9 @@ dof_build_edit:
 
 # Ajout dans les builds
 dof_build_additem_post:
-    path:     /{user}/{character}/{stuff}/add-items/
+    path:     /add-items/
     defaults: { _controller: DofBuildBundle:Stuff:addItems}
     requirements:
-        user: '[0-9a-z-]+'
-        character: '[0-9a-z-]+'
-        stuff: '[0-9a-z-]+'
         _method: POST
 
 dof_build_additem:

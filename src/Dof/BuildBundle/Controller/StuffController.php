@@ -15,12 +15,19 @@ use Dof\BuildBundle\BuildSlot;
 
 class StuffController extends Controller
 {
-    public function addItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite){
-        if(!$canWrite)
+    public function addItemsAction(){
+        $bm = $this->get('build_manager');
+        $request = $this->get('request');
+        $stuffSlug = $request->request->get('stuff');
+
+        $stuff = $bm->getStuffBySlug($stuffSlug);
+        if($stuff === null)
+            throw $this->createNotFoundException();
+
+        if(!$bm->canWrite($stuff))
             throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
-        $request = $this->get('request');
 
         $itemsIds = (array) $request->request->get('items');
         $rel = array_flip($itemsIds);
@@ -63,13 +70,13 @@ class StuffController extends Controller
         }
         $em->flush();
 
-        $stuff = $em->getRepository('DofBuildBundle:stuff')->findOneBy(array('id' => $stuff->getId()));
+        $stuff = $bm->reloadStuff($stuff);
         $stuff->updatePrimaryBonus();
         $em->flush($stuff);
 
         return $this->redirect($this->generateUrl('dof_build_show', [
-            'user' => $user->getSlug(),
-            'character' => $character->getSlug(),
+            'user' => $stuff->getCharacter()->getOwner()->getSlug(),
+            'character' => $stuff->getCharacter()->getSlug(),
             'stuff' => $stuff->getSlug()
             ]));
     }

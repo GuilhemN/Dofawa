@@ -150,7 +150,8 @@
 
             {% if slugs is defined and slugs is not empty %}
                 <hr />
-                <form method="POST" action="{{ path('dof_build_additem_post', {'user': slugs.user, 'character': slugs.character, 'stuff': slugs.stuff}) }}">
+                <form method="POST" action="{{ path('dof_build_additem_post') }}">
+                    <input name="stuff" type="hidden" value="{{ slugs.stuff }}">
                     <input name="items[{{ build_slot | default('') }}]" type="hidden" value="{{ item.id }}">
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Equiper</button>
