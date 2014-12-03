@@ -60,4 +60,8 @@ class RankDamageEffect implements EffectInterface
     public function getFragments(){
         return $this->effect->getFragments();
     }
+
+    public function getAreaOfEffect(){
+        return $this->effect->getAreaOfEffect();
+    }
 }
