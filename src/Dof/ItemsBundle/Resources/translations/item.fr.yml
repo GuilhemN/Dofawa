@@ -72,3 +72,10 @@ air: %1% Dégats air
 heal: %1% PV rendus
 criticalHitsBonus: Bonus CC
 maxCastsPerTurn: Coups par tour
+
+Vitality: Vitalité
+Strength: Force
+Intelligence: Intelligence
+Chance: Chance
+Agility: Agilité
+Wisdom: Sagesse
