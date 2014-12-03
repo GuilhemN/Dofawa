@@ -5,7 +5,7 @@
         </tr>
     </thead>
     <tbody>
-        {% set min = 0, max = 0 %}
+        {% set min = 0 %} {% set max = 0 %}
         {% for effect in effects if effect.hidden is not defined or not effect.hidden or is_granted('ROLE_SPELL_XRAY') %}
         <tr>
             {% set min = min + effect.param1 %}
