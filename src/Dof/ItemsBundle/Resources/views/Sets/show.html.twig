@@ -14,7 +14,28 @@
         </div>
         <hr/>
     {% endif %}
+    {% if stuffs is not empty %}
+    <div class="well well-sm text-center">
+        <form method="POST" action="{{ path('dof_build_additem_post') }}">
+            <select class="select2">
+                {% for k, v in stuffs %}
+                <optgroup label="{{ characters[k].name }}">
+                    {% for stuff in v %}
+                    <option value="{{ stuff.slug }}">{{ stuff.name }}</option>
+                    {% endfor %}
+                </optgroup>
+                {% endfor %}
+            </select>
+            {% for item in set.items %}
+                <input name="items[]" type="hidden" value="{{ item.id }}">
+            {% endfor %}
 
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Equiper</button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
     <div class="well well-sm text-center">
         <div class="page-header nopadding marginbottom">
           <h1>{{ set.getName(locales()) }} <small>{{ 'level' | trans({'%level%': set.level}, 'item') }}</small></h1>
