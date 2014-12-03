@@ -14,10 +14,10 @@ security:
                 check_path: fos_user_security_check
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-                use_referer:                    true
+                use_referer: true
             logout:
                 path: fos_user_security_logout
-                target: /
+                use_referer: true
             anonymous:    true
 
     access_control:
