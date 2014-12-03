@@ -36,15 +36,15 @@
                     <div class="col-lg-6">
                         <table>
                             <tr>
-                                <td>{{ 'vitality' | trans({}, 'item') }}</td>
+                                <td>{{ 'vitality' | trans({'%1%': ''}, 'item') }}</td>
                                 <td><img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monster.effect( monster.minLifePoints , monster.maxLifePoints) }}</td>
                             </tr>
                             <tr>
-                                <td>{{ 'ap' | trans({}, 'item') }}</td>
+                                <td>{{ 'ap' | trans({'%1%': ''}, 'item') }}</td>
                                 <td><img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monster.effect( monster.minActionPoint , monster.maxActionPoints) }}</td>
                             </tr>
                             <tr>
-                                <td>{{ 'mp' | trans({}, 'item') }}</td>
+                                <td>{{ 'mp' | trans({'%1%': ''}, 'item') }}</td>
                                 <td><img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monster.effect( monster.minMovementPoints , monster.maxMovementPoints) }}</td>
                             </tr>
                         </table>
@@ -53,23 +53,23 @@
                         <table>
                             <tr>
                                 <td><img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ monster.effect( monster.minEarthResistance , monster.maxEarthResistance) }}</td>
-                                <td>{{ 'percentEarthResistance' | trans({%1 : ''}, 'item') }}</td>
+                                <td>{{ 'percentEarthResistance' | trans({'%1%': ''}, 'item') }}</td>
                             </tr>
                             <tr>
                                 <td><img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ monster.effect( monster.minAirResistance , monster.maxAirResistance) }}</td>
-                                <td>{{ 'percentAirResistance' | trans({%1 : ''}, 'item') }}</td>
+                                <td>{{ 'percentAirResistance' | trans({'%1%': ''}, 'item') }}</td>
                             </tr>
                             <tr>
                                 <td><img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt=""> {{ monster.effect( monster.minFireResistance , monster.maxFireResistance) }}</td>
-                                <td>{{ 'percentFireResistance' | trans({%1 : ''}, 'item') }}</td>
+                                <td>{{ 'percentFireResistance' | trans({'%1%': ''}, 'item') }}</td>
                             </tr>
                             <tr>
                                 <td><img src="{{ asset('bundles/dofitems/img/water.png') }}" alt=""> {{ monster.effect( monster.minWaterResistance , monster.maxWaterResistance) }}</td>
-                                <td>{{ 'percentWaterResistance' | trans({%1 : ''}, 'item') }}</td>
+                                <td>{{ 'percentWaterResistance' | trans({'%1%': ''}, 'item') }}</td>
                             </tr> 
                             <tr>
                                 <td><img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt=""> {{ monster.effect( monster.minNeutralResistance , monster.maxNeutralResistance) }}</td>
-                                <td>{{ 'percentNeutralResistance' | trans({%1 : ''}, 'item') }}</td>
+                                <td>{{ 'percentNeutralResistance' | trans({'%1%': ''}, 'item') }}</td>
                             </tr>
                         </table>
                     </div>
