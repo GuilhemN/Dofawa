@@ -41,7 +41,7 @@
                         {{ 'mp' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monsterEffect.effect( monster.minMovementPoints , monster.maxMovementPoints) }}
                         <br>
                     </div>
-                    <div class="col-lg-5"> 
+                    <div class="col-lg-5">
                         <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ monsterEffect.effect( monster.minEarthResistance , monster.maxEarthResistance) }}{{ 'percentEarthResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
                         <img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ monsterEffect.effect( monster.minAirResistance , monster.maxAirResistance) }}{{ 'percentAirResistance' | trans({'%1%': ''}, 'item') }}
