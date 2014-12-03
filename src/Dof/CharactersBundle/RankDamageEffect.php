@@ -20,7 +20,7 @@ class RankDamageEffect implements EffectInterface
 
     public function __construct(SpellRankEffect $effect){
         $this->effect = $effect;
-        $this->di = $this->effect->di;
+        $this->di = $this->effect->getContainer();
     }
 
     public function applyCharateristics(array $characteristics){
