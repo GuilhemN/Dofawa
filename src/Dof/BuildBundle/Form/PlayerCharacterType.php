@@ -19,12 +19,12 @@ class PlayerCharacterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name', null, array('label' => 'name', 'translation_domain' => 'generalTrans'))
             ->add('level', null, array(
                 'data' => '1',
-                'attr' => array('min' => '1', 'max' => '200', 'step' => '1'))
+                'attr' => array('min' => '1', 'max' => '200', 'step' => '1'), 'label' => 'list.level', 'translation_domain' => 'item')
             )
-            ->add('breed')
+            ->add('breed', null, array('label' => 'breed', 'translation_domain' => 'breed'))
             ->add('gender', 'choice', array(
                   'label' => 'gender',
                   'choices'   => array_flip(Gender::getValues()),
