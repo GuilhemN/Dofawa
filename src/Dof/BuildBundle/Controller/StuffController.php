@@ -17,6 +17,7 @@ class StuffController extends Controller
 {
     public function addItemsAction(){
         $bm = $this->get('build_manager');
+        $request = $this->get('request');
         $stuffSlug = $request->request->get('stuff');
 
         $stuff = $bm->getStuffBySlug($stuffSlug);
@@ -27,7 +28,6 @@ class StuffController extends Controller
             throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
-        $request = $this->get('request');
 
         $itemsIds = (array) $request->request->get('items');
         $rel = array_flip($itemsIds);
