@@ -4,14 +4,23 @@ namespace Dof\CharactersBundle;
 use Dof\CharactersBundle\Entity\SpellRankEffect;
 use Dof\ItemsBundle\EffectListHelper;
 
-class RankDamageEffect {
+use Dof\CharactersBundle\EffectInterface;
+use Dof\CharactersBundle\EffectTrait;
+
+class RankDamageEffect implements EffectInterface
+{
+    use EffectTrait;
+
     private $effect;
 
     private $param1;
     private $param2;
 
+    private $di;
+
     public function __construct(SpellRankEffect $effect){
         $this->effect = $effect;
+        $this->di = $this->effect->di;
     }
 
     public function applyCharateristics(array $characteristics){
@@ -44,5 +53,9 @@ class RankDamageEffect {
             array_unshift($desc, [ 'Déclenché ' . $triggers . ': ', GameTemplateString::COMES_FROM_TEMPLATE ]);
         }
         return $desc;
+    }
+
+    public function getFragments(){
+        return $this->effect->getFragments();
     }
 }
