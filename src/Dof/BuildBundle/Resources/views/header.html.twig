@@ -18,6 +18,9 @@
     <li {{ is_current_page('dof_build_show_weapondamages') | raw }}>
         <a href="{{ path('dof_build_show_weapondamages', slugs) }}">Arme</a>
     </li>
+    <li {{ is_current_page('dof_build_show_spellsDamages') | raw }}>
+        <a href="{{ path('dof_build_show_spellsDamages', slugs) }}">Sorts</a>
+    </li>
     <li role="presentation" class="dropdown">
         <a aria-expanded="false" href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">Stuffs <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
