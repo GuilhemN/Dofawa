@@ -32,7 +32,7 @@ class RankDamageEffect implements EffectInterface
     public function getDescription($locale = 'fr', $full = false)
     {
         $translator = $this->di->get('translator');
-        $desc = $this->getEffectTemplate()->expandDescription([
+        $desc = $this->effect->getEffectTemplate()->expandDescription([
             '1' => $this->param1,
             '2' => $this->param2,
             '3' => $this->effect->getParam3()
