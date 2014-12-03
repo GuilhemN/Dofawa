@@ -7,6 +7,8 @@ use Dof\ItemsBundle\EffectListHelper;
 use Dof\CharactersBundle\EffectInterface;
 use Dof\CharactersBundle\EffectTrait;
 
+use Dof\Common\GameTemplateString;
+
 class RankDamageEffect implements EffectInterface
 {
     use EffectTrait;
