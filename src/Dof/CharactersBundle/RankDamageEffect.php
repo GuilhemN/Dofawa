@@ -27,8 +27,8 @@ class RankDamageEffect implements EffectInterface
 
     public function applyCharateristics(array $characteristics){
         $row = EffectListHelper::getDamageMap()[$this->effect->getEffectTemplate()->getId()];
-        $this->param1 = calcParam(1, $row, $characteristics);
-        $this->param2 = calcParam(2, $row, $characteristics);
+        $this->param1 = $this->calcParam(1, $row, $characteristics);
+        $this->param2 = $this->calcParam(2, $row, $characteristics);
     }
 
     private function calcParam($param, $row, array $characteristics){
