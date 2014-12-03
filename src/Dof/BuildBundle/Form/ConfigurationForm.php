@@ -62,7 +62,7 @@ class ConfigurationForm extends AbstractType
                 'required' => true,
                 'translation_domain' => 'face'
             ))
-        ;
+        ; 
     }
 
     /**
