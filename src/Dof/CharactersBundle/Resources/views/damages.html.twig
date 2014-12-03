@@ -5,18 +5,36 @@
         </tr>
     </thead>
     <tbody>
-        {% set min = 0 %} {% set max = 0 %}
+        {% set minDamages = 0 %} {% set maxDamages = 0 %}
         {% for effect in effects if effect.hidden is not defined or not effect.hidden or is_granted('ROLE_SPELL_XRAY') %}
         <tr>
-            {% set min = min + effect.param1 %}
-            {% set max = max + effect.param2 %}
+            {% if effect.type == (0 or 1) %}
+                {% set minDamages = min + effect.param1 %}
+                {% set maxDamages = max + effect.param2 %}
+            {% endif %}
+            {% if effect.type == 1 %}
+                {% set minHeals = min + effect.param1 / 2 %}
+                {% set maxHeals = max + effect.param2 / 2 %}
+            {% endif %}
+            {% if effect.type == 2 %}
+                {% set minHeals = min + effect.param1 %}
+                {% set maxHeals = max + effect.param2 %}
+            {% endif %}
             <td>{{ loop.index }}</td>
             <td>{{ effect.htmlDescription | raw }}</td>
         </tr>
         {% endfor %}
+        {% if maxDamages > 0 %}
         <tr>
             <td>Total dégâts</td>
-            <td>De {{ min }} à {{ max }}</td>
+            <td>De {{ minDamages }} à {{ maxDamages }}</td>
         </tr>
+        {% endif %}
+        {% if maxHeals > 0 %}
+        <tr>
+            <td>Total soins</td>
+            <td>De {{ minHeals }} à {{ maxHeals }}</td>
+        </tr>
+        {% endif %}
     </tbody>
 </table>
