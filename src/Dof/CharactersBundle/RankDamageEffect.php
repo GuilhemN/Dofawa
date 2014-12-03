@@ -91,6 +91,10 @@ class RankDamageEffect implements EffectInterface
         return $this->type;
     }
 
+    public function isHidden(){
+        return $this->effect->isHidden();
+    }
+
     public static function getDamageMap(){
         static $map = null;
         if ($map === null)

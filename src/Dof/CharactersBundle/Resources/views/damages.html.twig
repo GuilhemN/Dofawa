@@ -7,7 +7,7 @@
     <tbody>
         {% set minDamages = 0 %} {% set maxDamages = 0 %}
         {% set minHeals = 0 %} {% set maxHeals = 0 %}
-        {% for effect in effects if effect.hidden is not defined or not effect.hidden or is_granted('ROLE_SPELL_XRAY') %}
+        {% for effect in effects if not effect.hidden or is_granted('ROLE_SPELL_XRAY') %}
         <tr>
             {% if effect.type == 0 or effect.type == 1 %}
                 {% set minDamages = minDamages + effect.param1 %}
