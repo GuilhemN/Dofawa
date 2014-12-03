@@ -17,3 +17,10 @@ dof_area_render_glyphtrap:
     requirements:
         area: '[0-9A-Za-z_-]+'
         color: '[0-9a-f]{6}'
+
+dof_area_render_normal:
+    pattern:  /area/{area}/{type}.svg
+    defaults: { _controller: DofCharactersBundle:Area:renderNormal }
+    requirements:
+        area: '[0-9A-Za-z_-]+'
+        color: 'cast|effect'

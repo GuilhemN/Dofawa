@@ -28,6 +28,19 @@ class AreaController extends Controller
 			'Content-Type' => 'image/svg+xml'
 		]);
 	}
+	public function renderNormalAction($area, $type)
+	{
+		$area = UrlSafeBase64::decode($area);
+		$path = self::getAreaPathWithBoundingBox($area, $minX, $maxX, $minY, $maxY);
+		return new Response($this->renderView('DofCharactersBundle:Area:normal.svg.twig', [
+			'path' => $path,
+			'width' => $maxX - $minX,
+			'height' => $maxY - $minY,
+			'color' => ($type == 'cast') ? '22349A' : 'DD0E21'
+		]), 200, [
+			'Content-Type' => 'image/svg+xml'
+		]);
+	}
 	
 	private static function getAreaPathWithBoundingBox($area, &$minX, &$maxX, &$minY, &$maxY)
 	{
