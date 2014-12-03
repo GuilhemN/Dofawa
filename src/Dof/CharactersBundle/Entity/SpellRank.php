@@ -552,7 +552,7 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     {
         $dm = EffectListHelper::getDamageMap();
         return array_filter($this->effects->toArray(), function($v) use ($dm){
-            return in_array($v->getEffectTemplate()->getId(), $dm);
+            return array_key_exists($v->getEffectTemplate()->getId(), $dm);
         });
     }
 
