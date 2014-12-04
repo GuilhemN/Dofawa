@@ -17,8 +17,9 @@ class BuildUpdater
             $em = $args->getEntityManager();
 
             foreach($ent->getStuffs() as $stuff){
-                $this->updateStuff($stuff, $em);
                 $stuff->getLook()->setBreed($ent->getBreed());
+                $em->persist($stuff->getLook());
+                $em->persist($stuff);
             }
         }
         elseif($ent instanceof Stuff){
