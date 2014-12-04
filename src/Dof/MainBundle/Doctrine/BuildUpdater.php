@@ -33,9 +33,11 @@ class BuildUpdater
 
     private function updateStuff(Stuff $ent, $em){
         $faces = $em->getRepository('DofCharactersBundle:Face');
+        $look = $ent->getLook();
 
-        $face = $faces->findOneBy(array('breed' => $ent->getLook()->getBreed(), 'label' => $ent->getFaceLabel(), 'gender' => $ent->getLook()->getGender()));
-        $ent->getLook()->setFace($face);
+        $face = $faces->findOneBy(array('breed' => $look->getBreed(), 'label' => $ent->getFaceLabel(), 'gender' => $look->getGender()));
+        $look->setFace($face);
 
+        $em->persist($look);
     }
 }
