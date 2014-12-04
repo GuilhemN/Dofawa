@@ -25,17 +25,19 @@
             <td>{{ effect.htmlDescription | raw }}</td>
         </tr>
         {% endfor %}
-        {% if maxDamages > 0 %}
-        <tr>
-            <td>Total dégâts</td>
-            <td>De {{ minDamages }} à {{ maxDamages }}</td>
-        </tr>
-        {% endif %}
-        {% if maxHeals > 0 %}
-        <tr>
-            <td>Total soins</td>
-            <td>De {{ minHeals }} à {{ maxHeals }}</td>
-        </tr>
+        {% if effects | length > 0 %}
+            {% if maxDamages > 0 %}
+            <tr>
+                <td>Total dégâts</td>
+                <td>De {{ minDamages }} à {{ maxDamages }}</td>
+            </tr>
+            {% endif %}
+            {% if maxHeals > 0 %}
+            <tr>
+                <td>Total soins</td>
+                <td>De {{ minHeals }} à {{ maxHeals }}</td>
+            </tr>
+            {% endif %}
         {% endif %}
     </tbody>
 </table>
