@@ -1,5 +1,6 @@
 parameters:
     dof_build.playerCharacter.form.class: Dof\BuildBundle\Form\PlayerCharacterType
+    dof_build.stuff_look_loader.class: Dof\BuildBundle\StuffLookLoader
 
 services:
     dof_build.playerCharacter.form.type:
@@ -16,3 +17,9 @@ services:
     build_manager:
         class: Dof\BuildBundle\BuildManager
         arguments: ['@service_container']
+
+    dof_build.stuff_look_loader:
+        class: %dof_build.stuff_look_loader.class%
+        arguments: [ @service_container ]
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
