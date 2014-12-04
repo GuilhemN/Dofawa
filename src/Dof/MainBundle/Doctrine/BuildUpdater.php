@@ -18,7 +18,7 @@ class BuildUpdater
 
             foreach($ent->getStuffs() as $stuff){
                 $this->updateStuff($stuff, $em);
-                $stuff->getLook()->setBreed($character->getBreed());
+                $stuff->getLook()->setBreed($ent->getBreed());
             }
         }
         elseif($ent instanceof Stuff){
