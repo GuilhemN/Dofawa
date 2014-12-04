@@ -1,5 +1,4 @@
 parameters:
-    dof.main.doctrine.build_updater.class: Dof\MainBundle\Doctrine\BuildUpdater
     dof.main.doctrine.primary_bonus_updater.class: Dof\MainBundle\Doctrine\PrimaryBonusUpdater
     dof.main.doctrine.message_notification.class: Dof\MainBundle\Doctrine\MessageNotification
     dof.main.doctrine.set_updater.class: Dof\MainBundle\Doctrine\SetUpdater
@@ -29,12 +28,6 @@ services:
     notification_manager:
         class: Dof\MainBundle\NotificationManager
         arguments: [ "@service_container" ]
-
-    dof.main.doctrine.build_updater:
-        class: "%dof.main.doctrine.build_updater.class%"
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
 
     dof.main.doctrine.primary_bonus_updater:
         class: "%dof.main.doctrine.primary_bonus_updater.class%"
