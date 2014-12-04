@@ -8,7 +8,7 @@ use Doctrine\ORM\Event\PostFlushEventArgs;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\BuildBundle\Entity\PlayerCharacter;
 
-class SetUpdater
+class BuildUpdater
 {
     public function prePersist(LifecycleEventArgs $args)
     {
