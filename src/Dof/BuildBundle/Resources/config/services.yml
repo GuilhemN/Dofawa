@@ -1,6 +1,5 @@
 parameters:
     dof_build.playerCharacter.form.class: Dof\BuildBundle\Form\PlayerCharacterType
-    dof_build.stuff_look_loader.class: Dof\BuildBundle\StuffLookLoader
 
 services:
     dof_build.playerCharacter.form.type:

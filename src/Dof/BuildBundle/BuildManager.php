@@ -14,7 +14,7 @@ class BuildManager extends ServiceWithContainer
         $em = $this->getEntityManager();
         $stuffs = $em->getRepository('DofBuildBundle:Stuff');
 
-        return $stuffs->findOneById($stuff->getId());
+        return $this->transformStuff($stuffs->findOneById($stuff->getId()));
     }
 
     public function getStuffBySlug($slug){
@@ -26,7 +26,7 @@ class BuildManager extends ServiceWithContainer
         if($stuff === null)
             return null;
 
-        return $stuff;
+        return $this->transformStuff($stuff);
     }
 
     public function getBySlugs($user, $character, $stuff){
@@ -34,6 +34,17 @@ class BuildManager extends ServiceWithContainer
         $repository = $em->getRepository('DofBuildBundle:Stuff');
 
         $stuff = $repository->findParamConverter($user, $character, $stuff);
+
+        return $this->transformStuff($stuff);
+    }
+
+    protected function transformStuff(Stuff $stuff){
+        $em = $this->getEntityManager();
+        $faces = $em->getRepository('DofCharactersBundle:Face');
+
+        $face = $faces->findOneBy(array('breed' => $stuff->getCharacter()->getBreed(), 'label' => $stuff->getFaceLabel(), 'gender' => $stuff->getLook()->getGender()));
+        $stuff->getLook()->setFace($face);
+        $stuff->getLook()->setBreed($stuff->getCharacter()->getBreed());
 
         return $stuff;
     }
