@@ -38,7 +38,7 @@ class BuildManager extends ServiceWithContainer
         return $this->transformStuff($stuff);
     }
 
-    protected function transformStuff(Stuff $stuff){
+    public function transformStuff(Stuff $stuff){
         $em = $this->getEntityManager();
         $faces = $em->getRepository('DofCharactersBundle:Face');
 
