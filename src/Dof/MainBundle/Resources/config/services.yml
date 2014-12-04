@@ -31,10 +31,10 @@ services:
         arguments: [ "@service_container" ]
 
     dof.main.doctrine.build_updater:
-    class: "%dof.main.doctrine.build_updater.class%"
-    tags:
-        - { name: doctrine.event_listener, event: prePersist }
-        - { name: doctrine.event_listener, event: preUpdate }
+        class: "%dof.main.doctrine.build_updater.class%"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
 
     dof.main.doctrine.primary_bonus_updater:
         class: "%dof.main.doctrine.primary_bonus_updater.class%"
