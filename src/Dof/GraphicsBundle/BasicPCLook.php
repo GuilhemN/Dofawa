@@ -261,15 +261,15 @@ class BasicPCLook
     {
         $pcLook = new EntityLook();
         $pcLook->setBone(1);
-        if ($this->breed !== null && $this->gender !== null) {
+        if ($this->getBreed() !== null && $this->gender !== null) {
             switch ($this->gender) {
                 case Gender::MALE:
-                    $pcLook->addSkin($lodef ? $this->breed->getLodefMaleSkin() : $this->breed->getMaleSkin());
-                    $pcLook->setScale($this->breed->getMaleSize() / 100);
+                    $pcLook->addSkin($lodef ? $this->getBreed()->getLodefMaleSkin() : $this->getBreed()->getMaleSkin());
+                    $pcLook->setScale($this->getBreed()->getMaleSize() / 100);
                     break;
                 case Gender::FEMALE:
-                    $pcLook->addSkin($lodef ? $this->breed->getLodefFemaleSkin() : $this->breed->getFemaleSkin());
-                    $pcLook->setScale($this->breed->getFemaleSize() / 100);
+                    $pcLook->addSkin($lodef ? $this->getBreed()->getLodefFemaleSkin() : $this->getBreed()->getFemaleSkin());
+                    $pcLook->setScale($this->getBreed()->getFemaleSize() / 100);
                     break;
             }
         }
