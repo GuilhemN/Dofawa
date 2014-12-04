@@ -34,8 +34,8 @@ class StuffLookLoader extends ServiceWithContainer
             if ($this->enabled) {
                 $faces = $em->getRepository('DofCharactersBundle:Face');
 
-                $face = $faces->findOneBy(array('breed' => $stuff->getCharacter()->getBreed(), 'label' => $stuff->getFaceLabel(), 'gender' => $stuff->getLook()->getGender()));
-                $stuff->getLook()->setFace($face);
+                $face = $faces->findOneBy(array('breed' => $ent->getCharacter()->getBreed(), 'label' => $ent->getFaceLabel(), 'gender' => $ent->getLook()->getGender()));
+                $ent->getLook()->setFace($face);
             }
         }
     }
