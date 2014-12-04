@@ -17,19 +17,25 @@ class SetUpdater
             $em = $args->getEntityManager();
 
             foreach($ent->getStuffs() as $stuff){
+                $this->updateStuff($stuff, $em);
                 $stuff->getLook()->setBreed($character->getBreed());
             }
         }
         elseif($ent instanceof Stuff){
             $em = $args->getEntityManager();
-            $faces = $em->getRepository('DofCharactersBundle:Face');
-
-            $face = $faces->findOneBy(array('breed' => $ent->getLook()->getBreed(), 'label' => $ent->getFaceLabel(), 'gender' => $ent->getLook()->getGender()));
-            $ent->getLook()->setFace($face);
+            $this->updateStuff($ent, $em);
         }
     }
     public function preUpdate(LifecycleEventArgs $args)
     {
         $this->prePersist($args);
+    }
+
+    private function updateStuff(Stuff $ent, $em){
+        $faces = $em->getRepository('DofCharactersBundle:Face');
+
+        $face = $faces->findOneBy(array('breed' => $ent->getLook()->getBreed(), 'label' => $ent->getFaceLabel(), 'gender' => $ent->getLook()->getGender()));
+        $ent->getLook()->setFace($face);
+
     }
 }
