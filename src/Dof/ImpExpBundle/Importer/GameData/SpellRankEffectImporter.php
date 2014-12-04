@@ -49,9 +49,7 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
 
         foreach ($ranksEffects as $rank => $effects) {
             $rank = $rankRepo->find($rank);
-            if($rank === null || ($rank->getSpell()->isPreliminary() ^ $beta))
-                continue;
-
+            if($rank !== null && ($rank->getSpell()->isPreliminary() ^ $beta)){
                 if(isset($effects['normal']))
                 CollectionSynchronizationHelper::synchronize($this->dm, array_values($rank->getNormalEffects()), $effects['normal'], function () use ($rank) {
                     $effect = new SpellRankEffect();
@@ -100,6 +98,7 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
                     $effect->setParam3($row['value']);
 
                 });
+            }
 
             ++$rowsProcessed;
             if (($rowsProcessed % 150) == 0) {
