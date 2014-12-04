@@ -52,7 +52,7 @@ class BuildController extends Controller
         $em = $this->getDoctrine()->getManager();
         $characters = $em->getRepository('DofBuildBundle:PlayerCharacter')->findByUser($user);
         foreach($characters as $character){
-            $bm->transformStuff($characters->getSpells[0]);
+            $bm->transformStuff($characters->getSpells()[0]);
         }
 
         $form = $this->createForm('dof_buildbundle_playercharacter', new PlayerCharacter());
