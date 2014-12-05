@@ -2,7 +2,7 @@
 
 {% block body %}
 <form method="get">
-    <input type="text" placeholder="Ex: Glourséleste, Tengu, ..." name="q" /> 
+    <input type="text" placeholder="Ex: Glourséleste, Tengu, ..." name="q" value="{{ app.request.query.get('q') | e('htmlattr') }}"/> 
     <input type="submit" class="btn btn-primary" value="Rechercher" />
 </form>
 <script>
