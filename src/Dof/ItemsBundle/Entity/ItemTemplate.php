@@ -920,7 +920,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         return false;
     }
 
-    protected function generateFileName(){
+    public function generateFileName(){
         return $this->slug . '.png';
     }
 }

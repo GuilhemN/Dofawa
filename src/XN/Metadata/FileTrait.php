@@ -80,7 +80,7 @@ trait FileTrait
         return $this->file;
     }
 
-    protected function generateFileName(){
+    public function generateFileName(){
         return time() . $this->getFile()->getClientOriginalName();
     }
 }
