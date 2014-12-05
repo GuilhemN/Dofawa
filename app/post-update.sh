@@ -20,6 +20,8 @@ mkdir -p app/cache
 
 mkdir -p web/uploads/badges
 mkdir -p web/uploads/avatars
+mkdir -p web/uploads/images
+mkdir -p web/uploads/items
 mkdir -p web/media/cache
 
 if [ "$1" == --dev ]; then

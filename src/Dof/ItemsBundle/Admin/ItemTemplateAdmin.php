@@ -54,6 +54,7 @@ class ItemTemplateAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('file', 'file')
             ->add('nameFr', null, ['disabled' => true])
             ->add('visible', null, ['required' => false])
             ->add('release', null, ['required' => false])

@@ -101,9 +101,9 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
             }
 
             ++$rowsProcessed;
-            if (($rowsProcessed % 150) == 0) {
+            if (($rowsProcessed % 300) == 0) {
                 if ($output && $progress)
-                    $progress->advance(150);
+                    $progress->advance(300);
             }
         }
         if ($output && $progress)

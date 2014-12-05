@@ -20,6 +20,7 @@ use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
+use XN\Metadata\FileTrait;
 
 
 /**
@@ -30,6 +31,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
+ * @ORM\HasLifecycleCallbacks
  */
 class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, LocalizedNameInterface
 {
@@ -41,7 +43,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileTrait;
 
     /**
      * @var ItemType
@@ -916,5 +918,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
         return false;
+    }
+
+    protected function generateFileName(){
+        return $this->slug . '.png';
     }
 }

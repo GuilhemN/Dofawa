@@ -13,6 +13,7 @@ use XN\Metadata\TimestampableTrait;
 //Traduction Titre/Description
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
+use XN\Metadata\FileTrait;
 
 use Dof\MainBundle\Entity\Badge;
 
@@ -25,7 +26,7 @@ use Dof\MainBundle\Entity\Badge;
  */
 class BadgeLevel implements TimestampableInterface
 {
-    use TimestampableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
+    use TimestampableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileTrait;
 
     /**
      * @var integer
@@ -48,23 +49,6 @@ class BadgeLevel implements TimestampableInterface
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=true)
      */
     protected $badge;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    protected $path;
-
-    /**
-     * @Assert\Image(
-     *     maxSize = "1024k",
-     *     minWidth = 80,
-     *     maxWidth = 80,
-     *     minHeight = 80,
-     *     maxHeight = 80,
-     *     mimeTypesMessage = "Choisissez un fichier image valide.")
-     */
-    private $file;
-
 
     /**
      * Get id
@@ -122,94 +106,10 @@ class BadgeLevel implements TimestampableInterface
         return $this->badge;
     }
 
-    public function getAbsolutePath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir().'/'.$this->path;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadDir().'/'.$this->path;
-    }
-
-    protected function getUploadRootDir()
-    {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
-    }
-
     protected function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
         return 'uploads/badges';
-    }
-
-    /**
-     * Sets file.
-     *
-     * @param UploadedFile $file
-     */
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-    }
-
-    /**
-     * Get file.
-     *
-     * @return UploadedFile
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function upload()
-    {
-        throw new \Exception("Test 2", 1);
-        // the file property can be empty if the field is not required
-        if (null === $this->getFile()) {
-            return;
-        }
-
-        if(!empty($this->path))
-            $this->removeUpload();
-
-        // use the original file name here but you should
-        // sanitize it at least to avoid any security issues
-            
-        // move takes the target directory and then the
-        // target filename to move to
-        $this->getFile()->move(
-            $this->getUploadRootDir(),
-            time().$this->getFile()->getClientOriginalName()
-        );
-
-        // set the path property to the filename where you've saved the file
-        $this->path = time().$this->getFile()->getClientOriginalName();
-
-        // clean up the file property as you won't need it anymore
-        $this->file = null;
-    }
-
-    /**
-     * @ORM\PreRemove()
-     */
-    public function removeUpload(){
-        @unlink($this->getAbsolutePath());
-    }
-
-    public function __toString(){
-        return $this->getName();
     }
 }
