@@ -16,9 +16,9 @@ trait FileTrait
     * @Assert\Image(
     *     maxSize = "1024k",
     *     minWidth = 80,
-    *     maxWidth = 80,
+    *     maxWidth = 120,
     *     minHeight = 80,
-    *     maxHeight = 80,
+    *     maxHeight = 120,
     *     mimeTypesMessage = "Choisissez un fichier image valide.")
     */
     private $file;
