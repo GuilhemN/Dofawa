@@ -4,7 +4,7 @@ namespace XN\Metadata;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileTrait
+trait FileTrait
 {
 
     /**
