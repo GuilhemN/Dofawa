@@ -536,28 +536,28 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
 
     public function getNormalDamageEffects()
     {
-        return array_filter($this->damageEffects, function($v){
+        return array_filter((array) $this->damageEffects, function($v){
             return !$v->isCritical();
         });
     }
 
     public function getCriticalDamageEffects()
     {
-        return array_filter($this->damageEffects, function($v){
+        return array_filter((array) $this->damageEffects, function($v){
             return $v->isCritical();
         });
     }
 
     public function getNormalEffects()
     {
-        return array_filter($this->effects->toArray(), function($v){
+        return array_filter((array) $this->effects->toArray(), function($v){
             return !$v->isCritical();
         });
     }
 
     public function getCriticalEffects()
     {
-        return array_filter($this->effects->toArray(), function($v){
+        return array_filter((array) $this->effects->toArray(), function($v){
             return $v->isCritical();
         });
     }
@@ -565,7 +565,7 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     public function getEffectsForDamage()
     {
         $dm = EffectListHelper::getDamageMap();
-        return array_filter($this->effects->toArray(), function($v) use ($dm){
+        return array_filter((array) $this->effects->toArray(), function($v) use ($dm){
             return array_key_exists($v->getEffectTemplate()->getId(), $dm);
         });
     }
