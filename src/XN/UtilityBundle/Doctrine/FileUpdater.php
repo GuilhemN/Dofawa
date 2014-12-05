@@ -37,8 +37,8 @@ class FileUpdater
         // the file property can be empty if the field is not required
         if (null === $ent->getFile())
             return;
-
-        if(!empty($ent->getPath()))
+        $path = $ent->getPath();
+        if(!empty($path))
             $this->remove($ent);
 
         // move takes the target directory and then the
