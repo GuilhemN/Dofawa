@@ -40,7 +40,7 @@ class PlayerCharacterType extends AbstractType
                 'mapped' => false,
                 'translation_domain' => 'face'
               ))
-            ->add('submit', 'submit')
+            ->add('submit', 'submit',array('label' => 'search', 'translation_domain' => 'FOSMessageBundle'))
         ;
     }
 
