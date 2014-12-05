@@ -58,7 +58,7 @@ class ItemTemplateAdmin extends Admin
             ->add('nameFr', null, ['disabled' => true])
             ->add('visible', null, ['required' => false])
             ->add('release', null, ['required' => false])
-            ->add('preliminary', null)
+            ->add('preliminary', null, ['required' => false])
             ->add('deprecated', null, ['disabled' => true])
             ->add('obtainmentFr')
             ->add('obtainmentEn')
