@@ -14,6 +14,7 @@ use XN\Metadata\TimestampableTrait;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use XN\Metadata\FileTrait;
+use XN\Metadata\FileInterface;
 
 use Dof\MainBundle\Entity\Badge;
 
@@ -22,9 +23,8 @@ use Dof\MainBundle\Entity\Badge;
  *
  * @ORM\Table("dof_badge_levels")
  * @ORM\Entity(repositoryClass="Dof\MainBundle\Entity\BadgeLevelRepository")
- * @ORM\HasLifecycleCallbacks
  */
-class BadgeLevel implements TimestampableInterface
+class BadgeLevel implements TimestampableInterface, FileInterface
 {
     use TimestampableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileTrait;
 

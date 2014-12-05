@@ -21,6 +21,7 @@ use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 use XN\Metadata\FileTrait;
+use XN\Metadata\FileInterface;
 
 
 /**
@@ -31,9 +32,8 @@ use XN\Metadata\FileTrait;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
- * @ORM\HasLifecycleCallbacks
  */
-class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, LocalizedNameInterface
+class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, LocalizedNameInterface, FileInterface
 {
     /**
      * @var integer
