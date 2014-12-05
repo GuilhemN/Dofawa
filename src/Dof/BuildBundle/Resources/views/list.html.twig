@@ -9,7 +9,7 @@
                 <h3>{{ character.name }}</h3>
                 <p>{{ 'level' | trans({'%level%': character.level}, 'item')}}</p>
                 <p>
-                    <a href="{{ path('dof_build_show', {'user': character.owner.slug, 'character': character.slug, 'stuff': character.stuffs[0].slug}) }}" class="btn btn-primary" role="button">Voir</a>
+                    <a href="{{ path('dof_build_show', {'user': character.owner.slug, 'character': character.slug, 'stuff': character.stuffs[0].slug}) }}" class="btn btn-primary" role="button">{{ 'see' | trans({},'generalTrans') }}</a>
                     {#<a href="#" class="btn btn-default" role="button">Button</a>#}
                 </p>
             </div>

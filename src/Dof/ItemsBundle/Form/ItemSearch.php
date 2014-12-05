@@ -25,7 +25,7 @@ class ItemSearch extends AbstractType
     {
         $builder
             ->setMethod('get')
-            ->add('name', 'text', ['trim' => true, 'required' => false])
+            ->add('name', 'text', ['label' => 'name', 'translation_domain' => 'generalTrans', 'trim' => true, 'required' => false])
             ->add('type', 'choice', array(
                 'disabled' => !$this->isTypeUpdatable,
                 'choices' => ItemSlot::getPrefixedNames('equipments.'),
@@ -34,7 +34,7 @@ class ItemSearch extends AbstractType
                 'translation_domain' => 'type_item'
                 ))
             ->add('maj', 'text', ['required' => false, 'attr' => ['placeholder' => 'ex: 2.22']])
-            ->add('submit', 'submit')
+            ->add('submit', 'submit',array('label' => 'search', 'translation_domain' => 'FOSMessageBundle'))
         ;
     }
 
