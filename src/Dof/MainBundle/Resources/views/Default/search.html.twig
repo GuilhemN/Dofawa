@@ -1,6 +1,10 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
+<form method="get">
+    <input type="text" placeholder="Ex: Glourséleste, Tengu, ..." name="q" /> 
+    <input type="submit" class="btn btn-primary" value="Rechercher" />
+</form>
 <script>
 (function() {
     var cx = '016199431344155278630:awl0ik7ywne';
