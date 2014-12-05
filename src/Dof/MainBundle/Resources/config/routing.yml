@@ -2,6 +2,10 @@ dof_main_homepage:
     pattern:  /
     defaults: { _controller: DofMainBundle:Default:index }
 
+dof_search_engine:
+    pattern:  /search
+    defaults: { _controller: DofMainBundle:Default:searchEngine }
+
 dof_main_calculateur:
     pattern:  /calculateur
     defaults: { _controller: DofMainBundle:Calculateur:index }
