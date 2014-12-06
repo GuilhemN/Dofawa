@@ -12,14 +12,14 @@ class SkinsController extends Controller
     public function addImageAction(ItemTemplate $item){
         if(!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
             throw $this->createAccessDeniedException();
-        if(!$item->isPreliminary())
-            throw $this->createNotFoundException();
+        if($item->isPreliminary())
+            throw $this->createNotFoundException('Item bêta');
 
         try {
             $icon = file_get_contents('http://staticns.ankama.com/dofus/www/game/items/200/' . $item->getIconId() . '.png');
         }
         catch(Exception $e){
-            throw $this->createNotFoundException();
+            throw $this->createNotFoundException('Image non trouvé', $e);
         };
 
         $filename = tempnam('/tmp', 'item');
