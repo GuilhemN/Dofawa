@@ -7,8 +7,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints as Assert;
 
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 use Doctrine\ORM\Mapping as ORM;
 
 use XN\Rest\ExportableInterface;
@@ -113,11 +111,18 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $obtainmentRu;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="icon_relative_path", type="string", length=31, nullable=true)
-     */
+    * @var string
+    *
+    * @ORM\Column(name="icon_relative_path", type="string", length=31, nullable=true)
+    */
     private $iconRelativePath;
+
+    /**
+    * @var integer
+    *
+    * @ORM\Column(name="icon_id", type="integer", nullable=true)
+    */
+    private $iconId;
 
     /**
      * @var integer
@@ -533,6 +538,29 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function getIconRelativePath()
     {
         return $this->iconRelativePath;
+    }
+
+    /**
+    * Set iconId
+    *
+    * @param integer $iconId
+    * @return ItemTemplate
+    */
+    public function setIconId($iconId)
+    {
+        $this->iconId = $iconId;
+
+        return $this;
+    }
+
+    /**
+    * Get iconId
+    *
+    * @return integer
+    */
+    public function getIconId()
+    {
+        return $this->iconId;
     }
 
     /**

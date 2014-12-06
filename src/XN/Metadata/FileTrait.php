@@ -4,7 +4,7 @@ namespace XN\Metadata;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 trait FileTrait
 {
@@ -46,7 +46,7 @@ trait FileTrait
     *
     * @param UploadedFile $file
     */
-    public function setFile(UploadedFile $file = null)
+    public function setFile(File $file = null)
     {
         $this->file = $file;
         $this->uploadIndex++;
