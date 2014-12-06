@@ -70,7 +70,7 @@ fire: %1% Dégats feu
 water: %1% Dégats eau
 air: %1% Dégats air
 heal: %1% PV rendus
-ap_loss: %1% PA (cible)
+ap_loss: %1% PA (cible) 
 criticalHitsBonus: Bonus CC
 maxCastsPerTurn: Coups par tour
 
