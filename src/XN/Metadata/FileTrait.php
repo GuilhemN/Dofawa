@@ -33,7 +33,7 @@ trait FileTrait
         $this->path = $path;
         return $this;
     }
-    
+
     /**
     * Sets file.
     *
@@ -72,7 +72,7 @@ trait FileTrait
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
     }
 
     protected function getUploadDir()
