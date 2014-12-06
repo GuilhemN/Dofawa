@@ -50,21 +50,13 @@ class Areas
 					$params[1] = 0;
 				return self::getStarPolygons($params[0], $params[1]);
 			case AreaShape::LINE:
-				if (!isset($params[1]))
-					$params[1] = 0;
-				return self::getLinePolygons($params[0], $params[1]);
+				return self::getLinePolygons($params[0]);
 			case AreaShape::TRANSVERSAL_LINE:
-				if (!isset($params[1]))
-					$params[1] = 0;
-				return self::getTransversalLinePolygons($params[0], $params[1]);
+				return self::getTransversalLinePolygons($params[0]);
 			case AreaShape::DIAGONAL_LINE:
-				if (!isset($params[1]))
-					$params[1] = 0;
-				return self::getDiagonalLinePolygons($params[0], $params[1]);
+				return self::getDiagonalLinePolygons($params[0]);
 			case AreaShape::DIAGONAL_TRANSVERSAL_LINE:
-				if (!isset($params[1]))
-					$params[1] = 0;
-				return self::getDiagonalTransversalLinePolygons($params[0], $params[1]);
+				return self::getDiagonalTransversalLinePolygons($params[0]);
 			case AreaShape::ARC:
 				if (!isset($params[1]))
 					$params[1] = 0;
