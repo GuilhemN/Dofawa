@@ -4,7 +4,11 @@ security:
             id: fos_user.user_provider.username
 
     encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
+        FOS\UserBundle\Model\UserInterface:
+            algorithm:            pbkdf2
+            hash_algorithm:       sha512
+            encode_as_base64:     true
+            iterations:           1000
 
     firewalls:
         main:
