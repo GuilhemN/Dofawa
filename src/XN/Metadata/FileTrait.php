@@ -33,6 +33,26 @@ trait FileTrait
         $this->path = $path;
         return $this;
     }
+    
+    /**
+    * Sets file.
+    *
+    * @param UploadedFile $file
+    */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+    * Get file.
+    *
+    * @return UploadedFile
+    */
+    public function getFile()
+    {
+        return $this->file;
+    }
 
     public function getAbsolutePath()
     {
