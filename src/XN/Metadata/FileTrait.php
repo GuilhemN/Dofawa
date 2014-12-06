@@ -80,7 +80,28 @@ trait FileTrait
         return $this->file;
     }
 
-    public function generateFileName(){
-        return time() . $this->getFile()->getClientOriginalName();
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            $this->path = time() . '-' . $this->id . '.'.$this->file->guessExtension();
+        }
+    }
+
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        $this->file->move($this->getUploadRootDir(), $this->path);
+
+        unset($this->file);
+    }
+    
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
     }
 }
