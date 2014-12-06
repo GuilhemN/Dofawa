@@ -46,8 +46,23 @@
                             {% endfor %}
                             </p>
                         {% endif %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        {% set url = 'http://dofus.com' %}
+                        <p>
+                            {% if item.weapon %}
+                                {% set url = 'http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/' ~ item.id ~ '-' ~ item.nameFr | slugify %}
+                            {% else if item.equipment %}
+                                {% set url = 'http://www.dofus.com/fr/mmorpg/encyclopedie/armes/' ~ item.id ~ '-' ~ item.nameFr | slugify %}
+                            {% else if item.animal %}
+                                {% set url = 'http://www.dofus.com/fr/mmorpg/encyclopedie/familiers/' ~ item.id ~ '-' ~ item.nameFr | slugify %}
+                            {% endif %}
+                            <a href="{{ url }}">
+                                <img src="{{ asset('bundles/dofmain/images/dof_logo_little.png') }}" />
+                            </a>
+                        </p>
+                        {% endif %}
                     </div>
-                        {% if item.isWeapon() %}
+                        {% if item.weapon %}
                             <div class="panel panel-default" class="col-sm-3">
                                 <table class="table">
                                     <tr><td style="padding:1px;">{{ 'ap' | trans({'%1%': ''},'item') }}: {{ item.apCost }} <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> <br>({{ item.maxCastsPerTurn }} {{ 'maxCastsPerTurn' | trans }})</td></tr>
