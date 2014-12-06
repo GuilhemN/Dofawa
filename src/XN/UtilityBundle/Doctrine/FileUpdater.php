@@ -30,7 +30,7 @@ class FileUpdater
             $ent->upload();
     }
 
-    public function preRemove(LifecycleEventArgs $args){
+    public function postRemove(LifecycleEventArgs $args){
         $ent = $args->getEntity();
         if ($ent instanceof FileInterface)
             $ent->removeUpload();
