@@ -33,7 +33,7 @@
                     <div class="text-center">
                         {% if item.weapon %}
                         <p>
-                            <img src="{{ path('dof_area_render_normal', { area: item.type.effectArea|base64url_encode, type: 'effect' }) }}" style="width: 45px;" alt="" />
+                            <img src="{{ path('dof_area_render_normal', { area: item.castArea|base64url_encode, type: 'cast' }) }}" style="width: 45px;" alt="" />
                         </p>
                         {% endif %}
                         <p>
