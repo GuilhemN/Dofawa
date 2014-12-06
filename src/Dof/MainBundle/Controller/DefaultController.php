@@ -21,7 +21,7 @@ class DefaultController extends Controller
 
 		return $this->render('DofMainBundle:Home:index.html.twig', array('articles'=>$articles));
 	}
-
+ 
 	public function searchEngineAction() {
 		return $this->render('DofMainBundle:Default:search.html.twig');
 	}
