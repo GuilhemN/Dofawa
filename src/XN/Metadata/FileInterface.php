@@ -12,5 +12,7 @@ interface FileInterface
     public function setFile(UploadedFile $file = null);
     public function getFile();
 
-    function generateFileName();
+    public function preUpload();
+    public function upload();
+    public function removeUpload();
 }
