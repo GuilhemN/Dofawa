@@ -6,7 +6,7 @@
 
     <a data-toggle="modal" data-target="#modalItem-{{ slot }}" href="#">
         <div class="thumbnail">
-            <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ itemTemplate.getName(locales()) }}" title="{{ itemTemplate.getName(locales()) }}">
+            <img class="img-responsive" src="{{ (item.webPath) ? item.webPath : asset('bundles/dofitems/img/default.png') }}" alt="{{ itemTemplate.getName(locales()) }}" title="{{ itemTemplate.getName(locales()) }}">
         </div>
     </a>
     <!-- Modal -->

@@ -30,6 +30,8 @@ trait FileTrait
     */
     private $file;
 
+    private $pathToRemove;
+
     public function getPath(){
         return $this->path;
     }
@@ -91,6 +93,8 @@ trait FileTrait
     public function preUpload()
     {
         if (null !== $this->file) {
+            if(!empty($this->path))
+                $this->pathToRemove = $this->path;
             $this->path = time() . '-' . $this->id . '.'.$this->file->guessExtension();
         }
     }
@@ -102,6 +106,10 @@ trait FileTrait
         }
 
         $this->file->move($this->getUploadRootDir(), $this->path);
+        if(!empty($this->pathToRemove)){
+            unlink($this->pathToRemove);
+            $this->pathToRemove = null;
+        }
 
         unset($this->file);
     }
