@@ -5,6 +5,7 @@ namespace Dof\ItemsBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,7 +21,7 @@ use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
-use XN\Metadata\FileTrait;
+use XN\Metadata\FileLightTrait;
 use XN\Metadata\FileInterface;
 
 
@@ -43,7 +44,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileLightTrait;
 
     /**
      * @var ItemType
@@ -110,11 +111,18 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $obtainmentRu;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="icon_relative_path", type="string", length=31, nullable=true)
-     */
+    * @var string
+    *
+    * @ORM\Column(name="icon_relative_path", type="string", length=31, nullable=true)
+    */
     private $iconRelativePath;
+
+    /**
+    * @var integer
+    *
+    * @ORM\Column(name="icon_id", type="integer", nullable=true)
+    */
+    private $iconId;
 
     /**
      * @var integer
@@ -209,6 +217,17 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $craftingJob;
+
+    /**
+    * @Assert\Image(
+    *     maxSize = "1024k",
+    *     minWidth = 131,
+    *     maxWidth = 200,
+    *     minHeight = 131,
+    *     maxHeight = 200,
+    *     mimeTypesMessage = "Choisissez un fichier image valide.")
+    */
+    private $file;
 
     public function __construct()
     {
@@ -519,6 +538,29 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function getIconRelativePath()
     {
         return $this->iconRelativePath;
+    }
+
+    /**
+    * Set iconId
+    *
+    * @param integer $iconId
+    * @return ItemTemplate
+    */
+    public function setIconId($iconId)
+    {
+        $this->iconId = $iconId;
+
+        return $this;
+    }
+
+    /**
+    * Get iconId
+    *
+    * @return integer
+    */
+    public function getIconId()
+    {
+        return $this->iconId;
     }
 
     /**
@@ -925,5 +967,19 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
         return 'uploads/items';
+    }
+
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+        system("/usr/bin/convert " . escapeshellarg(strval($this->file)) . " -resize 131x131 " . escapeshellarg($this->getUploadRootDir() . '/' . $this->path));
+        if(!empty($this->pathToRemove)){
+            unlink($this->pathToRemove);
+            $this->pathToRemove = null;
+        }
+
+        unset($this->file);
     }
 }

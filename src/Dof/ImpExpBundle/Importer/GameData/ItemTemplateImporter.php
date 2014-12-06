@@ -52,6 +52,7 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                 $tpl->setCriteria(($row['criteria'] === 'null') ? null : $row['criteria']);
                 $tpl->setLevel($row['level']);
                 $tpl->setWeight($row['realWeight']);
+                $tpl->setIconId($row['iconId']);
                 $tpl->setTradeable($row['exchangeable'] == '1');
                 $tpl->setNpcPrice($row['price']);
                 if ($tpl->isEquipment()) {

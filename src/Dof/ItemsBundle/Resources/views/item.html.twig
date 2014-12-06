@@ -46,8 +46,16 @@
                             {% endfor %}
                             </p>
                         {% endif %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        {% set url = 'http://dofus.com' %}
+                        <p>
+                            <a href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ item.id }}-{{ item.nameFr | slugify }}">
+                                <img src="{{ asset('bundles/dofmain/images/dof_logo_little.png') }}" />
+                            </a>
+                        </p>
+                        {% endif %}
                     </div>
-                        {% if item.isWeapon() %}
+                        {% if item.weapon %}
                             <div class="panel panel-default" class="col-sm-3">
                                 <table class="table">
                                     <tr><td style="padding:1px;">{{ 'ap' | trans({'%1%': ''},'item') }}: {{ item.apCost }} <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> <br>({{ item.maxCastsPerTurn }} {{ 'maxCastsPerTurn' | trans }})</td></tr>
@@ -163,6 +171,9 @@
                 <div class="text-center">
                     <a class="btn btn-default" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': item.id}) }}">
                         Editer (Admin)
+                    </a>
+                    <a class="btn btn-default" href="{{ path('dof_items_addskin', {'id': item.id}) }}">
+                        Ajouter image
                     </a>
                 </div>
             {% endif %}
