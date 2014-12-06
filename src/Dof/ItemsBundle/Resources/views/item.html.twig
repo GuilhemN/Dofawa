@@ -51,9 +51,9 @@
                         <p>
                             {% if item.weapon %}
                                 {% set url = 'http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/' ~ item.id ~ '-' ~ item.nameFr | slugify %}
-                            {% else if item.equipment %}
+                            {% elseif item.equipment %}
                                 {% set url = 'http://www.dofus.com/fr/mmorpg/encyclopedie/armes/' ~ item.id ~ '-' ~ item.nameFr | slugify %}
-                            {% else if item.animal %}
+                            {% elseif item.animal %}
                                 {% set url = 'http://www.dofus.com/fr/mmorpg/encyclopedie/familiers/' ~ item.id ~ '-' ~ item.nameFr | slugify %}
                             {% endif %}
                             <a href="{{ url }}">
