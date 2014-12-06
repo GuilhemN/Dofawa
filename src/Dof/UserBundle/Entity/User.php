@@ -22,6 +22,9 @@ use XN\Security\TOTPAuthenticatableInterface;
 use XN\Security\TOTPAuthenticatableTrait;
 use Dof\UserBundle\OwnableTrait;
 
+use XN\Metadata\FileTrait;
+use XN\Metadata\FileInterface;
+
 use FOS\MessageBundle\Model\ParticipantInterface;
 use Dof\BuildBundle\Entity\PlayerCharacter;
 
@@ -32,7 +35,7 @@ use Dof\BuildBundle\Entity\PlayerCharacter;
  * @ORM\Entity(repositoryClass="Dof\UserBundle\Entity\UserRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class User extends BaseUser implements ParticipantInterface, IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, TOTPAuthenticatableInterface, MinorColumnsInterface
+class User extends BaseUser implements ParticipantInterface, IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, TOTPAuthenticatableInterface, MinorColumnsInterface, FileInterface
 {
     /**
      * @var integer
@@ -43,7 +46,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
      */
     protected $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait, TOTPAuthenticatableTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait, TOTPAuthenticatableTrait, FileTrait;
 
     /**
      * @var integer
@@ -126,17 +129,6 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
-
-    /**
-     * @Assert\Image(
-     *     maxSize = "1024k",
-     *     minWidth = 80,
-     *     maxWidth = 150,
-     *     minHeight = 80,
-     *     maxHeight = 150,
-     *     mimeTypesMessage = "Choisissez un fichier image valide.")
-     */
-    private $file;
 
     /**
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\PlayerCharacter", mappedBy="owner")
@@ -435,92 +427,6 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
         return $this->differentpseudo;
     }
 
-    public function getAbsolutePath()
-    {
-        return null === $this->avatar
-            ? null
-            : $this->getUploadRootDir().'/'.$this->avatar;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->avatar
-            ? 'bundles/dofuser/img/default.png'
-            : $this->getUploadDir().'/'.$this->avatar;
-    }
-
-    protected function getUploadRootDir()
-    {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return $this->getWebDir() . $this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'uploads/avatars';
-    }
-
-    /**
-     * Sets file.
-     *
-     * @param UploadedFile $file
-     */
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-    }
-
-    /**
-     * Get file.
-     *
-     * @return UploadedFile
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function upload()
-    {
-        // the file property can be empty if the field is not required
-        if (null === $this->getFile()) {
-            return;
-        }
-
-        if(!empty($this->avatar))
-            $this->removeUpload();
-
-        // use the original file name here but you should
-        // sanitize it at least to avoid any security issues
-
-        // move takes the target directory and then the
-        // target filename to move to
-        $this->getFile()->move(
-            $this->getUploadRootDir(),
-            time().$this->getFile()->getClientOriginalName()
-        );
-
-        // set the path property to the filename where you've saved the file
-        $this->avatar = time().$this->getFile()->getClientOriginalName();
-
-        // clean up the file property as you won't need it anymore
-        $this->file = null;
-    }
-
-    /**
-     * @ORM\PreRemove()
-     */
-    public function removeUpload(){
-        @unlink($this->getAbsolutePath());
-    }
-
     /**
     * Add builds
     *
@@ -565,5 +471,12 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     public function __toString()
     {
         return $this->getUsername();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/avatars';
     }
 }
