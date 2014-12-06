@@ -42,6 +42,7 @@ trait FileTrait
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
+        $this->preUpload();
     }
 
     /**
