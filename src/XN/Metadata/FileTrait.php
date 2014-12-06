@@ -15,6 +15,11 @@ trait FileTrait
     protected $path;
 
     /**
+    * @ORM\Column(name="upload_index", type="integer", nullable=true)
+    */
+    protected $uploadIndex;
+
+    /**
     * @Assert\Image(
     *     maxSize = "1024k",
     *     minWidth = 80,
@@ -42,7 +47,7 @@ trait FileTrait
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
-        $this->preUpload();
+        $this->uploadIndex++;
     }
 
     /**
