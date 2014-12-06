@@ -1,6 +1,8 @@
 <?php
 namespace XN\Metadata;
 
+use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -50,7 +52,7 @@ trait FileTrait
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/' . $this->getUploadDir();
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
     }
 
     protected function getUploadDir()
@@ -58,26 +60,6 @@ trait FileTrait
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
         return 'uploads/images';
-    }
-
-    /**
-    * Sets file.
-    *
-    * @param UploadedFile $file
-    */
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-    }
-
-    /**
-    * Get file.
-    *
-    * @return UploadedFile
-    */
-    public function getFile()
-    {
-        return $this->file;
     }
 
     public function preUpload()
