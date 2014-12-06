@@ -8,7 +8,7 @@ security:
             algorithm:            pbkdf2
             hash_algorithm:       sha512
             encode_as_base64:     true
-            iterations:           1000
+            iterations:           5000
 
     firewalls:
         main:
