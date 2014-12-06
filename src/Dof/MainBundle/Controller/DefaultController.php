@@ -14,7 +14,7 @@ class DefaultController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$articles = $em->getRepository('DofArticlesBundle:Article')->findArticlesWithLimits(4);
 
-		foreach ($articles as $k => $article) {
+		foreach ($articles as $k => &$article) {
 			$content = $article->getDescription($translator->getLocales());
 			$article->setDescription(preg_replace('/<img[^>]>/', '', $content), $translator->getLocales());
 		} 
