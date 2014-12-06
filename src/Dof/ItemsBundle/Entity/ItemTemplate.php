@@ -5,6 +5,9 @@ namespace Dof\ItemsBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -209,6 +212,17 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $craftingJob;
+
+    /**
+    * @Assert\Image(
+    *     maxSize = "1024k",
+    *     minWidth = 131,
+    *     maxWidth = 200,
+    *     minHeight = 131,
+    *     maxHeight = 200,
+    *     mimeTypesMessage = "Choisissez un fichier image valide.")
+    */
+    private $file;
 
     public function __construct()
     {
@@ -925,5 +939,19 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
         return 'uploads/items';
+    }
+
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+        system("/usr/bin/convert " . escapeshellarg(strval($this->file)) . " -resize 131x131 " . escapeshellarg($this->getUploadRootDir() . '/' . $this->path));
+        if(!empty($this->pathToRemove)){
+            unlink($this->pathToRemove);
+            $this->pathToRemove = null;
+        }
+
+        unset($this->file);
     }
 }

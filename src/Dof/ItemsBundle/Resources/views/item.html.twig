@@ -49,14 +49,7 @@
                         {% if is_granted('ROLE_SUPER_ADMIN') %}
                         {% set url = 'http://dofus.com' %}
                         <p>
-                            {% if item.weapon %}
-                                {% set url = 'http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/' ~ item.id ~ '-' ~ item.nameFr | slugify %}
-                            {% elseif item.equipment %}
-                                {% set url = 'http://www.dofus.com/fr/mmorpg/encyclopedie/armes/' ~ item.id ~ '-' ~ item.nameFr | slugify %}
-                            {% elseif item.animal %}
-                                {% set url = 'http://www.dofus.com/fr/mmorpg/encyclopedie/familiers/' ~ item.id ~ '-' ~ item.nameFr | slugify %}
-                            {% endif %}
-                            <a href="{{ url }}">
+                            <a href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ item.id }}-{{ item.nameFr | slugify }}">
                                 <img src="{{ asset('bundles/dofmain/images/dof_logo_little.png') }}" />
                             </a>
                         </p>
