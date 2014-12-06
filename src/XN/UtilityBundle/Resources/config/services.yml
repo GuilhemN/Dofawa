@@ -11,6 +11,7 @@ parameters:
     xn.doctrine.timestampable_updater.class: XN\UtilityBundle\Doctrine\TimestampableUpdater
     xn.doctrine.primary_bonus_updater.class: XN\UtilityBundle\Doctrine\PrimaryBonusUpdater
     xn.doctrine.message_notification.class: XN\UtilityBundle\Doctrine\MessageNotification
+    xn.doctrine.file_updater.class: XN\UtilityBundle\Doctrine\FileUpdater
 
 services:
     xn.twig_extension:
@@ -64,3 +65,11 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: onFlush }
+
+    xn.doctrine.file_updater:
+        class:     "%xn.doctrine.file_updater.class%"
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: postRemove }

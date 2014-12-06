@@ -1,6 +1,8 @@
 <?php
 namespace XN\Metadata;
 
+use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -13,17 +15,52 @@ trait FileTrait
     protected $path;
 
     /**
+    * @ORM\Column(name="upload_index", type="integer", nullable=true)
+    */
+    protected $uploadIndex;
+
+    /**
     * @Assert\Image(
     *     maxSize = "1024k",
     *     minWidth = 80,
-    *     maxWidth = 120,
+    *     maxWidth = 135,
     *     minHeight = 80,
-    *     maxHeight = 120,
+    *     maxHeight = 135,
     *     mimeTypesMessage = "Choisissez un fichier image valide.")
     */
     private $file;
 
+    private $pathToRemove;
 
+    public function getPath(){
+        return $this->path;
+    }
+
+    public function setPath($path){
+        $this->path = $path;
+        return $this;
+    }
+
+    /**
+    * Sets file.
+    *
+    * @param UploadedFile $file
+    */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        $this->uploadIndex++;
+    }
+
+    /**
+    * Get file.
+    *
+    * @return UploadedFile
+    */
+    public function getFile()
+    {
+        return $this->file;
+    }
 
     public function getAbsolutePath()
     {
@@ -43,7 +80,7 @@ trait FileTrait
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
     }
 
     protected function getUploadDir()
@@ -53,65 +90,34 @@ trait FileTrait
         return 'uploads/images';
     }
 
-    /**
-    * Sets file.
-    *
-    * @param UploadedFile $file
-    */
-    public function setFile(UploadedFile $file = null)
+    public function preUpload()
     {
-        $this->file = $file;
+        if (null !== $this->file) {
+            if(!empty($this->path))
+                $this->pathToRemove = $this->path;
+            $this->path = time() . '-' . $this->id . '.'.$this->file->guessExtension();
+        }
     }
 
-    /**
-    * Get file.
-    *
-    * @return UploadedFile
-    */
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    /**
-    * @ORM\PrePersist()
-    * @ORM\PreUpdate()
-    */
     public function upload()
     {
-        // the file property can be empty if the field is not required
-        if (null === $this->getFile()) {
+        if (null === $this->file) {
             return;
         }
 
-        if(!empty($this->path))
-        $this->removeUpload();
+        $this->file->move($this->getUploadRootDir(), $this->path);
+        if(!empty($this->pathToRemove)){
+            unlink($this->pathToRemove);
+            $this->pathToRemove = null;
+        }
 
-        // use the original file name here but you should
-        // sanitize it at least to avoid any security issues
-
-        // move takes the target directory and then the
-        // target filename to move to
-        $this->getFile()->move(
-        $this->getUploadRootDir(),
-        $this->generateFileName()
-        );
-
-        // set the path property to the filename where you've saved the file
-        $this->path = time().$this->getFile()->getClientOriginalName();
-
-        // clean up the file property as you won't need it anymore
-        $this->file = null;
+        unset($this->file);
     }
 
-    protected function generateFileName(){
-        return time() . $this->getFile()->getClientOriginalName();
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
     }
-    /**
-    * @ORM\PreRemove()
-    */
-    public function removeUpload(){
-        @unlink($this->getAbsolutePath());
-    }
-
 }
