@@ -20,7 +20,7 @@
 					<tr><td><b>{{ 'recruitment' | trans({},'guild') }} : </b></td><td>{% if guild.getRecruitment() %} {{ 'yes' | trans({},'guild') }} {% else %} {{ 'no' | trans({},'guild') }} {% endif %}</td></tr>
 					<tr><td><b>{{ 'specialty' | trans({},'guild') }} : </b></td><td>{{guild.getSpeciality()}}</td></tr>
 					<tr><td><b>{{ 'description' | trans({},'guild') }} : </b></td><td>{{guild.getDescription()}}</td></tr>
-					<tr><td><b>{{ 'forum' | trans({},'guild') }} : </b></td><td>{{guild.getForum()}}</td></tr>
+					<tr><td><b>{{ 'forum' | trans({},'guild') }} : </b></td><td><a href="{{guild.getForum()}}" rel="nofollow" target="_blank">{{guild.getForum()}}</a></td></tr>
 				</table> 
 				{% if app.user is not null %}
 					<p class="text-center"><a href="{{path('dof_guild_register', {'slug' : guild.slug })}}"><span class="glyphicon glyphicon-plus"></span> {{ 'register' | trans({},'guild') }}</a></p>
