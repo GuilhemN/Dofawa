@@ -22,9 +22,12 @@ class SkinsController extends Controller
 
         $filename = tempnam('/tmp', 'item');
         file_put_contents($filename, $icon);
-
         $file = new File($filename, false);
-        $item->setFile($file);
+
+        $em = $this->getDoctrine()->getManager();
+        $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findBy(['iconId' => $item->getIconId()]);
+        foreach($items as $i)
+            $i->setFile($file);
 
         $this->getDoctrine()->getManager()->flush();
 

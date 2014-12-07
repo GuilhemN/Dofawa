@@ -46,7 +46,7 @@
                             {% endfor %}
                             </p>
                         {% endif %}
-                        {% if is_granted('ROLE_SUPER_ADMIN') and not item.preliminary %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') and not item.preliminary and item.visible %}
                         {% set url = 'http://dofus.com' %}
                         <p>
                             <a target="_blank" href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ item.id }}-{{ item.nameFr | slugify }}">
