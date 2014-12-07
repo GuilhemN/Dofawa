@@ -5,6 +5,7 @@ namespace Dof\CharactersBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,13 +20,16 @@ use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
+use XN\Metadata\FileLightTrait;
+use XN\Metadata\FileInterface;
+
 /**
  * Spell
  *
  * @ORM\Table(name="dof_spells")
  * @ORM\Entity(repositoryClass="SpellRepository")
  */
-class Spell implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
+class Spell implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface, FileInterface
 {
     /**
      * @var integer
@@ -35,7 +39,7 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, ReleaseBoundTrait;
+    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, ReleaseBoundTrait, FileLightTrait;
 
     /**
      * @var integer
@@ -71,6 +75,17 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     * @ORM\JoinTable(name="dof_breed_spells")
     */
     private $breeds;
+
+    /**
+    * @Assert\Image(
+    *     maxSize = "1024k",
+    *     minWidth = 55,
+    *     maxWidth = 55,
+    *     minHeight = 55,
+    *     maxHeight = 55,
+    *     mimeTypesMessage = "Choisissez un fichier image valide.")
+    */
+    private $file;
 
     public function __construct()
     {
@@ -255,5 +270,21 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function __toString()
     {
         return $this->getName();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/spells';
+    }
+
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            if(!empty($this->path))
+            $this->pathToRemove = $this->path;
+            $this->path = base64_encode($this->iconId) . '.' . $this->file->guessExtension();
+        }
     }
 }

@@ -14,9 +14,9 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-sm-2">
-                <a href="{{ path('dof_spell_show', {'slug': spell.slug}) }}" class="thumbnail">
-                    <img class="img-responsive" src="/bundles/dofitems/img/default.png" alt="{{ spell.getName(locales()) | e('html_attr') }}">
+            <div class="col-sm-2 text-center">
+                <a href="{{ path('dof_spell_show', {'slug': spell.slug}) }}">
+                    <img class="img-responsive" src="{{ asset((spell.webPath) ? spell.webPath : '/bundles/dofitems/img/default.png') }}" alt="{{ spell.getName(locales()) | e('html_attr') }}">
                 </a>
                 <div class="text-center">
                     <p>
@@ -113,6 +113,13 @@
             <br>
         {% endif %}
         {{ spell.getDescription(locales()) }}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <div class="text-center">
+            <a class="btn btn-default" href="{{ path('dof_spell_addskin', {'id': spell.id}) }}">
+                Ajouter image
+            </a>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endif %}

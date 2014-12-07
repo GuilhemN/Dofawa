@@ -35,8 +35,7 @@ class BuildSlot extends Enum
 		return [
 			self::ANIMAL => [
 				ItemSlot::PET,
-				ItemSlot::MOUNT,
-				ItemSlot::USEABLE // FIXME
+				ItemSlot::MOUNT
 			],
 			self::DOFUS1 => ItemSlot::DOFUS,
 			self::DOFUS2 => ItemSlot::DOFUS,

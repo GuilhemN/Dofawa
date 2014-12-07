@@ -11,6 +11,10 @@ dof_spell_show:
     requirements:
        slug: '[0-9a-z-]+'
 
+dof_spell_addskin:
+   pattern: /add-skin/{id}
+   defaults: { _controller: DofCharactersBundle:Skins:addImage }
+
 dof_area_render_glyphtrap:
     pattern:  /area/{area}/{color}.svg
     defaults: { _controller: DofCharactersBundle:Area:renderGlyphTrap }
