@@ -101,6 +101,8 @@ trait EffectTrait
                     return '<a href="' . $router->generate('dof_spell_show', array('slug' => $row[0]->getSlug())) . '">' . $name . '</a>';
                 elseif($row[0] instanceOf \Dof\MonsterBundle\Entity\Monster)
                     return '<a href="' . $router->generate('dof_monster_show', array('slug' => $row[0]->getSlug())) . '">' . $name . '</a>';
+                elseif($row[0] instanceOf \Dof\ItemsBundle\Entity\ItemTemplate)
+                    return '<a href="' . $router->generate('dof_items_show', array('slug' => $row[0]->getSlug())) . '">' . $name . '</a>';
                 else
                     return $name;
             }
