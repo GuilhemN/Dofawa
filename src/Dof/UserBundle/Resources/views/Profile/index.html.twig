@@ -16,7 +16,7 @@
 						<p><strong>{{ 'inputs.date.born' | trans({}, 'profile') }}</strong> : {{ user.born | date('d-m-Y') }}</p>
 						<p><strong>{{ 'inputs.location' | trans({}, 'profile') }}</strong> : {{ user.lieu }}</p>
 						<p><strong>{{ 'inputs.guild' | trans({}, 'profile') }}</strong> : {{ user.guilde }}</p>
-						<p><strong>{{ 'inputs.website' | trans({}, 'profile') }}</strong> : <a href="{{ user.site }}" rel="nofollow" target="_blank"></a>{{ user.site }}</p>
+						<p><strong>{{ 'inputs.website' | trans({}, 'profile') }}</strong> : <a href="{{ user.site }}" rel="nofollow" target="_blank">{{ user.site }}</a></p>
 					</div><!--/col-->
 					<div class="col-xs-12 col-sm-4 text-center">
 						<img src="{{ asset(user.getWebPath()) }}" alt="" class="center-block img-circle img-responsive">
