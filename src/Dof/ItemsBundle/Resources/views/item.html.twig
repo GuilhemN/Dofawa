@@ -172,7 +172,8 @@
                 <form class="form-horizontal" method="POST" action="{{ path('dof_build_additem_post') }}">
                     <input name="stuff" type="hidden" value="{{ slugs.stuff }}">
                     <input name="items[{{ build_slot | default('') }}]" type="hidden" value="{{ item.id }}">
-                    <div class="text-center">
+
+                    <div class="col-lg-offset-3 col-lg-6">
                         <div class="form-group row col-lg-offset-2 col-lg-8">
                             <label for="percent{{ item.id }}" class="col-sm-2 control-label">Qualité</label>
                             <div class="col-sm-10">
