@@ -14,7 +14,7 @@ use XN\Metadata\TimestampableTrait;
 
 use Dof\CharactersBundle\CastableTrait;
 
-use Dof\ItemsBundle\EffectListHelper;
+use Dof\CharactersBundle\RankDamageEffect;
 
 /**
  * SpellRank
@@ -564,7 +564,7 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
 
     public function getEffectsForDamage()
     {
-        $dm = EffectListHelper::getDamageMap();
+        $dm = RankDamageEffect::getDamageMap();
         return array_filter((array) $this->effects->toArray(), function($v) use ($dm){
             return array_key_exists($v->getEffectTemplate()->getId(), $dm);
         });
