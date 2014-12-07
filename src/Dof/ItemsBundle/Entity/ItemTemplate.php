@@ -969,17 +969,33 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         return 'uploads/items';
     }
 
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            if(!empty($this->path))
+                $this->pathToRemove = $this->path;
+            $this->path = base64_encode($this->iconId) . '.' . $this->file->guessExtension();
+        }
+    }
+
     public function upload()
     {
         if (null === $this->file) {
             return;
         }
-        system("/usr/bin/convert " . escapeshellarg(strval($this->file)) . " -resize 131x131 " . escapeshellarg($this->getUploadRootDir() . '/' . $this->path));
         if(!empty($this->pathToRemove)){
             unlink($this->pathToRemove);
             $this->pathToRemove = null;
         }
+        system("/usr/bin/convert " . escapeshellarg(strval($this->file)) . " -resize 131x131 " . escapeshellarg($this->getUploadRootDir() . '/' . $this->path));
 
         unset($this->file);
+    }
+
+    public function setPath($path){
+        if($this->path == $path)
+            return;
+        $this->removeUpload();
+        $this->path = $path;
     }
 }

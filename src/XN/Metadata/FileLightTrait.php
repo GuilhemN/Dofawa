@@ -83,7 +83,7 @@ trait FileLightTrait
     {
         if (null !== $this->file) {
             if(!empty($this->path))
-            $this->pathToRemove = $this->path;
+                $this->pathToRemove = $this->path;
             $this->path = time() . '-' . $this->id . '.'.$this->file->guessExtension();
         }
     }
@@ -106,7 +106,7 @@ trait FileLightTrait
     public function removeUpload()
     {
         if ($file = $this->getAbsolutePath()) {
-            unlink($file);
+            @unlink($file);
         }
     }
 }

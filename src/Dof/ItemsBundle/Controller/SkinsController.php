@@ -25,9 +25,10 @@ class SkinsController extends Controller
         $file = new File($filename, false);
 
         $em = $this->getDoctrine()->getManager();
+        $item->setFile($file);
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findBy(['iconId' => $item->getIconId()]);
         foreach($items as $i)
-            $i->setFile($file);
+            $i->setPath($item->getPath());
 
         $this->getDoctrine()->getManager()->flush();
 
