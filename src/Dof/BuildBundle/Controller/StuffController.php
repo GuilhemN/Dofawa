@@ -30,6 +30,11 @@ class StuffController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $itemsIds = (array) $request->request->get('items');
+        if($request->request->has('percent'))
+            $percent = intval($request->request->get('percent'));
+        else
+            $percent = 80;
+        
         $rel = array_flip($itemsIds);
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
         $look = $stuff->getLook();
@@ -60,8 +65,11 @@ class StuffController extends Controller
                 $look->setAnimal($item);
 
             $caracts = $bItem->getCharacteristics();
-            foreach($caracts as $k => &$caract)
-                $caract = $item->{'getMax' . ucfirst($k)}();
+            foreach($caracts as $k => &$caract){
+                $min = $item->{'getMin' . ucfirst($k)}();
+                $max = $item->{'getMax' . ucfirst($k)}();
+                $caract = $min + ($max - $min) * $percent / 100;
+            }
 
             $bItem->setCharacteristics($caracts, true);
 

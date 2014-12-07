@@ -173,6 +173,7 @@
                     <input name="stuff" type="hidden" value="{{ slugs.stuff }}">
                     <input name="items[{{ build_slot | default('') }}]" type="hidden" value="{{ item.id }}">
                     <div class="text-center">
+                        Qualité : <input type="number" name="percent" value="80" step="1" min="0" max="140">
                         <button type="submit" class="btn btn-primary">Equiper</button>
                     </div>
                 </form>
