@@ -161,7 +161,11 @@
                 </strong>
                 <br />
             {% endif %}
-            {{ item.getDescription(locales())}}
+            {% if item.getDescription() == '#1' %}
+                Arme éthérée
+            {% else %}
+                {{ item.getDescription(locales()) }}
+            {% endif %}
 
             {% if slugs is defined and slugs is not empty %}
                 <hr />
