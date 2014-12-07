@@ -18,18 +18,19 @@ class SkinsController extends Controller
         catch(Exception $e){
             throw $this->createNotFoundException('Image non trouvé', $e);
         };
-
+        $em = $this->getDoctrine()->getManager();
         $filename = tempnam('/tmp', 'item');
         file_put_contents($filename, $icon);
         $file = new File($filename, false);
 
         $em = $this->getDoctrine()->getManager();
         $item->setFile($file);
+        $em->flush($item);
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findBy(['iconId' => $item->getIconId()]);
         foreach($items as $i)
             $i->setPath($item->getPath());
 
-        $this->getDoctrine()->getManager()->flush();
+        $em->flush();
 
         return $this->redirect($this->generateUrl('dof_items_show', array('slug' => $item->getSlug())));
     }
