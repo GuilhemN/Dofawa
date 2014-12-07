@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use XN\Common\UrlSafeBase;
+use XN\Common\UrlSafeBase64;
 
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;

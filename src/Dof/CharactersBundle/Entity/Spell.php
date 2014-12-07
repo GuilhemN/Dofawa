@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use XN\Common\UrlSafeBase;
+use XN\Common\UrlSafeBase64;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
@@ -286,7 +286,7 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
         if (null !== $this->file) {
             if(!empty($this->path))
             $this->pathToRemove = $this->path;
-            $this->path = UrlSafeBase::encode($this->iconId) . '.' . $this->file->guessExtension();
+            $this->path = UrlSafeBase64::encode($this->iconId) . '.' . $this->file->guessExtension();
         }
     }
 }
