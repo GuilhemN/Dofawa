@@ -25,6 +25,9 @@ class SkinsController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $spell->setFile($file);
+        $spells = $em->getRepository('DofCharactersBundle:Spell')->findBy(['iconId' => $item->getIconId()]);
+        foreach($spells as $s)
+            $s->setPath($spell->getPath());
 
         $this->getDoctrine()->getManager()->flush();
 
