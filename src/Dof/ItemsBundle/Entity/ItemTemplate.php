@@ -24,6 +24,8 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
 use XN\Metadata\FileLightTrait;
 use XN\Metadata\FileInterface;
 
+use XN\Common\UrlSafeBase;
+
 
 /**
  * ItemTemplate
@@ -974,7 +976,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         if (null !== $this->file) {
             if(!empty($this->path))
                 $this->pathToRemove = $this->path;
-            $this->path = base64_encode($this->iconId) . '.' . $this->file->guessExtension();
+            $this->path = UrlSafeBase64::encode($this->iconId) . '.' . $this->file->guessExtension();
         }
     }
 
