@@ -9,6 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\Common\UrlSafeBase;
+
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
@@ -23,8 +25,6 @@ use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 use XN\Metadata\FileLightTrait;
 use XN\Metadata\FileInterface;
-
-use XN\Common\UrlSafeBase;
 
 
 /**
