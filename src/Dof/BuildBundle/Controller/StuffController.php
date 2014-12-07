@@ -34,7 +34,7 @@ class StuffController extends Controller
             $percent = intval($request->request->get('percent'));
         else
             $percent = 80;
-        
+
         $rel = array_flip($itemsIds);
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
         $look = $stuff->getLook();
@@ -68,7 +68,7 @@ class StuffController extends Controller
             foreach($caracts as $k => &$caract){
                 $min = $item->{'getMin' . ucfirst($k)}();
                 $max = $item->{'getMax' . ucfirst($k)}();
-                $caract = $min + ($max - $min) * $percent / 100;
+                $caract = round($min + ($max - $min) * $percent / 100);
             }
 
             $bItem->setCharacteristics($caracts, true);
