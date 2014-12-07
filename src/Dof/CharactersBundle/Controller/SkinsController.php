@@ -19,17 +19,19 @@ class SkinsController extends Controller
             throw $this->createNotFoundException('Image non trouvé', $e);
         };
 
+        $em = $this->getDoctrine()->getManager();
         $filename = tempnam('/tmp', 'spell');
         file_put_contents($filename, $icon);
         $file = new File($filename, false);
 
         $em = $this->getDoctrine()->getManager();
         $spell->setFile($file);
+        $em->flush($spell);
         $spells = $em->getRepository('DofCharactersBundle:Spell')->findBy(['iconId' => $spell->getIconId()]);
         foreach($spells as $s)
             $s->setPath($spell->getPath());
 
-        $this->getDoctrine()->getManager()->flush();
+        $em->flush();
 
         return $this->redirect($this->generateUrl('dof_spell_show', array('slug' => $spell->getSlug())));
     }
