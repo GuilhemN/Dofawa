@@ -21,7 +21,7 @@ class BadgeLevelRepository extends EntityRepository
                   ->join('l.badge', 'b')
                   ->join('b.userBadges', 'ub')
                   ->where('ub.owner = :user')
-                  ->andWhere('ub.count < l.minCount')
+                  ->andWhere('ub.count >= l.minCount')
                   ->getQuery()
                   ->setParameter('user', $user)
                   ->getResult();
