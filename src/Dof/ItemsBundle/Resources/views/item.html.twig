@@ -128,7 +128,7 @@
 
                         {# Recette #}
                         {% if item.components is not empty %}
-                            <li{% if item.isEquipment() == false %} class="active"{% endif %}><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                            <li><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
                             {% set item_content %}
                                 {{ item_content }}
                                 <div class="tab-pane" id="recipe-item{{ item.id }}">
