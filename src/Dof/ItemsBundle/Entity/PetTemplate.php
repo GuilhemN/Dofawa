@@ -31,6 +31,22 @@ class PetTemplate extends AnimalTemplate
 	 */
 	private $foodItems;
 
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToMany(targetEntity="ItemTemplate")
+     * @ORM\JoinTable(name="dof_pet_eat_range")
+     */
+    private $minEatRange;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToMany(targetEntity="ItemTemplate")
+     * @ORM\JoinTable(name="dof_pet_eat_range")
+     */
+    private $maxEatRange;
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -108,6 +124,52 @@ class PetTemplate extends AnimalTemplate
     public function getFoodItems()
     {
         return $this->foodItems;
+    }
+
+    /**
+     * Set minEatRange
+     *
+     * @param integer $minEatRange
+     * @return PetTemplate
+     */
+    public function setMinEatRange($minEatRange)
+    {
+        $this->minEatRange = $minEatRange;
+
+        return $this;
+    }
+
+    /**
+     * Get minEatRange
+     *
+     * @return integer
+     */
+    public function getMinEatRange()
+    {
+        return $this->minEatRange;
+    }
+
+    /**
+     * Set maxEatRange
+     *
+     * @param integer $maxEatRange
+     * @return PetTemplate
+     */
+    public function setMaxEatRange($maxEatRange)
+    {
+        $this->maxEatRange = $maxEatRange;
+
+        return $this;
+    }
+
+    /**
+     * Get maxEatRange
+     *
+     * @return integer
+     */
+    public function getMaxEatRange()
+    {
+        return $this->maxEatRange;
     }
 
 	public function isPet() { return true; }
