@@ -1,6 +1,6 @@
-dof_pets:
-    resource: "@DofPetsBundle/Resources/config/routing.yml"
-    prefix:   /
+#dof_items_manager:
+#    resource: "@DofItemsManagerBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 dof_monster:
     resource: "@DofMonsterBundle/Resources/config/routing.yml"
