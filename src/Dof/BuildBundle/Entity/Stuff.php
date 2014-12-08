@@ -14,7 +14,7 @@ use Dof\ItemsBundle\PrimaryBonusTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\BuildBundle\Entity\PlayerCharacter;
-use Dof\ItemsManagerBundle\Entity\PItem;
+use Dof\ItemsManagerBundle\Entity\Item as PItem;
 use Dof\ItemsManagerBundle\Entity\Animal;
 use Dof\ItemsManagerBundle\Entity\Weapon;
 use Dof\GraphicsBundle\Entity\BuildLook;
