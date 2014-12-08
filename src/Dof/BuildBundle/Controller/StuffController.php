@@ -41,7 +41,7 @@ class StuffController extends Controller
 
         $bItemRepo = $em->getRepository('DofItemsManagerBundle:Item');
         foreach($items as $k => $item) {
-            if(($slot = ItemSlot::getValue(strtoupper($rel[$k]))) === null)
+            if(($slot = ItemSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
                 continue;
 
             $bItem = $stuff->{'get' . ucfirst($k)}();
