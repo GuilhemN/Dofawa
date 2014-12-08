@@ -12,4 +12,5 @@ class Animal extends Item
 {
 
     public function isAnimal() { return true; }
+    public function getClassId() { return 'animal'; }
 }

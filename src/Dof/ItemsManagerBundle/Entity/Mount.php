@@ -12,4 +12,5 @@ class Mount extends Animal
 {
 
     public function isMount() { return true; }
+    public function getClassId() { return 'mount'; }
 }

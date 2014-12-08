@@ -11,4 +11,5 @@ use Doctrine\ORM\Mapping as ORM;
 class Weapon extends Item
 {
     public function isWeapon() { return true; }
+    public function getClassId() { return 'weapon'; }
 }

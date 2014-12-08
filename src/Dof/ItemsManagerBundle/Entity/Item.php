@@ -22,7 +22,7 @@ use Dof\ItemsBundle\PrimaryBonusTrait;
 * @ORM\Entity(repositoryClass="Dof\ItemsManagerBundle\Entity\PersonalizedItemRepository")
 * @ORM\InheritanceType("SINGLE_TABLE")
 * @ORM\DiscriminatorColumn(name="class", type="string")
-* @ORM\DiscriminatorMap({"item" = "Item", "animal" = "Animal", "weapon" = "Weapon"})
+* @ORM\DiscriminatorMap({"item" = "Item", "animal" = "Animal", "weapon" = "Weapon", "mount": "Mount", "pet": "Pet"})
 */
 class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonusInterface
 {

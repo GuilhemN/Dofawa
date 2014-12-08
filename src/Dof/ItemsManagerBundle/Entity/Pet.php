@@ -41,4 +41,5 @@ class Pet extends Animal
     }
 
     public function isPet() { return true; }
+    public function getClassId() { return 'pet'; }
 }
