@@ -27,7 +27,7 @@ class PetTemplate extends AnimalTemplate
 	 * @var Collection
 	 *
 	 * @ORM\ManyToMany(targetEntity="ItemTemplate")
-     * @ORM\JoinTable(name="dof_pet_feed_interval")
+     * @ORM\JoinTable(name="dof_pet_feed_items")
 	 */
 	private $foodItems;
 
