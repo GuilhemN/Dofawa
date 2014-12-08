@@ -27,25 +27,25 @@ class PetTemplate extends AnimalTemplate
 	 * @var Collection
 	 *
 	 * @ORM\ManyToMany(targetEntity="ItemTemplate")
-     * @ORM\JoinTable(name="dof_pet_food_items")
+     * @ORM\JoinTable(name="dof_pet_feed_interval")
 	 */
 	private $foodItems;
 
     /**
      * @var integer
      *
-     * @ORM\ManyToMany(targetEntity="ItemTemplate")
-     * @ORM\JoinTable(name="dof_pet_eat_range")
+     * @ORM\OneToOne(targetEntity="ItemTemplate")
+     * @ORM\JoinTable(name="dof_pet_feed_interval")
      */
-    private $minEatRange;
+    private $minFeedInterval;
 
     /**
      * @var integer
      *
-     * @ORM\ManyToMany(targetEntity="ItemTemplate")
+     * @ORM\OneToOne(targetEntity="ItemTemplate")
      * @ORM\JoinTable(name="dof_pet_eat_range")
      */
-    private $maxEatRange;
+    private $maxFeedInterval;
 
 	public function __construct()
 	{
@@ -127,49 +127,49 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Set minEatRange
+     * Set minFeedInterval
      *
-     * @param integer $minEatRange
+     * @param integer $minFeedInterval
      * @return PetTemplate
      */
-    public function setMinEatRange($minEatRange)
+    public function setMinFeedInterval($minFeedInterval)
     {
-        $this->minEatRange = $minEatRange;
+        $this->minFeedInterval = $minFeedInterval;
 
         return $this;
     }
 
     /**
-     * Get minEatRange
+     * Get minFeedInterval
      *
      * @return integer
      */
-    public function getMinEatRange()
+    public function getMinFeedInterval()
     {
-        return $this->minEatRange;
+        return $this->minFeedInterval;
     }
 
     /**
-     * Set maxEatRange
+     * Set maxFeedInterval
      *
-     * @param integer $maxEatRange
+     * @param integer $maxFeedInterval
      * @return PetTemplate
      */
-    public function setMaxEatRange($maxEatRange)
+    public function setMaxFeedInterval($maxFeedInterval)
     {
-        $this->maxEatRange = $maxEatRange;
+        $this->maxFeedInterval = $maxFeedInterval;
 
         return $this;
     }
 
     /**
-     * Get maxEatRange
+     * Get maxFeedInterval
      *
      * @return integer
      */
-    public function getMaxEatRange()
+    public function getMaxFeedInterval()
     {
-        return $this->maxEatRange;
+        return $this->maxFeedInterval;
     }
 
 	public function isPet() { return true; }
