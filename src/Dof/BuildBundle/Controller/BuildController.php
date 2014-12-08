@@ -88,7 +88,6 @@ class BuildController extends Controller
 
         $bm = $this->get('build_manager');
         $items = $stuff->getItems();
-        $dofus = $stuff->getDofus();
 
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
 
@@ -110,7 +109,6 @@ class BuildController extends Controller
             'stuff' => $stuff,
             // Items
             'items' => $items,
-            'dofus' => $dofus,
             'bonus' => $bonus,
             'characteristics' => $characteristics,
             // Permissions

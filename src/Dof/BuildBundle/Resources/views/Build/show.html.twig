@@ -15,17 +15,20 @@
 
     <div class="row">
         <div class="col-md-4">
-            {% for k, item in dofus %}
+            {% for number, item in items['dofus'] %}
+                {% set k = 'dofus' %}
                 <div class="col-xs-3 col-md-12 col-lg-6">
-                {% include 'DofBuildBundle::slot.html.twig' %}
-                </div>
-                {% endfor %}
-        </div>
-        <div class="col-md-8">
-            {% for k, item in items %}
-                <div class="col-xs-3 col-md-6 col-lg-4">
                     {% include 'DofBuildBundle::slot.html.twig' %}
                 </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-8">
+            {% for k, v in items if k != 'dofus' %}
+                {% for item in v %}
+                    <div class="col-xs-3 col-md-6 col-lg-4">
+                        {% include 'DofBuildBundle::slot.html.twig' %}
+                    </div>
+                {% endfor %}
             {% endfor %}
         </div>
     </div>

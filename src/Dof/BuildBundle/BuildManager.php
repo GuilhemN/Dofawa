@@ -72,16 +72,17 @@ class BuildManager extends ServiceWithContainer
         $return = array_map(function () { return 0; }, CharacteristicsMetadata::getAll());
         $sets = []; $bonus = [];
 
-        foreach($stuff->getItems() + $stuff->getDofus() as $item){
-            if($item === null)
-                continue;
-            foreach($item->getCharacteristics() as $k => $v)
-                $return[$k] += $v;
+        foreach($stuff->getItems() as $v)
+            foreach($v as $item){
+                if($item === null)
+                    continue;
+                foreach($item->getCharacteristics() as $k => $v)
+                    $return[$k] += $v;
 
-            // Panos et nombres d'items associés dans le stuff
-            if($item->getItemTemplate()->getSet() !== null)
-                $sets[$item->getItemTemplate()->getId()]++;
-        }
+                // Panos et nombres d'items associés dans le stuff
+                if($item->getItemTemplate()->getSet() !== null)
+                    $sets[$item->getItemTemplate()->getId()]++;
+            }
 
         // Bonus de panos ($bonus)
         $setBonusRepo = $em->getRepository('DofItemsBundle:ItemSetCombination');
