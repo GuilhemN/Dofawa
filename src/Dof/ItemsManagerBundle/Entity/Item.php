@@ -19,7 +19,7 @@ use Dof\ItemsBundle\PrimaryBonusTrait;
 * Item
 *
 * @ORM\Table(name="dof_user_items")
-* @ORM\Entity(repositoryClass="Dof\ItemsManagerBundle\Entity\PersonalizedItemRepository")
+* @ORM\Entity(repositoryClass="Dof\ItemsManagerBundle\Entity\ItemRepository")
 * @ORM\InheritanceType("SINGLE_TABLE")
 * @ORM\DiscriminatorColumn(name="class", type="string")
 * @ORM\DiscriminatorMap({"item" = "Item", "animal" = "Animal", "weapon" = "Weapon", "mount": "Mount", "pet": "Pet"})
