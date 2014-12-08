@@ -20,7 +20,7 @@ RMFLAGS = -f
 LNFLAGS = -f -s
 
 # Our LESS input file(s)
-LESS = $(shell find src -type f -not -path '*btsp/*' -name '*.less')
+LESS = $(shell find src -type f -not -path '*btsp/*' -not -path '*material/*' -name '*.less')
 
 # Our JSX and JSX-Harmony input file(s)
 JSX = $(shell find src -type f -name '*.jsx')
