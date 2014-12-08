@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Dof\UserBundle\Entity\User;
 use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
-use Dof\BuildBundle\Entity\Item;
+use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
 
 use Dof\GraphicsBundle\Entity\BuildLook;
 
@@ -48,7 +48,8 @@ class StuffController extends Controller
             if($bItem !== null)
                 $em->remove($bItem);
 
-            $bItem = new Item();
+            $bItem = new PersonalizedItem();
+            $bItem->setOwner($stuff->getOwner());
             $bItem->setStuff($stuff);
             $bItem->setItemTemplate($item);
             $bItem->setSlot($slot);
@@ -74,8 +75,8 @@ class StuffController extends Controller
             $bItem->setCharacteristics($caracts, true);
 
             $em->persist($bItem);
-
         }
+        
         $em->flush();
 
         $stuff = $bm->reloadStuff($stuff);

@@ -17,7 +17,7 @@ use Dof\ItemsBundle\PrimaryBonusTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\BuildBundle\Entity\PlayerCharacter;
-use Dof\BuildBundle\Entity\Item;
+use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
 /**
@@ -62,7 +62,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Item", mappedBy="stuff")
+     * @ORM\ManyToMany(targetEntity="Dof\ItemsManagerBundle\Entity\PersonalizedItem", mappedBy="stuffs")
      */
     private $items;
 
@@ -228,10 +228,10 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * Add items
      *
-     * @param Item $items
+     * @param PersonalizedItem $items
      * @return Stuff
      */
-    public function addItem(Item $items)
+    public function addItem(PersonalizedItem $items)
     {
         $this->items[] = $items;
 
@@ -241,10 +241,10 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
      * Remove items
      *
-     * @param Item $items
+     * @param PersonalizedItem $items
      * @return Stuff
      */
-    public function removeItem(Item $items)
+    public function removeItem(PersonalizedItem $items)
     {
         $this->items->removeElement($items);
 
