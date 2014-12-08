@@ -19,6 +19,8 @@ use Dof\ItemsManagerBundle\Entity\Animal;
 use Dof\ItemsManagerBundle\Entity\Weapon;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
+use Dof\ItemsBundle\ItemSlot;
+
 /**
  * Stuff
  *
@@ -924,6 +926,44 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
                 ]
 
         ];
+    }
+
+    public function addItem(PItem $item, $slot = 0){
+        $slot = intval($slot);
+        switch ($item->getItemTemplate()->geType()->getSlot()) {
+            case ItemSlot::AMULET:
+            $this->setAmulet($item);
+            case ItemSlot::WEAPON:
+            $this->setWeapon($item);
+            $this->getLook()->setWeapon($item->getItemTemplate());
+            case ItemSlot::RING:
+            if($slot == 2)
+                $this->setRing2($item);
+            else
+                $this->setRing1($item);
+            case ItemSlot::BELT:
+            $this->setBelt($item);
+            case ItemSlot::BOOTS:
+            $this->setBoots($item);
+            case ItemSlot::SHIELD:
+            $this->setShield($item);
+            $this->getLook()->setShield($item->getItemTemplate());
+            case ItemSlot::HAT:
+            $this->setHat($item);
+            $this->getLook()->setHat($item->getItemTemplate());
+            case ItemSlot::CLOAK:
+            $this->setCloak($item);
+            $this->getLook()->setCloak($item->getItemTemplate());
+            case ItemSlot::PET:
+            case ItemSlot::MOUNT:
+            $this->setAnimal($item);
+            $this->getLook()->setAnimal($item->getItemTemplate());
+            case ItemSlot::DOFUS:
+            if($slot >= 1 && $slot <= 6)
+                $this->{ 'setDofus' . $slot }($item);
+            else
+                $this->setDofus1($item);
+        }
     }
 
     public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){

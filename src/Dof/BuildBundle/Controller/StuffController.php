@@ -10,6 +10,7 @@ use Dof\BuildBundle\Entity\Stuff;
 use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
 
 use Dof\GraphicsBundle\Entity\BuildLook;
+use Dof\ItemsBundle\ItemSlot;
 
 class StuffController extends Controller
 {
@@ -40,30 +41,13 @@ class StuffController extends Controller
 
         $bItemRepo = $em->getRepository('DofItemsManagerBundle:Item');
         foreach($items as $k => $item) {
-            if(($slot = BuildSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
-                $slot = BuildSlot::getBuildSlot($item->getType()->getSlot())[0];
+            if(($slot = ItemSlot::getValue(strtoupper($rel[$k]))) === null)
+                continue;
 
-            $bItem = $bItemRepo->findOneBy(array('stuff' => $stuff, 'slot' => $slot));
-            $bItem->removeStuff($stuff);
-            $bName = $bItem->getName();
-            if(empty($bName))
-                if(count($bItem->getStuffs()->toArray()) == 0)
-                    $em->remove($bItem);
+            $bItem = $stuff->{'get' . ucfirst($k)}();
 
             $bItem = $iFact->createItem($item, null, $stuff->getOwner());
-            $bItem->addStuff($stuff);
-            $bItem->setSlot($slot);
-
-            if($slot == BuildSlot::WEAPON)
-                $look->setWeapon($item);
-            elseif($slot == BuildSlot::SHIELD)
-                $look->setShield($item);
-            elseif($slot == BuildSlot::HAT)
-                $look->setHat($item);
-            elseif($slot == BuildSlot::CLOAK)
-                $look->setCloak($item);
-            elseif($slot == BuildSlot::ANIMAL)
-                $look->setAnimal($item);
+            $stuff->addItem($bItem);
 
             $em->persist($bItem);
         }
