@@ -30,7 +30,7 @@ class ItemFactory {
         $percent = intval($percent);
 
 
-        switch ($item->geType()->getSlot()) {
+        switch ($item->getType()->getSlot()) {
             case ItemSlot::WEAPON:
             $ent = new Ent\Weapon();
             case ItemSlot::PET:
