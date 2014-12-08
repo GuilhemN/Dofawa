@@ -72,7 +72,9 @@ class BuildManager extends ServiceWithContainer
         $return = array_map(function () { return 0; }, CharacteristicsMetadata::getAll());
         $sets = []; $bonus = [];
 
-        foreach($stuff->getItems() as $item){
+        foreach($stuff->getItems() + $stuff->getDofus() as $item){
+            if($item === null)
+                continue;
             foreach($item->getCharacteristics() as $k => $v)
                 $return[$k] += $v;
 
