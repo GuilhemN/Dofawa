@@ -44,8 +44,6 @@ class StuffController extends Controller
             if(($slot = ItemSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
                 continue;
 
-            $bItem = $stuff->{'get' . ucfirst($k)}();
-
             $bItem = $iFact->createItem($item, null, $stuff->getOwner());
             $stuff->addItem($bItem);
 
