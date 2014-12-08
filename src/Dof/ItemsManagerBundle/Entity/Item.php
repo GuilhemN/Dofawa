@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 use Dof\ItemsBundle\CharacteristicsTrait;
 use XN\Persistence\IdentifiableInterface;
+use XN\Metadata\OwnableInterface;
+use Dof\UserBundle\OwnableTrait;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 
@@ -24,9 +26,9 @@ use Dof\ItemsBundle\PrimaryBonusTrait;
 * @ORM\DiscriminatorColumn(name="class", type="string")
 * @ORM\DiscriminatorMap({"item" = "Item", "animal" = "Animal", "weapon" = "Weapon", "mount": "Mount", "pet": "Pet"})
 */
-class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonusInterface
+class Item implements IdentifiableInterface, OwnableInterface, TimestampableInterface, PrimaryBonusInterface
 {
-    use CharacteristicsTrait, TimestampableTrait, PrimaryBonusTrait;
+    use CharacteristicsTrait, TimestampableTrait, PrimaryBonusTrait, OwnableTrait;
 
     /**
     * @var integer
