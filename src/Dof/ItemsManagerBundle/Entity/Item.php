@@ -60,6 +60,13 @@ class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonu
     */
     private $slot;
 
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="name", type="string")
+    */
+    private $name;
+
     public function __construct()
     {
         $this->stuffs = new ArrayCollection();
@@ -156,6 +163,29 @@ class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonu
     public function getSlot()
     {
         return $this->slot;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Item
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
