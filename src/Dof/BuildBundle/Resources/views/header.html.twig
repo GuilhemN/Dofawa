@@ -3,7 +3,7 @@
     'character': character.slug,
     'stuff': stuff.slug
 } %}
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-pills" role="tablist">
     {% if can_write | default(false) %}
     <li {{ is_current_page('dof_build_edit') | raw }}>
         <a href="{{ path('dof_build_edit', slugs) }}">Configuration</a>
