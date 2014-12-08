@@ -9,7 +9,7 @@ use Dof\ItemsManagerBundle\Entity as Ent;
 
 use Dof\ItemsBundle\ItemSlot;
 
-class PersonalizedItemFactory {
+class ItemFactory {
 
     /**
     * @var Symfony\Component\Security\Core\SecurityContext
