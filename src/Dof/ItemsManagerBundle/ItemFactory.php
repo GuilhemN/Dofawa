@@ -47,7 +47,7 @@ class ItemFactory {
         }
 
         $ent->setOwner($user);
-        $ent->setItemTemplate($itemTemplate);
+        $ent->setItemTemplate($item);
 
         $caracts = $item->getCharacteristics();
         foreach($caracts as $k => &$caract){
