@@ -1,6 +1,8 @@
 <?php
 namespace Dof\ItemsManagerBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
 * Weapon
 *

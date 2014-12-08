@@ -646,6 +646,260 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     {
         return $this->weapon;
     }
+
+    /**
+    * Set ring1
+    *
+    * @param PItem $ring1
+    * @return Stuff
+    */
+    public function setRing1(PItem $ring1 = null)
+    {
+        $this->ring1 = $ring1;
+
+        return $this;
+    }
+
+    /**
+    * Get ring1
+    *
+    * @return PItem
+    */
+    public function getRing1()
+    {
+        return $this->ring1;
+    }
+
+    /**
+    * Set ring2
+    *
+    * @param PItem $ring2
+    * @return Stuff
+    */
+    public function setRing2(PItem $ring2 = null)
+    {
+        $this->ring2 = $ring2;
+
+        return $this;
+    }
+
+    /**
+    * Get ring2
+    *
+    * @return PItem
+    */
+    public function getRing2()
+    {
+        return $this->ring2;
+    }
+
+    /**
+    * Set belt
+    *
+    * @param PItem $belt
+    * @return Stuff
+    */
+    public function setBelt(PItem $belt = null)
+    {
+        $this->belt = $belt;
+
+        return $this;
+    }
+
+    /**
+    * Get belt
+    *
+    * @return PItem
+    */
+    public function getBelt()
+    {
+        return $this->belt;
+    }
+
+    /**
+    * Set boots
+    *
+    * @param PItem $boots
+    * @return Stuff
+    */
+    public function setBoots(PItem $boots = null)
+    {
+        $this->boots = $boots;
+
+        return $this;
+    }
+
+    /**
+    * Get boots
+    *
+    * @return PItem
+    */
+    public function getBoots()
+    {
+        return $this->boots;
+    }
+
+    /**
+    * Set shield
+    *
+    * @param PItem $shield
+    * @return Stuff
+    */
+    public function setShield(PItem $shield = null)
+    {
+        $this->shield = $shield;
+
+        return $this;
+    }
+
+    /**
+    * Get shield
+    *
+    * @return PItem
+    */
+    public function getShield()
+    {
+        return $this->shield;
+    }
+
+    /**
+    * Set dofus1
+    *
+    * @param PItem $dofus1
+    * @return Stuff
+    */
+    public function setDofus1(PItem $dofus1 = null)
+    {
+        $this->dofus1 = $dofus1;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus1
+    *
+    * @return PItem
+    */
+    public function getDofus1()
+    {
+        return $this->dofus1;
+    }
+
+    /**
+    * Set dofus2
+    *
+    * @param PItem $dofus2
+    * @return Stuff
+    */
+    public function setDofus2(PItem $dofus2 = null)
+    {
+        $this->dofus2 = $dofus2;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus2
+    *
+    * @return PItem
+    */
+    public function getDofus2()
+    {
+        return $this->dofus2;
+    }
+
+    /**
+    * Set dofus3
+    *
+    * @param PItem $dofus3
+    * @return Stuff
+    */
+    public function setDofus3(PItem $dofus3 = null)
+    {
+        $this->dofus3 = $dofus3;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus3
+    *
+    * @return PItem
+    */
+    public function getDofus3()
+    {
+        return $this->dofus3;
+    }
+
+    /**
+    * Set dofus4
+    *
+    * @param PItem $dofus4
+    * @return Stuff
+    */
+    public function setDofus4(PItem $dofus4 = null)
+    {
+        $this->dofus4 = $dofus4;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus4
+    *
+    * @return PItem
+    */
+    public function getDofus4()
+    {
+        return $this->dofus4;
+    }
+
+    /**
+    * Set dofus5
+    *
+    * @param PItem $dofus5
+    * @return Stuff
+    */
+    public function setDofus5(PItem $dofus5 = null)
+    {
+        $this->dofus5 = $dofus5;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus5
+    *
+    * @return PItem
+    */
+    public function getDofus5()
+    {
+        return $this->dofus5;
+    }
+
+    /**
+    * Set dofus6
+    *
+    * @param PItem $dofus6
+    * @return Stuff
+    */
+    public function setDofus6(PItem $dofus6 = null)
+    {
+        $this->dofus6 = $dofus6;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus6
+    *
+    * @return PItem
+    */
+    public function getDofus6()
+    {
+        return $this->dofus6;
+    }
+
     public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
         foreach($this->getItems() as $item)
             $caracts = $item->getCharacteristicsForPrimaryBonus($primaryFields, $caracts);
