@@ -930,7 +930,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     public function addItem(PItem $item, $slot = 0){
         $slot = intval($slot);
-        switch ($item->getItemTemplate()->geType()->getSlot()) {
+        switch ($item->getItemTemplate()->getType()->getSlot()) {
             case ItemSlot::AMULET:
             $lItem = $this->getAmulet();
             $this->setAmulet($item);
