@@ -11,8 +11,6 @@ use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
 
 use Dof\GraphicsBundle\Entity\BuildLook;
 
-use Dof\BuildBundle\BuildSlot;
-
 class StuffController extends Controller
 {
     public function addItemsAction(){
@@ -40,7 +38,7 @@ class StuffController extends Controller
         $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
         $look = $stuff->getLook();
 
-        $bItemRepo = $em->getRepository('DofBuildBundle:Item');
+        $bItemRepo = $em->getRepository('DofItemsManagerBundle:Item');
         foreach($items as $k => $item) {
             if(($slot = BuildSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
                 $slot = BuildSlot::getBuildSlot($item->getType()->getSlot())[0];
