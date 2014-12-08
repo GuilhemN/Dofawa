@@ -932,38 +932,55 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
         $slot = intval($slot);
         switch ($item->getItemTemplate()->geType()->getSlot()) {
             case ItemSlot::AMULET:
+            $lItem = $this->getAmulet();
             $this->setAmulet($item);
             case ItemSlot::WEAPON:
+            $lItem = $this->getWeapon();
             $this->setWeapon($item);
             $this->getLook()->setWeapon($item->getItemTemplate());
             case ItemSlot::RING:
-            if($slot == 2)
+            if($slot == 2){
+                $lItem = $this->getRing2();
                 $this->setRing2($item);
-            else
+            }
+            else{
+                $lItem = $this->getRing1();
                 $this->setRing1($item);
+            }
             case ItemSlot::BELT:
+            $lItem = $this->getBelt();
             $this->setBelt($item);
             case ItemSlot::BOOTS:
+            $lItem = $this->getBoots();
             $this->setBoots($item);
             case ItemSlot::SHIELD:
+            $lItem = $this->getShield();
             $this->setShield($item);
             $this->getLook()->setShield($item->getItemTemplate());
             case ItemSlot::HAT:
+            $lItem = $this->getHat();
             $this->setHat($item);
             $this->getLook()->setHat($item->getItemTemplate());
             case ItemSlot::CLOAK:
+            $lItem = $this->getCloak();
             $this->setCloak($item);
             $this->getLook()->setCloak($item->getItemTemplate());
             case ItemSlot::PET:
             case ItemSlot::MOUNT:
+            $lItem = $this->getAnimal();
             $this->setAnimal($item);
             $this->getLook()->setAnimal($item->getItemTemplate());
             case ItemSlot::DOFUS:
-            if($slot >= 1 && $slot <= 6)
+            if($slot >= 1 && $slot <= 6){
+                $lItem = $this->{ 'getDofus' . $slot }();
                 $this->{ 'setDofus' . $slot }($item);
-            else
+            }
+            else{
+                $lItem = $this->getDofus1();
                 $this->setDofus1($item);
+            }
         }
+        return $lItem;
     }
 
     public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
