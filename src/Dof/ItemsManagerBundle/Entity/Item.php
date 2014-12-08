@@ -40,7 +40,7 @@ class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonu
     /**
     * @var Stuff
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\EquipmentTemplate", inversedBy="buildItems")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\EquipmentTemplate")
     * @ORM\JoinColumn(onDelete="CASCADE")
     */
     private $itemTemplate;
