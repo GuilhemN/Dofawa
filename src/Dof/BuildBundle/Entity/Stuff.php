@@ -2,9 +2,6 @@
 
 namespace Dof\BuildBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -17,7 +14,9 @@ use Dof\ItemsBundle\PrimaryBonusTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\BuildBundle\Entity\PlayerCharacter;
-use Dof\ItemsManagerBundle\Entity\Item;
+use Dof\ItemsManagerBundle\Entity\PItem;
+use Dof\ItemsManagerBundle\Entity\Animal;
+use Dof\ItemsManagerBundle\Entity\Weapon;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
 /**
@@ -58,13 +57,6 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $character;
-
-    /**
-     * @var Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Dof\ItemsManagerBundle\Entity\Item", mappedBy="stuffs")
-     */
-    private $items;
 
     /**
      * @ORM\OneToOne(targetEntity="Dof\GraphicsBundle\Entity\BuildLook", inversedBy="stuff")
@@ -120,9 +112,136 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $agility;
 
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $hat;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $cloak;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $amulet;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Weapon", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $weapon;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $ring1;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $ring2;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $belt;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $boots;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $shield;
+
+    /**
+    * @var Animal
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Animal", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $animal;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus1;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus2;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus3;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus4;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus5;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", nullable=true)
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus6;
+
     public function __construct()
     {
-        $this->items = new ArrayCollection();
         $this->vitality = 0;
         $this->wisdom = 0;
         $this->strength = 0;
@@ -138,7 +257,24 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
             $this->look = clone $this->look;
             $this->slug = null;
 
-            $this->items = new ArrayCollection();
+            $this->hat = null;
+            $this->cloak = null;
+            $this->amulet = null;
+            $this->weapon = null;
+            $this->ring1 = null;
+            $this->ring2 = null;
+            $this->belt = null;
+            $this->boots = null;
+            $this->shield = null;
+            $this->animal = null;
+
+            $this->dofus1 = null;
+            $this->dofus2 = null;
+            $this->dofus3 = null;
+            $this->dofus4 = null;
+            $this->dofus5 = null;
+            $this->dofus6 = null;
+
             $this->primaryBonus = array();
             $this->createdAt = null;
         }
@@ -223,42 +359,6 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getCharacter()
     {
         return $this->character;
-    }
-
-    /**
-     * Add items
-     *
-     * @param Item $items
-     * @return Stuff
-     */
-    public function addItem(Item $items)
-    {
-        $this->items[] = $items;
-
-        return $this;
-    }
-
-    /**
-     * Remove items
-     *
-     * @param Item $items
-     * @return Stuff
-     */
-    public function removeItem(Item $items)
-    {
-        $this->items->removeElement($items);
-
-        return $this;
-    }
-
-    /**
-     * Get items
-     *
-     * @return Collection
-     */
-    public function getItems()
-    {
-        return $this->items;
     }
 
     /**
@@ -455,6 +555,97 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
         return $this->agility;
     }
 
+    /**
+    * Set hat
+    *
+    * @param Item $hat
+    * @return Stuff
+    */
+    public function setHat(PItem $hat = null)
+    {
+        $this->hat = $hat;
+
+        return $this;
+    }
+
+    /**
+    * Get hat
+    *
+    * @return Item
+    */
+    public function getHat()
+    {
+        return $this->hat;
+    }
+
+    /**
+    * Set cloak
+    *
+    * @param Item $cloak
+    * @return Stuff
+    */
+    public function setCloak(PItem $cloak = null)
+    {
+        $this->cloak = $cloak;
+
+        return $this;
+    }
+
+    /**
+    * Get cloak
+    *
+    * @return Item
+    */
+    public function getCloak()
+    {
+        return $this->cloak;
+    }
+
+    /**
+    * Set amulet
+    *
+    * @param Item $amulet
+    * @return Stuff
+    */
+    public function setAmulet(PItem $amulet = null)
+    {
+        $this->amulet = $amulet;
+
+        return $this;
+    }
+
+    /**
+    * Get amulet
+    *
+    * @return Item
+    */
+    public function getAmulet()
+    {
+        return $this->amulet;
+    }
+
+    /**
+    * Set weapon
+    *
+    * @param Weapon $weapon
+    * @return Stuff
+    */
+    public function setWeapon(Weapon $weapon = null)
+    {
+        $this->weapon = $weapon;
+
+        return $this;
+    }
+
+    /**
+    * Get weapon
+    *
+    * @return Weapon
+    */
+    public function getWeapon()
+    {
+        return $this->weapon;
+    }
     public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
         foreach($this->getItems() as $item)
             $caracts = $item->getCharacteristicsForPrimaryBonus($primaryFields, $caracts);
