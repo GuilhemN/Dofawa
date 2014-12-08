@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ItemsBundle\Entity\ItemTemplate;
 use Dof\ItemsBundle\Form\ItemSearch;
 
-use Dof\BuildBundle\BuildSlot;
+use Dof\ItemsBundle\ItemSlot;
 use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\UserBundle\Entity\User;
@@ -38,7 +38,7 @@ class ItemsController extends Controller
         if(!$canWrite)
             throw $this->createAccessDeniedException();
 
-        if(($buildSlot = BuildSlot::getValue(strtoupper($type))) === null)
+        if(($slot = ItemSlot::getValue(strtoupper($type))) === null)
             throw $this->createNotFoundException('Type d\'item non trouvé');
         $slugs = [
                     'user' => $user->getSlug(),
@@ -49,7 +49,7 @@ class ItemsController extends Controller
         $form = $this->createForm(new ItemSearch(false));
         $form->handleRequest($this->get('request'));
 
-        $params = $this->getItems(array_merge((array) $form->getData(), ['type' => BuildSlot::getItemsSlot($buildSlot)]), $page, $slugs + ['type' => $type]);
+        $params = $this->getItems(array_merge((array) $form->getData(), ['type' => $slot]), $page, $slugs + ['type' => $type]);
 
         return $this->render('DofItemsBundle:Items:index.html.twig',
             $params +
