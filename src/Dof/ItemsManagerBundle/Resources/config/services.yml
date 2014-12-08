@@ -1,4 +1,4 @@
 services:
-#    dof_items_manager.example:
-#        class: Dof\ItemsManagerBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    item_factory:
+        class: Dof\ItemsManagerBundle\ItemFactory
+        arguments: [@security.context]

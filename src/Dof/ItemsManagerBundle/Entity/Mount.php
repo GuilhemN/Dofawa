@@ -1,6 +1,8 @@
 <?php
 namespace Dof\ItemsManagerBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
 * Mount
 *
@@ -10,4 +12,5 @@ class Mount extends Animal
 {
 
     public function isMount() { return true; }
+    public function getClassId() { return 'mount'; }
 }

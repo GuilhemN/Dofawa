@@ -13,8 +13,6 @@ use Dof\ItemsBundle\CharacteristicsRangeTrait;
 use Dof\ItemsBundle\PrimaryBonusInterface;
 use Dof\ItemsBundle\PrimaryBonusTrait;
 
-use Dof\BuildBundle\Entity\Item;
-
 /**
  * EquipmentTemplate
  *
@@ -41,13 +39,6 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
     private $set;
 
 	private $originalSets;
-
-    /**
-     * @var Collection
-     *
-     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Item", mappedBy="itemTemplate")
-     */
-    private $buildItems;
 
     /**
      * @var boolean
@@ -159,43 +150,6 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 	public function getOriginalSets(){
 		return $this->originalSets;
 	}
-     /**
-     * Add buildItem
-     *
-     * @param Item $buildItem
-     * @return ItemTemplate
-     */
-    public function addBuildItem(Item $buildItem)
-    {
-		ReverseSetter::ReverseCall($buildItem, 'setItemTemplate', $this);
-        $this->buildItem[] = $buildItem;
-
-        return $this;
-    }
-
-    /**
-     * Remove buildItem
-     *
-     * @param Item $buildItem
-     * @return ItemTemplate
-     */
-    public function removeBuildItem(Item $buildItem)
-    {
-		ReverseSetter::ReverseCall($buildItem, 'setItemTemplate', null);
-        $this->buildItem->removeElement($buildItem);
-
-        return $this;
-    }
-
-    /**
-     * Get buildItem
-     *
-     * @return Collection
-     */
-    public function getBuildItem()
-    {
-        return $this->buildItem;
-    }
 
 	public function getPowerRate(){
 		return $this->powerRate;
@@ -231,7 +185,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
         foreach($primaryFields as $k => $v){
 			if(!isset($caracts[$v['primaryBonus']]))
 				$caracts[$v['primaryBonus']] = 0;
-			
+
             $caracts[$v['primaryBonus']] += ($this->{'getMax' . ucfirst($k)}() + $this->{'getMin' . ucfirst($k)}()) / 2 * $v['weight'];
 		}
         return $caracts;

@@ -2,9 +2,6 @@
 
 namespace Dof\BuildBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -17,7 +14,9 @@ use Dof\ItemsBundle\PrimaryBonusTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\BuildBundle\Entity\PlayerCharacter;
-use Dof\ItemsManagerBundle\Entity\Item;
+use Dof\ItemsManagerBundle\Entity\Item as PItem;
+use Dof\ItemsManagerBundle\Entity\Animal;
+use Dof\ItemsManagerBundle\Entity\Weapon;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
 /**
@@ -58,13 +57,6 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $character;
-
-    /**
-     * @var Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Dof\ItemsManagerBundle\Entity\Item", mappedBy="stuffs")
-     */
-    private $items;
 
     /**
      * @ORM\OneToOne(targetEntity="Dof\GraphicsBundle\Entity\BuildLook", inversedBy="stuff")
@@ -120,9 +112,136 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
      */
     private $agility;
 
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $hat;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $cloak;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $amulet;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Weapon")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $weapon;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $ring1;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $ring2;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $belt;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $boots;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $shield;
+
+    /**
+    * @var Animal
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Animal")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $animal;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus1;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus2;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus3;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus4;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus5;
+
+    /**
+    * @var Item
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $dofus6;
+
     public function __construct()
     {
-        $this->items = new ArrayCollection();
         $this->vitality = 0;
         $this->wisdom = 0;
         $this->strength = 0;
@@ -138,7 +257,24 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
             $this->look = clone $this->look;
             $this->slug = null;
 
-            $this->items = new ArrayCollection();
+            $this->hat = null;
+            $this->cloak = null;
+            $this->amulet = null;
+            $this->weapon = null;
+            $this->ring1 = null;
+            $this->ring2 = null;
+            $this->belt = null;
+            $this->boots = null;
+            $this->shield = null;
+            $this->animal = null;
+
+            $this->dofus1 = null;
+            $this->dofus2 = null;
+            $this->dofus3 = null;
+            $this->dofus4 = null;
+            $this->dofus5 = null;
+            $this->dofus6 = null;
+
             $this->primaryBonus = array();
             $this->createdAt = null;
         }
@@ -223,42 +359,6 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getCharacter()
     {
         return $this->character;
-    }
-
-    /**
-     * Add items
-     *
-     * @param Item $items
-     * @return Stuff
-     */
-    public function addItem(Item $items)
-    {
-        $this->items[] = $items;
-
-        return $this;
-    }
-
-    /**
-     * Remove items
-     *
-     * @param Item $items
-     * @return Stuff
-     */
-    public function removeItem(Item $items)
-    {
-        $this->items->removeElement($items);
-
-        return $this;
-    }
-
-    /**
-     * Get items
-     *
-     * @return Collection
-     */
-    public function getItems()
-    {
-        return $this->items;
     }
 
     /**
@@ -453,6 +553,351 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getAgility()
     {
         return $this->agility;
+    }
+
+    /**
+    * Set hat
+    *
+    * @param Item $hat
+    * @return Stuff
+    */
+    public function setHat(PItem $hat = null)
+    {
+        $this->hat = $hat;
+
+        return $this;
+    }
+
+    /**
+    * Get hat
+    *
+    * @return Item
+    */
+    public function getHat()
+    {
+        return $this->hat;
+    }
+
+    /**
+    * Set cloak
+    *
+    * @param Item $cloak
+    * @return Stuff
+    */
+    public function setCloak(PItem $cloak = null)
+    {
+        $this->cloak = $cloak;
+
+        return $this;
+    }
+
+    /**
+    * Get cloak
+    *
+    * @return Item
+    */
+    public function getCloak()
+    {
+        return $this->cloak;
+    }
+
+    /**
+    * Set amulet
+    *
+    * @param Item $amulet
+    * @return Stuff
+    */
+    public function setAmulet(PItem $amulet = null)
+    {
+        $this->amulet = $amulet;
+
+        return $this;
+    }
+
+    /**
+    * Get amulet
+    *
+    * @return Item
+    */
+    public function getAmulet()
+    {
+        return $this->amulet;
+    }
+
+    /**
+    * Set weapon
+    *
+    * @param Weapon $weapon
+    * @return Stuff
+    */
+    public function setWeapon(Weapon $weapon = null)
+    {
+        $this->weapon = $weapon;
+
+        return $this;
+    }
+
+    /**
+    * Get weapon
+    *
+    * @return Weapon
+    */
+    public function getWeapon()
+    {
+        return $this->weapon;
+    }
+
+    /**
+    * Set ring1
+    *
+    * @param PItem $ring1
+    * @return Stuff
+    */
+    public function setRing1(PItem $ring1 = null)
+    {
+        $this->ring1 = $ring1;
+
+        return $this;
+    }
+
+    /**
+    * Get ring1
+    *
+    * @return PItem
+    */
+    public function getRing1()
+    {
+        return $this->ring1;
+    }
+
+    /**
+    * Set ring2
+    *
+    * @param PItem $ring2
+    * @return Stuff
+    */
+    public function setRing2(PItem $ring2 = null)
+    {
+        $this->ring2 = $ring2;
+
+        return $this;
+    }
+
+    /**
+    * Get ring2
+    *
+    * @return PItem
+    */
+    public function getRing2()
+    {
+        return $this->ring2;
+    }
+
+    /**
+    * Set belt
+    *
+    * @param PItem $belt
+    * @return Stuff
+    */
+    public function setBelt(PItem $belt = null)
+    {
+        $this->belt = $belt;
+
+        return $this;
+    }
+
+    /**
+    * Get belt
+    *
+    * @return PItem
+    */
+    public function getBelt()
+    {
+        return $this->belt;
+    }
+
+    /**
+    * Set boots
+    *
+    * @param PItem $boots
+    * @return Stuff
+    */
+    public function setBoots(PItem $boots = null)
+    {
+        $this->boots = $boots;
+
+        return $this;
+    }
+
+    /**
+    * Get boots
+    *
+    * @return PItem
+    */
+    public function getBoots()
+    {
+        return $this->boots;
+    }
+
+    /**
+    * Set shield
+    *
+    * @param PItem $shield
+    * @return Stuff
+    */
+    public function setShield(PItem $shield = null)
+    {
+        $this->shield = $shield;
+
+        return $this;
+    }
+
+    /**
+    * Get shield
+    *
+    * @return PItem
+    */
+    public function getShield()
+    {
+        return $this->shield;
+    }
+
+    /**
+    * Set dofus1
+    *
+    * @param PItem $dofus1
+    * @return Stuff
+    */
+    public function setDofus1(PItem $dofus1 = null)
+    {
+        $this->dofus1 = $dofus1;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus1
+    *
+    * @return PItem
+    */
+    public function getDofus1()
+    {
+        return $this->dofus1;
+    }
+
+    /**
+    * Set dofus2
+    *
+    * @param PItem $dofus2
+    * @return Stuff
+    */
+    public function setDofus2(PItem $dofus2 = null)
+    {
+        $this->dofus2 = $dofus2;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus2
+    *
+    * @return PItem
+    */
+    public function getDofus2()
+    {
+        return $this->dofus2;
+    }
+
+    /**
+    * Set dofus3
+    *
+    * @param PItem $dofus3
+    * @return Stuff
+    */
+    public function setDofus3(PItem $dofus3 = null)
+    {
+        $this->dofus3 = $dofus3;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus3
+    *
+    * @return PItem
+    */
+    public function getDofus3()
+    {
+        return $this->dofus3;
+    }
+
+    /**
+    * Set dofus4
+    *
+    * @param PItem $dofus4
+    * @return Stuff
+    */
+    public function setDofus4(PItem $dofus4 = null)
+    {
+        $this->dofus4 = $dofus4;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus4
+    *
+    * @return PItem
+    */
+    public function getDofus4()
+    {
+        return $this->dofus4;
+    }
+
+    /**
+    * Set dofus5
+    *
+    * @param PItem $dofus5
+    * @return Stuff
+    */
+    public function setDofus5(PItem $dofus5 = null)
+    {
+        $this->dofus5 = $dofus5;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus5
+    *
+    * @return PItem
+    */
+    public function getDofus5()
+    {
+        return $this->dofus5;
+    }
+
+    /**
+    * Set dofus6
+    *
+    * @param PItem $dofus6
+    * @return Stuff
+    */
+    public function setDofus6(PItem $dofus6 = null)
+    {
+        $this->dofus6 = $dofus6;
+
+        return $this;
+    }
+
+    /**
+    * Get dofus6
+    *
+    * @return PItem
+    */
+    public function getDofus6()
+    {
+        return $this->dofus6;
     }
 
     public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){

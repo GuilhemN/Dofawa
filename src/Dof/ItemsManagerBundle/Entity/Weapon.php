@@ -1,6 +1,8 @@
 <?php
 namespace Dof\ItemsManagerBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
 * Weapon
 *
@@ -9,4 +11,5 @@ namespace Dof\ItemsManagerBundle\Entity;
 class Weapon extends Item
 {
     public function isWeapon() { return true; }
+    public function getClassId() { return 'weapon'; }
 }

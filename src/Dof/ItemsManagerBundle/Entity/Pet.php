@@ -1,6 +1,8 @@
 <?php
 namespace Dof\ItemsManagerBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
 * Pet
 *
@@ -149,4 +151,5 @@ class Pet extends Animal
     }
 
     public function isPet() { return true; }
+    public function getClassId() { return 'pet'; }
 }

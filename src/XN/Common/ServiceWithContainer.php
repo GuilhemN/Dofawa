@@ -2,6 +2,7 @@
 namespace XN\Common;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
 class ServiceWithContainer
 {
     protected $di;

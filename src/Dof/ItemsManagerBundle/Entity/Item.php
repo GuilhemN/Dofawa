@@ -22,7 +22,7 @@ use Dof\ItemsBundle\PrimaryBonusTrait;
 * @ORM\Entity(repositoryClass="Dof\ItemsManagerBundle\Entity\PersonalizedItemRepository")
 * @ORM\InheritanceType("SINGLE_TABLE")
 * @ORM\DiscriminatorColumn(name="class", type="string")
-* @ORM\DiscriminatorMap({"item" = "Item", "animal" = "Animal", "weapon" = "Weapon"})
+* @ORM\DiscriminatorMap({"item" = "Item", "animal" = "Animal", "weapon" = "Weapon", "mount": "Mount", "pet": "Pet"})
 */
 class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonusInterface
 {
@@ -40,15 +40,7 @@ class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonu
     /**
     * @var Stuff
     *
-    * @ORM\ManyToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", inversedBy="items")
-    * @ORM\JoinColumn(onDelete="SET NULL")
-    */
-    private $stuffs;
-
-    /**
-    * @var Stuff
-    *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\EquipmentTemplate", inversedBy="buildItems")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\EquipmentTemplate")
     * @ORM\JoinColumn(onDelete="CASCADE")
     */
     private $itemTemplate;
@@ -69,7 +61,7 @@ class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonu
 
     public function __construct()
     {
-        $this->stuffs = new ArrayCollection();
+        // $this->stuffs = new ArrayCollection();
     }
 
     /**
@@ -80,42 +72,6 @@ class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonu
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-    * Add stuffs
-    *
-    * @param Stuff $stuffs
-    * @return PersonalizedItem
-    */
-    public function addStuff(Stuff $stuffs)
-    {
-        $this->stuffs[] = $stuffs;
-
-        return $this;
-    }
-
-    /**
-    * Remove stuffs
-    *
-    * @param Stuff $stuffs
-    * @return PersonalizedItem
-    */
-    public function removeStuff(Stuff $stuffs)
-    {
-        $this->stuffs->removeElement($stuffs);
-
-        return $this;
-    }
-
-    /**
-    * Get stuffs
-    *
-    * @return Collection
-    */
-    public function getStuffs()
-    {
-        return $this->stuffs;
     }
 
     /**
