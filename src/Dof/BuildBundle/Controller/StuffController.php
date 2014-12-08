@@ -17,6 +17,7 @@ class StuffController extends Controller
 {
     public function addItemsAction(){
         $bm = $this->get('build_manager');
+        $iFact = $this->get('item_factory');
         $request = $this->get('request');
         $stuffSlug = $request->request->get('stuff');
 
@@ -45,13 +46,14 @@ class StuffController extends Controller
                 $slot = BuildSlot::getBuildSlot($item->getType()->getSlot())[0];
 
             $bItem = $bItemRepo->findOneBy(array('stuff' => $stuff, 'slot' => $slot));
-            if($bItem !== null)
-                $em->remove($bItem);
+            $bItem->removeStuff($stuff);
+            $bName = $bItem->getName();
+            if(empty($bName))
+                if(count($bItem->getStuffs()->toArray()) == 0)
+                    $em->remove($bItem);
 
-            $bItem = new PersonalizedItem();
-            $bItem->setOwner($stuff->getOwner());
-            $bItem->setStuff($stuff);
-            $bItem->setItemTemplate($item);
+            $bItem = $iFact->createItem($item, null, $stuff->getOwner());
+            $bItem->addStuff($stuff);
             $bItem->setSlot($slot);
 
             if($slot == BuildSlot::WEAPON)
@@ -65,18 +67,9 @@ class StuffController extends Controller
             elseif($slot == BuildSlot::ANIMAL)
                 $look->setAnimal($item);
 
-            $caracts = $bItem->getCharacteristics();
-            foreach($caracts as $k => &$caract){
-                $min = $item->{'getMin' . ucfirst($k)}();
-                $max = $item->{'getMax' . ucfirst($k)}();
-                $caract = round($min + ($max - $min) * $percent / 100);
-            }
-
-            $bItem->setCharacteristics($caracts, true);
-
             $em->persist($bItem);
         }
-        
+
         $em->flush();
 
         $stuff = $bm->reloadStuff($stuff);

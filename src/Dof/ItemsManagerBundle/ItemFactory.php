@@ -8,7 +8,6 @@ use Dof\ItemsBundle\Entity\EquipmentTemplate;
 use Dof\ItemsManagerBundle\Entity as Ent;
 
 use Dof\ItemsBundle\ItemSlot;
-use Dof\BuildBundle\BuildSlot;
 
 class PersonalizedItemFactory {
 
@@ -49,7 +48,6 @@ class PersonalizedItemFactory {
 
         $ent->setOwner($user);
         $ent->setItemTemplate($itemTemplate);
-        $ent->setSlot(BuildSlot::getBuildSlot($item->getType()->getSlot())[0]);
 
         $caracts = $item->getCharacteristics();
         foreach($caracts as $k => &$caract){

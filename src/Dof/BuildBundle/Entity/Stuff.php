@@ -900,6 +900,33 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
         return $this->dofus6;
     }
 
+    public function getItems(){
+        return [
+            'hat' => $this->hat,
+            'cloak' => $this->cloak,
+            'amulet' => $this->amulet,
+            'weapon' => $this->weapon,
+            'ring1' => $this->ring1,
+            'ring2' => $this->ring2,
+            'belt' => $this->belt,
+            'boots' => $this->boots,
+            'shield' => $this->shield,
+            'animal' => $this->animal
+
+        ];
+    }
+
+    public function getDofus(){
+        return [
+            'dofus1' => $this->dofus1,
+            'dofus2' => $this->dofus2,
+            'dofus3' => $this->dofus3,
+            'dofus4' => $this->dofus4,
+            'dofus5' => $this->dofus5,
+            'dofus6' => $this->dofus6,
+        ];
+    }
+
     public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
         foreach($this->getItems() as $item)
             $caracts = $item->getCharacteristicsForPrimaryBonus($primaryFields, $caracts);

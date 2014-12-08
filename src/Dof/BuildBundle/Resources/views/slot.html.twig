@@ -1,14 +1,13 @@
-{% set change_item_link = path('dof_build_additem', {'user': character.owner.slug, 'character': character.slug, 'stuff': stuff.slug, 'type': type}) %}
+{% set change_item_link = path('dof_build_additem', {'user': character.owner.slug, 'character': character.slug, 'stuff': stuff.slug, 'type': k}) %}
 
-{% if items[slot] is defined %}
-    {% set item = items[slot] %}
+{% if item is not null %}
     {% set itemTemplate = item.itemTemplate %}
 
     <a data-toggle="modal" data-target="#modalItem-{{ slot }}" href="#">
         <div class="thumbnail">
 
             <img class="img-responsive" src="{{ (itemTemplate.webPath) ? asset(itemTemplate.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="{{ itemTemplate.getName(locales()) }}" title="{{ itemTemplate.getName(locales()) }}">
-            
+
         </div>
     </a>
     <!-- Modal -->
@@ -31,17 +30,9 @@
             </div>
         </div>
     </div>
-{% else %} 
-        {% if slot < 8 and slot != 1%}
-            {% set defaultSlot = 2 %}
-        {% elseif slot == 13 %}
-            {% set defaultSlot = 12 %}
-        {% else %}
-            {% set defaultSlot = slot %}
-        {% endif %}
-
+{% else %}
     {% set image %}
-        <img src="{{ asset('bundles/dofbuild/img/' ~ defaultSlot ~ '-slot.png') }}" alt="...">
+        <img src="{{ asset('bundles/dofbuild/img/' ~ k ~ '-slot.png') }}" alt="...">
     {% endset %}
 
     {% if can_write %}

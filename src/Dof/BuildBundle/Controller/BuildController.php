@@ -20,27 +20,6 @@ use Dof\CharactersBundle\RankDamageEffect;
 
 class BuildController extends Controller
 {
-    protected $dofus_slots = [
-                'dofus1' => BuildSlot::DOFUS1,
-                'dofus2' => BuildSlot::DOFUS2,
-                'dofus3' => BuildSlot::DOFUS3,
-                'dofus4' => BuildSlot::DOFUS4,
-                'dofus5' => BuildSlot::DOFUS5,
-                'dofus6' => BuildSlot::DOFUS6,
-            ];
-    protected $items_slots = [
-                'hat' => BuildSlot::HAT,
-                'cloak' => BuildSlot::CLOAK,
-                'amulet' => BuildSlot::AMULET,
-                'weapon' => BuildSlot::WEAPON,
-                'ring1' => BuildSlot::RING1,
-                'ring2' => BuildSlot::RING2,
-                'belt' => BuildSlot::BELT,
-                'boots' => BuildSlot::BOOTS,
-                'shield' => BuildSlot::SHIELD,
-                'animal' => BuildSlot::ANIMAL,
-            ];
-
     public function indexAction()
     {
         $bm = $this->get('build_manager');
@@ -108,11 +87,9 @@ class BuildController extends Controller
             throw $this->createAccessDeniedException();
 
         $bm = $this->get('build_manager');
-        $items = [];
+        $items = $stuff->getItems();
+        $dofus = $stuff->getDofus();
 
-        // Pré-traitement des items
-        foreach($stuff->getItems() as $item)
-            $items[$item->getSlot()] = $item;
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
 
         //Modification d'un item
@@ -132,9 +109,8 @@ class BuildController extends Controller
             'character' => $character,
             'stuff' => $stuff,
             // Items
-            'dofus_slots' => $this->dofus_slots,
-            'items_slots' => $this->items_slots,
             'items' => $items,
+            'dofus' => $dofus,
             'bonus' => $bonus,
             'characteristics' => $characteristics,
             // Permissions

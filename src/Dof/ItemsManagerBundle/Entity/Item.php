@@ -46,13 +46,6 @@ class Item implements IdentifiableInterface, TimestampableInterface, PrimaryBonu
     private $itemTemplate;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="slot", type="integer")
-    */
-    private $slot;
-
-    /**
     * @var string
     *
     * @ORM\Column(name="name", type="string")
