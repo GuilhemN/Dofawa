@@ -34,16 +34,14 @@ class PetTemplate extends AnimalTemplate
     /**
      * @var integer
      *
-     * @ORM\OneToOne(targetEntity="ItemTemplate")
-     * @ORM\JoinTable(name="dof_pet_feed_interval")
+	 * @ORM\Column(name="min_feed_interval", type="integer")
      */
     private $minFeedInterval;
 
     /**
      * @var integer
      *
-     * @ORM\OneToOne(targetEntity="ItemTemplate")
-     * @ORM\JoinTable(name="dof_pet_eat_range")
+     * @ORM\Column(name="max_feed_interval", type="integer")
      */
     private $maxFeedInterval;
 
