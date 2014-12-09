@@ -948,76 +948,40 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
         ];
     }
 
-    public function addItem(PItem $item, $slot = 0){
+    public function getItemType(PItem $item, $slot = 0){
         $slot = intval($slot);
         switch ($item->getItemTemplate()->getType()->getSlot()) {
             case ItemSlot::AMULET:
-                $lItem = $this->getAmulet();
-                $this->setAmulet($item);
-                $item->addStuff($stuff);
-                break;
+                return 'amulet';
             case ItemSlot::WEAPON:
-                $lItem = $this->getWeapon();
-                $this->setWeapon($item);
-                $item->addStuff($stuff);
-                break;
+                return 'weapon';
             case ItemSlot::RING:
                 if($slot == 2){
-                    $lItem = $this->getRing2();
-                    $this->setRing2($item);
-                    $item->addStuff($stuff, 2);
+                    return 'ring2';
                 }
                 else{
-                    $lItem = $this->getRing1();
-                    $this->setRing1($item);
-                    $item->addStuff($stuff, 1);
+                    return 'ring1';
                 }
                 break;
             case ItemSlot::BELT:
-                $lItem = $this->getBelt();
-                $this->setBelt($item);
-                $item->addStuff($stuff);
-                break;
+                return 'belt';
             case ItemSlot::BOOTS:
-                $lItem = $this->getBoots();
-                $this->setBoots($item);
-                $item->addStuff($stuff);
-                break;
+                return 'boots';
             case ItemSlot::SHIELD:
-                $lItem = $this->getShield();
-                $this->setShield($item);
-                $item->addStuff($stuff);
-                break;
+                return 'shield';
             case ItemSlot::HAT:
-                $lItem = $this->getHat();
-                $this->setHat($item);
-                $item->addStuff($stuff);
-                break;
+                return 'hat';
             case ItemSlot::CLOAK:
-                $lItem = $this->getCloak();
-                $this->setCloak($item);
-                $item->addStuff($stuff);
-                break;
+                return 'cloak';
             case ItemSlot::PET:
             case ItemSlot::MOUNT:
-                $lItem = $this->getAnimal();
-                $this->setAnimal($item);
-                $item->addStuff($stuff);
-                break;
+                return 'animal';
             case ItemSlot::DOFUS:
-                if($slot >= 1 && $slot <= 6){
-                    $lItem = $this->{ 'getDofus' . $slot }();
-                    $this->{ 'setDofus' . $slot }($item);
-                    $item->addStuff($stuff, $slot);
-                }
-                else{
-                    $lItem = $this->getDofus1();
-                    $this->setDofus1($item);
-                    $item->addStuff($stuff, 1);
-                }
-                break;
+                if($slot >= 1 && $slot <= 6)
+                    return 'dofus' . $slot;
+                else
+                    return 'dofus1';
         }
-        return $lItem;
     }
 
     public function __toString()

@@ -36,22 +36,27 @@ class StuffController extends Controller
             $percent = 80;
 
         $rel = array_flip($itemsIds);
-        $items = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($itemsIds);
+        $items = $em->getRepository('DofItemsBundle:EquipmentTemplate')->findById($itemsIds);
         $look = $stuff->getLook();
 
         $bItemRepo = $em->getRepository('DofItemsManagerBundle:Item');
         foreach($items as $k => $item) {
             if(($slot = ItemSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
-                continue;
+                $slot = $item->getType()->getSlot();
 
             $bItem = $iFact->createItem($item, null, $stuff->getCharacter()->getOwner());
-            $lItem = $stuff->addItem($bItem);
+            $type = $stuff->getItemType($bItem);
+            $lItem = $stuff->{'get' . ucfirst($type)}();
 
-            if(!empty($lItem) && $lItem->getName() == null && count($lItem->getStuffs()) <= 1)
+            if(!empty($lItem) && $lItem->getName() == null && count($lItem->getStuffs()) <= 1){
                 $em->remove($lItem);
+                $em->flush();
+            }
 
+            $stuff->{'set' . ucfirst($type)}($bItem);
             $em->persist($bItem);
             $em->persist($stuff);
+
         }
 
         $em->flush();

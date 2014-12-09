@@ -244,32 +244,6 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
         return $this->name;
     }
 
-    public function addStuff(Stuff $stuff, $slot = 0){
-        switch($this->itemTemplate->getType()->getSlot()){
-            case ItemSlot::AMULET:
-            $this->stuffsAmulet[] = $stuff;
-            case ItemSlot::WEAPON:
-            $this->stuffsWeapon[] = $stuff;
-            case ItemSlot::RING:
-            $this->{'stuffsRing' . $slot}[] = $stuff;
-            case ItemSlot::BELT:
-            $this->stuffsBelt[] = $stuff;
-            case ItemSlot::BOOTS:
-            $this->stuffsBoots[] = $stuff;
-            case ItemSlot::SHIELD:
-            $this->stuffsShield[] = $stuff;
-            case ItemSlot::HAT:
-            $this->stuffsHat[] = $stuff;
-            case ItemSlot::CLOAK:
-            $this->stuffsCloak[] = $stuff;
-            case ItemSlot::PET:
-            case ItemSlot::MOUNT:
-            $this->stuffsAnimal[] = $stuff;
-            case ItemSlot::DOFUS:
-            $this->{'stuffsDofus' . $slot}[] = $stuff;
-        }
-    }
-
     public function getStuffs(){
         switch($this->itemTemplate->getType()->getSlot()){
             case ItemSlot::AMULET:
@@ -277,7 +251,7 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
             case ItemSlot::WEAPON:
             return $this->stuffsWeapon;
             case ItemSlot::RING:
-            return $this->stuffsRing1 + $this->stuffsRing2;
+            return $this->stuffsRing1->toArray() + $this->stuffsRing2->toArray();
             case ItemSlot::BELT:
             return $this->stuffsBelt;
             case ItemSlot::BOOTS:
@@ -292,7 +266,7 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
             case ItemSlot::MOUNT:
             return $this->stuffsAnimal;
             case ItemSlot::DOFUS:
-            return $this->stuffsDofus1 + $this->stuffsDofus2 + $this->stuffsDofus3 + $this->stuffsDofus4 + $this->stuffsDofus5 + $this->stuffsDofus5;
+            return $this->stuffsDofus1->toArray() + $this->stuffsDofus2->toArray() + $this->stuffsDofus3->toArray() + $this->stuffsDofus4->toArray() + $this->stuffsDofus5->toArray() + $this->stuffsDofus5->toArray();
         }
     }
 
