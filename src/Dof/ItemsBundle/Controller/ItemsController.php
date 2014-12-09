@@ -38,7 +38,9 @@ class ItemsController extends Controller
         if(!$canWrite)
             throw $this->createAccessDeniedException();
 
-        if(($slot = ItemSlot::getValue(strtoupper($type))) === null)
+        if($type == 'animal')
+            $slot = [ItemSlot::PET, ItemSlot::MOUNT];
+        elseif(($slot = ItemSlot::getValue(strtoupper($type))) === null)
             throw $this->createNotFoundException('Type d\'item non trouvé');
         $slugs = [
                     'user' => $user->getSlug(),
