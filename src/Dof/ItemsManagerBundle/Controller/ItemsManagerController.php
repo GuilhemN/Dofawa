@@ -26,7 +26,7 @@ class ItemsManagerController extends Controller
 
     protected function getItems($options, $page, array $params = array()) {
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('ItemsManagerBundle:Item');
+        $repo = $em->getRepository('DofItemsManagerBundle:Item');
         $full = $this->get('security.context')->isGranted('ROLE_SPELL_XRAY');
 
         $perPage = 15;
