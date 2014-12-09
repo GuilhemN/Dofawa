@@ -991,7 +991,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
             case ItemSlot::HAT:
                 $lItem = $this->getHat();
                 $this->setHat($item);
-                $item->addStuff($this );
+                $item->addStuff($this);
                 break;
             case ItemSlot::CLOAK:
                 $lItem = $this->getCloak();
