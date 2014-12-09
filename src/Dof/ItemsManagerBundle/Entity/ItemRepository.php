@@ -3,6 +3,7 @@
 namespace Dof\ItemsManagerBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Dof\UserBundle\Entity\User;
 
 /**
  * ItemRepository
@@ -12,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemRepository extends EntityRepository
 {
-	public function findWithOptions($options = array(), $user, array $orders = array(), $limit = null, $offset = null, $locale = 'fr', $type = 'normal', $full = false) {
+	public function findWithOptions($options = array(),User $user, array $orders = array(), $limit = null, $offset = null, $locale = 'fr', $type = 'normal', $full = false) {
         $options = (array) $options;
 		$qb = $this->createQueryBuilder('i');
 
@@ -20,8 +21,8 @@ class ItemRepository extends EntityRepository
 			$qb->select(array('COUNT(i)'));
 
 		$qb
-			->Join('i.itemTemplate', 'it')
-			->addjoin('it.type', 't')
+			->join('i.itemTemplate', 'it') 
+			->join('it.type', 't')
 			->addOrderBy('it.level', 'DESC')
 			->andWhere('i.owner = (:user)')
 	        ->setParameter('user', $user)
@@ -60,7 +61,7 @@ class ItemRepository extends EntityRepository
 	              ;
     }
 
-	public function countWithOptions($options = array(), $user, $locale = 'fr'){
+	public function countWithOptions($options = array(),User $user, $locale = 'fr'){
 		return $this->findWithOptions($options, $user, array(), null, null, $locale, 'count');
 	}
 }
