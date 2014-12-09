@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemRepository extends EntityRepository
 {
-	public function findWithOptions($options = array(), array $orders = array(), $limit = null, $offset = null, $locale = 'fr', $type = 'normal', $full = false) {
+	public function findWithOptions($options = array(), $user, array $orders = array(), $limit = null, $offset = null, $locale = 'fr', $type = 'normal', $full = false) {
         $options = (array) $options;
 		$qb = $this->createQueryBuilder('i');
 
@@ -20,15 +20,16 @@ class ItemRepository extends EntityRepository
 			$qb->select(array('COUNT(i)'));
 
 		$qb
-			->join('i.type', 't')
-			->addOrderBy('i.level', 'DESC')
+			->Join('i.itemTemplate', 'it')
+			->addjoin('it.type', 't')
+			->addOrderBy('it.level', 'DESC')
+			->andWhere('i.owner = (:user)')
+	        ->setParameter('user', $user)
 		;
 
-		if(!$full)
-			$qb->andWhere('i.visible = true');
 		if(!empty($options['name']))
 			$qb
-			->andWhere('i.name' . ucfirst($locale).' LIKE :name')
+			->andWhere('it.name' . ucfirst($locale).' LIKE :name')
 			->setParameter('name', '%' . $options['name'] . '%')
 			;
 		if(isset($options['type']))
@@ -38,7 +39,7 @@ class ItemRepository extends EntityRepository
 			;
 		if(!empty($options['maj']))
 			$qb
-	        	->andWhere('i.release LIKE :release')
+	        	->andWhere('it.release LIKE :release')
 	        	->setParameter('release', '%' . $options['maj'] . '%')
 			;
 
@@ -59,7 +60,7 @@ class ItemRepository extends EntityRepository
 	              ;
     }
 
-	public function countWithOptions($options = array(), $locale = 'fr'){
-		return $this->findWithOptions($options, array(), null, null, $locale, 'count');
+	public function countWithOptions($options = array(), $user, $locale = 'fr'){
+		return $this->findWithOptions($options, $user, array(), null, null, $locale, 'count');
 	}
 }

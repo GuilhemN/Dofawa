@@ -65,12 +65,13 @@ class ItemsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
         $full = $this->get('security.context')->isGranted('ROLE_SPELL_XRAY');
+        $user = $this->getUser();
 
         $perPage = 15;
 
         $locale = $this->get('translator')->getLocale();
-        $count = $repo->countWithOptions($options, $locale);
-        $items = $repo->findWithOptions($options, ['level' => 'DESC', 'name' . ucfirst($this->get('request')->getLocale()) => 'ASC'], $perPage, ($page - 1) * $perPage, $locale, 'normal', $full);
+        $count = $repo->countWithOptions($options, $user, $locale);
+        $items = $repo->findWithOptions($options, $user, ['level' => 'DESC', 'name' . ucfirst($this->get('request')->getLocale()) => 'ASC'], $perPage, ($page - 1) * $perPage, $locale, 'normal', $full);
 
         $pagination = array(
 			'page' => $page,
