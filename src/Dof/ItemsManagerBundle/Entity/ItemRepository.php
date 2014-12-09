@@ -45,7 +45,7 @@ class ItemRepository extends EntityRepository
 			;
 
 		foreach($orders as $column => $order)
-			$qb->addOrderBy('i.' . $column, $order);
+			$qb->addOrderBy('it.' . $column, $order);
 
 		if($type == 'count')
 			return $qb
