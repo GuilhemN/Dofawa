@@ -20,8 +20,8 @@ class ItemRepository extends EntityRepository
 			$qb->select(array('COUNT(i)'));
 
 		$qb
-			->Join('i.itemTemplate', 'it')
-			->addjoin('it.type', 't')
+			->join('i.itemTemplate', 'it')
+			->addJoin('it.type', 't')
 			->addOrderBy('it.level', 'DESC')
 			->andWhere('i.owner = (:user)')
 	        ->setParameter('user', $user)
