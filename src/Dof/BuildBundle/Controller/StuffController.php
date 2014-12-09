@@ -41,11 +41,13 @@ class StuffController extends Controller
 
         $bItemRepo = $em->getRepository('DofItemsManagerBundle:Item');
         foreach($items as $k => $item) {
-            if(($slot = ItemSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
-                $slot = $item->getType()->getSlot();
+            if(is_string($rel[$item->getId()]))
+                $slot = round(intval($rel[$item->getId()]));
+            else
+                $slot = 0;
 
             $bItem = $iFact->createItem($item, null, $stuff->getCharacter()->getOwner());
-            $type = $stuff->getItemType($bItem);
+            $type = $stuff->getItemType($bItem, $slot);
             $lItem = $stuff->{'get' . ucfirst($type)}();
 
             if(!empty($lItem) && $lItem->getName() == null && count($lItem->getStuffs()) <= 1){

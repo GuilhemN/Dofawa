@@ -34,7 +34,7 @@ class ItemsController extends Controller
         return $this->render('DofItemsBundle:Items:show.html.twig', ['item' => $item]);
     }
 
-    public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite, $type, $page){
+    public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite, $type, $slot, $page){
         if(!$canWrite)
             throw $this->createAccessDeniedException();
 
@@ -58,7 +58,7 @@ class ItemsController extends Controller
             [
                 'form' => $form->createView(),
                 'slugs' => $slugs,
-                'build_slot' => $type
+                'slot_number' => $slot
             ]
             );
     }
