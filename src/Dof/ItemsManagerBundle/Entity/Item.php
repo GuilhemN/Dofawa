@@ -47,7 +47,7 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
     /**
     * @var string
     *
-    * @ORM\Column(name="name", type="string")
+    * @ORM\Column(name="name", type="string", nullable=true)
     */
     private $name;
 
