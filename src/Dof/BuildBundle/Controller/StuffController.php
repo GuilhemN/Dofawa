@@ -51,6 +51,7 @@ class StuffController extends Controller
                 $em->remove($lItem);
 
             $em->persist($bItem);
+            $em->persist($stuff);
         }
 
         $em->flush();

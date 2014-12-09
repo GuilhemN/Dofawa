@@ -244,6 +244,32 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
         return $this->name;
     }
 
+    public function addStuff(Stuff $stuff, $slot = 0){
+        switch($this->itemTemplate->getType()->getSlot()){
+            case ItemSlot::AMULET:
+            $this->stuffsAmulet[] = $stuff;
+            case ItemSlot::WEAPON:
+            $this->stuffsWeapon[] = $stuff;
+            case ItemSlot::RING:
+            $this->{'stuffsRing' . $slot}[] = $stuff;
+            case ItemSlot::BELT:
+            $this->stuffsBelt[] = $stuff;
+            case ItemSlot::BOOTS:
+            $this->stuffsBoots[] = $stuff;
+            case ItemSlot::SHIELD:
+            $this->stuffsShield[] = $stuff;
+            case ItemSlot::HAT:
+            $this->stuffsHat[] = $stuff;
+            case ItemSlot::CLOAK:
+            $this->stuffsCloak[] = $stuff;
+            case ItemSlot::PET:
+            case ItemSlot::MOUNT:
+            $this->stuffsAnimal[] = $stuff;
+            case ItemSlot::DOFUS:
+            $this->{'stuffsDofus' . $slot}[] = $stuff;
+        }
+    }
+
     public function getStuffs(){
         switch($this->itemTemplate->getType()->getSlot()){
             case ItemSlot::AMULET:
