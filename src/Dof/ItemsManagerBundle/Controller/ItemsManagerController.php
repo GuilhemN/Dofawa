@@ -18,7 +18,7 @@ class ItemsManagerController extends Controller
         $form = $this->createForm(new ItemSearch());
         $form->handleRequest($this->get('request'));
 
-        $params = $this->getItems($form->getData(), $page);
+        $params = $this->getItems($form->getData(), $page); 
 
         return $this->render('DofItemsManagerBundle:ItemsManager:index.html.twig',
             ['form' => $form->createView()] + $params
