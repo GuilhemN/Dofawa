@@ -1,6 +1,6 @@
 {% trans_default_domain 'item' %}
 
-{% if classOf(item) == 'Item' %}
+{% if item.personalized %}
     {% set type = 'build' %}
     {% set itemEntity = item.itemTemplate %}
 {% else %}
