@@ -19,7 +19,7 @@ class SkinnedItem extends Item
     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
-    private $mimibioteTemplate;
+    protected $mimibioteTemplate;
 
 
     /**
