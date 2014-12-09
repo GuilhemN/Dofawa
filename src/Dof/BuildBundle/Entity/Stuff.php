@@ -762,6 +762,29 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
+    * Set animal
+    *
+    * @param Animal $animal
+    * @return Stuff
+    */
+    public function setAnimal(Animal $animal = null)
+    {
+        $this->animal = $animal;
+
+        return $this;
+    }
+
+    /**
+    * Get animal
+    *
+    * @return Animal
+    */
+    public function getAnimal()
+    {
+        return $this->animal;
+    }
+
+    /**
     * Set dofus1
     *
     * @param PItem $dofus1
