@@ -21,7 +21,7 @@ class ItemRepository extends EntityRepository
 
 		$qb
 			->join('i.itemTemplate', 'it') 
-			->addJoin('it.type', 't')
+			->join('it.type', 't')
 			->addOrderBy('it.level', 'DESC')
 			->andWhere('i.owner = (:user)')
 	        ->setParameter('user', $user)
