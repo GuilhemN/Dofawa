@@ -34,6 +34,10 @@ class StuffController extends Controller
             $percent = intval($request->request->get('percent'));
         else
             $percent = 80;
+        if($request->request->has('useSlot'))
+            $useSlot = intval($request->request->get('useSlot'));
+        else
+            $useSlot = 0;
 
         $rel = array_flip($itemsIds);
         $items = $em->getRepository('DofItemsBundle:EquipmentTemplate')->findById($itemsIds);
@@ -41,7 +45,7 @@ class StuffController extends Controller
 
         $bItemRepo = $em->getRepository('DofItemsManagerBundle:Item');
         foreach($items as $k => $item) {
-            if(is_string($rel[$item->getId()]))
+            if($useSlot)
                 $slot = round(intval($rel[$item->getId()]));
             else
                 $slot = 0;
