@@ -32,16 +32,26 @@ class ItemFactory {
 
         switch ($item->getType()->getSlot()) {
             case ItemSlot::WEAPON:
-            $ent = new Ent\Weapon();
+                $ent = new Ent\Weapon();
+                break;
+            case ItemSlot::HAT:
+            case ItemSlot::CLOAK:
+                $ent = new Ent\SkinnedItem();
+                break;
             case ItemSlot::PET:
-            switch ($item->getType()->getId()) {
-                case 121: // Petsmount
-                $ent = new Ent\Mount();
-                default:
-                $ent = new Ent\Pet();
-            }
+                switch ($item->getType()->getId()) {
+                    case 121: // Petsmount
+                    $ent = new Ent\Mount();
+                    default:
+                    $ent = new Ent\Pet();
+                }
+                break;
             case ItemSlot::MOUNT:
-            $ent = new Ent\Mount();
+                $ent = new Ent\Mount();
+                break;
+            case ItemSlot::MOUNT:
+                $ent = new Ent\Mount();
+                break;
             default:
             $ent = new Ent\Item();
         }
