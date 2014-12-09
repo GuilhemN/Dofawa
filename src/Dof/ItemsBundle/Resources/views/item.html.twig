@@ -39,7 +39,7 @@
                                 <span class="label label-default hidden-xs">{{ item.release }}</span>
                             {% endif %}
                         </p>
-                        {% if item.equipment and item.personalized is false %}
+                        {% if item.equipment and item.personalized == false %}
                             <p>
                             {% for bonus in (item_primary_bonus | default(item) ).primaryBonus %}
                                 <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
