@@ -18,7 +18,11 @@
     <div class="panel panel-default item">
         <div class="panel-heading">
             <h3 class="panel-title">
-                {{ item.getName(locales())}} <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font>
+                {% if item.personalized and item.name is not null %}
+                     {{ item.name }} ({{ item.getName(locales())}}) <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font>
+                {% else %}
+                    {{ item.getName(locales())}} <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font>
+                {% endif %}
                 <span class="pull-right">{{ item.type.getName(locales()) }}</span>
             </h3>
         </div>
