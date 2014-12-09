@@ -277,7 +277,7 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
             case ItemSlot::WEAPON:
             return $this->stuffsWeapon;
             case ItemSlot::RING:
-            return $this->stuffsRing1 + $this->stuffsRing2;
+            return $this->stuffsRing1->toArray() + $this->stuffsRing2->toArray();
             case ItemSlot::BELT:
             return $this->stuffsBelt;
             case ItemSlot::BOOTS:
@@ -292,7 +292,7 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
             case ItemSlot::MOUNT:
             return $this->stuffsAnimal;
             case ItemSlot::DOFUS:
-            return $this->stuffsDofus1 + $this->stuffsDofus2 + $this->stuffsDofus3 + $this->stuffsDofus4 + $this->stuffsDofus5 + $this->stuffsDofus5;
+            return $this->stuffsDofus1->toArray() + $this->stuffsDofus2->toArray() + $this->stuffsDofus3->toArray() + $this->stuffsDofus4->toArray() + $this->stuffsDofus5->toArray() + $this->stuffsDofus5->toArray();
         }
     }
 
