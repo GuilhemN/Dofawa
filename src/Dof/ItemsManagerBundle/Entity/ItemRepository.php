@@ -20,7 +20,7 @@ class ItemRepository extends EntityRepository
 		if($type == 'count')
 			$qb->select(array('COUNT(i)'));
 
-		$qb
+		$qb 
 			->join('i.itemTemplate', 'it') 
 			->join('it.type', 't')
 			->addOrderBy('it.level', 'DESC')
