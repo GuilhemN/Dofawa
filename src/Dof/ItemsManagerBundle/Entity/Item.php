@@ -41,131 +41,131 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
     private $id;
 
     /**
-    * @var Stuff
+    * @var EquipmentTemplate
     *
     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\EquipmentTemplate")
     * @ORM\JoinColumn(onDelete="CASCADE")
     */
-    private $itemTemplate;
+    protected $itemTemplate;
 
     /**
     * @var string
     *
     * @ORM\Column(name="name", type="string", nullable=true)
     */
-    private $name;
+    protected $name;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="hat")
     */
-    private $stuffsHat;
+    protected $stuffsHat;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="cloak")
     */
-    private $stuffsCloak;
+    protected $stuffsCloak;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="amulet")
     */
-    private $stuffsAmulet;
+    protected $stuffsAmulet;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="weapon")
     */
-    private $stuffsWeapon;
+    protected $stuffsWeapon;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="ring1")
     */
-    private $stuffsRing1;
+    protected $stuffsRing1;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="ring2")
     */
-    private $stuffsRing2;
+    protected $stuffsRing2;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="belt")
     */
-    private $stuffsBelt;
+    protected $stuffsBelt;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="boots")
     */
-    private $stuffsBoots;
+    protected $stuffsBoots;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="shield")
     */
-    private $stuffsShield;
+    protected $stuffsShield;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="animal")
     */
-    private $stuffsAnimal;
+    protected $stuffsAnimal;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="dofus1")
     */
-    private $stuffsDofus1;
+    protected $stuffsDofus1;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="dofus2")
     */
-    private $stuffsDofus2;
+    protected $stuffsDofus2;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="dofus3")
     */
-    private $stuffsDofus3;
+    protected $stuffsDofus3;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="dofus4")
     */
-    private $stuffsDofus4;
+    protected $stuffsDofus4;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="dofus5")
     */
-    private $stuffsDofus5;
+    protected $stuffsDofus5;
 
     /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="dofus6")
     */
-    private $stuffsDofus6;
+    protected $stuffsDofus6;
 
     public function __construct()
     {

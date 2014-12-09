@@ -762,6 +762,29 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
+    * Set animal
+    *
+    * @param Animal $animal
+    * @return Stuff
+    */
+    public function setAnimal(Animal $animal = null)
+    {
+        $this->animal = $animal;
+
+        return $this;
+    }
+
+    /**
+    * Get animal
+    *
+    * @return Animal
+    */
+    public function getAnimal()
+    {
+        return $this->animal;
+    }
+
+    /**
     * Set dofus1
     *
     * @param PItem $dofus1
@@ -935,7 +958,6 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
             case ItemSlot::WEAPON:
                 $lItem = $this->getWeapon();
                 $this->setWeapon($item);
-                $this->getLook()->setWeapon($item->getItemTemplate());
                 break;
             case ItemSlot::RING:
                 if($slot == 2){
@@ -958,23 +980,19 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
             case ItemSlot::SHIELD:
                 $lItem = $this->getShield();
                 $this->setShield($item);
-                $this->getLook()->setShield($item->getItemTemplate());
                 break;
             case ItemSlot::HAT:
                 $lItem = $this->getHat();
                 $this->setHat($item);
-                $this->getLook()->setHat($item->getItemTemplate());
                 break;
             case ItemSlot::CLOAK:
                 $lItem = $this->getCloak();
                 $this->setCloak($item);
-                $this->getLook()->setCloak($item->getItemTemplate());
                 break;
             case ItemSlot::PET:
             case ItemSlot::MOUNT:
                 $lItem = $this->getAnimal();
                 $this->setAnimal($item);
-                $this->getLook()->setAnimal($item->getItemTemplate());
                 break;
             case ItemSlot::DOFUS:
                 if($slot >= 1 && $slot <= 6){

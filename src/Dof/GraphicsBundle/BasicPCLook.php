@@ -275,23 +275,23 @@ class BasicPCLook
         }
         if ($this->face !== null)
             $pcLook->addSkin($this->face->getId());
-        if ($this->hat !== null)
-            $pcLook->addSkin($this->hat->getSkin());
-        if ($this->cloak !== null)
-            $pcLook->addSkin($this->cloak->getSkin());
-        if ($this->shield !== null)
-            $pcLook->addSkin($this->shield->getSkin());
-        if ($this->weapon !== null)
-            $pcLook->addSkin($this->weapon->getSkin());
+        if ($this->getHat() !== null)
+            $pcLook->addSkin($this->getHat()->getSkin());
+        if ($this->getCloak() !== null)
+            $pcLook->addSkin($this->getCloak()->getSkin());
+        if ($this->getShield() !== null)
+            $pcLook->addSkin($this->getShield()->getSkin());
+        if ($this->getWeapon() !== null)
+            $pcLook->addSkin($this->getWeapon()->getSkin());
         foreach ($this->extraSkins as $skin)
             $pcLook->addSkin($skin);
         foreach ($this->colors as $index => $color)
             $pcLook->setColor($index, $color);
-        if ($this->animal !== null && $this->animal->getBone() !== null) {
+        if ($this->getAnimal() !== null && $this->getAnimal()->getBone() !== null) {
             $aniLook = new EntityLook();
-            $aniLook->setBone($this->animal->getBone());
-            $aniLook->setScale(($this->animal->getSize() !== null) ? $this->animal->getSize() / 100 : 1);
-            switch ($this->animal->getColorizationType()) {
+            $aniLook->setBone($this->getAnimal()->getBone());
+            $aniLook->setScale(($this->getAnimal()->getSize() !== null) ? $this->getAnimal()->getSize() / 100 : 1);
+            switch ($this->getAnimal()->getColorizationType()) {
                 case AnimalColorizationType::CHAMELEON:
                     foreach ($this->colors as $index => $color)
                         $aniLook->setColor($index, $color);
@@ -302,12 +302,12 @@ class BasicPCLook
                             $aniLook->setColor($index - 2, $color);
                     break;
             }
-            if ($this->animal->isMount()) {
+            if ($this->getAnimal()->isMount()) {
 				$pcLook->setBone(2);
-                foreach ($this->animal->getSkins() as $skin)
+                foreach ($this->getAnimal()->getSkins() as $skin)
                     $aniLook->addSkin($skin);
-                if ($this->animal->getColorizationType() === AnimalColorizationType::COLORS)
-                    foreach ($this->animal->getColors() as $index => $color)
+                if ($this->getAnimal()->getColorizationType() === AnimalColorizationType::COLORS)
+                    foreach ($this->getAnimal()->getColors() as $index => $color)
                         $aniLook->setColor($index, $color);
                 $aniLook->setSubEntity(2, 0, $pcLook);
                 return $aniLook;
