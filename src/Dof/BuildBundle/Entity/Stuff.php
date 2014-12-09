@@ -114,7 +114,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffHat")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsHat")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $hat;
@@ -122,7 +122,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffCloak")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsCloak")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $cloak;
@@ -130,7 +130,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffAmulet")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsAmulet")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $amulet;
@@ -138,7 +138,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Weapon", inversedBy="stuffWeapon")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Weapon", inversedBy="stuffsWeapon")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $weapon;
@@ -146,7 +146,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffRing1")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsRing1")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $ring1;
@@ -154,7 +154,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffRing2")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsRing2")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $ring2;
@@ -162,7 +162,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffBelt")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsBelt")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $belt;
@@ -170,7 +170,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffBoots")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsBoots")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $boots;
@@ -178,7 +178,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffShield")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsShield")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $shield;
@@ -186,7 +186,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Animal
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Animal", inversedBy="stuffAnimal")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Animal", inversedBy="stuffsAnimal")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $animal;
@@ -194,7 +194,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffDofus1")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsDofus1")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $dofus1;
@@ -202,7 +202,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffDofus2")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsDofus2")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $dofus2;
@@ -210,7 +210,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffDofus3")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsDofus3")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $dofus3;
@@ -218,7 +218,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffDofus4")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsDofus4")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $dofus4;
@@ -226,7 +226,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffDofus5")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsDofus5")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $dofus5;
@@ -234,7 +234,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var Item
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffDofus6")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsManagerBundle\Entity\Item", inversedBy="stuffsDofus6")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $dofus6;
