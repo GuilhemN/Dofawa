@@ -954,66 +954,66 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
             case ItemSlot::AMULET:
                 $lItem = $this->getAmulet();
                 $this->setAmulet($item);
-                $item->addStuff($stuff);
+                $item->addStuff($this);
                 break;
             case ItemSlot::WEAPON:
                 $lItem = $this->getWeapon();
                 $this->setWeapon($item);
-                $item->addStuff($stuff);
+                $item->addStuff($this);
                 break;
             case ItemSlot::RING:
                 if($slot == 2){
                     $lItem = $this->getRing2();
                     $this->setRing2($item);
-                    $item->addStuff($stuff, 2);
+                    $item->addStuff($this, 2);
                 }
                 else{
                     $lItem = $this->getRing1();
                     $this->setRing1($item);
-                    $item->addStuff($stuff, 1);
+                    $item->addStuff($this, 1);
                 }
                 break;
             case ItemSlot::BELT:
                 $lItem = $this->getBelt();
                 $this->setBelt($item);
-                $item->addStuff($stuff);
+                $item->addStuff($this);
                 break;
             case ItemSlot::BOOTS:
                 $lItem = $this->getBoots();
                 $this->setBoots($item);
-                $item->addStuff($stuff);
+                $item->addStuff($this);
                 break;
             case ItemSlot::SHIELD:
                 $lItem = $this->getShield();
                 $this->setShield($item);
-                $item->addStuff($stuff);
+                $item->addStuff($this);
                 break;
             case ItemSlot::HAT:
                 $lItem = $this->getHat();
                 $this->setHat($item);
-                $item->addStuff($stuff);
+                $item->addStuff($this);
                 break;
             case ItemSlot::CLOAK:
                 $lItem = $this->getCloak();
                 $this->setCloak($item);
-                $item->addStuff($stuff);
+                $item->addStuff($this);
                 break;
             case ItemSlot::PET:
             case ItemSlot::MOUNT:
                 $lItem = $this->getAnimal();
                 $this->setAnimal($item);
-                $item->addStuff($stuff);
+                $item->addStuff($this);
                 break;
             case ItemSlot::DOFUS:
                 if($slot >= 1 && $slot <= 6){
                     $lItem = $this->{ 'getDofus' . $slot }();
                     $this->{ 'setDofus' . $slot }($item);
-                    $item->addStuff($stuff, $slot);
+                    $item->addStuff($this, $slot);
                 }
                 else{
                     $lItem = $this->getDofus1();
                     $this->setDofus1($item);
-                    $item->addStuff($stuff, 1);
+                    $item->addStuff($this, 1);
                 }
                 break;
         }
