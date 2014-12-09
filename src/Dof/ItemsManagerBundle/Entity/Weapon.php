@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 *
 * @ORM\Entity(repositoryClass="Dof\ItemsManagerBundle\Entity\WeaponRepository")
 */
-class Weapon extends Item
+class Weapon extends SkinnedItem
 {
     public function isWeapon() { return true; }
     public function getClassId() { return 'weapon'; }

@@ -93,14 +93,19 @@ class BuildController extends Controller
 
         //Modification d'un item
         $request = $this->get('request');
-        if ($canWrite && $request->isMethod('POST') && isset($items[$request->request->get('slot')]))
+        if ($canWrite && $request->isMethod('POST'))
         {
             $em = $this->getDoctrine()->getManager();
-            $item = $items[$request->request->get('slot')];
-            $item->setCharacteristics($request->request->get('caracts'), true);
+            $itemId = $request->request->get('id');
+            foreach($items as $v)
+                foreach($v as $i)
+                    if($i->getId() == $itemId){
+                        $i->setCharacteristics($request->request->get('caracts'), true);
 
-            $em->persist($item);
-            $em->flush($item);
+                        $em->persist($i);
+                        $em->flush($i);
+                        break 2;
+                    }
         }
 
         return $this->render('DofBuildBundle:Build:show.html.twig', [

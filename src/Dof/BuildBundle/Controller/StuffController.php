@@ -45,7 +45,10 @@ class StuffController extends Controller
                 continue;
 
             $bItem = $iFact->createItem($item, null, $stuff->getCharacter()->getOwner());
-            $stuff->addItem($bItem);
+            $lItem = $stuff->addItem($bItem);
+
+            if($lItem->getName() == null && $lItem->getStuffs() <= 1)
+                $em->remove($lItem);
 
             $em->persist($bItem);
         }
