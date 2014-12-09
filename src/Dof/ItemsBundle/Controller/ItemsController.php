@@ -37,6 +37,7 @@ class ItemsController extends Controller
     public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite, $type, $slot, $page){
         if(!$canWrite)
             throw $this->createAccessDeniedException();
+        $slotNumber = $slot;
 
         if($type == 'animal')
             $slot = [ItemSlot::PET, ItemSlot::MOUNT];
@@ -58,7 +59,7 @@ class ItemsController extends Controller
             [
                 'form' => $form->createView(),
                 'slugs' => $slugs,
-                'slot_number' => $slot
+                'slot_number' => $slotNumber
             ]
             );
     }
