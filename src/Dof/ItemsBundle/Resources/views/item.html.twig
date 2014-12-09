@@ -4,9 +4,10 @@
     {% set display = 'normal' %}
 {% endif %}
 
-{% if type | default('item') == 'item' %}
+{% if not item.personalized %}
     {% set type = 'item' %}
-{% elseif type == 'build' %}
+{% else %}
+    {% set type = 'build' %}
     {% set item_primary_bonus = item %}
     {% set item_caracts = item %}
     {% set item = item.itemTemplate %}
@@ -39,7 +40,7 @@
                                 <span class="label label-default hidden-xs">{{ item.release }}</span>
                             {% endif %}
                         </p>
-                        {% if item.isEquipment() %}
+                        {% if not item.personalized and item.equipment %}
                             <p>
                             {% for bonus in (item_primary_bonus | default(item) ).primaryBonus %}
                                 <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">

@@ -14,9 +14,6 @@ use XN\Metadata\TimestampableTrait;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\ItemsBundle\Entity\EquipmentTemplate;
 
-use Dof\ItemsBundle\PrimaryBonusInterface;
-use Dof\ItemsBundle\PrimaryBonusTrait;
-
 /**
 * Item
 *
@@ -26,9 +23,9 @@ use Dof\ItemsBundle\PrimaryBonusTrait;
 * @ORM\DiscriminatorColumn(name="class", type="string")
 * @ORM\DiscriminatorMap({"item" = "Item", "animal" = "Animal", "weapon" = "Weapon", "mount": "Mount", "pet": "Pet"})
 */
-class Item implements IdentifiableInterface, OwnableInterface, TimestampableInterface, PrimaryBonusInterface
+class Item implements IdentifiableInterface, OwnableInterface, TimestampableInterface
 {
-    use CharacteristicsTrait, TimestampableTrait, PrimaryBonusTrait, OwnableTrait;
+    use CharacteristicsTrait, TimestampableTrait, OwnableTrait;
 
     /**
     * @var integer
@@ -139,21 +136,8 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
         return $this->name;
     }
 
-    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
-        foreach($primaryFields as $k => $v){
-            if(!isset($caracts[$v['primaryBonus']]))
-                $caracts[$v['primaryBonus']] = 0;
-
-            $caracts[$v['primaryBonus']] += $this->{'get' . ucfirst($k)}() * $v['weight'];
-        }
-
-        return $caracts;
-    }
-
-    public function getCascadeForPrimaryBonus(){
-        return $this->stuff;
-    }
-
+    public function isPersonalized() { return true; }
+    public function isEquipment() { return true; }
     public function isAnimal() { return false; }
     public function isPet() { return false; }
     public function isMount() { return false; }
