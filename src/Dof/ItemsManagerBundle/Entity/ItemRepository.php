@@ -12,4 +12,54 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemRepository extends EntityRepository
 {
+	public function findWithOptions($options = array(), array $orders = array(), $limit = null, $offset = null, $locale = 'fr', $type = 'normal', $full = false) {
+        $options = (array) $options;
+		$qb = $this->createQueryBuilder('i');
+
+		if($type == 'count')
+			$qb->select(array('COUNT(i)'));
+
+		$qb
+			->join('i.type', 't')
+			->addOrderBy('i.level', 'DESC')
+		;
+
+		if(!$full)
+			$qb->andWhere('i.visible = true');
+		if(!empty($options['name']))
+			$qb
+			->andWhere('i.name' . ucfirst($locale).' LIKE :name')
+			->setParameter('name', '%' . $options['name'] . '%')
+			;
+		if(isset($options['type']))
+			$qb
+	        	->andWhere('t.slot IN (:slot)')
+	        	->setParameter('slot', $options['type'])
+			;
+		if(!empty($options['maj']))
+			$qb
+	        	->andWhere('i.release LIKE :release')
+	        	->setParameter('release', '%' . $options['maj'] . '%')
+			;
+
+		foreach($orders as $column => $order)
+			$qb->addOrderBy('i.' . $column, $order);
+
+		if($type == 'count')
+			return $qb
+			    ->getQuery()
+			    ->getSingleScalarResult();
+
+		else
+			return $qb
+	        	->getQuery()
+				->setFirstResult($offset)
+				->setMaxResults($limit)
+	        	->getResult();
+	              ;
+    }
+
+	public function countWithOptions($options = array(), $locale = 'fr'){
+		return $this->findWithOptions($options, array(), null, null, $locale, 'count');
+	}
 }
