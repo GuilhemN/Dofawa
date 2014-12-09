@@ -928,6 +928,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         return $this->nameFr;
     }
 
+    public function isPersonalized() { return false; }
     public function isEquipment() { return false; }
     public function isSkinned() { return false; }
     public function isWeapon() { return false; }

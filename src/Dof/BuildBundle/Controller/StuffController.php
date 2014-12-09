@@ -52,10 +52,6 @@ class StuffController extends Controller
 
         $em->flush();
 
-        $stuff = $bm->reloadStuff($stuff);
-        $stuff->updatePrimaryBonus();
-        $em->flush($stuff);
-
         return $this->redirect($this->generateUrl('dof_build_show', [
             'user' => $stuff->getCharacter()->getOwner()->getSlug(),
             'character' => $stuff->getCharacter()->getSlug(),

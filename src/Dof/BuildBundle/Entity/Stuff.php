@@ -8,9 +8,6 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
-use Dof\ItemsBundle\PrimaryBonusInterface;
-use Dof\ItemsBundle\PrimaryBonusTrait;
-
 use Doctrine\ORM\Mapping as ORM;
 
 use Dof\BuildBundle\Entity\PlayerCharacter;
@@ -27,9 +24,9 @@ use Dof\ItemsBundle\ItemSlot;
  * @ORM\Table(name="dof_build_stuff")
  * @ORM\Entity(repositoryClass="Dof\BuildBundle\Entity\StuffRepository")
  */
-class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableInterface, PrimaryBonusInterface
+class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableInterface
 {
-    use TimestampableTrait, SluggableTrait, PrimaryBonusTrait;
+    use TimestampableTrait, SluggableTrait;
 
     /**
      * @var integer
@@ -932,63 +929,65 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
         $slot = intval($slot);
         switch ($item->getItemTemplate()->getType()->getSlot()) {
             case ItemSlot::AMULET:
-            $lItem = $this->getAmulet();
-            $this->setAmulet($item);
+                $lItem = $this->getAmulet();
+                $this->setAmulet($item);
+                break;
             case ItemSlot::WEAPON:
-            $lItem = $this->getWeapon();
-            $this->setWeapon($item);
-            $this->getLook()->setWeapon($item->getItemTemplate());
+                $lItem = $this->getWeapon();
+                $this->setWeapon($item);
+                $this->getLook()->setWeapon($item->getItemTemplate());
+                break;
             case ItemSlot::RING:
-            if($slot == 2){
-                $lItem = $this->getRing2();
-                $this->setRing2($item);
-            }
-            else{
-                $lItem = $this->getRing1();
-                $this->setRing1($item);
-            }
+                if($slot == 2){
+                    $lItem = $this->getRing2();
+                    $this->setRing2($item);
+                }
+                else{
+                    $lItem = $this->getRing1();
+                    $this->setRing1($item);
+                }
+                break;
             case ItemSlot::BELT:
-            $lItem = $this->getBelt();
-            $this->setBelt($item);
+                $lItem = $this->getBelt();
+                $this->setBelt($item);
+                break;
             case ItemSlot::BOOTS:
-            $lItem = $this->getBoots();
-            $this->setBoots($item);
+                $lItem = $this->getBoots();
+                $this->setBoots($item);
+                break;
             case ItemSlot::SHIELD:
-            $lItem = $this->getShield();
-            $this->setShield($item);
-            $this->getLook()->setShield($item->getItemTemplate());
+                $lItem = $this->getShield();
+                $this->setShield($item);
+                $this->getLook()->setShield($item->getItemTemplate());
+                break;
             case ItemSlot::HAT:
-            $lItem = $this->getHat();
-            $this->setHat($item);
-            $this->getLook()->setHat($item->getItemTemplate());
+                $lItem = $this->getHat();
+                $this->setHat($item);
+                $this->getLook()->setHat($item->getItemTemplate());
+                break;
             case ItemSlot::CLOAK:
-            $lItem = $this->getCloak();
-            $this->setCloak($item);
-            $this->getLook()->setCloak($item->getItemTemplate());
+                $lItem = $this->getCloak();
+                $this->setCloak($item);
+                $this->getLook()->setCloak($item->getItemTemplate());
+                break;
             case ItemSlot::PET:
             case ItemSlot::MOUNT:
-            $lItem = $this->getAnimal();
-            $this->setAnimal($item);
-            $this->getLook()->setAnimal($item->getItemTemplate());
+                $lItem = $this->getAnimal();
+                $this->setAnimal($item);
+                $this->getLook()->setAnimal($item->getItemTemplate());
+                break;
             case ItemSlot::DOFUS:
-            if($slot >= 1 && $slot <= 6){
-                $lItem = $this->{ 'getDofus' . $slot }();
-                $this->{ 'setDofus' . $slot }($item);
-            }
-            else{
-                $lItem = $this->getDofus1();
-                $this->setDofus1($item);
-            }
+                if($slot >= 1 && $slot <= 6){
+                    $lItem = $this->{ 'getDofus' . $slot }();
+                    $this->{ 'setDofus' . $slot }($item);
+                }
+                else{
+                    $lItem = $this->getDofus1();
+                    $this->setDofus1($item);
+                }
+                break;
         }
         return $lItem;
-    }
-
-    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
-        foreach($this->getItems() as $v){
-            foreach($v as $item)
-                $caracts = $item->getCharacteristicsForPrimaryBonus($primaryFields, $caracts);
-        }
-        return $caracts;
     }
 
     public function __toString()
