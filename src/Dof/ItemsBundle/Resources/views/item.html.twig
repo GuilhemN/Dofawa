@@ -6,24 +6,24 @@
 
 {% if not item.personalized %}
     {% set type = 'item' %}
+    {% set itemTemplate = item %}
 {% else %}
     {% set type = 'build' %}
-    {% set item_caracts = item %}
-    {% set item = item.itemTemplate %}
+    {% set itemTemplate = item.itemTemplate %}
 {% endif %}
 
 
 {% autoescape  %}
     {% if display != 'modal' %}
     <div class="panel panel-default item">
-        <div class="panel-heading">  
+        <div class="panel-heading">
             <h3 class="panel-title">
                 {% if item.personalized and item.name is not null %}
-                     {{ item.name }} ({{ item.getName(locales())}}) <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font>
+                     {{ item.name }} ({{ itemTemplate.getName(locales())}}) <font size="2">{{ 'level' | trans({'%level%': itemTemplate.level})}}</font>
                 {% else %}
-                    {{ item.getName(locales())}} <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font>
+                    {{ itemTemplate.getName(locales())}} <font size="2">{{ 'level' | trans({'%level%': itemTemplate.level})}}</font>
                 {% endif %}
-                <span class="pull-right">{{ item.type.getName(locales()) }}</span>
+                <span class="pull-right">{{ itemTemplate.type.getName(locales()) }}</span>
             </h3>
         </div>
         <div class="panel-body">
@@ -31,57 +31,57 @@
             <div class="row">
                 {# Left column #}
                 <div class="col-sm-3">
-                    <a href="{{ path('dof_items_show', {'slug': item.slug}) }}" class="thumbnail">
-                        <img class="img-responsive" src="{{ (item.webPath) ? asset(item.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="{{ item.getName(locales()) }}">
+                    <a href="{{ path('dof_items_show', {'slug': itemTemplate.slug}) }}" class="thumbnail">
+                        <img class="img-responsive" src="{{ (itemTemplate.webPath) ? asset(itemTemplate.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="{{ itemTemplate.getName(locales()) }}">
                     </a>
                     <div class="text-center">
                         <p>
-                            {% if item.preliminary %}
+                            {% if itemTemplate.preliminary %}
                                 <span class="label label-danger">Bêta</span>
                             {% endif %}
-                            {% if item.release != 1 %}
-                                <span class="label label-default hidden-xs">{{ item.release }}</span>
+                            {% if itemTemplate.release != 1 %}
+                                <span class="label label-default hidden-xs">{{ itemTemplate.release }}</span>
                             {% endif %}
                         </p>
-                        {% if item.equipment and not item.personalized %}
+                        {% if itemTemplate.equipment and not item.personalized %}
                             <p>
-                            {% for bonus in (item_primary_bonus | default(item) ).primaryBonus %}
+                            {% for bonus in item.primaryBonus %}
                                 <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
                             {% endfor %}
                             </p>
                         {% endif %}
-                        {% if is_granted('ROLE_SUPER_ADMIN') and not item.preliminary and item.visible %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') and not itemTemplate.preliminary and itemTemplate.visible %}
                         <p>
-                            <a target="_blank" href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ item.id }}-{{ item.nameFr | slugify }}">
+                            <a target="_blank" href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ itemTemplate.id }}-{{ itemTemplate.nameFr | slugify }}">
                                 <img src="{{ asset('bundles/dofmain/images/dof_logo_little.png') }}" />
                             </a>
                         </p>
                         {% endif %}
                     </div>
-                        {% if item.weapon %}
+                        {% if itemTemplate.weapon %}
                             <div class="panel panel-default" class="col-sm-3">
                                 <table class="table">
-                                    <tr><td style="padding:4px;">{{ 'ap' | trans({'%1%': ''},'item') }}: {{ item.apCost }} <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> <br>({{ item.maxCastsPerTurn }} {{ 'maxCastsPerTurn' | trans }})</td></tr>
+                                    <tr><td style="padding:4px;">{{ 'ap' | trans({'%1%': ''},'item') }}: {{ itemTemplate.apCost }} <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> <br>({{ itemTemplate.maxCastsPerTurn }} {{ 'maxCastsPerTurn' | trans }})</td></tr>
                                     <tr><td style="padding:4px;">{{ 'range' | trans({'%1%': ''},'item') }}:
-                                            {% if item.minCastRange != 0 or item.maxCastRange != 0 %}
-                                                {% if item.minCastRange != item.maxCastRange %}
-                                                    {{ item.minCastRange }} {{ 'to' | trans }}
+                                            {% if itemTemplate.minCastRange != 0 or itemTemplate.maxCastRange != 0 %}
+                                                {% if itemTemplate.minCastRange != itemTemplate.maxCastRange %}
+                                                    {{ itemTemplate.minCastRange }} {{ 'to' | trans }}
                                                 {% endif %}
-                                                {{ item.maxCastRange }}
+                                                {{ itemTemplate.maxCastRange }}
                                             {% else %}
                                                 0
                                             {% endif %}
                                             <img src="{{ asset('bundles/dofitems/img/range.png') }}" alt="">
 
-                                            {% if item.weapon %}
+                                            {% if itemTemplate.weapon %}
                                             <p class="text-center">
-                                                <img src="{{ path('dof_area_render_normal', { area: item.castArea|base64url_encode, type: 'cast' }) }}" style="width: 45px;" alt="" />
+                                                <img src="{{ path('dof_area_render_normal', { area: itemTemplate.castArea|base64url_encode, type: 'cast' }) }}" style="width: 45px;" alt="" />
                                             </p>
                                             <hr />
-                                            Zone : <img src="{{ path('dof_area_render_normal', { area: item.type.effectArea|base64url_encode, type: 'effect' }) }}" style="width: 45px;" alt="" />
+                                            Zone : <img src="{{ path('dof_area_render_normal', { area: itemTemplate.type.effectArea|base64url_encode, type: 'effect' }) }}" style="width: 45px;" alt="" />
                                             {% endif %}
                                     </td></tr>
-                                    <tr><td style="padding:4px;">{{ 'criticalHits' | trans({'%1%': ''},'item') }}: 1/{{ item.criticalHitDenominator }} (+{{ item.criticalHitBonus }}) <img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt=""></td></tr>
+                                    <tr><td style="padding:4px;">{{ 'criticalHits' | trans({'%1%': ''},'item') }}: 1/{{ itemTemplate.criticalHitDenominator }} (+{{ itemTemplate.criticalHitBonus }}) <img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt=""></td></tr>
                                 </table>
                             </div>
                         {% endif %}
@@ -93,35 +93,35 @@
                     {# Menu tabs #}
                     <ul class="nav nav-pills" role="tablist">
                         {# Charactéristiques #}
-                        <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
+                        <li class="active"><a href="#caracts-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Effets</a></li>
                         {% set item_content %}
                             {{ item_content }}
-                            <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                                {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item_caracts | default(item), 'updatable': type == 'build' and can_write | default(false)} %}
+                            <div class="tab-pane active" id="caracts-item{{ itemTemplate.id }}">
+                                {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
                             </div>
                         {% endset %}
 
-                        {#% if item.criteria is not empty %}
-                            <li><a href="#conditions-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+                        {#% if itemTemplate.criteria is not empty %}
+                            <li><a href="#conditions-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Conditions</a></li>
                             {% set item_content %}
                                 {{ item_content }}
-                                <div class="tab-pane" id="conditions-item{{ item.id }}">
-                                    {{ item.criteria }}
+                                <div class="tab-pane" id="conditions-item{{ itemTemplate.id }}">
+                                    {{ itemTemplate.criteria }}
                                 </div>
                             {% endset %}
                         {% endif %#}
 
                         {# Nourriture familier #}
-                        {% if item.isPet() and (item.foodTypes is not empty or item.foodItems is not empty) %}
-                            <li><a href="#food-item{{ item.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
+                        {% if itemTemplate.pet and (itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty) %}
+                            <li><a href="#food-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
                             {% set item_content %}
                                 {{ item_content }}
-                                <div class="tab-pane" id="food-item{{ item.id }}">
-                                    {% for food_type in item.foodTypes %}
+                                <div class="tab-pane" id="food-item{{ itemTemplate.id }}">
+                                    {% for food_type in itemTemplate.foodTypes %}
                                         {{ food_type.getName(locales()) }}
                                         <br />
                                     {% endfor %}
-                                    {% for food_item in item.foodItems %}
+                                    {% for food_item in itemTemplate.foodItems %}
                                         {{ food_item.getName(locales()) }}
                                         <br />
                                     {% endfor %}
@@ -130,12 +130,12 @@
                         {% endif %}
 
                         {# Recette #}
-                        {% if item.components is not empty %}
-                            <li><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                        {% if itemTemplate.components is not empty %}
+                            <li><a href="#recipe-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Recette</a></li>
                             {% set item_content %}
                                 {{ item_content }}
-                                <div class="tab-pane" id="recipe-item{{ item.id }}">
-                                    {% for component in item.components %}
+                                <div class="tab-pane" id="recipe-item{{ itemTemplate.id }}">
+                                    {% for component in itemTemplate.components %}
                                         <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
                                             {{ component.component.getName(locales()) }}
                                         </a>
@@ -156,18 +156,18 @@
                 </div>
             </div>
             <hr />
-            {% if item.isEquipment() and item.set is not null %}
+            {% if itemTemplate.equipment and itemTemplate.set is not null %}
                 <strong>
-                    <a href="{{ path('dof_set_show', {'slug': item.set.slug}) }}">
-                        {{ item.set.getName(locales()) }}
+                    <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
+                        {{ itemTemplate.set.getName(locales()) }}
                     </a>
                 </strong>
                 <br />
             {% endif %}
-            {% if item.getDescription() == '#1' %}
+            {% if itemTemplate.description == '#1' %}
                 Arme éthérée
             {% else %}
-                {{ item.getDescription(locales()) }}
+                {{ itemTemplate.getDescription(locales()) }}
             {% endif %}
 
             {% if slugs is defined and slugs is not empty %}
@@ -175,14 +175,14 @@
                 <form class="form-horizontal" method="POST" action="{{ path('dof_build_additem_post') }}">
                     <input name="stuff" type="hidden" value="{{ slugs.stuff }}">
                     <input name="useSlot" value="1" type="hidden" />
-                    <input name="items[{{ slot_number | default(0) }}]" type="hidden" value="{{ item.id }}">
+                    <input name="items[{{ slot_number | default(0) }}]" type="hidden" value="{{ itemTemplate.id }}">
 
                     <div class="col-lg-offset-3 col-lg-6">
                         <div class="form-group">
-                            <label for="percent{{ item.id }}" class="col-sm-2 control-label">Qualité</label>
+                            <label for="percent{{ itemTemplate.id }}" class="col-sm-2 control-label">Qualité</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
-                                    <input class="form-control" id="percent{{ item.id }}" type="number" name="percent" value="80" step="1" min="0" max="140">
+                                    <input class="form-control" id="percent{{ itemTemplate.id }}" type="number" name="percent" value="80" step="1" min="0" max="140">
                                     <span class="input-group-addon">%</span>
                                 </div>
                             </div>
@@ -198,10 +198,10 @@
             {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <hr />
                 <div class="text-center">
-                    <a class="btn btn-default" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': item.id}) }}">
+                    <a class="btn btn-default" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}">
                         Editer (Admin)
                     </a>
-                    <a class="btn btn-default" href="{{ path('dof_items_addskin', {'id': item.id}) }}">
+                    <a class="btn btn-default" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}">
                         Ajouter image
                     </a>
                 </div>
