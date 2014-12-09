@@ -16,7 +16,7 @@
 {% autoescape  %}
     {% if display != 'modal' %}
     <div class="panel panel-default item">
-        <div class="panel-heading">
+        <div class="panel-heading">  
             <h3 class="panel-title">
                 {% if item.personalized and item.name is not null %}
                      {{ item.name }} ({{ item.getName(locales())}}) <font size="2">{{ 'level' | trans({'%level%': item.level})}}</font>
