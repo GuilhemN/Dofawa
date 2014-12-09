@@ -39,18 +39,21 @@ class StuffController extends Controller
         $items = $em->getRepository('DofItemsBundle:EquipmentTemplate')->findById($itemsIds);
         $look = $stuff->getLook();
 
-        $itemsToRemove = [];
         $bItemRepo = $em->getRepository('DofItemsManagerBundle:Item');
         foreach($items as $k => $item) {
             if(($slot = ItemSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
                 $slot = $item->getType()->getSlot();
 
             $bItem = $iFact->createItem($item, null, $stuff->getCharacter()->getOwner());
-            $lItem = $stuff->addItem($bItem);
+            $type = $stuff->getItemType($bItem);
+            $lItem = $stuff->{'get' . ucfirst($type)}();
 
-            if(!empty($lItem) && $lItem->getName() == null && count($lItem->getStuffs()) <= 1)
-                $itemsToRemove[] = $lItem;
+            if(!empty($lItem) && $lItem->getName() == null && count($lItem->getStuffs()) <= 1){
+                $em->remove($lItem);
+                $em->flush();
+            }
 
+            $stuff->{'set' . ucfirst($type)}($bItem);
             $em->persist($bItem);
             $em->persist($stuff);
 
@@ -58,10 +61,6 @@ class StuffController extends Controller
 
         $em->flush();
 
-        foreach($itemsToRemove as $item)
-            $em->remove($item);
-        $em->flush();
-        
         return $this->redirect($this->generateUrl('dof_build_show', [
             'user' => $stuff->getCharacter()->getOwner()->getSlug(),
             'character' => $stuff->getCharacter()->getSlug(),
