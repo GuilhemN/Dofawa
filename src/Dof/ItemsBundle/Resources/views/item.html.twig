@@ -8,7 +8,6 @@
     {% set type = 'item' %}
 {% else %}
     {% set type = 'build' %}
-    {% set item_primary_bonus = item %}
     {% set item_caracts = item %}
     {% set item = item.itemTemplate %}
 {% endif %}
@@ -40,7 +39,7 @@
                                 <span class="label label-default hidden-xs">{{ item.release }}</span>
                             {% endif %}
                         </p>
-                        {% if item.equipment and not item.personalized %}
+                        {% if item.equipment and item.personalized is not true %}
                             <p>
                             {% for bonus in (item_primary_bonus | default(item) ).primaryBonus %}
                                 <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
@@ -48,7 +47,6 @@
                             </p>
                         {% endif %}
                         {% if is_granted('ROLE_SUPER_ADMIN') and not item.preliminary and item.visible %}
-                        {% set url = 'http://dofus.com' %}
                         <p>
                             <a target="_blank" href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ item.id }}-{{ item.nameFr | slugify }}">
                                 <img src="{{ asset('bundles/dofmain/images/dof_logo_little.png') }}" />
