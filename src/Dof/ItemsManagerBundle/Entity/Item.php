@@ -90,30 +90,6 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
     }
 
     /**
-    * Dof\BuildBundle\BuildSlot
-    * Set slot
-    *
-    * @param integer $slot
-    * @return Item
-    */
-    public function setSlot($slot)
-    {
-        $this->slot = $slot;
-
-        return $this;
-    }
-
-    /**
-    * Get slot
-    *
-    * @return integer
-    */
-    public function getSlot()
-    {
-        return $this->slot;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
