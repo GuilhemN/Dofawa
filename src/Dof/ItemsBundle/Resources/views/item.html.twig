@@ -174,7 +174,7 @@
                 <hr />
                 <form class="form-horizontal" method="POST" action="{{ path('dof_build_additem_post') }}">
                     <input name="stuff" type="hidden" value="{{ slugs.stuff }}">
-                    <input name="items[{{ build_slot | default('') }}]" type="hidden" value="{{ item.id }}">
+                    <input name="items[{{ slot_number | default(0) }}]" type="hidden" value="{{ item.id }}">
 
                     <div class="col-lg-offset-3 col-lg-6">
                         <div class="form-group">

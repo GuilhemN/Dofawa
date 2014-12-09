@@ -34,11 +34,13 @@ class ItemsController extends Controller
         return $this->render('DofItemsBundle:Items:show.html.twig', ['item' => $item]);
     }
 
-    public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite, $type, $page){
+    public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite, $type, $slot, $page){
         if(!$canWrite)
             throw $this->createAccessDeniedException();
 
-        if(($slot = ItemSlot::getValue(strtoupper($type))) === null)
+        if($type == 'animal')
+            $slot = [ItemSlot::PET, ItemSlot::MOUNT];
+        elseif(($slot = ItemSlot::getValue(strtoupper($type))) === null)
             throw $this->createNotFoundException('Type d\'item non trouvé');
         $slugs = [
                     'user' => $user->getSlug(),
@@ -56,7 +58,7 @@ class ItemsController extends Controller
             [
                 'form' => $form->createView(),
                 'slugs' => $slugs,
-                'build_slot' => $type
+                'slot_number' => $slot
             ]
             );
     }

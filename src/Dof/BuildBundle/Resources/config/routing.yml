@@ -52,8 +52,8 @@ dof_build_additem_post:
         _method: POST
 
 dof_build_additem:
-    path:     /{user}/{character}/{stuff}/add/{type}/{page}
-    defaults: { _controller: DofItemsBundle:Items:showBuildItems, page: 1}
+    path:     /{user}/{character}/{stuff}/add/{type}/{slot}/{page}
+    defaults: { _controller: DofItemsBundle:Items:showBuildItems, slot: 0, page: 1}
     requirements:
         user: '[0-9a-z-]+'
         character: '[0-9a-z-]+'
