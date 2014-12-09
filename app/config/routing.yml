@@ -1,6 +1,6 @@
-#dof_items_manager:
-#    resource: "@DofItemsManagerBundle/Resources/config/routing.yml"
-#    prefix:   /
+dof_items_manager:
+    resource: "@DofItemsManagerBundle/Resources/config/routing.yml"
+    prefix:   /inventory
 
 dof_monster:
     resource: "@DofMonsterBundle/Resources/config/routing.yml"
