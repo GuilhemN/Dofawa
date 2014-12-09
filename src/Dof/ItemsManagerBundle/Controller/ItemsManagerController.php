@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Dof\ItemsBundle\Entity\ItemTemplate;
 use Dof\ItemsManagerBundle\Entity\Item;
 use Dof\ItemsBundle\Form\ItemSearch;
+use Dof\UserBundle\Entity\User;
 
 class ItemsManagerController extends Controller
 {
@@ -30,10 +31,11 @@ class ItemsManagerController extends Controller
         $full = $this->get('security.context')->isGranted('ROLE_SPELL_XRAY');
 
         $perPage = 15;
+        $user = $this->getUser();
 
         $locale = $this->get('translator')->getLocale();
-        $count = $repo->countWithOptions($options, $locale);
-        $items = $repo->findWithOptions($options, ['level' => 'DESC', 'name' . ucfirst($this->get('request')->getLocale()) => 'ASC'], $perPage, ($page - 1) * $perPage, $locale, 'normal', $full);
+        $count = $repo->countWithOptions($options, $user, $locale);
+        $items = $repo->findWithOptions($options, $user, ['level' => 'DESC', 'name' . ucfirst($this->get('request')->getLocale()) => 'ASC'], $perPage, ($page - 1) * $perPage, $locale, 'normal', $full);
 
         $pagination = array(
             'page' => $page,
