@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Dof\ItemsBundle\Entity\ItemTemplate;
 use Dof\ItemsManagerBundle\Entity\Item;
-use Dof\ItemsBundle\Form\ItemSearch;
+use Dof\ItemsManagerBundle\Form\InventorySearch;
 use Dof\UserBundle\Entity\User;
 
 class ItemsManagerController extends Controller
@@ -15,7 +15,7 @@ class ItemsManagerController extends Controller
         if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
 
-        $form = $this->createForm(new ItemSearch());
+        $form = $this->createForm(new InventorySearch());
         $form->handleRequest($this->get('request'));
 
         $params = $this->getItems($form->getData(), $page); 

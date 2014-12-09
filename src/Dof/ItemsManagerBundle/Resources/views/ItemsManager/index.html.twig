@@ -1,5 +1,9 @@
 {% extends '::layout.html.twig' %}
 
+{% block breadcrumb %}
+	<li>{{ 'inventory'|trans({}, 'generalTrans') }}s</li>
+{% endblock %}
+
 {% block body %}
 	<h3>Inventaire</h3>
     {{ form(form, { 'style': 'horizontal', 'action': path(app.request.get('_route'), app.request.attributes.get('_route_params') | merge({'page': 1})) }) }}
