@@ -39,6 +39,7 @@ class StuffController extends Controller
         $items = $em->getRepository('DofItemsBundle:EquipmentTemplate')->findById($itemsIds);
         $look = $stuff->getLook();
 
+        $itemsToRemove = [];
         $bItemRepo = $em->getRepository('DofItemsManagerBundle:Item');
         foreach($items as $k => $item) {
             if(($slot = ItemSlot::getValue(strtoupper($rel[$item->getId()]))) === null)
@@ -48,14 +49,19 @@ class StuffController extends Controller
             $lItem = $stuff->addItem($bItem);
 
             if(!empty($lItem) && $lItem->getName() == null && count($lItem->getStuffs()) <= 1)
-                $em->remove($lItem);
+                $itemsToRemove[] = $lItem;
 
             $em->persist($bItem);
             $em->persist($stuff);
+
         }
 
         $em->flush();
 
+        foreach($itemsToRemove as $item)
+            $em->remove($item);
+        $em->flush();
+        
         return $this->redirect($this->generateUrl('dof_build_show', [
             'user' => $stuff->getCharacter()->getOwner()->getSlug(),
             'character' => $stuff->getCharacter()->getSlug(),
