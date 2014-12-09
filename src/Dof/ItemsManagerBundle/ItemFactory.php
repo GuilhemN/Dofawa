@@ -36,6 +36,7 @@ class ItemFactory {
                 break;
             case ItemSlot::HAT:
             case ItemSlot::CLOAK:
+            case ItemSlot::SHIELD:
                 $ent = new Ent\SkinnedItem();
                 break;
             case ItemSlot::PET:
@@ -45,9 +46,6 @@ class ItemFactory {
                     default:
                     $ent = new Ent\Pet();
                 }
-                break;
-            case ItemSlot::MOUNT:
-                $ent = new Ent\Mount();
                 break;
             case ItemSlot::MOUNT:
                 $ent = new Ent\Mount();

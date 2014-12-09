@@ -2,20 +2,21 @@
 namespace Dof\ItemsManagerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Dof\ItemsBundle\Entity\MountTemplate;
+
+use Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate;
 
 /**
-* Mount
+* SkinnedItem
 *
-* @ORM\Entity(repositoryClass="Dof\ItemsManagerBundle\Entity\MountRepository")
+* @ORM\Entity(repositoryClass="Dof\ItemsManagerBundle\Entity\SkinnedItemRepository")
 */
-class Mount extends Animal
+class SkinnedItem extends Item
 {
 
     /**
-    * @var Mount
+    * @var SkinnedEquipmentTemplate
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\MountTemplate")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $mimibioteTemplate;
@@ -24,10 +25,10 @@ class Mount extends Animal
     /**
     * Set mimibioteTemplate
     *
-    * @param Mount $mimibioteTemplate
+    * @param SkinnedEquipmentTemplate $mimibioteTemplate
     * @return SkinnedItem
     */
-    public function setMimibioteTemplate(MountTemplate $mimibioteTemplate)
+    public function setMimibioteTemplate(SkinnedEquipmentTemplate $mimibioteTemplate)
     {
         $this->mimibioteTemplate = $mimibioteTemplate;
 
@@ -44,6 +45,6 @@ class Mount extends Animal
         return ($this->mimibioteTemplate !== null) ? $this->mimibioteTemplate : $this->itemTemplate;
     }
 
-    public function isMount() { return true; }
-    public function getClassId() { return 'mount'; }
+    public function isSkinned() { return true; }
+    public function getClassId() { return 'skitem'; }
 }

@@ -3,6 +3,8 @@ namespace Dof\ItemsManagerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Dof\ItemsBundle\Entity\PetTemplate;
+
 /**
 * Pet
 *
@@ -37,6 +39,38 @@ class Pet extends Animal
      * @ORM\Column(name="characteristic", type="string")
      */
     private $characteristic;
+
+    /**
+    * @var Mount
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\PetTemplate")
+    * @ORM\JoinColumn(onDelete="SET NULL")
+    */
+    private $mimibioteTemplate;
+
+
+    /**
+    * Set mimibioteTemplate
+    *
+    * @param Mount $mimibioteTemplate
+    * @return SkinnedItem
+    */
+    public function setMimibioteTemplate(PetTemplate $mimibioteTemplate)
+    {
+        $this->mimibioteTemplate = $mimibioteTemplate;
+
+        return $this;
+    }
+
+    /**
+    * Get mimibioteTemplate
+    *
+    * @return mimibioteTemplate
+    */
+    public function getMimibioteTemplate()
+    {
+        return ($this->mimibioteTemplate !== null) ? $this->mimibioteTemplate : $this->itemTemplate;
+    }
 
     /**
      * Set lastEat

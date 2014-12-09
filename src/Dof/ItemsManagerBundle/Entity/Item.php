@@ -41,7 +41,7 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
     private $id;
 
     /**
-    * @var Stuff
+    * @var EquipmentTemplate
     *
     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\EquipmentTemplate")
     * @ORM\JoinColumn(onDelete="CASCADE")
