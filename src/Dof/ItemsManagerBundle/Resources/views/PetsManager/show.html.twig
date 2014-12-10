@@ -34,15 +34,17 @@
                             {{ pet.characteristic }}
                         </td>
                         <td>
-                            {% if pet.lastEat is not null %}
-                                {{ pet.lastEat | date("m/d/Y H:i:s")}}
+                            {% if pet.lastMeal is not null %}
+                                {{ pet.lastMeal | date("m/d/Y H:i:s")}}
                             {% else %}
-                                Jamais!
+                                <tr>
+                                    <td></td> <td>Jamais!</td><td></td><td></td>
+                                </tr>
                             {% endif %}
                         </td>
                         <td>
-                            {% if pet.lastEat is not null %}
-                                {{ pet.lastEat |date_modify("+~pet.itemTemplate.minFeedInterval~ hour") | date("m/d/Y H:i:s")}}
+                            {% if pet.lastMeal is not null %}
+                                {{ pet.lastMeal |date_modify("+~pet.itemTemplate.minFeedInterval~ hour") | date("m/d/Y H:i:s")}}
                             {% else %}
                                 Jamais!
                             {% endif %}
