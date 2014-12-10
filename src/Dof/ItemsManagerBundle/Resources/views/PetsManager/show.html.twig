@@ -43,7 +43,8 @@
                             </td>
                             <td>
                                 {% if pet.lastMeal is not null %}
-                                    {{ pet.lastMeal |date_modify("+~pet.itemTemplate.minFeedInterval~ hour") | date("m/d/Y H:i:s")}}
+                                    {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
+                                    {{ pet.lastMeal | date_modify(hour) | date("m/d/Y H:i:s")}}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
