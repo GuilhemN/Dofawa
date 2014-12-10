@@ -37,9 +37,7 @@
                             {% if pet.lastMeal is not null %}
                                 {{ pet.lastMeal | date("m/d/Y H:i:s")}}
                             {% else %}
-                                <tr>
-                                    <td></td> <td>Jamais!</td><td></td><td></td>
-                                </tr>
+                                Jamais!
                             {% endif %}
                         </td>
                         <td>
@@ -51,7 +49,9 @@
                         </td>
                     </tr>
                 {% else %}
-                	Pas encore de familier dans le gestionnaire!
+                	<tr>
+                        <td></td> <td>Pas encore de familier dans le gestionnaire!</td><td></td><td></td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
