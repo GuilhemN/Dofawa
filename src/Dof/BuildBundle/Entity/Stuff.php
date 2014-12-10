@@ -49,7 +49,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
      *
      * @ORM\Column(name="face_label", type="string", length=1, nullable=false)
      */
-    private $faceLabel = 'I';
+    private $faceLabel;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\BuildBundle\Entity\PlayerCharacter", inversedBy="stuffs")
@@ -241,6 +241,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     public function __construct()
     {
+        $this->faceLabel('I');
         $this->vitality = 0;
         $this->wisdom = 0;
         $this->strength = 0;
