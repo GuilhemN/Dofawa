@@ -6,4 +6,4 @@ dof_items_manager_homepage:
 
 dof_items_manager_pets:
     pattern:   /petsManager
-    defaults: { _controller: DofItemsManagerBundle:PetsManager:show}
+    defaults: { _controller: DofItemsManagerBundle:PetsManager:show }
