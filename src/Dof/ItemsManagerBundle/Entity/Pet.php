@@ -15,30 +15,30 @@ class Pet extends Animal
     /**
      * @var datetime
      *
-     * @ORM\Column(name="lastEat", type="datetime")
+     * @ORM\Column(name="last_meal", type="datetime")
      */
-    private $lastEat;
+    protected $lastMeal;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="afterMax", type="boolean")
+     * @ORM\Column(name="after_max", type="boolean")
      */
-    private $afterMax;
+    protected $afterMax;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="raise", type="boolean")
      */
-    private $raise;
+    protected $raise;
 
     /**
      * @var string
      *
      * @ORM\Column(name="characteristic", type="string")
      */
-    private $characteristic;
+    protected $characteristic;
 
     /**
     * @var Mount
@@ -46,53 +46,29 @@ class Pet extends Animal
     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\PetTemplate")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
-    private $mimibioteTemplate;
-
-
-    /**
-    * Set mimibioteTemplate
-    *
-    * @param Mount $mimibioteTemplate
-    * @return SkinnedItem
-    */
-    public function setMimibioteTemplate(PetTemplate $mimibioteTemplate)
-    {
-        $this->mimibioteTemplate = $mimibioteTemplate;
-
-        return $this;
-    }
+    protected $mimibioteTemplate;
 
     /**
-    * Get mimibioteTemplate
-    *
-    * @return mimibioteTemplate
-    */
-    public function getMimibioteTemplate()
-    {
-        return ($this->mimibioteTemplate !== null) ? $this->mimibioteTemplate : $this->itemTemplate;
-    }
-
-    /**
-     * Set lastEat
+     * Set lastMeal
      *
-     * @param datetime $lastEat
+     * @param datetime $lastMeal
      * @return Pet
      */
-    public function setLastEat($lastEat)
+    public function setLastMeal($lastMeal)
     {
-        $this->lastEat = $lastEat;
+        $this->lastMeal = $lastMeal;
 
         return $this;
     }
 
     /**
-     * Get lastEat
+     * Get lastMeal
      *
      * @return datetime
      */
-    public function getLastEat()
+    public function getLastMeal()
     {
-        return $this->lastEat;
+        return $this->lastMeal;
     }
 
     /**
@@ -182,6 +158,28 @@ class Pet extends Animal
     public function getCharacteristic()
     {
         return $this->characteristic;
+    }
+    /**
+    * Set mimibioteTemplate
+    *
+    * @param Mount $mimibioteTemplate
+    * @return SkinnedItem
+    */
+    public function setMimibioteTemplate(PetTemplate $mimibioteTemplate)
+    {
+        $this->mimibioteTemplate = $mimibioteTemplate;
+
+        return $this;
+    }
+
+    /**
+    * Get mimibioteTemplate
+    *
+    * @return mimibioteTemplate
+    */
+    public function getMimibioteTemplate()
+    {
+        return ($this->mimibioteTemplate !== null) ? $this->mimibioteTemplate : $this->itemTemplate;
     }
 
     public function isPet() { return true; }
