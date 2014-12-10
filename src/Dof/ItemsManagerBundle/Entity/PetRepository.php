@@ -4,6 +4,8 @@ namespace Dof\ItemsManagerBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Dof\UserBundle\Entity\User;
+
 /**
 * PetRepository
 *
@@ -12,4 +14,13 @@ use Doctrine\ORM\EntityRepository;
 */
 class PetRepository extends EntityRepository
 {
+	public function getRaisablePets(User $user){
+		$qb = $this->createQueryBuilder('i')
+				   ->select('i')
+				   ->where('i.raise = true and owner = :user')
+				   ->setParameter('user', $user)
+		;
+
+		return $qb->getQuery()->getResult();
+	}
 }

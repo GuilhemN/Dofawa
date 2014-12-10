@@ -12,18 +12,16 @@ class PetsManagerController extends Controller
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
 
-        // plus tard
+        $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
+        $pets = $repository->getRaisablePets($this->getUser());
 
-        return $this->render('DofItemsManagerBundle:PetsManager:show.html.twig', array('name' => $name));
+        return $this->render('DofItemsManagerBundle:PetsManager:show.html.twig', array('pets' => $pets));
     }
 
     public function addAction()
     {
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
-
-    	$repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
-    	$petsList[] = $repository->getPetsList();
 
         return $this->render('DofItemsManagerBundle:PetsManager:add.html.twig', array('name' => $name));
     }

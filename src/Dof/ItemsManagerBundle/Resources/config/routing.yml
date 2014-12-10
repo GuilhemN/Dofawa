@@ -3,3 +3,7 @@ dof_items_manager_homepage:
     defaults: { _controller: DofItemsManagerBundle:ItemsManager:index, page: 1}
     requirements:
         page: \d+
+
+dof_items_manager_pets:
+    pattern:   /petsManager
+    defaults: { _controller: DofItemsManagerBundle:PetsManager:show}

@@ -106,6 +106,7 @@
                         <li class="dropdown-header">Stuffs</li>
                         {% if app.user is not null %}
                         <li><a href="{{ path('dof_build_homepage') }}">Mes builds</a></li>
+                        <li><a href="{{ path('dof_items_manager_homepage') }}">{{ 'inventory'|trans({}, 'generalTrans') }}</a></li>
                         {% endif %}
                         <li class="divider"></li>
                         <li class="dropdown-header">Divers</li>
