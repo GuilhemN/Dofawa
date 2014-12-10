@@ -36,9 +36,11 @@ class PetsManagerController extends Controller
         $pets = $repository->getRaisablePets($this->getUser());
         $petsFeed = $repository->findBy(['id' => $this->get('request')->get('pets'), 'owner' => $this->getUser()]);
 
+        $date = new \DateTime();
+        $date->format('Y-m-d H:i:s');
         foreach ($petsFeed as $pet)
             if($pet->isRaise())
-                $pet->setLastMeal(date('Y-m-d H:i:s'));
+                $pet->setLastMeal($date);
                 
         $em->flush();
 
