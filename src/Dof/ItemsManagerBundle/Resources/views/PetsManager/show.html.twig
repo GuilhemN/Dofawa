@@ -1,0 +1,58 @@
+{% extends '::layout.html.twig' %}
+
+{% block breadcrumb %}
+	{{ parent() }}
+	<li>{{ 'inventory'|trans({}, 'generalTrans') }}</li><li>Familiers</li>
+{% endblock %}
+
+{% block body %}
+	<h3>Gestionaire de familiers</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Familiers</div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Caractéristique</th>
+                    <th>Dernier repas</th>
+                    <th>Prochain repas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pet in pets %}
+                    <tr>
+                        <td>
+                            {% if pet.name is not null %}
+                                {{ pet.name }}({{ pet.itemTemplate.getName(locales()) }})
+                            {% else %}
+                                {{ pet.itemTemplate.getName(locales()) }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ pet.characteristic }}
+                        </td>
+                        <td>
+                            {% if pet.lastEat is not null %}
+                                {{ pet.lastEat | date("m/d/Y H:i:s")}}
+                            {% else %}
+                                Jamais!
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if pet.lastEat is not null %}
+                                {{ pet.lastEat |date_modify("+"{{ pet.itemTemplate.minFeedInterval }}" hour") | date("m/d/Y H:i:s")}}
+                            {% else %}
+                                Jamais!
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                	Pas encore de familier dans le gestionnaire!
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
