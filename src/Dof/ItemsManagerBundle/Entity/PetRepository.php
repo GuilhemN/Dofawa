@@ -17,7 +17,7 @@ class PetRepository extends EntityRepository
 	public function getRaisablePets(User $user){
 		$qb = $this->createQueryBuilder('i')
 				   ->select('i')
-				   ->where('i.raise = true and owner = :user')
+				   ->where('i.raise = true and i.owner = :user')
 				   ->setParameter('user', $user)
 		;
 
