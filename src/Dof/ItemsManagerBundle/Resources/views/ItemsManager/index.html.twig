@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body %}
+{% autoescape %}
 	<h3>Inventaire</h3>
     {{ form(form, { 'style': 'horizontal', 'action': path(app.request.get('_route'), app.request.attributes.get('_route_params') | merge({'page': 1})) }) }}
     Il y a {{ count }} résultats.
@@ -19,4 +20,5 @@
     {% endfor %}
 
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+{% endautoescape %}<
 {% endblock %}
