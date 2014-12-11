@@ -64,6 +64,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 	        	->andWhere('i.release LIKE :release')
 	        	->setParameter('release', '%' . $options['maj'] . '%')
 			;
+		$qb->andWhere('i.deprecated = false');
 
 		foreach($orders as $column => $order)
 			$qb->addOrderBy('i.' . $column, $order);
