@@ -20,9 +20,9 @@ class DocumentImporter extends AbstractGameDataImporter
         if (!$beta && $write)
             $this->dm->createQuery('UPDATE DofItemsBundle:Document s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.*' .
-        $this->generateD2ISelects('name', $locales) .
+        $this->generateD2ISelects('title', $locales) .
         ' FROM ' . $db . '.D2O_Document o' .
-        $this->generateD2IJoins('name', $db, $locales));
+        $this->generateD2IJoins('title', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
         $repo = $this->dm->getRepository('DofItemsBundle:Document');
@@ -41,7 +41,7 @@ class DocumentImporter extends AbstractGameDataImporter
                 if (!$tpl->getRelease())
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                $this->copyI18NProperty($tpl, 'setName', $row, 'title');
                 $this->dm->persist($tpl);
             }
             ++$rowsProcessed;
