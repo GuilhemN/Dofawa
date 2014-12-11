@@ -12,15 +12,21 @@ class SkinsController extends Controller
         if(!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
             throw $this->createAccessDeniedException();
 
-        try {
-            $icon = file_get_contents('http://staticns.ankama.com/dofus/www/game/items/200/' . $item->getIconId() . '.png');
-        }
-        catch(Exception $e){
-            throw $this->createNotFoundException('Image non trouvé', $e);
-        };
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, 'http://staticns.ankama.com/dofus/www/game/items/200/' . $item->getIconId() . '.png');
+        curl_setopt($curl, CURLOPT_COOKIESESSION, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $content = curl_exec($curl);
+        $response = curl_getinfo( $ch );
+        curl_close($curl);
+
+        if ($response['http_code'] != 200)
+            throw $this->createNotFoundException('Image non disponible');
+
         $em = $this->getDoctrine()->getManager();
         $filename = tempnam('/tmp', 'item');
-        file_put_contents($filename, $icon);
+        file_put_contents($filename, $content);
         $file = new File($filename, false);
 
         $em = $this->getDoctrine()->getManager();
