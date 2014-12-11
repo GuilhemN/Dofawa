@@ -18,7 +18,7 @@ class SkinsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
         $content = curl_exec($curl);
-        $response = curl_getinfo( $ch );
+        $response = curl_getinfo( $curl );
         curl_close($curl);
 
         if ($response['http_code'] != 200)
