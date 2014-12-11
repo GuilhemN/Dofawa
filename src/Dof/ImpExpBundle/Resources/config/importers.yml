@@ -176,3 +176,11 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: documents }
             - { name: dof_imp_exp.importer, provides: beta_documents }
+
+    # DofQuestBundle:Quest
+    dof_imp_exp.importer.quests:
+        class: Dof\ImpExpBundle\Importer\GameData\QuestImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quests }
+            - { name: dof_imp_exp.importer, provides: beta_quests }
