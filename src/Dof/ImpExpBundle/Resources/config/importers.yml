@@ -168,3 +168,11 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: titles }
             - { name: dof_imp_exp.importer, provides: beta_titles }
+
+    # DofItemsBundle:Document
+    dof_imp_exp.importer.documents:
+        class: Dof\ImpExpBundle\Importer\GameData\DocumentImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: documents }
+            - { name: dof_imp_exp.importer, provides: beta_documents }
