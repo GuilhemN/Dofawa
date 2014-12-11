@@ -26,7 +26,7 @@ class ItemFactory {
         if(!($user instanceOf User))
             return;
         if($percent === null)
-            $percent = 80;
+            $percent = 85;
         $percent = intval($percent);
 
 

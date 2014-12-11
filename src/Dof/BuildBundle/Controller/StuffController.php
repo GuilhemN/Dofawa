@@ -33,7 +33,7 @@ class StuffController extends Controller
         if($request->request->has('percent'))
             $percent = intval($request->request->get('percent'));
         else
-            $percent = 80;
+            $percent = 85;
         if($request->request->has('useSlot'))
             $useSlot = intval($request->request->get('useSlot'));
         else
