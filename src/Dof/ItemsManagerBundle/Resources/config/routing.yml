@@ -1,9 +1,13 @@
 dof_items_manager_homepage:
-    pattern:   /{page}
+    pattern:   /{page}/
     defaults: { _controller: DofItemsManagerBundle:ItemsManager:index, page: 1}
     requirements:
         page: \d+
 
 dof_items_manager_pets:
-    pattern:   /petsManager
+    pattern:   /pets-manager
     defaults: { _controller: DofItemsManagerBundle:PetsManager:show }
+
+dof_items_manager_pets_feed:
+    pattern:   /pets-manager/feed
+    defaults: { _controller: DofItemsManagerBundle:PetsManager:feed }

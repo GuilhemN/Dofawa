@@ -10,51 +10,58 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">Familiers</div>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Caractéristique</th>
-                    <th>Dernier repas</th>
-                    <th>Prochain repas</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pet in pets %}
+        <form method="POST" name="feedPets" action="{{ path('dof_items_manager_pets_feed') }}">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>
-                            {% if pet.name is not null %}
-                                {{ pet.name }}({{ pet.itemTemplate.getName(locales()) }})
-                            {% else %}
-                                {{ pet.itemTemplate.getName(locales()) }}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {{ pet.characteristic }}
-                        </td>
-                        <td>
-                            {% if pet.lastMeal is not null %}
-                                {{ pet.lastMeal | date("m/d/Y H:i:s")}}
-                            {% else %}
-                                Jamais!
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if pet.lastMeal is not null %}
-                                {{ pet.lastMeal |date_modify("+~pet.itemTemplate.minFeedInterval~ hour") | date("m/d/Y H:i:s")}}
-                            {% else %}
-                                Jamais!
-                            {% endif %}
-                        </td>
+                        <th>Nom</th>
+                        <th>Caractéristique</th>
+                        <th>Dernier repas</th>
+                        <th>Prochain repas</th>
+                        <th>Nourrir</th>
                     </tr>
-                {% else %}
-                	<tr>
-                        <td></td> <td>Pas encore de familier dans le gestionnaire!</td><td></td><td></td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for pet in pets %}
+                        <tr>
+                            <td>
+                                {% if pet.name is not null %}
+                                    {{ pet.name }}({{ pet.itemTemplate.getName(locales()) }})
+                                {% else %}
+                                    {{ pet.itemTemplate.getName(locales()) }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ pet.characteristic }}
+                            </td>
+                            <td>
+                                {% if pet.lastMeal is not null %}
+                                    {{ pet.lastMeal | date("m/d/Y H:i:s")}}
+                                {% else %}
+                                    Jamais!
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if pet.lastMeal is not null %}
+                                    {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
+                                    {{ pet.lastMeal | date_modify(hour) | date("m/d/Y H:i:s")}}
+                                {% else %}
+                                    Jamais!
+                                {% endif %}
+                            </td>
+                            <td>
+                                <input type="checkbox"  name="pets[]" value="{{ pet.id }}" value="">
+                            </td>
+                        </tr>
+                    {% else %}
+                    	<tr>
+                            <td></td> <td>Pas encore de familier dans le gestionnaire!</td><td></td><td></td><td></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Nourrir</button>
+        </form>
     </div>
 
 {% endblock %}
