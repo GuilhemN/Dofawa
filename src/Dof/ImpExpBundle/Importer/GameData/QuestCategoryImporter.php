@@ -7,56 +7,41 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\QuestBundle\Entity\Quest;
-use Dof\QuestBundle\QuestType;
+use Dof\QuestBundle\Entity\QuestCategory;
 
-class QuestImporter extends AbstractGameDataImporter
+class QuestCategoryImporter extends AbstractGameDataImporter
 {
-    const CURRENT_DATA_SET = 'quests';
-    const BETA_DATA_SET = 'beta_quests';
+    const CURRENT_DATA_SET = 'quest_categories';
+    const BETA_DATA_SET = 'beta_quest_categoriesquest_categories';
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
-            $this->dm->createQuery('UPDATE DofQuestBundle:Quest s SET s.deprecated = true')->execute();
+            $this->dm->createQuery('UPDATE DofQuestBundle:QuestCategory s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.*' .
         $this->generateD2ISelects('name', $locales) .
-        ' FROM ' . $db . '.D2O_Quest o' .
+        ' FROM ' . $db . '.D2O_QuestCategory o' .
         $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
-        $repo = $this->dm->getRepository('DofQuestBundle:Quest');
-        $categRepo = $this->dm->getRepository('DofQuestBundle:QuestCategory');
+        $repo = $this->dm->getRepository('DofQuestBundle:QuestCategory');
         $rowsProcessed = 0;
         if ($output && $progress)
         $progress->start($output, count($all));
         foreach ($all as $row) {
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
-                $tpl = new Quest();
+                $tpl = new QuestCategory();
                 $tpl->setDeprecated(true);
                 $tpl->setId($row['id']);
             }
             if ($tpl->isDeprecated()) {
-                $category = $categRepo->find($row['categoryId']);
                 $tpl->setDeprecated(false);
                 if (!$tpl->getRelease())
-                $tpl->setRelease($release);
+                    $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                $tpl->setIsRepeatable($row['isRepeatable']);
-                $tpl->setIsDungeonQuest($row['isDungeonQuest']);
-                $tpl->setCategory($category);
-                $tpl->setLevelMin($row['levelMin']);
-                $tpl->setLevelMax($row['levelMax']);
-
-                if($row['repeatType'] == 3)
-                    $tpl->setType(QuestType::ALMANAX);
-                elseif($row['isRepeatable'])
-                    $tpl->setType(QuestType::REPEATABLE);
-                else
-                    $tpl->setType(QuestType::ONE_SHOT);
-
+                $tpl->setOrder($row['order']);
 
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
                 $this->dm->persist($tpl);

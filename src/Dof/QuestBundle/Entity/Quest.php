@@ -68,6 +68,14 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $levelMax;
 
     /**
+    * @var QuestCategory
+    *
+    * @ORM\ManyToOne(targetEntity="QuestCategory", inversedBy="quests")
+    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+    */
+    private $category;
+
+    /**
     * Set id
     *
     * @return Quest
@@ -201,6 +209,29 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getLevelMax()
     {
         return $this->levelMax;
+    }
+
+    /**
+    * Set category
+    *
+    * @param QuestCategory $category
+    * @return Quest
+    */
+    public function setCategory(QuestCategory $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+    * Get category
+    *
+    * @return QuestCategory
+    */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     public function __toString(){

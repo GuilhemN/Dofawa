@@ -177,10 +177,17 @@ services:
             - { name: dof_imp_exp.importer, provides: documents }
             - { name: dof_imp_exp.importer, provides: beta_documents }
 
-    # DofQuestBundle:Quest
+    # DofQuestBundle:Quest and subclasses
+    dof_imp_exp.importer.quest_categories:
+        class: Dof\ImpExpBundle\Importer\GameData\QuestCategoryImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_categories }
+            - { name: dof_imp_exp.importer, provides: beta_quest_categories }
+
     dof_imp_exp.importer.quests:
         class: Dof\ImpExpBundle\Importer\GameData\QuestImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
-            - { name: dof_imp_exp.importer, provides: quests }
-            - { name: dof_imp_exp.importer, provides: beta_quests }
+            - { name: dof_imp_exp.importer, provides: quests, requires: quest_categories }
+            - { name: dof_imp_exp.importer, provides: beta_quests, requires: beta_quest_categories }
