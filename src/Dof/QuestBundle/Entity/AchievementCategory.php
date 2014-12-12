@@ -175,7 +175,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     * @param AchievementCategory $parent
     * @return AchievementCategory
     */
-    public function setParent(AchievementCategory $parent)
+    public function setParent(AchievementCategory $parent = null)
     {
         $this->parent = $parent;
 
