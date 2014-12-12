@@ -36,7 +36,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     /**
      * @var string
      *
-     * @ORM\Column(name="icon", type="string", length=255)
+     * @ORM\Column(name="icon", type="string", length=255, nullable=true)
      */
     private $icon;
 
@@ -50,7 +50,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string", length=255)
+     * @ORM\Column(name="color", type="string", length=255, nullable=true)
      */
     private $color;
 
@@ -89,7 +89,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
         $this->id = $id;
         return $this;
     }
-    
+
     /**
      * Get id
      *
