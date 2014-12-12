@@ -3,6 +3,7 @@
 namespace Dof\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\SluggableInterface;
@@ -42,6 +43,10 @@ class QuestCategory implements IdentifiableInterface, SluggableInterface, Locali
     * @ORM\JoinColumn(nullable=true)
     */
     private $quests;
+
+    public function __construct(){
+        $this->quests = new ArrayCollection();
+    }
 
     /**
      * Set id

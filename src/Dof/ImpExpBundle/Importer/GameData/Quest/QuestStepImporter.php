@@ -41,9 +41,9 @@ class QuestStepImporter extends AbstractGameDataImporter
                 $tpl->setId($row['id']);
             }
             $tpl->setQuest($quest);
-            $tpl->setDuration($row['duration'] * 100);
-            $tpl->setKamasRatio($row['kamasRatio'] * 100);
-            $tpl->setXpRatio($row['xpRatio'] * 100);
+            $tpl->setDuration($row['duration']);
+            $tpl->setKamasRatio($row['kamasRatio']);
+            $tpl->setXpRatio($row['xpRatio']);
             $tpl->setOptimalLevel($row['optimalLevel']);
 
             $this->copyI18NProperty($tpl, 'setName', $row, 'name');
@@ -55,7 +55,7 @@ class QuestStepImporter extends AbstractGameDataImporter
                 $this->dm->flush();
                 $this->dm->clear();
                 if ($output && $progress)
-                $progress->advance(300);
+                    $progress->advance(300);
             }
         }
         if ($output && $progress)

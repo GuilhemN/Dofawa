@@ -18,7 +18,7 @@ use XN\L10n\LocalizedDescriptionTrait;
 class QuestStep implements IdentifiableInterface, LocalizedNameInterface
 {
     use LocalizedNameTrait, LocalizedDescriptionTrait;
-    
+
     /**
      * @var integer
      *
@@ -35,23 +35,23 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     private $optimalLevel;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="duration", type="integer")
+     * @ORM\Column(name="duration", type="float")
      */
     private $duration;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="kamas_ratio", type="integer")
+     * @ORM\Column(name="kamas_ratio", type="float")
      */
     private $kamasRatio;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="xp_ratio", type="integer")
+     * @ORM\Column(name="xp_ratio", type="float")
      */
     private $xpRatio;
 
@@ -110,7 +110,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     /**
      * Set duration
      *
-     * @param integer $duration
+     * @param float $duration
      * @return QuestStep
      */
     public function setDuration($duration)
@@ -121,7 +121,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Get duration
+     * Get float
      *
      * @return integer
      */
@@ -133,7 +133,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     /**
      * Set kamasRatio
      *
-     * @param integer $kamasRatio
+     * @param float $kamasRatio
      * @return QuestStep
      */
     public function setKamasRatio($kamasRatio)
@@ -146,7 +146,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     /**
      * Get kamasRatio
      *
-     * @return integer
+     * @return float
      */
     public function getKamasRatio()
     {
@@ -156,7 +156,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     /**
      * Set xpRatio
      *
-     * @param integer $xpRatio
+     * @param float $xpRatio
      * @return QuestStep
      */
     public function setXpRatio($xpRatio)
@@ -169,7 +169,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     /**
      * Get xpRatio
      *
-     * @return integer
+     * @return float
      */
     public function getXpRatio()
     {
