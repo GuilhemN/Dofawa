@@ -4,6 +4,7 @@ namespace Dof\ItemsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\Persistence\IdentifiableInterface;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
@@ -14,7 +15,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_documents")
  * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\DocumentRepository")
  */
-class Document implements LocalizedNameInterface
+class Document implements IdentifiableInterface, LocalizedNameInterface
 {
     use LocalizedNameTrait, ReleaseBoundTrait;
 
