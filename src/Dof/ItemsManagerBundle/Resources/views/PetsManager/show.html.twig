@@ -44,7 +44,7 @@
                             </td>
                             <td>
                                 {% if pet.lastMeal is not null %}
-                                    {{ pet.lastMeal | date_format }}
+                                    {{ pet.lastMeal  | date_format }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
@@ -52,7 +52,7 @@
                             <td>
                                 {% if pet.lastMeal is not null %}
                                     
-                                    {{ pet.lastMeal | date_modify(hour) | date_format }}
+                                    {{ pet.lastMeal | date_modify(hour) | date("d/m/Y H:i:s") | date_format }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
