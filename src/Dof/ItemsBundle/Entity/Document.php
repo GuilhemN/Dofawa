@@ -11,7 +11,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
 /**
  * Document
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_documents")
  * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\DocumentRepository")
  */
 class Document implements LocalizedNameInterface

@@ -76,6 +76,12 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $category;
 
     /**
+    * @ORM\OneToMany(targetEntity="QuestStep", mappedBy="quest")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $steps;
+
+    /**
     * Set id
     *
     * @return Quest
@@ -232,6 +238,41 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getCategory()
     {
         return $this->category;
+    }
+    /**
+    * Add steps
+    *
+    * @param QuestStep $steps
+    * @return Quest
+    */
+    public function addStep(QuestStep $steps)
+    {
+        $this->steps[] = $steps;
+
+        return $this;
+    }
+
+    /**
+    * Remove steps
+    *
+    * @param QuestStep $steps
+    * @return Quest
+    */
+    public function removeStep(QuestStep $steps)
+    {
+        $this->steps->removeElement($steps);
+
+        return $this;
+    }
+
+    /**
+    * Get steps
+    *
+    * @return Collection
+    */
+    public function getSteps()
+    {
+        return $this->steps;
     }
 
     public function __toString(){
