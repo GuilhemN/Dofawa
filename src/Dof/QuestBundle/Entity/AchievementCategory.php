@@ -30,7 +30,6 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -80,6 +79,17 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
         $this->achievements = new ArrayCollection();
     }
 
+    /**
+    * set id
+    *
+    * @return Achievement
+    */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+    
     /**
      * Get id
      *
