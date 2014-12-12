@@ -15,8 +15,10 @@ use XN\L10n\LocalizedDescriptionTrait;
  * @ORM\Table(name="dof_quest_steps")
  * @ORM\Entity(repositoryClass="Dof\QuestBundle\Entity\QuestStepRepository")
  */
-class QuestStep
+class QuestStep implements IdentifiableInterface, LocalizedNameInterface
 {
+    use LocalizedNameTrait, LocalizedDescriptionTrait;
+    
     /**
      * @var integer
      *
@@ -173,7 +175,7 @@ class QuestStep
     {
         return $this->xpRatio;
     }
-    
+
     /**
     * Set quest
     *
