@@ -266,7 +266,7 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
         return $this->xpRatio;
     }
 
-    public function _toString(){
+    public function __toString(){
         return $this->nameFr;
     }
 }
