@@ -19,7 +19,7 @@ class AchievementCategoryImporter extends AbstractGameDataImporter
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
-        $this->dm->createQuery('UPDATE DofQuestBundle:AchievementCategory s SET s.deprecated = true')->execute();
+            $this->dm->createQuery('UPDATE DofQuestBundle:AchievementCategory s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.*' .
         $this->generateD2ISelects('name', $locales) .
         ' FROM ' . $db . '.D2O_AchievementCategory o' .
