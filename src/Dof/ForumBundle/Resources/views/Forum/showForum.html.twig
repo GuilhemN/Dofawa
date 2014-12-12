@@ -46,10 +46,10 @@
                     <td class="hidden-xs hidden-sm">{{ topic.getCountPosts()-1 }}</td>
                 </tr>
                 {% else %}
-                    <tr><td></td></tr>
-                    <tr><td>{{ 'notopic' | trans({}, 'forum')}}</td></tr>
-                    <tr><td></td></tr>
-                    <tr><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td>{{ 'notopic' | trans({}, 'forum')}}</td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
 			{% endfor %}
 		</table>
 	</div>

@@ -23,8 +23,16 @@
                 </thead>
                 <tbody>
                     {% for pet in pets %}
+                        {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
                         <tr>
-                            <td>
+                            <td {% if pet.lastMeal is not null and pet.lastMeal < pet.itemTemplate.minFeedInterval %}
+                                    class="success"
+                                {% elseif pet.lastMeal is not null and (pet.lastMeal > pet.itemTemplate.minFeedInterval and pet.lastMeal < pet.itemTemplate.maxFeedInterval ) %}
+                                    class="warning"
+                                {% else %}
+                                    class="danger"
+                                {% endif %}>
+
                                 {% if pet.name is not null %}
                                     {{ pet.name }}({{ pet.itemTemplate.getName(locales()) }})
                                 {% else %}
@@ -36,15 +44,15 @@
                             </td>
                             <td>
                                 {% if pet.lastMeal is not null %}
-                                    {{ pet.lastMeal | date("m/d/Y H:i:s")}}
+                                    {{ pet.lastMeal | date("d/m/Y H:i:s") | date_format }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
                             </td>
                             <td>
                                 {% if pet.lastMeal is not null %}
-                                    {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
-                                    {{ pet.lastMeal | date_modify(hour) | date("m/d/Y H:i:s")}}
+                                    
+                                    {{ pet.lastMeal | date_modify(hour) | date("d/m/Y H:i:s") | date_format }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
