@@ -21,6 +21,7 @@ class ImportCommand extends ContainerAwareCommand
 			->addOption('only', 'o', InputOption::VALUE_NONE, 'Import only the specified data sets (don\'t manage requirements)')
 			->addOption('dry-run', 'd', InputOption::VALUE_NONE, 'Perform a dry run (tell importers not to write data)')
 			->addOption('dry-dry-run', 'D', InputOption::VALUE_NONE, 'Perform a dry dry run (don\'t actually run any importer)')
+			->addOption('one-process', '1', InputOption::VALUE_NONE, 'Don\'t fork (may cause memory fragmentation issues in big imports)')
             ->addArgument('data-sets', InputArgument::IS_ARRAY, 'Data sets to import');
 	}
 
@@ -29,6 +30,7 @@ class ImportCommand extends ContainerAwareCommand
         $impMgr = $this->getContainer()->get('dof_imp_exp.import_manager');
         $impMgr->setWithRequirements(!$input->getOption('only'));
         $impMgr->setRunImporters(!$input->getOption('dry-dry-run'));
+		$impMgr->setFork(!$input->getOption('one-process'));
         foreach ($input->getOption('skip') as $skip)
             $impMgr->markAsImported($skip);
         $flags = 0;
