@@ -24,14 +24,15 @@
                 <tbody>
                     {% for pet in pets %}
                         {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
-                        <tr>
-                            <td {% if pet.lastMeal is not null and date(pet.lastMeal) < date(pet.itemTemplate.minFeedInterval) %}
+                        {% set hourMax = '+' ~ pet.itemTemplate.maxFeedInterval ~ ' hour' %}
+                        <tr {% if pet.lastMeal is not null and date(pet.lastMeal | date_modify(hour)) < date() %}
                                     class="success"
-                                {% elseif pet.lastMeal is not null and (date(pet.lastMeal) > date(pet.itemTemplate.minFeedInterval) and date(pet.lastMeal) < date(pet.itemTemplate.maxFeedInterval) ) %}
+                                {% elseif pet.lastMeal is not null and (date(pet.lastMeal | date_modify(hour)) > date() and date(pet.lastMeal | date_modify(hourMax)) < date() ) %}
                                     class="warning"
                                 {% else %}
                                     class="danger"
                                 {% endif %}>
+                            <td>
 
                                 {% if pet.name is not null %}
                                     {{ pet.name }}({{ pet.itemTemplate.getName(locales()) }})
