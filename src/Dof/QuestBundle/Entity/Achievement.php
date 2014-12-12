@@ -83,7 +83,6 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
      */
     private $xpRatio;
 
-
     /**
     * set id
     *

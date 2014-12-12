@@ -19,7 +19,7 @@ class AchievementCategoryImporter extends AbstractGameDataImporter
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
-        $this->dm->createQuery('UPDATE DofQuestBundle:AchievementCategory s SET s.deprecated = true')->execute();
+            $this->dm->createQuery('UPDATE DofQuestBundle:AchievementCategory s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.*' .
         $this->generateD2ISelects('name', $locales) .
         ' FROM ' . $db . '.D2O_AchievementCategory o' .
@@ -32,6 +32,7 @@ class AchievementCategoryImporter extends AbstractGameDataImporter
         $progress->start($output, count($all));
         foreach ($all as $row) {
             $tpl = $repo->find($row['id']);
+            $parent = $repo->find($row['parentId']);
             if ($tpl === null) {
                 $tpl = new AchievementCategory();
                 $tpl->setDeprecated(true);
@@ -42,6 +43,7 @@ class AchievementCategoryImporter extends AbstractGameDataImporter
                 if (!$tpl->getRelease())
                 $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
+                $tpl->setParent($parent);
                 $tpl->setOrder($row['order']);
                 $tpl->setIcon(($row['icon'] == 'null' or '') ? null : $row['icon']);
                 $tpl->setColor(($row['color'] == 'null' or '') ? null : $row['color']);

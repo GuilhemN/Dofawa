@@ -30,14 +30,13 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="icon", type="string", length=255)
+     * @ORM\Column(name="icon", type="string", length=255, nullable=true)
      */
     private $icon;
 
@@ -51,7 +50,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string", length=255)
+     * @ORM\Column(name="color", type="string", length=255, nullable=true)
      */
     private $color;
 
@@ -78,6 +77,17 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     public function __construct(){
         $this->childs = new ArrayCollection();
         $this->achievements = new ArrayCollection();
+    }
+
+    /**
+    * set id
+    *
+    * @return Achievement
+    */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -165,7 +175,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     * @param AchievementCategory $parent
     * @return AchievementCategory
     */
-    public function setParent(AchievementCategory $parent)
+    public function setParent(AchievementCategory $parent = null)
     {
         $this->parent = $parent;
 

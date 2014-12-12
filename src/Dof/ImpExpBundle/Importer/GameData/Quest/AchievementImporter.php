@@ -48,7 +48,7 @@ class AchievementImporter extends AbstractGameDataImporter
                 if (!$tpl->getRelease())
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                $tpl->setOrder($row['levelMax']);
+                $tpl->setOrder($row['order']);
                 $tpl->setIconId($row['iconId']);
                 $tpl->setPoints($row['points']);
                 $tpl->setLevel($row['level']);
