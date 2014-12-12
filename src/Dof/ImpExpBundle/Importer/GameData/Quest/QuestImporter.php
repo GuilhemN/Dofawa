@@ -1,6 +1,6 @@
 <?php
 
-namespace Dof\ImpExpBundle\Importer\GameData;
+namespace Dof\ImpExpBundle\Importer\GameData\Quest;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
