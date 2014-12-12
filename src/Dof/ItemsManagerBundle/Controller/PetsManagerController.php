@@ -44,6 +44,8 @@ class PetsManagerController extends Controller
                 
         $em->flush();
 
-        return $this->render('DofItemsManagerBundle:PetsManager:show.html.twig', array('pets' => $pets));
+         return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
+                'pets' => $pets
+                )));
     }
 }

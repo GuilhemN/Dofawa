@@ -23,8 +23,17 @@
                 </thead>
                 <tbody>
                     {% for pet in pets %}
-                        <tr>
+                        {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
+                        {% set hourMax = '+' ~ pet.itemTemplate.maxFeedInterval ~ ' hour' %}
+                        <tr {% if pet.lastMeal is not null and date(pet.lastMeal | date_modify(hour)) < date() %}
+                                    class="success"
+                                {% elseif pet.lastMeal is not null and (date(pet.lastMeal | date_modify(hour)) > date() and date(pet.lastMeal | date_modify(hourMax)) < date() ) %}
+                                    class="warning"
+                                {% else %}
+                                    class="danger"
+                                {% endif %}>
                             <td>
+
                                 {% if pet.name is not null %}
                                     {{ pet.name }}({{ pet.itemTemplate.getName(locales()) }})
                                 {% else %}
@@ -36,15 +45,15 @@
                             </td>
                             <td>
                                 {% if pet.lastMeal is not null %}
-                                    {{ pet.lastMeal | date("m/d/Y H:i:s")}}
+                                    {{ pet.lastMeal  | date_format }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
                             </td>
                             <td>
                                 {% if pet.lastMeal is not null %}
-                                    {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
-                                    {{ pet.lastMeal | date_modify(hour) | date("m/d/Y H:i:s")}}
+                                    
+                                    {{ pet.lastMeal | date_modify(hour) | date("d/m/Y H:i:s") }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
