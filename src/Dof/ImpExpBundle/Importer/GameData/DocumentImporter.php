@@ -19,7 +19,7 @@ class DocumentImporter extends AbstractGameDataImporter
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
             $this->dm->createQuery('UPDATE DofItemsBundle:Document s SET s.deprecated = true')->execute();
-        $stmt = $conn->query('SELECT o.*' .
+        $stmt = $conn->query('SELECT o.id' .
         $this->generateD2ISelects('title', $locales) .
         ' FROM ' . $db . '.D2O_Document o' .
         $this->generateD2IJoins('title', $db, $locales));
