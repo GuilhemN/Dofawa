@@ -5,6 +5,7 @@ namespace Dof\ImpExpBundle\Importer\GameData\Quest;
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
 use Dof\QuestBundle\Entity\QuestCategory;
