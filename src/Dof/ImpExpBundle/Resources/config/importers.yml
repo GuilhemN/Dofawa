@@ -211,5 +211,5 @@ services:
         class: Dof\ImpExpBundle\Importer\GameData\Quest\AchievementImporter
         arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
         tags:
-            - { name: dof_imp_exp.importer, provides: achievements, requires: achievements_categories }
-            - { name: dof_imp_exp.importer, provides: beta_achievements, requires: beta_achievements_categories }
+            - { name: dof_imp_exp.importer, provides: achievements, requires: achievement_categories }
+            - { name: dof_imp_exp.importer, provides: beta_achievements, requires: beta_achievement_categories }
