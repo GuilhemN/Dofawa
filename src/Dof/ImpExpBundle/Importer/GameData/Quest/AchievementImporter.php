@@ -38,7 +38,6 @@ class AchievementImporter extends AbstractGameDataImporter
             if($category === null)
             continue;
             $tpl = $repo->find($row['id']);
-            $parent = $repo->find($row['parentId']);
             if ($tpl === null) {
                 $tpl = new Achievement();
                 $tpl->setDeprecated(true);
