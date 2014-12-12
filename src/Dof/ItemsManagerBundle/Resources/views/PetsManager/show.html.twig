@@ -25,9 +25,9 @@
                     {% for pet in pets %}
                         {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
                         <tr>
-                            <td {% if pet.lastMeal is not null and pet.lastMeal < pet.itemTemplate.minFeedInterval %}
+                            <td {% if pet.lastMeal is not null and date(pet.lastMeal) < date(pet.itemTemplate.minFeedInterval) %}
                                     class="success"
-                                {% elseif pet.lastMeal is not null and (pet.lastMeal > pet.itemTemplate.minFeedInterval and pet.lastMeal < pet.itemTemplate.maxFeedInterval ) %}
+                                {% elseif pet.lastMeal is not null and (date(pet.lastMeal) > date(pet.itemTemplate.minFeedInterval) and date(pet.lastMeal) < date(pet.itemTemplate.maxFeedInterval) ) %}
                                     class="warning"
                                 {% else %}
                                     class="danger"
