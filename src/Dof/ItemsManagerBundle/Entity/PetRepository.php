@@ -28,7 +28,7 @@ class PetRepository extends EntityRepository
 		$qb = $this->createQueryBuilder('i')
 				   ->select('i', 'u')
 				   ->join('i.owner','u')
-				   ->where('i.raise is not NULL')
+				   ->where('i.raise = true')
 				   ->andWhere('u.petsManagerNotifications = true')
 		;
 
