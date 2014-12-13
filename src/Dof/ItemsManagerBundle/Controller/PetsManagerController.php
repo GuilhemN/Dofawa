@@ -24,7 +24,9 @@ class PetsManagerController extends Controller
         $iFact = $this->get('item_factory');
         $em = $this->getDoctrine()->getManager();
 
-        $item = $em->getRepository('DofItemsBundle:PetTemplate')->find($id);
+        $item = $em->getRepository('DofItemsBundle:PetTemplate')->findOneById($id);
+        if($item === null)
+            throw $this->createNotFoundException();
 
         if($item->isPet())
         {
@@ -39,8 +41,8 @@ class PetsManagerController extends Controller
         $pets = $repository->getRaisablePets($this->getUser());
 
         return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
-                'pets' => $pets
-                )));
+            'pets' => $pets
+            )));
     }
 
     public function feedAction()
