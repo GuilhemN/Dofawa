@@ -19,6 +19,7 @@ class PetRepository extends EntityRepository
 				   ->select('i')
 				   ->where('i.raise = true and i.owner = :user')
 				   ->setParameter('user', $user)
+				   ->addOrderBy('i.nextMeal', 'ASC')
 		;
 
 		return $qb->getQuery()->getResult();
