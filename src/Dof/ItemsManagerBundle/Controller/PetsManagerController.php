@@ -74,10 +74,11 @@ class PetsManagerController extends Controller
         $pets = $repository->getRaisablePets($this->getUser());
 
         foreach ($pets as $pet) {
-            if($item->getOwner() === $pet->getOwner()){
+            if( ($item->getOwner() === $pet->getOwner()) && ($item->getId() == $pet->getId()) ){
                 $pet->setRaise(false);
                 $em->persist($pet);
                 $em->flush(); 
+                break;
             }
         }
             
