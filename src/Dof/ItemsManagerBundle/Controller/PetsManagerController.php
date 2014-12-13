@@ -5,10 +5,7 @@ namespace Dof\ItemsManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Dof\ItemsBundle\Entity\ItemTemplate;
 
-use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
-
-use Dof\ItemsManagerBundle\ItemFactory;
-use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
+use Dof\ItemsManagerBundle\Entity\Item;
 
 class PetsManagerController extends Controller
 {
@@ -65,7 +62,7 @@ class PetsManagerController extends Controller
         foreach ($petsFeed as $pet)
             if($pet->isRaise())
                 $pet->setLastMeal($date);
-                
+
         $em->flush();
 
          return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
