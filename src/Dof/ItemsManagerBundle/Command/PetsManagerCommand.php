@@ -29,13 +29,17 @@ class PetsManagerCommand extends ContainerAwareCommand
         $pets = $repo->getAllPetsNotification();
         $now = new \DateTime("now");
 
+        $notifs = 0;
         foreach ($pets as $pet) {
             $lastMeal = $pet->getLastMeal();
 
             $nextMeal = $lastMeal->modify('+' . $pet->getItemTemplate()->getMinFeedInterval() . ' hour');
-            if($nextMeal < $now && $nextMeal > $pet->getLastNotification())
+            if($nextMeal < $now && $nextMeal > $pet->getLastNotification()){
                 $this->getContainer()->get('notification_manager')->addNotification($pet, 'pets.hungry', $pet->getOwner());
+                $notifs++;
+            }
         }
-
+        
+        $output->writeln('<info>' . $notifs .' notifications ont été envoyées.</info>');
     }
 }
