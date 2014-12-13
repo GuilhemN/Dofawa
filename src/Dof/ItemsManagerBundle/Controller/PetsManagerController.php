@@ -8,6 +8,7 @@ use Dof\ItemsBundle\Entity\ItemTemplate;
 use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
 
 use Dof\ItemsManagerBundle\ItemFactory;
+use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
 
 class PetsManagerController extends Controller
 {
