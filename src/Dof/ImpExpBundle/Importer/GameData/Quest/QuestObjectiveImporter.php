@@ -28,7 +28,7 @@ class QuestObjectiveImporter extends AbstractGameDataImporter
         $progress->start($output, count($all));
         foreach ($all as $row) {
             $questStep = $questSRepo->find($row['stepId']);
-            if($quest === null or $questStep->getQuest()->isPreliminary() ^ $beta)
+            if($questStep === null or $questStep->getQuest()->isPreliminary() ^ $beta)
                 continue;
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
