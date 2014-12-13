@@ -40,12 +40,10 @@ class ItemFactory {
                 $ent = new Ent\SkinnedItem();
                 break;
             case ItemSlot::PET:
-                switch ($item->getType()->getId()) {
-                    case 121: // Petsmount
+                if($item->isMount())
                     $ent = new Ent\Mount();
-                    default:
+                else
                     $ent = new Ent\Pet();
-                }
                 break;
             case ItemSlot::MOUNT:
                 $ent = new Ent\Mount();
