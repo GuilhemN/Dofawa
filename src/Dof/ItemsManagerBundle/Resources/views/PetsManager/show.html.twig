@@ -2,7 +2,7 @@
 
 {% block breadcrumb %}
 	{{ parent() }}
-	<li>{{ 'inventory'|trans({}, 'generalTrans') }}</li><li>Familiers</li>
+	<li>{{ 'inventory'|trans({}, 'generalTrans') }}</li><li><a href="{{ path('dof_items_manager_homepage') }}">Familiers</a></li>
 {% endblock %}
 
 {% block body %}
@@ -25,9 +25,9 @@
                     {% for pet in pets %}
                         {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
                         {% set hourMax = '+' ~ pet.itemTemplate.maxFeedInterval ~ ' hour' %}
-                        <tr {% if pet.lastMeal is not null and date(pet.lastMeal | date_modify(hour)) < date() %}
+                        <tr {% if pet.lastMeal is not null and date(pet.lastMeal | date_modify(hour)) > date() %}
                                     class="success"
-                                {% elseif pet.lastMeal is not null and (date(pet.lastMeal | date_modify(hour)) > date() and date(pet.lastMeal | date_modify(hourMax)) < date() ) %}
+                                {% elseif pet.lastMeal is not null and (date(pet.lastMeal | date_modify(hour)) < date() and date(pet.lastMeal | date_modify(hourMax)) > date() ) %}
                                     class="warning"
                                 {% else %}
                                     class="danger"
@@ -53,7 +53,7 @@
                             <td>
                                 {% if pet.lastMeal is not null %}
                                     
-                                    {{ pet.lastMeal | date_modify(hour) | date("d/m/Y H:i:s") }}
+                                    {{ pet.lastMeal | date_modify(hour) | date_format }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}

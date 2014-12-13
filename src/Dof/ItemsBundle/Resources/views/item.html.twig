@@ -57,6 +57,33 @@
                             </a>
                         </p>
                         {% endif %}
+
+                        {# PetsManagerButton #}
+
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') and not item.personalized and itemTemplate.minFeedInterval is defined %}
+                        <p>
+                            <a href="{{ path('dof_items_manager_pets_add', {id: itemTemplate.id}) }}"><button type="button" class="btn btn-default">Elever</button></a>
+                        </p>
+                        {% elseif is_granted('IS_AUTHENTICATED_FULLY') and  item.personalized and itemTemplate.minFeedInterval is defined %}
+                        <p>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-danger">Elever</button>
+                              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ path('dof_items_manager_pets_add', {id: itemTemplate.id}) }}">Elever</a></li>
+                                <form method="POST" name="feedPets" action="{{ path('dof_items_manager_pets_feed') }}">
+                                    <input type="hidden"  name="pets[]" value="{{ itemTemplate.id }}" >
+                                    <li><button type="submit" class="btn btn-primary">Nourrir</button></li>
+                                </form>
+                              </ul>
+                            </div>
+                        </p>
+                        {% endif %}
+
+                        {# EndPetsManagerButton #}
                     </div>
                         {% if itemTemplate.weapon %}
                             <div class="panel panel-default" class="col-sm-3">
