@@ -23,7 +23,7 @@ class PetsManagerCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $repo = $em->getRepository('DofItemsManagerBundle:Item');
 
         $pets = $repo->getAllPetsNotification();
