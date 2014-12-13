@@ -56,6 +56,13 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
     protected $name;
 
     /**
+    * @var boolean
+    *
+    * @ORM\Column(name="sticky", type="boolean")
+    */
+    protected $sticky;
+
+    /**
     * @var Stuff
     *
     * @ORM\OneToMany(targetEntity="Dof\BuildBundle\Entity\Stuff", mappedBy="hat")
@@ -169,6 +176,8 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
 
     public function __construct()
     {
+        $this->sticky = true;
+
         $this->stuffsHat = new ArrayCollection();
         $this->stuffsCloak = new ArrayCollection();
         $this->stuffsAmulet = new ArrayCollection();
@@ -242,6 +251,39 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
     public function getName()
     {
         return $this->name;
+    }
+    
+    /**
+    * Set sticky
+    *
+    * @param boolean $sticky
+    * @return Item
+    */
+    public function setSticky($sticky)
+    {
+        $this->sticky = $sticky;
+
+        return $this;
+    }
+
+    /**
+    * Get sticky
+    *
+    * @return boolean
+    */
+    public function getSticky()
+    {
+        return $this->sticky;
+    }
+
+    /**
+    * Get sticky
+    *
+    * @return boolean
+    */
+    public function isSticky()
+    {
+        return $this->sticky;
     }
 
     public function getStuffs(){

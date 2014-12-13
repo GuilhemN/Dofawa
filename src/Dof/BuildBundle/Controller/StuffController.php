@@ -51,10 +51,11 @@ class StuffController extends Controller
                 $slot = 0;
 
             $bItem = $iFact->createItem($item, null, $stuff->getCharacter()->getOwner());
+            $bItem->setSticky(false);
             $type = $stuff->getItemType($bItem, $slot);
             $lItem = $stuff->{'get' . ucfirst($type)}();
 
-            if(!empty($lItem) && $lItem->getName() == null && count($lItem->getStuffs()) <= 1){
+            if(!empty($lItem) && !$lItem->isSticky() && $lItem->getName() == null && count($lItem->getStuffs()) <= 1){
                 $em->remove($lItem);
                 $em->flush();
             }
