@@ -4,13 +4,15 @@ namespace Dof\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\Persistence\IdentifiableInterface;
+
 /**
  * QuestObjective
  *
  * @ORM\Table(name="dof_quest_step_objectives")
  * @ORM\Entity(repositoryClass="Dof\QuestBundle\Entity\QuestObjectiveRepository")
  */
-class QuestObjective
+class QuestObjective implements IdentifiableInterface
 {
     /**
      * @var integer
