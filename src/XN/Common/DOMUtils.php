@@ -19,13 +19,13 @@ class DOMUtils
 	public static function getElementsByClassName(DOMNode $node = null, $className, $maxLevel = null)
 	{
 		return self::getElementsBy($node, function ($child) use ($className) {
-			return $child instanceof DOMElement && dom_utils::hasClass($child, $className);
+			return $child instanceof DOMElement && self::hasClass($child, $className);
 		}, $maxLevel);
 	}
 	public static function getFirstElementByClassName(DOMNode $node = null, $className, $maxLevel = null)
 	{
 		return self::getFirstElementBy($node, function ($child) use ($className) {
-			return $child instanceof DOMElement && dom_utils::hasClass($child, $className);
+			return $child instanceof DOMElement && self::hasClass($child, $className);
 		}, $maxLevel);
 	}
 	public static function getElementsByNodeName(DOMNode $node = null, $nodeName, $maxLevel = null)
