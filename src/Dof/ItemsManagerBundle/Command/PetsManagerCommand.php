@@ -24,6 +24,7 @@ class PetsManagerCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine')->getManager();
+        $nm = $this->getContainer()->get('notification_manager');
         $repo = $em->getRepository('DofItemsManagerBundle:Pet');
 
         $pets = $repo->getAllPetsNotification();
@@ -35,11 +36,11 @@ class PetsManagerCommand extends ContainerAwareCommand
 
             $nextMeal = $lastMeal->modify('+' . $pet->getItemTemplate()->getMinFeedInterval() . ' hour');
             if($nextMeal < $now && $nextMeal > $pet->getLastNotification()){
-                $this->getContainer()->get('notification_manager')->addNotification($pet, 'pets.hungry', $pet->getOwner());
+                $nm->addNotification($pet, 'pets.hungry', $pet->getOwner());
                 $notifs++;
             }
         }
-        
+
         $output->writeln('<info>' . $notifs .' notifications ont été envoyées.</info>');
     }
 }

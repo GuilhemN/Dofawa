@@ -26,10 +26,12 @@ class PetRepository extends EntityRepository
 
 	public function getAllPetsNotification(){
 		$qb = $this->createQueryBuilder('i')
-				   ->select('i', 'u')
+				   ->select('i', 'u', 'it')
+				   ->join('i.itemTemplate','it')
 				   ->join('i.owner','u')
 				   ->where('i.raise = true')
 				   ->andWhere('u.petsManagerNotifications = true')
+				   ->andWhere('DATE_ADD(i.lastMeal, INTERVAL it.minFeedInterval HOUR)')
 		;
 
 		return $qb->getQuery()->getResult();
