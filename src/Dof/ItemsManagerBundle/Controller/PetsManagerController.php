@@ -28,6 +28,7 @@ class PetsManagerController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $pet = $iFact->createItem($item, null, $this->getUser());
+        $pet->setLastMeal(new \Datetime('now'));
         $pet->setRaise(true);
         $pet->setSticky(true);
         $em->persist($pet);
@@ -77,11 +78,11 @@ class PetsManagerController extends Controller
             if( ($item->getOwner() === $pet->getOwner()) && ($item->getId() == $pet->getId()) ){
                 $pet->setRaise(false);
                 $em->persist($pet);
-                $em->flush(); 
+                $em->flush();
                 break;
             }
         }
-            
+
 
    return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
             'pets' => $pets
@@ -104,11 +105,11 @@ class PetsManagerController extends Controller
             if( ($item->getOwner() === $pet->getOwner()) && ($item->getId() == $pet->getId()) ){
                 $pet->setRaise(true);
                 $em->persist($pet);
-                $em->flush(); 
+                $em->flush();
                 break;
             }
-        } 
-            
+        }
+
         return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
             'pets' => $petsRaisable
             )));
