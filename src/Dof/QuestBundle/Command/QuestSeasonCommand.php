@@ -36,11 +36,12 @@ class QuestSeasonCommand extends ContainerAwareCommand
 
         foreach ($input->getOption('category') as $category){
             $category = $cRepo->findBySlug($category);
-            $em
+            $return = $em
                 ->createQuery('UPDATE DofQuestBundle:Quest s SET s.season = :value WHERE s.category = :category')
                 ->setParameter('value', $value)
                 ->setParameter('category', $category)
                 ->execute();
+            $output->writeln(var_dump($return));
         }
 
         foreach ($input->getOption('quest') as $quest){
