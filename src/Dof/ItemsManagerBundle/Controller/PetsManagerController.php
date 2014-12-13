@@ -26,9 +26,11 @@ class PetsManagerController extends Controller
             throw $this->createAccessDeniedException();
         $iFact = $this->get('item_factory');
         $em = $this->getDoctrine()->getManager();
+        $date = new \Datetime();
+        $date->format('Y-m-d H:i:s');
 
         $pet = $iFact->createItem($item, null, $this->getUser());
-        $pet->setLastMeal(new \Datetime('now'));
+        $pet->setLastMeal($date);
         $pet->setRaise(true);
         $pet->setSticky(true);
         $em->persist($pet);
