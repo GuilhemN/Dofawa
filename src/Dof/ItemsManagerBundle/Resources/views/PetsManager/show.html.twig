@@ -1,12 +1,12 @@
 {% extends '::layout.html.twig' %}
 
-{% autoescape %}
 {% block breadcrumb %}
 	{{ parent() }}
 	<li><a href="{{ path('dof_items_manager_homepage') }}">{{ 'inventory'|trans({}, 'generalTrans') }}</a></li><li>Familiers</li>
 {% endblock %}
 
 {% block body %}
+{% autoescape %}
 	<h3>Gestionaire de familiers</h3>
 
     <div class="panel panel-default">
@@ -73,6 +73,5 @@
             <button type="submit" class="btn btn-primary">Nourrir</button>
         </form>
     </div>
-
-{% endblock %}
 {% endautoescape %}
+{% endblock %}
