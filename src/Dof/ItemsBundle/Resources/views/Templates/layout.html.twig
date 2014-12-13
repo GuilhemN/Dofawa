@@ -14,7 +14,7 @@
     </div>
     <div class="panel-body">
         {% endif %}
-        <div>
+        <div class="row">
             {# Left column #}
             <div class="col-sm-3">
                 <a href="{{ path('dof_items_show', {'slug': itemTemplate.slug}) }}" class="thumbnail">
@@ -75,22 +75,22 @@
             <div class="tab-content">
                 {# Effets #}
                 {% if characts | trim is not empty %}
-                <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                    {{ characts }}
-                </div>
+                    <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                        {{ characts }}
+                    </div>
                 {% endif %}
 
                 {# Recette #}
                 {% if itemTemplate.components is not empty %}
-                <div class="tab-pane" id="recipe-item{{ item.id }}">
-                    {% for component in itemTemplate.components %}
-                    <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
-                        {{ component.component.getName(locales()) }}
-                    </a>
-                    x {{ component.quantity }}
-                    <br />
-                    {% endfor %}
-                </div>
+                    <div class="tab-pane" id="recipe-item{{ item.id }}">
+                        {% for component in itemTemplate.components %}
+                        <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
+                            {{ component.component.getName(locales()) }}
+                        </a>
+                        x {{ component.quantity }}
+                        <br />
+                        {% endfor %}
+                    </div>
                 {% endif %}
 
                 {% block tabs_content %}
@@ -99,24 +99,24 @@
 
             {# Close right column #}
         </div>
-    </div>
-    <div>
-        <hr />
-        {% if itemTemplate.equipment and itemTemplate.set is not null %}
-        <strong>
-            <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
-                {{ itemTemplate.set.getName(locales()) }}
-            </a>
-        </strong>
-        <br />
-        {% endif %}
-        {% if itemTemplate.description == '#1' %}
+        <div>
+            <hr />
+            {% if itemTemplate.equipment and itemTemplate.set is not null %}
+            <strong>
+                <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
+                    {{ itemTemplate.set.getName(locales()) }}
+                </a>
+            </strong>
+            <br />
+            {% endif %}
+            {% if itemTemplate.description == '#1' %}
             Arme éthérée
-        {% else %}
+            {% else %}
             {{ itemTemplate.getDescription(locales()) }}
-        {% endif %}
+            {% endif %}
 
-        {% if slugs is defined and slugs is not empty %}
+            {% if slugs is defined and slugs is not empty %}
+        </div>
     </div>
     <hr />
     <form class="form-horizontal" method="POST" action="{{ path('dof_build_additem_post') }}">
@@ -155,7 +155,7 @@
     {% endif %}
 
     {% if display != 'modal' %}
-</div>
+    </div>
 </div>
 {% endif %}
 {% endautoescape %}
