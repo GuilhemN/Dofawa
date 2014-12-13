@@ -1,2 +1,7 @@
-{% embed "DofItemsBundle:Templates:layout.html.twig" %}
-{% endembed %}
+{% if item.personalized %}
+    {% set embed_ = 'DofItemsBundle:Templates:personalized.html.twig' %}
+{% else %}
+    {% set embed_ = 'DofItemsBundle:Templates:layout.html.twig' %}
+{% endif %}
+
+{% extends embed_ %}
