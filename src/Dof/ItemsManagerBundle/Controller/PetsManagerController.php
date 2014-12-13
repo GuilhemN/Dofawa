@@ -87,4 +87,30 @@ class PetsManagerController extends Controller
             'pets' => $pets
             )));
     }
+
+    public function raiseAction(Pet $item)
+    {
+        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+            throw $this->createAccessDeniedException();
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
+        $petsRaisable = $repository->getRaisablePets($this->getUser());
+
+        $repoItem = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Item');
+        $pets = $repoItem->findWithOptions(array(), $this->getUser());
+
+        foreach ($pets as $pet) {
+            if( ($item->getOwner() === $pet->getOwner()) && ($item->getId() == $pet->getId()) ){
+                $pet->setRaise(true);
+                $em->persist($pet);
+                $em->flush(); 
+                break;
+            }
+        } 
+            
+        return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
+            'pets' => $petsRaisable
+            )));
+    }
 }

@@ -23,7 +23,11 @@
                             <button type="submit" class="btn btn-link">Nourrir</button>
                         </form>
                     </li>
-                    <li><a href="{{ path('dof_items_manager_pets_del', {id: item.id}) }}"><button class="btn btn-primary">Supprimer</button></a></li>
+                    {% if item.raise %}
+                        <li><a href="{{ path('dof_items_manager_pets_del', {id: item.id}) }}"><button class="btn btn-primary">Supprimer</button></a></li>
+                    {% else %}
+                        <li><a href="{{ path('dof_items_manager_pets_raise', {id: item.id}) }}"><button class="btn btn-primary">Elever</button></a></li>
+                    {% endif %}
                 </ul>
             </div>
         </p>
