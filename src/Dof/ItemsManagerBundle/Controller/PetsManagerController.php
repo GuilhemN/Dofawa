@@ -7,6 +7,8 @@ use Dof\ItemsBundle\Entity\ItemTemplate;
 
 use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
 
+use Dof\ItemsManagerBundle\ItemFactory;
+
 class PetsManagerController extends Controller
 {
     public function showAction()
