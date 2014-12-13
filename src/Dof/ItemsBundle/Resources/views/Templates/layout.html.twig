@@ -8,7 +8,7 @@
             {% block name %}
                 {{ itemTemplate.getName(locales()) }}
             {% endblock %}
-            <font size="2">{{ 'level' | trans({'%level%': itemTemplate.level})}}</font>
+            <font size="2">{{ 'level' | trans({'%level%': itemTemplate.level}) }}</font>
             <span class="pull-right">{{ itemTemplate.type.getName(locales()) }}</span>
         </h3>
     </div>
@@ -52,123 +52,86 @@
                 {% set item_content = '' %}
                 {# Menu tabs #}
                 <ul class="nav nav-pills" role="tablist">
-                    {# Charactéristiques #}
-                    <li class="active"><a href="#caracts-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Effets</a></li>
-                    {% set item_content %}
-                    {{ item_content }}
-                    <div class="tab-pane active" id="caracts-item{{ itemTemplate.id }}">
+                    {% set isActivedTab = false %}
+                    {% set characts %}
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
-                    </div>
                     {% endset %}
 
-                    {#% if itemTemplate.criteria is not empty %}
-                    <li><a href="#conditions-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Conditions</a></li>
-                    {% set item_content %}
-                    {{ item_content }}
-                    <div class="tab-pane" id="conditions-item{{ itemTemplate.id }}">
-                    {{ itemTemplate.criteria }}
-                </div>
-                {% endset %}
-                {% endif %#}
+                    {% block tabs_menu %}
+                        {# Effets #}
+                        {% if characts | trim is not empty %}
+                            {% set isActiveTab = true %}
+                            <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
+                        {% endif %}
 
-                {# Nourriture familier #}
-                {% if itemTemplate.pet and (itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty) %}
-                <li><a href="#food-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
-                {% set item_content %}
-                {{ item_content }}
-                <div class="tab-pane" id="food-item{{ itemTemplate.id }}">
-                    {% for food_type in itemTemplate.foodTypes %}
-                    {{ food_type.getName(locales()) }}
-                    <br />
-                    {% endfor %}
-                    {% for food_item in itemTemplate.foodItems %}
-                    {{ food_item.getName(locales()) }}
-                    <br />
-                    {% endfor %}
-                </div>
-                {% endset %}
-                {% endif %}
+                        {# Recette #}
+                        {% if itemTemplate.components is not empty %}
+                            <li><a {% if not isActivedTab %}{% set isActivedTab = true %}class="active" {% endif %}href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                        {% endif %}
+                    {% endblock %}
 
-                {# Recette #}
-                {% if itemTemplate.components is not empty %}
-                <li><a href="#recipe-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Recette</a></li>
-                {% set item_content %}
-                {{ item_content }}
-                <div class="tab-pane" id="recipe-item{{ itemTemplate.id }}">
-                    {% for component in itemTemplate.components %}
-                    <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
-                        {{ component.component.getName(locales()) }}
-                    </a>
-                    x {{ component.quantity }}
-                    <br />
-                    {% endfor %}
-                </div>
-                {% endset %}
-                {% endif %}
-            </ul>
+                </ul>
+                <div class="tab-content">
+                    {% block tabs_content %}
+                        {# Effets #}
+                        {% if characts | trim is not empty %}
+                        <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                            {{ characts }}
+                        </div>
+                        {% endif %}
 
-            {# Tab panes #}
-            <div class="tab-content">
-                {{ item_content }}
-            </div>
+                        {# Recette #}
+                        {% if itemTemplate.components is not empty %}
+                        <div class="tab-pane" id="recipe-item{{ item.id }}">
+                            {% for component in itemTemplate.components %}
+                            <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
+                                {{ component.component.getName(locales()) }}
+                            </a>
+                            x {{ component.quantity }}
+                            <br />
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    {% endblock %}
+                </div>
 
             {# Close right column #}
-        </div>
-    </div>
-    <hr />
-    {% if itemTemplate.equipment and itemTemplate.set is not null %}
-    <strong>
-        <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
-            {{ itemTemplate.set.getName(locales()) }}
-        </a>
-    </strong>
-    <br />
-    {% endif %}
-    {% if itemTemplate.description == '#1' %}
-    Arme éthérée
-    {% else %}
-    {{ itemTemplate.getDescription(locales()) }}
-    {% endif %}
-
-    {% if slugs is defined and slugs is not empty %}
-    <hr />
-    <form class="form-horizontal" method="POST" action="{{ path('dof_build_additem_post') }}">
-        <input name="stuff" type="hidden" value="{{ slugs.stuff }}">
-        <input name="useSlot" value="1" type="hidden" />
-        <input name="items[{{ slot_number | default(0) }}]" type="hidden" value="{{ itemTemplate.id }}">
-
-        <div class="col-lg-offset-3 col-lg-6">
-            <div class="form-group">
-                <label for="percent{{ itemTemplate.id }}" class="col-sm-2 control-label">Qualité</label>
-                <div class="col-sm-10">
-                    <div class="input-group">
-                        <input class="form-control" id="percent{{ itemTemplate.id }}" type="number" name="percent" value="85" step="5" min="0" max="100">
-                        <span class="input-group-addon">%</span>
-                    </div>
-                </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Equiper</button>
-                </div>
-            </div>
+        {% if block('tabs_content') | trim is not empty %}
         </div>
-    </form>
-    {% endif %}
-    {% if is_granted('ROLE_SUPER_ADMIN') %}
-    <hr />
-    <div class="text-center">
-        <a class="btn btn-default" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}">
-            Editer (Admin)
-        </a>
-        <a class="btn btn-default" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}">
-            Ajouter image
-        </a>
-    </div>
-    {% endif %}
+        {% endif %}
+        <div>
+            <hr />
+            {% block footer %}
+            {% endblock %}
 
-    {% if display != 'modal' %}
-</div>
+            {% if itemTemplate.description == '#1' %}
+                Arme éthérée
+            {% else %}
+                {{ itemTemplate.getDescription(locales()) }}
+            {% endif %}
+        </div>
+        {% if block('tabs_content') | trim is empty %}
+        </div>
+        {% endif %}
+
+        {% block more %}
+        {% endblock %}
+
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <hr />
+        <div class="text-center">
+            <a class="btn btn-default" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}">
+                Editer (Admin)
+            </a>
+            <a class="btn btn-default" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}">
+                Ajouter image
+            </a>
+        </div>
+        {% endif %}
+
+        {% if display != 'modal' %}
+    </div>
 </div>
 {% endif %}
 {% endautoescape %}

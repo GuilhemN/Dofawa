@@ -82,6 +82,13 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $steps;
 
     /**
+    * @var boolean
+    *
+    * @ORM\Column(name="season", type="boolean")
+    */
+    private $season;
+
+    /**
     * Set id
     *
     * @return Quest
@@ -273,6 +280,29 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getSteps()
     {
         return $this->steps;
+    }
+
+    /**
+    * Set season
+    *
+    * @param boolean $season
+    * @return Quest
+    */
+    public function setSeason($season)
+    {
+        $this->season = $season;
+
+        return $this;
+    }
+
+    /**
+    * Get season
+    *
+    * @return boolean
+    */
+    public function getSeason()
+    {
+        return $this->season;
     }
 
     public function __toString(){
