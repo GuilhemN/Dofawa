@@ -30,14 +30,14 @@ class QuestObjective
     /**
      * @var integer
      *
-     * @ORM\Column(name="x", type="integer")
+     * @ORM\Column(name="x", type="integer", nullable=true)
      */
     private $x;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="y", type="integer")
+     * @ORM\Column(name="y", type="integer", nullable=true)
      */
     private $y;
 
@@ -139,7 +139,7 @@ class QuestObjective
     {
         return $this->y;
     }
-    
+
     /**
     * Set step
     *
