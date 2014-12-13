@@ -26,10 +26,10 @@ class PetRepository extends EntityRepository
 
 	public function getAllPetsNotification(){
 		$qb = $this->createQueryBuilder('i')
-				   ->select('i')
-				   ->join('i.owner,u')
-				   ->where('i.class = "pet"')
-				   ->addWere('u.petsManagerNotifications == true')
+				   ->select('i', 'u')
+				   ->join('i.owner','u')
+				   ->where('i.raise is not NULL')
+				   ->andWhere('u.petsManagerNotifications = true')
 		;
 
 		return $qb->getQuery()->getResult();
