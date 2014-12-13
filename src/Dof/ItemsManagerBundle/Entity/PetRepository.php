@@ -23,4 +23,15 @@ class PetRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function getAllPetsNotification(){
+		$qb = $this->createQueryBuilder('i')
+				   ->select('i')
+				   ->join('i.owner,u')
+				   ->where('i.class = "pet"')
+				   ->addWere('u.petsManagerNotifications == true')
+		;
+
+		return $qb->getQuery()->getResult();
+	}
 }

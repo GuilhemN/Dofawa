@@ -136,6 +136,13 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     */
     private $builds;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="petsManagerNotifications", type="boolean")
+     */
+    private $petsManagerNotifications;
+
     public function __construct()
     {
         $this->builds = new ArrayCollection();
@@ -478,5 +485,28 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
         return 'uploads/avatars';
+    }
+
+    /**
+     * Set petsManagerNotifications
+     *
+     * @param boolean $petsManagerNotifications
+     * @return User
+     */
+    public function setPetsManagerNotifications($petsManagerNotifications)
+    {
+        $this->petsManagerNotifications = $petsManagerNotifications;
+
+        return $this;
+    }
+
+    /**
+     * Get petsManagerNotifications
+     *
+     * @return boolean
+     */
+    public function getPetsManagerNotifications()
+    {
+        return $this->petsManagerNotifications;
     }
 }

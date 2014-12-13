@@ -43,6 +43,13 @@ class Pet extends Animal
     protected $mimibioteTemplate;
 
     /**
+     * @var datetime
+     *
+     * @ORM\Column(name="last_notification", type="datetime")
+     */
+    protected $lastNotification;
+
+    /**
      * Set lastMeal
      *
      * @param datetime $lastMeal
@@ -153,6 +160,29 @@ class Pet extends Animal
     public function getMimibioteTemplate()
     {
         return ($this->mimibioteTemplate !== null) ? $this->mimibioteTemplate : $this->itemTemplate;
+    }
+
+    /**
+     * Set lastNotification
+     *
+     * @param datetime $lastNotification
+     * @return Pet
+     */
+    public function setLastNotification($lastNotification)
+    {
+        $this->lastNotification = $lastNotification;
+
+        return $this;
+    }
+
+    /**
+     * Get lastNotification
+     *
+     * @return datetime
+     */
+    public function getLastNotification()
+    {
+        return $this->lastNotification;
     }
 
     public function isPet() { return true; }
