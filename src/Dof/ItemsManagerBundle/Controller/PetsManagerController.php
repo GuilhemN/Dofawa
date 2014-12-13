@@ -25,6 +25,7 @@ class PetsManagerController extends Controller
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
         $iFact = $this->get('item_factory');
+        $em = $this->getDoctrine()->getManager();
 
         $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($id);
         $em = $this->getDoctrine()->getManager();
