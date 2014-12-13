@@ -100,6 +100,62 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
 	 */
 	private $relations;
 
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="personalized_description_fr", type="text", nullable=true)
+    */
+    private $personalizedDescriptionFr;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="personalized_description_en", type="text", nullable=true)
+    */
+    private $personalizedDescriptionEn;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="personalized_description_de", type="text", nullable=true)
+    */
+    private $personalizedDescriptionDe;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="personalized_description_es", type="text", nullable=true)
+    */
+    private $personalizedDescriptionEs;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="personalized_description_it", type="text", nullable=true)
+    */
+    private $personalizedDescriptionIt;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="personalized_description_pt", type="text", nullable=true)
+    */
+    private $personalizedDescriptionPt;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="personalized_description_ja", type="text", nullable=true)
+    */
+    private $personalizedDescriptionJa;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="personalized_description_ru", type="text", nullable=true)
+    */
+    private $personalizedDescriptionRu;
+
 	public function __construct()
 	{
 		$this->relations = new ArrayCollection();
@@ -345,7 +401,7 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
 
 	public function expandDescription(array $context, $locale = 'fr')
 	{
-		$tpl = $this->getDescription($locale);
+		$tpl = ($this->getPersonalizedDescription($locale) !== null) ? $this->getPersonalizedDescription($locale) : $this->getDescription($locale);
 		if ($tpl === null)
 			return [ ];
 		$ctx2 = $context + [
@@ -362,4 +418,238 @@ class EffectTemplate implements IdentifiableInterface, TimestampableInterface
 			3 => call_user_func($this->compiledParam3Expression, $ctx2[1], $ctx2[2], $ctx2[3])
 		]);
 	}
+    /**
+    * Set personalizedDescriptionFr
+    *
+    * @param string $personalizedDescriptionFr
+    * @return object
+    */
+    public function setPersonalizedDescriptionFr($personalizedDescriptionFr)
+    {
+        $this->personalizedDescriptionFr = $personalizedDescriptionFr;
+
+        return $this;
+    }
+
+    /**
+    * Get personalizedDescriptionFr
+    *
+    * @return string
+    */
+    public function getPersonalizedDescriptionFr()
+    {
+        return $this->personalizedDescriptionFr;
+    }
+
+    /**
+    * Set personalizedDescriptionEn
+    *
+    * @param string $personalizedDescriptionEn
+    * @return object
+    */
+    public function setPersonalizedDescriptionEn($personalizedDescriptionEn)
+    {
+        $this->personalizedDescriptionEn = $personalizedDescriptionEn;
+
+        return $this;
+    }
+
+    /**
+    * Get personalizedDescriptionEn
+    *
+    * @return string
+    */
+    public function getPersonalizedDescriptionEn()
+    {
+        return $this->personalizedDescriptionEn;
+    }
+
+    /**
+    * Set personalizedDescriptionDe
+    *
+    * @param string $personalizedDescriptionDe
+    * @return object
+    */
+    public function setPersonalizedDescriptionDe($personalizedDescriptionDe)
+    {
+        $this->personalizedDescriptionDe = $personalizedDescriptionDe;
+
+        return $this;
+    }
+
+    /**
+    * Get personalizedDescriptionDe
+    *
+    * @return string
+    */
+    public function getPersonalizedDescriptionDe()
+    {
+        return $this->personalizedDescriptionDe;
+    }
+
+    /**
+    * Set personalizedDescriptionEs
+    *
+    * @param string $personalizedDescriptionEs
+    * @return object
+    */
+    public function setPersonalizedDescriptionEs($personalizedDescriptionEs)
+    {
+        $this->personalizedDescriptionEs = $personalizedDescriptionEs;
+
+        return $this;
+    }
+
+    /**
+    * Get personalizedDescriptionEs
+    *
+    * @return string
+    */
+    public function getPersonalizedDescriptionEs()
+    {
+        return $this->personalizedDescriptionEs;
+    }
+
+    /**
+    * Set personalizedDescriptionIt
+    *
+    * @param string $personalizedDescriptionIt
+    * @return object
+    */
+    public function setPersonalizedDescriptionIt($personalizedDescriptionIt)
+    {
+        $this->personalizedDescriptionIt = $personalizedDescriptionIt;
+
+        return $this;
+    }
+
+    /**
+    * Get personalizedDescriptionIt
+    *
+    * @return string
+    */
+    public function getPersonalizedDescriptionIt()
+    {
+        return $this->personalizedDescriptionIt;
+    }
+
+    /**
+    * Set personalizedDescriptionPt
+    *
+    * @param string $personalizedDescriptionPt
+    * @return object
+    */
+    public function setPersonalizedDescriptionPt($personalizedDescriptionPt)
+    {
+        $this->personalizedDescriptionPt = $personalizedDescriptionPt;
+
+        return $this;
+    }
+
+    /**
+    * Get personalizedDescriptionPt
+    *
+    * @return string
+    */
+    public function getPersonalizedDescriptionPt()
+    {
+        return $this->personalizedDescriptionPt;
+    }
+
+    /**
+    * Set personalizedDescriptionJa
+    *
+    * @param string $personalizedDescriptionJa
+    * @return object
+    */
+    public function setPersonalizedDescriptionJa($personalizedDescriptionJa)
+    {
+        $this->personalizedDescriptionJa = $personalizedDescriptionJa;
+
+        return $this;
+    }
+
+    /**
+    * Get personalizedDescriptionJa
+    *
+    * @return string
+    */
+    public function getPersonalizedDescriptionJa()
+    {
+        return $this->personalizedDescriptionJa;
+    }
+
+    /**
+    * Set personalizedDescriptionRu
+    *
+    * @param string $personalizedDescriptionRu
+    * @return object
+    */
+    public function setPersonalizedDescriptionRu($personalizedDescriptionRu)
+    {
+        $this->personalizedDescriptionRu = $personalizedDescriptionRu;
+
+        return $this;
+    }
+
+    /**
+    * Get personalizedDescriptionRu
+    *
+    * @return string
+    */
+    public function getPersonalizedDescriptionRu()
+    {
+        return $this->personalizedDescriptionRu;
+    }
+
+    /**
+    * Set personalizedDescription
+    *
+    * @param string $personalizedDescription
+    * @param string $locale
+    * @return object
+    */
+    public function setPersonalizedDescription($personalizedDescription, $locale = 'fr')
+    {
+        switch ($locale) {
+            case 'fr': $this->personalizedDescriptionFr = $personalizedDescription; break;
+            case 'en': $this->personalizedDescriptionEn = $personalizedDescription; break;
+            case 'de': $this->personalizedDescriptionDe = $personalizedDescription; break;
+            case 'es': $this->personalizedDescriptionEs = $personalizedDescription; break;
+            case 'it': $this->personalizedDescriptionIt = $personalizedDescription; break;
+            case 'pt': $this->personalizedDescriptionPt = $personalizedDescription; break;
+            case 'ja': $this->personalizedDescriptionJa = $personalizedDescription; break;
+            case 'ru': $this->personalizedDescriptionRu = $personalizedDescription; break;
+        }
+        return $this;
+    }
+
+    /**
+    * Get personalizedDescription
+    *
+    * @param string|array $locale
+    * @return string
+    */
+    public function getPersonalizedDescription($locale = 'fr')
+    {
+        if (is_array($locale)) {
+            foreach ($locale as $loc) {
+                $personalizedDescription = $this->getPersonalizedDescription($loc);
+                if ($personalizedDescription !== null)
+                return $personalizedDescription;
+            }
+            return null;
+        }
+        switch ($locale) {
+            case 'fr': return $this->personalizedDescriptionFr;
+            case 'en': return $this->personalizedDescriptionEn;
+            case 'de': return $this->personalizedDescriptionDe;
+            case 'es': return $this->personalizedDescriptionEs;
+            case 'it': return $this->personalizedDescriptionIt;
+            case 'pt': return $this->personalizedDescriptionPt;
+            case 'ja': return $this->personalizedDescriptionJa;
+            case 'ru': return $this->personalizedDescriptionRu;
+            default: return null;
+        }
+    }
 }
