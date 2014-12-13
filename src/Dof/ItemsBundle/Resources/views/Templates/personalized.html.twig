@@ -1,4 +1,4 @@
-{% embed "layout.html.twig" %}
+{% embed "DofItemsBundle:Templates:layout.html.twig" %}
     {% block name %}
         {% if item.name is not null %}
             {{ item.name }} ({{ itemTemplate.getName(locales()) }})

@@ -14,6 +14,8 @@
     {% include 'DofItemsBundle:Templates:personalized.html.twig' %}
 {% elseif item.equipment %}
     {% include 'DofItemsBundle:Templates:equipment.html.twig' %}
+{% elseif item.weapon %}
+    {% include 'DofItemsBundle:Templates:weapon.html.twig' %}
 {% else %}
     {% include 'DofItemsBundle:Templates:layout.html.twig' %}
 {% endif %}
