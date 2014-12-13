@@ -1,0 +1,9 @@
+{% embed "layout.html.twig" %}
+    {% block name %}
+        {% if item.name is not null %}
+            {{ item.name }} ({{ itemTemplate.getName(locales()) }})
+        {% else %}
+            {{ itemTemplate.getName(locales()) }}
+        {% endif %}
+    {% endblock %}
+{% endembed %}
