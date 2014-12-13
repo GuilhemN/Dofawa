@@ -7,7 +7,7 @@
             <tr style="padding:4px;">
                 {{ 'ap' | trans({'%1%': ''},'item') }} : {{ itemTemplate.apCost }}
                 <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt="">
-                <br>({{ 'maxCastsPerTurn' | transChoice(itemTemplate.maxCastsPerTurn, {'%count%': itemTemplate.maxCastsPerTurn}) }})
+                <br>({{ 'maxCastsPerTurn' | transchoice(itemTemplate.maxCastsPerTurn, {'%count%': itemTemplate.maxCastsPerTurn}) }})
             </tr>
             <tr style="padding:4px;">
                 {{ 'range' | trans({'%1%': ''},'item') }}:
