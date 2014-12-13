@@ -30,7 +30,7 @@ class PetsManagerController extends Controller
         $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($id);
         $em = $this->getDoctrine()->getManager();
 
-        if($item->getType() == 18)
+        if($item->getType()->getId() == 18)
         {
             $pet = $iFact->createItem($item, null, $this->getUser());
             $pet->setRaise(true);
