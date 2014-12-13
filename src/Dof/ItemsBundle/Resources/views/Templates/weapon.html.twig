@@ -1,1 +1,32 @@
 {% extends "DofItemsBundle:Templates:equipment.html.twig" %}
+
+{% block left_menu %}
+<div class="panel panel-default" class="col-sm-3">
+    <table class="table">
+        <tr style="padding:4px;">
+            {{ 'ap' | trans({'%1%': ''},'item') }}: {{ itemTemplate.apCost }} <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> <br>({{ itemTemplate.maxCastsPerTurn }} {{ 'maxCastsPerTurn' | trans }})
+        </tr>
+        <tr>
+            <td style="padding:4px;">{{ 'range' | trans({'%1%': ''},'item') }}:
+            {% if itemTemplate.minCastRange != 0 or itemTemplate.maxCastRange != 0 %}
+            {% if itemTemplate.minCastRange != itemTemplate.maxCastRange %}
+            {{ itemTemplate.minCastRange }} {{ 'to' | trans }}
+            {% endif %}
+            {{ itemTemplate.maxCastRange }}
+            {% else %}
+            0
+            {% endif %}
+            <img src="{{ asset('bundles/dofitems/img/range.png') }}" alt="">
+
+            {% if itemTemplate.weapon %}
+            <p class="text-center">
+                <img src="{{ path('dof_area_render_normal', { area: itemTemplate.castArea|base64url_encode, type: 'cast' }) }}" style="width: 45px;" alt="" />
+            </p>
+            <hr />
+            Zone : <img src="{{ path('dof_area_render_normal', { area: itemTemplate.type.effectArea|base64url_encode, type: 'effect' }) }}" style="width: 45px;" alt="" />
+            {% endif %}
+        </td></tr>
+        <tr><td style="padding:4px;">{{ 'criticalHits' | trans({'%1%': ''},'item') }}: 1/{{ itemTemplate.criticalHitDenominator }} (+{{ itemTemplate.criticalHitBonus }}) <img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt=""></td></tr>
+    </table>
+</div>
+{% endblock %}
