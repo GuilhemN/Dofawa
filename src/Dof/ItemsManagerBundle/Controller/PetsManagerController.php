@@ -4,6 +4,8 @@ namespace Dof\ItemsManagerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use DofItemsBundle\Entity\PetTemplate;
+
 class PetsManagerController extends Controller
 {
     public function showAction()
@@ -17,25 +19,18 @@ class PetsManagerController extends Controller
         return $this->render('DofItemsManagerBundle:PetsManager:show.html.twig', array('pets' => $pets));
     }
 
-    public function addAction($id)
+    public function addAction(PetTemplate $item)
     {
     	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
         $iFact = $this->get('item_factory');
         $em = $this->getDoctrine()->getManager();
 
-        $item = $em->getRepository('DofItemsBundle:PetTemplate')->findOneById($id);
-        if($item === null)
-            throw $this->createNotFoundException();
-
-        if($item->isPet())
-        {
-            $pet = $iFact->createItem($item, null, $this->getUser());
-            $pet->setRaise(true);
-            $pet->setSticky(true);
-            $em->persist($pet);
-            $em->flush();
-        }
+        $pet = $iFact->createItem($item, null, $this->getUser());
+        $pet->setRaise(true);
+        $pet->setSticky(true);
+        $em->persist($pet);
+        $em->flush();
 
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
         $pets = $repository->getRaisablePets($this->getUser());
