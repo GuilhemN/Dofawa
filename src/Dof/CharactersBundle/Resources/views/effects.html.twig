@@ -2,7 +2,7 @@
     {% set firstCall = true %}
 {% endif %}
 
-{% for effect in effects if (effect.htmlDescription != ('-' or '') and (effect.hidden is not defined or not effect.hidden)) or is_granted('ROLE_SPELL_XRAY') %}
+{% for effect in effects if (effect.htmlDescription != '-' and effect.htmlDescription != '' and (effect.hidden is not defined or not effect.hidden)) or is_granted('ROLE_SPELL_XRAY') %}
     {% if firstCall | default(false) %}
         {% set stack = {} %}
         {% if defaultStack is defined %}
