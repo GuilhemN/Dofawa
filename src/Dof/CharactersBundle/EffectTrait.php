@@ -94,6 +94,8 @@ trait EffectTrait
             else {
                 if($row[0] instanceOf \XN\L10n\LocalizedNameInterface)
                     $name = $row[0]->getName($translator->getLocales());
+                elseif(method_exists($row[0], '__toStringByLocale'))
+                    $name = $row[0]->__toStringByLocale($translator->getLocales());
                 else
                     $name = $row[0];
 

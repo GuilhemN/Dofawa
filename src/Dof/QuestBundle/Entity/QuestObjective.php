@@ -165,6 +165,10 @@ class QuestObjective implements IdentifiableInterface
         return $this->step;
     }
 
+    public function __toStringByLocale($locales){
+        return $this->step->getQuest()->getName($locales);
+    }
+
     public function __toString(){
         return $this->step->getQuest()->getName() . ' [' . $this->step->getName() . ']';
     }
