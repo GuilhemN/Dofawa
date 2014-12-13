@@ -1,5 +1,6 @@
 {% extends '::layout.html.twig' %}
 
+{% autoescape %}
 {% block breadcrumb %}
 	{{ parent() }}
 	<li><a href="{{ path('dof_items_manager_homepage') }}">{{ 'inventory'|trans({}, 'generalTrans') }}</a></li><li>Familiers</li>
@@ -49,7 +50,7 @@
                             </td>
                             <td>
                                 {% if pet.lastMeal is not null %}
-                                    
+
                                     {{ pet.lastMeal | date_modify(hour) | date("d/m/y H:i:s") }}
                                 {% else %}
                                     Jamais!
@@ -74,3 +75,4 @@
     </div>
 
 {% endblock %}
+{% endautoescape %}
