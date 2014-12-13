@@ -35,7 +35,7 @@ class QuestSeasonCommand extends ContainerAwareCommand
         $qRepo = $em->getRepository('DofQuestBundle:Quest');
 
         foreach ($input->getOption('category') as $category){
-            $category = $cRepo->findBySlug($category);
+            $category = $cRepo->findOneBySlug($category);
             if($category === null){
                 $output->writeln('<error>' . $category .' n\'a pas été trouvé.</error>');
                 continue;
@@ -55,7 +55,7 @@ class QuestSeasonCommand extends ContainerAwareCommand
                 ->setParameter('value', $value)
                 ->setParameter('slug', $quest)
                 ->execute();
-            $output->writeln('<info>' . $return .' lignes affectées pour la quête ' . $quest);
+            $output->writeln('<info>' . $return .' lignes affectées pour la quête ' . $quest . '</info>');
         }
 
 
