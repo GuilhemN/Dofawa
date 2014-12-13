@@ -27,7 +27,7 @@ class PetsManagerController extends Controller
         $iFact = $this->get('item_factory');
         $em = $this->getDoctrine()->getManager();
 
-        $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findById($id);
+        $item = $em->getRepository('DofItemsBundle:PetTemplate')->find($id);
         $em = $this->getDoctrine()->getManager();
 
         if($item->isPet())
