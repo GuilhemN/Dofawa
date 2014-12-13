@@ -99,23 +99,20 @@
 
             {# Close right column #}
             </div>
-            <div>
-                <hr />
-                {% block footer %}
-                {% endblock %}
-
-                {% if itemTemplate.description == '#1' %}
-                    Arme éthérée
-                {% else %}
-                    {{ itemTemplate.getDescription(locales()) }}
-                {% endif %}
-
-            </div>
         </div>
+        <hr />
+        {% block footer %}
+        {% endblock %}
+
+        {% if itemTemplate.description == '#1' %}
+            Arme éthérée
+        {% else %}
+            {{ itemTemplate.getDescription(locales()) }}
+        {% endif %}
 
         {% block more %}
         {% endblock %}
-        
+
         {% if is_granted('ROLE_SUPER_ADMIN') %}
         <hr />
         <div class="text-center">
