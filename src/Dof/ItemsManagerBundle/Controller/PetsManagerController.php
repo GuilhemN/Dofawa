@@ -3,9 +3,6 @@
 namespace Dof\ItemsManagerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Dof\ItemsBundle\Entity\ItemTemplate;
-
-use Dof\ItemsManagerBundle\Entity\Item;
 
 class PetsManagerController extends Controller
 {
@@ -28,7 +25,6 @@ class PetsManagerController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $item = $em->getRepository('DofItemsBundle:PetTemplate')->find($id);
-        $em = $this->getDoctrine()->getManager();
 
         if($item->isPet())
         {
