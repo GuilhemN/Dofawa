@@ -101,14 +101,9 @@
             </div>
             <div>
                 <hr />
-                {% if itemTemplate.equipment and itemTemplate.set is not null %}
-                <strong>
-                    <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
-                        {{ itemTemplate.set.getName(locales()) }}
-                    </a>
-                </strong>
-                <br />
-                {% endif %}
+                {% block footer %}
+                {% endblock %}
+                
                 {% if itemTemplate.description == '#1' %}
                     Arme éthérée
                 {% else %}

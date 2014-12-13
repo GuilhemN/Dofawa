@@ -15,3 +15,14 @@
     </p>
     {% endif %}
 {% endblock %}
+
+{% block footer %}
+    {% if itemTemplate.set is not null %}
+        <strong>
+            <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
+                {{ itemTemplate.set.getName(locales()) }}
+            </a>
+        </strong>
+        <br />
+    {% endif %}
+{% endblock %}
