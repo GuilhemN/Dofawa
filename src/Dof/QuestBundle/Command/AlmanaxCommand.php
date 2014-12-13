@@ -31,6 +31,7 @@ class AlmanaxCommand extends ContainerAwareCommand
         $dofus = $doc->getElementById('achievement_dofus');
         $mi = DOMUtils::getFirstElementByClassName($dofus, 'more-infos');
         $quest = DOMUtils::getFirstElementByNodeName($mi, 'p');
+        $output->writeln('<info>HTML trouvé : ' . DOMUtils::outerHTML($quest) . '</info>');
         preg_match('/^(Quête :)? (.)$/', DOMUtils::outerHTML($quest), $title);
 
         $em
@@ -46,7 +47,7 @@ class AlmanaxCommand extends ContainerAwareCommand
             $output->writeln('Quête almanax du jour : ' . $quest->getName());
         }
         else
-            $output->writeln('La quête n\'a pas été trouvé.');
+            $output->writeln('<error>La quête n\'a pas été trouvé.</error>');
 
     }
 }
