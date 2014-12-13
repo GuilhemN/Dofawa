@@ -66,7 +66,7 @@
 
                         {# Recette #}
                         {% if itemTemplate.components is not empty %}
-                            <li><a {% if not isActivedTab %}class="active" {% endif %}href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                            <li><a {% if not isActivedTab %}{% set isActivedTab = true %}lass="active" {% endif %}href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
                         {% endif %}
                     {% endblock %}
 

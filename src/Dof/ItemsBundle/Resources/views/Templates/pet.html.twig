@@ -17,7 +17,7 @@
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    
+
                     {% if item.raise %}
                         <li>
                             <form method="POST" action="{{ path('dof_items_manager_pets_feed') }}">
@@ -39,7 +39,7 @@
 {% block tabs_menu %}
     {{ parent() }}
     {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
-        <li><a href="#food-item{{ item.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
+        <li><a {% if not isActivedTab %}{% set isActivedTab = true %}lass="active" {% endif %}href="#food-item{{ item.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
     {% endif %}
 {% endblock %}
 
