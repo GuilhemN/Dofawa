@@ -241,7 +241,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     public function __construct()
     {
-        $this->faceLabel('I');
+        $this->faceLabel = 'I';
         $this->vitality = 0;
         $this->wisdom = 0;
         $this->strength = 0;
