@@ -14,7 +14,7 @@
     </div>
     <div class="panel-body">
         {% endif %}
-        <div class="row">
+        <div>
             {# Left column #}
             <div class="col-sm-3">
                 <a href="{{ path('dof_items_show', {'slug': itemTemplate.slug}) }}" class="thumbnail">
@@ -100,22 +100,24 @@
             {# Close right column #}
         </div>
     </div>
-    <hr />
-    {% if itemTemplate.equipment and itemTemplate.set is not null %}
-    <strong>
-        <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
-            {{ itemTemplate.set.getName(locales()) }}
-        </a>
-    </strong>
-    <br />
-    {% endif %}
-    {% if itemTemplate.description == '#1' %}
-        Arme éthérée
-    {% else %}
-        {{ itemTemplate.getDescription(locales()) }}
-    {% endif %}
+    <div>
+        <hr />
+        {% if itemTemplate.equipment and itemTemplate.set is not null %}
+        <strong>
+            <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
+                {{ itemTemplate.set.getName(locales()) }}
+            </a>
+        </strong>
+        <br />
+        {% endif %}
+        {% if itemTemplate.description == '#1' %}
+            Arme éthérée
+        {% else %}
+            {{ itemTemplate.getDescription(locales()) }}
+        {% endif %}
 
-    {% if slugs is defined and slugs is not empty %}
+        {% if slugs is defined and slugs is not empty %}
+    </div>
     <hr />
     <form class="form-horizontal" method="POST" action="{{ path('dof_build_additem_post') }}">
         <input name="stuff" type="hidden" value="{{ slugs.stuff }}">
