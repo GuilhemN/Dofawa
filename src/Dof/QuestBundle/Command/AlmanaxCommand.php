@@ -34,7 +34,7 @@ class AlmanaxCommand extends ContainerAwareCommand
         preg_match('/^(Quête :)? (.)$/', DOMUtils::outerHTML($quest), $title);
 
         $em
-            ->createQuery('UPDATE DofQuestBundle:Quest s SET s.season = false WHERE type = :type')
+            ->createQuery('UPDATE DofQuestBundle:Quest s SET s.season = false WHERE s.type = :type')
             ->setParameter('type', QuestType::ALMANAX)
             ->execute();
 
