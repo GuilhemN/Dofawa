@@ -23,19 +23,16 @@
                 <div class="text-center">
                     <p>
                         {% if itemTemplate.preliminary %}
-                        <span class="label label-danger">Bêta</span>
+                            <span class="label label-danger">Bêta</span>
                         {% endif %}
                         {% if itemTemplate.release != 1 %}
-                        <span class="label label-default hidden-xs">{{ itemTemplate.release }}</span>
+                            <span class="label label-default hidden-xs">{{ itemTemplate.release }}</span>
                         {% endif %}
                     </p>
-                    {% if itemTemplate.equipment and not item.personalized %}
-                    <p>
-                        {% for bonus in item.primaryBonus %}
-                        <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
-                        {% endfor %}
-                    </p>
-                    {% endif %}
+
+                    {% block bonus %}
+                    {% endblock %}
+
                     {% if is_granted('ROLE_SUPER_ADMIN') and not itemTemplate.preliminary and itemTemplate.visible %}
                     <p>
                         <a target="_blank" href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ itemTemplate.id }}-{{ itemTemplate.nameFr | slugify }}">
@@ -44,6 +41,9 @@
                     </p>
                     {% endif %}
 
+                    {% block left_menu %}
+                    {% endblock %}
+                    
                     {# PetsManagerButton #}
                     {% if app.user is not empty and itemTemplate.pet and itemTemplate.minFeedInterval is not null %}
                         {% if not item.personalized %}

@@ -12,6 +12,10 @@
 
 {% if item.weapon %}
     {% include 'DofItemsBundle:Templates:weapon.html.twig' %}
+{% elseif item.pet %}
+    {% include 'DofItemsBundle:Templates:pet.html.twig' %}
+{% elseif item.animal %}
+    {% include 'DofItemsBundle:Templates:animal.html.twig' %}
 {% elseif item.equipment %}
     {% include 'DofItemsBundle:Templates:equipment.html.twig' %}
 {% else %}

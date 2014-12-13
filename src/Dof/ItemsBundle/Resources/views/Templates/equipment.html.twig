@@ -5,3 +5,13 @@
 {% endif %}
 
 {% extends embed_ %}
+
+{% block bonus %}
+    {% if not item.personalized %}
+    <p>
+        {% for bonus in item.primaryBonus %}
+        <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
+        {% endfor %}
+    </p>
+    {% endif %}
+{% endblock %}
