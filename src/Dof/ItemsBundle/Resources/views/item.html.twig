@@ -10,13 +10,13 @@
     {% set itemTemplate = item.itemTemplate %}
 {% endif %}
 
-{% if item.weapon %}
+{% if itemTemplate.weapon %}
     {% include 'DofItemsBundle:Templates:weapon.html.twig' %}
-{% elseif item.pet %}
+{% elseif itemTemplate.pet %}
     {% include 'DofItemsBundle:Templates:pet.html.twig' %}
-{% elseif item.animal %}
+{% elseif itemTemplate.animal %}
     {% include 'DofItemsBundle:Templates:animal.html.twig' %}
-{% elseif item.equipment %}
+{% elseif itemTemplate.equipment %}
     {% include 'DofItemsBundle:Templates:equipment.html.twig' %}
 {% else %}
     {% include 'DofItemsBundle:Templates:layout.html.twig' %}
