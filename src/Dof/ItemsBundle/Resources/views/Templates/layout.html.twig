@@ -71,90 +71,90 @@
                     {% block tabs_menu %}
                     {% endblock %}
 
-            </ul>
-            <div class="tab-content">
-                {# Effets #}
-                {% if characts | trim is not empty %}
-                    <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                        {{ characts }}
-                    </div>
-                {% endif %}
+                </ul>
+                <div class="tab-content">
+                    {# Effets #}
+                    {% if characts | trim is not empty %}
+                        <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                            {{ characts }}
+                        </div>
+                    {% endif %}
 
-                {# Recette #}
-                {% if itemTemplate.components is not empty %}
-                    <div class="tab-pane" id="recipe-item{{ item.id }}">
-                        {% for component in itemTemplate.components %}
-                        <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
-                            {{ component.component.getName(locales()) }}
-                        </a>
-                        x {{ component.quantity }}
-                        <br />
-                        {% endfor %}
-                    </div>
-                {% endif %}
+                    {# Recette #}
+                    {% if itemTemplate.components is not empty %}
+                        <div class="tab-pane" id="recipe-item{{ item.id }}">
+                            {% for component in itemTemplate.components %}
+                            <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
+                                {{ component.component.getName(locales()) }}
+                            </a>
+                            x {{ component.quantity }}
+                            <br />
+                            {% endfor %}
+                        </div>
+                    {% endif %}
 
-                {% block tabs_content %}
-                {% endblock %}
-            </div>
+                    {% block tabs_content %}
+                    {% endblock %}
+                </div>
 
             {# Close right column #}
-        </div>
-        <div>
-            <hr />
-            {% if itemTemplate.equipment and itemTemplate.set is not null %}
-            <strong>
-                <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
-                    {{ itemTemplate.set.getName(locales()) }}
-                </a>
-            </strong>
-            <br />
-            {% endif %}
-            {% if itemTemplate.description == '#1' %}
-            Arme éthérée
-            {% else %}
-            {{ itemTemplate.getDescription(locales()) }}
-            {% endif %}
+            </div>
+            <div>
+                <hr />
+                {% if itemTemplate.equipment and itemTemplate.set is not null %}
+                <strong>
+                    <a href="{{ path('dof_set_show', {'slug': itemTemplate.set.slug}) }}">
+                        {{ itemTemplate.set.getName(locales()) }}
+                    </a>
+                </strong>
+                <br />
+                {% endif %}
+                {% if itemTemplate.description == '#1' %}
+                    Arme éthérée
+                {% else %}
+                    {{ itemTemplate.getDescription(locales()) }}
+                {% endif %}
 
-            {% if slugs is defined and slugs is not empty %}
+            </div>
         </div>
-    </div>
-    <hr />
-    <form class="form-horizontal" method="POST" action="{{ path('dof_build_additem_post') }}">
-        <input name="stuff" type="hidden" value="{{ slugs.stuff }}">
-        <input name="useSlot" value="1" type="hidden" />
-        <input name="items[{{ slot_number | default(0) }}]" type="hidden" value="{{ itemTemplate.id }}">
+        {% if slugs is defined and slugs is not empty %}
+        <hr />
+        <form class="form-horizontal" method="POST" action="{{ path('dof_build_additem_post') }}">
+            <input name="stuff" type="hidden" value="{{ slugs.stuff }}">
+            <input name="useSlot" value="1" type="hidden" />
+            <input name="items[{{ slot_number | default(0) }}]" type="hidden" value="{{ itemTemplate.id }}">
 
-        <div class="col-lg-offset-3 col-lg-6">
-            <div class="form-group">
-                <label for="percent{{ itemTemplate.id }}" class="col-sm-2 control-label">Qualité</label>
-                <div class="col-sm-10">
-                    <div class="input-group">
-                        <input class="form-control" id="percent{{ itemTemplate.id }}" type="number" name="percent" value="85" step="5" min="0" max="100">
-                        <span class="input-group-addon">%</span>
+            <div class="col-lg-offset-3 col-lg-6">
+                <div class="form-group">
+                    <label for="percent{{ itemTemplate.id }}" class="col-sm-2 control-label">Qualité</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input class="form-control" id="percent{{ itemTemplate.id }}" type="number" name="percent" value="85" step="5" min="0" max="100">
+                            <span class="input-group-addon">%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Equiper</button>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Equiper</button>
-                </div>
-            </div>
+        </form>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <hr />
+        <div class="text-center">
+            <a class="btn btn-default" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}">
+                Editer (Admin)
+            </a>
+            <a class="btn btn-default" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}">
+                Ajouter image
+            </a>
         </div>
-    </form>
-    {% endif %}
-    {% if is_granted('ROLE_SUPER_ADMIN') %}
-    <hr />
-    <div class="text-center">
-        <a class="btn btn-default" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}">
-            Editer (Admin)
-        </a>
-        <a class="btn btn-default" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}">
-            Ajouter image
-        </a>
-    </div>
-    {% endif %}
+        {% endif %}
 
-    {% if display != 'modal' %}
+        {% if display != 'modal' %}
     </div>
 </div>
 {% endif %}
