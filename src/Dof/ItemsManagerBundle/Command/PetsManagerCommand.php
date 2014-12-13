@@ -31,13 +31,10 @@ class PetsManagerCommand extends ContainerAwareCommand
 
         foreach ($pets as $pet) {
             $lastMeal = $pet->getLastMeal();
-            if($pet->getLastMeal() === null) 
-                $lastMeal =(new Datetime());
 
-            $nextMeal = $lastMeal->modify('+'.$pet->getItemTemplate()->getMinFeedInterval().' hour');
-            if( ($nextMeal < $now) && ($nextMeal > $pet->getLastNotification()) ){
+            $nextMeal = $lastMeal->modify('+' . $pet->getItemTemplate()->getMinFeedInterval() . ' hour');
+            if($nextMeal < $now && $nextMeal > $pet->getLastNotification())
                 $this->getContainer()->get('notification_manager')->addNotification($pet, 'pets.hungry', $pet->getOwner());
-            }
         }
 
     }
