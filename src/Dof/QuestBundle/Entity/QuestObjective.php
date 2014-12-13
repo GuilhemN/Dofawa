@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * QuestObjective
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_quest_step_objectives")
  * @ORM\Entity(repositoryClass="Dof\QuestBundle\Entity\QuestObjectiveRepository")
  */
 class QuestObjective
