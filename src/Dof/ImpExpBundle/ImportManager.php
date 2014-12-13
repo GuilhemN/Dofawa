@@ -10,12 +10,14 @@ class ImportManager
     private $importers;
     private $withRequirements;
     private $runImporters;
+	private $fork;
 
     public function __construct()
     {
         $this->importers = [ ];
         $this->withRequirements = true;
         $this->runImporters = true;
+		$this->fork = function_exists('pcntl_fork') && function_exists('pcntl_waitpid');
     }
 
     public function setWithRequirements($withRequirements)
@@ -37,6 +39,16 @@ class ImportManager
     {
         return $this->runImporters;
     }
+
+	public function setFork($fork)
+	{
+		$this->fork = $fork && function_exists('pcntl_fork') && function_exists('pcntl_waitpid');
+		return $this;
+	}
+	public function getFork()
+	{
+		return $this->fork;
+	}
 
     public function registerDataSet($dataSet, ImporterInterface $importer, array $requirements)
     {
@@ -111,8 +123,25 @@ class ImportManager
                 $this->realImport($requirement, $flags, $output, $progress);
         if ($output !== null && $output->getVerbosity() >= OutputInterface::VERBOSITY_NORMAL)
             $output->writeln('Importing data set <comment>' . $dataSet . '</comment> ...');
-        if ($this->runImporters)
-            $importer['importer']->import($dataSet, $flags, $output, $progress);
+        if ($this->runImporters) {
+			if ($this->fork) {
+				$pid = pcntl_fork();
+				if ($pid < 0)
+					throw new \Exception('Can\'t fork to import the data set');
+				elseif ($pid) {
+					if (pcntl_waitpid($pid, $status) < 0)
+						throw new \Exception('Can\'t wait for the worker process to finish');
+					elseif (!pcntl_wifexited($status))
+						throw new \Exception('The worker process exited abnormally');
+					elseif (($status = pcntl_wexitstatus($status)))
+						throw new \Exception('The worker process failed with status code ' . $status);
+				} else {
+					$importer['importer']->import($dataSet, $flags, $output, $progress);
+					exit(0);
+				}
+			} else
+	            $importer['importer']->import($dataSet, $flags, $output, $progress);
+		}
         $importer['imported'] = true;
         return $this;
     }
