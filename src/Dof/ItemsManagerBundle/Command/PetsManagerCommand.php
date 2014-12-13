@@ -16,7 +16,7 @@ class PetsManagerCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('manager:pets')
+            ->setName('dof:items-manager:pet-notifications')
             ->setDescription('Notifier les utilisateurs si leurs familiers ont faim.')
         ;
     }
