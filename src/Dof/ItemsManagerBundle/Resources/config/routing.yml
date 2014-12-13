@@ -11,3 +11,9 @@ dof_items_manager_pets:
 dof_items_manager_pets_feed:
     pattern:   /pets-manager/feed
     defaults: { _controller: DofItemsManagerBundle:PetsManager:feed }
+
+dof_items_manager_pets_add:
+    pattern:   /pets-manager/add/{id}
+    defaults: { _controller: DofItemsManagerBundle:PetsManager:add}
+    requirements:
+        id: \d+
