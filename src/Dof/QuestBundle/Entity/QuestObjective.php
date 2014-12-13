@@ -164,4 +164,8 @@ class QuestObjective implements IdentifiableInterface
     {
         return $this->step;
     }
+
+    public function __toString(){
+        return $this->step->getQuest();
+    }
 }
