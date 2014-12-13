@@ -10,10 +10,10 @@ use Dof\ImpExpBundle\ImporterFlags;
 
 use Dof\QuestBundle\Entity\QuestObjective;
 
-class QuestStepImporter extends AbstractGameDataImporter
+class QuestObjectiveImporter extends AbstractGameDataImporter
 {
-    const CURRENT_DATA_SET = 'quest_steps_objectives';
-    const BETA_DATA_SET = 'beta_quest_steps_objectives';
+    const CURRENT_DATA_SET = 'quest_step_objectives';
+    const BETA_DATA_SET = 'beta_quest_step_objectives';
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
