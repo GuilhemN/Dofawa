@@ -73,9 +73,8 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                               </button>
                               <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ path('dof_items_manager_pets_add', {id: itemTemplate.id}) }}">Elever</a></li>
                                 <form method="POST" name="feedPets" action="{{ path('dof_items_manager_pets_feed') }}">
-                                    <input type="hidden"  name="pets[]" value="{{ itemTemplate.id }}" >
+                                    <input type="hidden"  name="pets[]" value="{{ item.id }}" >
                                     <li><button type="submit" class="btn btn-primary">Nourrir</button></li>
                                 </form> 
                               </ul>
