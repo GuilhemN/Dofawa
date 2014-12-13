@@ -10,9 +10,7 @@
     {% set itemTemplate = item.itemTemplate %}
 {% endif %}
 
-{% if item.personalized %}
-    {% include 'DofItemsBundle:Templates:personalized.html.twig' %}
-{% elseif item.weapon %}
+{% if item.weapon %}
     {% include 'DofItemsBundle:Templates:weapon.html.twig' %}
 {% elseif item.equipment %}
     {% include 'DofItemsBundle:Templates:equipment.html.twig' %}
