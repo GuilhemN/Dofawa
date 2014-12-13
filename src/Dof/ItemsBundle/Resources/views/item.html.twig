@@ -60,11 +60,11 @@
 
                         {# PetsManagerButton #}
 
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') and not item.personalized and itemTemplate.minFeedInterval is defined %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') and not item.personalized and itemTemplate.minFeedInterval is not null %}
                         <p>
                             <a href="{{ path('dof_items_manager_pets_add', {id: itemTemplate.id}) }}"><button type="button" class="btn btn-default">Elever</button></a>
                         </p>
-                        {% elseif is_granted('IS_AUTHENTICATED_FULLY') and  item.personalized and itemTemplate.minFeedInterval is defined %}
+                        {% elseif is_granted('IS_AUTHENTICATED_FULLY') and  item.personalized and itemTemplate.minFeedInterval is not null %}
                         <p>
                             <div class="btn-group">
                               <button type="button" class="btn btn-danger">Elever</button>

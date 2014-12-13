@@ -2,7 +2,7 @@
 
 {% block breadcrumb %}
 	{{ parent() }}
-	<li>{{ 'inventory'|trans({}, 'generalTrans') }}</li><li><a href="{{ path('dof_items_manager_homepage') }}">Familiers</a></li>
+	<li><a href="{{ path('dof_items_manager_homepage') }}">{{ 'inventory'|trans({}, 'generalTrans') }}</a></li><li>Familiers</li>
 {% endblock %}
 
 {% block body %}
