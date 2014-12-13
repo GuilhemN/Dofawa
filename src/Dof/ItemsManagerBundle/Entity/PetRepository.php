@@ -31,7 +31,7 @@ class PetRepository extends EntityRepository
 				   ->join('i.owner','u')
 				   ->where('i.raise = true')
 				   ->andWhere('u.petsManagerNotifications = true')
-				   ->andWhere('i.nextMeal < NOW() and i.nextMeal > i.lastNotification')
+				   ->andWhere('i.nextMeal < CURRENT_TIMESTAMP() and i.nextMeal > i.lastNotification')
 		;
 
 		return $qb->getQuery()->getResult();
