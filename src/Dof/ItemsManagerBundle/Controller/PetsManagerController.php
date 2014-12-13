@@ -4,7 +4,7 @@ namespace Dof\ItemsManagerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use DofItemsBundle\Entity\PetTemplate;
+use Dof\ItemsBundle\Entity\PetTemplate;
 
 class PetsManagerController extends Controller
 {
