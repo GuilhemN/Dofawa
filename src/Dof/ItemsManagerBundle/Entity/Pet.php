@@ -13,18 +13,17 @@ use Dof\ItemsBundle\Entity\PetTemplate;
 class Pet extends Animal
 {
     /**
-     * @var datetime
-     *
-     * @ORM\Column(name="last_meal", type="datetime")
-     */
+    * @var datetime
+    *
+    * @ORM\Column(name="last_meal", type="datetime")
+    */
     protected $lastMeal;
-
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="after_max", type="boolean")
-     */
-    protected $afterMax;
+    * @var datetime
+    *
+    * @ORM\Column(name="next_meal", type="datetime")
+    */
+    protected $nextMeal;
 
     /**
      * @var boolean
@@ -32,7 +31,6 @@ class Pet extends Animal
      * @ORM\Column(name="raise", type="boolean")
      */
     protected $raise;
-
 
     /**
     * @var Mount
@@ -58,6 +56,8 @@ class Pet extends Animal
     public function setLastMeal($lastMeal)
     {
         $this->lastMeal = $lastMeal;
+        $nextMeal = clone $lastMeal;
+        $this->nextMeal = $nextMeal->modify('+' . $this->getItemTemplate()->getMinFeedInterval() . ' hour');
 
         return $this;
     }
@@ -73,36 +73,13 @@ class Pet extends Animal
     }
 
     /**
-     * Set afterMax
-     *
-     * @param boolean $afterMax
-     * @return Pet
-     */
-    public function setAfterMax($afterMax)
+    * Get nextMeal
+    *
+    * @return datetime
+    */
+    public function getNextMeal()
     {
-        $this->afterMax = $afterMax;
-
-        return $this;
-    }
-
-    /**
-     * Get afterMax
-     *
-     * @return boolean
-     */
-    public function getAfterMax()
-    {
-        return $this->afterMax;
-    }
-
-    /**
-     * Get afterMax
-     *
-     * @return boolean
-     */
-    public function isAfterMax()
-    {
-        return $this->afterMax;
+        return $this->nextMeal;
     }
 
     /**
@@ -138,7 +115,7 @@ class Pet extends Animal
         return $this->raise;
     }
 
-    
+
     /**
     * Set mimibioteTemplate
     *

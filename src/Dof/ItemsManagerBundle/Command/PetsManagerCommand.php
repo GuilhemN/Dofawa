@@ -28,17 +28,11 @@ class PetsManagerCommand extends ContainerAwareCommand
         $repo = $em->getRepository('DofItemsManagerBundle:Pet');
 
         $pets = $repo->getAllPetsNotification();
-        $now = new \DateTime("now");
 
         $notifs = 0;
         foreach ($pets as $pet) {
-            $lastMeal = $pet->getLastMeal();
-
-            $nextMeal = $lastMeal->modify('+' . $pet->getItemTemplate()->getMinFeedInterval() . ' hour');
-            if($nextMeal < $now && $nextMeal > $pet->getLastNotification()){
-                $nm->addNotification($pet, 'pets.hungry', $pet->getOwner());
-                $notifs++;
-            }
+            $nm->addNotification($pet, 'pets.hungry', $pet->getOwner());
+            $notifs++;
         }
 
         $output->writeln('<info>' . $notifs .' notifications ont été envoyées.</info>');
