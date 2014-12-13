@@ -3,3 +3,4 @@ badge.receive: Vous avez reçu un nouveau Badge : <strong>%name%</strong>
 welcome: Bienvenue %name% sur Dofawa !
 news.valided: "L'article <strong>%name%</strong> a bien été validé !"
 news.deleted: "L'article <strong>%name%</strong> n'a pas été accepté !"
+pets.hungry: "Votre familier <strong>%name%</strong> a faim!"

@@ -65,6 +65,13 @@ class NotificationManager
                 ),
                 'path' => 'dof_main_homepage',
             ),
+            'pets.hungry' => array(
+                'translationString' => 'pets.hungry',
+                'translationParams' => array(
+                    'dynamic' => array('%name%' => 'name')
+                ),
+                'path' => 'dof_items_manager_pets',
+            ),
         ];
 
     public function __construct(ContainerInterface $di)
