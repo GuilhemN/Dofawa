@@ -14,7 +14,7 @@ class QuestSeasonCommand extends ContainerAwareCommand
         $this
         ->setName('dof:quest:change-season')
         ->setDescription('Change la saison d\'une quête ou catégorie de quête.')
-        ->addArgument('value', InputArgument::REQUIRED, 'Set the new value', 'false')
+        ->addArgument('value', InputArgument::OPTIONAL, 'Set the new value', 'false')
         ->addOption('category', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Slug d\'une catégorie de quêtes')
         ->addOption('quest', 'q', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Slug d\'une quête')
         ;
