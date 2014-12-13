@@ -106,6 +106,7 @@ class PetsManagerController extends Controller
         foreach ($pets as $pet) {
             if( ($item->getOwner() === $pet->getOwner()) && ($item->getId() == $pet->getId()) ){
                 $pet->setRaise(true);
+                $pet->setLastMeal(new DateTime());
                 $em->persist($pet);
                 $em->flush();
                 break;
