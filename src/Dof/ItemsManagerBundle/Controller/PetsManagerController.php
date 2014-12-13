@@ -34,7 +34,7 @@ class PetsManagerController extends Controller
         {
             $pet = $iFact->createItem($item, null, $this->getUser());
             $pet->setRaise(true);
-            $pet->setKeep(true);
+            $pet->setSticky(true);
             $em->persist($iFact);
             $em->flush();
         }
