@@ -84,7 +84,7 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     /**
     * @var boolean
     *
-    * @ORM\Column(name="season", type="boolean")
+    * @ORM\Column(name="season", type="boolean", nullable=true)
     */
     private $season;
 

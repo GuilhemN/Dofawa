@@ -14,39 +14,39 @@ class QuestSeasonCommand extends ContainerAwareCommand
         $this
         ->setName('dof:quest:change-season')
         ->setDescription('Change la saison d\'une quête ou catégorie de quête.')
-        ->addArgument('type', InputArgument::REQUIRED, 'category / quest')
-        ->addArgument('slug', InputArgument::OPTIONAL, 'Quel est le slug ?')
+        ->addArgument('value', InputArgument::REQUIRED, 'Set the new value', 'false')
+        ->addOption('category', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Slug d\'une catégorie de quêtes')
+        ->addOption('quest', 'q', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Slug d\'une quête')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $value = $input->getArgument('value');
+        if($value != ('false' or 'true' or 'null'))
+            $value = 'false';
+
         $em = $this->getContainer()->get('doctrine')->getManager();
-        $repo = $em->getRepository('DofQuestBundle:Quest');
+        $cRepo = $em->getRepository('DofQuestBundle:QuestCategory');
+        $qRepo = $em->getRepository('DofQuestBundle:Quest');
 
-        $doc = new \DOMDocument();
-        $doc->loadHTMLFile("http://www.krosmoz.com/fr/almanax");
-
-        $dofus = $doc->getElementById('achievement_dofus');
-        $mi = DOMUtils::getFirstElementByClassName($dofus, 'more-infos');
-        $quest = DOMUtils::getFirstElementByNodeName($mi, 'p');
-        $output->writeln('<info>HTML trouvé : ' . $quest->textContent . '</info>');
-        preg_match('/^(Quête :)? (.*)$/', $quest->textContent, $title);
-
-        $em
-        ->createQuery('UPDATE DofQuestBundle:Quest s SET s.season = false WHERE s.type = :type')
-        ->setParameter('type', QuestType::ALMANAX)
-        ->execute();
-
-        $quest = $repo->findOneByNameFr($title[2]);
-        if($quest !== null){
-            $quest->setSeason(true);
-            $em->flush();
-
-            $output->writeln('<info>Quête almanax du jour : ' . $quest->getName() . '</info>');
+        foreach ($input->getOption('category') as $category){
+            $category = $cRepo->findBySlug($category);
+            $em
+                ->createQuery('UPDATE DofQuestBundle:Quest s SET s.season = :value WHERE s.category = :category')
+                ->setParameter('value', $value)
+                ->setParameter('category', $category)
+                ->execute();
         }
-        else
-        $output->writeln('<error>La quête n\'a pas été trouvé.</error>');
+
+        foreach ($input->getOption('quest') as $quest){
+            $em
+                ->createQuery('UPDATE DofQuestBundle:Quest s SET s.season = :value WHERE s.slug = :slug')
+                ->setParameter('value', $value)
+                ->setParameter('slug', $quest)
+                ->execute();
+        }
+
 
     }
 }
