@@ -8,7 +8,7 @@
             {% block name %}
                 {{ itemTemplate.getName(locales()) }}
             {% endblock %}
-            <font size="2">{{ 'level' | trans({'%level%': itemTemplate.level})}}</font>
+            <font size="2">{{ 'level' | trans({'%level%': itemTemplate.level}) }}</font>
             <span class="pull-right">{{ itemTemplate.type.getName(locales()) }}</span>
         </h3>
     </div>
@@ -53,12 +53,12 @@
                 {# Menu tabs #}
                 <ul class="nav nav-pills" role="tablist">
                     {% set isActivedTab = false %}
+                    {% set characts %}
+                        {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
+                    {% endset %}
 
                     {% block tabs_menu %}
                         {# Effets #}
-                        {% set characts %}
-                            {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
-                        {% endset %}
                         {% if characts | trim is not empty %}
                             {% set isActiveTab = true %}
                             <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
