@@ -31,6 +31,7 @@ class PetsManagerController extends Controller
 
         $pet = $iFact->createItem($item, null, $this->getUser());
         $pet->setLastMeal($date);
+        $pet->setLastNotification($date);
         $pet->setRaise(true);
         $pet->setSticky(true);
         $em->persist($pet);
