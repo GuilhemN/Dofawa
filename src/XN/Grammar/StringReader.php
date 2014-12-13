@@ -118,6 +118,24 @@ class StringReader implements Reader
         }
         return $matches;
     }
+	public function eatSpan($mask, $length = null)
+	{
+		$maxLength = $this->end - $this->offset;
+		$length = ($length === null) ? $maxLength : min($length, $maxLength);
+		$length = strspn($this->data, $mask, $this->offset, $length);
+		$substr = substr($this->data, $this->offset, $length);
+		$this->offset += $length;
+		return $substr;
+	}
+	public function eatCSpan($mask, $length = null)
+	{
+		$maxLength = $this->end - $this->offset;
+		$length = ($length === null) ? $maxLength : min($length, $maxLength);
+		$length = strcspn($this->data, $mask, $this->offset, $length);
+		$substr = substr($this->data, $this->offset, $length);
+		$this->offset += $length;
+		return $substr;
+	}
     public function eatWhiteSpace()
     {
         if ($this->isEof())

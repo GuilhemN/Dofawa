@@ -14,6 +14,8 @@ interface Reader
     // Performance tip : you may want to use the "A" (PCRE_ANCHORED)
     // modifier on your regular expression ! E. g. : "/foo/A"
     public function eatRegex($pcrePattern, $flags = 0);
+	public function eatSpan($mask, $length = null);
+	public function eatCSpan($mask, $length = null);
     public function eatWhiteSpace();
 
     public function read($byteCount, $allowIncomplete = false);
