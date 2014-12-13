@@ -54,34 +54,34 @@
                 <ul class="nav nav-pills" role="tablist">
                     {% set isActivedTab = false %}
 
-                    {# Effets #}
-                    {% set characts %}
-                        {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
-                    {% endset %}
-                    {% if characts | trim is not empty %}
-                        {% set isActiveTab = true %}
-                        <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
-                    {% endif %}
-
-                    {# Recette #}
-                    {% if itemTemplate.components is not empty %}
-                        <li><a {% if not isActivedTab %}class="active" {% endif %}href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
-                    {% endif %}
-
                     {% block tabs_menu %}
+                        {# Effets #}
+                        {% set characts %}
+                            {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
+                        {% endset %}
+                        {% if characts | trim is not empty %}
+                            {% set isActiveTab = true %}
+                            <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
+                        {% endif %}
+
+                        {# Recette #}
+                        {% if itemTemplate.components is not empty %}
+                            <li><a {% if not isActivedTab %}class="active" {% endif %}href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                        {% endif %}
                     {% endblock %}
 
                 </ul>
                 <div class="tab-content">
-                    {# Effets #}
-                    {% if characts | trim is not empty %}
+                    {% block tabs_content %}
+                        {# Effets #}
+                        {% if characts | trim is not empty %}
                         <div class="tab-pane active" id="caracts-item{{ item.id }}">
                             {{ characts }}
                         </div>
-                    {% endif %}
+                        {% endif %}
 
-                    {# Recette #}
-                    {% if itemTemplate.components is not empty %}
+                        {# Recette #}
+                        {% if itemTemplate.components is not empty %}
                         <div class="tab-pane" id="recipe-item{{ item.id }}">
                             {% for component in itemTemplate.components %}
                             <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
@@ -91,23 +91,28 @@
                             <br />
                             {% endfor %}
                         </div>
-                    {% endif %}
-
-                    {% block tabs_content %}
+                        {% endif %}
                     {% endblock %}
                 </div>
 
             {# Close right column #}
             </div>
+        {% if block('tabs_content') | trim is not empty %}
         </div>
-        <hr />
-        {% block footer %}
-        {% endblock %}
+        {% endif %}
+        <div>
+            <hr />
+            {% block footer %}
+            {% endblock %}
 
-        {% if itemTemplate.description == '#1' %}
-            Arme éthérée
-        {% else %}
-            {{ itemTemplate.getDescription(locales()) }}
+            {% if itemTemplate.description == '#1' %}
+                Arme éthérée
+            {% else %}
+                {{ itemTemplate.getDescription(locales()) }}
+            {% endif %}
+        </div>
+        {% if block('tabs_content') | trim is empty %}
+        </div>
         {% endif %}
 
         {% block more %}
