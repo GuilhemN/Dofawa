@@ -64,6 +64,12 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     private $quest;
 
     /**
+    * @ORM\OneToMany(targetEntity="QuestObjective", mappedBy="step")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $objectives;
+
+    /**
     * Set id
     *
     * @return Quest
@@ -197,5 +203,41 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     public function getQuest()
     {
         return $this->quest;
+    }
+    
+    /**
+    * Add objectives
+    *
+    * @param QuestObjective $objectives
+    * @return QuestStep
+    */
+    public function addObjective(QuestObjective $objectives)
+    {
+        $this->objectives[] = $objectives;
+
+        return $this;
+    }
+
+    /**
+    * Remove objectives
+    *
+    * @param QuestObjective $objectives
+    * @return QuestStep
+    */
+    public function removeObjective(QuestObjective $objectives)
+    {
+        $this->objectives->removeElement($objectives);
+
+        return $this;
+    }
+
+    /**
+    * Get objectives
+    *
+    * @return Collection
+    */
+    public function getObjectives()
+    {
+        return $this->objectives;
     }
 }

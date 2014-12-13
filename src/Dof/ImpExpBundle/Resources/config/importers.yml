@@ -199,6 +199,13 @@ services:
             - { name: dof_imp_exp.importer, provides: quest_steps, requires: quests }
             - { name: dof_imp_exp.importer, provides: beta_quest_steps, requires: beta_quests }
 
+    dof_imp_exp.importer.quests_steps_objectives:
+        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestObjectiveImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quests_steps_objectives, requires: quest_steps }
+            - { name: dof_imp_exp.importer, provides: beta_quests_steps_objectives, requires: beta_quest_steps }
+
     # DofQuestBundle:Achievement and subclasses
     dof_imp_exp.importer.achievements_categories:
         class: Dof\ImpExpBundle\Importer\GameData\Quest\AchievementCategoryImporter
