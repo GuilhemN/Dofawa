@@ -30,3 +30,26 @@
         {% endif %}
     {% endif %}
 {% endblock %}
+
+{% block tabs_menu %}
+    {{ parent() }}
+    {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
+        <li><a href="#food-item{{ item.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block tabs_content %}
+    {{ parent() }}
+    {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
+        <div class="tab-pane" id="food-item{{ item.id }}">
+            {% for food_type in itemTemplate.foodTypes %}
+                {{ food_type.getName(locales()) }}
+            <br />
+            {% endfor %}
+            {% for food_item in itemTemplate.foodItems %}
+                {{ food_item.getName(locales()) }}
+            <br />
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

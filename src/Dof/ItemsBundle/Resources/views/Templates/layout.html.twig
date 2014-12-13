@@ -52,49 +52,37 @@
                 {% set item_content = '' %}
                 {# Menu tabs #}
                 <ul class="nav nav-pills" role="tablist">
-                    {# Charactéristiques #}
-                    <li class="active"><a href="#caracts-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Effets</a></li>
-                    {% set item_content %}
-                    {{ item_content }}
-                    <div class="tab-pane active" id="caracts-item{{ itemTemplate.id }}">
+                    {% set isActivedTab = false %}
+
+                    {# Effets #}
+                    {% set characts %}
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
-                    </div>
                     {% endset %}
+                    {% if characts is not empty %}
+                        {% set isActiveTab = true %}
+                        <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
+                    {% endif %}
 
-                    {#% if itemTemplate.criteria is not empty %}
-                    <li><a href="#conditions-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Conditions</a></li>
-                    {% set item_content %}
-                    {{ item_content }}
-                    <div class="tab-pane" id="conditions-item{{ itemTemplate.id }}">
-                    {{ itemTemplate.criteria }}
-                </div>
-                {% endset %}
-                {% endif %#}
+                    {# Recette #}
+                    {% if itemTemplate.components is not empty %}
+                        <li><a {% if not isActivedTab %}class="active" {% endif %}href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                    {% endif %}
 
-                {# Nourriture familier #}
-                {% if itemTemplate.pet and (itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty) %}
-                <li><a href="#food-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
-                {% set item_content %}
-                {{ item_content }}
-                <div class="tab-pane" id="food-item{{ itemTemplate.id }}">
-                    {% for food_type in itemTemplate.foodTypes %}
-                    {{ food_type.getName(locales()) }}
-                    <br />
-                    {% endfor %}
-                    {% for food_item in itemTemplate.foodItems %}
-                    {{ food_item.getName(locales()) }}
-                    <br />
-                    {% endfor %}
+                    {% block tabs_menu %}
+                    {% endblock %}
+
+            </ul>
+            <div class="tab-content">
+                {# Effets #}
+                {% if characts is not empty %}
+                <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                    {{ characts }}
                 </div>
-                {% endset %}
                 {% endif %}
 
                 {# Recette #}
                 {% if itemTemplate.components is not empty %}
-                <li><a href="#recipe-item{{ itemTemplate.id }}" role="tab" data-toggle="tab">Recette</a></li>
-                {% set item_content %}
-                {{ item_content }}
-                <div class="tab-pane" id="recipe-item{{ itemTemplate.id }}">
+                <div class="tab-pane" id="recipe-item{{ item.id }}">
                     {% for component in itemTemplate.components %}
                     <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
                         {{ component.component.getName(locales()) }}
@@ -103,13 +91,10 @@
                     <br />
                     {% endfor %}
                 </div>
-                {% endset %}
                 {% endif %}
-            </ul>
 
-            {# Tab panes #}
-            <div class="tab-content">
-                {{ item_content }}
+                {% block tabs_content %}
+                {% endblock %}
             </div>
 
             {# Close right column #}
@@ -125,9 +110,9 @@
     <br />
     {% endif %}
     {% if itemTemplate.description == '#1' %}
-    Arme éthérée
+        Arme éthérée
     {% else %}
-    {{ itemTemplate.getDescription(locales()) }}
+        {{ itemTemplate.getDescription(locales()) }}
     {% endif %}
 
     {% if slugs is defined and slugs is not empty %}
