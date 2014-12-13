@@ -58,7 +58,7 @@
                     {% set characts %}
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
                     {% endset %}
-                    {% if characts is not empty %}
+                    {% if characts | trim is not empty %}
                         {% set isActiveTab = true %}
                         <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
                     {% endif %}
@@ -74,7 +74,7 @@
             </ul>
             <div class="tab-content">
                 {# Effets #}
-                {% if characts is not empty %}
+                {% if characts | trim is not empty %}
                 <div class="tab-pane active" id="caracts-item{{ item.id }}">
                     {{ characts }}
                 </div>
