@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\MessageBundle\Entity\Message as BaseMessage;
 
 /**
+ * @ORM\Table(name="dof_messages")
  * @ORM\Entity
  */
 class Message extends BaseMessage

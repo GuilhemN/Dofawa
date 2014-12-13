@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\MessageBundle\Entity\Thread as BaseThread;
 
 /**
+ * @ORM\Table(name="dof_threads")
  * @ORM\Entity
  */
 class Thread extends BaseThread
