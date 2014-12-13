@@ -33,12 +33,6 @@ class Pet extends Animal
      */
     protected $raise;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="characteristic", type="string")
-     */
-    protected $characteristic;
 
     /**
     * @var Mount
@@ -137,28 +131,7 @@ class Pet extends Animal
         return $this->raise;
     }
 
-    /**
-     * Set characteristic
-     *
-     * @param string $characteristic
-     * @return Pet
-     */
-    public function setCharacteristic($characteristic)
-    {
-        $this->characteristic = $characteristic;
-
-        return $this;
-    }
-
-    /**
-     * Get characteristic
-     *
-     * @return string
-     */
-    public function getCharacteristic()
-    {
-        return $this->characteristic;
-    }
+    
     /**
     * Set mimibioteTemplate
     *

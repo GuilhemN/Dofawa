@@ -15,10 +15,10 @@
                 <thead>
                     <tr>
                         <th>Nom</th>
-                        <th>Caractéristique</th>
                         <th>Dernier repas</th>
                         <th>Prochain repas</th>
                         <th>Nourrir</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,9 +41,6 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {{ pet.characteristic }}
-                            </td>
-                            <td>
                                 {% if pet.lastMeal is not null %}
                                     {{ pet.lastMeal  | date_format }}
                                 {% else %}
@@ -53,13 +50,16 @@
                             <td>
                                 {% if pet.lastMeal is not null %}
                                     
-                                    {{ pet.lastMeal | date_modify(hour) | date_format }}
+                                    {{ pet.lastMeal | date_modify(hour) | date("d/m/y H:i:s") }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
                             </td>
                             <td>
                                 <input type="checkbox"  name="pets[]" value="{{ pet.id }}" value="">
+                            </td>
+                            <td>
+                                <a href="{{ path('dof_items_manager_pets_del', {id: pet.id}) }}"><span class="glyphicon glyphicon-remove"></span></a>
                             </td>
                         </tr>
                     {% else %}

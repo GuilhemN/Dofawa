@@ -5,6 +5,7 @@ namespace Dof\ItemsManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Dof\ItemsBundle\Entity\PetTemplate;
+use Dof\ItemsManagerBundle\Entity\Pet;
 
 class PetsManagerController extends Controller
 {
@@ -61,5 +62,28 @@ class PetsManagerController extends Controller
          return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
                 'pets' => $pets
                 )));
+    }
+
+    public function delAction(Pet $item)
+    {
+        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+            throw $this->createAccessDeniedException();
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
+        $pets = $repository->getRaisablePets($this->getUser());
+
+        foreach ($pets as $pet) {
+            if($item->getOwner() === $pet->getOwner()){
+                $pet->setRaise(false);
+                $em->persist($pet);
+                $em->flush(); 
+            }
+        }
+            
+
+   return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
+            'pets' => $pets
+            )));
     }
 }

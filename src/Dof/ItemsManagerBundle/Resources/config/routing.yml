@@ -17,3 +17,9 @@ dof_items_manager_pets_add:
     defaults: { _controller: DofItemsManagerBundle:PetsManager:add}
     requirements:
         id: \d+
+
+dof_items_manager_pets_del:
+    pattern:   /pets-manager/del/{id}
+    defaults: { _controller: DofItemsManagerBundle:PetsManager:del}
+    requirements:
+        id: \d+
