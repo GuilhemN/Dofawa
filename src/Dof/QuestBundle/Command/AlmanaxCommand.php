@@ -31,7 +31,7 @@ class AlmanaxCommand extends ContainerAwareCommand
         $dofus = $doc->getElementById('achievement_dofus');
         $mi = DOMUtils::getFirstElementByClassName($dofus, 'more-infos');
         $quest = DOMUtils::getFirstElementByNodeName($mi, 'p');
-        preg_match('/^(Quête :)? (.)$/', self::_textUntilFirstDiv($quest), $title);
+        preg_match('/^(Quête :)? (.)$/', DOMUtils::outerHTML($quest), $title);
 
         $em
             ->createQuery('UPDATE DofQuestBundle:Quest s SET s.season = false WHERE type = :type')
