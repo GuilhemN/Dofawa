@@ -22,7 +22,7 @@ class AlmanaxCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('DofQuestBundle:Quest');
 
         $doc = new DOMDocument();
