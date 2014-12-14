@@ -120,6 +120,10 @@ class NotificationManager
         foreach($notifications as $notification){
             if($notification->getClass() !== null){
                 $ent = $em->getRepository($notification->getClass())->find($notification->getClassId());
+                if($ent === null){
+                    $em->remove($notification);
+                    continue;
+                }
                 $noClass = false;
             }
             else
@@ -193,6 +197,7 @@ class NotificationManager
 
             $i++;
         }
+        $em->flush();
 
         return $return;
     }
