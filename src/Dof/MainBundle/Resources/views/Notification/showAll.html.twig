@@ -12,14 +12,15 @@
            <table class="table">
                 <tbody>
                     {% for notification in notifications %}
-                        <tr {% if notification.isRead == false %}class="active"{% endif %}>
-                            <a href="{{ notification.path }}">
+                        <a href="{{ notification.path }}">
+                            <tr {% if notification.isRead == false %}class="active"{% endif %}>
+                            
                                 {{ notification.message | raw }}
                                 <br>
                                 <small>{{ notification.createdAt }}</small>
-                            </a>
-                            <hr>
-                        </tr>
+                            </tr>
+                        </a>
+                        <hr>
                     {% endfor %}
                 </tbody>
             </table> 
