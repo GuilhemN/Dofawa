@@ -68,7 +68,10 @@ class NotificationManager
             'pets.hungry' => array(
                 'translationString' => 'pets.hungry',
                 'translationParams' => array(
-                    'dynamic' => array('%name%' => 'name')
+                    'dynamic' => array(
+                        '%petName%' => 'itemTemplate.localeName',
+                        '%name%' => 'name',
+                    )
                 ),
                 'path' => 'dof_items_manager_pets',
             ),
