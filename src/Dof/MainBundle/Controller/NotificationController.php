@@ -75,4 +75,18 @@ class NotificationController extends Controller
             'notifications' => $nm->transformNotifications($notifications)
         ]);
     }
+
+    public function showAllAction(){
+        if(empty($user))
+            throw $this->createAccessDeniedException();
+
+        $repo = $em->getRepository('DofMainBundle:Notification');
+
+        $notifications = $repo->findBy(
+            array('owner' => $user),
+            array('createdAt' => 'DESC')
+        );
+
+        return $this->render('DofMainBundle:Notification:showAll.html.twig', ['notifications' => $notifications]);
+    }
 }

@@ -1,0 +1,25 @@
+{% extends "::layout.html.twig" %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ 'notifications'|trans({}, 'generalTrans') }}</li>
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">{{ 'notifications'|trans({}, 'generalTrans') }}</div>
+        <table class="table">
+            <tbody>
+                {% for notification in notifications %}
+                    <tr {% if notification.isRead == false %}class="active"{% endif %}>
+                        <a href="{{ notification.path }}">
+                            {{ notification.message | raw }}
+                            <br>
+                            <small>{{ notification.createdAt }}</small>
+                        </a>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
