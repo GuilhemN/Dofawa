@@ -17,7 +17,7 @@
     {% if stuffs is not empty %}
     <div class="well well-sm text-center">
         <form method="POST" action="{{ path('dof_build_additem_post') }}">
-            <div class="row col-sm-6 col-offset-sm-3">
+            <div class="row col-sm-6 col-sm-offset-3">
                 <select class="to-select2 col-xs-12" name="stuff">
                     {% for k, v in stuffs %}
                     <optgroup label="{{ characters[k].name ~ '(' ~ characters[k].breed.getName(locales()) ~ ')' }}">
@@ -32,7 +32,7 @@
                 <input name="items[]" type="hidden" value="{{ item.id }}">
             {% endfor %}
 
-            <div class="text-center">
+            <div class="text-center row">
                 <button type="submit" class="btn btn-primary">Equiper</button>
             </div>
         </form>
