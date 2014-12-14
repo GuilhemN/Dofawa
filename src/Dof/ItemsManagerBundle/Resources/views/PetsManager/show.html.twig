@@ -9,7 +9,7 @@
 {% autoescape %}
 	<h3>Gestionaire de familiers</h3>
     Notifications :
-    {% if pet.owner.petsManagerNotifications %}
+    {% if app.user.petsManagerNotifications %}
         <strong>Activées</strong>
         <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
             <input type="hidden"  name="notif" value="0">
