@@ -35,6 +35,7 @@ class PetsManagerCommand extends ContainerAwareCommand
             $nm->addNotification($pet, 'pets.hungry', $pet->getOwner());
             $notifs++;
         }
+        $em->flush();
 
         $output->writeln('<info>' . $notifs .' notifications ont été envoyées.</info>');
     }

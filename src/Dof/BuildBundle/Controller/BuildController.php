@@ -207,14 +207,7 @@ class BuildController extends Controller
         $bm = $this->get('build_manager');
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
 
-        foreach($stuff->getItems() as $item){
-            if($item->getSlot() == 11){
-                $weapon = $item;
-                break;
-            }
-        }
-        if(!isset($weapon))
-            $weapon = null;
+        $weapon = $stuff->getWeapon();
 
         return $this->render('DofBuildBundle:Build:showWeaponDamages.html.twig', [
             'characteristics' => $characteristics,

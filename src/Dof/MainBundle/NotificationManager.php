@@ -68,7 +68,10 @@ class NotificationManager
             'pets.hungry' => array(
                 'translationString' => 'pets.hungry',
                 'translationParams' => array(
-                    'dynamic' => array('%name%' => 'name')
+                    'dynamic' => array(
+                        '%petName%' => 'itemTemplate.localeName',
+                        '%name%' => 'name',
+                    )
                 ),
                 'path' => 'dof_items_manager_pets',
             ),
@@ -117,6 +120,10 @@ class NotificationManager
         foreach($notifications as $notification){
             if($notification->getClass() !== null){
                 $ent = $em->getRepository($notification->getClass())->find($notification->getClassId());
+                if($ent === null){
+                    $em->remove($notification);
+                    continue;
+                }
                 $noClass = false;
             }
             else
@@ -190,6 +197,7 @@ class NotificationManager
 
             $i++;
         }
+        $em->flush();
 
         return $return;
     }
