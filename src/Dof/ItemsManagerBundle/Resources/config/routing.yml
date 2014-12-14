@@ -29,3 +29,7 @@ dof_items_manager_pets_raise:
     defaults: { _controller: DofItemsManagerBundle:PetsManager:raise}
     requirements:
         id: \d+
+
+dof_items_manager_pets_notif:
+    pattern:   /pets-manager/notif
+    defaults: { _controller: DofItemsManagerBundle:PetsManager:notif }

@@ -8,7 +8,20 @@
 {% block body %}
 {% autoescape %}
 	<h3>Gestionaire de familiers</h3>
-
+    Notifications :
+    {% if app.user.petsManagerNotifications %}
+        <strong>Activées</strong>
+        <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
+            <input type="hidden"  name="notif" value="0">
+            <button type="submit" class="btn btn-primary">Déactiver</button>
+        </form>
+    {% else %}
+        <strong>Déactivées</strong>
+        <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
+            <input type="hidden"  name="notif" value="1">
+            <button type="submit" class="btn btn-primary">Activer</button>
+        </form>
+    {% endif %}
     <div class="panel panel-default">
         <div class="panel-heading">Familiers</div>
         <form method="POST" name="feedPets" action="{{ path('dof_items_manager_pets_feed') }}">
@@ -24,11 +37,10 @@
                 </thead>
                 <tbody>
                     {% for pet in pets %}
-                        {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
                         {% set hourMax = '+' ~ pet.itemTemplate.maxFeedInterval ~ ' hour' %}
-                        <tr {% if pet.lastMeal is not null and date(pet.lastMeal | date_modify(hour)) > date() %}
+                        <tr {% if pet.lastMeal is not null and date(pet.nextMeal) > date() %}
                                     class="success"
-                                {% elseif pet.lastMeal is not null and (date(pet.lastMeal | date_modify(hour)) < date() and date(pet.lastMeal | date_modify(hourMax)) > date() ) %}
+                                {% elseif pet.lastMeal is not null and (date(pet.nextMeal) < date() and date(pet.lastMeal | date_modify(hourMax)) > date() ) %}
                                     class="warning"
                                 {% else %}
                                     class="danger"
@@ -51,7 +63,7 @@
                             <td>
                                 {% if pet.lastMeal is not null %}
 
-                                    {{ pet.lastMeal | date_modify(hour) | date("d/m/y H:i:s") }}
+                                    {{ pet.nextMeal | date("d/m/y H:i:s") }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
