@@ -77,7 +77,7 @@ class NotificationController extends Controller
     }
 
     public function showAllAction(){
-        if(empty($user))
+        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
 
         $repo = $em->getRepository('DofMainBundle:Notification');
