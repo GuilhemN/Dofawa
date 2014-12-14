@@ -23,6 +23,7 @@ security:
                 path: fos_user_security_logout
                 target: /
             anonymous:    true
+            switch_user: true
 
     access_control:
         - { path: "fos_user_security_login", role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -72,5 +73,6 @@ security:
             - ROLE_REDACTOR_FULL
             - ROLE_STYLIST_ADMIN
             - ROLE_XRAY
+            - ROLE_ALLOWED_TO_SWITCH
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
