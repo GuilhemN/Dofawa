@@ -31,7 +31,7 @@ class PetsManagerCommand extends ContainerAwareCommand
 
         $notifs = 0;
         foreach ($pets as $pet) {
-            $pet->setLastNotification(new DateTime());
+            $pet->setLastNotification(new \DateTime());
             $nm->addNotification($pet, 'pets.hungry', $pet->getOwner());
             $notifs++;
         }
