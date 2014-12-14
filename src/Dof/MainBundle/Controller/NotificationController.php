@@ -83,11 +83,18 @@ class NotificationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
 
+        $nm = $this->get('notification_manager');
         $notifications = $repo->findBy(
             array('owner' => $this->getUser()),
             array('createdAt' => 'DESC')
         );
 
-        return $this->render('DofMainBundle:Notification:showAll.html.twig', ['notifications' => $notifications]);
+        foreach($notifications as $notification)
+            $notification->setIsRead(true);
+        $em->flush();
+        
+        $tNotifications = $nm->transformNotifications($notifications);
+
+        return $this->render('DofMainBundle:Notification:showAll.html.twig', ['notifications' => $tNotifications]);
     }
 }
