@@ -15,7 +15,7 @@
                         <a href="{{ notification.path }}">
                             {{ notification.message | raw }}
                             <br>
-                            <small>{{ notification.createdAt }}</small>
+                            <small>{{ notification.createdAt | date_format }}</small>
                         </a>
                     </tr>
                 {% endfor %}
