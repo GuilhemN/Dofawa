@@ -17,7 +17,7 @@
     {% if stuffs is not empty %}
     <div class="well well-sm text-center">
         <form method="POST" action="{{ path('dof_build_additem_post') }}">
-            <select class="to-select2" name="stuff">
+            <select class="to-select2 col-sm-6" name="stuff">
                 {% for k, v in stuffs %}
                 <optgroup label="{{ characters[k].name ~ '(' ~ characters[k].breed.getName(locales()) ~ ')' }}">
                     {% for stuff in v %}
