@@ -80,6 +80,7 @@ class NotificationController extends Controller
         if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
             throw $this->createAccessDeniedException();
 
+        $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
 
         $notifications = $repo->findBy(
