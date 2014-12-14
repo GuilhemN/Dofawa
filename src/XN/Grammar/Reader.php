@@ -8,6 +8,7 @@ interface Reader
     public function isEof();
     public function getState();
     public function setState($opaqueState);
+	public function freeState($opaqueState);
 
     public function eat($string, $caseInsensitive = false);
     public function eatAny($strings, $caseInsensitive = false);

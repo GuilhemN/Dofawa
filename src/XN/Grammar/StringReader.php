@@ -57,6 +57,10 @@ class StringReader implements Reader
     {
         $this->offset = $opaqueState;
     }
+	public function freeState($opaqueState)
+	{
+		// no-op because our state is just an offset
+	}
 
     public function eat($string, $caseInsensitive = false)
     {
@@ -146,6 +150,8 @@ class StringReader implements Reader
 
     public function read($byteCount, $allowIncomplete = false)
     {
+		if ($byteCount < 0)
+			return null;
         $maxByteCount = $this->getRemainingBytes();
         if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
             return null;
@@ -156,6 +162,8 @@ class StringReader implements Reader
     }
     public function peek($byteCount, $allowIncomplete = false)
     {
+		if ($byteCount < 0)
+			return null;
         $maxByteCount = $this->getRemainingBytes();
         if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
             return null;
@@ -164,6 +172,8 @@ class StringReader implements Reader
     }
     public function skip($byteCount, $allowIncomplete = false)
     {
+		if ($byteCount < 0)
+			return 0;
         $maxByteCount = $this->getRemainingBytes();
         if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
             return 0;
