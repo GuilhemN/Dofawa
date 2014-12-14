@@ -24,11 +24,10 @@
                 </thead>
                 <tbody>
                     {% for pet in pets %}
-                        {% set hour = '+' ~ pet.itemTemplate.minFeedInterval ~ ' hour' %}
                         {% set hourMax = '+' ~ pet.itemTemplate.maxFeedInterval ~ ' hour' %}
-                        <tr {% if pet.lastMeal is not null and date(pet.lastMeal | date_modify(hour)) > date() %}
+                        <tr {% if pet.lastMeal is not null and date(pet.nextMeal) > date() %}
                                     class="success"
-                                {% elseif pet.lastMeal is not null and (date(pet.lastMeal | date_modify(hour)) < date() and date(pet.lastMeal | date_modify(hourMax)) > date() ) %}
+                                {% elseif pet.lastMeal is not null and (date(pet.nextMeal) < date() and date(pet.lastMeal | date_modify(hourMax)) > date() ) %}
                                     class="warning"
                                 {% else %}
                                     class="danger"
@@ -51,7 +50,7 @@
                             <td>
                                 {% if pet.lastMeal is not null %}
 
-                                    {{ pet.lastMeal | date_modify(hour) | date("d/m/y H:i:s") }}
+                                    {{ pet.nextMeal | date("d/m/y H:i:s") }}
                                 {% else %}
                                     Jamais!
                                 {% endif %}
