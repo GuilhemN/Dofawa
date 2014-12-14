@@ -13,10 +13,10 @@
         <strong>Activées</strong>
         <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
             <input type="hidden"  name="notif" value="0">
-            <button type="submit" class="btn btn-primary">Déactiver</button>
+            <button type="submit" class="btn btn-primary">Désactiver</button>
         </form>
     {% else %}
-        <strong>Déactivées</strong>
+        <strong>Désactivées</strong>
         <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
             <input type="hidden"  name="notif" value="1">
             <button type="submit" class="btn btn-primary">Activer</button>
