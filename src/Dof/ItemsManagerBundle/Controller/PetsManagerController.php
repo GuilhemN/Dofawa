@@ -114,4 +114,24 @@ class PetsManagerController extends Controller
             'pets' => $petsRaisable
             )));
     }
+
+    public function notifAction()
+    {
+        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+            throw $this->createAccessDeniedException();
+
+        $em = $this->getDoctrine()->getManager();
+
+        if(is_numeric($this->get('request')->get('notif'))){
+            $this->getUser()->setPetsManagerNotifications($this->get('request')->get('notif'));
+            $em->flush(); 
+        }
+        
+        $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
+        $pets = $repository->getRaisablePets($this->getUser());
+        
+         return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
+                'pets' => $pets
+                )));
+    }
 }
