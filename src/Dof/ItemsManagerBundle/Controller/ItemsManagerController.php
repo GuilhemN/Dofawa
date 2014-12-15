@@ -20,6 +20,20 @@ class ItemsManagerController extends Controller
 
         $params = $this->getItems($form->getData(), $page); 
 
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('DofItemsManagerBundle:Item');
+
+        $newName = $this->get('request')->get('changeName');
+        $idNewName = $this->get('request')->get('idChange');
+
+        if($newName != "" and $idNewName != ""){
+            $item = $repo->findOneBy(['id' => $idNewName, 'owner' => $this->getUser()]);
+            if(!empty($item)){
+                $item->setName($newName);
+                $em->flush();
+            }
+        }
+
         return $this->render('DofItemsManagerBundle:ItemsManager:index.html.twig',
             ['form' => $form->createView()] + $params
             );

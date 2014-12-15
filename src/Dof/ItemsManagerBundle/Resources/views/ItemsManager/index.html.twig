@@ -20,5 +20,34 @@
     {% endfor %}
 
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
-{% endautoescape %}<
+
+    <div class="modal fade new-name-modal" tabindex="-1" role="dialog" aria-labelledby="newNameModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="newNameModal">Changer le nom:</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ path('dof_items_manager_homepage') }}" method="POST">
+                    Nom : <input type="text" name="changeName" /><br>
+                    <input id="changeId" type="hidden" name="idChange" value="id">
+                    <input type="submit" class="btn" value="Changer"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endautoescape %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+    $('#changeNamelink').click(function() {
+        var id = $( this ).val();
+        $( "#changeId" ).val( id );
+    }
+    </script>
+
 {% endblock %}
