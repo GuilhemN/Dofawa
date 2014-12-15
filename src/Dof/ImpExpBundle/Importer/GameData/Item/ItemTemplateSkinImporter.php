@@ -1,11 +1,13 @@
 <?php
 
-namespace Dof\ImpExpBundle\Importer\GameData;
+namespace Dof\ImpExpBundle\Importer\GameData\Item;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
+
+use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 
 use Dof\ImpExpBundle\ImporterInterface;
 use Dof\ImpExpBundle\ImporterFlags;

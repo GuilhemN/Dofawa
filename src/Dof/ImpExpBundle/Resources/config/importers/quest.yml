@@ -1,0 +1,44 @@
+services:
+    # DofQuestBundle:Quest and subclasses
+    dof_imp_exp.importer.quest_categories:
+        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestCategoryImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_categories }
+            - { name: dof_imp_exp.importer, provides: beta_quest_categories }
+
+    dof_imp_exp.importer.quests:
+        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quests, requires: quest_categories }
+            - { name: dof_imp_exp.importer, provides: beta_quests, requires: beta_quest_categories }
+
+    dof_imp_exp.importer.quest_steps:
+        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestStepImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_steps, requires: quests }
+            - { name: dof_imp_exp.importer, provides: beta_quest_steps, requires: beta_quests }
+
+    dof_imp_exp.importer.quest_step_objectives:
+        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestObjectiveImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_step_objectives, requires: quest_steps }
+            - { name: dof_imp_exp.importer, provides: beta_quest_step_objectives, requires: beta_quest_steps }
+
+    # DofQuestBundle:Achievement and subclasses
+    dof_imp_exp.importer.achievement_categories:
+        class: Dof\ImpExpBundle\Importer\GameData\Quest\AchievementCategoryImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: achievement_categories }
+            - { name: dof_imp_exp.importer, provides: beta_achievement_categories }
+
+    dof_imp_exp.importer.achievements:
+        class: Dof\ImpExpBundle\Importer\GameData\Quest\AchievementImporter
+        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: achievements, requires: achievement_categories }
+            - { name: dof_imp_exp.importer, provides: beta_achievements, requires: beta_achievement_categories }
