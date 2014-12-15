@@ -6,7 +6,10 @@ imports:
 services:
     importer_dependencies:
         class: XN\DependencyInjection\ServiceArray
-        arguments: [ "@dof_imp_exp.game_data_provider", "@doctrine.orm.entity_manager", "xn.doctrine.sluggable_updater" ]
+        arguments:
+            - "@dof_imp_exp.game_data_provider"
+            - "@doctrine.orm.entity_manager"
+            - "xn.doctrine.sluggable_updater"
 
     # DofCharactersBundle:Breed
     dof_imp_exp.importer.breeds:
