@@ -44,10 +44,10 @@
 
 {% block javascripts %}
     <script>
-        function setId(id) {
-            var id = document.getElementById('changeId');
-            id.setAttribute("value", id);
-        }
+    $('changeId').click(function() {
+        var id = $(this).attr('id');
+        id.value(id);
+    }
     </script>
 
 {% endblock %}
