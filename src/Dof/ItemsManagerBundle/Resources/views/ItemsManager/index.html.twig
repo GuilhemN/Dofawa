@@ -44,9 +44,9 @@
 
 {% block javascripts %}
     <script>
-    $('changeId').click(function() {
-        var id = $(this).attr('id');
-        id.value(id);
+    $('changeNamelink').click(function() {
+        var id = $( this ).id();
+        $( "changeId" ).val( id );
     }
     </script>
 
