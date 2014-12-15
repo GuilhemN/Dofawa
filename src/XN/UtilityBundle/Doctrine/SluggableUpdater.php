@@ -22,18 +22,24 @@ class SluggableUpdater
 	public function prePersist(LifecycleEventArgs $args)
 	{
 		$ent = $args->getEntity();
-		if ($ent instanceof SluggableInterface && $ent->getSlug() === null) {
-			$slug = Inflector::slugify(strval($ent));
-			if (!$slug)
-				throw new \Exception('Empty slug source !');
-			$em = $args->getEntityManager();
-			$entRCN = $this->getEntityRootClass($ent, $em);
-			$repo = $em->getRepository($entRCN);
-			if (!$this->tryAssignSlug($ent, $slug, $repo, $entRCN, $em) &&
-				!$this->tryAssignSlug($ent, $slug . '-bis', $repo, $entRCN, $em) &&
-				!$this->tryAssignSlug($ent, $slug . '-ter', $repo, $entRCN, $em))
-				for ($i = 4; !$this->tryAssignSlug($ent, $slug . '-' . $i, $repo, $entRCN, $em); ++$i) { }
-		}
+		if ($ent instanceof SluggableInterface && $ent->getSlug() === null)
+			$this->reassignSlug($ent, $em);
+	}
+
+	public function reassignSlug(SluggableInterface $ent, ObjectManager $em)
+	{
+		$slug = Inflector::slugify(strval($ent));
+		if (!$slug)
+			throw new \Exception('Empty slug source !');
+		$curSlug = $ent->getSlug();
+		if ($curSlug !== null && preg_match('#^' . $slug . '(?:-(?:bis|ter|\d+))?$#', $curSlug))
+			return;
+		$entRCN = $this->getEntityRootClass($ent, $em);
+		$repo = $em->getRepository($entRCN);
+		if (!$this->tryAssignSlug($ent, $slug, $repo, $entRCN, $em) &&
+			!$this->tryAssignSlug($ent, $slug . '-bis', $repo, $entRCN, $em) &&
+			!$this->tryAssignSlug($ent, $slug . '-ter', $repo, $entRCN, $em))
+			for ($i = 4; !$this->tryAssignSlug($ent, $slug . '-' . $i, $repo, $entRCN, $em); ++$i) { }
 	}
 
 	private function tryAssignSlug(SluggableInterface $ent, $slug, EntityRepository $repo, $entRCN, ObjectManager $dm)
