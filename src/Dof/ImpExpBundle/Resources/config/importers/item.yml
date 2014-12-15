@@ -2,7 +2,7 @@ services:
     # DofItemsBundle:ItemSet
     dof_imp_exp.importer.item_sets:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemSetImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: item_sets }
             - { name: dof_imp_exp.importer, provides: beta_item_sets, requires: item_sets }
@@ -10,7 +10,7 @@ services:
     # DofItemsBundle:ItemSetCombination, DofItemsBundle:ItemSetEffect
     dof_imp_exp.importer.item_set_effects:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemSetEffectImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: item_set_effects, requires: item_sets }
             - { name: dof_imp_exp.importer, provides: beta_item_set_effects, requires: beta_item_sets }
@@ -18,7 +18,7 @@ services:
     # DofItemsBundle:ItemType
     dof_imp_exp.importer.item_types:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemTypeImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: item_types }
             - { name: dof_imp_exp.importer, provides: beta_item_types, requires: item_types }
@@ -26,20 +26,20 @@ services:
     # DofItemsBundle:ItemTemplate and subclasses
     dof_imp_exp.importer.item_templates:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemTemplateImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: item_templates, requires: 'item_sets item_types' }
             - { name: dof_imp_exp.importer, provides: beta_item_templates, requires: 'item_templates beta_item_sets beta_item_types' }
 
     dof_imp_exp.importer.item_template_skins:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemTemplateSkinImporter
-        arguments: [ "http://exter-n.fr/dofus/its.json", @doctrine.orm.entity_manager ]
+        arguments: [ "http://exter-n.fr/dofus/its.json", "@doctrine.orm.entity_manager" ]
         tags:
             - { name: dof_imp_exp.importer, provides: item_template_skins, requires: item_templates }
 
     dof_imp_exp.importer.item_effects:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemEffectImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: item_template_effects, requires: "item_templates effect_templates" }
             - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: "beta_item_templates beta_effect_templates" }
@@ -49,7 +49,7 @@ services:
     # DofItemsBundle:ItemComponent
     dof_imp_exp.importer.item_components:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemComponentImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: item_components, requires: item_templates }
             - { name: dof_imp_exp.importer, provides: beta_item_components, requires: beta_item_templates }
@@ -57,7 +57,7 @@ services:
     # DofItemsBundle:PetTemplate and subclasses
     dof_imp_exp.importer.pet_food:
         class: Dof\ImpExpBundle\Importer\GameData\Item\PetFoodImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: pet_food, requires: item_templates }
             - { name: dof_imp_exp.importer, provides: beta_pet_food, requires: beta_item_templates }

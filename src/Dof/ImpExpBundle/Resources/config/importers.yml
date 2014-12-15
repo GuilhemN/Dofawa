@@ -1,38 +1,44 @@
 imports:
     - { resource: importers/item.yml }
     - { resource: importers/quest.yml }
+    - { resource: importers/spell.yml }
 
 services:
+    importer_dependencies:
+        class: XN\DependencyInjection\ServiceArray
+        arguments: [ "@dof_imp_exp.game_data_provider", "@doctrine.orm.entity_manager" ]
+        
     # DofCharactersBundle:Breed
     dof_imp_exp.importer.breeds:
         class: Dof\ImpExpBundle\Importer\GameData\BreedImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breeds, requires: breeds }
     dof_imp_exp.importer.breed_default_colors:
         class: Dof\ImpExpBundle\Importer\GameData\BreedDefaultColorsImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: breed_default_colors, requires: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breed_default_colors, requires: beta_breeds }
     dof_imp_exp.importer.breed_lodef_skins:
         class: Dof\ImpExpBundle\Importer\GameData\BreedLodefSkinsImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: breed_lodef_skins, requires: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breed_lodef_skins, requires: beta_breeds }
     # DofCharactersBundle:Face
     dof_imp_exp.importer.breed_faces:
         class: Dof\ImpExpBundle\Importer\GameData\FaceImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: breed_faces, requires: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breed_faces, requires: beta_breeds }
+
     # DofCharactersBundle:SoftCap
     dof_imp_exp.importer.breed_soft_caps:
         class: Dof\ImpExpBundle\Importer\GameData\SoftCapImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: breed_soft_caps, requires: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breed_soft_caps, requires: beta_breeds }
@@ -40,7 +46,7 @@ services:
     # DofItemsBundle:Job
     dof_imp_exp.importer.job:
         class: Dof\ImpExpBundle\Importer\GameData\JobImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: job }
             - { name: dof_imp_exp.importer, provides: beta_job }
@@ -48,7 +54,7 @@ services:
     # DofMonsterBundle:Monster
     dof_imp_exp.importer.monsters:
         class: Dof\ImpExpBundle\Importer\GameData\MonsterImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: monsters }
             - { name: dof_imp_exp.importer, provides: beta_monsters }
@@ -56,53 +62,23 @@ services:
     # DofCharactersBundle:EffectTemplate
     dof_imp_exp.importer.effect_templates:
         class: Dof\ImpExpBundle\Importer\GameData\EffectTemplateImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: effect_templates }
             - { name: dof_imp_exp.importer, provides: beta_effect_templates }
 
-    # DofCharactersBundle:Spell and subclasses
-    dof_imp_exp.importer.spells:
-        class: Dof\ImpExpBundle\Importer\GameData\SpellImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: spells, requires: breeds }
-            - { name: dof_imp_exp.importer, provides: beta_spells, requires: beta_breeds }
-
-    dof_imp_exp.importer.spell_ranks:
-        class: Dof\ImpExpBundle\Importer\GameData\SpellRankImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: spell_ranks, requires: spells }
-            - { name: dof_imp_exp.importer, provides: beta_spell_ranks, requires: beta_spells }
-
-    dof_imp_exp.importer.spell_rank_effects:
-        class: Dof\ImpExpBundle\Importer\GameData\SpellRankEffectImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: spell_rank_effects, requires: "spell_ranks effect_templates" }
-            - { name: dof_imp_exp.importer, provides: beta_spell_rank_effects, requires: "beta_spell_ranks beta_effect_templates" }
-        calls:
-            - [ setParamLoader, [ "@dof_characters.effect_param_loader" ] ]
-
+    # DofCharactersBundle:State
     dof_imp_exp.importer.states:
         class: Dof\ImpExpBundle\Importer\GameData\StateImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: states }
             - { name: dof_imp_exp.importer, provides: beta_states }
 
-    dof_imp_exp.importer.spell_rank_states:
-        class: Dof\ImpExpBundle\Importer\GameData\SpellRankStateRequirementImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: spell_rank_states, requires: 'states spell_ranks' }
-            - { name: dof_imp_exp.importer, provides: beta_spell_rank_states, requires: 'beta_states beta_spell_ranks' }
-
     # DofCharactersBundle:Emoticon
     dof_imp_exp.importer.emoticons:
         class: Dof\ImpExpBundle\Importer\GameData\EmoticonImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: emoticons }
             - { name: dof_imp_exp.importer, provides: beta_emoticons }
@@ -110,7 +86,7 @@ services:
     # DofCharactersBundle:Titles
     dof_imp_exp.importer.titles:
         class: Dof\ImpExpBundle\Importer\GameData\TitleImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: titles }
             - { name: dof_imp_exp.importer, provides: beta_titles }
@@ -118,7 +94,7 @@ services:
     # DofItemsBundle:Document
     dof_imp_exp.importer.documents:
         class: Dof\ImpExpBundle\Importer\GameData\DocumentImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
+        arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: documents }
             - { name: dof_imp_exp.importer, provides: beta_documents }

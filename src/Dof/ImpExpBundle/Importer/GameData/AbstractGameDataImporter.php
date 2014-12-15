@@ -2,12 +2,10 @@
 
 namespace Dof\ImpExpBundle\Importer\GameData;
 
-use Doctrine\Common\Persistence\ObjectManager;
-
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Dof\ImpExpBundle\GameDataProvider;
+use XN\DependencyInjection\ServiceArray;
 use Dof\ImpExpBundle\ImporterInterface;
 use Dof\ImpExpBundle\ImporterFlags;
 
@@ -23,10 +21,10 @@ abstract class AbstractGameDataImporter implements ImporterInterface
      */
     protected $dm;
 
-    public function __construct(GameDataProvider $gd, ObjectManager $dm)
+    public function __construct(ServiceArray $sa)
     {
-        $this->gd = $gd;
-        $this->dm = $dm;
+        $this->gd = $sa[0];
+        $this->dm = $sa[1];
     }
 
     public function import($dataSet, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
