@@ -76,6 +76,7 @@ class SpellImporter extends AbstractGameDataImporter
                     }
 
                 $this->dm->persist($tpl);
+                $this->su->reassignSlug($tpl);
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

@@ -21,10 +21,16 @@ abstract class AbstractGameDataImporter implements ImporterInterface
      */
     protected $dm;
 
+    /**
+     * @var SluggableUpdater
+     */
+    protected $su;
+
     public function __construct(ServiceArray $sa)
     {
         $this->gd = $sa[0];
         $this->dm = $sa[1];
+        $this->su = $sa[2];
     }
 
     public function import($dataSet, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
