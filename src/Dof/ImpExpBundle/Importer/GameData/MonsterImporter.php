@@ -81,6 +81,7 @@ class MonsterImporter extends AbstractGameDataImporter
                 $tpl->setMaxNeutralResistance($row['max_neutral_resistance']);
 
                 $this->dm->persist($tpl);
+                $this->su->reassignSlug($tpl);
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

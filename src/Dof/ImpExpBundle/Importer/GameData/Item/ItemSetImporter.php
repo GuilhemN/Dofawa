@@ -41,6 +41,7 @@ class ItemSetImporter extends AbstractGameDataImporter
                 $set->setPreliminary($beta);
                 $this->copyI18NProperty($set, 'setName', $row, 'name');
                 $this->dm->persist($set);
+                $this->su->reassignSlug($set);
             }
         }
     }

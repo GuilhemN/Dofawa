@@ -50,6 +50,7 @@ class AchievementCategoryImporter extends AbstractGameDataImporter
 
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
                 $this->dm->persist($tpl);
+                $this->su->reassignSlug($tpl);
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

@@ -39,6 +39,7 @@ class JobImporter extends AbstractGameDataImporter
             $job->setId($row['id']);
             $this->copyI18NProperty($job, 'setName', $row, 'name');
             $this->dm->persist($job);
+            $this->su->reassignSlug($tpl);
 
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

@@ -58,6 +58,7 @@ class EmoticonImporter extends AbstractGameDataImporter
                     $emoticon->setNameFr('Emote');
 
                 $this->dm->persist($emoticon);
+                $this->su->reassignSlug($tpl);
             }
 
             ++$rowsProcessed;

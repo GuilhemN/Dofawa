@@ -63,6 +63,7 @@ class BreedImporter extends AbstractGameDataImporter
                 $breed->setFemaleArtworkBone($row['femaleArtwork']);
                 $breed->setCreatureBone($row['creatureBonesId']);
                 $this->dm->persist($breed);
+                $this->su->reassignSlug($tpl);
             }
         }
     }

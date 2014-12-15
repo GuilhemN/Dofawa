@@ -43,6 +43,7 @@ class ItemTypeImporter extends AbstractGameDataImporter
                 $type->setSlot($row['superTypeId']);
                 $type->setEffectArea(($row['rawZone'] === 'null') ? null : $row['rawZone']);
                 $this->dm->persist($type);
+                $this->su->reassignSlug($type);
             }
         }
     }

@@ -54,6 +54,7 @@ class TitleImporter extends AbstractGameDataImporter
                 $this->copyI18NProperty($tpl, 'setNameFemale', $row, 'nameFemale');
 
                 $this->dm->persist($tpl);
+                $this->su->reassignSlug($tpl);
             }
 
             ++$rowsProcessed;
