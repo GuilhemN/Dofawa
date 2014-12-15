@@ -28,6 +28,8 @@ class ItemsManagerController extends Controller
 
         if($newName != "" and $idNewName != ""){
             $item = $repo->findOneBy(['id' => $idNewName, 'owner' => $this->getUser()]);
+            if($item === null) 
+                throw $this->createNotFoundException();
             if(!empty($item)){
                 $item->setName($newName);
                 $em->flush();
