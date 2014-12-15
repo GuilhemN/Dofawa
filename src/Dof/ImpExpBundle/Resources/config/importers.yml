@@ -1,3 +1,7 @@
+imports:
+    - { resource: importers/item.yml }
+    - { resource: importers/quest.yml }
+
 services:
     # DofCharactersBundle:Breed
     dof_imp_exp.importer.breeds:
@@ -32,56 +36,6 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: breed_soft_caps, requires: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breed_soft_caps, requires: beta_breeds }
-    # DofItemsBundle:ItemSet
-    dof_imp_exp.importer.item_sets:
-        class: Dof\ImpExpBundle\Importer\GameData\ItemSetImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: item_sets }
-            - { name: dof_imp_exp.importer, provides: beta_item_sets, requires: item_sets }
-
-    # DofItemsBundle:ItemSetCombination, DofItemsBundle:ItemSetEffect
-    dof_imp_exp.importer.item_set_effects:
-        class: Dof\ImpExpBundle\Importer\GameData\ItemSetEffectImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: item_set_effects, requires: item_sets }
-            - { name: dof_imp_exp.importer, provides: beta_item_set_effects, requires: beta_item_sets }
-    # DofItemsBundle:ItemType
-    dof_imp_exp.importer.item_types:
-        class: Dof\ImpExpBundle\Importer\GameData\ItemTypeImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: item_types }
-            - { name: dof_imp_exp.importer, provides: beta_item_types, requires: item_types }
-    # DofItemsBundle:ItemTemplate and subclasses
-    dof_imp_exp.importer.item_templates:
-        class: Dof\ImpExpBundle\Importer\GameData\ItemTemplateImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: item_templates, requires: 'item_sets item_types' }
-            - { name: dof_imp_exp.importer, provides: beta_item_templates, requires: 'item_templates beta_item_sets beta_item_types' }
-    dof_imp_exp.importer.item_template_skins:
-        class: Dof\ImpExpBundle\Importer\GameData\ItemTemplateSkinImporter
-        arguments: [ "http://exter-n.fr/dofus/its.json", @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: item_template_skins, requires: item_templates }
-    dof_imp_exp.importer.item_effects:
-        class: Dof\ImpExpBundle\Importer\GameData\ItemEffectImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: item_template_effects, requires: "item_templates effect_templates" }
-            - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: "beta_item_templates beta_effect_templates" }
-        calls:
-            - [ setParamLoader, [ "@dof_characters.effect_param_loader" ] ]
-
-    # DofItemsBundle:ItemComponent
-    dof_imp_exp.importer.item_components:
-        class: Dof\ImpExpBundle\Importer\GameData\ItemComponentImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: item_components, requires: item_templates }
-            - { name: dof_imp_exp.importer, provides: beta_item_components, requires: beta_item_templates }
 
     # DofItemsBundle:Job
     dof_imp_exp.importer.job:
@@ -90,14 +44,6 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: job }
             - { name: dof_imp_exp.importer, provides: beta_job }
-
-    # DofItemsBundle:PetTemplate and subclasses
-    dof_imp_exp.importer.pet_food:
-        class: Dof\ImpExpBundle\Importer\GameData\PetFoodImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: pet_food, requires: item_templates }
-            - { name: dof_imp_exp.importer, provides: beta_pet_food, requires: beta_item_templates }
 
     # DofMonsterBundle:Monster
     dof_imp_exp.importer.monsters:
@@ -176,47 +122,3 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: documents }
             - { name: dof_imp_exp.importer, provides: beta_documents }
-
-    # DofQuestBundle:Quest and subclasses
-    dof_imp_exp.importer.quest_categories:
-        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestCategoryImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: quest_categories }
-            - { name: dof_imp_exp.importer, provides: beta_quest_categories }
-
-    dof_imp_exp.importer.quests:
-        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: quests, requires: quest_categories }
-            - { name: dof_imp_exp.importer, provides: beta_quests, requires: beta_quest_categories }
-
-    dof_imp_exp.importer.quest_steps:
-        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestStepImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: quest_steps, requires: quests }
-            - { name: dof_imp_exp.importer, provides: beta_quest_steps, requires: beta_quests }
-
-    dof_imp_exp.importer.quest_step_objectives:
-        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestObjectiveImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: quest_step_objectives, requires: quest_steps }
-            - { name: dof_imp_exp.importer, provides: beta_quest_step_objectives, requires: beta_quest_steps }
-
-    # DofQuestBundle:Achievement and subclasses
-    dof_imp_exp.importer.achievement_categories:
-        class: Dof\ImpExpBundle\Importer\GameData\Quest\AchievementCategoryImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: achievement_categories }
-            - { name: dof_imp_exp.importer, provides: beta_achievement_categories }
-
-    dof_imp_exp.importer.achievements:
-        class: Dof\ImpExpBundle\Importer\GameData\Quest\AchievementImporter
-        arguments: [ @dof_imp_exp.game_data_provider, @doctrine.orm.entity_manager ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: achievements, requires: achievement_categories }
-            - { name: dof_imp_exp.importer, provides: beta_achievements, requires: beta_achievement_categories }

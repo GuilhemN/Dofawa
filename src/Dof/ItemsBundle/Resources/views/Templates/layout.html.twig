@@ -10,7 +10,7 @@
             {% endblock %}
             <font size="2">{{ 'level' | trans({'%level%': itemTemplate.level}) }}</font>
             {% if app.user is defined and item.personalized %}
-                <li class="pointer" data-toggle="modal" data-target=".new-name-modal"><a id="changeNamelink" value="{{ item.id }}">Changer le nom</a></li>
+                <li class="pointer" data-toggle="modal" data-target=".new-name-modal"><a class="changeNamelink-" value="{{ item.id }}">Changer le nom</a></li>
             {% endif %}
             <span class="pull-right">{{ itemTemplate.type.getName(locales()) }}</span>
         </h3>
