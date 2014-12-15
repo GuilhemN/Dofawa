@@ -8,15 +8,18 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
 use XN\Common\Inflector;
+use XN\DependencyInjection\LazyServiceBox;
 use XN\Metadata\SluggableInterface;
 
 class SluggableUpdater
 {
 	private $rootClasses;
+	private $em;
 
-	public function __construct()
+	public function __construct(LazyServiceBox $em)
 	{
 		$this->rootClasses = [ ];
+		$this->em = $em;
 	}
 
 	public function prePersist(LifecycleEventArgs $args)
@@ -26,7 +29,7 @@ class SluggableUpdater
 			$this->reassignSlug($ent, $em);
 	}
 
-	public function reassignSlug(SluggableInterface $ent, ObjectManager $em)
+	public function reassignSlug(SluggableInterface $ent, ObjectManager $em = null)
 	{
 		$slug = Inflector::slugify(strval($ent));
 		if (!$slug)
@@ -34,6 +37,8 @@ class SluggableUpdater
 		$curSlug = $ent->getSlug();
 		if ($curSlug !== null && preg_match('#^' . $slug . '(?:-(?:bis|ter|\d+))?$#', $curSlug))
 			return;
+		if (!$em)
+			$em = $this->em->unwrap();
 		$entRCN = $this->getEntityRootClass($ent, $em);
 		$repo = $em->getRepository($entRCN);
 		if (!$this->tryAssignSlug($ent, $slug, $repo, $entRCN, $em) &&
