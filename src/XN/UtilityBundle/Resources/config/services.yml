@@ -61,7 +61,7 @@ services:
 
     xn.doctrine.sluggable_updater:
         class: "%xn.doctrine.sluggable_updater.class%"
-		arguments: [ "@service_container" ]
+        arguments: [ "@service_container" ]
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
