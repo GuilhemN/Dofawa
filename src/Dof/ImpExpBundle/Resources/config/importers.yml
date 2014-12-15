@@ -9,7 +9,7 @@ services:
         arguments:
             - "@dof_imp_exp.game_data_provider"
             - "@doctrine.orm.entity_manager"
-            - "xn.doctrine.sluggable_updater"
+            - "@xn.doctrine.sluggable_updater"
 
     # DofCharactersBundle:Breed
     dof_imp_exp.importer.breeds:
