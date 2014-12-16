@@ -30,10 +30,10 @@ class SpellRepository extends EntityRepository
 		return $this->createQueryBuilder('s')
 			->where(<<<'EOS'
 s.id IN (
-	SELECT sr.spell
+	SELECT IDENTITY(sr.spell)
 	FROM DofCharactersBundle:SpellRank sr
 	WHERE sr.id IN (
-		SELECT sre.spellRank
+		SELECT IDENTITY(sre.spellRank)
 		FROM DofCharactersBundle:SpellRankEffect sre
 		WHERE sre.effectTemplate = :effectTemplate
 	)
@@ -50,14 +50,14 @@ EOS
 		return $this->createQueryBuilder('s')
 			->where(<<<'EOS'
 s.id IN (
-	SELECT sr.spell
+	SELECT IDENTITY(sr.spell)
 	FROM DofCharactersBundle:SpellRank sr
 	WHERE sr.id IN (
-		SELECT sre.spellRank
+		SELECT IDENTITY(sre.spellRank)
 		FROM DofCharactersBundle:SpellRankEffect sre
 		JOIN sre.effectTemplate et
 		JOIN et.relations etr WITH etr.targetEntity = :relationType AND (etr.column1 = 'id' OR etr.column2 = 'id' OR etr.column3 = 'id')
-		WHERE etr.column1 = 'id' AND et.rawParam1 = :param OR etr.column2 = 'id' AND et.rawParam2 = :param OR etr.column3 = 'id' AND et.rawParam3 = :param
+		WHERE etr.column1 = 'id' AND sre.rawParam1 = :param OR etr.column2 = 'id' AND sre.rawParam2 = :param OR etr.column3 = 'id' AND sre.rawParam3 = :param
 	)
 )
 EOS
