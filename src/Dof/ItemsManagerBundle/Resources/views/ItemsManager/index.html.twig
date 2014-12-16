@@ -43,6 +43,7 @@
 {% endblock %}
 
 {% block js %}
+    {{ parent() }}
     <script defer="" async="">
         $('.new-name-modal').hover(function (event) {
             var link = $(this) 
