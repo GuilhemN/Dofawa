@@ -1,7 +1,9 @@
 {% autoescape  %}
+{% set min = monster.minGrade %}
+{% set max = monster.maxGrade %}
     <div class="panel panel-default item">
         <div class="panel-heading">
-            <h3 class="panel-title">{{ monster.getName(locales())}} <font size="2">Niveau : {{ monster.minLevel }} {% if monster.maxLevel != monster.minLevel %}- {{ monster.maxLevel}}{% endif %}</font></h3>
+            <h3 class="panel-title">{{ monster.getName(locales())}} <font size="2">Niveau : {{ min.level }} {% if max.level != min.level %}- {{ max.level}}{% endif %}</font></h3>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -34,15 +36,13 @@
                 {# Right column #}
                 <div class="row">
                     <div class="col-lg-3">
-                        {{ 'vitality' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monsterEffect.effect( monster.minLifePoints , monster.maxLifePoints) }}
+                        {{ 'vitality' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monsterEffect.effect( min.lifePoints , max.lifePoints) }}
                         <br>
-                        {{ 'ap' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monsterEffect.effect( monster.minActionPoints , monster.maxActionPoints) }}
+                        {{ 'ap' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monsterEffect.effect( min.actionPoints , max.actionPoints) }}
                         <br>
-                        {{ 'mp' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monsterEffect.effect( monster.minMovementPoints , monster.maxMovementPoints) }}
+                        {{ 'mp' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monsterEffect.effect( min.movementPoints , max.movementPoints) }}
                         <br>
                     </div>
-                    {% set min = monster.minGrade %}
-                    {% set max = monster.maxGrade %}
                     <div class="col-lg-5">
                         <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ monsterEffect.effect( min.earthResistance , max.earthResistance) }}{{ 'percentEarthResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
