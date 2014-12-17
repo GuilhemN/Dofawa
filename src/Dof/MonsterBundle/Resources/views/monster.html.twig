@@ -58,6 +58,16 @@
                     {# Close right column #}
                 </div>
             </div>
+            {% if paramOf | length > 0 %}
+                <hr />
+                <b>Invoqué / Influencé par :</b>
+                {% for spell in paramOf %}
+                    <a href="{{ path('dof_spell_show', { slug: spell.slug }) }}">{{ spell.getName(locales()) }}</a>
+                    {% if not loop.last %}
+                    |
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
 
         </div>
     </div>
