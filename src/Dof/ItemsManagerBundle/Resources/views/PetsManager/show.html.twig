@@ -2,7 +2,7 @@
 
 {% block breadcrumb %}
 	{{ parent() }}
-	<li><a href="{{ path('dof_items_manager_homepage') }}">{{ 'inventory'|trans({}, 'generalTrans') }}</a></li><li>{{ 'pets' | trans({}, 'type_item') }}</li>
+	<li><a href="{{ path('dof_items_manager_homepage') }}">{{ 'inventory'|trans({}, 'generalTrans') }}</a></li><li>{{ 'animals.pets' | transchoice(2,{}, 'type_item') }}</li>
 {% endblock %}
 
 {% block body %}
@@ -23,7 +23,7 @@
         </form>
     {% endif %}
     <div class="panel panel-default">
-        <div class="panel-heading">{{ 'pets' | trans({}, 'type_item') }}</div>
+        <div class="panel-heading">{{ 'animals.pets' | transchoice(2,{}, 'type_item') }}</div>
         <form method="POST" name="feedPets" action="{{ path('dof_items_manager_pets_feed') }}">
             <table class="table">
                 <thead>
