@@ -1,6 +1,6 @@
 <?php
 
-namespace Dof\ImpExpBundle\Importer\GameData\Spell;
+namespace Dof\ImpExpBundle\Importer\GameData\Monster;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
