@@ -49,7 +49,6 @@
 
             {# Right column #}
             <div class="col-sm-9">
-                {% set item_content = '' %}
                 {# Menu tabs #}
                 <ul class="nav nav-pills" role="tablist">
                     {% set is_active_tab = false %}
@@ -97,7 +96,8 @@
 
             {# Close right column #}
             </div>
-        {% if is_active_tab %}
+        {% set descriptionCriteria = block('tabs_menu') | trim is empty %}
+        {% if descriptionCriteria %}
         </div>
         {% endif %}
         <div>
@@ -111,7 +111,7 @@
                 {{ itemTemplate.getDescription(locales()) }}
             {% endif %}
         </div>
-        {% if not is_active_tab %}
+        {% if not descriptionCriteria %}
         </div>
         {% endif %}
 
