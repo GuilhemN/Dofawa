@@ -97,7 +97,7 @@
             {# Close right column #}
             </div>
         {% set descriptionCriteria = block('tabs_menu') | trim is empty %}
-        {% if descriptionCriteria %}
+        {% if not descriptionCriteria %}
         </div>
         {% endif %}
         <div>
@@ -111,7 +111,7 @@
                 {{ itemTemplate.getDescription(locales()) }}
             {% endif %}
         </div>
-        {% if not descriptionCriteria %}
+        {% if descriptionCriteria %}
         </div>
         {% endif %}
 
