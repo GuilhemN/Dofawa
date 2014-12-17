@@ -30,8 +30,8 @@
             </div>
             <div class="modal-body">
                 <form action="{{ path('dof_items_manager_homepage') }}" method="POST">
-                    Nom : <input type="text" id="changeName" name="changeName" /><br>
-                    <input id="changeId" type="hidden" name="idChange" value="">
+                    Nom : <input type="text" class="changeName" name="changeName" /><br>
+                    <input class="changeId" type="hidden" name="idChange" value="">
                     <input type="submit" class="btn" value="Changer"/>
                 </form>
             </div> 
@@ -42,16 +42,15 @@
 {% endautoescape %}
 {% endblock %}
 
-{% block javascripts %}
-    <script>
-        $('.pointer').on('show.bs.modal', function (event) {
-            var link = $(event.relatedTarget) 
+{% block js %}
+    {{ parent() }}
+    <script defer="" async="">
+        $('.new-name-modal').hover(function (event) {
+            var link = $(this) 
             var id = link.data('id')
             var name = link.data('name')
-
-            var modal = $(this)
-            modal.find('#changeId').val(id)
-            modal.find('#changeName').val(name)
+            $('.changeId').val(id)
+            $('.changeName').val(name)
         }
     </script>
 

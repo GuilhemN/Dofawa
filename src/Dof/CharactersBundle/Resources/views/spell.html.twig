@@ -113,6 +113,16 @@
             <br>
         {% endif %}
         {{ spell.getDescription(locales()) }}
+		{% if paramOf|length > 0 %}
+			<hr />
+			<b>Effet de / Influencé par :</b>
+			{% for spell in paramOf %}
+			<a href="{{ path('dof_spell_show', { slug: spell.slug }) }}">{{ spell.getName(locales()) }}</a>
+			{% if not loop.last %}
+			|
+			{% endif %}
+			{% endfor %}
+		{% endif %}
         {% if is_granted('ROLE_SUPER_ADMIN') %}
         <hr />
         <div class="text-center">
