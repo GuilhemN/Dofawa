@@ -39,7 +39,7 @@
 {% block tabs_menu %}
     {{ parent() }}
     {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
-        {% set isActiveTab = true %}
+        {% set isActivedTab = true %}
         <li><a {% if not isActivedTab %}{% set isActivedTab = true %}class="active" {% endif %}href="#food-item{{ item.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
     {% endif %}
 {% endblock %}

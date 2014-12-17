@@ -52,7 +52,7 @@
                 {% set item_content = '' %}
                 {# Menu tabs #}
                 <ul class="nav nav-pills" role="tablist">
-                    {% set isActiveTab = false %}
+                    {% set isActivedTab = false %}
                     {% set characts %}
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
                     {% endset %}
@@ -60,7 +60,7 @@
                     {% block tabs_menu %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
-                            {% set isActiveTab = true %}
+                            {% set isActivedTab = true %}
                             <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
                         {% endif %}
 
@@ -97,7 +97,7 @@
 
             {# Close right column #}
             </div>
-        {% if isActiveTab %}
+        {% if isActivedTab %}
         </div>
         {% endif %}
         <div>
@@ -111,7 +111,7 @@
                 {{ itemTemplate.getDescription(locales()) }}
             {% endif %}
         </div>
-        {% if not isActiveTab %}
+        {% if not isActivedTab %}
         </div>
         {% endif %}
 
