@@ -21,7 +21,7 @@ class MonsterImporter extends AbstractGameDataImporter
         if (!$beta && $write)
             $this->dm->createQuery('UPDATE DofMonsterBundle:Monster s SET s.deprecated = true')->execute();
 
-        $stmt = $conn->query('SELECT o.*, ' .
+        $stmt = $conn->query('SELECT o.*' .
             $this->generateD2ISelects('name', $locales) .
             ' FROM ' . $db . '.D2O_Monster o' .
             $this->generateD2IJoins('name', $db, $locales) .
