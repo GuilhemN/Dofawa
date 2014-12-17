@@ -97,7 +97,7 @@
 
             {# Close right column #}
             </div>
-        {% if block('tabs_content') | trim is not empty %}
+        {% if isActiveTab %}
         </div>
         {% endif %}
         <div>
@@ -111,7 +111,7 @@
                 {{ itemTemplate.getDescription(locales()) }}
             {% endif %}
         </div>
-        {% if block('tabs_content') | trim is empty %}
+        {% if isActiveTab %}
         </div>
         {% endif %}
 

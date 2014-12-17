@@ -10,6 +10,7 @@
     {% set itemTemplate = item.itemTemplate %}
 {% endif %}
 
+{% set has_content = false %}
 {% if itemTemplate.weapon %}
     {% include 'DofItemsBundle:Templates:weapon.html.twig' %}
 {% elseif itemTemplate.pet %}
