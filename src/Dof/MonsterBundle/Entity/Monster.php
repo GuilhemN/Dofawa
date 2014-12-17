@@ -109,6 +109,28 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
         return $this->grades;
     }
 
+    public function getMinGrade(){
+        $min = null; $minGrade = null;
+        foreach($this->grades as $grade)
+            if($min !== null or $min < $grade->getGrade()){
+                $min = $grade->getGrade();
+                $minGrade = $grade;
+            }
+
+        return $minGrade;
+    }
+
+    public function getMaxGrade(){
+        $max = null; $maxGrade = null;
+        foreach($this->grades as $grade)
+            if($max !== null or $max < $grade->getGrade()){
+                $max = $grade->getGrade();
+                $maxGrade = $grade;
+            }
+
+        return $maxGrade;
+    }
+
     /**
      * Set visible
      *

@@ -41,16 +41,18 @@
                         {{ 'mp' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monsterEffect.effect( monster.minMovementPoints , monster.maxMovementPoints) }}
                         <br>
                     </div>
+                    {% set min = monster.minGrade %}
+                    {% set max = monster.maxGrade %}
                     <div class="col-lg-5">
-                        <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ monsterEffect.effect( monster.minEarthResistance , monster.maxEarthResistance) }}{{ 'percentEarthResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ monsterEffect.effect( min.earthResistance , max.earthResistance) }}{{ 'percentEarthResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
-                        <img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ monsterEffect.effect( monster.minAirResistance , monster.maxAirResistance) }}{{ 'percentAirResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ monsterEffect.effect( min.airResistance , max.airResistance) }}{{ 'percentAirResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
-                        <img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt=""> {{ monsterEffect.effect( monster.minFireResistance , monster.maxFireResistance) }}{{ 'percentFireResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt=""> {{ monsterEffect.effect( min.fireResistance , max.fireResistance) }}{{ 'percentFireResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
-                        <img src="{{ asset('bundles/dofitems/img/water.png') }}" alt=""> {{ monsterEffect.effect( monster.minWaterResistance , monster.maxWaterResistance) }}{{ 'percentWaterResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/water.png') }}" alt=""> {{ monsterEffect.effect( min.waterResistance , max.waterResistance) }}{{ 'percentWaterResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
-                        <img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt=""> {{ monsterEffect.effect( monster.minNeutralResistance , monster.maxNeutralResistance) }}{{ 'percentNeutralResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt=""> {{ monsterEffect.effect( min.neutralResistance , max.neutralResistance) }}{{ 'percentNeutralResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
                     </div>
                     {# Close right column #}
