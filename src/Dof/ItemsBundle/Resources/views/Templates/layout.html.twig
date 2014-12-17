@@ -52,7 +52,7 @@
                 {% set item_content = '' %}
                 {# Menu tabs #}
                 <ul class="nav nav-pills" role="tablist">
-                    {% set isActivedTab = false %}
+                    {% set isActiveTab = false %}
                     {% set characts %}
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
                     {% endset %}
