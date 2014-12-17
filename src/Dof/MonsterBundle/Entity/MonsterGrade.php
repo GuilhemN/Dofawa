@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MonsterGrade
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_monster_grades")
  * @ORM\Entity(repositoryClass="Dof\MonsterBundle\Entity\MonsterGradeRepository")
  */
 class MonsterGrade
@@ -137,7 +137,7 @@ class MonsterGrade
     {
         return $this->id;
     }
-    
+
     /**
     * Set monster
     *

@@ -32,7 +32,7 @@ class MonsterGradeImporter extends AbstractGameDataImporter
 
         $rowsProcessed = 0;
         if ($output && $progress)
-            $progress->start($output, count($all));
+            $progress->start($output, count($g));
 
         foreach ($g as $monster => $grades) {
             $monster = $repo->find($monster);
