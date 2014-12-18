@@ -51,7 +51,7 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     /**
     * @var Collection
     *
-    * @ORM\OneToMany(targetEntity="CriterionRelation", mappedBy="criterion", fetch="EAGER")
+    * @ORM\OneToMany(targetEntity="CriterionTemplateRelation", mappedBy="criterion", fetch="EAGER")
     */
     private $relations;
 
