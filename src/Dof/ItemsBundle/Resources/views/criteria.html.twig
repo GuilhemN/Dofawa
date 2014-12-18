@@ -1,4 +1,4 @@
-{% if criterion.visible is not defined or criterion.visible %}
+{% if criterion is not empty and criterion.visible %}
     <li>
         {% if criterion | classOf == 'SimpleCriterion' %}
             {{ criterion.htmlDescription | raw }}
