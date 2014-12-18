@@ -12,7 +12,9 @@
                         Au moins une de ces conditions
                     {% endif %}
                 </li>
-                {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': criterion.criteria} only %}
+                {% for c in criterion.criteria %}
+                    {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c} only %}
+                {% endfor %}
             </ul>
         {% endif %}
     </li>
