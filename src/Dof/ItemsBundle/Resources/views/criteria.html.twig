@@ -1,0 +1,18 @@
+{% for criterion in criteria if criterion.visible %}
+    <li>
+        {% if criterion | classOf == 'SimpleCriterion' %}
+            {{ criterion.htmlDescription | raw }}
+        {% else %}
+            <ul>
+                <li>
+                    {% if criterion | classOf == 'AndCriterion' %}
+                        Toutes ces conditions :
+                    {% else %}
+                        Au moins une de ces conditions
+                    {% endif %}
+                </li>
+                {% include 'DofItemsBundle::criteria.html.twig' with {'criteria': criterion.criteria} %}
+            </ul>
+        {% endif %}
+    </li>
+{% endfor %}

@@ -55,12 +55,21 @@
                     {% set characts %}
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
                     {% endset %}
+                    {% set criteria %}
+                        {% include 'DofItemsBundle::criteria.html.twig' with {'criteria': itemTemplate.criteria} %}
+                    {% endset %}
 
                     {% block tabs_menu %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
                             {% set is_active_tab = true %}
                             <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
+                        {% endif %}
+
+                        {# Conditions #}
+                        {% if criteria | trim is not empty %}
+                            {% set is_active_tab = true %}
+                            <li class="active"><a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
                         {% endif %}
 
                         {# Recette #}
@@ -76,6 +85,13 @@
                         {% if characts | trim is not empty %}
                         <div class="tab-pane active" id="caracts-item{{ item.id }}">
                             {{ characts }}
+                        </div>
+                        {% endif %}
+
+                        {# Conditions #}
+                        {% if criteria | trim is not empty %}
+                        <div class="tab-pane active" id="criteria-item{{ item.id }}">
+                            {{ criteria }}
                         </div>
                         {% endif %}
 
