@@ -8,7 +8,7 @@ class CriteriaParser
 {
     private function __construct() {}
 
-    public function criteria(Reader $source) {
+    public static function criteria(Reader $source) {
         $state = $source->getState();
         $retval = self::orx($source);
         if (!$source->isEof())
@@ -19,7 +19,7 @@ class CriteriaParser
         return $retval;
     }
 
-    protected function orx(Reader $source) {
+    protected static function orx(Reader $source) {
         if (($andx = self::andx($source)) === null)
             return null;
 
@@ -39,7 +39,7 @@ class CriteriaParser
         return !empty($or) ? new OrCriterion(array_merge([ $andx ], $or)) : $andx;
     }
 
-    protected function andx(Reader $source) {
+    protected static function andx(Reader $source) {
         if (($primary = self::primary($source)) === null)
             return null;
         $and = [];
@@ -58,7 +58,7 @@ class CriteriaParser
         return !empty($and) ? new AndCriterion(array_merge([ $primary ], $and)) : $primary;
     }
 
-    protected function primary(Reader $source) {
+    protected static function primary(Reader $source) {
         $return = self::simple($source);
         if(!$return){
             $state = $source->getState();
@@ -71,7 +71,7 @@ class CriteriaParser
         return $return;
     }
 
-    protected function simple(Reader $source) {
+    protected static function simple(Reader $source) {
         $state = $source->getState();
         $_1 = self::characteristic($source);
         $_2 = $_1 ? self::operator($source) : null;
@@ -82,17 +82,17 @@ class CriteriaParser
         return $_3 ? new SimpleCriterion ($_1, $_2, $_3) : null;
     }
 
-    protected function characteristic(Reader $source) {
+    protected static function characteristic(Reader $source) {
         $characteristic = $source->eatRegex('#[A-Za-z0-9]{2}#A');
         return $characteristic ? $characteristic[0] : null;
     }
 
-    protected function operator(Reader $source) {
+    protected static function operator(Reader $source) {
         $operator = $source->eatRegex('#[=!<>~X]#A');
         return $operator ? $operator[0] : null;
     }
 
-    protected function params(Reader $source){
+    protected static function params(Reader $source){
         if (($param = self::param($source)) === null)
             return null;
 
@@ -110,7 +110,7 @@ class CriteriaParser
         return $params;
     }
 
-    protected function param(Reader $source) {
+    protected static function param(Reader $source) {
         $param = $source->eatRegex('#[A-Za-z0-9-]+#A');
         return $param ? $param[0] : null;
     }
