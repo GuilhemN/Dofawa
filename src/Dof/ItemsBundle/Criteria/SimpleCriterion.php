@@ -60,6 +60,15 @@ class SimpleCriterion extends Criterion
         return $this->criterionTemplate;
     }
 
+    public function setVisible($visible) {
+        $this->visible = $visible;
+        return $this;
+    }
+
+    public function getVisible() {
+        return $this->visible;
+    }
+    
     public function setContainer(ContainerInterface $di) {
         $this->di = $di;
         return $this;
