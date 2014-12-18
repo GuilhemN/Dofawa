@@ -57,13 +57,13 @@ class CriteriaLoader extends ServiceWithContainer
             $ent->setVisible(true);
             $ent->setCriterionTemplate($tpl);
             $params = $ent->getParams();
-            $param1 = $params[0];
+            $param1 = isset($params[0]) ? $params[0] : 0;
             if ($param1 instanceof IdentifiableInterface)
                 $param1 = $param1->getId();
-            $param2 = $params[1];
+            $param2 = isset($params[1]) ? $params[1] : 0;
             if ($param2 instanceof IdentifiableInterface)
                 $param2 = $param2->getId();
-            $param3 = $params[2];
+            $param3 = isset($params[2]) ? $params[2] : 0;
             if ($param3 instanceof IdentifiableInterface)
                 $param3 = $param3->getId();
 
