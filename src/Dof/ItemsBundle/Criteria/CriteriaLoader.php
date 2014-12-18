@@ -54,6 +54,7 @@ class CriteriaLoader extends ServiceWithContainer
                 $ent->setVisible(false);
                 return;
             }
+            $ent->setVisible(true);
             $ent->setCriterionTemplate($tpl);
             $params = $ent->getParams();
             $param1 = $params[0];
@@ -106,7 +107,7 @@ class CriteriaLoader extends ServiceWithContainer
                 }
             }
         }
-        else
+        elseif($ent !== null)
             foreach($ent->getCriteria() as $c)
                 $this->transform($c);
     }
