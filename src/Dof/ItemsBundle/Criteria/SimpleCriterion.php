@@ -68,7 +68,7 @@ class SimpleCriterion extends Criterion
     public function getVisible() {
         return $this->visible;
     }
-    
+
     public function setContainer(ContainerInterface $di) {
         $this->di = $di;
         return $this;
@@ -81,7 +81,7 @@ class SimpleCriterion extends Criterion
     public function getDescription($locale = 'fr')
     {
         $translator = $this->di->get('translator');
-        $desc = $this->getEffectTemplate()->expandDescription(array_unshift($this->params, $this->operator), $locale);
+        $desc = $this->getCriterionTemplate()->expandDescription(array_unshift($this->params, $this->operator), $locale);
         return $desc;
     }
 
