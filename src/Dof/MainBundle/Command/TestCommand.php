@@ -24,7 +24,7 @@ class TestCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine')->getManager();
-        $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findBySlug('goultard');
+        $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findOneBySlug('goultard');
 
         $output->writeln(var_dump($item->getTreatedCritaria()));
     }
