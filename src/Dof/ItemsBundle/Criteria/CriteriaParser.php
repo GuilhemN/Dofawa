@@ -63,7 +63,7 @@ class CriteriaParser
     }
 
     protected function primary(Reader $source) {
-        $_1 = $this->simple($source); 
+        $_1 = $this->simple($source);
         if($_1 === null){
             $state = $source->getState();
             $_2_1 = $source->eat('(');
@@ -77,7 +77,7 @@ class CriteriaParser
             }
             $source->freeState($state);
         }
-        return $_1 ? $_1 : $_2_2;
+        return $_1 !== null ? $_1 : $_2_2;
     }
 
     protected function simple(Reader $source) {
