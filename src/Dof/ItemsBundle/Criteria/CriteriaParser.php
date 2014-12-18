@@ -6,10 +6,8 @@ use XN\Grammar\StringReader;
 
 class CriteriaParser
 {
-    private $reader;
-
-    protected function criteria(Reader $source) {
-        $state = $this->getState();
+    public function criteria(Reader $source) {
+        $state = $source->getState();
         $retval = $this->orx($source);
         if (!$source->isEof())
             $retval = false;
@@ -20,41 +18,48 @@ class CriteriaParser
     }
 
     protected function orx(Reader $source) {
-        if (!$this->andx($source))
-            return false;
+        if (!($andx = $this->andx($source)))
+            return null;
 
+        $or = [];
         while (1) {
             $state = $source->getState();
-            $match = $source->eat('|')
-            && $this->andx($source);
+            $_1 = $source->eat('|');
+            $_2 = $this->andx($source);
+            $match = $_1 && $_2;
 
             $source->freeState($state);
             if(!$match){
                 $source->setState($state);
                 break;
             }
-
+            else
+                $or[] = $_2;
         }
-        return true;
+        return new OrCriterion(!empty($or) ? [ $andx ] + $or : $andx);
     }
 
     protected function andx(Reader $source) {
-        if (!$this->primary($source))
-            return false;
+        if (!($primary = $this->primary($source)))
+            return null;
 
+        $and = [];
         while (1) {
             $state = $source->getState();
-            $match = $source->eat('&')
-                && $this->primary($source);
+            $_1 = $source->eat('&');
+            $_2 = $this->primary($source);
+            $match = $_1 && $_2;
 
             if(!$match)
                 $source->setState($state);
+            else {
+                $and[] = $_2;
+            }
             $source->freeState($state);
             if(!$match)
                 break;
-
         }
-        return true;
+        return new AndCriterion(!empty($and) ? [ $primary ] + $and : $primary);
     }
 
     protected function primary(Reader $source) {
