@@ -63,6 +63,8 @@ trait SnippetDescriptionTrait
 
                 if($row[0] instanceOf \Dof\CharactersBundle\Entity\Spell && ($row[0]->isPubliclyVisible() or $securityContext->isGranted('ROLE_SPELL_XRAY') ))
                     return '<a href="' . $router->generate('dof_spell_show', array('slug' => $row[0]->getSlug())) . '">' . $name . '</a>';
+                elseif($row[0] instanceOf \Dof\CharactersBundle\Entity\Breed)
+                    return '<a href="' . $router->generate('dof_characters_show', array('slug' => $row[0]->getSlug())) . '">' . $name . '</a>';
                 elseif($row[0] instanceOf \Dof\MonsterBundle\Entity\Monster)
                     return '<a href="' . $router->generate('dof_monster_show', array('slug' => $row[0]->getSlug())) . '">' . $name . '</a>';
                 elseif($row[0] instanceOf \Dof\ItemsBundle\Entity\ItemTemplate)
