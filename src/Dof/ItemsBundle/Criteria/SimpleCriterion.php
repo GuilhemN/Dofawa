@@ -80,8 +80,10 @@ class SimpleCriterion extends Criterion
 
     public function getDescription($locale = 'fr')
     {
+        $params = $this->params;
+        array_unshift($params, $this->operator);
         $translator = $this->di->get('translator');
-        $desc = $this->criterionTemplate->expandDescription(array_unshift($this->params, $this->operator), $locale);
+        $desc = $this->criterionTemplate->expandDescription($params, $locale);
         return $desc;
     }
 
