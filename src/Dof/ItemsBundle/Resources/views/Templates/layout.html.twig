@@ -82,14 +82,14 @@
                     {% block tabs_content %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
-                        <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                        <div class="tab-pane" id="caracts-item{{ item.id }}">
                             {{ characts }}
                         </div>
                         {% endif %}
 
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
-                        <div class="tab-pane active" id="criteria-item{{ item.id }}">
+                        <div class="tab-pane" id="criteria-item{{ item.id }}">
                             <ul>
                                 {{ criteria }}
                             </ul>
