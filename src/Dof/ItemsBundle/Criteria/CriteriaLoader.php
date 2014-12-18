@@ -109,7 +109,8 @@ class CriteriaLoader extends ServiceWithContainer
         }
         elseif($ent !== null)
             foreach($ent->getCriteria() as $c)
-                $this->transform($c);
+                if($c !== null) # TODO
+                    $this->transform($c);
     }
 
     protected function getCriterionTemplate($characteristic, $operator) {
