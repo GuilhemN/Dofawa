@@ -37,6 +37,6 @@ services:
     # Criteria
     dof_items.criteria_loader:
         class: Dof\ItemsBundle\Criteria\CriteriaLoader
-        arguments: [ "@service_container" ]
+        arguments: [ @service_container ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
