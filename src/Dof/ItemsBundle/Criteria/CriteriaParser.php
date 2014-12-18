@@ -24,59 +24,60 @@ class CriteriaParser
         $or = [];
         while (1) {
             $state = $source->getState();
-            $_1 = $source->eat('|');
-            $_2 = $this->andx($source);
-            $match = $_1 && $_2;
+            $return = $source->eat('|') && ($o = $this->andx($source)) ? $o : null;
 
-            $source->freeState($state);
-            if(!$match){
+            if(!$return)
                 $source->setState($state);
-                break;
-            }
             else
-                $or[] = $_2;
+                $or [] = $o;
+            $source->freeState($state);
+            if(!$return)
+                break;
         }
-        return !empty($or) ? new OrCriterion([ $andx ] + $or) : $andx;
+        return !empty($or) ? new OrCriterion(array_merge([ $andx ], $or)) : $andx;
     }
 
     protected function andx(Reader $source) {
         if (($primary = $this->primary($source)) === null)
             return null;
-
         $and = [];
         while (1) {
             $state = $source->getState();
-            $_1 = $source->eat('&');
-            $_2 = $this->primary($source);
-            $match = $_1 && $_2;
-
-            if(!$match)
+            $return = $source->eat('&') && ($a = $this->primary($source)) ? $a : null;
+            if(!$return)
                 $source->setState($state);
-            else {
-                $and[] = $_2;
-            }
+            else
+                $and[] = $return;
+
             $source->freeState($state);
-            if(!$match)
+            if(!$return)
                 break;
         }
-        return !empty($and) ? new AndCriterion([ $primary ] + $and) : $primary;
+        return !empty($and) ? new AndCriterion(array_merge([ $primary ], $and)) : $primary;
     }
 
     protected function primary(Reader $source) {
-        $_1 = $this->simple($source);
-        return $_1 !== null ? $_1 : $_2_2;
+        $return = $this->simple($source);
+        if(!$return){
+            $state = $source->getState();
+            $return = $source->eat('(') && ($orx = $this->orx($source) && $source->eat(')')) ? $orx : null;
+
+            if (!$return)
+                $source->setState($state);
+            $source->freeState($state);
+        }
+        return $return;
     }
 
     protected function simple(Reader $source) {
         $state = $source->getState();
         $_1 = $this->characteristic($source);
-        $_2 = $this->operator($source);
-        $_3 = $this->params($source);
-        $match = $_1 && $_2 && $_3;
-        if (!$match)
+        $_2 = $_1 ? $this->operator($source) : null;
+        $_3 = $_2 ? $this->params($source) : null;
+        if (!$_3)
             $source->setState($state);
         $source->freeState($state);
-        return $match ? new SimpleCriterion ($_1, $_2, $_3) : null;
+        return $_3 ? new SimpleCriterion ($_1, $_2, $_3) : null;
     }
 
     protected function characteristic(Reader $source) {
@@ -96,21 +97,19 @@ class CriteriaParser
         $params = [ $param ];
         while (1) {
             $state = $source->getState();
-            $_1 = $source->eat(',');
-            $_2 = $_1 ? $this->param($source) : null;
-
-            if($_2 === null)
+            $p = $source->eat(',') ? $this->param($source) : null;
+            if(!$p)
                 $source->setState($state);
             else
-                $params[] = $_2;
+                $params[] = $p;
             $source->freeState($state);
-            if($_2 === null)
-                break;
+            if(!$p) break;
         }
         return $params;
     }
 
     protected function param(Reader $source) {
-        return $source->eatRegex('#[A-Za-z0-9-]+#A');
+        $param = $source->eatRegex('#[A-Za-z0-9-]+#A');
+        return $param ? $param[0] : null;
     }
 }

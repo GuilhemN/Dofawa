@@ -69,7 +69,7 @@ class StringReader implements Reader
         if ($caseInsensitive) {
             if ($this->end - $this->offset < $len)
                 return null;
-            if (substr_compare($this->data, $string, $this->offset, true) != 0)
+            if (substr_compare($this->data, $string, $this->offset, strlen($string), true) != 0)
                 return null;
             $offset = $this->offset;
             $this->offset += $len;
@@ -77,7 +77,7 @@ class StringReader implements Reader
         } else {
             if ($this->end - $this->offset < $len)
                 return false;
-            if (substr_compare($this->data, $string, $this->offset) != 0)
+            if (substr_compare($this->data, $string, $this->offset, strlen($string)) != 0)
                 return false;
             $this->offset += $len;
             return true;

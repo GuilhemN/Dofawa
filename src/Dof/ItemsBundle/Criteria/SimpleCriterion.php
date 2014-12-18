@@ -7,7 +7,7 @@ class SimpleCriterion extends Criterion
     private $operator;
     private $params;
 
-    public function __contruct($characteristic = null, $operator = null, $params = array()){
+    public function __construct($characteristic = null, $operator = null, array $params = array()){
         $this->characteristic = $characteristic;
         $this->operator = $operator;
         $this->params = $params;
