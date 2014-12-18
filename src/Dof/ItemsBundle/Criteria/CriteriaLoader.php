@@ -40,7 +40,7 @@ class CriteriaLoader extends ServiceWithContainer
                 // Code seems to say that they actually are ...
                 // So this may or may not work
                 $criteria = $ent->getParsedCriteria();
-                $ent->setTreatedCriteria($this->transform($criteria));
+                $ent->setTreatedCriteria(!empty($criteria) ? $this->transform($criteria) : null);
             }
         }
     }
@@ -109,8 +109,7 @@ class CriteriaLoader extends ServiceWithContainer
         }
         elseif($ent !== null)
             foreach($ent->getCriteria() as $c)
-                if($c !== null) # TODO
-                    $this->transform($c);
+                $this->transform($c);
     }
 
     protected function getCriterionTemplate($characteristic, $operator) {
