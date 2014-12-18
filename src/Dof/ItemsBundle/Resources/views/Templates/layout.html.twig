@@ -64,7 +64,6 @@
                         {# Effets #}
                         {% if characts | trim is not empty %}
                             {% set is_active_tab = true %}
-                            {% set tab_active = 'effect' %}
                             <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
                         {% endif %}
 
@@ -84,7 +83,7 @@
                     {% block tabs_content %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
-                        <div class="tab-pane{% if tab_active == 'effect' %} active{% endif %}" id="caracts-item{{ item.id }}">
+                        <div class="tab-pane active" id="caracts-item{{ item.id }}">
                             {{ characts }}
                         </div>
                         {% endif %}
