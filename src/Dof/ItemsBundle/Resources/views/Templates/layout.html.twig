@@ -56,7 +56,7 @@
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
                     {% endset %}
                     {% set criteria %}
-                        {% include 'DofItemsBundle::criteria.html.twig' with {'criteria': itemTemplate.criteria} %}
+                        {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': itemTemplate.treatedCriteria} %}
                     {% endset %}
 
                     {% block tabs_menu %}
@@ -91,7 +91,9 @@
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
                         <div class="tab-pane active" id="criteria-item{{ item.id }}">
-                            {{ criteria }}
+                            <ul>
+                                {{ criteria }}
+                            </ul>
                         </div>
                         {% endif %}
 

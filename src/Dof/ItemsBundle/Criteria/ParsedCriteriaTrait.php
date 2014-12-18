@@ -5,13 +5,13 @@ use XN\Grammar\StringReader;
 
 trait ParsedCriteriaTrait
 {
-    private $treatedCriteria = array();
+    private $treatedCriteria = null;
 
     public function getParsedCriteria() {
         return CriteriaParser::criteria(new StringReader($this->getCriteria()));
     }
 
-    public function setTreatedCriteria(array $treatedCriteria){
+    public function setTreatedCriteria($treatedCriteria){
         $this->treatedCriteria = $treatedCriteria;
         return $this;
     }
