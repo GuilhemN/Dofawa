@@ -3,18 +3,18 @@ namespace Dof\ItemsBundle\Criteria;
 
 class OrCriterion extends Criterion
 {
-    private $criterions;
+    private $criteria;
 
-    public function __construct(array $criterions = array()) {
-        $this->criterions = $criterions;
+    public function __construct(array $criteria = array()) {
+        $this->criteria = $criteria;
     }
 
-    public function setCriterions(array $criterions) {
-        $this->criterions = $criterions;
+    public function setCriteria(array $criteria) {
+        $this->criteria = $criteria;
         return $this;
     }
 
-    public function getCriterions() {
-        return $this->criterions;
+    public function getCriteria() {
+        return $this->criteria;
     }
 }
