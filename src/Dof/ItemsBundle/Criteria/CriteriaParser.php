@@ -64,19 +64,6 @@ class CriteriaParser
 
     protected function primary(Reader $source) {
         $_1 = $this->simple($source);
-        if($_1 === null){
-            $state = $source->getState();
-            $_2_1 = $source->eat('(');
-            $_2_2 = $this->orx($source);
-            $_2_3 = $source->eat(')');
-            $match = $_2_1 && $_2_2 && $_2_3;
-
-            if (!$match){
-                $source->setState($state);
-                $_2_2 = null;
-            }
-            $source->freeState($state);
-        }
         return $_1 !== null ? $_1 : $_2_2;
     }
 

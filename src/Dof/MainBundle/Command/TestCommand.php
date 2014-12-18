@@ -25,6 +25,6 @@ class TestCommand extends ContainerAwareCommand
     {
         $parser = new CriteriaParser();
 
-        $output->writeln(var_dump($parser->criteria(new StringReader('CC>10'))));
+        $output->writeln(var_dump($parser->criteria(new StringReader('CC<10'))));
     }
 }
