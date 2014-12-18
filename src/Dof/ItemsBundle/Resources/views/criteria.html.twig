@@ -4,14 +4,12 @@
         {% if class == 'SimpleCriterion' %}
             {{ criterion.htmlDescription | raw }}
         {% else %}
+            {% if classOf(criterion) == 'AndCriterion' %}
+                Toutes ces conditions :
+            {% else %}
+                Au moins une de ces conditions
+            {% endif %}
             <ul>
-                <li>
-                    {% if classOf(criterion) == 'AndCriterion' %}
-                        Toutes ces conditions :
-                    {% else %}
-                        Au moins une de ces conditions
-                    {% endif %}
-                </li>
                 {% for c in criterion.criteria %}
                     {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c} only %}
                 {% endfor %}
