@@ -1,6 +1,6 @@
 {% if criterion is not empty and criterion.visible %}
     <li>
-        {% if criterion | classOf == 'SimpleCriterion' %}
+        {% if classOf(criterion) == 'SimpleCriterion' %}
             {{ criterion.htmlDescription | raw }}
         {% else %}
             <ul>
