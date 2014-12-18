@@ -26,6 +26,6 @@ class TestCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine')->getManager();
         $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findOneBySlug('goultard');
 
-        $output->writeln(var_dump($item->getTreatedCritaria()));
+        $output->writeln(var_dump($item->getTreatedCriteria()));
     }
 }
