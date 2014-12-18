@@ -18,7 +18,7 @@ class CriteriaParser
     }
 
     protected function orx(Reader $source) {
-        if (!($andx = $this->andx($source)))
+        if (($andx = $this->andx($source)) === null)
             return null;
 
         $or = [];
@@ -36,11 +36,11 @@ class CriteriaParser
             else
                 $or[] = $_2;
         }
-        return new OrCriterion(!empty($or) ? [ $andx ] + $or : $andx);
+        return !empty($or) ? new OrCriterion([ $andx ] + $or) : $andx;
     }
 
     protected function andx(Reader $source) {
-        if (!($primary = $this->primary($source)))
+        if (($primary = $this->primary($source)) === null)
             return null;
 
         $and = [];
@@ -59,12 +59,12 @@ class CriteriaParser
             if(!$match)
                 break;
         }
-        return new AndCriterion(!empty($and) ? [ $primary ] + $and : $primary);
+        return !empty($and) ? new AndCriterion([ $primary ] + $and) : $primary;
     }
 
     protected function primary(Reader $source) {
         $_1 = $this->simple($source);
-        if(!$_1){
+        if($_1 === null){
             $state = $source->getState();
             $_2_1 = $source->eat('(');
             $_2_2 = $this->orx($source);
