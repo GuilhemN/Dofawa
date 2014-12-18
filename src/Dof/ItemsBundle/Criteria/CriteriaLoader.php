@@ -3,6 +3,7 @@ namespace Dof\ItemsBundle\Criteria;
 
 use XN\Common\ServiceWithContainer;
 use XN\Persistence\IdentifiableInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Dof\ItemsBundle\Criteria\Criterion;
 use Dof\ItemsBundle\Criteria\SimpleCriterion;
