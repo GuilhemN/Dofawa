@@ -5,7 +5,7 @@
         {% else %}
             <ul>
                 <li>
-                    {% if criterion | classOf == 'AndCriterion' %}
+                    {% if classOf(criterion) == 'AndCriterion' %}
                         Toutes ces conditions :
                     {% else %}
                         Au moins une de ces conditions
