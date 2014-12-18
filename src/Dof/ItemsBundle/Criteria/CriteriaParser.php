@@ -6,9 +6,11 @@ use XN\Grammar\StringReader;
 
 class CriteriaParser
 {
+    private function __construct() {}
+
     public function criteria(Reader $source) {
         $state = $source->getState();
-        $retval = $this->orx($source);
+        $retval = self::orx($source);
         if (!$source->isEof())
             $retval = false;
         if (!$retval)
@@ -18,13 +20,13 @@ class CriteriaParser
     }
 
     protected function orx(Reader $source) {
-        if (($andx = $this->andx($source)) === null)
+        if (($andx = self::andx($source)) === null)
             return null;
 
         $or = [];
         while (1) {
             $state = $source->getState();
-            $return = $source->eat('|') && ($o = $this->andx($source)) ? $o : null;
+            $return = $source->eat('|') && ($o = self::andx($source)) ? $o : null;
 
             if(!$return)
                 $source->setState($state);
@@ -38,12 +40,12 @@ class CriteriaParser
     }
 
     protected function andx(Reader $source) {
-        if (($primary = $this->primary($source)) === null)
+        if (($primary = self::primary($source)) === null)
             return null;
         $and = [];
         while (1) {
             $state = $source->getState();
-            $return = $source->eat('&') && ($a = $this->primary($source)) ? $a : null;
+            $return = $source->eat('&') && ($a = self::primary($source)) ? $a : null;
             if(!$return)
                 $source->setState($state);
             else
@@ -57,10 +59,10 @@ class CriteriaParser
     }
 
     protected function primary(Reader $source) {
-        $return = $this->simple($source);
+        $return = self::simple($source);
         if(!$return){
             $state = $source->getState();
-            $return = $source->eat('(') && ($orx = $this->orx($source) && $source->eat(')')) ? $orx : null;
+            $return = $source->eat('(') && ($orx = self::orx($source)) && $source->eat(')') ? $orx : null;
 
             if (!$return)
                 $source->setState($state);
@@ -71,9 +73,9 @@ class CriteriaParser
 
     protected function simple(Reader $source) {
         $state = $source->getState();
-        $_1 = $this->characteristic($source);
-        $_2 = $_1 ? $this->operator($source) : null;
-        $_3 = $_2 ? $this->params($source) : null;
+        $_1 = self::characteristic($source);
+        $_2 = $_1 ? self::operator($source) : null;
+        $_3 = $_2 ? self::params($source) : null;
         if (!$_3)
             $source->setState($state);
         $source->freeState($state);
@@ -91,13 +93,13 @@ class CriteriaParser
     }
 
     protected function params(Reader $source){
-        if (($param = $this->param($source)) === null)
+        if (($param = self::param($source)) === null)
             return null;
 
         $params = [ $param ];
         while (1) {
             $state = $source->getState();
-            $p = $source->eat(',') ? $this->param($source) : null;
+            $p = $source->eat(',') ? self::param($source) : null;
             if(!$p)
                 $source->setState($state);
             else

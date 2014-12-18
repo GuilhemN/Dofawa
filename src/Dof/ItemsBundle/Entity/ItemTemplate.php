@@ -26,6 +26,8 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
 use XN\Metadata\FileLightTrait;
 use XN\Metadata\FileInterface;
 
+use Dof\ItemsBundle\Criteria\ParsedCriteriaTrait;
+use Dof\ItemsBundle\Criteria\ParsedCriteriaInterface;
 
 /**
  * ItemTemplate
@@ -36,7 +38,7 @@ use XN\Metadata\FileInterface;
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
  */
-class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, LocalizedNameInterface, FileInterface
+class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, LocalizedNameInterface, FileInterface, ParsedCriteriaInterface
 {
     /**
      * @var integer
@@ -46,7 +48,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileLightTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileLightTrait, ParsedCriteriaTrait;
 
     /**
      * @var ItemType
