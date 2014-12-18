@@ -23,8 +23,9 @@ class TestCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $parser = new CriteriaParser();
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findBySlug('goultard');
 
-        $output->writeln(var_dump($parser->criteria(new StringReader('Pj=48|Pj=49|Pj=50|Pj=46|Pj=44|Pj=45|Pj=43|Pj=47'))));
+        $output->writeln(var_dump($item->getTreatedCritaria()));
     }
 }
