@@ -1,6 +1,7 @@
 {% if criterion is not empty %}
+    {% set class = classOf(criterion) %}
     <li>
-        {% if classOf(criterion) == 'SimpleCriterion' %}
+        {% if class == 'SimpleCriterion' %}
             {{ criterion.htmlDescription | raw }}
         {% else %}
             <ul>
@@ -11,7 +12,7 @@
                         Au moins une de ces conditions
                     {% endif %}
                 </li>
-                {% include 'DofItemsBundle::criteria.html.twig' with {'criteria': criterion.criteria} %}
+                {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': criterion.criteria} only %}
             </ul>
         {% endif %}
     </li>
