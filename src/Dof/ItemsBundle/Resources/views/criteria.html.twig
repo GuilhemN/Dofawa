@@ -1,4 +1,4 @@
-{% if criterion is not empty %}
+{% if criterion is not empty and criterion.visible %}
     {% set class = classOf(criterion) %}
     <li>
         {% if class == 'SimpleCriterion' %}
