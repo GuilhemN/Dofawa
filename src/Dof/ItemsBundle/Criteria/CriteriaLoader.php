@@ -40,7 +40,7 @@ class CriteriaLoader extends ServiceWithContainer
                 // Code seems to say that they actually are ...
                 // So this may or may not work
                 $criteria = $ent->getParsedCriteria();
-                $ent->setTreatedCriteria(!empty($criteria) ? $this->transform($criteria) : array());
+                $ent->setTreatedCriteria((array )!empty($criteria) ? $this->transform($criteria) : null);
             }
         }
     }
