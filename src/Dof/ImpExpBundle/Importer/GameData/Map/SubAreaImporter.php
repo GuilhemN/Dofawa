@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\MapBundle\Entity\Area;
+use Dof\MapBundle\Entity\SubArea;
 use Dof\MapBundle\SubAreaType;
 
 class SubAreaImporter extends AbstractGameDataImporter
