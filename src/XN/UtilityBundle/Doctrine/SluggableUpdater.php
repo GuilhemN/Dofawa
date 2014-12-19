@@ -26,7 +26,7 @@ class SluggableUpdater
 	{
 		$ent = $args->getEntity();
 		if ($ent instanceof SluggableInterface && $ent->getSlug() === null)
-			$this->reassignSlug($ent, $em);
+			$this->reassignSlug($ent, $this->em->unwrap());
 	}
 
 	public function reassignSlug(SluggableInterface $ent, ObjectManager $em = null)
