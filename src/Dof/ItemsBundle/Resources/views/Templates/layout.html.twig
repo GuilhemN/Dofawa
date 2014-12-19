@@ -63,17 +63,29 @@
                         {# Effets #}
                         {% if characts | trim is not empty %}
                             {% set is_active_tab = true %}
-                            <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
+                            <li class="active">
+                                <a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">
+                                    {{ 'tabs.effects' | trans() }}
+                                </a>
+                            </li>
                         {% endif %}
 
                         {# Recette #}
                         {% if itemTemplate.components is not empty %}
-                        <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                        <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}>
+                            <a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">
+                                {{ 'tabs.recipe' | trans() }}
+                            </a>
+                        </li>
                         {% endif %}
 
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
-                            <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+                            <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}>
+                                <a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">
+                                    {{ 'tabs.conditions' | trans() }}
+                                </a>
+                            </li>
                         {% endif %}
                     {% endblock %}
 

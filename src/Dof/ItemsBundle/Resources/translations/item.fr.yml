@@ -7,6 +7,11 @@ list:
 level: Niv. %level%
 primary_bonus: Bonus primaires
 
+tabs:
+    effects: Effets
+    recipe: Recette
+    conditions: Conditions
+
 to: à
 vitality: %1% Vitalité
 strength: %1% Force
