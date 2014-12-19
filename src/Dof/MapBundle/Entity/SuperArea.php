@@ -13,6 +13,7 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
@@ -22,7 +23,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_map_superareas")
  * @ORM\Entity(repositoryClass="SuperAreaRepository")
  */
-class SuperArea implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class SuperArea implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface 
 {
     /**
      * @var integer
