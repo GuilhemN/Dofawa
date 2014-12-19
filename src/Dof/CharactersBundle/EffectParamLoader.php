@@ -7,11 +7,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use XN\Persistence\IdentifiableInterface;
 use XN\Common\ServiceWithContainer;
 
-use XN\Graphics\ColorPseudoRepository;
-use XN\Common\NullPseudoRepository;
+use Dof\Common\PseudoRepositoriesTrait;
 
 class EffectParamLoader extends ServiceWithContainer
 {
+    use PseudoRepositoriesTrait;
 
     /**
      * @var boolean
@@ -92,17 +92,6 @@ class EffectParamLoader extends ServiceWithContainer
             }
         }
     }
-
-	public function getPseudoRepository($type)
-	{
-		switch ($type)
-		{
-			case 'color':
-				return new ColorPseudoRepository();
-			default:
-				return new NullPseudoRepository();
-		}
-	}
 
     public function setEnabled($enabled)
     {

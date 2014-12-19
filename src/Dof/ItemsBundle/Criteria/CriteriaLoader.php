@@ -9,11 +9,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Dof\ItemsBundle\Criteria\Criterion;
 use Dof\ItemsBundle\Criteria\SimpleCriterion;
 
-use XN\Graphics\ColorPseudoRepository;
-use XN\Common\NullPseudoRepository;
+use Dof\Common\PseudoRepositoriesTrait;
 
 class CriteriaLoader extends ServiceWithContainer
 {
+    use PseudoRepositoriesTrait;
+    
     /**
     * @var boolean
     *
@@ -133,17 +134,6 @@ class CriteriaLoader extends ServiceWithContainer
                 $cTpls2[$cTpl->getOperator()] = $cTpl;
             $this->criteriaTemplates[$characteristic] = $cTpls2;
             return $this->getCriterionTemplate($characteristic, $operator);
-        }
-    }
-
-    public function getPseudoRepository($type)
-    {
-        switch ($type)
-        {
-            case 'color':
-                return new ColorPseudoRepository();
-            default:
-                return new NullPseudoRepository();
         }
     }
 
