@@ -39,7 +39,7 @@
 {% block tabs_menu %}
     {{ parent() }}
     {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
-        <li><a href="#food-item{{ item.id }}" role="tab" data-toggle="tab">Nourriture</a></li>
+        <li><a href="#food-item{{ item.id }}" role="tab" data-toggle="tab">{{ 'tabs.diet' | trans({}, 'item') }}</a></li>
     {% endif %}
 {% endblock %}
 
