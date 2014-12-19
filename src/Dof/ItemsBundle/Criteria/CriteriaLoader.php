@@ -134,7 +134,7 @@ class CriteriaLoader extends ServiceWithContainer
                 $c = &$cTpls2[$cTpl->getCharacteristic()];
                 $c[$cTpl->getOperator()] = $cTpl;
             }
-            $this->criteriaTemplates += $cTpls2;
+            array_merge($this->criteriaTemplates, $cTpls2);
             return $this->getCriterionTemplate($characteristic, $operator, false);
         }
     }
