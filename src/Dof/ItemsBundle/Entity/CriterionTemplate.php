@@ -150,7 +150,8 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
 
     public function expandDescription(array $context, $locale = 'fr')
     {
-        $tpl = !empty($description = $this->getDescription($locale)) ? $description : $this->getDescription('fr');
+        $description = $this->getDescription($locale);
+        $tpl = !empty($description) ? $description : $this->getDescription('fr');
         if ($tpl === null)
             return [ ];
         $context = $context + [
