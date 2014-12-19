@@ -81,4 +81,8 @@ class AlignmentSide implements IdentifiableInterface, SluggableInterface, Locali
     {
         return $this->canConquest;
     }
+
+    public function __toString() {
+        $this->nameFr;
+    }
 }
