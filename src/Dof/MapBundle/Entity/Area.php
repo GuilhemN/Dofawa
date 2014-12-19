@@ -52,28 +52,28 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     /**
      * @var integer
      *
-     * @ORM\Column(name="left", type="integer")
+     * @ORM\Column(name="left_", type="integer")
      */
     private $left;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="top", type="integer")
+     * @ORM\Column(name="top_", type="integer")
      */
     private $top;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="width", type="integer")
+     * @ORM\Column(name="width_", type="integer")
      */
     private $width;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="height", type="integer")
+     * @ORM\Column(name="height_", type="integer")
      */
     private $height;
 
