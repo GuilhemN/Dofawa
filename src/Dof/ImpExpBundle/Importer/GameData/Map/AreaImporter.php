@@ -33,7 +33,7 @@ class AreaImporter extends AbstractGameDataImporter
         $progress->start($output, count($all));
         foreach ($all as $row) {
             $superArea = $superRepo->find($row['superAreaId']);
-            if($category === null)
+            if($superArea === null)
                 continue;
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
