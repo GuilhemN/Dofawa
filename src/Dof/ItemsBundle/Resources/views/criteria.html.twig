@@ -1,6 +1,6 @@
 {% if criterion is not empty and criterion.visible %}
     {% set class = classOf(criterion) %}
-    {% set description = criterion.htmlDescription is defined : criterion.htmlDescription : null %}
+    {% set description = criterion.htmlDescription is defined ? criterion.htmlDescription : null %}
     {% if class != 'SimpleCriterion' or description | trim is not empty %}
     <li>
         {% if class == 'SimpleCriterion' %}
