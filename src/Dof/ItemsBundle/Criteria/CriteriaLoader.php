@@ -115,7 +115,7 @@ class CriteriaLoader extends ServiceWithContainer
         return $ent;
     }
 
-    protected function getCriterionTemplate($characteristic, $operator) {
+    protected function getCriterionTemplate($characteristic, $operator, $searchInDb = true) {
         if(isset($this->criteriaTemplates[$characteristic])){
             foreach($this->criteriaTemplates[$characteristic] as $tpl)
                 if($tpl->getOperator() === $operator)
@@ -124,7 +124,7 @@ class CriteriaLoader extends ServiceWithContainer
                     $nullOperator = $tpl;
             return isset($nullOperator) ? $nullOperator : null;
         }
-        else {
+        elseif($searchInDb) {
             $em = $this->getEntityManager();
             $repo = $em->getRepository('DofItemsBundle:CriterionTemplate');
             $cTpls = $repo->findByCharacteristic($characteristic);
@@ -133,7 +133,7 @@ class CriteriaLoader extends ServiceWithContainer
             foreach($cTpls as $cTpl)
                 $cTpls2[$cTpl->getCharacteristic()][$cTpl->getOperator()] = $cTpl;
             $this->criteriaTemplates += $cTpls2;
-            return $this->getCriterionTemplate($characteristic, $operator);
+            return $this->getCriterionTemplate($characteristic, $operator, false);
         }
     }
 
