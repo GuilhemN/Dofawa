@@ -10,7 +10,7 @@ use Dof\ImpExpBundle\ImporterFlags;
 
 use Dof\MapBundle\SuperArea;
 
-class QuestImporter extends AbstractGameDataImporter
+class SuperAreaImporter extends AbstractGameDataImporter
 {
     const CURRENT_DATA_SET = 'super_areas';
     const BETA_DATA_SET = 'beta_super_areas';
