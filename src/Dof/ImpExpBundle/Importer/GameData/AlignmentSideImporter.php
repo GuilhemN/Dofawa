@@ -8,9 +8,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\ImpExpBundle\ImporterFlags;
 
 use Dof\CharactersBundle\Entity\AlignmentSide;
-use Dof\GraphicsBundle\EntityLook;
 
-class BreedImporter extends AbstractGameDataImporter
+class AlignmentSideImporter extends AbstractGameDataImporter
 {
     const CURRENT_DATA_SET = 'alignment_sides';
     const BETA_DATA_SET = 'beta_alignment_sides';

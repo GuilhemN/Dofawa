@@ -108,3 +108,11 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: documents }
             - { name: dof_imp_exp.importer, provides: beta_documents }
+
+    # DofCharactersBundle:AlignmentSide
+    dof_imp_exp.importer.documents:
+        class: Dof\ImpExpBundle\Importer\GameData\AlignmentSideImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: alignment_sides }
+            - { name: dof_imp_exp.importer, provides: beta_alignment_sides }
