@@ -1,0 +1,15 @@
+services:
+    # DofMapBundle:SuperArea and subclasses
+    dof_imp_exp.importer.super_areas:
+        class: Dof\ImpExpBundle\Importer\GameData\Map\SuperAreaImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: super_areas }
+            - { name: dof_imp_exp.importer, provides: beta_super_areas }
+
+    dof_imp_exp.importer.areas:
+        class: Dof\ImpExpBundle\Importer\GameData\Map\AreaImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: areas, requires: super_areas }
+            - { name: dof_imp_exp.importer, provides: beta_areas, requires: beta_super_areas }

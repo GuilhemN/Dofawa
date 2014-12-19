@@ -2,6 +2,7 @@ imports:
     - { resource: importers/item.yml }
     - { resource: importers/quest.yml }
     - { resource: importers/spell.yml }
+    - { resource: importers/map.yml }
 
 services:
     importer_dependencies:
