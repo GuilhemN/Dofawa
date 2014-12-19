@@ -83,6 +83,6 @@ class AlignmentSide implements IdentifiableInterface, SluggableInterface, Locali
     }
 
     public function __toString() {
-        $this->nameFr;
+        return $this->nameFr;
     }
 }
