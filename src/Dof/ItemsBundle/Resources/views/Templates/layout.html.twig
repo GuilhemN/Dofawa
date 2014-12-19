@@ -68,12 +68,12 @@
 
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
-                            <li{% if not is_active_tab %}{% set is_active_tab = 'criteria' %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+                            <li{% if not is_active_tab %}{% set is_active_tab = 'criteria' %} class="active"{% endif %}><a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
                         {% endif %}
 
                         {# Recette #}
                         {% if itemTemplate.components is not empty %}
-                            <li{% if not is_active_tab %}{% set is_active_tab = 'components' %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                            <li{% if not is_active_tab %}{% set is_active_tab = 'components' %} class="active"{% endif %}><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
                         {% endif %}
                     {% endblock %}
 
