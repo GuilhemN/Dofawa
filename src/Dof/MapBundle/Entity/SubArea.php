@@ -23,7 +23,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_map_subareas")
  * @ORM\Entity(repositoryClass="SubAreaRepository")
  */
-class SubArea implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface, LocalizedNameInterface
+class SubArea implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
 {
     /**
      * @var integer
