@@ -59,12 +59,19 @@
                         {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': itemTemplate.treatedCriteria} %}
                     {% endset %}
                     {% set tab_active = '' %}
+                    {% set tab_content = '' %}
 
                     {% block tabs_menu %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
                             {% set is_active_tab = true %}
                             <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
+                            {% set tab_content %}
+                                {{ tab_content }}
+                                <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                                    {{ characts }}
+                                </div>
+                            {% endset %}
                         {% endif %}
 
                         {# Conditions #}
@@ -81,12 +88,7 @@
                 </ul>
                 <div class="tab-content">
                     {% block tabs_content %}
-                        {# Effets #}
-                        {% if characts | trim is not empty %}
-                        <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                            {{ characts }}
-                        </div>
-                        {% endif %}
+                        {{ tab_content }}
 
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
