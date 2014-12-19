@@ -58,41 +58,38 @@
                     {% set criteria %}
                         {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': itemTemplate.treatedCriteria} %}
                     {% endset %}
-                    {% set tab_active = '' %}
-                    {% set tab_content = '' %}
 
                     {% block tabs_menu %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
-                            {% set is_active_tab = true %}
+                            {% set is_active_tab = 'effect' %}
                             <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
-                            {% set tab_content %}
-                                {{ tab_content }}
-                                <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                                    {{ characts }}
-                                </div>
-                            {% endset %}
                         {% endif %}
 
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
-                            <li{% if not is_active_tab %}{% set tab_active = 'criteria' %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
+                            <li{% if not is_active_tab %}{% set is_active_tab = 'criteria' %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
                         {% endif %}
 
                         {# Recette #}
                         {% if itemTemplate.components is not empty %}
-                            <li{% if not is_active_tab %}{% set tab_active = 'components' %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                            <li{% if not is_active_tab %}{% set is_active_tab = 'components' %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
                         {% endif %}
                     {% endblock %}
 
                 </ul>
                 <div class="tab-content">
                     {% block tabs_content %}
-                        {{ tab_content }}
+                        {# Effets #}
+                        {% if characts | trim is not empty %}
+                        <div class="tab-pane active" id="caracts-item{{ item.id }}">
+                            {{ characts }}
+                        </div>
+                        {% endif %}
 
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
-                        <div class="tab-pane{% if tab_active == 'criteria' %} active{% endif %}" id="criteria-item{{ item.id }}">
+                        <div class="tab-pane{% if is_active_tab == 'criteria' %} active{% endif %}" id="criteria-item{{ item.id }}">
                             <ul>
                                 {{ criteria }}
                             </ul>
@@ -101,7 +98,7 @@
 
                         {# Recette #}
                         {% if itemTemplate.components is not empty %}
-                        <div class="tab-pane{% if tab_active == 'components' %} active{% endif %}" id="recipe-item{{ item.id }}">
+                        <div class="tab-pane{% if is_active_tab == 'components' %} active{% endif %}" id="recipe-item{{ item.id }}">
                             {% for component in itemTemplate.components %}
                             <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
                                 {{ component.component.getName(locales()) }}
