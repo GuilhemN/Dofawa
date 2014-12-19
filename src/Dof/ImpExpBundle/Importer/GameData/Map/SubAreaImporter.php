@@ -23,7 +23,7 @@ class SubAreaImporter extends AbstractGameDataImporter
         $this->dm->createQuery('UPDATE DofMapBundle:SubArea s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.*' .
         $this->generateD2ISelects('name', $locales) .
-        ' FROM ' . $db . '.D2O_Area o' .
+        ' FROM ' . $db . '.D2O_SubArea o' .
         $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
