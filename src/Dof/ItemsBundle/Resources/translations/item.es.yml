@@ -2,6 +2,12 @@ list:
     level: Nivel
 level: Nivel %level%
 
+tabs:
+    effects: Efectos
+    recipe: Receta
+    conditions: Condiciones
+    # diet: Diet # TODO
+
 to: a
 vitality: %1% Vitalidad
 strength: %1% Fuerza

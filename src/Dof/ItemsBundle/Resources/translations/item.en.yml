@@ -7,6 +7,12 @@ list:
 level: Lvl. %level%
 primary_bonus: Primary Bonus
 
+tabs:
+    effects: Effects
+    recipe: Recipe
+    conditions: Conditions
+    diet: Diet
+
 to: to
 vitality: %1% Vitality
 strength: %1% Strength

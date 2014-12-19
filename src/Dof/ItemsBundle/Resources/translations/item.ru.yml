@@ -2,6 +2,12 @@ list:
     level: Niveau
 level: Niveau %level%
 
+tabs:
+    effects: Эффекты
+    # recipe: Recipe # TODO
+    conditions: Условия
+    # diet: Ernährung # TODO
+
 to: à # TODO
 vitality: %1% Vitalité # TODO
 strength: %1% Force # TODO

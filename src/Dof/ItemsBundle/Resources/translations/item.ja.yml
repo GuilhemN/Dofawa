@@ -2,6 +2,12 @@ list:
     level: Level
 level: Lvl. %level%
 
+tabs:
+    effects: 効果
+    # recipe: Recipe # TODO
+    conditions: 使用条件
+    # diet: Ernährung # TODO
+
 to: "~"
 vitality: 活力 %1%
 strength: 力 %1%

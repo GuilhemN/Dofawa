@@ -11,6 +11,7 @@ tabs:
     effects: Effets
     recipe: Recette
     conditions: Conditions
+    diet: Nourriture
 
 to: à
 vitality: %1% Vitalité

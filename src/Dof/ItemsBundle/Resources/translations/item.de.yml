@@ -2,6 +2,12 @@ list:
     level: Stufe
 level: Stufe %level%
 
+tabs:
+    effects: Wirkungen
+    recipe: Rezeptur
+    conditions: Voraussetzungen
+    diet: Ernährung
+
 to: bis
 vitality: %1% Vitalität
 strength: %1% Stärke
