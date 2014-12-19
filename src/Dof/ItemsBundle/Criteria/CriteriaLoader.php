@@ -130,8 +130,11 @@ class CriteriaLoader extends ServiceWithContainer
             $cTpls = $repo->findByCharacteristic($characteristic);
             $cTpls2 = array();
             if(is_array($cTpls))
-            foreach($cTpls as $cTpl)
-                $cTpls2[$cTpl->getOperator()] = $cTpl;
+            foreach($cTpls as $cTpl){
+                die(var_dump($characteristic) . var_dump($cTpl->getCharacteristic()));
+                if($cTpl->getCharacteristic() == $characteristic)
+                    $cTpls2[$cTpl->getOperator()] = $cTpl;
+            }
             $this->criteriaTemplates[$characteristic] = $cTpls2;
             return $this->getCriterionTemplate($characteristic, $operator, false);
         }
