@@ -12,8 +12,8 @@ use Dof\MapBundle\Entity\SuperArea;
 
 class SuperAreaImporter extends AbstractGameDataImporter
 {
-    const CURRENT_DATA_SET = 'super_areas';
-    const BETA_DATA_SET = 'beta_super_areas';
+    const CURRENT_DATA_SET = 'map_super_areas';
+    const BETA_DATA_SET = 'beta_map_super_areas';
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {

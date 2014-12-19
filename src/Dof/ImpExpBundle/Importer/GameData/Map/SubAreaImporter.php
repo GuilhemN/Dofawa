@@ -9,8 +9,9 @@ use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
 use Dof\MapBundle\Entity\Area;
+use Dof\MapBundle\SubAreaType;
 
-class AreaImporter extends AbstractGameDataImporter
+class SubAreaImporter extends AbstractGameDataImporter
 {
     const CURRENT_DATA_SET = 'map_sub_areas';
     const BETA_DATA_SET = 'beta_map_sub_areas';
@@ -19,25 +20,25 @@ class AreaImporter extends AbstractGameDataImporter
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
-            $this->dm->createQuery('UPDATE DofMapBundle:Area s SET s.deprecated = true')->execute();
+        $this->dm->createQuery('UPDATE DofMapBundle:SubArea s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.*' .
         $this->generateD2ISelects('name', $locales) .
         ' FROM ' . $db . '.D2O_Area o' .
         $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
-        $repo = $this->dm->getRepository('DofMapBundle:Area');
-        $superRepo = $this->dm->getRepository('DofMapBundle:SuperArea');
+        $repo = $this->dm->getRepository('DofMapBundle:SubArea');
+        $areaRepo = $this->dm->getRepository('DofMapBundle:Area');
         $rowsProcessed = 0;
         if ($output && $progress)
         $progress->start($output, count($all));
         foreach ($all as $row) {
-            $superArea = $superRepo->find($row['superAreaId']);
-            if($superArea === null)
+            $area = $areaRepo->find($row['areaId']);
+            if($area === null)
                 continue;
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
-                $tpl = new Area();
+                $tpl = new SubArea();
                 $tpl->setDeprecated(true);
                 $tpl->setId($row['id']);
             }
@@ -46,11 +47,13 @@ class AreaImporter extends AbstractGameDataImporter
                 if (!$tpl->getRelease())
                 $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                $tpl->setSuperArea($superArea);
+                $tpl->setArea($area);
                 $tpl->setLeft($row['bounds_x']);
                 $tpl->setTop($row['bounds_y']);
                 $tpl->setWidth($row['bounds_width']);
                 $tpl->setHeight($row['bounds_height']);
+                $tpl->setLevel($row['level']);
+                $tpl->setType($row['isConquestVillage'] ? SubAreaType::CONQUEST_VILLAGE : $row['capturable'] ? SubAreaType::NORMAL : SubAreaType::NEUTRAL);
 
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
                 $this->dm->persist($tpl);

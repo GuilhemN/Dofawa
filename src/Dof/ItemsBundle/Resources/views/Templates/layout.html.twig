@@ -66,14 +66,14 @@
                             <li class="active"><a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">Effets</a></li>
                         {% endif %}
 
+                        {# Recette #}
+                        {% if itemTemplate.components is not empty %}
+                        <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
+                        {% endif %}
+
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
                             <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">Conditions</a></li>
-                        {% endif %}
-
-                        {# Recette #}
-                        {% if itemTemplate.components is not empty %}
-                            <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}><a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">Recette</a></li>
                         {% endif %}
                     {% endblock %}
 
@@ -89,15 +89,6 @@
                         </div>
                         {% endif %}
 
-                        {# Conditions #}
-                        {% if criteria | trim is not empty %}
-                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="criteria-item{{ item.id }}">
-                            <ul>
-                                {{ criteria }}
-                            </ul>
-                        </div>
-                        {% endif %}
-
                         {# Recette #}
                         {% if itemTemplate.components is not empty %}
                         <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="recipe-item{{ item.id }}">
@@ -108,6 +99,15 @@
                             x {{ component.quantity }}
                             <br />
                             {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        {# Conditions #}
+                        {% if criteria | trim is not empty %}
+                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="criteria-item{{ item.id }}">
+                            <ul>
+                                {{ criteria }}
+                            </ul>
                         </div>
                         {% endif %}
                     {% endblock %}
