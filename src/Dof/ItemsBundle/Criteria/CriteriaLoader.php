@@ -132,8 +132,8 @@ class CriteriaLoader extends ServiceWithContainer
             if(is_array($cTpls))
             foreach($cTpls as $cTpl)
                 if($characteristic == $cTpl->getCharacteristic())
-                    $cTpls2[$cTpl->getOperator()] = $tpl;
-            
+                    $cTpls2[$cTpl->getOperator()] = $cTpl;
+
             $this->criteriaTemplates[$characteristic] = $cTpls2;
             return $this->getCriterionTemplate($characteristic, $operator, false);
         }
