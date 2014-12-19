@@ -47,7 +47,7 @@
 {% block tabs_content %}
     {{ parent() }}
     {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
-        <div class="tab-pane" id="food-item{{ item.id }}">
+        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="food-item{{ item.id }}">
             {% for food_type in itemTemplate.foodTypes %}
                 {{ food_type.getName(locales()) }}
             <br />
