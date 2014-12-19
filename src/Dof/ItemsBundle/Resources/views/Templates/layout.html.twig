@@ -59,6 +59,7 @@
                     {% endset %}
 
                     {% block tabs_menu %}
+                        {% set is_active_tab = false %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
                             {% set is_active_tab = true %}
@@ -79,6 +80,7 @@
                 </ul>
                 <div class="tab-content">
                     {% block tabs_content %}
+                        {% set is_active_tab = false %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
                         {% set is_active_tab = true %}
