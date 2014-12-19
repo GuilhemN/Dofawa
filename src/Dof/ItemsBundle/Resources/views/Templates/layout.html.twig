@@ -58,7 +58,7 @@
                     {% set criteria %}
                         {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': itemTemplate.treatedCriteria} %}
                     {% endset %}
-                    {% set tab_active = null %}
+                    {% set tab_active = '' %}
 
                     {% block tabs_menu %}
                         {# Effets #}
