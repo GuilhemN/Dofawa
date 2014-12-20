@@ -30,6 +30,11 @@
                 </div>
 
                 {% macro effect(min,max) %}
+                    {% if max < min %}
+                        {% set pre = min %}
+                        {% set min = max %}
+                        {% set max = pre %}
+                    {% endif %}
                     {{ min }}
                     {% if min != max %}
                         {{ 'to' | trans({}, 'item') }}
