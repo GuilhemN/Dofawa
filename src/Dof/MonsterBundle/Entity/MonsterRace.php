@@ -37,7 +37,7 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
     /**
     * @var Monster
     *
-    * @ORM\ManyToOne(targetEntity="MonsterSuperRace")
+    * @ORM\ManyToOne(targetEntity="MonsterSuperRace", inversedBy="children")
     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
     */
     private $parent;

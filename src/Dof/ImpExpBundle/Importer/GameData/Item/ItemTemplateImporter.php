@@ -17,6 +17,9 @@ class ItemTemplateImporter extends AbstractGameDataImporter
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
+        $this->loaders[0]->setEnabled(false);
+        $this->loaders[1]->setEnabled(false);
+
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
             $this->dm->createQuery('UPDATE DofItemsBundle:ItemTemplate s SET s.deprecated = true')->execute();
@@ -87,15 +90,21 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                 $this->su->reassignSlug($tpl);
             }
             ++$rowsProcessed;
-            if (($rowsProcessed % 300) == 0) {
+            if (($rowsProcessed % 150) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
                 if ($output && $progress)
-                    $progress->advance(300);
+                    $progress->advance(150);
             }
         }
         if ($output && $progress)
             $progress->finish();
 
+        $this->loaders[0]->setEnabled(true);
+        $this->loaders[1]->setEnabled(true);
+    }
+
+    public function setLoaders($loaders){
+        $this->loaders = $loaders;
     }
 }

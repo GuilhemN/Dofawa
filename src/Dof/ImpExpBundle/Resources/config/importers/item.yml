@@ -1,4 +1,10 @@
 services:
+    dof_imp_exp.item_loaders:
+        class: XN\DependencyInjection\ServiceArray
+        arguments:
+            - "@dof_characters.effect_param_loader"
+            - "@dof_items.criteria_loader"
+
     # DofItemsBundle:ItemSet
     dof_imp_exp.importer.item_sets:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemSetImporter
@@ -44,7 +50,7 @@ services:
             - { name: dof_imp_exp.importer, provides: item_template_effects, requires: "item_templates effect_templates" }
             - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: "beta_item_templates beta_effect_templates" }
         calls:
-            - [ setParamLoader, [ "@dof_characters.effect_param_loader" ] ]
+            - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
     # DofItemsBundle:ItemComponent
     dof_imp_exp.importer.item_components:
@@ -53,6 +59,8 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: item_components, requires: item_templates }
             - { name: dof_imp_exp.importer, provides: beta_item_components, requires: beta_item_templates }
+        calls:
+            - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
     # DofItemsBundle:PetTemplate and subclasses
     dof_imp_exp.importer.pet_food:
@@ -61,3 +69,5 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: pet_food, requires: item_templates }
             - { name: dof_imp_exp.importer, provides: beta_pet_food, requires: beta_item_templates }
+        calls:
+            - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
