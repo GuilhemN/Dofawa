@@ -6,7 +6,7 @@
     {% if is_granted('ROLE_SPELL_XRAY') %}
         Sorts :<br>
         {% for spell in monster.spells %}
-            {% include 'DofCharactersBundle::spell.html.twig' %}
+            {% include 'DofCharactersBundle::spell.html.twig' with {'spell': spell} only %}
         {% endfor %}
     {% endif %}
 {% endblock %}
