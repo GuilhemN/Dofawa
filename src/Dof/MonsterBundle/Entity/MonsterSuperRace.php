@@ -66,7 +66,7 @@ class MonsterSuperRace implements IdentifiableInterface, TimestampableInterface,
     {
         return $this->id;
     }
-    
+
     /**
     * Add children
     *
@@ -101,5 +101,9 @@ class MonsterSuperRace implements IdentifiableInterface, TimestampableInterface,
     public function getChildren()
     {
         return $this->children;
+    }
+
+    public function __toString() {
+        return $this->nameFr;
     }
 }

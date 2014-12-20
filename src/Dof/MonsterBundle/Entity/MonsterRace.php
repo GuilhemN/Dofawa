@@ -133,4 +133,8 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
     {
         return $this->monsters;
     }
+
+    public function __toString() {
+        return $this->nameFr;
+    }
 }
