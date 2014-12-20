@@ -73,8 +73,8 @@
                 <div class="text-center">
                     {% for drop in monster.drops %}
                         {% set object = drop.object %}
-                        <a href="{{ path('dof_items_show', {'slug': object.slug}) }}" class="tooltip-link" data-toggle="tooltip" data-original-title="{{ object.count }} x {{ object.getName(locales()) }}">
-                            <img style="width: 39px;" class="pull-left thumbnail img-responsive" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
+                        <a href="{{ path('dof_items_show', {'slug': object.slug}) }}" class="tooltip-link" data-toggle="tooltip" data-original-title="{{ drop.count }} x {{ object.getName(locales()) }}">
+                            <img style="width: 39px;" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
                         </a>
                     {% endfor %}
                 </div>
