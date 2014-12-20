@@ -80,6 +80,13 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
      */
     private $threshold;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="has_criteria", type="boolean")
+     */
+    private $hasCriteria;
+
 
     /**
      * Get id
@@ -250,5 +257,37 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
     public function getThreshold()
     {
         return $this->threshold;
+    }
+    /**
+    * Set hasCriteria
+    *
+    * @param boolean $hasCriteria
+    * @return MonsterDrop
+    */
+    public function setHasCriteria($hasCriteria)
+    {
+        $this->hasCriteria = $hasCriteria;
+
+        return $this;
+    }
+
+    /**
+    * Get hasCriteria
+    *
+    * @return boolean
+    */
+    public function getHasCriteria()
+    {
+        return $this->hasCriteria;
+    }
+
+    /**
+    * Get hasCriteria
+    *
+    * @return boolean
+    */
+    public function isHasCriteria()
+    {
+        return $this->hasCriteria;
     }
 }
