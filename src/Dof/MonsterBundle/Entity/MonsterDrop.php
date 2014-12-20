@@ -87,6 +87,13 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
      */
     private $hasCriteria;
 
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="criteria", type="string", length=127, nullable=true)
+    */
+    private $criteria;
+
 
     /**
      * Get id
@@ -286,8 +293,31 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
     *
     * @return boolean
     */
-    public function isHasCriteria()
+    public function hasCriteria()
     {
         return $this->hasCriteria;
+    }
+
+    /**
+    * Set criteria
+    *
+    * @param string $criteria
+    * @return MonsterDrop
+    */
+    public function setCriteria($criteria)
+    {
+        $this->criteria = $criteria;
+
+        return $this;
+    }
+
+    /**
+    * Get criteria
+    *
+    * @return string
+    */
+    public function getCriteria()
+    {
+        return $this->criteria;
     }
 }
