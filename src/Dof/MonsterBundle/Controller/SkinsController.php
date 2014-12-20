@@ -2,7 +2,7 @@
 namespace Dof\MonsterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Dof\MonsterBundle\Entity\ItemTemplate;
+use Dof\MonsterBundle\Entity\Monster;
 
 use Symfony\Component\HttpFoundation\File\File;
 
