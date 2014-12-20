@@ -45,7 +45,7 @@
 {% block js %}
     {{ parent() }}
     <script defer="" async="">
-        $('.new-name-modal').hover(function (event) {
+        $('.new-name-modal').hover(function (event)) {
             var link = $(this) 
             var id = link.data('id')
             var name = link.data('name')
