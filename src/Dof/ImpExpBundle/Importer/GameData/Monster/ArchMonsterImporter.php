@@ -26,7 +26,7 @@ class ArchMonsterImporter extends AbstractGameDataImporter
         foreach ($all as $row) {
             $tpl = $repo->find($row['monsterReplacingId']);
             $archi = $repo->find($row['id']);
-            if($tpl === null or $archi === null or $tpl->isPreliminary() ^ $beta)
+            if($tpl === null or $tpl->isPreliminary() ^ $beta)
                 continue;
 
             $tpl->setArchMonster($archi);
