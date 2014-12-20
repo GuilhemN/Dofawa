@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use XN\Common\UrlSafeBase64;
+
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
