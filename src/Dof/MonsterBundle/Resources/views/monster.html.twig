@@ -78,7 +78,15 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
-
+            {% if monster.archMonster is not empty or monster.normalMonster is not empty %}
+                <hr />
+                {% if monster.archMonster is not empty %}
+                Archi-monstre : {{ monster.archMonster.getName(locales()) }}<br>
+                {% endif %}
+                {% if monster.normalMonster is not empty %}
+                Montre de base : {{ monster.normalMonster.getName(locales()) }}<br>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 {% endautoescape %}
