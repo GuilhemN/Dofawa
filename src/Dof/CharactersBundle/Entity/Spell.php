@@ -25,6 +25,8 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
 use XN\Metadata\FileLightTrait;
 use XN\Metadata\FileInterface;
 
+use Dof\CharactersBundle\Entity\Breed;
+use Dof\MonsterBundle\Entity\Monster;
 /**
  * Spell
  *
@@ -79,6 +81,11 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $breeds;
 
     /**
+    * @ORM\ManyToMany(targetEntity="Dof\MonsterBundle\Entity\Monster", inversedBy="spells")
+    */
+    private $monsters;
+
+    /**
     * @Assert\Image(
     *     maxSize = "1024k",
     *     minWidth = 55,
@@ -93,6 +100,7 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     {
         $this->ranks = new ArrayCollection();
         $this->breeds = new ArrayCollection();
+        $this->monsters = new ArrayCollection();
     }
 
     /**
@@ -267,6 +275,42 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getBreeds()
     {
         return $this->breeds;
+    }
+
+    /**
+    * Add monsters
+    *
+    * @param Monster $monsters
+    * @return Spell
+    */
+    public function addMonster(Monster $monsters)
+    {
+        $this->monsters[] = $monsters;
+
+        return $this;
+    }
+
+    /**
+    * Remove monsters
+    *
+    * @param Monster $monsters
+    * @return Spell
+    */
+    public function removeMonster(Monster $monsters)
+    {
+        $this->monsters->removeElement($monsters);
+
+        return $this;
+    }
+
+    /**
+    * Get monsters
+    *
+    * @return Collection
+    */
+    public function getMonsters()
+    {
+        return $this->monsters;
     }
 
     public function __toString()

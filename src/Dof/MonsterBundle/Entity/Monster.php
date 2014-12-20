@@ -16,6 +16,8 @@ use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
+use Dof\CharactersBundle\Entity\Spell;
+
 /**
  * Monster
  *
@@ -70,6 +72,11 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $normalMonster;
 
     /**
+    * @ORM\ManyToMany(targetEntity="Dof\CharactersBundle\Entity\Spell", mappedBy="monsters")
+    */
+    private $spells;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="visible", type="boolean")
@@ -80,6 +87,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         $this->grades = new ArrayCollection();
         $this->drops = new ArrayCollection();
+        $this->spells = new ArrayCollection();
     }
 
     /**
@@ -219,6 +227,42 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getDrops()
     {
         return $this->drops;
+    }
+
+    /**
+    * Add spells
+    *
+    * @param Spell $spells
+    * @return Monster
+    */
+    public function addSpell(Spell $spells)
+    {
+        $this->spells[] = $spells;
+
+        return $this;
+    }
+
+    /**
+    * Remove spells
+    *
+    * @param Spell $spells
+    * @return Monster
+    */
+    public function removeSpell(Spell $spells)
+    {
+        $this->spells->removeElement($spells);
+
+        return $this;
+    }
+
+    /**
+    * Get spells
+    *
+    * @return Collection
+    */
+    public function getSpells()
+    {
+        return $this->spells;
     }
 
     /**
