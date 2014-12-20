@@ -84,15 +84,24 @@ class CriteriaLoader extends ServiceWithContainer
                     $repo = $em->getRepository($type);
                 if ($isReplacement) {
                     if ($rel->getColumn1() !== null) {
-                        $target = $repo->find($param1);
+                        if(!is_numeric($param1) && $rel->getColumn1() == 'id')
+                            $target = $repo->findBySlug($param1);
+                        else
+                            $target = $repo->find($param1);
                         if ($target)
                         $ent->setParam1($target);
                     } elseif ($rel->getColumn2() !== null) {
-                        $target = $repo->find($param2);
+                        if(!is_numeric($param2) && $rel->getColumn2() == 'id')
+                            $target = $repo->findBySlug($param2);
+                        else
+                            $target = $repo->find($param2);
                         if ($target)
                             $ent->setParam2($target);
                     } else {
-                        $target = $repo->find($param3);
+                        if(!is_numeric($param3) && $rel->getColumn3() == 'id')
+                            $target = $repo->findBySlug($param3);
+                        else
+                            $target = $repo->find($param3);
                         if ($target)
                             $ent->setParam3($target);
                     }
@@ -133,7 +142,7 @@ class CriteriaLoader extends ServiceWithContainer
             foreach($cTpls as $cTpl)
                 if($cTpl->getCharacteristic() == $characteristic)
                     $cTpls2[$cTpl->getOperator()] = $cTpl;
-            
+
             $this->criteriaTemplates[$characteristic] = $cTpls2;
             return $this->getCriterionTemplate($characteristic, $operator, false);
         }
