@@ -82,6 +82,7 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
 
     /**
     * @ORM\ManyToMany(targetEntity="Dof\MonsterBundle\Entity\Monster", inversedBy="spells")
+    * @ORM\JoinTable(name="dof_monster_spells")
     */
     private $monsters;
 
