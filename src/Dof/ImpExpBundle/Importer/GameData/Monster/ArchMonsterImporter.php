@@ -15,6 +15,10 @@ class ArchMonsterImporter extends AbstractGameDataImporter
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
+        $write = ($flags & ImporterFlags::DRY_RUN) == 0;
+        if (!$beta && $write)
+            $this->dm->createQuery('UPDATE DofMonsterBundle:Monster s SET s.archMonster = null')->execute();
+
         $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_MonsterMiniBos o');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
