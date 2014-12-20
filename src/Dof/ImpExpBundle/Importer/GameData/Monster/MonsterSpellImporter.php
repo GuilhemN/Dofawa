@@ -29,7 +29,7 @@ class MonsterSpellImporter extends AbstractGameDataImporter
         $spellRepo = $this->dm->getRepository('DofCharactersBundle:Spell');
         $rowsProcessed = 0;
         if ($output && $progress)
-        $progress->start($output, count($all));
+        $progress->start($output, count($g));
         foreach ($g as $monster => $spells) {
             $monster = $repo->find($monster);
             if($monster === null or $monster->isPreliminary() ^ $beta)
@@ -37,8 +37,8 @@ class MonsterSpellImporter extends AbstractGameDataImporter
 
                 foreach($monster->getSpells() as $spell)
                     $monster->removeSpell($spell);
-                foreach($spells as $spell){
-                    $spell = $spellRepo->find($spell);
+                foreach($spells as $row){
+                    $spell = $spellRepo->find($row['value']);
                     if($spell === null)
                         continue;
 
