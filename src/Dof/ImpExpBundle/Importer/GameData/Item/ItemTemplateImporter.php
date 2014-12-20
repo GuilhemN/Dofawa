@@ -16,7 +16,7 @@ class ItemTemplateImporter extends AbstractGameDataImporter
     const BETA_DATA_SET = 'beta_item_templates';
 
     private $loaders;
-    
+
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $this->loaders[0]->setEnabled(false);
@@ -92,11 +92,11 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                 $this->su->reassignSlug($tpl);
             }
             ++$rowsProcessed;
-            if (($rowsProcessed % 150) == 0) {
+            if (($rowsProcessed % 300) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
                 if ($output && $progress)
-                    $progress->advance(150);
+                    $progress->advance(300);
             }
         }
         if ($output && $progress)

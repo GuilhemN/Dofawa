@@ -55,6 +55,22 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $drops;
 
     /**
+    * @var Monster
+    *
+    * @ORM\ManyToOne(targetEntity="Monster", inversedBy="normalMonster")
+    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+    */
+    private $archMonster;
+
+    /**
+    * @var Monster
+    *
+    * @ORM\OneToOne(targetEntity="Monster", mappedBy="archMonster")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $normalMonster;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="visible", type="boolean")
@@ -227,6 +243,52 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getVisible()
     {
         return $this->visible;
+    }
+
+    /**
+    * Set archMonster
+    *
+    * @param Monster $archMonster
+    * @return Monster
+    */
+    public function setArchMonster(Monster $archMonster = null)
+    {
+        $this->archMonster = $archMonster;
+
+        return $this;
+    }
+
+    /**
+    * Get archMonster
+    *
+    * @return Monster
+    */
+    public function getArchMonster()
+    {
+        return $this->archMonster;
+    }
+
+    /**
+    * Set normalMonster
+    *
+    * @param Monster $normalMonster
+    * @return Monster
+    */
+    public function setNormalMonster(Monster $normalMonster = null)
+    {
+        $this->normalMonster = $normalMonster;
+
+        return $this;
+    }
+
+    /**
+    * Get normalMonster
+    *
+    * @return Monster
+    */
+    public function getNormalMonster()
+    {
+        return $this->normalMonster;
     }
 
     public function __toString()

@@ -21,6 +21,13 @@ services:
             - { name: dof_imp_exp.importer, provides: monsters, requires: monster_races }
             - { name: dof_imp_exp.importer, provides: beta_monsters, requires: beta_monster_races }
 
+    dof_imp_exp.importer.arch_monsters:
+        class: Dof\ImpExpBundle\Importer\GameData\Monster\ArchMonsterImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: arch_monsters, requires: monsters }
+            - { name: dof_imp_exp.importer, provides: beta_arch_monsters, requires: beta_monsters }
+
     dof_imp_exp.importer.monster_grades:
         class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterGradeImporter
         arguments: [ "@importer_dependencies" ]
