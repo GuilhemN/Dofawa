@@ -30,7 +30,6 @@ class ArchMonsterImporter extends AbstractGameDataImporter
                 continue;
 
             $tpl->setArchMonster($archi);
-            $archi->setNormalMonster($tpl);
 
             ++$rowsProcessed;
             if (($rowsProcessed % 150) == 0) {
