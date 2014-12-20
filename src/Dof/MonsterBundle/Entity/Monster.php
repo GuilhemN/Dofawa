@@ -37,7 +37,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
     * @var MonsterRace
     *
-    * @ORM\ManyToOne(targetEntity="MonsterRace")
+    * @ORM\ManyToOne(targetEntity="MonsterRace", inversedBy="monsters")
     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
     */
     private $race;
