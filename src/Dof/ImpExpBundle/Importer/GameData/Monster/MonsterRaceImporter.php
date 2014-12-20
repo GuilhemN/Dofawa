@@ -46,10 +46,12 @@ class MonsterRaceImporter extends AbstractGameDataImporter
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
                 if (!$tpl->getRelease())
-                $tpl->setRelease($release);
+                    $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
                 $tpl->setParent($superRace);
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                if($tpl->getNameFr() === null)
+                    $tpl->setNameFr('Monstres');
 
                 $this->dm->persist($tpl);
                 $this->su->reassignSlug($tpl);
