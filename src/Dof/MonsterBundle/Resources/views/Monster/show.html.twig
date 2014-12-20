@@ -1,6 +1,12 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
-{% include 'DofMonsterBundle::monster.html.twig' %}
+    {% include 'DofMonsterBundle::monster.html.twig' %}
 
+    {% if is_granted('ROLE_SPELL_XRAY') %}
+        Sorts :<br>
+        {% for spell in monster.spells %}
+            {% include 'DofCharactersBundle::spell.html.twig' %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

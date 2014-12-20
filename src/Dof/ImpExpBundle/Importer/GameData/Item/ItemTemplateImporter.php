@@ -15,8 +15,13 @@ class ItemTemplateImporter extends AbstractGameDataImporter
     const CURRENT_DATA_SET = 'item_templates';
     const BETA_DATA_SET = 'beta_item_templates';
 
+    private $loaders;
+
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
+        $this->loaders[0]->setEnabled(false);
+        $this->loaders[1]->setEnabled(false);
+
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
             $this->dm->createQuery('UPDATE DofItemsBundle:ItemTemplate s SET s.deprecated = true')->execute();
@@ -97,5 +102,11 @@ class ItemTemplateImporter extends AbstractGameDataImporter
         if ($output && $progress)
             $progress->finish();
 
+        $this->loaders[0]->setEnabled(true);
+        $this->loaders[1]->setEnabled(true);
+    }
+
+    public function setLoaders($loaders){
+        $this->loaders = $loaders;
     }
 }

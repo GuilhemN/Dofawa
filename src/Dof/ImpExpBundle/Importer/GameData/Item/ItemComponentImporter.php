@@ -15,8 +15,13 @@ class ItemComponentImporter extends AbstractGameDataImporter
     const CURRENT_DATA_SET = 'item_components';
     const BETA_DATA_SET = 'beta_item_components';
 
+    private $loaders;
+    
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
+        $this->loaders[0]->setEnabled(false);
+        $this->loaders[1]->setEnabled(false);
+
         // Si bdd accessible en écriture
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
 
@@ -87,5 +92,12 @@ class ItemComponentImporter extends AbstractGameDataImporter
 
         if ($output && $progress)
             $progress->finish();
+
+        $this->loaders[0]->setEnabled(true);
+        $this->loaders[1]->setEnabled(true);
+    }
+
+    public function setLoaders($loaders){
+        $this->loaders = $loaders;
     }
 }

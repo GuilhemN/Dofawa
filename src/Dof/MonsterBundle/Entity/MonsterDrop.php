@@ -32,7 +32,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
     /**
     * @var Monster
     *
-    * @ORM\ManyToOne(targetEntity="Monster")
+    * @ORM\ManyToOne(targetEntity="Monster", inversedBy="drops")
     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
     */
     private $monster;

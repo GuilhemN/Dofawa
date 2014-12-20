@@ -22,6 +22,7 @@ mkdir -p web/uploads/badges
 mkdir -p web/uploads/avatars
 mkdir -p web/uploads/images
 mkdir -p web/uploads/items
+mkdir -p web/uploads/monsters
 mkdir -p web/uploads/spells
 mkdir -p web/media/cache
 

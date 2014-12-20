@@ -19,9 +19,12 @@ class ItemEffectImporter extends AbstractGameDataImporter
     const CURRENT_DATA_SET = 'item_template_effects';
     const BETA_DATA_SET = 'beta_item_template_effects';
 
+    private $loaders;
+    
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
-        $this->paramLoader->setEnabled(false);
+        $this->loaders[0]->setEnabled(false);
+        $this->loaders[1]->setEnabled(false);
 
         $items = [ ];
         $stmt = $conn->query('SELECT o.id, o._index1, o.effectId, o.diceNum, o.diceSide, o.value
@@ -114,10 +117,11 @@ class ItemEffectImporter extends AbstractGameDataImporter
         if ($output && $progress)
             $progress->finish();
 
-        $this->paramLoader->setEnabled(true);
+        $this->loaders[0]->setEnabled(true);
+        $this->loaders[1]->setEnabled(true);
     }
 
-    public function setParamLoader($paramLoader){
-        $this->paramLoader = $paramLoader;
+    public function setLoaders($loaders){
+        $this->loaders = $loaders;
     }
 }

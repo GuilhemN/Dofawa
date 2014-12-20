@@ -10,7 +10,7 @@
                 {# Left column #}
                 <div class="col-sm-3">
                     <a href="{{ path('dof_monster_show', {'slug': monster.slug}) }}" class="thumbnail">
-                        <img class="img-responsive" src="{{ asset('bundles/dofitems/img/default.png') }}" alt="{{ monster.getName(locales()) }}">
+                        <img class="img-responsive" src="{{ (monster.webPath) ? asset(monster.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="{{ monster.getName(locales()) }}">
                     </a>
                     <div class="text-center">
                         <p>
@@ -21,6 +21,11 @@
                                 <span class="label label-default hidden-xs">{{ monster.release }}</span>
                             {% endif %}
                         </p>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <p>
+                            <a class="glyphicon glyphicon-camera" href="{{ path('dof_monster_addskin', {'id': monster.id}) }}"></a>
+                        </p>
+                        {% endif %}
                     </div>
                 </div>
 

@@ -5,6 +5,9 @@ namespace Dof\MonsterBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use XN\Common\UrlSafeBase64;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
@@ -12,8 +15,13 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
+use XN\Metadata\FileInterface;
+use XN\Metadata\FileLightTrait;
+
+use Dof\CharactersBundle\Entity\Spell;
 
 /**
  * Monster
@@ -21,9 +29,9 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_monsters")
  * @ORM\Entity(repositoryClass="Dof\MonsterBundle\Entity\MonsterRepository")
  */
-class Monster implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class Monster implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface, FileInterface
 {
-    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
+    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait, FileLightTrait;
 
     /**
      * @var integer
@@ -32,6 +40,14 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
      * @ORM\Id
      */
     private $id;
+
+    /**
+    * @var MonsterRace
+    *
+    * @ORM\ManyToOne(targetEntity="MonsterRace", inversedBy="monsters")
+    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+    */
+    private $race;
 
     /**
     * @ORM\OneToMany(targetEntity="MonsterGrade", mappedBy="monster")
@@ -46,16 +62,55 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $drops;
 
     /**
+    * @var Monster
+    *
+    * @ORM\ManyToOne(targetEntity="Monster", inversedBy="normalMonster")
+    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+    */
+    private $archMonster;
+
+    /**
+    * @var Monster
+    *
+    * @ORM\OneToOne(targetEntity="Monster", mappedBy="archMonster")
+    */
+    private $normalMonster;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="Dof\CharactersBundle\Entity\Spell", mappedBy="monsters")
+    */
+    private $spells;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="visible", type="boolean")
      */
     private $visible;
 
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="look", type="string", length=255)
+    */
+    private $look;
+
+    /**
+    * @Assert\Image(
+    *     maxSize = "1024k",
+    *     minWidth = 131,
+    *     maxWidth = 200,
+    *     minHeight = 131,
+    *     maxHeight = 200,
+    *     mimeTypesMessage = "Choisissez un fichier image valide.")
+    */
+    private $file;
+
     public function __construct()
     {
         $this->grades = new ArrayCollection();
         $this->drops = new ArrayCollection();
+        $this->spells = new ArrayCollection();
     }
 
     /**
@@ -79,6 +134,28 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getId()
     {
         return $this->id;
+    }
+    /**
+    * Set race
+    *
+    * @param MonsterRace $race
+    * @return Monster
+    */
+    public function setRace(MonsterRace $race)
+    {
+        $this->race = $race;
+
+        return $this;
+    }
+
+    /**
+    * Get race
+    *
+    * @return MonsterRace
+    */
+    public function getRace()
+    {
+        return $this->race;
     }
 
     /**
@@ -138,7 +215,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
 
         return $maxGrade;
     }
-    
+
     /**
     * Add drops
     *
@@ -176,6 +253,42 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
+    * Add spells
+    *
+    * @param Spell $spells
+    * @return Monster
+    */
+    public function addSpell(Spell $spells)
+    {
+        $this->spells[] = $spells;
+
+        return $this;
+    }
+
+    /**
+    * Remove spells
+    *
+    * @param Spell $spells
+    * @return Monster
+    */
+    public function removeSpell(Spell $spells)
+    {
+        $this->spells->removeElement($spells);
+
+        return $this;
+    }
+
+    /**
+    * Get spells
+    *
+    * @return Collection
+    */
+    public function getSpells()
+    {
+        return $this->spells;
+    }
+
+    /**
      * Set visible
      *
      * @param boolean $visible
@@ -198,8 +311,113 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
         return $this->visible;
     }
 
+    /**
+    * Set archMonster
+    *
+    * @param Monster $archMonster
+    * @return Monster
+    */
+    public function setArchMonster(Monster $archMonster = null)
+    {
+        $this->archMonster = $archMonster;
+
+        return $this;
+    }
+
+    /**
+    * Get archMonster
+    *
+    * @return Monster
+    */
+    public function getArchMonster()
+    {
+        return $this->archMonster;
+    }
+
+    /**
+    * Set normalMonster
+    *
+    * @param Monster $normalMonster
+    * @return Monster
+    */
+    public function setNormalMonster(Monster $normalMonster = null)
+    {
+        $this->normalMonster = $normalMonster;
+
+        return $this;
+    }
+
+    /**
+    * Get normalMonster
+    *
+    * @return Monster
+    */
+    public function getNormalMonster()
+    {
+        return $this->normalMonster;
+    }
+    /**
+    * Set look
+    *
+    * @param string $look
+    * @return Monster
+    */
+    public function setLook($look)
+    {
+        $this->look = $look;
+
+        return $this;
+    }
+
+    /**
+    * Get look
+    *
+    * @return string
+    */
+    public function getLook()
+    {
+        return $this->look;
+    }
+
     public function __toString()
     {
         return $this->nameFr;
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/monsters';
+    }
+
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            if(!empty($this->path))
+            $this->pathToRemove = $this->path;
+            $this->path = UrlSafeBase64::encode($this->look) . '.' . $this->file->guessExtension();
+        }
+    }
+
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+        if(!empty($this->pathToRemove)){
+            unlink($this->pathToRemove);
+            $this->pathToRemove = null;
+        }
+        system("/usr/bin/convert " . escapeshellarg(strval($this->file)) . " -resize 131x180 " . escapeshellarg($this->getUploadRootDir() . '/' . $this->path));
+
+        unset($this->file);
+    }
+
+    public function setPath($path){
+        if($this->path == $path)
+            return;
+        $this->removeUpload();
+        $this->path = $path;
     }
 }

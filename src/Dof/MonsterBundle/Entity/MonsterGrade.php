@@ -24,7 +24,7 @@ class MonsterGrade
     /**
     * @var Monster
     *
-    * @ORM\ManyToOne(targetEntity="Monster")
+    * @ORM\ManyToOne(targetEntity="Monster", inversedBy="grades")
     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
     */
     private $monster;
