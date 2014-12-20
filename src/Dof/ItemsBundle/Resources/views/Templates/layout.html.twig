@@ -33,11 +33,14 @@
                     {% block bonus %}
                     {% endblock %}
 
-                    {% if is_granted('ROLE_SUPER_ADMIN') and not itemTemplate.preliminary and itemTemplate.visible %}
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <hr />
                     <p>
-                        <a target="_blank" href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ itemTemplate.id }}-{{ itemTemplate.nameFr | slugify }}">
-                            <img src="{{ asset('bundles/dofmain/images/dof_logo_little.png') }}" />
-                        </a>
+                        {% if is_granted('ROLE_SUPER_ADMIN') and not itemTemplate.preliminary and itemTemplate.visible %}
+                        <a class="glyphicon glyphicon-link" target="_blank" href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ itemTemplate.id }}-{{ itemTemplate.nameFr | slugify }}"></a>
+                        {% endif %}
+                        <a class="glyphicon glyphicon-edit" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}"></a>
+                        <a class="glyphicon glyphicon-camera" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}"></a>
                     </p>
                     {% endif %}
 
@@ -148,18 +151,6 @@
 
         {% block more %}
         {% endblock %}
-
-        {% if is_granted('ROLE_SUPER_ADMIN') %}
-        <hr />
-        <div class="text-center">
-            <a class="btn btn-default" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}">
-                Editer (Admin)
-            </a>
-            <a class="btn btn-default" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}">
-                Ajouter image
-            </a>
-        </div>
-        {% endif %}
 
         {% if display != 'modal' %}
     </div>
