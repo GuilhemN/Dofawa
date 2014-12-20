@@ -3,6 +3,7 @@ imports:
     - { resource: importers/quest.yml }
     - { resource: importers/spell.yml }
     - { resource: importers/map.yml }
+    - { resource: importers/monster.yml }
 
 services:
     importer_dependencies:
@@ -54,21 +55,6 @@ services:
         tags:
             - { name: dof_imp_exp.importer, provides: job }
             - { name: dof_imp_exp.importer, provides: beta_job }
-
-    # DofMonsterBundle:Monster
-    dof_imp_exp.importer.monsters:
-        class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterImporter
-        arguments: [ "@importer_dependencies" ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: monsters }
-            - { name: dof_imp_exp.importer, provides: beta_monsters }
-
-    dof_imp_exp.importer.monster_grades:
-        class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterGradeImporter
-        arguments: [ "@importer_dependencies" ]
-        tags:
-            - { name: dof_imp_exp.importer, provides: monster_grades, requires: monsters }
-            - { name: dof_imp_exp.importer, provides: beta_monster_grades, requires: beta_monsters }
 
     # DofCharactersBundle:EffectTemplate
     dof_imp_exp.importer.effect_templates:

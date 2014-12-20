@@ -14,6 +14,7 @@ use XN\Metadata\SluggableTrait;
 
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
+
 /**
  * Monster
  *
@@ -39,6 +40,12 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $grades;
 
     /**
+    * @ORM\OneToMany(targetEntity="MonsterDrop", mappedBy="monster")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $drops;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="visible", type="boolean")
@@ -48,6 +55,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function __construct()
     {
         $this->grades = new ArrayCollection();
+        $this->drops = new ArrayCollection();
     }
 
     /**
@@ -129,6 +137,42 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
             }
 
         return $maxGrade;
+    }
+    
+    /**
+    * Add drops
+    *
+    * @param MonsterDrop $drops
+    * @return Monster
+    */
+    public function addDrop(MonsterDrop $drops)
+    {
+        $this->drops[] = $drops;
+
+        return $this;
+    }
+
+    /**
+    * Remove drops
+    *
+    * @param MonsterDrop $drops
+    * @return Monster
+    */
+    public function removeDrop(MonsterDrop $drops)
+    {
+        $this->drops->removeElement($drops);
+
+        return $this;
+    }
+
+    /**
+    * Get drops
+    *
+    * @return Collection
+    */
+    public function getDrops()
+    {
+        return $this->drops;
     }
 
     /**

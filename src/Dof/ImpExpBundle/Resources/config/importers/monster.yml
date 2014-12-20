@@ -1,0 +1,22 @@
+service:
+    # DofMonsterBundle:Monster
+    dof_imp_exp.importer.monsters:
+        class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: monsters }
+            - { name: dof_imp_exp.importer, provides: beta_monsters }
+
+    dof_imp_exp.importer.monster_grades:
+        class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterGradeImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: monster_grades, requires: monsters }
+            - { name: dof_imp_exp.importer, provides: beta_monster_grades, requires: beta_monsters }
+
+    dof_imp_exp.importer.monster_drops:
+        class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterDropImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: monster_drops, requires: "monsters item_templates" }
+            - { name: dof_imp_exp.importer, provides: beta_monster_drops, requires: "beta_monsters beta_item_templates" }
