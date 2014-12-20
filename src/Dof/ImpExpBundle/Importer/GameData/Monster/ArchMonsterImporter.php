@@ -10,8 +10,8 @@ use Dof\ImpExpBundle\ImporterFlags;
 
 class ArchMonsterImporter extends AbstractGameDataImporter
 {
-    const CURRENT_DATA_SET = 'archi_monsters';
-    const BETA_DATA_SET = 'beta_archi_monsters';
+    const CURRENT_DATA_SET = 'arch_monsters';
+    const BETA_DATA_SET = 'beta_arch_monsters';
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
