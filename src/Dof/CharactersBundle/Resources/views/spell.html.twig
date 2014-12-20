@@ -27,8 +27,11 @@
                             <span class="label label-default hidden-xs">{{ spell.release }}</span>
                         {% endif %}
                     </p>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
                     <p>
+                        <a class="glyphicon glyphicon-camera" href="{{ path('dof_spell_addskin', {'id': spell.id}) }}"></a>
                     </p>
+                    {% endif %}
                 </div>
             </div>
 
@@ -140,14 +143,6 @@
 			{% endif %}
 			{% endfor %}
 		{% endif %}
-        {% if is_granted('ROLE_SUPER_ADMIN') %}
-        <hr />
-        <div class="text-center">
-            <a class="btn btn-default" href="{{ path('dof_spell_addskin', {'id': spell.id}) }}">
-                Ajouter image
-            </a>
-        </div>
-        {% endif %}
     </div>
 </div>
 {% endif %}
