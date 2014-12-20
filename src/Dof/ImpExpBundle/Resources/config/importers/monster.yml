@@ -1,4 +1,4 @@
-service:
+services:
     # DofMonsterBundle:Monster
     dof_imp_exp.importer.monsters:
         class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterImporter
