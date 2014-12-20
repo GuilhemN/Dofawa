@@ -15,8 +15,6 @@ class ArchMonsterImporter extends AbstractGameDataImporter
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
-        $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-
         $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_MonsterMiniBos o');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -32,6 +30,7 @@ class ArchMonsterImporter extends AbstractGameDataImporter
                 continue;
 
             $tpl->setArchMonster($archi);
+            $archi->setNormalMonster($tpl);
 
             ++$rowsProcessed;
             if (($rowsProcessed % 150) == 0) {
