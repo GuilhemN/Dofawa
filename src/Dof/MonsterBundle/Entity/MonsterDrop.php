@@ -53,16 +53,16 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
     private $index;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="minPercent", type="integer")
+     * @ORM\Column(name="minPercent", type="float")
      */
     private $minPercent;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="maxPercent", type="integer")
+     * @ORM\Column(name="maxPercent", type="float")
      */
     private $maxPercent;
 
@@ -163,7 +163,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
     /**
      * Set minPercent
      *
-     * @param integer $minPercent
+     * @param float $minPercent
      * @return MonsterDrop
      */
     public function setMinPercent($minPercent)
@@ -176,7 +176,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
     /**
      * Get minPercent
      *
-     * @return integer
+     * @return float
      */
     public function getMinPercent()
     {
@@ -186,7 +186,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
     /**
      * Set maxPercent
      *
-     * @param integer $maxPercent
+     * @param float $maxPercent
      * @return MonsterDrop
      */
     public function setMaxPercent($maxPercent)
@@ -199,7 +199,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface
     /**
      * Get maxPercent
      *
-     * @return integer
+     * @return float
      */
     public function getMaxPercent()
     {
