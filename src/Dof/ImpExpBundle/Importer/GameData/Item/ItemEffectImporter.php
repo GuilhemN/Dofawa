@@ -19,6 +19,8 @@ class ItemEffectImporter extends AbstractGameDataImporter
     const CURRENT_DATA_SET = 'item_template_effects';
     const BETA_DATA_SET = 'beta_item_template_effects';
 
+    private $loaders;
+    
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $this->loaders[0]->setEnabled(false);
@@ -116,7 +118,7 @@ class ItemEffectImporter extends AbstractGameDataImporter
             $progress->finish();
 
         $this->loaders[0]->setEnabled(true);
-        $this->loaders[1]->setEnabled(false);
+        $this->loaders[1]->setEnabled(true);
     }
 
     public function setLoaders($loaders){

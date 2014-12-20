@@ -15,6 +15,8 @@ class ItemTemplateImporter extends AbstractGameDataImporter
     const CURRENT_DATA_SET = 'item_templates';
     const BETA_DATA_SET = 'beta_item_templates';
 
+    private $loaders;
+    
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $this->loaders[0]->setEnabled(false);

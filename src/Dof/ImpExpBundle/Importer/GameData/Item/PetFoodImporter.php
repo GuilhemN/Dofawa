@@ -15,6 +15,8 @@ class PetFoodImporter extends AbstractGameDataImporter
     const CURRENT_DATA_SET = 'pet_food';
     const BETA_DATA_SET = 'beta_pet_food';
 
+    private $loaders;
+    
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $this->loaders[0]->setEnabled(false);
