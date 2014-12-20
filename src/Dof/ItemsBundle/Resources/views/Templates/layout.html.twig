@@ -36,7 +36,7 @@
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
                     <hr />
                     <p>
-                        {% if is_granted('ROLE_SUPER_ADMIN') and not itemTemplate.preliminary and itemTemplate.visible %}
+                        {% if not itemTemplate.preliminary and itemTemplate.visible %}
                         <a class="glyphicon glyphicon-link" target="_blank" href="http://www.dofus.com/fr/mmorpg/encyclopedie/equipements/{{ itemTemplate.id }}-{{ itemTemplate.nameFr | slugify }}"></a>
                         {% endif %}
                         <a class="glyphicon glyphicon-edit" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}"></a>

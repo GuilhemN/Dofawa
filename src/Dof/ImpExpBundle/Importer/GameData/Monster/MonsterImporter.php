@@ -50,6 +50,7 @@ class MonsterImporter extends AbstractGameDataImporter
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
                 $tpl->setRace($race);
+                $tpl->setLook($row['look']);
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
 
                 $this->dm->persist($tpl);

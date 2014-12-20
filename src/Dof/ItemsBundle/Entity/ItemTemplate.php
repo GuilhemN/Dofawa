@@ -23,8 +23,8 @@ use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
-use XN\Metadata\FileLightTrait;
 use XN\Metadata\FileInterface;
+use XN\Metadata\FileLightTrait;
 
 use Dof\ItemsBundle\Criteria\ParsedCriteriaTrait;
 use Dof\ItemsBundle\Criteria\ParsedCriteriaInterface;

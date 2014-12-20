@@ -15,6 +15,8 @@ use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
+use XN\Metadata\FileInterface;
+use XN\Metadata\FileLightTrait;
 
 use Dof\CharactersBundle\Entity\Spell;
 
@@ -24,9 +26,9 @@ use Dof\CharactersBundle\Entity\Spell;
  * @ORM\Table(name="dof_monsters")
  * @ORM\Entity(repositoryClass="Dof\MonsterBundle\Entity\MonsterRepository")
  */
-class Monster implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
+class Monster implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface, FileInterface
 {
-    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
+    use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait, FileLightTrait;
 
     /**
      * @var integer
@@ -82,6 +84,24 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
      * @ORM\Column(name="visible", type="boolean")
      */
     private $visible;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="look", type="string", length=255)
+    */
+    private $look;
+
+    /**
+    * @Assert\Image(
+    *     maxSize = "1024k",
+    *     minWidth = 131,
+    *     maxWidth = 200,
+    *     minHeight = 131,
+    *     maxHeight = 200,
+    *     mimeTypesMessage = "Choisissez un fichier image valide.")
+    */
+    private $file;
 
     public function __construct()
     {
@@ -333,9 +353,68 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         return $this->normalMonster;
     }
+    /**
+    * Set look
+    *
+    * @param string $look
+    * @return Monster
+    */
+    public function setLook($look)
+    {
+        $this->look = $look;
+
+        return $this;
+    }
+
+    /**
+    * Get look
+    *
+    * @return string
+    */
+    public function getLook()
+    {
+        return $this->look;
+    }
 
     public function __toString()
     {
         return $this->nameFr;
+    }
+    
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/monsters';
+    }
+
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            if(!empty($this->path))
+            $this->pathToRemove = $this->path;
+            $this->path = UrlSafeBase64::encode($this->look) . '.' . $this->file->guessExtension();
+        }
+    }
+
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+        if(!empty($this->pathToRemove)){
+            unlink($this->pathToRemove);
+            $this->pathToRemove = null;
+        }
+        system("/usr/bin/convert " . escapeshellarg(strval($this->file)) . " -resize 131x180 " . escapeshellarg($this->getUploadRootDir() . '/' . $this->path));
+
+        unset($this->file);
+    }
+
+    public function setPath($path){
+        if($this->path == $path)
+            return;
+        $this->removeUpload();
+        $this->path = $path;
     }
 }
