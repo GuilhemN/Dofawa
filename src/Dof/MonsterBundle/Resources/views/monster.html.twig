@@ -71,6 +71,9 @@
             {% if monster.drops is not empty %}
                 <hr />
                 <div class="text-center">
+                    <span class="pull-left">
+                        Drops:
+                    </span>
                     {% for drop in monster.drops %}
                         {% set object = drop.object %}
                         <a href="{{ path('dof_items_show', {'slug': object.slug}) }}" class="tooltip-link" data-toggle="tooltip" data-original-title="{{ drop.count }} x {{ object.getName(locales()) }}">
