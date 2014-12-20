@@ -34,8 +34,8 @@
                 {% import _self as monsterEffect %}
 
                 {# Right column #}
-                <div class="row">
-                    <div class="col-lg-3">
+                <div class="col-xs-12 col-sm-9">
+                    <div class="col-lg-5">
                         {{ 'vitality' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monsterEffect.effect( min.lifePoints , max.lifePoints) }}
                         <br>
                         {{ 'ap' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monsterEffect.effect( min.actionPoints , max.actionPoints) }}
@@ -43,7 +43,7 @@
                         {{ 'mp' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monsterEffect.effect( min.movementPoints , max.movementPoints) }}
                         <br>
                     </div>
-                    <div class="col-lg-5">
+                    <div class="col-lg-7">
                         <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ monsterEffect.effect( min.earthResistance , max.earthResistance) }}{{ 'percentEarthResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
                         <img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ monsterEffect.effect( min.airResistance , max.airResistance) }}{{ 'percentAirResistance' | trans({'%1%': ''}, 'item') }}
