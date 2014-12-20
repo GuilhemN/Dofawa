@@ -16,8 +16,6 @@ class MonsterSpellImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-        if (!$beta && $write)
-            $this->dm->createQuery('UPDATE DofMonsterBundle:Monster s SET s.spells = null')->execute();
 
         $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Monster_spell o');
         $all = $stmt->fetchAll();
@@ -37,6 +35,8 @@ class MonsterSpellImporter extends AbstractGameDataImporter
             if($monster === null or $monster->isPreliminary() ^ $beta)
                 continue;
 
+                foreach($monster->setSpells() as $spell)
+                    $monster->removeSpell($spell);
                 foreach($spells as $spell){
                     $spell = $spellRepo->find($spell);
                     if($spell === null)

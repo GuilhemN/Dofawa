@@ -99,20 +99,37 @@
                 </div>
             </div>
         </div>
-        <hr />
-        {% if spell.breeds is not empty %}
-            <b>Classes :</b>
-            {% for breed in spell.breeds %}
-                <a href="{{ path('dof_characters_show', {'slug': breed.slug}) }}">
-                    {{ breed.getName(locales()) }}
-                </a>
-                {% if not loop.last %}
-                |
-                {% endif %}
-            {% endfor %}
-            <br>
+        {% set footer %}
+            {% if spell.breeds is not empty %}
+                <b>Classes :</b>
+                {% for breed in spell.breeds %}
+                    <a href="{{ path('dof_characters_show', {'slug': breed.slug}) }}">
+                        {{ breed.getName(locales()) }}
+                    </a>
+                    {% if not loop.last %}
+                    |
+                    {% endif %}
+                {% endfor %}
+                <br>
+            {% endif %}
+            {% if spell.monsters is not empty %}
+                <b>Monstres :</b>
+                {% for monster in spell.monsters %}
+                    <a href="{{ path('dof_monster_show', {'slug': monster.slug}) }}">
+                        {{ monster.getName(locales()) }}
+                    </a>
+                    {% if not loop.last %}
+                    |
+                    {% endif %}
+                {% endfor %}
+                <br>
+            {% endif %}
+            {{ spell.getDescription(locales()) }}
+        {% endset %}
+        {% if footer | trim is not empty %}
+            <hr />
+            {{ footer }}
         {% endif %}
-        {{ spell.getDescription(locales()) }}
 		{% if paramOf|length > 0 %}
 			<hr />
 			<b>Effet de / Influencé par :</b>
