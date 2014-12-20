@@ -31,18 +31,14 @@ class ArchMonsterImporter extends AbstractGameDataImporter
             if($tpl === null or $archi === null or $tpl->isPreliminary() ^ $beta)
                 continue;
 
-            $tpl->setDeprecated(false);
-            if (!$tpl->getRelease())
-                $tpl->setRelease($release);
-            $tpl->setPreliminary($beta);
             $tpl->setArchMonster($archi);
 
             ++$rowsProcessed;
-            if (($rowsProcessed % 300) == 0) {
+            if (($rowsProcessed % 150) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
                 if ($output && $progress)
-                    $progress->advance(300);
+                    $progress->advance(150);
             }
         }
         if ($output && $progress)
