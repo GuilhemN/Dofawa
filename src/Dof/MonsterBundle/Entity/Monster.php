@@ -66,7 +66,6 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     * @var Monster
     *
     * @ORM\OneToOne(targetEntity="Monster", mappedBy="archMonster")
-    * @ORM\JoinColumn(nullable=true)
     */
     private $normalMonster;
 
