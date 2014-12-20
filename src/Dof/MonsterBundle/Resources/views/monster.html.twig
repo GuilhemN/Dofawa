@@ -68,6 +68,15 @@
                     {# Close right column #}
                 </div>
             </div>
+            {% if monster.drops is not empty %}
+                <hr />
+                {% for drop in monster.drops %}
+                {% set object = drop.object %}
+                <a href="#" class="tooltip-link" data-toggle="tooltip" data-original-title="{{ count }} x {{ object.getName(locales()) }}">
+                    <img style="width: 39px;" class="img-responsive" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
+                </a>
+                {% endfor %}
+            {% endif %}
             {% if paramOf | length > 0 %}
                 <hr />
                 <b>Invoqué / Influencé par :</b>

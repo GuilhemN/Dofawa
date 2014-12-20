@@ -187,7 +187,11 @@
     <script src="{{ asset('bundles/dofmain/js/notifications.min.js') }}"></script>
     {% endif %}
     <script type="text/javascript">
-    $(".to-select2").select2();
+    $(function()
+    {
+        $(".to-select2").select2();
+        $(".tooltip-link").tooltip();
+    });
     </script>
 
     {% if app.request.query.has('wabbit') %}

@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
+use Dof\ItemsBundle\Criteria\ParsedCriteriaTrait;
+use Dof\ItemsBundle\Criteria\ParsedCriteriaInterface;
 
 use Dof\ItemsBundle\Entity\ItemTemplate;
 
@@ -16,9 +18,9 @@ use Dof\ItemsBundle\Entity\ItemTemplate;
  * @ORM\Table(name="dof_monster_drops")
  * @ORM\Entity(repositoryClass="Dof\MonsterBundle\Entity\MonsterDropRepository")
  */
-class MonsterDrop implements IdentifiableInterface, TimestampableInterface
+class MonsterDrop implements IdentifiableInterface, TimestampableInterface, ParsedCriteriaInterface
 {
-    use TimestampableTrait;
+    use TimestampableTrait, ParsedCriteriaTrait;
 
     /**
      * @var integer
