@@ -5,6 +5,7 @@ namespace Dof\MonsterBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
@@ -380,7 +381,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         return $this->nameFr;
     }
-    
+
     protected function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
