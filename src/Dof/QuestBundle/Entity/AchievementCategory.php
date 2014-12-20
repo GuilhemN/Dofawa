@@ -66,7 +66,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     * @ORM\OneToMany(targetEntity="AchievementCategory", mappedBy="parent")
     * @ORM\JoinColumn(nullable=true)
     */
-    private $childs;
+    private $children;
 
     /**
     * @ORM\OneToMany(targetEntity="Achievement", mappedBy="category")
@@ -75,7 +75,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     private $achievements;
 
     public function __construct(){
-        $this->childs = new ArrayCollection();
+        $this->children = new ArrayCollection();
         $this->achievements = new ArrayCollection();
     }
 
@@ -193,39 +193,39 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-    * Add childs
+    * Add children
     *
-    * @param AchievementCategory $childs
+    * @param AchievementCategory $children
     * @return AchievementCategory
     */
-    public function addChild(AchievementCategory $childs)
+    public function addChild(AchievementCategory $children)
     {
-        $this->childs[] = $childs;
+        $this->children[] = $children;
 
         return $this;
     }
 
     /**
-    * Remove childs
+    * Remove children
     *
-    * @param AchievementCategory $childs
+    * @param AchievementCategory $children
     * @return AchievementCategory
     */
-    public function removeChild(AchievementCategory $childs)
+    public function removeChild(AchievementCategory $children)
     {
-        $this->childs->removeElement($childs);
+        $this->children->removeElement($children);
 
         return $this;
     }
 
     /**
-    * Get childs
+    * Get children
     *
     * @return Collection
     */
-    public function getChilds()
+    public function getChildren()
     {
-        return $this->childs;
+        return $this->children;
     }
 
     /**

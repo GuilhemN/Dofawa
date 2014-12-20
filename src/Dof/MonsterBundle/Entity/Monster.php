@@ -12,6 +12,7 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
+use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
@@ -21,7 +22,7 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_monsters")
  * @ORM\Entity(repositoryClass="Dof\MonsterBundle\Entity\MonsterRepository")
  */
-class Monster implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class Monster implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
 {
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
@@ -32,6 +33,14 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
      * @ORM\Id
      */
     private $id;
+
+    /**
+    * @var MonsterRace
+    *
+    * @ORM\ManyToOne(targetEntity="MonsterRace")
+    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+    */
+    private $race;
 
     /**
     * @ORM\OneToMany(targetEntity="MonsterGrade", mappedBy="monster")
@@ -79,6 +88,28 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getId()
     {
         return $this->id;
+    }
+    /**
+    * Set race
+    *
+    * @param MonsterRace $race
+    * @return Monster
+    */
+    public function setRace(MonsterRace $race)
+    {
+        $this->race = $race;
+
+        return $this;
+    }
+
+    /**
+    * Get race
+    *
+    * @return MonsterRace
+    */
+    public function getRace()
+    {
+        return $this->race;
     }
 
     /**
@@ -138,7 +169,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
 
         return $maxGrade;
     }
-    
+
     /**
     * Add drops
     *

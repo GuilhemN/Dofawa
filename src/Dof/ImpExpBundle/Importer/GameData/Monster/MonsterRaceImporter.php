@@ -8,48 +8,47 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\MonsterBundle\Entity\Monster;
+use Dof\MonsterBundle\Entity\MonsterRace;
 
-class MonsterImporter extends AbstractGameDataImporter
+class MonsterRaceImporter extends AbstractGameDataImporter
 {
-    const CURRENT_DATA_SET = 'monsters';
-    const BETA_DATA_SET = 'beta_monsters';
+    const CURRENT_DATA_SET = 'monster_races';
+    const BETA_DATA_SET = 'beta_monster_races';
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
-            $this->dm->createQuery('UPDATE DofMonsterBundle:Monster s SET s.deprecated = true')->execute();
+        $this->dm->createQuery('UPDATE DofMonsterBundle:MonsterRace s SET s.deprecated = true')->execute();
 
         $stmt = $conn->query('SELECT o.*' .
-            $this->generateD2ISelects('name', $locales) .
-            ' FROM ' . $db . '.D2O_Monster o' .
-            $this->generateD2IJoins('name', $db, $locales));
+        $this->generateD2ISelects('name', $locales) .
+        ' FROM ' . $db . '.D2O_MonsterRace o' .
+        $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
-        $repo = $this->dm->getRepository('DofMonsterBundle:Monster');
-        $raceRepo = $this->dm->getRepository('DofMonsterBundle:MonsterRace');
+        $repo = $this->dm->getRepository('DofMonsterBundle:MonsterRace');
+        $superRaceRepo = $this->dm->getRepository('DofMonsterBundle:MonsterSuperRace');
         $rowsProcessed = 0;
         if ($output && $progress)
-            $progress->start($output, count($all));
+        $progress->start($output, count($all));
         foreach ($all as $row) {
             $tpl = $repo->find($row['id']);
-            $race = $raceRepo->find($row['race']);
-            if($race === null)
+            $superRace = $superRaceRepo->find($row['superRaceId']);
+            if($superRace === null)
                 continue;
             if ($tpl === null) {
-                $tpl = new Monster();
+                $tpl = new MonsterRace();
                 $tpl->setDeprecated(true);
-                $tpl->setVisible(true);
                 $tpl->setId($row['id']);
             }
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
                 if (!$tpl->getRelease())
-                    $tpl->setRelease($release);
+                $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                $tpl->setRace($race);
+                $tpl->setParent($superRace);
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
 
                 $this->dm->persist($tpl);
@@ -60,11 +59,11 @@ class MonsterImporter extends AbstractGameDataImporter
                 $this->dm->flush();
                 $this->dm->clear();
                 if ($output && $progress)
-                    $progress->advance(300);
+                $progress->advance(300);
             }
         }
         if ($output && $progress)
-            $progress->finish();
+        $progress->finish();
 
     }
 }

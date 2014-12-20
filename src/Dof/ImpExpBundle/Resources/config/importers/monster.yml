@@ -1,11 +1,25 @@
 services:
     # DofMonsterBundle:Monster
+    dof_imp_exp.importer.monster_super_races:
+        class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterSuperRaceImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: monster_super_races }
+            - { name: dof_imp_exp.importer, provides: beta_monster_super_races }
+
+    dof_imp_exp.importer.monster_races:
+        class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterRaceImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: monster_races, requires: monster_super_races }
+            - { name: dof_imp_exp.importer, provides: beta_monster_races, requires: beta_monster_super_races }
+
     dof_imp_exp.importer.monsters:
         class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterImporter
         arguments: [ "@importer_dependencies" ]
         tags:
-            - { name: dof_imp_exp.importer, provides: monsters }
-            - { name: dof_imp_exp.importer, provides: beta_monsters }
+            - { name: dof_imp_exp.importer, provides: monsters, requires: monster_races }
+            - { name: dof_imp_exp.importer, provides: beta_monsters, requires: beta_monster_races }
 
     dof_imp_exp.importer.monster_grades:
         class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterGradeImporter
