@@ -35,7 +35,7 @@ class MonsterSpellImporter extends AbstractGameDataImporter
             if($monster === null or $monster->isPreliminary() ^ $beta)
                 continue;
 
-                foreach($monster->setSpells() as $spell)
+                foreach($monster->getSpells() as $spell)
                     $monster->removeSpell($spell);
                 foreach($spells as $spell){
                     $spell = $spellRepo->find($spell);
