@@ -61,6 +61,21 @@ class StringReader implements Reader
 	{
 		// no-op because our state is just an offset
 	}
+	public function transact($transactionFn)
+	{
+		if (!is_callable($transactionFn))
+			return;
+		$offset = $this->offset;
+		try {
+			$retval = call_user_func($transactionFn);
+			if (!$retval && $retval !== null)
+				$this->offset = $offset;
+			return $retval;
+		} catch (\Exception $ex) {
+			$this->offset = $offset;
+			throw $ex;
+		}
+	}
 
     public function eat($string, $caseInsensitive = false)
     {

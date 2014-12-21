@@ -6,9 +6,12 @@ interface Reader
     public function getConsumedBytes();
     public function getRemainingBytes();
     public function isEof();
+	// BEGIN Partially deprecated : use transact for transactions
     public function getState();
     public function setState($opaqueState);
 	public function freeState($opaqueState);
+	// END Partially deprecated
+	public function transact($transactionFn);
 
     public function eat($string, $caseInsensitive = false);
     public function eatAny($strings, $caseInsensitive = false);
