@@ -86,6 +86,19 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $type;
 
     /**
+    * @var Collection
+    *
+    * @ORM\OneToMany(targetEntity="MapPosition", mappedBy="subArea")
+    */
+    private $maps;
+
+
+    public function __construct()
+    {
+        $this->maps = new ArrayCollection();
+    }
+
+    /**
      * Set id
      *
      * @param integer $id
@@ -267,6 +280,41 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getType()
     {
         return $this->type;
+    }
+    /**
+    * Add maps
+    *
+    * @param MapPosition $maps
+    * @return SubArea
+    */
+    public function addMap(MapPosition $maps)
+    {
+        $this->maps[] = $maps;
+
+        return $this;
+    }
+
+    /**
+    * Remove maps
+    *
+    * @param MapPosition $maps
+    * @return SubArea
+    */
+    public function removeMap(MapPosition $maps)
+    {
+        $this->maps->removeElement($maps);
+
+        return $this;
+    }
+
+    /**
+    * Get maps
+    *
+    * @return Collection
+    */
+    public function getMaps()
+    {
+        return $this->maps;
     }
 
     public function __toString()
