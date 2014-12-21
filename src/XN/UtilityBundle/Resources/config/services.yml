@@ -3,6 +3,7 @@ parameters:
     xn.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
     xn.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
     xn.grammar.class: XN\Grammar\ParserFactory
+    xn.bbcode.simple_tag_template.class: XN\BBCode\TagTemplate\SimpleTagTemplate
     xn.bbcode.item_tag_template.class: XN\BBCode\TagTemplate\ItemTagTemplate
 
     xn.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
@@ -44,6 +45,30 @@ services:
         class: %xn.bbcode.item_tag_template.class%
         tags:
             - { name: xn.bbcode.publish, module: lists }
+
+    xn.bbcode.bold_simple_tag_template:
+        class: %xn.bbcode.simple_tag_template.class%
+        arguments: [ 'b', 'span', ~, 'font-weight: bold;' ]
+        tags:
+            - { name: xn.bbcode.publish, module: basics }
+
+    xn.bbcode.italic_simple_tag_template:
+        class: %xn.bbcode.simple_tag_template.class%
+        arguments: [ 'i', 'span', ~, 'font-style: italic;' ]
+        tags:
+            - { name: xn.bbcode.publish, module: basics }
+
+    xn.bbcode.underline_simple_tag_template:
+        class: %xn.bbcode.simple_tag_template.class%
+        arguments: [ 'u', 'span', ~, 'text-decoration: underline;' ]
+        tags:
+            - { name: xn.bbcode.publish, module: basics }
+
+    xn.bbcode.strikethrough_simple_tag_template:
+        class: %xn.bbcode.simple_tag_template.class%
+        arguments: [ [ 's', 'stike' ], 'span', ~, 'text-decoration: line-through;' ]
+        tags:
+            - { name: xn.bbcode.publish, module: basics }
 
 #    xn.doctrine.identifiable_updater:
 #        class:     "%xn.doctrine.identifiable_updater.class%"

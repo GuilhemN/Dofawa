@@ -242,7 +242,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
      */
     public function getCount()
     {
-        return $this->count;
+        return min(16, $this->count);
     }
 
     /**
