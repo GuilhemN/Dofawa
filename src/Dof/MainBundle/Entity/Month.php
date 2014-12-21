@@ -15,7 +15,7 @@ use XN\L10n\LocalizedNameTrait;
  * Month
  *
  * @ORM\Table(name="dof_months")
- * @ORM\Entity(repositoryCl ass="Dof\MainBundle\Entity\MonthRepository")
+ * @ORM\Entity(repositoryClass="Dof\MainBundle\Entity\MonthRepository")
  */
 class Month implements IdentifiableInterface, SluggableInterface, LocalizedNameInterface
 {
