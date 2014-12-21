@@ -4,6 +4,7 @@
     {% if class != 'SimpleCriterion' or description | trim is not empty %}
         {% if criterion.visibleStructure %}
         <li>
+        {% endif %}
             {% if class == 'SimpleCriterion' %}
                 {{ description | raw }}
             {% else %}
@@ -13,7 +14,6 @@
                     Au moins une de ces conditions
                 {% endif %}
                 <ul>
-        {% endif %}
                     {% for c in criterion.criteria %}
                         {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c} only %}
                     {% endfor %}
