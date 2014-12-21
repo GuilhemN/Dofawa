@@ -266,6 +266,6 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     public function __toString() {
-        return '[' . $this->x . ';' . $this->y . ']';
+        return '[' . $this->x . ', ' . $this->y . ']';
     }
 }
