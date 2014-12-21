@@ -248,7 +248,7 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     * @param SubArea $subArea
     * @return MapPosition
     */
-    public function setSubArea(SubArea $subArea)
+    public function setSubArea(SubArea $subArea = null)
     {
         $this->subArea = $subArea;
 
