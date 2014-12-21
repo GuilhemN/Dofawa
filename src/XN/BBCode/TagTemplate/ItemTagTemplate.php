@@ -7,7 +7,7 @@ use XN\BBCode\TagTemplateInterface;
 
 class ItemTagTemplate implements TagTemplateInterface
 {
-	private $instance;
+	private static $instance;
 
 	// Public for Symfony2 service instantiation
 	// Avoid calling directly, prefer using the service, or getInstance
@@ -45,7 +45,7 @@ class ItemTagTemplate implements TagTemplateInterface
 
 	public function verifyParent(Tag $child, NodeInterface $parent)
 	{
-		if (!($parent instanceof ListTagTemplate))
+		if (!($parent instanceof Tag && $parent->getTemplate() instanceof ListTagTemplate))
 			throw new \Exception("Can't add item tags somewhere else than in list tags");
 	}
 	public function verifyChild(Tag $parent, NodeInterface $child)
