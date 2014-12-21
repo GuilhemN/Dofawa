@@ -77,7 +77,7 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     * @var Monster
     *
     * @ORM\ManyToOne(targetEntity="SubArea", inversedBy="maps")
-    * @ORM\JoinColumn(nullable=false, onDelete="SET NULL")
+    * @ORM\JoinColumn(nullable=true)
     */
     private $subArea;
 
@@ -248,7 +248,7 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     * @param SubArea $subArea
     * @return MapPosition
     */
-    public function setSubArea(SubArea $subArea)
+    public function setSubArea(SubArea $subArea = null)
     {
         $this->subArea = $subArea;
 
@@ -266,6 +266,6 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     public function __toString() {
-        return '[' . $this->x . ';' . $this->y . ']';
+        return '[' . $this->x . ', ' . $this->y . ']';
     }
 }

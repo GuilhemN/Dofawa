@@ -33,8 +33,6 @@ class PositionImporter extends AbstractGameDataImporter
         $progress->start($output, count($all));
         foreach ($all as $row) {
             $subArea = $subRepo->find($row['subAreaId']);
-            if($subArea === null)
-                continue;
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
                 $tpl = new MapPosition();
@@ -46,7 +44,7 @@ class PositionImporter extends AbstractGameDataImporter
                 if (!$tpl->getRelease())
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                $tpl->setSuperArea($superArea);
+                $tpl->setSubArea($subArea);
                 $tpl->setX($row['posX']);
                 $tpl->setY($row['posY']);
                 $tpl->setOutdoor($row['outdoor']);
@@ -56,9 +54,8 @@ class PositionImporter extends AbstractGameDataImporter
 
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
                 if($tpl->getNameFr() === null)
-                    $tpl->setNameFr('map');
+                    $tpl->setNameFr('');
                 $this->dm->persist($tpl);
-                $this->su->reassignSlug($tpl);
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {
