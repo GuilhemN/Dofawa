@@ -115,7 +115,7 @@
                 {% endfor %}
                 <br>
             {% endif %}
-            {% if is_granted('ROLE_SPELL_XRAY') and spell.monsters is not empty %}
+            {% if is_granted('ROLE_MONSTER_XRAY') and spell.monsters is not empty %}
                 <b>Monstres :</b>
                 {% for monster in spell.monsters %}
                     <a href="{{ path('dof_monster_show', {'slug': monster.slug}) }}">

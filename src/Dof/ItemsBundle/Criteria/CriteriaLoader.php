@@ -51,7 +51,7 @@ class CriteriaLoader extends ServiceWithContainer
             $em = $this->getEntityManager();
             $ent->setContainer($this->di);
             $tpl = $this->getCriterionTemplate($ent->getCharacteristic(), $ent->getOperator());
-            if($tpl === null) {
+            if($tpl === null or (!$tpl->getVisible() && !$this->di->get('security.context')->isGranted('ROLE_ITEM_XRAY'))) {
                 $ent->setVisible(false);
                 return;
             }

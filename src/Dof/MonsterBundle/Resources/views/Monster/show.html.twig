@@ -3,7 +3,7 @@
 {% block body %}
     {% include 'DofMonsterBundle::monster.html.twig' %}
 
-    {% if is_granted('ROLE_SPELL_XRAY') %}
+    {% if is_granted('ROLE_MONSTER_XRAY') %}
         Sorts :<br>
         {% for spell in monster.spells %}
             {% include 'DofCharactersBundle::spell.html.twig' with {'spell': spell} only %}

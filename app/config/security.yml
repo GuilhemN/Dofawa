@@ -64,6 +64,8 @@ security:
         # Accès aux données avancées (Spoilers, etc.)
         ROLE_XRAY:
             - ROLE_SPELL_XRAY
+            - ROLE_ITEM_XRAY
+            - ROLE_MONSTER_XRAY
 
         # Admin du site
         ROLE_ADMIN:

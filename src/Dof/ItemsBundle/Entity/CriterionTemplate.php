@@ -55,6 +55,13 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     */
     private $relations;
 
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="visible", type="boolean")
+    */
+    private $visible;
+
 
     /**
      * Get id
@@ -146,6 +153,38 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     public function getRelations()
     {
         return $this->relations;
+    }
+    /**
+    * Set visible
+    *
+    * @param boolean $visible
+    * @return CriterionTemplate
+    */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+    * Get visible
+    *
+    * @return boolean
+    */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
+    * Get visible
+    *
+    * @return boolean
+    */
+    public function isVisible()
+    {
+        return $this->visible;
     }
 
     public function expandDescription(array $context, $locale = 'fr')
