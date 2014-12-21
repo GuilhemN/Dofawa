@@ -69,6 +69,10 @@ class SimpleCriterion extends Criterion
         return $this->visible;
     }
 
+    public function isStructureVisible() {
+        return $this->getVisible();
+    }
+
     public function setContainer(ContainerInterface $di) {
         $this->di = $di;
         return $this;

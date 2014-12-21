@@ -2,21 +2,25 @@
     {% set class = classOf(criterion) %}
     {% set description = criterion.htmlDescription is defined ? criterion.htmlDescription : null %}
     {% if class != 'SimpleCriterion' or description | trim is not empty %}
-    <li>
-        {% if class == 'SimpleCriterion' %}
-            {{ description | raw }}
-        {% else %}
-            {% if classOf(criterion) == 'AndCriterion' %}
-                Toutes ces conditions :
+        {% if criterion.visibleStructure %}
+        <li>
+            {% if class == 'SimpleCriterion' %}
+                {{ description | raw }}
             {% else %}
-                Au moins une de ces conditions
-            {% endif %}
-            <ul>
-                {% for c in criterion.criteria %}
-                    {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c} only %}
-                {% endfor %}
-            </ul>
+                {% if classOf(criterion) == 'AndCriterion' %}
+                    Toutes ces conditions :
+                {% else %}
+                    Au moins une de ces conditions
+                {% endif %}
+                <ul>
         {% endif %}
-    </li>
+                    {% for c in criterion.criteria %}
+                        {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c} only %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% if criterion.visibleStructure %}
+        </li>
+        {% endif %}
     {% endif %}
 {% endif %}
