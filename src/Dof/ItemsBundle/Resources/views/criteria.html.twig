@@ -15,12 +15,14 @@
                         Au moins une de ces conditions
                     {% endif %}
                     <ul>
-                {% endif %}
+                        {% for c in criterion.criteria %}
+                            {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c} only %}
+                        {% endfor %}
+                    </ul>
+                {% else %}
                     {% for c in criterion.criteria %}
                         {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c} only %}
                     {% endfor %}
-                {% if criterion.structureVisible %}
-                </ul>
                 {% endif %}
             {% endif %}
         {% if criterion.structureVisible %}
