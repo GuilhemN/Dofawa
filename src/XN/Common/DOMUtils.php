@@ -11,9 +11,42 @@ class DOMUtils
 	{
 		if ($node === null)
 			return '';
+		return $node->ownerDocument->saveHTML($node);
+	}
+	public static function innerHTML(DOMNode $node = null)
+	{
+		if ($node === null)
+			return '';
+		$doc = $node->ownerDocument;
+		$html = [ ];
+		foreach ($node->childNodes as $child)
+			$html[] = $doc->saveHTML($child);
+		return implode('', $html);
+	}
+
+	public static function parseHTMLBodyFragment($fragment, DOMDocument $context)
+	{
 		$doc = new DOMDocument();
-		$doc->appendChild($doc->importNode($node, true));
-		return $doc->saveHTML();
+		$ue = libxml_use_internal_errors(true);
+		$ok = $doc->loadHTML('<?xml encoding="utf-8"?><html><body>' . $fragment . '</body></html>', LIBXML_NONET);
+		libxml_use_internal_errors($ue);
+		if (!$ok)
+			return null;
+		$body = self::getFirstElementByNodeName($doc, 'body');
+		if (!$body)
+			return null;
+		$children = $body->childNodes;
+		switch ($children->length) {
+			case 0:
+				return null;
+			case 1:
+				return $context->importNode($children->item(0), true);
+			default:
+				$frag = $context->createDocumentFragment();
+				foreach ($children as $child)
+					$frag->appendChild($context->importNode($child, true));
+				return $frag;
+		}
 	}
 	
 	public static function getElementsByClassName(DOMNode $node = null, $className, $maxLevel = null)
