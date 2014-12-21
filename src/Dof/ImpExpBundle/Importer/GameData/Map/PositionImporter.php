@@ -46,7 +46,7 @@ class PositionImporter extends AbstractGameDataImporter
                 if (!$tpl->getRelease())
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
-                $tpl->setSuperArea($superArea);
+                $tpl->setSubArea($subArea);
                 $tpl->setX($row['posX']);
                 $tpl->setY($row['posY']);
                 $tpl->setOutdoor($row['outdoor']);
