@@ -3,6 +3,7 @@ parameters:
     xn.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
     xn.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
     xn.grammar.class: XN\Grammar\ParserFactory
+    xn.bbcode.item_tag_template.class: XN\BBCode\TagTemplate\ItemTagTemplate
 
     xn.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
     xn.doctrine.ownable_updater.class: XN\UtilityBundle\Doctrine\OwnableUpdater
@@ -38,6 +39,11 @@ services:
     xn.grammar:
         class: %xn.grammar.class%
         arguments: [ "@annotation_reader" ]
+
+    xn.bbcode.item_tag_template:
+        class: %xn.bbcode.item_tag_template.class%
+        tags:
+            - { name: xn.bbcode.publish, module: lists }
 
 #    xn.doctrine.identifiable_updater:
 #        class:     "%xn.doctrine.identifiable_updater.class%"
