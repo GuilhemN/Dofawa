@@ -54,7 +54,7 @@ class PositionImporter extends AbstractGameDataImporter
 
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
                 if($tpl->getNameFr() === null)
-                    $tpl->setNameFr('map');
+                    $tpl->setNameFr('');
                 $this->dm->persist($tpl);
             }
             ++$rowsProcessed;
