@@ -12,7 +12,7 @@
                     {% if classOf(criterion) == 'AndCriterion' %}
                         Toutes ces conditions :
                     {% else %}
-                        Au moins une de ces conditions
+                        Au moins une de ces conditions :
                     {% endif %}
                     <ul>
                         {% for c in criterion.criteria %}
