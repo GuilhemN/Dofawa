@@ -49,6 +49,13 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     private $operator;
 
     /**
+    * @var string
+    *
+    * @ORM\Column(name="value", type="string", length=30, nullable=true)
+    */
+    private $value;
+
+    /**
     * @var Collection
     *
     * @ORM\OneToMany(targetEntity="CriterionTemplateRelation", mappedBy="criterionTemplate", fetch="EAGER")
@@ -117,6 +124,29 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     public function getOperator()
     {
         return $this->operator;
+    }
+    
+    /**
+    * Set value
+    *
+    * @param string $value
+    * @return CriterionTemplate
+    */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+    * Get value
+    *
+    * @return string
+    */
+    public function getValue()
+    {
+        return $this->value;
     }
 
     /**

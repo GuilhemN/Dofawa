@@ -124,14 +124,17 @@ class CriteriaLoader extends ServiceWithContainer
         return $ent;
     }
 
-    protected function getCriterionTemplate($characteristic, $operator, $searchInDb = true) {
+    protected function getCriterionTemplate($characteristic, $operator, $value, $searchInDb = true) {
         if(isset($this->criteriaTemplates[$characteristic])){
-            foreach($this->criteriaTemplates[$characteristic] as $tpl)
-                if($tpl->getOperator() === $operator)
-                    return $tpl;
-                elseif($tpl->getOperator() === null)
-                    $nullOperator = $tpl;
-            return isset($nullOperator) ? $nullOperator : null;
+            $c = &$this->criteriaTemplates[$characteristic];
+            if(isset($c[$operator][$value]))
+                return $c[$operator][$value];
+            elseif(isset($c[$operator][null]))
+                return $c[$operator][null];
+            elseif(isset($c[null][null]))
+                return $c[null][null];
+            else
+                return null;
         }
         elseif($searchInDb) {
             $em = $this->getEntityManager();
@@ -141,10 +144,10 @@ class CriteriaLoader extends ServiceWithContainer
             if(is_array($cTpls))
             foreach($cTpls as $cTpl)
                 if($cTpl->getCharacteristic() == $characteristic)
-                    $cTpls2[$cTpl->getOperator()] = $cTpl;
+                    $cTpls2[$cTpl->getOperator()][$cTpl->getValue()] = $cTpl;
 
             $this->criteriaTemplates[$characteristic] = $cTpls2;
-            return $this->getCriterionTemplate($characteristic, $operator, false);
+            return $this->getCriterionTemplate($characteristic, $operator, $value, false);
         }
     }
 
