@@ -33,8 +33,6 @@ class PositionImporter extends AbstractGameDataImporter
         $progress->start($output, count($all));
         foreach ($all as $row) {
             $subArea = $subRepo->find($row['subAreaId']);
-            if($subArea === null)
-                continue;
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
                 $tpl = new MapPosition();

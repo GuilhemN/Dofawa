@@ -77,6 +77,7 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     * @var Monster
     *
     * @ORM\ManyToOne(targetEntity="SubArea", inversedBy="maps")
+    * @ORM\JoinColumn(nullable=true)
     */
     private $subArea;
 
