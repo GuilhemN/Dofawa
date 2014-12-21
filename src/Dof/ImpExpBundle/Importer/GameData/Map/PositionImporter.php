@@ -58,7 +58,6 @@ class PositionImporter extends AbstractGameDataImporter
                 if($tpl->getNameFr() === null)
                     $tpl->setNameFr('map');
                 $this->dm->persist($tpl);
-                $this->su->reassignSlug($tpl);
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {
