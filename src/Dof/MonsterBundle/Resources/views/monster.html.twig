@@ -1,3 +1,5 @@
+{% trans_default_domain 'monster' %}
+
 {% autoescape  %}
 {% set min = monster.minGrade %}
 {% set max = monster.maxGrade %}
@@ -16,10 +18,10 @@
                         {% if monster.boss or monster.miniBoss %}
                         <p>
                             {% if monster.boss %}
-                            <span class="label label-info">Boss</span>
+                            <span class="label label-info">{{ 'boss' | trans }}</span>
                             {% endif %}
                             {% if monster.miniBoss %}
-                            <span class="label label-info">Archimonstre</span>
+                            <span class="label label-info">{{ 'archmonster' | trans }}</span>
                             {% endif %}
                         </p>
                         {% endif %}
@@ -105,15 +107,15 @@
             {% if monster.archMonster is not empty or monster.normalMonster is not empty %}
                 <hr />
                 {% if monster.archMonster is not empty %}
-                Archi-monstre : <a href="{{ path('dof_monster_show', {'slug': monster.archMonster.slug}) }}">{{ monster.archMonster.getName(locales()) }}</a><br>
+                {{ 'archmonster' | trans }} : <a href="{{ path('dof_monster_show', {'slug': monster.archMonster.slug}) }}">{{ monster.archMonster.getName(locales()) }}</a><br>
                 {% endif %}
                 {% if monster.normalMonster is not empty %}
-                Montre de base : <a href="{{ path('dof_monster_show', {'slug': monster.normalMonster.slug}) }}">{{ monster.normalMonster.getName(locales()) }}</a><br>
+                {{ 'normalmonster' | trans }} : <a href="{{ path('dof_monster_show', {'slug': monster.normalMonster.slug}) }}">{{ monster.normalMonster.getName(locales()) }}</a><br>
                 {% endif %}
             {% endif %}
             {% if monster.subAreas is not empty %}
                 <hr />
-                Sous-zones :
+                {{ 'subareas' | transchoice(monster.subAreas | length)}} :
                 {% for sub_area in monster.subAreas %}
                     {{ sub_area.getName(locales()) }}
                     {% if not loop.last %}
