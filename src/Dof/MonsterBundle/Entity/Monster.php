@@ -22,6 +22,7 @@ use XN\Metadata\FileInterface;
 use XN\Metadata\FileLightTrait;
 
 use Dof\CharactersBundle\Entity\Spell;
+use Dof\MapBundle\Entity\SubArea;
 
 /**
  * Monster
@@ -82,6 +83,11 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $spells;
 
     /**
+    * @ORM\ManyToMany(targetEntity="Dof\MapBundle\Entity\SubArea", mappedBy="monsters")
+    */
+    private $subAreas;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="visible", type="boolean")
@@ -111,6 +117,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
         $this->grades = new ArrayCollection();
         $this->drops = new ArrayCollection();
         $this->spells = new ArrayCollection();
+        $this->subAreas = new ArrayCollection();
     }
 
     /**
@@ -296,6 +303,42 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
             return $aLevel - $bLevel;
         });
         return $spells;
+    }
+
+    /**
+    * Add subAreas
+    *
+    * @param SubArea $subAreas
+    * @return Monster
+    */
+    public function addSubArea(SubArea $subAreas)
+    {
+        $this->subAreas[] = $subAreas;
+
+        return $this;
+    }
+
+    /**
+    * Remove subAreas
+    *
+    * @param SubArea $subAreas
+    * @return Monster
+    */
+    public function removeSubArea(SubArea $subAreas)
+    {
+        $this->subAreas->removeElement($subAreas);
+
+        return $this;
+    }
+
+    /**
+    * Get subAreas
+    *
+    * @return Collection
+    */
+    public function getSubAreas()
+    {
+        return $this->subAreas;
     }
 
     /**

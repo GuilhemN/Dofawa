@@ -17,6 +17,8 @@ use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
+use Dof\MonsterBundle\Entity\Monster;
+
 /**
  * SubArea
  *
@@ -92,10 +94,17 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     */
     private $maps;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="Dof\MonsterBundle\Entity\Monster", inversedBy="subAreas")
+    * @ORM\JoinTable(name="dof_monsters_sub_areas")
+    */
+    private $monsters;
+
 
     public function __construct()
     {
         $this->maps = new ArrayCollection();
+        $this->monsters = new ArrayCollection();
     }
 
     /**
@@ -315,6 +324,42 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getMaps()
     {
         return $this->maps;
+    }
+
+    /**
+    * Add monsters
+    *
+    * @param Monster $monsters
+    * @return SubArea
+    */
+    public function addMonster(Monster $monsters)
+    {
+        $this->monsters[] = $monsters;
+
+        return $this;
+    }
+
+    /**
+    * Remove monsters
+    *
+    * @param Monster $monsters
+    * @return SubArea
+    */
+    public function removeMonster(Monster $monsters)
+    {
+        $this->monsters->removeElement($monsters);
+
+        return $this;
+    }
+
+    /**
+    * Get monsters
+    *
+    * @return Collection
+    */
+    public function getMonsters()
+    {
+        return $this->monsters;
     }
 
     public function __toString()
