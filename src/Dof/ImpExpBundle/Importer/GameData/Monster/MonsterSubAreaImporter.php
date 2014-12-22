@@ -40,7 +40,7 @@ class MonsterSubAreaImporter extends AbstractGameDataImporter
 
             foreach($monster->getSubAreas() as $area)
                 $monster->removeSubArea($area);
-
+            var_dump($areas);
             $subAreas = $subAreaRepo->findById($areas);
             foreach($subAreas as $area){
                 $monster->addSubArea($area);
