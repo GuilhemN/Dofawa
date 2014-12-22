@@ -37,8 +37,10 @@ class BuildController extends Controller
 
         // Si la demande d'ajout provient de la fiche de présentation d'une classe
         $newChar = $this->get('request')->get('newChar');
-        if(!empty($newChar) && $newChar > 0 && $newChar < 17)
-            $playerCharacter->setBreed($newChar);
+        if(!empty($newChar) && $newChar > 0 && $newChar < 17){
+            $newBreed = $em->getRepository('DofCharactersBundle:Breed')->findById($newChar);
+            $playerCharacter->setBreed($newBreed);
+        }
 
         $form = $this->createForm('dof_buildbundle_playercharacter', $playerCharacter);
         $form->handleRequest($this->get('request'));
