@@ -33,8 +33,14 @@ class BuildController extends Controller
         foreach($characters as $character){
             $bm->transformStuff($character->getStuffs()[0]);
         }
+        $playerCharacter = new PlayerCharacter();
 
-        $form = $this->createForm('dof_buildbundle_playercharacter', new PlayerCharacter());
+        // Si la demande d'ajout provient de la fiche de présentation d'une classe
+        $newChar = $this->get('request')->get('newChar');
+        if(!empty($newChar) && $newChar > 0 && $newChar < 17)
+            $playerCharacter->setBreed($newChar);
+
+        $form = $this->createForm('dof_buildbundle_playercharacter', $playerCharacter);
         $form->handleRequest($this->get('request'));
 
         if($form->isValid()){
