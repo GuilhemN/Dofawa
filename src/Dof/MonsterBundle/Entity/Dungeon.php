@@ -133,4 +133,8 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         return $this->exitMap;
     }
+
+    public function __toString() {
+        return $this->nameFr;
+    }
 }
