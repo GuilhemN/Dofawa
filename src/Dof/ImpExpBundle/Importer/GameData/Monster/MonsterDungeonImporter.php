@@ -27,11 +27,10 @@ class MonsterDungeonImporter implements ImporterInterface
         if ($dataSet != 'monster_dungeons')
             return;
         $this->dm->clear();
-        $raceRepo = $this->dm->getRepository('DofMonsterBundle:MonsterRace');
         $repo = $this->dm->getRepository('DofMonsterBundle:Monster');
         $dungeonRepo = $this->dm->getRepository('DofMonsterBundle:Dungeon');
 
-        $boss = $repo->findByRace($raceRepo->findBySlug('boss'));
+        $boss = $repo->findAll();
         foreach ($boss as $row){
             foreach($row->getSubAreas() as $subArea){
                 var_dump($subArea);
