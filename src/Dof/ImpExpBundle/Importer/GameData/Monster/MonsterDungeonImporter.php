@@ -7,9 +7,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use Dof\ImpExpBundle\ImporterInterface;
 use Dof\ImpExpBundle\ImporterFlags;
 
-class MonsterDungeonImporter
+class MonsterDungeonImporter implements ImporterInterface
 {
     /**
     * @var ObjectManager
