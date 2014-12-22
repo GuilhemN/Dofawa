@@ -24,7 +24,7 @@ class MonsterSubAreaImporter extends AbstractGameDataImporter
 
         $g = [];
         foreach($all as $row)
-            $g[$row['monsterId']][] = $row['value'];
+            $g[$row['id']][] = $row['value'];
 
         $repo = $this->dm->getRepository('DofMonsterBundle:Monster');
         $subAreaRepo = $this->dm->getRepository('DofMapBundle:SubArea');
