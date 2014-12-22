@@ -31,20 +31,36 @@ class MonsterDungeonImporter implements ImporterInterface
         $dungeonRepo = $this->dm->getRepository('DofMonsterBundle:Dungeon');
 
         $boss = $repo->findAll();
-        foreach ($boss as $row){
-            foreach($row->getSubAreas() as $subArea){
-                var_dump($subArea);
-                $dungeon = $dungeonRepo->findOneByNameFr($subArea->getNameFr());
 
-                if($dungeon !== null){
-                    $row->setDungeon($dungeon);
-                    continue 2;
+        $rowsProcessed = 0;
+        if ($output && $progress)
+        $progress->start($output, count($g));
+
+        try {
+            foreach ($boss as $row){
+                foreach($row->getSubAreas() as $subArea){
+                    $dungeon = $dungeonRepo->findOneByNameFr($subArea->getNameFr());
+
+                    if($dungeon !== null){
+                        $row->setDungeon($dungeon);
+                        continue 2;
+                    }
                 }
+                $row->setDungeon(null);
             }
-            $row->setDungeon(null);
+        }
+        finally {
+            ++$rowsProcessed;
+            if (($rowsProcessed % 150) == 0) {
+                if ($output && $progress)
+                    $progress->advance(150);
+            }
         }
         if (($flags & ImporterFlags::DRY_RUN) == 0)
             $this->dm->flush();
         $this->dm->clear();
+
+        if ($output && $progress)
+            $progress->finish();
     }
 }
