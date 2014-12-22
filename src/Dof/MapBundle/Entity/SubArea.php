@@ -96,7 +96,7 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
 
     /**
     * @ORM\ManyToMany(targetEntity="Dof\MonsterBundle\Entity\Monster", inversedBy="subAreas")
-    * @ORM\JoinTable(name="dof_breed_spells")
+    * @ORM\JoinTable(name="dof_monsters_sub_areas")
     */
     private $monsters;
 
