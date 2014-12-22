@@ -9,6 +9,8 @@ use Dof\BuildBundle\Entity\PlayerCharacter;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\BuildBundle\Entity\Item;
 use Dof\GraphicsBundle\Entity\BuildLook;
+use Dof\CharactersBundle\Entity\Breed;
+
 
 use Dof\BuildBundle\BuildSlot;
 use Dof\CharactersBundle\Gender;
@@ -38,6 +40,7 @@ class BuildController extends Controller
         // Si la demande d'ajout provient de la fiche de présentation d'une classe
         $newChar = $this->get('request')->get('newChar');
         if(!empty($newChar) && $newChar > 0 && $newChar < 17){
+            $newBreed = new Breed();
             $newBreed = $em->getRepository('DofCharactersBundle:Breed')->findById($newChar);
             $playerCharacter->setBreed($newBreed);
         }
