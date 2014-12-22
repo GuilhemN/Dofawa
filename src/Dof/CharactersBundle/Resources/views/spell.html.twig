@@ -6,9 +6,11 @@
             {{ spell.getName(locales()) }} <font size="2"></font>
             <span class="pull-right">
                 Niveau d'obtention :
+                {% if spell.ranks[0] is defined and spell.ranks[0].obtainmentLevel is not empty %}
                 <span class="level">
-                    {% if spell.ranks[0] is defined %}{{ spell.ranks[0].obtainmentLevel }}{% endif %}
+                    {{ spell.ranks[0].obtainmentLevel }}
                 </span>
+                {% endif %}
             </span>
         </h3>
     </div>
