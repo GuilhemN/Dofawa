@@ -87,13 +87,11 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
 
     /**
     * @ORM\OneToMany(targetEntity="Dof\MonsterBundle\Entity\Dungeon", mappedBy="entranceMap")
-    * @ORM\JoinColumn(nullable=true)
     */
     private $entranceDungeons;
 
     /**
     * @ORM\OneToMany(targetEntity="Dof\MonsterBundle\Entity\Dungeon", mappedBy="exitMap")
-    * @ORM\JoinColumn(nullable=true)
     */
     private $exitDungeons;
 
