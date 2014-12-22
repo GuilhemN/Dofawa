@@ -16,11 +16,11 @@
       {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
                 'look': look} only %}
       <div class="caption">
-        <h3>{{ breed.getLongName(locale()) }}</h3>
+        <h3>{{ breed.getLongName(locales()) }}</h3>
         <h4>GamePlay</h4>
-        <p>{{ breed.getGameplayDescription(locale()) }}</p>
+        <p>{{ breed.getGameplayDescription(locales()) }}</p>
         <h4>Description</h4>
-        <p>{{ breed.getDescription(locale()) }}</p>
+        <p>{{ breed.getDescription(locales()) }}</p>
         <form method="POST" action="{{ path('dof_build_homepage') }}">
         	<input name="newChar" value="{{ breed.id }}" type="hidden">
         	<button class="btn btn-primary" type="submit">Créer</button>
