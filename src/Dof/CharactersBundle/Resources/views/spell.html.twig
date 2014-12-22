@@ -33,7 +33,7 @@
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
                     <p>
                         <a class="glyphicon glyphicon-camera" href="{{ path('dof_spell_addskin', {'id': spell.id}) }}"></a>
-                        <a title="Cacher/Montrer" class="glyphicon glyphicon-eye-{{ spell.publiclyVisible ? 'open' : 'close'}}" href="{{ path('dof_spell_change_visibility', {'id': spell.id}) }}"></a>
+                        <a title="{{ spell.publiclyVisible ? 'Cacher' : 'Afficher' }}" class="glyphicon glyphicon-eye-{{ spell.publiclyVisible ? 'open' : 'close'}}" href="{{ path('dof_spell_change_visibility', {'id': spell.id}) }}"></a>
                     </p>
                     {% endif %}
                 </div>

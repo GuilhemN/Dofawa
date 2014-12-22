@@ -20,7 +20,7 @@ dof_forum:
 
 dof_build:
     resource: "@DofBuildBundle/Resources/config/routing.yml"
-    prefix:   /build
+    prefix:   /builds
 
 dof_translation:
     resource: "@DofTranslationBundle/Resources/config/routing.yml"
@@ -32,7 +32,7 @@ dof_translation:
 
 dof_characters:
     resource: "@DofCharactersBundle/Resources/config/routing.yml"
-    prefix:   /character
+    prefix:   /characters
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
