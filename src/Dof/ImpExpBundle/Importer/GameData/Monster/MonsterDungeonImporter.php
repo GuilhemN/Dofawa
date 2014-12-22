@@ -49,7 +49,9 @@ class MonsterDungeonImporter implements ImporterInterface
                 $row->setDungeon(null);
             }
         }
-        catch(\Exception $e){}
+        catch(\Exception $e){
+            throw $e;
+        }
         finally {
             ++$rowsProcessed;
             if (($rowsProcessed % 150) == 0) {
