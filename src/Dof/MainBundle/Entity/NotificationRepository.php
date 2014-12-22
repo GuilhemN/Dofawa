@@ -44,6 +44,6 @@ class NotificationRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
-        return $count;
+        return $count; 
     }
 }
