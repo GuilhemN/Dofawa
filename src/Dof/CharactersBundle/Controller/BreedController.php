@@ -20,7 +20,7 @@ class BreedController extends Controller
 		$bpcl->setColor(3, 10641706);
 		$bpcl->setColor(4, 2722985);
 		$bpcl->setColor(5, 14207124);
-		$bpcl->setFace($breed->getFaces()->first())
+		$bpcl->setFace($breed->getFaces()->first());
 		$el = $bpcl->toEntityLook();
 
         return $this->render('DofCharactersBundle:Breed:show.html.twig', array('breed' => $breed, 'look' => $el));
