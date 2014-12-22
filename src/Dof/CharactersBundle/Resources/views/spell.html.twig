@@ -1,5 +1,6 @@
 {% autoescape %}
-{% if spell.publiclyVisible or is_granted('ROLE_SPELL_XRAY') %}
+{% set xray = is_granted('ROLE_SPELL_XRAY') %}
+{% if spell.publiclyVisible or xray %}
 <div class="panel panel-default item" id="spell-{{ spell.id }}">
     <div class="panel-heading">
         <h3 class="panel-title">
@@ -39,12 +40,12 @@
 
             <div class="col-sm-10">
                 <ul class="nav nav-pills" role="tablist">
-                    {% for rank in spell.ranks %}
+                    {% for rank in spell.ranks if xray or rank.obtainmentLevel < 201 %}
                     <li {% if loop.first %}class="active"{% endif %}><a onclick="$('#spell-{{ spell.id }} .level').html('{{ rank.obtainmentLevel }}');" href="#rank{{ spell.id }}-{{ rank.rank }}" role="tab" data-toggle="tab">Rang {{ rank.rank }}</a></li>
                     {% endfor %}
                 </ul>
                 <div class="tab-content">
-                    {% for rank in spell.ranks %}
+                    {% for rank in spell.ranks if xray or rank.obtainmentLevel < 201 %}
                     <div class="tab-pane {% if loop.first %}active{% endif %}" id="rank{{ spell.id }}-{{ rank.rank }}">
                         <b>Effets :</b><br>
                         {% include 'DofCharactersBundle::effects.html.twig' with {'effects': rank.normalEffects, 'defaultStack': [ rank ]} %}
