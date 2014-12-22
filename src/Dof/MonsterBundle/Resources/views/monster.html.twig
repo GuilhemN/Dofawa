@@ -101,6 +101,16 @@
                 Montre de base : <a href="{{ path('dof_monster_show', {'slug': monster.normalMonster.slug}) }}">{{ monster.normalMonster.getName(locales()) }}</a><br>
                 {% endif %}
             {% endif %}
+            {% if monster.subAreas is not empty %}
+                <hr />
+                Sous-zones :
+                {% for sub_area in monster.subAreas %}
+                    {{ sub_area.getName(locales()) }}
+                    {% if not loop.last %}
+                    |
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endautoescape %}
