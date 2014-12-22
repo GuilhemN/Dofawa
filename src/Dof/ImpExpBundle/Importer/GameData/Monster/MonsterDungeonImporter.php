@@ -2,6 +2,8 @@
 
 namespace Dof\ImpExpBundle\Importer\GameData\Monster;
 
+use Doctrine\Common\Persistence\ObjectManager;
+
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
