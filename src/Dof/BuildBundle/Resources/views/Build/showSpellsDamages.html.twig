@@ -12,9 +12,9 @@
 {% block body %}
 {% autoescape %}
     {% include 'DofBuildBundle::header.html.twig' %}
-    
-    {% for spell in character.breed.spells %}
-       {% include 'DofCharactersBundle::spell.html.twig' %} 
+
+    {% for spell in character.breed.sortedSpells %}
+       {% include 'DofCharactersBundle::spell.html.twig' %}
     {% endfor %}
 
 {% endautoescape %}
