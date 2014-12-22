@@ -7,6 +7,12 @@ services:
             - { name: dof_imp_exp.importer, provides: dungeons, requires: map_positions }
             - { name: dof_imp_exp.importer, provides: beta_dungeons, requires: beta_map_positions }
 
+    dof_imp_exp.importer.monster_dungeons:
+        class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterDungeonImporter
+        arguments: [ "@doctrine.orm.entity_manager" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: monster_dungeons, requires: "beta_monsters beta_dungeons" }
+
     # DofMonsterBundle:Monster
     dof_imp_exp.importer.monster_super_races:
         class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterSuperRaceImporter

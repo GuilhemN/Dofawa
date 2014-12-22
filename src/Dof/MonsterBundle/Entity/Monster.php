@@ -86,6 +86,12 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $subAreas;
 
     /**
+    * @ORM\ManyToOne(targetEntity="Dungeon")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $dungeon;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="visible", type="boolean")
@@ -337,6 +343,29 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getSubAreas()
     {
         return $this->subAreas;
+    }
+
+    /**
+    * Set dungeon
+    *
+    * @param Dungeon $dungeon
+    * @return Monster
+    */
+    public function setDungeon(Dungeon $dungeon = null)
+    {
+        $this->dungeon = $dungeon;
+
+        return $this;
+    }
+
+    /**
+    * Get dungeon
+    *
+    * @return Dungeon
+    */
+    public function getDungeon()
+    {
+        return $this->dungeon;
     }
 
     /**

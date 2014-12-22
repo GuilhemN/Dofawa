@@ -44,7 +44,6 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
 
     /**
     * @ORM\OneToMany(targetEntity="Monster", mappedBy="race")
-    * @ORM\JoinColumn(nullable=true)
     */
     private $monsters;
 
