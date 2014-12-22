@@ -1,4 +1,12 @@
 services:
+    # DofMonsterBundle:Dungeon
+    dof_imp_exp.importer.dungeons:
+        class: Dof\ImpExpBundle\Importer\GameData\Monster\DungeonImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: dungeons, requires: map_positions }
+            - { name: dof_imp_exp.importer, provides: beta_dungeons, requires: beta_map_positions }
+
     # DofMonsterBundle:Monster
     dof_imp_exp.importer.monster_super_races:
         class: Dof\ImpExpBundle\Importer\GameData\Monster\MonsterSuperRaceImporter
