@@ -36,34 +36,33 @@ class MonsterDungeonImporter implements ImporterInterface
         if ($output && $progress)
         $progress->start($output, count($g));
 
-        try {
-            foreach ($boss as $row){
-                foreach($row->getSubAreas() as $subArea){
-                    $dungeon = $dungeonRepo->findOneByNameFr($subArea->getNameFr());
+        foreach ($boss as $row){
+            foreach($row->getSubAreas() as $subArea){
+                $dungeon = $dungeonRepo->findOneByNameFr($subArea->getNameFr());
 
-                    if($dungeon !== null){
-                        $row->setDungeon($dungeon);
-                        continue 2;
-                    }
+                if($dungeon !== null){
+                    $row->setDungeon($dungeon);
+                    $this->progress($rowsProcessed, $output, $progress);
+                    continue 2;
                 }
-                $row->setDungeon(null);
             }
+            $row->setDungeon(null);
+            $this->progress($rowsProcessed, $output, $progress);
         }
-        catch(\Exception $e){
-            throw $e;
-        }
-        finally {
-            ++$rowsProcessed;
-            if (($rowsProcessed % 150) == 0) {
-                if ($output && $progress)
-                    $progress->advance(150);
-            }
-        }
+
         if (($flags & ImporterFlags::DRY_RUN) == 0)
             $this->dm->flush();
         $this->dm->clear();
 
         if ($output && $progress)
             $progress->finish();
+    }
+
+    public function progress(&$rowsProcessed, OutputInterface $output = null, ProgressHelper $progress = null) {
+        ++$rowsProcessed;
+        if (($rowsProcessed % 150) == 0) {
+            if ($output && $progress)
+                $progress->advance(150);
+        }
     }
 }
