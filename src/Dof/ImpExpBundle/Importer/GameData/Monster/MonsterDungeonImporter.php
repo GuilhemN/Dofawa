@@ -41,13 +41,15 @@ class MonsterDungeonImporter implements ImporterInterface
                 $dungeon = $dungeonRepo->findOneByNameFr($subArea->getNameFr());
 
                 if($dungeon !== null){
-                    $row->setDungeon($dungeon);
-                    $this->progress($rowsProcessed, $output, $progress);
-                    continue 2;
+                    $row->addDungeon($dungeon);
                 }
             }
-            $row->setDungeon(null);
-            $this->progress($rowsProcessed, $output, $progress);
+
+            ++$rowsProcessed;
+            if (($rowsProcessed % 150) == 0) {
+                if ($output && $progress)
+                $progress->advance(150);
+            }
         }
 
         if (($flags & ImporterFlags::DRY_RUN) == 0)
@@ -59,10 +61,6 @@ class MonsterDungeonImporter implements ImporterInterface
     }
 
     private function progress(&$rowsProcessed, OutputInterface $output = null, ProgressHelper $progress = null) {
-        ++$rowsProcessed;
-        if (($rowsProcessed % 150) == 0) {
-            if ($output && $progress)
-                $progress->advance(150);
-        }
+
     }
 }

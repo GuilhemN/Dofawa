@@ -86,10 +86,9 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $subAreas;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Dungeon")
-    * @ORM\JoinColumn(nullable=true)
+    * @ORM\ManyToMany(targetEntity="Dungeon")
     */
-    private $dungeon;
+    private $dungeons;
 
     /**
      * @var boolean
@@ -171,6 +170,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
         $this->drops = new ArrayCollection();
         $this->spells = new ArrayCollection();
         $this->subAreas = new ArrayCollection();
+        $this->dungeons = new ArrayCollection();
     }
 
     /**
@@ -393,28 +393,40 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     {
         return $this->subAreas;
     }
-
     /**
-    * Set dungeon
+    * Add dungeons
     *
-    * @param Dungeon $dungeon
+    * @param Dungeon $dungeons
     * @return Monster
     */
-    public function setDungeon(Dungeon $dungeon = null)
+    public function addDungeon(Dungeon $dungeons)
     {
-        $this->dungeon = $dungeon;
+        $this->dungeons[] = $dungeons;
 
         return $this;
     }
 
     /**
-    * Get dungeon
+    * Remove dungeons
     *
-    * @return Dungeon
+    * @param Dungeon $dungeons
+    * @return Monster
     */
-    public function getDungeon()
+    public function removeDungeon(Dungeon $dungeons)
     {
-        return $this->dungeon;
+        $this->dungeons->removeElement($dungeons);
+
+        return $this;
+    }
+
+    /**
+    * Get dungeons
+    *
+    * @return Collection
+    */
+    public function getDungeons()
+    {
+        return $this->dungeons;
     }
 
     /**
