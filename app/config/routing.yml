@@ -32,7 +32,7 @@ dof_translation:
 
 dof_characters:
     resource: "@DofCharactersBundle/Resources/config/routing.yml"
-    prefix:   /characters
+    prefix:   /character
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
