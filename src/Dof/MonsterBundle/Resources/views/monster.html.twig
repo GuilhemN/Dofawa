@@ -18,10 +18,10 @@
                         {% if monster.boss or monster.miniBoss %}
                         <p>
                             {% if monster.boss %}
-                            <span class="label label-info">{{ 'boss' | trans }}</span>
+                            <span class="label label-info">{{ 'boss' | trans() }}</span>
                             {% endif %}
                             {% if monster.miniBoss %}
-                            <span class="label label-info">{{ 'archmonster' | trans }}</span>
+                            <span class="label label-info">{{ 'archmonster' | trans() }}</span>
                             {% endif %}
                         </p>
                         {% endif %}
