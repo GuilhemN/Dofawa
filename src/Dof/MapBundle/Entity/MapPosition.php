@@ -13,6 +13,8 @@ use XN\Metadata\TimestampableTrait;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
+use Dof\MonsterBundle\Entity\Dungeon;
+
 /**
  * MapPosition
  *
@@ -80,6 +82,24 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     * @ORM\JoinColumn(nullable=true)
     */
     private $subArea;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Dof\MonsterBundle\Entity\Dungeon", mappedBy="entranceMap")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $entranceDungeons;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Dof\MonsterBundle\Entity\Dungeon", mappedBy="exitMap")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $exitDungeons;
+
+    public function __construct()
+    {
+        $this->entranceDungeons = new ArrayCollection();
+        $this->exitDungeons = new ArrayCollection();
+    }
 
     /**
     * Set id
@@ -263,6 +283,78 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     public function getSubArea()
     {
         return $this->subArea;
+    }
+
+    /**
+    * Add entranceDungeon
+    *
+    * @param Dungeon $entranceDungeon
+    * @return MapPosition
+    */
+    public function addEntranceDungeon(Dungeon $entranceDungeon)
+    {
+        $this->entranceDungeon[] = $entranceDungeon;
+
+        return $this;
+    }
+
+    /**
+    * Remove entranceDungeon
+    *
+    * @param Dungeon $entranceDungeon
+    * @return MapPosition
+    */
+    public function removeEntranceDungeon(Dungeon $entranceDungeon)
+    {
+        $this->entranceDungeon->removeElement($entranceDungeon);
+
+        return $this;
+    }
+
+    /**
+    * Get entranceDungeon
+    *
+    * @return Collection
+    */
+    public function getEntranceDungeon()
+    {
+        return $this->entranceDungeon;
+    }
+
+    /**
+    * Add exitDungeon
+    *
+    * @param Dungeon $exitDungeon
+    * @return MapPosition
+    */
+    public function addExitDungeon(Dungeon $exitDungeon)
+    {
+        $this->exitDungeon[] = $exitDungeon;
+
+        return $this;
+    }
+
+    /**
+    * Remove exitDungeon
+    *
+    * @param Dungeon $exitDungeon
+    * @return MapPosition
+    */
+    public function removeExitDungeon(Dungeon $exitDungeon)
+    {
+        $this->exitDungeon->removeElement($exitDungeon);
+
+        return $this;
+    }
+
+    /**
+    * Get exitDungeon
+    *
+    * @return Collection
+    */
+    public function getExitDungeon()
+    {
+        return $this->exitDungeon;
     }
 
     public function __toString() {
