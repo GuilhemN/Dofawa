@@ -76,7 +76,7 @@
                     </span>
                     {% for drop in monster.drops %}
                         {% set object = drop.object %}
-                        <a href="{{ path('dof_items_show', {'slug': object.slug}) }}" class="tooltip-link" data-toggle="tooltip" data-original-title="{{ drop.count }} x {{ object.getName(locales()) }}">
+                        <a href="{{ path('dof_items_show', {'slug': object.slug}) }}" class="tooltip-link" data-toggle="tooltip" data-original-title="{{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}">
                             <img style="width: 39px;" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
                         </a>
                     {% endfor %}

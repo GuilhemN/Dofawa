@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-{% for spell in breed.spells %}
+{% for spell in breed.sortedSpells %}
     {% include 'DofCharactersBundle::spell.html.twig' %}
 {% endfor %}
 {% endblock %}
