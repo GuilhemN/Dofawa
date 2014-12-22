@@ -52,13 +52,11 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
 
     /**
     * @ORM\OneToMany(targetEntity="MonsterGrade", mappedBy="monster")
-    * @ORM\JoinColumn(nullable=true)
     */
     private $grades;
 
     /**
     * @ORM\OneToMany(targetEntity="MonsterDrop", mappedBy="monster")
-    * @ORM\JoinColumn(nullable=true)
     */
     private $drops;
 

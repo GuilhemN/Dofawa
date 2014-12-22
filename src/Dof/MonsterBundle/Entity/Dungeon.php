@@ -42,13 +42,13 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $optimalPlayerLevel;
 
     /**
-    * @ORM\OneToMany(targetEntity="Dof\MapBundle\Entity\MapPosition", mappedBy="entranceDungeons")
+    * @ORM\ManyToOne(targetEntity="Dof\MapBundle\Entity\MapPosition", inversedBy="entranceDungeons")
     * @ORM\JoinColumn(nullable=false)
     */
     private $entranceMap;
 
     /**
-    * @ORM\OneToMany(targetEntity="Dof\MapBundle\Entity\MapPosition", mappedBy="exitDungeons")
+    * @ORM\ManyToOne(targetEntity="Dof\MapBundle\Entity\MapPosition", inversedBy="exitDungeons")
     * @ORM\JoinColumn(nullable=true)
     */
     private $exitMap;
