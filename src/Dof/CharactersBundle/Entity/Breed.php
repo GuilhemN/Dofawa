@@ -1111,7 +1111,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
         return usort($this->spells->toArray(), function($a, $b){
             $aLevel = $a->getRanks()[0]->getObtainmentLevel();
             $bLevel = $a->getRanks()[0]->getObtainmentLevel();
-            return $aLevel < $bLevel ? 0 : $aLevel == $bLevel ? 0 : 1;
+            return $aLevel < $bLevel ? -1 : $aLevel == $bLevel ? 0 : 1;
         });
     }
 
