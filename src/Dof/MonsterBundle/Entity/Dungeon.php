@@ -129,7 +129,7 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     * @param MapPosition $exitMap
     * @return Dungeon
     */
-    public function setExitMap(MapPosition $exitMap)
+    public function setExitMap(MapPosition $exitMap = null)
     {
         $this->exitMap = $exitMap;
 
