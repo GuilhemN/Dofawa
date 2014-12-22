@@ -30,11 +30,11 @@ class MonsterDungeonImporter implements ImporterInterface
         $repo = $this->dm->getRepository('DofMonsterBundle:Monster');
         $dungeonRepo = $this->dm->getRepository('DofMonsterBundle:Dungeon');
 
-        $boss = $repo->findAll();
+        $boss = $repo->findByBoss(true);
 
         $rowsProcessed = 0;
         if ($output && $progress)
-        $progress->start($output, count($boss));
+            $progress->start($output, count($boss));
 
         foreach ($boss as $row){
             foreach($row->getSubAreas() as $subArea){

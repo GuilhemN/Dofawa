@@ -51,6 +51,13 @@ class MonsterImporter extends AbstractGameDataImporter
                 $tpl->setPreliminary($beta);
                 $tpl->setRace($race);
                 $tpl->setLook($row['look']);
+                $tpl->setUseSummonSlot($row['useSummonSlot']);
+                $tpl->setUseBombSlot($row['useBombSlot']);
+                $tpl->setCanPlay($row['canPlay']);
+                $tpl->setCanTackle($row['canTackle']);
+                $tpl->setBoss($row['isBoss']);
+                $tpl->setMiniBoss($row['isMiniBoss']);
+                $tpl->setCanBePushed($row['canBePushed']);
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
 
                 $this->dm->persist($tpl);

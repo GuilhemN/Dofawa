@@ -99,6 +99,55 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $visible;
 
     /**
+    * @var boolean
+    *
+    * @ORM\Column(name="use_summon_slot", type="boolean")
+    */
+    private $useSummonSlot;
+
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="use_bomb_slot", type="boolean")
+    */
+    private $useBombSlot;
+
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="can_play", type="boolean")
+    */
+    private $canPlay;
+
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="can_tackle", type="boolean")
+    */
+    private $canTackle;
+
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="boss", type="boolean")
+    */
+    private $boss;
+
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="mini_boss", type="boolean")
+    */
+    private $miniBoss;
+
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="can_be_pushed", type="boolean")
+    */
+    private $canBePushed;
+
+    /**
     * @var string
     *
     * @ORM\Column(name="look", type="string", length=255)
@@ -389,6 +438,237 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getVisible()
     {
         return $this->visible;
+    }
+
+    /**
+    * Set useSummonSlot
+    *
+    * @param boolean $useSummonSlot
+    * @return Monster
+    */
+    public function setUseSummonSlot($useSummonSlot)
+    {
+        $this->useSummonSlot = $useSummonSlot;
+
+        return $this;
+    }
+
+    /**
+    * Get useSummonSlot
+    *
+    * @return boolean
+    */
+    public function getUseSummonSlot()
+    {
+        return $this->useSummonSlot;
+    }
+
+    /**
+    * Get useSummonSlot
+    *
+    * @return boolean
+    */
+    public function isUseSummonSlot()
+    {
+        return $this->useSummonSlot;
+    }
+
+    /**
+    * Set useBombSlot
+    *
+    * @param boolean $useBombSlot
+    * @return Monster
+    */
+    public function setUseBombSlot($useBombSlot)
+    {
+        $this->useBombSlot = $useBombSlot;
+
+        return $this;
+    }
+
+    /**
+    * Get useBombSlot
+    *
+    * @return boolean
+    */
+    public function getUseBombSlot()
+    {
+        return $this->useBombSlot;
+    }
+
+    /**
+    * Get useBombSlot
+    *
+    * @return boolean
+    */
+    public function isUseBombSlot()
+    {
+        return $this->useBombSlot;
+    }
+
+    /**
+    * Set canPlay
+    *
+    * @param boolean $canPlay
+    * @return Monster
+    */
+    public function setCanPlay($canPlay)
+    {
+        $this->canPlay = $canPlay;
+
+        return $this;
+    }
+
+    /**
+    * Get canPlay
+    *
+    * @return boolean
+    */
+    public function getCanPlay()
+    {
+        return $this->canPlay;
+    }
+
+    /**
+    * Get canPlay
+    *
+    * @return boolean
+    */
+    public function isCanPlay()
+    {
+        return $this->canPlay;
+    }
+
+    /**
+    * Set canTackle
+    *
+    * @param boolean $canTackle
+    * @return Monster
+    */
+    public function setCanTackle($canTackle)
+    {
+        $this->canTackle = $canTackle;
+
+        return $this;
+    }
+
+    /**
+    * Get canTackle
+    *
+    * @return boolean
+    */
+    public function getCanTackle()
+    {
+        return $this->canTackle;
+    }
+
+    /**
+    * Get canTackle
+    *
+    * @return boolean
+    */
+    public function isCanTackle()
+    {
+        return $this->canTackle;
+    }
+
+    /**
+    * Set boss
+    *
+    * @param boolean $boss
+    * @return Monster
+    */
+    public function setBoss($boss)
+    {
+        $this->boss = $boss;
+
+        return $this;
+    }
+
+    /**
+    * Get boss
+    *
+    * @return boolean
+    */
+    public function getBoss()
+    {
+        return $this->boss;
+    }
+
+    /**
+    * Get boss
+    *
+    * @return boolean
+    */
+    public function isBoss()
+    {
+        return $this->boss;
+    }
+
+    /**
+    * Set miniBoss
+    *
+    * @param boolean $miniBoss
+    * @return Monster
+    */
+    public function setMiniBoss($miniBoss)
+    {
+        $this->miniBoss = $miniBoss;
+
+        return $this;
+    }
+
+    /**
+    * Get miniBoss
+    *
+    * @return boolean
+    */
+    public function getMiniBoss()
+    {
+        return $this->miniBoss;
+    }
+
+    /**
+    * Get miniBoss
+    *
+    * @return boolean
+    */
+    public function isMiniBoss()
+    {
+        return $this->miniBoss;
+    }
+
+    /**
+    * Set canBePushed
+    *
+    * @param boolean $canBePushed
+    * @return Monster
+    */
+    public function setCanBePushed($canBePushed)
+    {
+        $this->canBePushed = $canBePushed;
+
+        return $this;
+    }
+
+    /**
+    * Get canBePushed
+    *
+    * @return boolean
+    */
+    public function getCanBePushed()
+    {
+        return $this->canBePushed;
+    }
+
+    /**
+    * Get canBePushed
+    *
+    * @return boolean
+    */
+    public function isCanBePushed()
+    {
+        return $this->canBePushed;
     }
 
     /**
