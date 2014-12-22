@@ -34,7 +34,7 @@ class MonsterDungeonImporter implements ImporterInterface
 
         $rowsProcessed = 0;
         if ($output && $progress)
-        $progress->start($output, count($g));
+        $progress->start($output, count($boss));
 
         foreach ($boss as $row){
             foreach($row->getSubAreas() as $subArea){
@@ -58,7 +58,7 @@ class MonsterDungeonImporter implements ImporterInterface
             $progress->finish();
     }
 
-    public function progress(&$rowsProcessed, OutputInterface $output = null, ProgressHelper $progress = null) {
+    private function progress(&$rowsProcessed, OutputInterface $output = null, ProgressHelper $progress = null) {
         ++$rowsProcessed;
         if (($rowsProcessed % 150) == 0) {
             if ($output && $progress)
