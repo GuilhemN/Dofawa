@@ -1110,7 +1110,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getSortedSpells(){
         return usort($this->spells->toArray(), function($a, $b){
             $aLevel = $a->getRanks()[0]->getObtainmentLevel();
-            $bLevel = $a->getRanks()[0]->getObtainmentLevel();
+            $bLevel = $b->getRanks()[0]->getObtainmentLevel();
             return $aLevel - $bLevel;
         });
     }
