@@ -288,6 +288,16 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
         return $this->spells;
     }
 
+    public function getSortedSpells(){
+        $spells = $this->spells->toArray();
+        usort($spells, function($a, $b){
+            $aLevel = $a->getRanks()[0]->getObtainmentLevel();
+            $bLevel = $b->getRanks()[0]->getObtainmentLevel();
+            return $aLevel - $bLevel;
+        });
+        return $spells;
+    }
+
     /**
      * Set visible
      *
