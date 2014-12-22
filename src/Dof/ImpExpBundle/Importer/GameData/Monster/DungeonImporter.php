@@ -42,7 +42,6 @@ class DungeonImporter extends AbstractGameDataImporter
             if ($tpl === null) {
                 $tpl = new Dungeon();
                 $tpl->setDeprecated(true);
-                $tpl->setVisible(true);
                 $tpl->setId($row['id']);
             }
             if ($tpl->isDeprecated()) {
