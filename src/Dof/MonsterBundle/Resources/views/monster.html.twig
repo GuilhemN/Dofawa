@@ -13,6 +13,16 @@
                         <img class="img-responsive" src="{{ (monster.webPath) ? asset(monster.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="{{ monster.getName(locales()) }}">
                     </a>
                     <div class="text-center">
+                        {% if monster.boss or monster.miniBoss %}
+                        <p>
+                            {% if monster.boss %}
+                            <span class="label label-info">Boss</span>
+                            {% endif %}
+                            {% if monster.miniBoss %}
+                            <span class="label label-info">Archimonstre</span>
+                            {% endif %}
+                        </p>
+                        {% endif %}
                         <p>
                             {% if monster.preliminary %}
                                 <span class="label label-danger">Bêta</span>
@@ -110,10 +120,6 @@
                     |
                     {% endif %}
                 {% endfor %}
-                {% if monster.dungeon is not empty %}
-                    <br>
-                    Boss du donjon : {{ monster.dungeon.getName(locales()) }}
-                {% endif %}
             {% endif %}
         </div>
     </div>
