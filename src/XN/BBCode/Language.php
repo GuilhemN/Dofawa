@@ -44,6 +44,10 @@ class Language
 	{
 		return $this->getParser()->parse($source);
 	}
+	public function convertToHTML($source)
+	{
+		return $this->getParser()->convertToHTML($source);
+	}
 
 	public function createParser($documentClass = Parser::DEFAULT_DOCUMENT_CLASS, $tagClass = Parser::DEFAULT_TAG_CLASS, $textClass = Parser::DEFAULT_TEXT_CLASS)
 	{
