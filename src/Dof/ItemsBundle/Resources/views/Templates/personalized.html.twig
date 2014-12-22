@@ -7,7 +7,9 @@
         {{ itemTemplate.getName(locales()) }}
     {% endif %}
     {% if item.owner == app.user %}
-        <a class="pointer lien-modal" data-toggle="modal" data-target=".new-name-modal" data-id="{{ item.id }}" data-name="{{ item.name is not empty ? item.name : itemTemplate.getName(locales()) }}">[Changer le nom]</a>
+        <a class="pointer lien-modal" data-toggle="modal" data-target=".new-name-modal" data-id="{{ item.id }}" data-name="{{ item.name is not empty ? item.name : itemTemplate.getName(locales()) }}">
+            <small>[Changer le nom]</small>
+        </a>
     {% endif %}
 {% endblock %}
 
