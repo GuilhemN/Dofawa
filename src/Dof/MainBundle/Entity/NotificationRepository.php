@@ -24,4 +24,26 @@ class NotificationRepository extends EntityRepository
             ->getSingleScalarResult()
         ;
     }
+
+    public function delOldPetsNotifications(){
+        $interval = new \DateTime();
+        $interval->modify('-3 day');
+
+        $count = $this->createQueryBuilder('id')
+            ->select('COUNT(id)')
+            ->where('id.created_at < :interval and id.isRead = true and type = "pets.hungry"')
+            ->setParameter('interval', $interval)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+        
+        $this->createQueryBuilder('id')
+            ->delete('id')
+            ->where('id.created_at < :interval and id.isRead = true and type = "pets.hungry"')
+            ->setParameter('interval', $interval)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+        return $count;
+    }
 }
