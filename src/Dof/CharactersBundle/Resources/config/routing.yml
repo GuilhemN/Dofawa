@@ -6,14 +6,18 @@ dof_characters_show:
 
 
 dof_spell_show:
-    pattern:  /spell/{slug}
+    pattern:  /spells/{slug}
     defaults: { _controller: DofCharactersBundle:Spell:show }
     requirements:
        slug: '[0-9a-z-]+'
 
 dof_spell_addskin:
-   pattern: /add-skin/{id}
-   defaults: { _controller: DofCharactersBundle:Skins:addImage }
+   pattern: /spells/add-skin/{id}
+   defaults: { _controller: DofCharactersBundle:UpdateSpell:addImage }
+
+dof_spell_change_visibility:
+    pattern: /spells/change-visibility/{id}
+    defaults: { _controller: DofCharactersBundle:UpdateSpell:changeVisibility }
 
 dof_area_render_glyphtrap:
     pattern:  /area/{area}/{color}.svg
