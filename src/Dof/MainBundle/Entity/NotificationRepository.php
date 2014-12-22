@@ -27,7 +27,7 @@ class NotificationRepository extends EntityRepository
 
     public function delOldPetsNotifications(){
         $interval = new \DateTime();
-        $interval->modify('-2 day');
+        $interval->modify('-1 week');
 
         $count = $this->createQueryBuilder('id')
             ->select('COUNT(id)')
