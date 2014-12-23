@@ -106,7 +106,7 @@
                 {% set object = drop.object %}
                 <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
                     <img style="width: 39px;" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
-                    <span class="tooltip">
+                    <span class="new-tooltip">
                         {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}
                     </span>
                 </a>
