@@ -160,8 +160,8 @@
                         {% if itemTemplate.compounds is not empty %}
                         <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="compounds-item{{ item.id }}">
                             {% for compound in itemTemplate.compounds %}
-                            <a href="{{ path('dof_items_show', {'slug': compound.slug}) }}">
-                                {{ compound.getName(locales()) }}
+                            <a href="{{ path('dof_items_show', {'slug': compound.compound.slug}) }}">
+                                {{ compound.compound.getName(locales()) }}
                             </a>
                             <br/>
                             {% endfor %}
