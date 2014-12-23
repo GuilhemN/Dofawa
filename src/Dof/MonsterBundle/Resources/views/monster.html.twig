@@ -116,7 +116,9 @@
                     <span class="new-tooltip drop-tooltip">
                         {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}
                         <br>
-                        {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': drop.treatedCriteria} %}
+                        <ul class="list-unstyled">
+                            {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': drop.treatedCriteria} %}
+                        </ul>
                     </span>
                 </span>
                 {% endfor %}

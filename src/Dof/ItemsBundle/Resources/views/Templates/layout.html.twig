@@ -58,7 +58,9 @@
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
                     {% endset %}
                     {% set criteria %}
+                    <ul class="list-unstyled">
                         {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': itemTemplate.treatedCriteria} %}
+                    </ul>
                     {% endset %}
 
                     {% block tabs_menu %}
