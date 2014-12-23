@@ -80,31 +80,6 @@
                     {# Close right column #}
                 </div>
             </div>
-
-            {% if monster.normalDrops is not empty %}
-                <hr />
-                <div class="text-center">
-                    <span class="pull-left">
-                        Drops :
-                    </span>
-                    {% for drop in monster.normalDrops %}
-                        {% set object = drop.object %}
-                        <span>
-                            <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
-                                <img style="width: 39px;" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
-                            </a>
-                            <span class="new-tooltip drop-tooltip">
-                                {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}<br>
-                                {{ monster.interval(drop.minPercent, drop.maxPercent) }}% de drop
-                                {% if drop.threshold is not empty %}
-                                <br>
-                                Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({}, 'item') }}
-                                {% endif %}
-                            </span>
-                        </span>
-                    {% endfor %}
-                </div>
-            {% endif %}
             {% if monster.conditionedDrops is not empty %}
             <hr />
             <div class="text-center">
