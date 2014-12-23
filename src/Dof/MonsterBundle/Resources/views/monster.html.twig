@@ -81,13 +81,13 @@
                 </div>
             </div>
 
-            {% if 1 is not empty %}
+            {% if monster.NormalDrops is not empty %}
                 <hr />
                 <div class="text-center">
                     <span class="pull-left">
                         Drops :
                     </span>
-                    {% for drop in monster.normalDrops %}
+                    {% for drop in monster.NormalDrops %}
                         {% set object = drop.object %}
                         <span>
                             <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
@@ -105,13 +105,13 @@
                     {% endfor %}
                 </div>
             {% endif %}
-            {% if 1 is not empty %}
+            {% if monster.ConditionedDrops is not empty %}
             <hr />
             <div class="text-center">
                 <span class="pull-left">
                     Drops conditionnés :
                 </span>
-                {% for drop in monster.conditionedDrops %}
+                {% for drop in monster.ConditionedDrops %}
                     {% set object = drop.object %}
                     <span>
                         <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
