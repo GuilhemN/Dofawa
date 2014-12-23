@@ -97,7 +97,7 @@
                             </a>
                             <span class="new-tooltip drop-tooltip">
                                 {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}<br>
-                                {{ monster_.interval(drop.minPercent, drop.maxPercent) }}% de drop
+                                {{ monster_.interval(drop.minPercent, drop.maxPercent) }}% de chance de drop
                                 {% if drop.threshold != 0 %}
                                 <br>
                                 Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({'%1%': ''}, 'item') }}
@@ -121,10 +121,10 @@
                         </a>
                         <span class="new-tooltip drop-tooltip">
                             {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}<br>
-                            {{ monster_.interval(drop.minPercent, drop.maxPercent) }}% de drop
+                            {{ monster_.interval(drop.minPercent, drop.maxPercent) }}% de chance de drop
                             {% if drop.threshold is not empty %}
                                 <br>
-                                Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({}, 'item') }}
+                                Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({'%1%': ''}, 'item') }}
                             {% endif %}
                             {% if drop.treatedCriteria is not empty %}
                             <hr/>
