@@ -27,7 +27,7 @@
 
 // infobulle
 
-a span.new-tooltip{
+span span.new-tooltip{
     position:absolute;
     padding:15px;
     margin-top:23px;
@@ -56,7 +56,7 @@ a span.new-tooltip{
     -moz-box-shadow:0 0 2px rgba(0,0,0,.5);
     box-shadow:0 0 2px rgba(0,0,0,.5);
 }
-a:hover span.new-tooltip, a:focus span.new-tooltip{
+span:hover span.new-tooltip, span:focus span.new-tooltip{
     opacity:1;
     /*transform*/
     -webkit-transform:scale(1) rotateZ(0);
@@ -65,7 +65,7 @@ a:hover span.new-tooltip, a:focus span.new-tooltip{
     -o-transform:scale(1) rotate(0);
     transform:scale(1) rotateZ(0);
 }
-a span.new-tooltip::before{
+span span.new-tooltip::before{
     content:'';
     position:absolute;
     top:-6px;
