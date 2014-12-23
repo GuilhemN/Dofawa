@@ -53,41 +53,43 @@
                         {{ max }}
                     {% endif %}
                 {% endmacro %}
-                {% import _self as monster %}
+                {% import _self as monster_ %}
 
                 {# Right column #}
                 <div class="col-xs-12 col-sm-9">
                     <div class="col-lg-5">
-                        {{ 'vitality' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monster.interval( min.lifePoints , max.lifePoints) }}
+                        {{ 'vitality' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""> {{ monster_.interval( min.lifePoints , max.lifePoints) }}
                         <br>
-                        {{ 'ap' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monster.interval( min.actionPoints , max.actionPoints) }}
+                        {{ 'ap' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""> {{ monster_.interval( min.actionPoints , max.actionPoints) }}
                         <br>
-                        {{ 'mp' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monster.interval( min.movementPoints , max.movementPoints) }}
+                        {{ 'mp' | trans({'%1%': ''}, 'item') }}: <img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""> {{ monster_.interval( min.movementPoints , max.movementPoints) }}
                         <br>
                     </div>
                     <div class="col-lg-7">
-                        <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ monster.interval( min.earthResistance , max.earthResistance) }}{{ 'percentEarthResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt=""> {{ monster_.interval( min.earthResistance , max.earthResistance) }}{{ 'percentEarthResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
-                        <img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ monster.interval( min.airResistance , max.airResistance) }}{{ 'percentAirResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/air.png') }}" alt=""> {{ monster_.interval( min.airResistance , max.airResistance) }}{{ 'percentAirResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
-                        <img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt=""> {{ monster.interval( min.fireResistance , max.fireResistance) }}{{ 'percentFireResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt=""> {{ monster_.interval( min.fireResistance , max.fireResistance) }}{{ 'percentFireResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
-                        <img src="{{ asset('bundles/dofitems/img/water.png') }}" alt=""> {{ monster.interval( min.waterResistance , max.waterResistance) }}{{ 'percentWaterResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/water.png') }}" alt=""> {{ monster_.interval( min.waterResistance , max.waterResistance) }}{{ 'percentWaterResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
-                        <img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt=""> {{ monster.interval( min.neutralResistance , max.neutralResistance) }}{{ 'percentNeutralResistance' | trans({'%1%': ''}, 'item') }}
+                        <img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt=""> {{ monster_.interval( min.neutralResistance , max.neutralResistance) }}{{ 'percentNeutralResistance' | trans({'%1%': ''}, 'item') }}
                         <br>
                     </div>
                     {# Close right column #}
                 </div>
             </div>
+            {% set normalDrops = monster.normalDrops %}
+            {% set conditionedDrops = monster.conditionedDrops %}
 
-            {% if monster.NormalDrops is not empty %}
+            {% if normalDrops is not empty %}
                 <hr />
                 <div class="text-center">
                     <span class="pull-left">
                         Drops :
                     </span>
-                    {% for drop in monster.NormalDrops %}
+                    {% for drop in normalDrops %}
                         {% set object = drop.object %}
                         <span>
                             <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
@@ -95,7 +97,7 @@
                             </a>
                             <span class="new-tooltip drop-tooltip">
                                 {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}<br>
-                                {{ monster.interval(drop.minPercent, drop.maxPercent) }}% de drop
+                                {{ monster_.interval(drop.minPercent, drop.maxPercent) }}% de drop
                                 {% if drop.threshold is not empty %}
                                 <br>
                                 Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({}, 'item') }}
@@ -105,13 +107,13 @@
                     {% endfor %}
                 </div>
             {% endif %}
-            {% if monster.ConditionedDrops is not empty %}
+            {% if conditionedDrops is not empty %}
             <hr />
             <div class="text-center">
                 <span class="pull-left">
                     Drops conditionnés :
                 </span>
-                {% for drop in monster.ConditionedDrops %}
+                {% for drop in conditionedDrops %}
                     {% set object = drop.object %}
                     <span>
                         <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
@@ -119,7 +121,7 @@
                         </a>
                         <span class="new-tooltip drop-tooltip">
                             {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}<br>
-                            {{ monster.interval(drop.minPercent, drop.maxPercent) }}% de drop
+                            {{ monster_.interval(drop.minPercent, drop.maxPercent) }}% de drop
                             {% if drop.threshold is not empty %}
                                 <br>
                                 Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({}, 'item') }}
