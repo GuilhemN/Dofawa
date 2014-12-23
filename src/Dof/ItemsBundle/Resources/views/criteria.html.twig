@@ -1,8 +1,12 @@
+{% if first | default(true) %}
+    <ul class="list-unstyled">
+{% endif %}
 {% if criterion is not empty and criterion.visible %}
     {% set class = classOf(criterion) %}
     {% set description = criterion.htmlDescription is defined ? criterion.htmlDescription : null %}
     {% if class != 'SimpleCriterion' or description | trim is not empty %}
         {% if criterion.structureVisible %}
+
         <li>
         {% endif %}
             {% if class == 'SimpleCriterion' %}
@@ -16,12 +20,12 @@
                     {% endif %}
                     <ul>
                         {% for c in criterion.criteria %}
-                            {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c} only %}
+                            {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c, 'first': false} only %}
                         {% endfor %}
                     </ul>
                 {% else %}
                     {% for c in criterion.criteria %}
-                        {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c} only %}
+                        {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': c, 'first': false} only %}
                     {% endfor %}
                 {% endif %}
             {% endif %}
@@ -29,4 +33,7 @@
         </li>
         {% endif %}
     {% endif %}
+{% endif %}
+{% if first | default(true) %}
+</ul>
 {% endif %}
