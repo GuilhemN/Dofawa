@@ -98,9 +98,9 @@
                             <span class="new-tooltip drop-tooltip">
                                 {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}<br>
                                 {{ monster_.interval(drop.minPercent, drop.maxPercent) }}% de drop
-                                {% if drop.threshold is not empty %}
+                                {% if drop.threshold != 0 %}
                                 <br>
-                                Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({}, 'item') }}
+                                Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({'%1%': ''}, 'item') }}
                                 {% endif %}
                             </span>
                         </span>
