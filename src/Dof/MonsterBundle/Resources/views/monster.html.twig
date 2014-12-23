@@ -80,7 +80,7 @@
                     {# Close right column #}
                 </div>
             </div>
-            {% set normalDrops = monster.normalDrops %}
+            {% set normal_drops = monster.normalDrops %}
             {% set conditionedDrops = monster.conditionedDrops %}
             {% if normalDrops is not empty %}
                 <hr />
@@ -88,7 +88,7 @@
                     <span class="pull-left">
                         Drops :
                     </span>
-                    {% for drop in normalDrops %}
+                    {% for drop in normal_drops %}
                         {% set object = drop.object %}
                         <span>
                             <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
