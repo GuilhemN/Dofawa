@@ -80,19 +80,35 @@
                     {# Close right column #}
                 </div>
             </div>
-            {% if monster.drops is not empty %}
+            {% set normalDrops = monster.normalDrops %}
+            {% set conditionedDrops = monster.conditionedDrops %}
+            {% if normalDrops is not empty %}
                 <hr />
                 <div class="text-center">
                     <span class="pull-left">
-                        Drops:
+                        Drops :
                     </span>
-                    {% for drop in monster.drops %}
+                    {% for drop in normalDrops %}
                         {% set object = drop.object %}
                         <a href="{{ path('dof_items_show', {'slug': object.slug}) }}" class="tooltip-link" data-toggle="tooltip" data-original-title="{{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}">
                             <img style="width: 39px;" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
                         </a>
                     {% endfor %}
                 </div>
+            {% endif %}
+            {% if conditionedDrops is not empty %}
+            <hr />
+            <div class="text-center">
+                <span class="pull-left">
+                    Drops conditionnés :
+                </span>
+                {% for drop in conditionedDrops %}
+                {% set object = drop.object %}
+                <a href="{{ path('dof_items_show', {'slug': object.slug}) }}" class="tooltip-link" data-toggle="tooltip" data-original-title="{{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}">
+                    <img style="width: 39px;" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
+                </a>
+                {% endfor %}
+            </div>
             {% endif %}
             {% if paramOf | length > 0 %}
                 <hr />
