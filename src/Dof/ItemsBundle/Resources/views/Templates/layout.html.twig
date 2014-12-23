@@ -58,9 +58,7 @@
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
                     {% endset %}
                     {% set criteria %}
-                    <ul class="list-unstyled">
                         {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': itemTemplate.treatedCriteria} %}
-                    </ul>
                     {% endset %}
 
                     {% block tabs_menu %}
@@ -89,6 +87,15 @@
                             <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}>
                                 <a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">
                                     {{ 'tabs.conditions' | trans() }}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {# Drops #}
+                        {% if itemTemplate.drops is not empty %}
+                            <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}>
+                                <a href="#drops-item{{ item.id }}" role="tab" data-toggle="tab">
+                                    Drop sur
                                 </a>
                             </li>
                         {% endif %}
@@ -122,9 +129,20 @@
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
                         <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="criteria-item{{ item.id }}">
-                            <ul>
+                            <ul class="list-unstyled">
                                 {{ criteria }}
                             </ul>
+                        </div>
+                        {% endif %}
+
+                        {# Drops #}
+                        {% if itemTemplate.drops is not empty %}
+                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="criteria-item{{ item.id }}">
+                            {% for drop in itemTemplate.drops %}
+                                <a href="{{ path('dof_monster_show', {'slug': drop.monster.slug}) }}">
+                                    {{ drop.monster.getName(locales()) }}
+                                </a>
+                            {% endfor %}
                         </div>
                         {% endif %}
                     {% endblock %}

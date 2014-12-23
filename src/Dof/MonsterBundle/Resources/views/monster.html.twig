@@ -100,7 +100,7 @@
                                 {{ monster_.interval(drop.minPercent, drop.maxPercent) }}% de chance de drop
                                 {% if drop.threshold != 0 %}
                                 <br>
-                                Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({'%1%': ''}, 'item') }}
+                                Seuil : {{ drop.threshold }} {{ 'prospecting' | trans({'%1%': ''}, 'item') }}
                                 {% endif %}
                             </span>
                         </span>
@@ -124,9 +124,9 @@
                             {{ monster_.interval(drop.minPercent, drop.maxPercent) }}% de chance de drop
                             {% if drop.threshold is not empty %}
                                 <br>
-                                Seuil de : {{ drop.threshold }} {{ 'prospecting' | trans({'%1%': ''}, 'item') }}
+                                Seuil : {{ drop.threshold }} {{ 'prospecting' | trans({'%1%': ''}, 'item') }}
                             {% endif %}
-                            {% if drop.treatedCriteria is not empty %}
+                            {% if drop.treatedCriteria != 0 %}
                             <hr/>
                             <ul class="list-unstyled">
                                 {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': drop.treatedCriteria} %}
