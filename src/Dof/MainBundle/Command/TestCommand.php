@@ -23,9 +23,10 @@ class TestCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine')->getManager();
-        $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findOneBySlug('goultard');
-
-        $output->writeln(var_dump($item->getTreatedCriteria()));
+        $x = -4390946;
+        $w1 = ($x >> 16) & 0xFFFF;
+        $w2 = $x & 0xFFFF;
+        $output->writeLn(($w1 & 0x8000) ? ($w1 - 0x10000) : $w1);
+        $output->writeLn(($w2 & 0x8000) ? ($w2 - 0x10000) : $w2);
     }
 }

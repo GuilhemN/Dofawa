@@ -81,13 +81,13 @@
                 </div>
             </div>
 
-            {% if monster.getNormalDrops() is not empty %}
+            {% if monster.normalDrops is not empty %}
                 <hr />
                 <div class="text-center">
                     <span class="pull-left">
                         Drops :
                     </span>
-                    {% for drop in monster.getNormalDrops() %}
+                    {% for drop in monster.normalDrops %}
                         {% set object = drop.object %}
                         <span>
                             <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
