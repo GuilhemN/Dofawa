@@ -99,6 +99,15 @@
                                 </a>
                             </li>
                         {% endif %}
+
+                        {# Drops #}
+                        {% if itemTemplate.compounds is not empty %}
+                        <li{% if not is_active_tab %}{% set is_active_tab = true %} class="active"{% endif %}>
+                            <a href="#compounds-item{{ item.id }}" role="tab" data-toggle="tab">
+                                Dans la recette de
+                            </a>
+                        </li>
+                        {% endif %}
                     {% endblock %}
 
                 </ul>
@@ -137,12 +146,24 @@
 
                         {# Drops #}
                         {% if itemTemplate.drops is not empty %}
-                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="criteria-item{{ item.id }}">
+                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="drops-item{{ item.id }}">
                             {% for drop in itemTemplate.drops %}
                                 <a href="{{ path('dof_monster_show', {'slug': drop.monster.slug}) }}">
                                     {{ drop.monster.getName(locales()) }}
                                 </a>
                                 <br/>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        {# Compounds #}
+                        {% if itemTemplate.compounds is not empty %}
+                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="compounds-item{{ item.id }}">
+                            {% for compounds in itemTemplate.compounds %}
+                            <a href="{{ path('dof_items_show', {'slug': compounds.slug}) }}">
+                                {{ compounds.getName(locales()) }}
+                            </a>
+                            <br/>
                             {% endfor %}
                         </div>
                         {% endif %}
