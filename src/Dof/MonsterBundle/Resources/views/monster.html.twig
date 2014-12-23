@@ -90,9 +90,14 @@
                     </span>
                     {% for drop in normalDrops %}
                         {% set object = drop.object %}
-                        <a href="{{ path('dof_items_show', {'slug': object.slug}) }}" class="tooltip-link" data-toggle="tooltip" data-original-title="{{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}">
-                            <img style="width: 39px;" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
-                        </a>
+                        <span>
+                            <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
+                                <img style="width: 39px;" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
+                            </a>
+                            <span class="new-tooltip drop-tooltip">
+                                {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}
+                            </span>
+                        </span>
                     {% endfor %}
                 </div>
             {% endif %}
@@ -108,8 +113,10 @@
                     <a href="{{ path('dof_items_show', {'slug': object.slug}) }}">
                         <img style="width: 39px;" src="{{ (object.webPath) ? asset(object.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="">
                     </a>
-                    <span class="new-tooltip">
+                    <span class="new-tooltip drop-tooltip">
                         {{ drop.count >= 16 ? '∞' : drop.count }} x {{ object.getName(locales()) }}
+                        <br>
+                        {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': drop.treatedCriteria} %}
                     </span>
                 </span>
                 {% endfor %}
