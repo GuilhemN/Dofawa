@@ -47,7 +47,7 @@ class Pet extends Animal
      */
     protected $lastNotification;
 
-    public function __contruct(){
+    public function __construct(){
         $this->setLastMeal(new \DateTime());
         $this->setNextMeal(new \DateTime());
         $this->setLastNotification(new \DateTime());
