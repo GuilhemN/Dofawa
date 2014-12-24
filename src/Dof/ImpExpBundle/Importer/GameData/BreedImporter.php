@@ -39,6 +39,8 @@ class BreedImporter extends AbstractGameDataImporter
                 $breed = new Breed();
                 $breed->setDeprecated(true);
                 $breed->setId($row['id']);
+                $breed->setMaleDefaultColors([ ]);
+                $breed->setFemaleDefaultColors([ ]);
             }
             if ($breed->isDeprecated()) {
                 $breed->setDeprecated(false);
@@ -52,12 +54,10 @@ class BreedImporter extends AbstractGameDataImporter
                 $maleLook = new EntityLook($row['maleLook']);
                 $breed->setMaleSkin($maleLook->getSkins()[0]);
                 $breed->setMaleLodefSkin($breed->getMaleSkin());
-                $breed->setMaleDefaultColors([ ]);
                 $breed->setMaleSize($maleLook->getScaleY() * 100);
                 $femaleLook = new EntityLook($row['femaleLook']);
                 $breed->setFemaleSkin($femaleLook->getSkins()[0]);
                 $breed->setFemaleLodefSkin($breed->getFemaleSkin());
-                $breed->setFemaleDefaultColors([ ]);
                 $breed->setFemaleSize($femaleLook->getScaleY() * 100);
                 $breed->setMaleArtworkBone($row['maleArtwork']);
                 $breed->setFemaleArtworkBone($row['femaleArtwork']);
