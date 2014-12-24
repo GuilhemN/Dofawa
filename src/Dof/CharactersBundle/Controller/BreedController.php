@@ -15,7 +15,7 @@ class BreedController extends Controller
     	$bpcl = new BasicPCLook();
 		$bpcl->setBreed($breed);
 		$bpcl->setGender(Gender::MALE);
-		$bpcl->setColors($breed->getMaleDefaultColors()->toArray());
+		$bpcl->setColors($breed->getMaleDefaultColors());
 		$bpcl->setFace($breed->getFaces()->first());
 		$el = $bpcl->toEntityLook();
 
