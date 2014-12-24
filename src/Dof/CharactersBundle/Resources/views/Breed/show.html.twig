@@ -21,7 +21,7 @@
         <p>{{ breed.getGameplayDescription(locales()) }}</p>
         <h4>Description</h4>
         <p>{{ breed.getDescription(locales()) }}</p>
-        <form method="POST" action="{{ path('dof_build_homepage') }}">
+        <form method="POST" action="{{ path('dof_build_homepage') }}#form_create">
         	<input name="newChar" value="{{ breed.id }}" type="hidden">
         	<button class="btn btn-primary" type="submit">Créer</button>
         </form>

@@ -87,7 +87,7 @@ class BuildController extends Controller
                 'user' => $this->getUser()->getSlug(),
                 'character' => $character->getSlug(),
                 'stuff' => $stuff->getSlug()
-                ).'#form_create'));
+                )));
         }
 
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
