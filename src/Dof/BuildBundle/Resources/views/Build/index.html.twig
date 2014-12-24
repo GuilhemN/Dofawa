@@ -6,7 +6,7 @@
 {% autoescape  %}
     {% include 'DofBuildBundle::list.html.twig' with {'characters': characters} only %}
 
-    <div class="well">
+    <div class="well" id="form_create">
         <div class="page-header">
             <h1>{{ 'create' | trans }}</h1>
         </div>
