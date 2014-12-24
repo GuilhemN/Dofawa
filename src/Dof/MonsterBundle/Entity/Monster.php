@@ -313,6 +313,30 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
+    * Get drops
+    *
+    * @return Collection
+    */
+    public function getNormalDrops()
+    {
+        return array_filter($this->drops->toArray(), function($v){
+            return !$v->getHasCriteria();
+        });
+    }
+
+    /**
+    * Get drops
+    *
+    * @return Collection
+    */
+    public function getConditionedDrops()
+    {
+        return array_filter($this->drops->toArray(), function($v){
+            return $v->getHasCriteria();
+        });
+    }
+
+    /**
     * Add spells
     *
     * @param Spell $spells

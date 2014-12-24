@@ -83,7 +83,7 @@ class CriteriaParser
     }
 
     protected static function characteristic(Reader $source) {
-        $characteristic = $source->eatRegex('#[A-Za-z0-9]{2}#A');
+        $characteristic = $source->eatRegex('#[A-Za-z0-9\*]{2}#A');
         return $characteristic ? $characteristic[0] : null;
     }
 

@@ -3,6 +3,7 @@
     {% set description = criterion.htmlDescription is defined ? criterion.htmlDescription : null %}
     {% if class != 'SimpleCriterion' or description | trim is not empty %}
         {% if criterion.structureVisible %}
+
         <li>
         {% endif %}
             {% if class == 'SimpleCriterion' %}

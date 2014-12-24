@@ -29,6 +29,8 @@ use XN\Metadata\FileLightTrait;
 use Dof\ItemsBundle\Criteria\ParsedCriteriaTrait;
 use Dof\ItemsBundle\Criteria\ParsedCriteriaInterface;
 
+use Dof\MonsterBundle\Entity\MonsterDrop;
+
 /**
  * ItemTemplate
  *
@@ -223,6 +225,13 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $craftingJob;
 
     /**
+    * @var Collection
+    *
+    * @ORM\OneToMany(targetEntity="Dof\MonsterBundle\Entity\MonsterDrop", mappedBy="object")
+    */
+    private $drops;
+
+    /**
     * @Assert\Image(
     *     maxSize = "1024k",
     *     minWidth = 131,
@@ -233,11 +242,13 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     */
     private $file;
 
+
     public function __construct()
     {
         $this->effects = new ArrayCollection();
         $this->components = new ArrayCollection();
         $this->compounds = new ArrayCollection();
+        $this->drops = new ArrayCollection();
     }
 
     /**
@@ -923,6 +934,42 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function getCraftingJob()
     {
         return $this->craftingJob;
+    }
+
+    /**
+    * Add drops
+    *
+    * @param MonsterDrop $drops
+    * @return ItemTemplate
+    */
+    public function addDrop(MonsterDrop $drops)
+    {
+        $this->drops[] = $drops;
+
+        return $this;
+    }
+
+    /**
+    * Remove drops
+    *
+    * @param MonsterDrop $drops
+    * @return ItemTemplate
+    */
+    public function removeDrop(MonsterDrop $drops)
+    {
+        $this->drops->removeElement($drops);
+
+        return $this;
+    }
+
+    /**
+    * Get drops
+    *
+    * @return Collection
+    */
+    public function getDrops()
+    {
+        return $this->drops;
     }
 
     public function __toString()

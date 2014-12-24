@@ -85,21 +85,21 @@ class CriteriaLoader extends ServiceWithContainer
                 if ($isReplacement) {
                     if ($rel->getColumn1() !== null) {
                         if(!is_numeric($param1) && $rel->getColumn1() == 'id')
-                            $target = $repo->findBySlug($param1);
+                            $target = $repo->findOneBySlug($param1);
                         else
                             $target = $repo->find($param1);
                         if ($target)
                         $ent->setParam1($target);
                     } elseif ($rel->getColumn2() !== null) {
                         if(!is_numeric($param2) && $rel->getColumn2() == 'id')
-                            $target = $repo->findBySlug($param2);
+                            $target = $repo->findOneBySlug($param2);
                         else
                             $target = $repo->find($param2);
                         if ($target)
                             $ent->setParam2($target);
                     } else {
                         if(!is_numeric($param3) && $rel->getColumn3() == 'id')
-                            $target = $repo->findBySlug($param3);
+                            $target = $repo->findOneBySlug($param3);
                         else
                             $target = $repo->find($param3);
                         if ($target)
