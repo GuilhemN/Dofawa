@@ -22,11 +22,14 @@
                 </a>
                 <div class="text-center">
                     <p>
+                        {% if itemTemplate.deprecated != 1 %}
+                            <span class="label label-danger hidden-xs">Obsolète</span>
+                        {% endif %}
                         {% if itemTemplate.preliminary %}
-                            <span class="label label-danger">Bêta</span>
+                            <span class="label label-warning">Bêta</span>
                         {% endif %}
                         {% if itemTemplate.release != 1 %}
-                            <span class="label label-default hidden-xs">{{ itemTemplate.release }}</span>
+                            <span class="label label-info hidden-xs">{{ itemTemplate.release }}</span>
                         {% endif %}
                     </p>
 
