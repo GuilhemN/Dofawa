@@ -24,7 +24,7 @@ class PlayerCharacterType extends AbstractType
                 'data' => '1',
                 'attr' => array('min' => '1', 'max' => '200', 'step' => '1'), 'label' => 'list.level', 'translation_domain' => 'item')
             )
-            ->add('breed', null, array('label' => 'breed', 'translation_domain' => 'breed', 'data_class' => 'Dof\CharactersBundle\Entity\Breed'))
+            ->add('breed', null, array('label' => 'breed', 'translation_domain' => 'breed'))
             ->add('gender', 'choice', array(
                   'label' => 'gender',
                   'choices'   => array_flip(Gender::getValues()),
