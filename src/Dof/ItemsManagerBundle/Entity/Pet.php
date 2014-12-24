@@ -47,10 +47,11 @@ class Pet extends Animal
      */
     protected $lastNotification;
 
-    public function __contruct(){
-        $this->setLastMeal(new \DateTime());
-        $this->nextMeal = new \DateTime();
-        $this->lastNotification = new \DateTime();
+    public function __construct(){
+        $this->lastMeal = new \DateTime('now');
+        $this->lastNotification = new \DateTime('now');
+        $nextMeal = clone $lastMeal;
+        $this->nextMeal = $nextMeal->modify('+' . $this->getItemTemplate()->getMinFeedInterval() . ' hour');
     }
     /**
      * Set lastMeal
