@@ -40,8 +40,8 @@ class BuildController extends Controller
         // Si la demande d'ajout provient de la fiche de présentation d'une classe
         $newChar = $this->get('request')->get('newChar');
         if(!empty($newChar) && $newChar > 0 && $newChar < 17){
-            $newBreed = new Breed();
-            $newBreed = $em->getRepository('DofCharactersBundle:Breed')->findById($newChar);
+            //$newBreed = new Breed();
+            $newBreed = $em->getRepository('DofCharactersBundle:Breed')->find($newChar);
             $playerCharacter->setBreed($newBreed);
         }
 
