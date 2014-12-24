@@ -49,7 +49,6 @@ class Pet extends Animal
 
     public function __construct(){
         $this->lastMeal = new \DateTime('now');
-        $this->nextMeal = new \DateTime('now');
         $this->lastNotification = new \DateTime('now');
     }
     /**
