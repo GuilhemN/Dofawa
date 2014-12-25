@@ -16,25 +16,8 @@ jQuery(function () {
         jQuery.ajax({
             url: Routing.generate('dof_notifications_ajax_list')
         }).done(function(data) {
-            var html = '';
-            for (var i = 0; i < data.notifications.length; i++) {
-                var notification = data.notifications[i];
-
-                html += '<li ';
-                if(notification.isRead == false)
-                    html += 'class="active"';
-
-                html += '>' +
-                    '<a href="' + notification.path + '">'
-                        + notification.message +
-                        '<br>' +
-                        '<small>' + notification.createdAt + '</small>' +
-                    '</a>' +
-                '</li>' +
-                '<li class="divider"></li>';
-            }
             jQuery('#notifications .dropdown-menu li:not(#checkbox)').remove();
-            jQuery('#notifications .dropdown-menu').append(html);
+            jQuery('#notifications .dropdown-menu').append(data.content);
             jQuery('#notifications span.badge').html(data.unread);
 
             delete localStorage.notified;
