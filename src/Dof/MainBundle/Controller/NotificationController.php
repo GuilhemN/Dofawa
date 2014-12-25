@@ -45,7 +45,7 @@ class NotificationController extends Controller
         $unread = $repo->countUnread($user);
 
         return $this->createJsonResponse([
-            'notifications' => $notifications,
+            'notifications' => $this->transform($notifications),
             'unread' => $unread
         ]);;
     }
@@ -67,7 +67,7 @@ class NotificationController extends Controller
 
         return $this->createJsonResponse([
             'unread' => $unread,
-            'notifications' => $notifications
+            'notifications' => $this->transform($notifications)
         ]);
     }
 
