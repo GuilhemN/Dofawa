@@ -23,6 +23,7 @@ class NotificationUpdater
 
     public function prePersist(LifecycleEventArgs $args)
     {
+        $em = $args->getEntityManager();
         $ent = $args->getEntity();
         if ($ent instanceof Notification) {
             if($ent->getEntity() instanceof IdentifiableInterface)
