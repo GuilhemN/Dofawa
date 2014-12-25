@@ -16,6 +16,7 @@
         <div class="thumbnail row">
             <div class="col-md-3 text-center">
                 {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {'look': look} only %}
+                {% include 'DofMainBundle::release-labels.html.twig' with {'item': breed} only %}
             </div>
             <div class="caption col-md-9">
                 <h2 class="nopadding">{{ breed.getLongName(locales()) }}</h2>
