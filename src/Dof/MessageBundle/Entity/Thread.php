@@ -6,11 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\MessageBundle\Entity\Thread as BaseThread;
 
+use XN\Persistence\IdentifiableInterface;
+
 /**
  * @ORM\Table(name="dof_threads")
  * @ORM\Entity
  */
-class Thread extends BaseThread
+class Thread extends BaseThread implements IdentifiableInterface
 {
     /**
      * @ORM\Id

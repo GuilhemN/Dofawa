@@ -5,11 +5,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\MessageBundle\Entity\Message as BaseMessage;
 
+use XN\Persistence\IdentifiableInterface;
+
 /**
  * @ORM\Table(name="dof_messages")
  * @ORM\Entity
  */
-class Message extends BaseMessage
+class Message extends BaseMessage implements IdentifiableInterface
 {
     /**
      * @ORM\Id

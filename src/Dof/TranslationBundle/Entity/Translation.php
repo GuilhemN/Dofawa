@@ -13,7 +13,7 @@ use Dof\UserBundle\OwnableTrait;
 /**
  * Translation
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_translations")
  * @ORM\Entity(repositoryClass="Dof\TranslationBundle\Entity\TranslationRepository")
  */
 class Translation implements IdentifiableInterface, TimestampableInterface, OwnableInterface

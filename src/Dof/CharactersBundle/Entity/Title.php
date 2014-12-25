@@ -11,6 +11,7 @@ use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
 use Dof\ItemsBundle\ReleaseBoundTrait;
+
 /**
  * Title
  *

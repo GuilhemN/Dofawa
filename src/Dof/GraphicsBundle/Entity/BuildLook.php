@@ -4,6 +4,8 @@ namespace Dof\GraphicsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\Persistence\IdentifiableInterface;
+
 use Dof\GraphicsBundle\BasicPCLook;
 use Dof\BuildBundle\Entity\Stuff;
 
@@ -13,7 +15,7 @@ use Dof\BuildBundle\Entity\Stuff;
  * @ORM\Table(name="dof_build_look")
  * @ORM\Entity(repositoryClass="Dof\GraphicsBundle\Entity\BuildLookRepository")
  */
-class BuildLook extends BasicPCLook
+class BuildLook extends BasicPCLook implements IdentifiableInterface
 {
     /**
      * @var integer

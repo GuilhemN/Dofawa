@@ -4,13 +4,15 @@ namespace Dof\MonsterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\Persistence\IdentifiableInterface;
+
 /**
  * MonsterGrade
  *
  * @ORM\Table(name="dof_monster_grades")
  * @ORM\Entity(repositoryClass="Dof\MonsterBundle\Entity\MonsterGradeRepository")
  */
-class MonsterGrade
+class MonsterGrade implements IdentifiableInterface
 {
     /**
      * @var integer

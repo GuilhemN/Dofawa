@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 
@@ -24,7 +25,7 @@ use Dof\MainBundle\Entity\Badge;
  * @ORM\Table("dof_badge_levels")
  * @ORM\Entity(repositoryClass="Dof\MainBundle\Entity\BadgeLevelRepository")
  */
-class BadgeLevel implements TimestampableInterface, FileInterface
+class BadgeLevel implements IdentifiableInterface, TimestampableInterface, FileInterface
 {
     use TimestampableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileTrait;
 
