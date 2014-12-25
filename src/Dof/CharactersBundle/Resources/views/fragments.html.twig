@@ -18,7 +18,7 @@
 {# Fragments #}
 {% for fragment in effect.fragments if fragment not in stack %}
     {% set stack = stack | merge([ fragment ]) %}
-    {% if classOf(fragment) == 'SpellRank' %}
+    {% if class_of(fragment) == 'SpellRank' %}
     	{% include 'DofCharactersBundle:Fragment:spellRank.html.twig' %}
     {% endif %}
 {% endfor %}

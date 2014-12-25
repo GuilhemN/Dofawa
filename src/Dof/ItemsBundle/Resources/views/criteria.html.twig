@@ -1,5 +1,5 @@
 {% if criterion is not empty and criterion.visible %}
-    {% set class = classOf(criterion) %}
+    {% set class = class_of(criterion) %}
     {% set description = criterion.htmlDescription is defined ? criterion.htmlDescription : null %}
     {% if class != 'SimpleCriterion' or description | trim is not empty %}
         {% if criterion.structureVisible %}
@@ -10,7 +10,7 @@
                 {{ description | raw }}
             {% else %}
                 {% if criterion.structureVisible %}
-                    {% if classOf(criterion) == 'AndCriterion' %}
+                    {% if class == 'AndCriterion' %}
                         Toutes ces conditions :
                     {% else %}
                         Au moins une de ces conditions :
