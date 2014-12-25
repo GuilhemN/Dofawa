@@ -1,5 +1,5 @@
 {% block title %}
-    {{ 'pets.hungry' | trans({'%petName%': ent.itemTemplate.getName(locales()) | e('html'), '%name%': ent.name | e('html'))}, 'notifications') | raw }}
+    {{ 'pets.hungry' | trans({'%petName%': ent.itemTemplate.getName(locales()) | e('html'), '%name%': ent.name | e('html')}, 'notifications') | raw }}
 {% endblock %}
 
 {% block path %}
