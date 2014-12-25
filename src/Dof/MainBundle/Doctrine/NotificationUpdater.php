@@ -4,7 +4,7 @@ namespace Dof\MainBundle\Doctrine;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-use Dof\UserBundle\Entity\Notification;
+use Dof\MainBundle\Entity\Notification;
 use XN\Persistence\IdentifiableInterface;
 
 class NotificationUpdater
@@ -40,7 +40,7 @@ class NotificationUpdater
         if ($ent instanceof Notification)
             if ($this->enabled) {
                 $ent->setValid(true);
-                if($ent->getClass() !== null && $ent->getClassId() != null){
+                if($ent->getClass() !== null && $ent->getClassId() !== null){
                     $entity = $em->getRepository($ent->getClass())->find($ent->getClassId());
                     $ent->setEntity($entity);
                     if($entity === null)
