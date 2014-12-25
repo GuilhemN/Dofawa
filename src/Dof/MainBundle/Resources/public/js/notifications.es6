@@ -16,7 +16,7 @@ jQuery(function () {
         jQuery.ajax({
             url: Routing.generate('dof_notifications_ajax_list')
         }).done(function(data) {
-            jQuery('#notifications .dropdown-menu li:not(#checkbox)').remove();
+            jQuery('#notifications .dropdown-menu li:not(.to-keep)').remove();
             jQuery('#notifications .dropdown-menu').append(data.content);
             jQuery('#notifications span.badge').html(data.unread);
 
