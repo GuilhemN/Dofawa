@@ -2,7 +2,4 @@
     <li {% if notification.read == false %}class="active"{% endif %}>
         {% include 'DofMainBundle::simple-notification.html.twig' with {'notification': notification} only %}
     </li>
-    {% if loop.last == false %}
-        <li class="divider"></li>
-    {% endif %}
 {% endfor %}
