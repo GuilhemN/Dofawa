@@ -11,7 +11,7 @@
         <div class="panel-body">
            <table class="table">
                 <tbody>
-                    {% for notification in notifications %}
+                    {% for notification in notifications if notication.valid %}
                         <tr {% if not notification.read %}class="active"{% endif %}>
                             {% include 'DofMainBundle::simple-notification.html.twig' with {'notification': notification} only %}
                         </tr>
