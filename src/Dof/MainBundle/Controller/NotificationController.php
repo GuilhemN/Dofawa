@@ -98,7 +98,7 @@ class NotificationController extends Controller
             $context = ['notification' => $n, 'ent' => $n->getEntity()];
             $return[] = array(
                 'isRead' => $n->isRead(),
-                'title' => $this->get('twig')->loadTemplate($template)->renderBlock('title', $context),
+                'message' => $this->get('twig')->loadTemplate($template)->renderBlock('title', $context),
                 'path' => $this->get('twig')->loadTemplate($template)->renderBlock('path', $context),
                 'createdAt' => DateFormat::formatDate($translator, $n->getCreatedAt())
             );
