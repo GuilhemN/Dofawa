@@ -2,9 +2,9 @@
 
 {% block name %}
     {% if item.name is not null %}
-        {{ item.name }} ({{ itemTemplate.getName(locales()) }})
+        {{ item.name }} ({{ parent() }})
     {% else %}
-        {{ itemTemplate.getName(locales()) }}
+        {{ parent() }}
     {% endif %}
     {% if item.owner == app.user %}
         <a class="pointer lien-modal" data-toggle="modal" data-target=".new-name-modal" data-id="{{ item.id }}" data-name="{{ item.name is not empty ? item.name : itemTemplate.getName(locales()) }}">
