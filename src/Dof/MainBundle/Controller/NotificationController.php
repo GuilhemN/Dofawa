@@ -4,6 +4,7 @@ namespace Dof\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use XN\Common\AjaxControllerTrait;
+use XN\Common\DateFormat;
 
 class NotificationController extends Controller
 {
@@ -87,5 +88,21 @@ class NotificationController extends Controller
         $em->flush();
 
         return $this->render('DofMainBundle:Notification:showAll.html.twig', ['notifications' => $notifications]);
+    }
+
+    private function transform(array $notification) {
+        $return = [];
+        $translator = $this->di->get('translator');
+        foreach($notifications as $n){
+            $template = 'DofMainBundle:Notification-Template:' . ($notification->getType() !== null ? $notification->getType() : 'simple') . '.html.twig';
+            $context = ['notification' => $n, 'ent' => $n->getEntity()];
+            $return[] = array(
+                'isRead' => $n->isRead(),
+                'title' => $this->get('twig')->loadTemplate($template)->renderBlock('title', $context),
+                'path' => $this->get('twig')->loadTemplate($template)->renderBlock('path', $context),
+                'createdAt' => DateFormat::formatDate($translator, $n->getCreatedAt())
+            );
+        }
+        return $return;
     }
 }
