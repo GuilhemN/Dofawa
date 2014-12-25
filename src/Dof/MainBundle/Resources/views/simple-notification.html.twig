@@ -5,6 +5,5 @@
     {{ block_from(template, 'title', context) }}
     <br>
     <small>{{ notification.createdAt | date_format }}</small>
-    {{ block_from(template, 'actions', context) }}
-
 </a>
+{{ block_from(template, 'actions', context) }}
