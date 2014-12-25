@@ -92,7 +92,7 @@ class NotificationController extends Controller
 
     private function transform(array $notification) {
         $return = [];
-        $translator = $this->di->get('translator');
+        $translator = $this->get('translator');
         foreach($notifications as $n){
             $template = 'DofMainBundle:Notification-Template:' . ($notification->getType() !== null ? $notification->getType() : 'simple') . '.html.twig';
             $context = ['notification' => $n, 'ent' => $n->getEntity()];
