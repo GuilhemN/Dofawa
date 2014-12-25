@@ -12,14 +12,9 @@
            <table class="table">
                 <tbody>
                     {% for notification in notifications if notification.valid %}
-                        <a href="{{ notification.path }}">
-                            <tr {% if notification.isRead == false %}class="active"{% endif %}>
-
-                                {{ notification.message | raw }}
-                                <br>
-                                <small>{{ notification.createdAt }}</small>
-                            </tr>
-                        </a>
+                        <tr {% if notification.read == false %}class="active"{% endif %}>
+                            {% include 'DofMainBundle::simple-notification.html.twig' with {'notification': notification} only %}
+                        </tr>
                         <hr>
                     {% endfor %}
                 </tbody>
