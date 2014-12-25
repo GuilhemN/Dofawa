@@ -18,53 +18,6 @@ class NotificationManager
     private $di;
 
     protected $metadatas = [
-            'message.receive' => array(
-                'translationString' => 'message.receive',
-                'translationParams' => array(
-                    'dynamic' => array('%by%' => 'sender.username')
-                ),
-                'path' => 'fos_message_thread_view',
-                'pathParams' => array(
-                    'static' => array(),
-                    'dynamic' => array('threadId' => 'thread.id')
-                )
-            ),
-            'badge.receive' => array(
-                'translationString' => 'badge.receive',
-                'translationParams' => array(
-                    'dynamic' => array('%name%' => 'localeName')
-                ),
-                'path' => 'dof_profile_userpage',
-                'pathParams' => array(
-                    'static' => array(),
-                    'dynamic' => array('slug' => 'currentUser.slug')
-                )
-            ),
-            'welcome' => array(
-                'translationString' => 'welcome',
-                'translationParams' => array(
-                    'dynamic' => array('%name%' => 'currentUser.username'),
-                ),
-                'path' => 'dof_main_homepage',
-            ),
-            'news.valided' => array(
-                'translationString' => 'news.valided',
-                'translationParams' => array(
-                    'dynamic' => array('%name%' => 'name')
-                ),
-                'path' => 'dof_articles_view',
-                'pathParams' => array(
-                    'static' => array('type' => 'news'),
-                    'dynamic' => array('slug' => 'slug')
-                )
-            ),
-            'news.deleted' => array(
-                'translationString' => 'news.deleted',
-                'translationParams' => array(
-                    'dynamic' => array('%name%' => 'name')
-                ),
-                'path' => 'dof_main_homepage',
-            ),
             'pets.hungry' => array(
                 'translationString' => 'pets.hungry',
                 'translationParams' => array(

@@ -8,7 +8,6 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 use Dof\MessageBundle\Entity\Message;
 use Dof\MainBundle\Entity\Notification;
-use Dof\MainBundle\NotificationType;
 
 class MessageNotification
 {
@@ -32,9 +31,14 @@ class MessageNotification
 
 			$em->flush($ent);
 
-			$nm = $this->di->get('notification_manager');
-            foreach($otherParticipants as $participant)
-                $nm->addNotification($ent, 'message.receive', $participant);
+            foreach($otherParticipants as $participant){
+				$notification = new Notification();
+				$notification
+					->setType('message.receive')
+					->setOwner($participant)
+					->setEntity($ent);
+				$em->persist($notification);
+			}
 
 			$em->flush();
 		}

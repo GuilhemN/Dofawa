@@ -71,6 +71,13 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
      */
     private $path;
 
+    private $entity;
+
+    private $valid;
+
+    public function __construct() {
+        $this->valid = true;
+    }
 
     /**
      * Get id
@@ -222,5 +229,27 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     public function getPath()
     {
         return $this->path;
+    }
+
+    public function setEntity($entity){
+        $this->entity = $entity;
+        return $this;
+    }
+
+    public function getEntity(){
+        return $this->entity;
+    }
+
+    public function setValid($valid){
+        $this->valid = $valid;
+        return $this;
+    }
+
+    public function getValid(){
+        return $this->valid;
+    }
+
+    public function isValid(){
+        return $this->valid;
     }
 }

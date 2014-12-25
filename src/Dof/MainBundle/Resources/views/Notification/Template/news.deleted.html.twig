@@ -1,0 +1,7 @@
+{% block title %}
+    {{ 'news.deleted' | trans({'%name%': ent.name | e('html'))}, 'notifications') | raw }}
+{% endblock %}
+
+{% block path %}
+    {{ path('dof_main_homepage') }}
+{% endblock %}

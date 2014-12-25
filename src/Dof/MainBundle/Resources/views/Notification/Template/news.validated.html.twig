@@ -1,0 +1,7 @@
+{% block title %}
+    {{ 'news.validated' | trans({'%name%': ent.name | e('html'))}, 'notifications') | raw }}
+{% endblock %}
+
+{% block path %}
+    {{ path('dof_articles_view', {'type': 'news', 'slug': ent.slug}) }}
+{% endblock %}

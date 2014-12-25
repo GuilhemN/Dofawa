@@ -9,8 +9,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\ArticlesBundle\Entity\Article;
 use Dof\ArticlesBundle\ArticleType;
+
 use Dof\MainBundle\Entity\Notification;
-use Dof\MainBundle\NotificationType;
 
 class ArticlesController extends Controller
 {
@@ -36,7 +36,7 @@ class ArticlesController extends Controller
 
       if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
         throw new AccessDeniedException();
- 
+
       $newArticle = new Article();
       $newArticle = clone $article;
       $request = $this->get('request');
@@ -115,7 +115,7 @@ class ArticlesController extends Controller
         case strtolower(ArticleType::getName(1)):
           $viewType = ArticleType::TUTORIAL;
           break;
-        
+
         default:
           $viewType = ArticleType::NEWS;
           $type = strtolower(ArticleType::getName(4));
@@ -147,7 +147,7 @@ class ArticlesController extends Controller
         case strtolower(ArticleType::getName(1)):
           $viewType = ArticleType::TUTORIAL;
           break;
-        
+
         default:
           $viewType = ArticleType::NEWS;
           $type = strtolower(ArticleType::getName(4));
@@ -208,17 +208,29 @@ class ArticlesController extends Controller
           $em->persist($original);
         }
         $article->setPublished(1);
-        $em->persist($article);
         $em->flush();
-        $this->get('notification_manager')->addNotification($article, 'news.valided', $article->getUpdater());
-        return $this->render('DofArticlesBundle:Edit:success.html.twig', array('type' =>$type, 'action'=>'Validation'));
+
+        $notification = new Notification();
+        $notification
+            ->setType('news.validated')
+            ->setOwner($article->getUpdater())
+            ->setEntity($article);
+        $em->persist($notification)->flush();
+
+        return $this->render('DofArticlesBundle:Edit:success.html.twig', array('type' =>$type, 'action' => 'Validation'));
       }
       if ($request->get('action') == 'supprimer'){
         $article->setArchive(1);
-        $em->persist($article);
         $em->flush();
-        $this->get('notification_manager')->addNotification($article, 'news.deleted', $article->getUpdater());
-        return $this->render('DofArticlesBundle:Edit:success.html.twig', array('type' =>$type, 'action'=>'Suppression'));
+
+        $notification = new Notification();
+        $notification
+        ->setType('news.deleted')
+        ->setOwner($article->getUpdater())
+        ->setEntity($article);
+        $em->persist($notification)->flush();
+
+        return $this->render('DofArticlesBundle:Edit:success.html.twig', array('type' =>$type, 'action' => 'Suppression'));
       }
 
     }

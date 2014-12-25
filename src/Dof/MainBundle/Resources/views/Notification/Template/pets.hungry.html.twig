@@ -1,0 +1,7 @@
+{% block title %}
+    {{ 'pets.hungry' | trans({'%petName%': ent.itemTemplate.getName(locales()) | e('html'), '%name%': ent.name | e('html'))}, 'notifications') | raw }}
+{% endblock %}
+
+{% block path %}
+    {{ path('dof_items_manager_pets') }}
+{% endblock %}

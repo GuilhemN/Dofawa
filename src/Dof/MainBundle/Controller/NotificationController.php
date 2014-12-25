@@ -28,8 +28,6 @@ class NotificationController extends Controller
         if(empty($user))
             throw $this->createAccessDeniedException();
 
-        $nm = $this->get('notification_manager');
-
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
 
@@ -38,17 +36,15 @@ class NotificationController extends Controller
             array('createdAt' => 'DESC'),
             6
         );
-        $tNotifications = $nm->transformNotifications($notifications);
 
         foreach($notifications as $notification)
             $notification->setIsRead(true);
-
         $em->flush();
 
         $unread = $repo->countUnread($user);
 
         return $this->createJsonResponse([
-            'notifications' => $tNotifications,
+            'notifications' => $notifications,
             'unread' => $unread
         ]);;
     }
@@ -57,8 +53,6 @@ class NotificationController extends Controller
         $user = $this->getUser();
         if(empty($user))
             throw $this->createAccessDeniedException();
-        
-        $nm = $this->get('notification_manager');
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
@@ -72,7 +66,7 @@ class NotificationController extends Controller
 
         return $this->createJsonResponse([
             'unread' => $unread,
-            'notifications' => $nm->transformNotifications($notifications)
+            'notifications' => $notifications
         ]);
     }
 
@@ -83,7 +77,6 @@ class NotificationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
 
-        $nm = $this->get('notification_manager');
         $notifications = $repo->findBy(
             array('owner' => $this->getUser()),
             array('createdAt' => 'DESC')
@@ -92,9 +85,7 @@ class NotificationController extends Controller
         foreach($notifications as $notification)
             $notification->setIsRead(true);
         $em->flush();
-        
-        $tNotifications = $nm->transformNotifications($notifications);
 
-        return $this->render('DofMainBundle:Notification:showAll.html.twig', ['notifications' => $tNotifications]);
+        return $this->render('DofMainBundle:Notification:showAll.html.twig', ['notifications' => $notifications]);
     }
 }

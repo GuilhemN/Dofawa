@@ -7,7 +7,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Dof\UserBundle\Entity\User;
 use Dof\UserBundle\Entity\Badge;
 use Dof\MainBundle\Entity\Notification;
-use Dof\MainBundle\NotificationType;
 
 class BadgeManager
 {
@@ -46,8 +45,12 @@ class BadgeManager
 
             foreach($badge->getLevels() as $level)
                 if($level->getMinCount() == $count){
-                    $nm = $this->di->get('notification_manager');
-                    $nm->addNotification($level, 'badge.receive', $user);
+                    $notification = new Notification();
+                    $notification
+                        ->setType('badge.receive')
+                        ->setOwner($user)
+                        ->setEntity($level);
+                    $em->persist($notification)->flush();
                     break;
                 }
 

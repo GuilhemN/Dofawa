@@ -1,0 +1,7 @@
+{% block title %}
+    {{ 'message.receive' | trans({'%by%': ent.sender.username | e('html')}, 'notifications') | raw }}
+{% endblock %}
+
+{% block path %}
+    {{ path('fos_message_thread_view', {'threadId': ent.thread.id}) }}
+{% endblock %}

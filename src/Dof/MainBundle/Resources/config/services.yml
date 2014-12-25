@@ -25,10 +25,6 @@ services:
         class: Dof\MainBundle\BadgeManager
         arguments: [ "@service_container" ]
 
-    notification_manager:
-        class: Dof\MainBundle\NotificationManager
-        arguments: [ "@service_container" ]
-
     dof.main.doctrine.primary_bonus_updater:
         class: "%dof.main.doctrine.primary_bonus_updater.class%"
         tags:
@@ -55,6 +51,12 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preRemove }
+
+    dof.main.doctrine.notification_updater:
+        class: "Dof\MainBundle\Doctrine\NotificationUpdater"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: postLoad }
 
     dof_main.admin.notification:
         class: Dof\MainBundle\Admin\NotificationAdmin

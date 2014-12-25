@@ -14,7 +14,7 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: dof_user_registration }
-            
+
     dof_user.registration_listener:
         class: Dof\UserBundle\EventListener\RegistrationListener
         arguments: ["@service_container"]

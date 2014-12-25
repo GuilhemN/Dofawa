@@ -1,0 +1,7 @@
+{% block title %}
+    {{ 'badge.receive' | trans({'%name%': ent.getName(locales()) | e('html')}, 'notifications') | raw }}
+{% endblock %}
+
+{% block path %}
+    {{ path('dof_profile_userpage', {'slug': app.user.slug}) }}
+{% endblock %}

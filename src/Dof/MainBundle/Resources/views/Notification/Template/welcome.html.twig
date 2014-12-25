@@ -1,0 +1,7 @@
+{% block title %}
+    {{ 'welcome' | trans({'%name%': app.user.username | e('html'))}, 'notificationss') | raw }}
+{% endblock %}
+
+{% block path %}
+    {{ path('dof_main_homepage') }}
+{% endblock %}

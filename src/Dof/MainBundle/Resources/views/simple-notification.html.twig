@@ -1,0 +1,10 @@
+{% set template = 'DofMainBundle:Notification:Template:' ~ (notification.type is not empty ? notification.type : 'simple') ~ '.html.twig' %}
+{% set context = {'ent': notification.entity, 'notification': notification} %}
+<a href="{{ block_from(template, 'path', context) | trim }}">
+    <tr {% if notification.isRead == false %}class="active"{% endif %}>
+
+        {{ block_from(template, 'title', context) }}
+        <br>
+        <small>{{ notification.createdAt }}</small>
+    </tr>
+</a>
