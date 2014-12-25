@@ -29,6 +29,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('region', [ $this, 'getRegion' ]),
 			new \Twig_SimpleFunction('is_object', 'is_object'),
 			new \Twig_SimpleFunction('classOf', [ $this, 'getClassName' ]),
+			new \Twig_SimpleFunction('block_from', [ $this, 'blockFrom' ]),
 		);
 	}
 
@@ -105,13 +106,20 @@ class UtilityExtension extends \Twig_Extension
 		return locale_get_display_region($locale, $in);
 	}
 
-	public function formatDate(\Datetime $datetime, $type = 'medium', $textual = true, $locale = null){
+	public function formatDate(\Datetime $datetime, $type = 'medium', $textual = true, $locale = null)
+	{
 		return DateFormat::formatDate($this->container->get('translator'), $datetime, $type, $textual, $locale);
 	}
 
-	public function getClassName($class){
+	public function getClassName($class)
+	{
 		$nClass = get_class($class);
 		$pos = strrpos($nClass, '\\');
 		return ($pos === false) ? $nClass : substr($nClass, $pos + 1);
+	}
+
+	public function blockFrom($template, $block, $context)
+	{
+		return $this->container->get('twig')->loadTemplate($template)->renderBlock($block, $context);
 	}
 }
