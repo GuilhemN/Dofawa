@@ -43,6 +43,8 @@ class NotificationUpdater
                 if($ent->getClass() !== null && $ent->getClassId() != null){
                     $entity = $em->getRepository($ent->getClass())->find($ent->getClassId());
                     $ent->setEntity($entity);
+                    if($entity === null)
+                        $ent->setValid(false);
                 }
             }
     }
