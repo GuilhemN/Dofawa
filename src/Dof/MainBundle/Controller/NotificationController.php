@@ -90,7 +90,7 @@ class NotificationController extends Controller
         return $this->render('DofMainBundle:Notification:showAll.html.twig', ['notifications' => $notifications]);
     }
 
-    private function transform(array $notification) {
+    private function transform(array $notifications) {
         $return = [];
         $translator = $this->get('translator');
         foreach($notifications as $n){
