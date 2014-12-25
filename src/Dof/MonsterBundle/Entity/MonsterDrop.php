@@ -42,7 +42,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     /**
     * @var ItemTemplate
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate", inversedBy=drops)
     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
     */
     private $object;
