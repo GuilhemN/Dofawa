@@ -23,12 +23,7 @@
                 </a>
                 <div class="text-center">
                     <p>
-                        {% if spell.preliminary %}
-                            <span class="label label-danger">Bêta</span>
-                        {% endif %}
-                        {% if spell.release != 1 %}
-                            <span class="label label-default hidden-xs">{{ spell.release }}</span>
-                        {% endif %}
+                        {% include 'DofMainBundle::release-labels.html.twig' with {'item': spell} only %}
                     </p>
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
                     <p>

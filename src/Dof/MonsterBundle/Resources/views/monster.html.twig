@@ -26,12 +26,7 @@
                         </p>
                         {% endif %}
                         <p>
-                            {% if monster.preliminary %}
-                                <span class="label label-danger">Bêta</span>
-                            {% endif %}
-                            {% if monster.release != 1 %}
-                                <span class="label label-default hidden-xs">{{ monster.release }}</span>
-                            {% endif %}
+                            {% include 'DofMainBundle::release-labels.html.twig' with {'item': monster} only %}
                         </p>
                         {% if is_granted('ROLE_SUPER_ADMIN') %}
                         <p>

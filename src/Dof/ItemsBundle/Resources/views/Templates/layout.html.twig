@@ -22,15 +22,7 @@
                 </a>
                 <div class="text-center">
                     <p>
-                        {% if itemTemplate.deprecated %}
-                            <span class="label label-danger hidden-xs">Obsolète</span>
-                        {% endif %}
-                        {% if itemTemplate.preliminary %}
-                            <span class="label label-warning">Bêta</span>
-                        {% endif %}
-                        {% if itemTemplate.release != 1 %}
-                            <span class="label label-info hidden-xs">{{ itemTemplate.release }}</span>
-                        {% endif %}
+                        {% include 'DofMainBundle::release-labels.html.twig' with {'item': itemTemplate} only %}
                     </p>
 
                     {% block bonus %}
