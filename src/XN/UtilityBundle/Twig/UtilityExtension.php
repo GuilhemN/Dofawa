@@ -28,8 +28,9 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('is_current_page', [ $this, 'isCurrentPage' ]),
 			new \Twig_SimpleFunction('region', [ $this, 'getRegion' ]),
 			new \Twig_SimpleFunction('is_object', 'is_object'),
-			new \Twig_SimpleFunction('classOf', [ $this, 'getClassName' ]),
-			new \Twig_SimpleFunction('block_from', [ $this, 'blockFrom' ]),
+			new \Twig_SimpleFunction('classOf', [ $this, 'getClassName' ]), // deprecated
+			new \Twig_SimpleFunction('class_of', [ $this, 'getClassName' ]),
+			new \Twig_SimpleFunction('block_from', [ $this, 'blockFrom' ], [ 'is_safe' => [ 'html' ] ]),
 		);
 	}
 
