@@ -4,5 +4,5 @@
 <a href="{{ block_from(template, 'path', context) | trim }}">
     {{ block_from(template, 'title', context) }}
     <br>
-    <small>{{ notification.createdAt }}</small>
+    <small>{{ notification.createdAt | date_format }}</small>
 </a>
