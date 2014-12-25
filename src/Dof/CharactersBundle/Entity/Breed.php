@@ -93,58 +93,58 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $longNameRu;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="gameplay_description_fr", type="string", length=255)
+     * @ORM\Column(name="gameplay_description_fr", type="text")
      */
     private $gameplayDescriptionFr;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="gameplay_description_en", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gameplay_description_en", type="text", nullable=true)
      */
     private $gameplayDescriptionEn;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="gameplay_description_de", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gameplay_description_de", type="text", nullable=true)
      */
     private $gameplayDescriptionDe;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="gameplay_description_es", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gameplay_description_es", type="text", nullable=true)
      */
     private $gameplayDescriptionEs;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="gameplay_description_it", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gameplay_description_it", type="text", nullable=true)
      */
     private $gameplayDescriptionIt;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="gameplay_description_pt", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gameplay_description_pt", type="text", nullable=true)
      */
     private $gameplayDescriptionPt;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="gameplay_description_ja", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gameplay_description_ja", type="text", nullable=true)
      */
     private $gameplayDescriptionJa;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="gameplay_description_ru", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gameplay_description_ru", type="text", nullable=true)
      */
     private $gameplayDescriptionRu;
 
