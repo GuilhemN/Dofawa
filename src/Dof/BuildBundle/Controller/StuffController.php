@@ -50,7 +50,7 @@ class StuffController extends Controller
             else
                 $slot = 0;
 
-            $bItem = $iFact->createItem($item, null, $stuff->getCharacter()->getOwner());
+            $bItem = $iFact->createItem($item, $percent, $stuff->getCharacter()->getOwner());
             $bItem->setSticky(false);
             $type = $stuff->getItemType($bItem, $slot);
             $lItem = $stuff->{'get' . ucfirst($type)}();
