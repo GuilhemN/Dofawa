@@ -29,7 +29,7 @@ class NotificationUpdater
             if($ent->getEntity() instanceof IdentifiableInterface)
                 $ent
                 ->setClass($em->getClassMetadata(get_class($ent->getEntity()))->getName())
-                ->setClassId($ent->getId())
+                ->setClassId($ent->getEntity()->getId())
                 ;
         }
     }
