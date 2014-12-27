@@ -13,15 +13,15 @@ use Dof\UserBundle\Entity\User;
  */
 class ItemRepository extends EntityRepository
 {
-	public function findWithOptions($options = array(),User $user, array $orders = array(), $limit = null, $offset = null, $locale = 'fr', $type = 'normal', $full = false) {
+	public function findWithOptions($options = array(), User $user, array $orders = array(), $limit = null, $offset = null, $locale = 'fr', $type = 'normal', $full = false) {
         $options = (array) $options;
 		$qb = $this->createQueryBuilder('i');
 
 		if($type == 'count')
 			$qb->select(array('COUNT(i)'));
 
-		$qb 
-			->join('i.itemTemplate', 'it') 
+		$qb
+			->join('i.itemTemplate', 'it')
 			->join('it.type', 't')
 			->addOrderBy('it.level', 'DESC')
 			->andWhere('i.owner = (:user)')
@@ -61,7 +61,7 @@ class ItemRepository extends EntityRepository
 	              ;
     }
 
-	public function countWithOptions($options = array(),User $user, $locale = 'fr'){
+	public function countWithOptions($options = array(), User $user, $locale = 'fr'){
 		return $this->findWithOptions($options, $user, array(), null, null, $locale, 'count');
 	}
 }
