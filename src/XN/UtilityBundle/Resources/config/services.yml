@@ -15,6 +15,8 @@ parameters:
     xn.doctrine.message_notification.class: XN\UtilityBundle\Doctrine\MessageNotification
     xn.doctrine.file_updater.class: XN\UtilityBundle\Doctrine\FileUpdater
 
+    xn.session_request_listener.class: XN\UtilityBundle\SessionRequestListener
+
 services:
     lazy.doctrine.orm.default_entity_manager:
         class: XN\DependencyInjection\LazyServiceBox
@@ -109,3 +111,10 @@ services:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: postUpdate }
             - { name: doctrine.event_listener, event: postRemove }
+
+
+    xn.session_request_listener:
+        class: %xn.session_request_listener.class%
+        arguments: [ @security.context, @session, @annotation_reader ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

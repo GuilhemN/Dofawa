@@ -26,7 +26,6 @@ class StuffController extends Controller
 
         if(!$bm->canWrite($stuff))
             throw $this->createAccessDeniedException();
-        $this->get('session')->save();
 
         $em = $this->getDoctrine()->getManager();
 
@@ -85,7 +84,6 @@ class StuffController extends Controller
 
         if(!$bm->canWrite($oldStuff) or empty($name))
             throw $this->createAccessDeniedException();
-        $this->get('session')->save();
 
         $stuff = new Stuff;
         $stuff->setName($name);
