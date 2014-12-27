@@ -5,6 +5,7 @@ namespace Dof\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use XN\Annotations as Utils;
 
 use FOS\UserBundle\Model\UserInterface;
 
@@ -26,10 +27,12 @@ class AccountController extends Controller
         return $this->render('DofUserBundle:Account:security.html.twig', ['user' => $user]);
     }
 
+    /**
+     * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+     * @Utils\UsesSession
+     */
     public function doubleAuthAction(){
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface)
-            throw $this->createAccessDeniedException();
+        $user = $this->getUser();
 
         $secret = TOTPGenerator::genSecret();
 
@@ -40,6 +43,10 @@ class AccountController extends Controller
         return $this->render('DofUserBundle:Account:doubleAuth.html.twig', ['secret' => $secret]);
     }
 
+
+    /**
+    * @Utils\UsesSession
+    */
     public function checkTotpAction(){
         $user = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($user) || !$user instanceof UserInterface)
