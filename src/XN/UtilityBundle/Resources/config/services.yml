@@ -1,5 +1,5 @@
 parameters:
-    variables.class: XN\UtilityBundle\VariableBag
+    variables.class: XN\Common\VariableBag
     xn.twig_extension.class: XN\UtilityBundle\Twig\UtilityExtension
     xn.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
     xn.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
