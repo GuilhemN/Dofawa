@@ -27,17 +27,15 @@ class SessionControllerListener
 
     public function onKernelController(FilterControllerEvent $event)
     {
-        if(!$event->isMasterRequest())
-            return;
         $controller = $event->getController();
         if (!is_array($controller))
             // not a object but a different kind of callable. Do nothing
             return;
-
-        $session = $this->di->get('session');
-        $this->pb->setParameter('dof_user.last_username', (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME));
-        $this->pb->setParameter('dof_user.csrf_authenticate', $this->di->get('form.csrf_provider')->generateCsrfToken('authenticate'));
-
+        if(!$this->pb->hasParameter('dof_user.last_username')){
+            $session = $this->di->get('session');
+            $this->pb->setParameter('dof_user.last_username', (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME));
+            $this->pb->setParameter('dof_user.csrf_authenticate', $this->di->get('form.csrf_provider')->generateCsrfToken('authenticate'));
+        }
         $token = $this->sc->getToken();
         if($token)
             $token->getUser();
