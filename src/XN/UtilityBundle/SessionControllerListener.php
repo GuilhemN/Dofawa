@@ -35,5 +35,7 @@ class SessionControllerListener
         $reader = new AnnotationReader();
         if(!$this->re->getMethodAnnotation(new \ReflectionMethod($controller[0], $controller[1]), 'XN\Common\UsesSession'))
             $this->se->save();
+        else
+            throw new \Exception('test');
     }
 }
