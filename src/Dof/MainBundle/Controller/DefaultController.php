@@ -28,6 +28,6 @@ class DefaultController extends Controller
 	}
 
 	public function inUpdateAction() {
-		return new Response(file_exists('/var/lib/dofawa-repo/update'));
+		return new Response((string) file_exists('/var/lib/dofawa-repo/update'));
 	}
 }
