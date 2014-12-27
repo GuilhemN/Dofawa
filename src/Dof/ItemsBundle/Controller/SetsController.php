@@ -10,6 +10,9 @@ use Dof\ItemsBundle\Form\SetSearch;
 
 class SetsController extends Controller
 {
+    /**
+     * @Utils\UsesSession
+     */
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsBundle:ItemSet');

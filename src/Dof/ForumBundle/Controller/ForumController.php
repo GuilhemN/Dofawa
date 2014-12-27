@@ -74,6 +74,7 @@ class ForumController extends Controller
 
     /**
      * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+     * @Utils\UsesSession
      */
     public function addMessageAction(Topic $topic)
     {
@@ -103,6 +104,7 @@ class ForumController extends Controller
 
     /**
      * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+     * @Utils\UsesSession
      */
     public function addTopicAction(Forum $forum)
     {

@@ -47,7 +47,6 @@ class BuildController extends Controller
 
         $form = $this->createForm('dof_buildbundle_playercharacter', $playerCharacter);
         $form->handleRequest($this->get('request'));
-        $this->get('session')->save(); // Unlock session
 
         if($form->isValid()){
             $character = $form->getData();

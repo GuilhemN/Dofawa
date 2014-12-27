@@ -15,6 +15,9 @@ use Dof\UserBundle\Entity\User;
  */
 class ItemsManagerController extends Controller
 {
+    /**
+     * @Utils\UsesSession
+     */
     public function indexAction($page) {
         $form = $this->createForm(new InventorySearch());
         $form->handleRequest($this->get('request'));

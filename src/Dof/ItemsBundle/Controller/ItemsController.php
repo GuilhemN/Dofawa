@@ -4,6 +4,7 @@ namespace Dof\ItemsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use XN\Annotations as Utils;
 
 use Dof\ItemsBundle\Entity\ItemTemplate;
 use Dof\ItemsBundle\Form\ItemSearch;
@@ -15,6 +16,9 @@ use Dof\UserBundle\Entity\User;
 
 class ItemsController extends Controller
 {
+    /**
+     * @Utils\UsesSession
+     */
     public function indexAction($page) {
         $form = $this->createForm(new ItemSearch());
         $form->handleRequest($this->get('request'));
@@ -34,6 +38,9 @@ class ItemsController extends Controller
         return $this->render('DofItemsBundle:Items:show.html.twig', ['item' => $item]);
     }
 
+    /**
+     * @Utils\UsesSession
+     */
     public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite, $type, $slot, $page){
         if(!$canWrite)
             throw $this->createAccessDeniedException();

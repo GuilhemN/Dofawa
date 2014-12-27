@@ -65,8 +65,9 @@ class ArticlesController extends Controller
     }
 
     /**
-    * @Utils\Secure("IS_AUTHENTICATED_FULLY")
-    */
+     * @Utils\Secure("IS_AUTHENTICATED_FULLY")
+     * @Utils\UsesSession
+     */
     public function AddAction($type)
     {
         $article = new Article();

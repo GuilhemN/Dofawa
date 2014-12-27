@@ -37,6 +37,7 @@ class GuildController extends Controller
 
     /**
      * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+     * @Utils\UsesSession
      */
     public function addAction()
     {

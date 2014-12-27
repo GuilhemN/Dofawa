@@ -45,6 +45,7 @@ class CharacterLookController extends Controller
 
 	/**
 	 * @Utils\Secure("ROLE_STYLIST_BETA")
+	 * @Utils\UsesSession
 	 */
     public function createAction(Request $request)
     {
@@ -75,8 +76,9 @@ class CharacterLookController extends Controller
     }
 
 	/**
-	* @Utils\Secure("ROLE_STYLIST_BETA")
-	*/
+	 * @Utils\Secure("ROLE_STYLIST_BETA")
+	 * @Utils\UsesSession
+	 */
     public function editAction(Request $request, CharacterLook $look)
     {
         $securityContext = $this->get('security.context');
