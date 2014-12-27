@@ -23,8 +23,8 @@ class SecurityController extends BaseController
     public function moduleloginAction($module = '')
     {
         $pb = $this->get('xn.parameter_bag');
-        $lastUsername = $pb->getParameter('dofuserlastusername');
-        $csrfToken = $pb->getParameter('dofusercsrfauthenticate');
+        $lastUsername = $pb->getParameter('dof_user_last_username');
+        $csrfToken = $pb->getParameter('dof_user_csrf_authenticate');
 
         return $this->renderModuleLogin(array(
                 'last_username' => $lastUsername,

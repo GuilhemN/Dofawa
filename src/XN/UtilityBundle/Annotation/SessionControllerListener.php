@@ -36,8 +36,8 @@ class SessionControllerListener
             return;
 
         $session = $this->di->get('session');
-        $this->pb->setParameter('dofuserlastusername', (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME));
-        $this->pb->setParameter('dofusercsrfauthenticate', $this->di->get('form.csrf_provider')->generateCsrfToken('authenticate'));
+        $this->pb->setParameter('dof_user_last_username', (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME));
+        $this->pb->setParameter('dof_user_csrf_authenticate', $this->di->get('form.csrf_provider')->generateCsrfToken('authenticate'));
 
         $token = $this->sc->getToken();
         if($token)
