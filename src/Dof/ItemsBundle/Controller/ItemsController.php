@@ -39,8 +39,9 @@ class ItemsController extends Controller
             throw $this->createAccessDeniedException();
         $slotNumber = $slot;
 
+        $repo = 'DofItemsBundle:EquipmentTemplate';
         if($type == 'animal')
-            $slot = [ItemSlot::PET, ItemSlot::MOUNT];
+            $repo = 'DofItemsBundle:AnimalTemplate';
         elseif(($slot = ItemSlot::getValue(strtoupper($type))) === null)
             throw $this->createNotFoundException('Type d\'item non trouvé');
         $slugs = [
@@ -51,8 +52,8 @@ class ItemsController extends Controller
 
         $form = $this->createForm(new ItemSearch(false));
         $form->handleRequest($this->get('request'));
-
-        $params = $this->getItems(array_merge((array) $form->getData(), ['type' => $slot]), $page, $slugs + ['type' => $type]);
+        $data = isset($slot) ? array_merge($form->getData(), ['type' => $slot]) : $form->getData();
+        $params = $this->getItems($form->getData(), $page, $slugs + ['type' => $type], $repo);
 
         return $this->render('DofItemsBundle:Items:index.html.twig',
             $params +
@@ -64,9 +65,9 @@ class ItemsController extends Controller
             );
     }
 
-    protected function getItems($options, $page, array $params = array()) {
+    protected function getItems($options, $page, array $params = array(), $repo = 'DofItemsBundle:ItemTemplate') {
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('DofItemsBundle:ItemTemplate');
+        $repo = $em->getRepository($repo);
         $full = $this->get('security.context')->isGranted('ROLE_SPELL_XRAY');
 
         $perPage = 15;
