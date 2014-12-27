@@ -20,8 +20,6 @@ use Dof\BuildBundle\Form\ConfigurationForm;
 use Dof\ItemsBundle\EffectListHelper;
 use Dof\CharactersBundle\RankDamageEffect;
 
-use Dof\BuildBundle\UtilityBuild;
-
 class BuildController extends Controller
 {
     public function indexAction()
@@ -221,13 +219,11 @@ class BuildController extends Controller
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
 
         $weapon = $stuff->getWeapon();
-        $ccWeapon =  UtilityBuild::calcCH($characteristics->getCiticalHits(), $characteristics);
 
         return $this->render('DofBuildBundle:Build:showWeaponDamages.html.twig', [
             'characteristics' => $characteristics,
             'character' => $character,
             'weapon' => $weapon,
-            'ccWeapon' => $ccWeapon,
             'stuff' => $stuff,
             'user' => $user,
             'can_write' => $canWrite,

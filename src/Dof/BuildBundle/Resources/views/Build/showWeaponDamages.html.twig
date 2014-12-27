@@ -46,49 +46,26 @@
 		            	{% set heal = characteristics.heals %}
 		            {% endif %}
 
-		            {% set Min = 0 %}
-		            {% set Max = 0 %}
-		            {% set MinCC = 0 %}
-		            {% set MaxCC = 0 %}
-
 		            {% if min != 0 or max != 0 %}
 		                {% if min != max %}
 		                    {% set damages %}
-		                    	{% set mini = (min * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') %}
-		                    	{% set Min = Min + mini %} 
-
-		                    	{% set maxi = (max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') %}
-		                    	{% set Max = Max + maxi %} 
-
-		                    	{{ mini }}
+		                    	{{ (min * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }}
 		                    	{{ 'to' | trans({}, 'item') }}
-		                    	{{ maxi }}
+		                    	{{ (max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') }}
 		                    {% endset %}
 
 		                    {% set critical %}
-		                    	{% set mini = ((min + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') %}
-		                    	{% set MinCC = MinCC + mini %} 
-
-		                    	{% set maxi = ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') %}
-		                    	{% set MaxCC = MaxCC + maxi %} 
-
-		                    	{{ mini }}
+		                    	{{ ((min + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') }}
 		                    	{{ 'to' | trans({}, 'item') }}
-		                    	{{ maxi }}
+		                    	{{ ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') }}
 		                    {% endset %}
 		                {% else %}
 		                   	{% set damages %}
-		                   		{% set maxi = (max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix) | round(0, 'floor') %}
-		                    	{% set Max = Max + maxi %} 
-		                    	{% set Min = Min + maxi %}
-		                   		{{ maxi }}
+		                   		{{ (max * ((100 + carac + characteristics.power + 300 ) / 100) + domFix)  | round(0, 'floor') }}
 		                    {% endset %}
 
 		                    {% set critical %}
-		                    	{% set maxi = ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage) | round(0, 'floor') %}
-		                    	{% set MaxCC = MaxCC + maxi %}
-		                    	{% set MinCC = MinCC + maxi %} 
-		                    	{{ maxi }}
+		                    	{{ ((max + weapon.itemTemplate.criticalHitBonus) * ((100 + carac + characteristics.power + 300 ) / 100) + domFix + characteristics.criticalDamage)  | round(0, 'floor') }}
 		                    {% endset %}
 		                {% endif %}
 		            {% endif %}
@@ -97,7 +74,6 @@
 		            </tr>
 		        {% else %}
 		        {% endfor %}
-		        <tr><td>Total</td><td>{{ Min }} {{ 'to' | trans({}, 'item') }} {{ Max }}</td><td>{{ MinCC }} {{ 'to' | trans({}, 'item') }} {{ MaxCC }}</td></tr>
 	        </table>
 	    </div>
 
