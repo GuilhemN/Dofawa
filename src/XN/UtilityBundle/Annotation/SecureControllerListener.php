@@ -12,9 +12,11 @@ use XN\Annotation\Secure;
 class SecureControllerListener
 {
     private $sc;
+    private $re;
 
-    public function __construct(SecurityContext $sc){
+    public function __construct(SecurityContext $sc, Reader $re){
         $this->sc = $sc;
+        $this->re = $re;
     }
 
     public function onKernelController(FilterControllerEvent $event)
