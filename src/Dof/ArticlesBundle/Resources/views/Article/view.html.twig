@@ -1,6 +1,6 @@
 {% extends 'DofArticlesBundle::layout.html.twig' %}
 
-{% block title %}{{ article.getName(locales()) }} - {% if article.getType(locales()) == 1 %} Tutoriel Dofus{% endif %}{% endblock %}
+{% block title %}{{ article.getName(locales()) }} - {% if article.getType(locales()) == 1 %} Tutoriel {{ article.getCategory(locales()) }} Dofus{% endif %}{% endblock %}
 
 
 {% block breadcrumb %}
