@@ -110,7 +110,7 @@ class BuildController extends Controller
             $itemId = $request->request->get('id');
             foreach($items as $v)
                 foreach($v as $i)
-                    if($i->getId() == $itemId){
+                    if($i !== null && $i->getId() == $itemId){
                         $i->setCharacteristics($request->request->get('caracts'), true);
 
                         $em->persist($i);
