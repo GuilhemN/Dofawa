@@ -27,7 +27,7 @@ class SessionControllerListener
 
     public function onKernelController(FilterControllerEvent $event)
     {
-        if($event->isMasterRequest())
+        if(!$event->isMasterRequest())
             return;
 
         $session = $this->di->get('session');
@@ -38,7 +38,7 @@ class SessionControllerListener
         if (!is_array($controller))
             // not a object but a different kind of callable. Do nothing
             return;
-            
+
         $token = $this->sc->getToken();
         if($token)
             $token->getUser();
