@@ -1,4 +1,6 @@
 <?php 
+namespace Dof\BuildBundle;
+
 class UtilityBuild
 {
 	public function calcCH($criticalHits, $characteristics){
