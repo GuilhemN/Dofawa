@@ -162,7 +162,6 @@ class BuildController extends Controller
             'face' => $stuff->getFaceLabel()
         ]);
         $form->handleRequest($this->get('request'));
-        $this->get('session')->save(); // Unlock session
         if($form->isValid()){
             $bm = $this->get('build_manager');
             $data = $form->getData();

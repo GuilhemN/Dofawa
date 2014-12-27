@@ -62,7 +62,7 @@ class ConfigurationForm extends AbstractType
                 'required' => true,
                 'translation_domain' => 'face'
             ))
-        ; 
+        ;
     }
 
     /**
@@ -70,6 +70,9 @@ class ConfigurationForm extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        $resolver->setDefaults(array(
+            'csrf_protection' => false
+        ));
     }
 
     /**
