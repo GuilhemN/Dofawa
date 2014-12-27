@@ -30,15 +30,15 @@ class SessionControllerListener
         if($event->isMasterRequest())
             return;
 
-        $controller = $event->getController();
-        if (!is_array($controller))
-            // not a object but a different kind of callable. Do nothing
-            return;
-
         $session = $this->di->get('session');
         $this->pb->setParameter('dof_user_last_username', (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME));
         $this->pb->setParameter('dof_user_csrf_authenticate', $this->di->get('form.csrf_provider')->generateCsrfToken('authenticate'));
 
+        $controller = $event->getController();
+        if (!is_array($controller))
+            // not a object but a different kind of callable. Do nothing
+            return;
+            
         $token = $this->sc->getToken();
         if($token)
             $token->getUser();
