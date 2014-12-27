@@ -23,3 +23,9 @@ dof_notifications_ajax_check_unread:
 dof_notifications_show_all:
     pattern:  /notifications
     defaults: { _controller: DofMainBundle:Notification:showAll }
+
+dof_is_in_update:
+    pattern:  /in-update
+    defaults: { _controller: DofMainBundle:Default:inUpdate }
+    requirements: { _method: GET }
+    options:  { expose: true }
