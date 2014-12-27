@@ -43,6 +43,7 @@ class MountLookImporter extends AbstractGameDataImporter
             $tpl->setColors($look->getColors());
             $tpl->setSkins($look->getSkins());
             $tpl->setColorizationType(AnimalColorizationType::COLORS);
+            $tpl->setSize($look->getScale() * 100);
 
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {
