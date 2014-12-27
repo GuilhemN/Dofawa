@@ -13,8 +13,6 @@
 {% autoescape %}
     {% include 'DofBuildBundle::header.html.twig' %}
     {% if weapon is not null %}
-    	{% include 'DofItemsBundle::item.html.twig' with {'item': weapon, display: '', type: 'build', 'can_write': ''} only %}
-
     	<div class="panel panel-default">
 	        <table class="table">
 	            <thead>
@@ -78,8 +76,9 @@
 	        </table>
 	    </div>
 
+        {% include 'DofItemsBundle::item.html.twig' with {'item': weapon, display: '', type: 'build', 'can_write': ''} only %}
     {% else %}
-    	<h2>Aucune arme n'est équipée.</h2>
+    	<h3>Aucune arme équipée.</h3>
     {% endif %}
 {% endautoescape %}
 {% endblock %}
