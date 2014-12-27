@@ -24,6 +24,8 @@ class SessionControllerListener
 
     public function onKernelController(FilterControllerEvent $event)
     {
+        if(!$event->isMasterRequest())
+            return;
         $controller = $event->getController();
         if (!is_array($controller))
             // not a object but a different kind of callable. Do nothing
