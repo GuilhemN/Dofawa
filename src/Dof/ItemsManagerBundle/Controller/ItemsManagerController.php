@@ -3,22 +3,23 @@
 namespace Dof\ItemsManagerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use XN\Annotations as Utils;
 
 use Dof\ItemsBundle\Entity\ItemTemplate;
 use Dof\ItemsManagerBundle\Entity\Item;
 use Dof\ItemsManagerBundle\Form\InventorySearch;
 use Dof\UserBundle\Entity\User;
 
+/**
+ * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+ */
 class ItemsManagerController extends Controller
 {
     public function indexAction($page) {
-        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
         $form = $this->createForm(new InventorySearch());
         $form->handleRequest($this->get('request'));
 
-        $params = $this->getItems($form->getData(), $page); 
+        $params = $this->getItems($form->getData(), $page);
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemsManagerBundle:Item');
@@ -28,7 +29,7 @@ class ItemsManagerController extends Controller
 
         if($newName != "" and $idNewName != ""){
             $item = $repo->findOneBy(['id' => $idNewName, 'owner' => $this->getUser()]);
-            if($item === null) 
+            if($item === null)
                 throw $this->createNotFoundException();
             if(!empty($item)){
                 $item->setName($newName);

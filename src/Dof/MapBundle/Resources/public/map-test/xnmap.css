@@ -1,0 +1,23 @@
+.XNMap {
+	position: relative;
+	overflow: hidden;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.XNMap > * {
+	position: absolute;
+}
+.XNMapTiledLayer, .XNMapGridLayer, .XNMapHotSpotLayer {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+.XNMapTiledLayer {
+	-webkit-transform-origin: top left;
+	transform-origin: top left;
+}
+.XNMapTiledLayer > *, .XNMapHotSpotLayer > * {
+	position: absolute;
+}

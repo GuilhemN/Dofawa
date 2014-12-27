@@ -4,6 +4,8 @@ namespace Dof\ForumBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use XN\Annotations as Utils;
+
 use Dof\ForumBundle\Entity\Forum;
 use Dof\ForumBundle\Entity\Topic;
 use Dof\ForumBundle\Entity\Message;
@@ -20,8 +22,7 @@ class ForumController extends Controller
     public function indexAction()
     {
     	$em = $this->getDoctrine()->getManager();
-    	$categories = $em->getRepository('DofForumBundle:Category')->displayOrder()->getQuery()
-        	->getResult();
+    	$categories = $em->getRepository('DofForumBundle:Category')->displayOrder()->getQuery()->getResult();
 
 		$repo = $em->getRepository('DofForumBundle:Forum');
 
@@ -29,120 +30,107 @@ class ForumController extends Controller
     }
 
     /**
-   	* @ParamConverter("forum", options={"repository_method" = "getOrderByDate"})
-   	*/
-   	public function showForumAction(Forum $forum)
+     * @ParamConverter("forum", options={"repository_method" = "getOrderByDate"})
+     */
+    public function showForumAction(Forum $forum)
     {
-    	if($this->get('security.context')->getToken()->getUser() !== null)
-		{
-			$user = $this->getUser();
-		}
-		else
-		{
-			$user = "";
-		}
+		$user = $this->getUser();
+        if($user == 'anon.')
+            $user = null;
+
 		$em = $this->getDoctrine()->getManager();
 		$repo = $em->getRepository('DofForumBundle:Topic');
 
         return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum, 'user' => $user, 'repo' => $repo]);
     }
 
-    /**
-   	* @ParamConverter("topic")
-   	*/
-   	public function showTopicAction(Topic $topic)
+    public function showTopicAction(Topic $topic)
     {
-    	$em = $this->getDoctrine()->getManager();
-		  $repo = $em->getRepository('DofForumBundle:Topic');
-      $badge = $em->getRepository('DofMainBundle:Badge')->findOneBySlugWithLevels('forum-message');
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('DofForumBundle:Topic');
+        $badge = $em->getRepository('DofMainBundle:Badge')->findOneBySlugWithLevels('forum-message');
 
-    	if($this->getUser() !== null && !$topic->isReadBy($repo, $this->getUser()))
-    	{
-    		$topic->addReadBy($this->getUser());
-    		$em = $this->getDoctrine()->getManager();
-		    $em->persist($topic);
-		    $em->flush();
-    	}
-
-      foreach ($topic->getMessages() as $message) {
-        if(!isset($countUser[$message->getOwner()->getId()]))
+        if($this->getUser() !== null && !$topic->isReadBy($repo, $this->getUser()))
         {
-          $uBadge = $em->getRepository('DofUserBundle:Badge')->findOneBy(array('badge' => $badge, 'owner' => $message->getOwner()));
-          if($uBadge === null)
-            $countUser[$message->getOwner()->getId()] = '0';
-          else
-            $countUser[$message->getOwner()->getId()] = $uBadge->getCount();
+            $topic->addReadBy($this->getUser());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($topic);
+            $em->flush();
         }
-      }
 
-      return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic, 'countUser' => $countUser));
+        foreach ($topic->getMessages() as $message) {
+            if(!isset($countUser[$message->getOwner()->getId()]))
+            {
+                $uBadge = $em->getRepository('DofUserBundle:Badge')->findOneBy(array('badge' => $badge, 'owner' => $message->getOwner()));
+                if($uBadge === null)
+                $countUser[$message->getOwner()->getId()] = '0';
+                else
+                $countUser[$message->getOwner()->getId()] = $uBadge->getCount();
+            }
+        }
+
+        return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic, 'countUser' => $countUser));
     }
 
     /**
-   	* @ParamConverter("topic")
-   	*/
-   	public function addMessageAction(Topic $topic)
+     * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+     */
+    public function addMessageAction(Topic $topic)
     {
-    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
+        $message = new Message;
+        $form = $this->createForm(new MessageType, $message);
 
-    	$message = new Message;
-		$form = $this->createForm(new MessageType, $message);
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
 
-		$request = $this->get('request');
-		if ($request->getMethod() == 'POST') {
-			$form->bind($request);
+            if ($form->isValid()) {
 
-		    if ($form->isValid()) {
+                $message->setTopic($topic);
 
-		    	$message->setTopic($topic);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($message);
+                $em->flush();
 
-		    	$em = $this->getDoctrine()->getManager();
-		      	$em->persist($message);
-		      	$em->flush();
+                // Badge
+                $this->get('badge_manager')->addBadge('forum-message');
 
-            // Badge
-            $this->get('badge_manager')->addBadge('forum-message');
-
-		      	return $this->redirect($this->generateUrl('dof_forum_show_topic', array('slug' => $topic->getSlug())).'#message-'.$message->getId());
-		    }
-		}
+                return $this->redirect($this->generateUrl('dof_forum_show_topic', array('slug' => $topic->getSlug())) .'#message-' . $message->getId());
+            }
+        }
         return $this->render('DofForumBundle:Forum:addMessage.html.twig', array('form' => $form->createView(), 'topic' => $topic));
     }
 
     /**
-   	* @ParamConverter("forum")
-   	*/
-   	public function addTopicAction(Forum $forum)
+     * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+     */
+    public function addTopicAction(Forum $forum)
     {
-    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
-    	$topic = new Topic;
-    	$message = new Message;
+        $topic = new Topic;
+        $message = new Message;
 
         $message->setTopic($topic);
-    	$topic->addMessage($message);
+        $topic->addMessage($message);
 
-    	$formTopic = $this->createForm(new MessageTopicType, $message);
+        $formTopic = $this->createForm(new MessageTopicType, $message);
 
-		$request = $this->get('request');
-		if ($request->getMethod() == 'POST') {
-			$formTopic->bind($request);
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $formTopic->bind($request);
 
-		    if ($formTopic->isValid()) {
+            if ($formTopic->isValid()) {
 
-		    	$topic->setForum($forum);
-		    	$topic->setLocked(0);
+                $topic->setForum($forum);
+                $topic->setLocked(0);
 
-		    	$em = $this->getDoctrine()->getManager();
-		      	$em->persist($topic);
-		      	$em->persist($message);
-		      	$em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($topic);
+                $em->persist($message);
+                $em->flush();
 
-		      	return $this->redirect($this->generateUrl('dof_forum_show_topic', array('slug' => $topic->getSlug())));
-		    }
-		}
+                return $this->redirect($this->generateUrl('dof_forum_show_topic', array('slug' => $topic->getSlug())));
+            }
+        }
         return $this->render('DofForumBundle:Forum:addTopic.html.twig', array('formtopic' => $formTopic->createView(), 'forum' => $forum));
     }
 }

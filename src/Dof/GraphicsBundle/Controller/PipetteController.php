@@ -4,7 +4,7 @@ namespace Dof\GraphicsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use XN\Annotations as Utils;
 
 use Dof\ImpExpBundle\Scraper\CharacterPageScraper;
 
@@ -13,12 +13,13 @@ use Dof\GraphicsBundle\EntityLookTransforms;
 
 use Dof\GraphicsBundle\Entity\CharacterLook;
 
+/**
+ * @Utils\Secure('ROLE_STYLIST_BETA')
+ */
 class PipetteController extends Controller
 {
     public function indexAction()
     {
-        if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))
-            throw new AccessDeniedException();
         return $this->render('DofGraphicsBundle:Pipette:index.html.twig', [
             'results' => [ ]
         ]);
@@ -26,8 +27,6 @@ class PipetteController extends Controller
 
     public function processAction(Request $req)
     {
-        if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))
-            throw new AccessDeniedException();
         $results = array_map(function ($url) {
             try {
                 $scraper = new CharacterPageScraper($url);
@@ -58,8 +57,6 @@ class PipetteController extends Controller
 
 	public function addToGalleryAction(Request $req)
 	{
-        if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))
-            throw new AccessDeniedException();
 		$name = $req->request->get('name');
 		$look = new EntityLook($req->request->get('look'));
 		$cl = new CharacterLook();

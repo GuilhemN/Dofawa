@@ -16,7 +16,7 @@ class ArchiveController extends Controller
 		$firstResult = ($page - 1) * $articlesPerPage;
 
 		if($firstResult > $countArticles)
-            throw $this->createNotFoundException('This page does not exist.');
+			throw $this->createNotFoundException('This page does not exist.');
 
 		$articles = $repository->findArticlesWithLimits(4, $firstResult, $articlesPerPage);
 
@@ -27,11 +27,11 @@ class ArchiveController extends Controller
 
 
 		$pagination = array(
-   			'page' => $page,
-   			'route' => 'dof_articles_archive',
-  			'pages_count' => ceil($countArticles / $articlesPerPage),
-   			'route_params' => array()
-   		);
+			'page' => $page,
+			'route' => 'dof_articles_archive',
+			'pages_count' => ceil($countArticles / $articlesPerPage),
+			'route_params' => array()
+		);
 
 		return $this->render('DofArticlesBundle:Archive:archive.html.twig', array(
 			'articles' => $articles,

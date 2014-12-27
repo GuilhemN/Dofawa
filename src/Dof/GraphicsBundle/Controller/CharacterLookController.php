@@ -5,7 +5,7 @@ namespace Dof\GraphicsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use XN\Annotations as Utils;
 
 use Dof\GraphicsBundle\Entity\CharacterLook;
 use Dof\ItemsBundle\ItemSlot;
@@ -43,11 +43,11 @@ class CharacterLookController extends Controller
 
 	}
 
+	/**
+	 * @Utils\Secure('ROLE_STYLIST_BETA')
+	 */
     public function createAction(Request $request)
     {
-        if (!$this->get('security.context')->isGranted('ROLE_STYLIST_BETA'))
-            throw new AccessDeniedException();
-
         $look = new CharacterLook();
         $look->setColors(array(
           '1'=>'',
@@ -74,17 +74,14 @@ class CharacterLookController extends Controller
         return $this->render('DofGraphicsBundle:CharacterLook:create.html.twig', ['form' => $form->createView()]);
     }
 
-
-   /**
-    * @ParamConverter("CharacterLook", options={"mapping": {"slug": "slug"}})
-    */
+	/**
+	* @Utils\Secure('ROLE_STYLIST_BETA')
+	*/
     public function editAction(Request $request, CharacterLook $look)
     {
         $securityContext = $this->get('security.context');
-        if (!$securityContext->isGranted('ROLE_STYLIST_BETA'))
-            throw new AccessDeniedException();
         if(!$securityContext->isGranted('ROLE_STYLIST_ADMIN') and $look->getCreator() != $securityContext->getToken()->getUser())
-            throw new AccessDeniedException();
+            throw $this->createAccessDeniedException();
 
         $colors = $look->getColors();
         foreach($colors as $k => &$color)

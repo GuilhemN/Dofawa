@@ -3,7 +3,7 @@
 namespace Dof\BuildBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use XN\Annotations as XN;
+use XN\Annotations as Utils;
 
 use Dof\UserBundle\Entity\User;
 use Dof\BuildBundle\Entity\PlayerCharacter;
@@ -24,7 +24,7 @@ use Dof\CharactersBundle\RankDamageEffect;
 class BuildController extends Controller
 {
     /**
-     * @XN\Secure("IS_AUTHENTICATED_REMEMBERED")
+     * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
      */
     public function indexAction()
     {

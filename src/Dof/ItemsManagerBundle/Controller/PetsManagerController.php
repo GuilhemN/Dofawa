@@ -3,17 +3,18 @@
 namespace Dof\ItemsManagerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use XN\Annotations as Utils;
 
 use Dof\ItemsBundle\Entity\PetTemplate;
 use Dof\ItemsManagerBundle\Entity\Pet;
 
+/**
+* @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+*/
 class PetsManagerController extends Controller
 {
     public function showAction()
     {
-    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
         $pets = $repository->getRaisablePets($this->getUser());
 
@@ -22,8 +23,6 @@ class PetsManagerController extends Controller
 
     public function addAction(PetTemplate $item)
     {
-    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
         $iFact = $this->get('item_factory');
         $em = $this->getDoctrine()->getManager();
 
@@ -43,9 +42,6 @@ class PetsManagerController extends Controller
 
     public function feedAction()
     {
-        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
         $pets = $repository->getRaisablePets($this->getUser());
@@ -66,9 +62,6 @@ class PetsManagerController extends Controller
 
     public function delAction(Pet $item)
     {
-        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
         $pets = $repository->getRaisablePets($this->getUser());
@@ -90,9 +83,6 @@ class PetsManagerController extends Controller
 
     public function raiseAction(Pet $item)
     {
-        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
         $petsRaisable = $repository->getRaisablePets($this->getUser());
@@ -117,19 +107,16 @@ class PetsManagerController extends Controller
 
     public function notifAction()
     {
-        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
         $em = $this->getDoctrine()->getManager();
 
         if(is_numeric($this->get('request')->get('notif'))){
             $this->getUser()->setPetsManagerNotifications($this->get('request')->get('notif'));
-            $em->flush(); 
+            $em->flush();
         }
-        
+
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
         $pets = $repository->getRaisablePets($this->getUser());
-        
+
          return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
                 'pets' => $pets
                 )));

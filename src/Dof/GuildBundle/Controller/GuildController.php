@@ -3,7 +3,7 @@
 namespace Dof\GuildBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use XN\Annotations as Utils;
 
 use Dof\GuildBundle\Entity\Guild;
 use Dof\GuildBundle\Form\GuildType;
@@ -30,45 +30,41 @@ class GuildController extends Controller
         return $this->render('DofGuildBundle:Guild:index.html.twig', array('guilds' => $guilds, 'page' => $page, 'pagination' => $pagination));
     }
 
-    /**
-   	* @ParamConverter("guild")
-   	*/
     public function showAction(Guild $guild)
     {
     	return $this->render('DofGuildBundle:Guild:show.html.twig', array('guild' => $guild));
     }
 
+    /**
+     * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+     */
     public function addAction()
     {
-    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
+        $guild = new Guild;
+        $form = $this->createForm(new GuildType, $guild);
 
-    $guild = new Guild;
-		$form = $this->createForm(new GuildType, $guild);
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
 
-		$request = $this->get('request');
-		if ($request->getMethod() == 'POST') {
-			$form->bind($request);
+            if ($form->isValid()) {
 
-		    if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($guild);
+                $em->flush();
 
-		    	$em = $this->getDoctrine()->getManager();
-		      	$em->persist($guild);
-		      	$em->flush();
+                return $this->redirect($this->generateUrl('dof_guild_home'));
+            }
+        }
 
-		      	return $this->redirect($this->generateUrl('dof_guild_home'));
-		    }
-		} 
-    	return $this->render('DofGuildBundle:Guild:add.html.twig', array('form' => $form->createView()));
+        return $this->render('DofGuildBundle:Guild:add.html.twig', array('form' => $form->createView()));
     }
 
     /**
-   	* @ParamConverter("guild")
-   	*/
+     * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+     */
     public function registerAction(Guild $guild)
     {
-    	if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
         $registred = false;
 
         $user = $this->getUser();

@@ -2,16 +2,17 @@
 namespace Dof\MonsterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
+use XN\Annotations as Utils;
+
 use Dof\MonsterBundle\Entity\Monster;
 
-use Symfony\Component\HttpFoundation\File\File;
-
+/**
+* @Utils\Secure('ROLE_SUPER_ADMIN')
+*/
 class SkinsController extends Controller
 {
     public function addImageAction(Monster $monster){
-        if(!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
-            throw $this->createAccessDeniedException();
-
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, 'http://staticns.ankama.com/dofus/renderer/look/' . bin2hex($monster->getLook()) . '/full/1/150_220-10.png');
         curl_setopt($curl, CURLOPT_COOKIESESSION, true);
