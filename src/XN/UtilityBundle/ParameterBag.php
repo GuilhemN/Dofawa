@@ -11,7 +11,7 @@ class ParameterBag
 
     public function getParameter($param) {
         if(!isset($this->values[$param]))
-            throw new \LogicException(sprintf('The variable "%s" must be defined.', $param));
+            throw new \LogicException(sprintf("The variable \"%s\" must be defined. \nVariables : \n\%s", $param, var_dump($this->values)));
 
         return $this->values[$param];
     }
