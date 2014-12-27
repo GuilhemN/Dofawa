@@ -15,6 +15,9 @@ use Dof\MainBundle\Entity\Notification;
 
 class ArticlesController extends Controller
 {
+    /**
+     * @ParamConverter("article", options={"mapping": {"slug": "slug"}})
+     */
     public function viewAction($type, Article $article)
     {
         if($type != strtolower(ArticleType::getName($article->getType())))
@@ -26,6 +29,7 @@ class ArticlesController extends Controller
     }
 
     /**
+     * @ParamConverter("article", options={"mapping": {"id": "id"}})
      * @Utils\Secure("IS_AUTHENTICATED_FULLY")
      * @Utils\UsesSession
      */
@@ -36,7 +40,7 @@ class ArticlesController extends Controller
         $request = $this->get('request');
 
         if($type != strtolower(ArticleType::getName($article->getType())))
-        return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId(),'type'=> strtolower(ArticleType::getName($article->getType())))));
+            return $this->redirect($this->generateUrl('dof_articles_edit', array('id' => $article->getId(),'type'=> strtolower(ArticleType::getName($article->getType())))));
 
         $form = $this->createForm('dof_articlesbundle_article', $newArticle);
 
@@ -124,7 +128,7 @@ class ArticlesController extends Controller
     /**
      * @Utils\Secure("ROLE_REDACTOR")
      */
-    public function addListAction($type,$page)
+    public function addListAction($type, $page)
     {
         $translator = $this->get('translator');
         switch ($type) {
