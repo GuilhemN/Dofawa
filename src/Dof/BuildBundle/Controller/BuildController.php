@@ -20,8 +20,6 @@ use Dof\BuildBundle\Form\ConfigurationForm;
 use Dof\ItemsBundle\EffectListHelper;
 use Dof\CharactersBundle\RankDamageEffect;
 
-use XN\Common\UsesSession;
-
 class BuildController extends Controller
 {
     public function indexAction()
@@ -95,9 +93,6 @@ class BuildController extends Controller
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
 
-    /**
-     * @UsesSession
-     */
     public function showAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
