@@ -5,8 +5,8 @@ use Doctrine\Common\Annotations\Annotation;
 
 /**
 * @Annotation
-* @Target("METHOD")
+* @Target({"CLASS", "METHOD"})
 */
-final class UsesSession extends Annotation
+final class Secure extends Annotation
 {
 }

@@ -1,5 +1,5 @@
 <?php
-namespace XN\UtilityBundle\Annotation;
+namespace XN\UtilityBundle\Annotations;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContext;
 use Doctrine\Common\Annotations\Reader;
 
-use XN\Annotation\Secure;
+use XN\Annotations\Secure;
 
 class SecureControllerListener
 {
