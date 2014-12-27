@@ -980,8 +980,10 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
                 else
                     return 'dofus1';
             default:
-                if($item->isAnimal)
+                if($item->isAnimal())
                     return 'animal';
+                else
+                 return false;
         }
     }
 
