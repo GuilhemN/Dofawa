@@ -12,13 +12,19 @@ use FOS\UserBundle\Controller\SecurityController as BaseController;
 
 class SecurityController extends BaseController
 {
-
+    /**
+     * @Utils\UsesSession
+     */
+    public function loginAction(Request $request)
+    {
+        parent::loginAction($request);
+    }
 
     public function moduleloginAction($module = '')
     {
         $pb = $this->get('xn.parameter_bag');
-        $lastUsername = $pb->getParameter('dof_userlast_username');
-        $csrfToken = $pb->getParameter('dof_usercsrf_authenticate');
+        $lastUsername = $pb->getParameter('dofuserlastusername');
+        $csrfToken = $pb->getParameter('dofusercsrfauthenticate');
 
         return $this->renderModuleLogin(array(
                 'last_username' => $lastUsername,
