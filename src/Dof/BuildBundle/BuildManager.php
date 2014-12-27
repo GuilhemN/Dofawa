@@ -91,7 +91,7 @@ class BuildManager extends ServiceWithContainer
                 $bonus[] = $b;
 
         foreach($bonus as $b)
-            foreach($bonus->getCharacteristics() as $k => $v)
+            foreach($b->getCharacteristics() as $k => $v)
                 $return[$k] += $v;
 
         $return['vitality'] += $stuff->getVitality();

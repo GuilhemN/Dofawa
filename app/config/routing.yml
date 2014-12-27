@@ -1,6 +1,6 @@
-#dof_quest:
-#    resource: "@DofQuestBundle/Resources/config/routing.yml"
-#    prefix:   /
+dof_quest:
+    resource: "@DofQuestBundle/Resources/config/routing.yml"
+    prefix:   /quests
 
 dof_items_manager:
     resource: "@DofItemsManagerBundle/Resources/config/routing.yml"
@@ -12,7 +12,7 @@ dof_monster:
 
 dof_guild:
     resource: "@DofGuildBundle/Resources/config/routing.yml"
-    prefix:   /guild
+    prefix:   /guilds
 
 dof_forum:
     resource: "@DofForumBundle/Resources/config/routing.yml"
