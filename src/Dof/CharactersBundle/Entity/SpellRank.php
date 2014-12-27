@@ -570,6 +570,34 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
         });
     }
 
+	public function getDamageEntries()
+	{
+		$ents = [ ];
+		foreach ($this->effects as $row) {
+			if (!$row->isCritical()) {
+				$ent = $row->getDamageEntry();
+				if ($ent)
+					$ents[] = $ent;
+			}
+		}
+		return $ents;
+	}
+	
+	public function getCriticalDamageEntries()
+	{
+		if (!$this->getCriticalHitDenominator())
+			return $this->getDamageEntries();
+		$ents = [ ];
+		foreach ($this->effects as $row) {
+			if ($row->isCritical()) {
+				$ent = $row->getDamageEntry();
+				if ($ent)
+					$ents[] = $ent;
+			}
+		}
+		return $ents;
+	}
+
 	public function __toString()
 	{
 		return $this->spell . ' [' . $this->rank . ']';

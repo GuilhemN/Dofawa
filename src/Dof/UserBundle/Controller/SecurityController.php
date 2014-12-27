@@ -5,11 +5,15 @@ namespace Dof\UserBundle\Controller;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Httpfoundation\Response;
+use XN\Annotations as Utils;
 
 use FOS\UserBundle\Controller\SecurityController as BaseController;
 
 class SecurityController extends BaseController
 {
+    /**
+     * @Utils\UsesSession
+     */
     public function moduleloginAction($module = '')
     {
         $request = $this->container->get('request');

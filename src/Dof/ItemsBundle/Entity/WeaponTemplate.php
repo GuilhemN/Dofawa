@@ -177,6 +177,34 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
         return $this->criticalHitBonus;
     }
 
+	public function getDamageEntries()
+	{
+		$ents = [ ];
+		foreach ($this->damageRows as $row) {
+			$ent = $row->getDamageEntry();
+			if ($ent)
+				$ents[] = $ent;
+		}
+		return $ents;
+	}
+	
+	public function getCriticalDamageEntries()
+	{
+		if (!$this->getCriticalHitDenominator())
+			return $this->getDamageEntries();
+		$ents = [ ];
+		$chb = $this->criticalHitBonus;
+		foreach ($this->damageRows as $row) {
+			$ent = $row->getDamageEntry();
+			if ($ent) {
+				$ent['min'] += $chb;
+				$ent['max'] += $chb;
+				$ents[] = $ent;
+			}
+		}
+		return $ents;
+	}
+
     public function canMage()
     {
         if (!$this->isEnhanceable())

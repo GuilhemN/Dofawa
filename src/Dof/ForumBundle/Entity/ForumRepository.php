@@ -37,29 +37,29 @@ class ForumRepository extends EntityRepository
 		return $qb->getQuery()
         	->getSingleResult();
 	}
-  
+
 	function isUnReadRepo(Forum $forum, User $user)
 	{
 		$nb = $this->createQueryBuilder('f')
-		  		->select('COUNT(f)')
-				->join('f.topics', 't')
-				->join('t.readBy', 'r')
-				->where('r.id = :user')
-				->andWhere('f.id = :forum')
-				->setParameters(array('user' => $user->getId(), 'forum' => $forum->getId()))
-				->getQuery()->getSingleScalarResult();
+			->select('COUNT(f)')
+			->join('f.topics', 't')
+			->join('t.readBy', 'r')
+			->where('r.id = :user')
+			->andWhere('f.id = :forum')
+			->setParameters(array('user' => $user->getId(), 'forum' => $forum->getId()))
+			->getQuery()->getSingleScalarResult();
 
 		$nbtop = $this->createQueryBuilder('f')
-		  		->select('COUNT(t)')
-		  		->join('f.topics', 't')
-		  		->where('f.id = :forum')
-		  		->setParameters(array('forum' => $forum->getId()))
-				->getQuery()->getSingleScalarResult();
+			->select('COUNT(t)')
+			->join('f.topics', 't')
+			->where('f.id = :forum')
+			->setParameters(array('forum' => $forum->getId()))
+			->getQuery()->getSingleScalarResult();
 
 		$result = $nbtop - $nb;
 		if( $result > 0)
 			return false;
- 
+
 		return true;
 	}
 }

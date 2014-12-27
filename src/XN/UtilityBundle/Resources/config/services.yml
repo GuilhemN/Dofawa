@@ -15,7 +15,8 @@ parameters:
     xn.doctrine.message_notification.class: XN\UtilityBundle\Doctrine\MessageNotification
     xn.doctrine.file_updater.class: XN\UtilityBundle\Doctrine\FileUpdater
 
-    xn.session_controller_listener.class: XN\UtilityBundle\SessionControllerListener
+    xn.session_controller_listener.class: XN\UtilityBundle\Annotation\SessionControllerListener
+    xn.secure_controller_listener.class: XN\UtilityBundle\Annotation\SecureControllerListener
 
 services:
     lazy.doctrine.orm.default_entity_manager:
@@ -112,9 +113,14 @@ services:
             - { name: doctrine.event_listener, event: postUpdate }
             - { name: doctrine.event_listener, event: postRemove }
 
-
     xn.session_controller_listener:
         class: %xn.session_controller_listener.class%
         arguments: [ @security.context, @session, @annotation_reader ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+
+    xn.secure_controller_listener:
+        class: %xn.secure_controller_listener.class%
+        arguments: [ @security.context, @annotation_reader ]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

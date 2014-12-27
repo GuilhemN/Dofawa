@@ -4,7 +4,7 @@ namespace Dof\TranslationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use XN\Annotations as Utils;
 
 use Dof\TranslationBundle\Entity\Translation;
 
@@ -23,12 +23,14 @@ class TranslationController extends Controller
         ));
     }
 
+    /**
+     * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+     */
     public function createAction($tLocale, $domain, $label, Request $request){
-        $user = $this->get('security.context')->getToken()->getUser();
         $translator = $this->get('translator');
 
-        if($user == null or !$translator->has($label, $domain, 'fr'))
-            throw new AccessDeniedException();
+        if(!$translator->has($label, $domain, 'fr'))
+            throw $this->createAccessDeniedException();
 
         $translation = new Translation();
 

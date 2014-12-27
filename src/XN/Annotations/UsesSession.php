@@ -1,5 +1,5 @@
 <?php
-namespace XN\Common;
+namespace XN\Annotations;
 
 use Doctrine\Common\Annotations\Annotation;
 

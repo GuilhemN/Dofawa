@@ -2,16 +2,17 @@
 namespace Dof\ItemsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
+use XN\Annotations as Utils;
+
 use Dof\ItemsBundle\Entity\ItemTemplate;
 
-use Symfony\Component\HttpFoundation\File\File;
-
+/**
+* @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+*/
 class SkinsController extends Controller
 {
     public function addImageAction(ItemTemplate $item){
-        if(!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
-            throw $this->createAccessDeniedException();
-
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, 'http://staticns.ankama.com/dofus/www/game/items/200/' . $item->getIconId() . '.png');
         curl_setopt($curl, CURLOPT_COOKIESESSION, true);

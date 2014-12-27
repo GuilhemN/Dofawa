@@ -9,7 +9,6 @@ class CalculateurController extends Controller
 {
 	public function indexAction()
 	{
-
 		return $this->render('DofMainBundle:Calculateur:main.html.twig');
 	}
 }

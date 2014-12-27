@@ -3,9 +3,14 @@
 namespace Dof\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use XN\Annotations as Utils;
+
 use XN\Common\AjaxControllerTrait;
 use XN\Common\DateFormat;
 
+/**
+ * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+ */
 class NotificationController extends Controller
 {
     use AjaxControllerTrait;
@@ -13,8 +18,6 @@ class NotificationController extends Controller
     public function menuAction()
     {
         $user = $this->getUser();
-        if(empty($user))
-            throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
@@ -26,8 +29,6 @@ class NotificationController extends Controller
 
     public function ajaxAction(){
         $user = $this->getUser();
-        if(empty($user))
-            throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
@@ -52,8 +53,6 @@ class NotificationController extends Controller
 
     public function checkUnreadAction(){
         $user = $this->getUser();
-        if(empty($user))
-            throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
@@ -72,9 +71,6 @@ class NotificationController extends Controller
     }
 
     public function showAllAction(){
-        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMainBundle:Notification');
 

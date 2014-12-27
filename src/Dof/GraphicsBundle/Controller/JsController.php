@@ -15,13 +15,13 @@ class JsController extends Controller
         $locale = $this->get('request')->getLocale();
 
         $itemTemplate = $this->getDoctrine()->getManager()
-                        ->getRepository('DofItemsBundle:ItemTemplate');
+            ->getRepository('DofItemsBundle:ItemTemplate');
         $skinned = $this->getDoctrine()->getManager()
-                        ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
+            ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
         $animal  = $this->getDoctrine()->getManager()
-                        ->getRepository('DofItemsBundle:AnimalTemplate');
+            ->getRepository('DofItemsBundle:AnimalTemplate');
         $weapon  = $this->getDoctrine()->getManager()
-                        ->getRepository('DofItemsBundle:WeaponTemplate');
+            ->getRepository('DofItemsBundle:WeaponTemplate');
 
         $chameleonDrago = $this->get('dof_graphics.chameleon_dragoturkey');
 
