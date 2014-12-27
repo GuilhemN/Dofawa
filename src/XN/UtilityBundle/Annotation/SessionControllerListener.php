@@ -6,7 +6,7 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\Common\Annotations\Reader;
-use XN\UtilityBundle\ParameterBag;
+use XN\Common\VariableBag;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class SessionControllerListener
@@ -14,14 +14,14 @@ class SessionControllerListener
     private $sc;
     private $se;
     private $re;
-    private $pb;
+    private $vb;
     private $di;
 
-    public function __construct(SecurityContext $sc, Session $se, Reader $re, ParameterBag $pb, ContainerInterface $di){
+    public function __construct(SecurityContext $sc, Session $se, Reader $re, VariableBag $vb, ContainerInterface $di){
         $this->sc = $sc;
         $this->se = $se;
         $this->re = $re;
-        $this->pb = $pb;
+        $this->vb = $vb;
         $this->di = $di;
     }
 
@@ -31,8 +31,8 @@ class SessionControllerListener
             return;
 
         $session = $this->di->get('session');
-        $this->pb->setParameter('dof_user.last_username', (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME));
-        $this->pb->setParameter('dof_user.csrf_authenticate', $this->di->get('form.csrf_provider')->generateCsrfToken('authenticate'));
+        $this->vb->set('dof_user.last_username', (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME));
+        $this->vb->set('dof_user.csrf_authenticate', $this->di->get('form.csrf_provider')->generateCsrfToken('authenticate'));
 
         $controller = $event->getController();
         if (!is_array($controller))

@@ -14,17 +14,17 @@ class SecurityController extends BaseController
 {
     protected function renderLogin(array $data)
     {
-        $pb = $this->get('xn.parameter_bag');
-        $lastUsername = $pb->getParameter('dof_user.last_username');
-        $csrfToken = $pb->getParameter('dof_user.csrf_authenticate');
+        $vb = $this->get('variables');
+        $lastUsername = $vb->get('dof_user.last_username');
+        $csrfToken = $vb->get('dof_user.csrf_authenticate');
         return $this->render('FOSUserBundle:Security:login.html.twig', $data + ['last_username' => $lastUsername, 'csrf_token' => $csrfToken]);
     }
 
     public function moduleloginAction($module = '')
     {
-        $pb = $this->get('xn.parameter_bag');
-        $lastUsername = $pb->getParameter('dof_user.last_username');
-        $csrfToken = $pb->getParameter('dof_user.csrf_authenticate');
+        $vb = $this->get('variables');
+        $lastUsername = $vb->get('dof_user.last_username');
+        $csrfToken = $vb->get('dof_user.csrf_authenticate');
 
         return $this->renderModuleLogin(array(
                 'last_username' => $lastUsername,
