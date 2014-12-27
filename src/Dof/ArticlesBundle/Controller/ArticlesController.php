@@ -27,6 +27,7 @@ class ArticlesController extends Controller
 
     /**
      * @Utils\Secure("IS_AUTHENTICATED_FULLY")
+     * @Utils\UsesSession
      */
     public function editAction($type, Article $article)
     {

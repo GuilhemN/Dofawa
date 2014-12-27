@@ -25,6 +25,7 @@ class BuildController extends Controller
 {
     /**
      * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+     * @Utils\UsesSession
      */
     public function indexAction()
     {
@@ -46,6 +47,7 @@ class BuildController extends Controller
 
         $form = $this->createForm('dof_buildbundle_playercharacter', $playerCharacter);
         $form->handleRequest($this->get('request'));
+        $this->get('session')->save(); // Unlock session
 
         if($form->isValid()){
             $character = $form->getData();
@@ -132,6 +134,9 @@ class BuildController extends Controller
             ]);
     }
 
+    /**
+     * @Utils\UsesSession
+     */
     public function configurationAction($user, Stuff $stuff, PlayerCharacter $character, $canWrite){
         if(!$canWrite) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
@@ -157,7 +162,7 @@ class BuildController extends Controller
             'face' => $stuff->getFaceLabel()
         ]);
         $form->handleRequest($this->get('request'));
-
+        $this->get('session')->save(); // Unlock session
         if($form->isValid()){
             $bm = $this->get('build_manager');
             $data = $form->getData();

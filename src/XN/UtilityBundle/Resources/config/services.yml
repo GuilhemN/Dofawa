@@ -1,4 +1,5 @@
 parameters:
+    xn.parameter_bag.class: XN\UtilityBundle\ParameterBag
     xn.twig_extension.class: XN\UtilityBundle\Twig\UtilityExtension
     xn.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
     xn.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
@@ -22,6 +23,9 @@ services:
     lazy.doctrine.orm.default_entity_manager:
         class: XN\DependencyInjection\LazyServiceBox
         arguments: [ "@service_container", "doctrine.orm.default_entity_manager" ]
+
+    xn.parameter_bag:
+        class: %xn.parameter_bag.class%
 
     xn.twig_extension:
         class: %xn.twig_extension.class%
@@ -115,7 +119,7 @@ services:
 
     xn.session_controller_listener:
         class: %xn.session_controller_listener.class%
-        arguments: [ @security.context, @session, @annotation_reader, @service_container ]
+        arguments: [ @security.context, @session, @annotation_reader, @xn.parameter_bag, @service_container ]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
 
