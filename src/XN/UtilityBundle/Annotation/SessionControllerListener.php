@@ -31,7 +31,7 @@ class SessionControllerListener
             return;
 
         $session = $this->di->get('session');
-        $this->vb->set('dof_user_last_username', (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME));
+        $this->vb->set('lastusername', (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME));
         $this->vb->set('dof_user_csrf_authenticate', $this->di->get('form.csrf_provider')->generateCsrfToken('authenticate'));
 
         $controller = $event->getController();
