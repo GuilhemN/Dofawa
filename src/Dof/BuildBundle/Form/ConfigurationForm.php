@@ -25,8 +25,8 @@ class ConfigurationForm extends AbstractType
     {
         $caractOptions = [
                 'precision' => 0,
-                'attr' => array('min' => '0', 'max' => '999', 'step' => '1'),
-                'constraints' => new Assert\Range(['min' => 0, 'max' => 999]),
+                'attr' => array('min' => '0', 'max' => '1100', 'step' => '1'),
+                'constraints' => new Assert\Range(['min' => 0, 'max' => 1100]),
                 'translation_domain' => 'item'
             ];
         $builder
