@@ -22,7 +22,7 @@ use Dof\ItemsBundle\EffectListHelper;
 use Dof\CharactersBundle\RankDamageEffect;
 
 /**
- * @Secure('IS_AUTHENTICATED_REMEMBERED')
+ * @Secure("IS_AUTHENTICATED_REMEMBERED")
  */
 class BuildController extends Controller
 {
