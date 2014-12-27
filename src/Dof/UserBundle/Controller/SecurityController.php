@@ -17,7 +17,7 @@ class SecurityController extends BaseController
      */
     public function loginAction(Request $request)
     {
-        parent::loginAction($request);
+        return parent::loginAction($request);
     }
 
     public function moduleloginAction($module = '')
