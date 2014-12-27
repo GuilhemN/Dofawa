@@ -11,21 +11,10 @@ use FOS\UserBundle\Controller\SecurityController as BaseController;
 
 class SecurityController extends BaseController
 {
-    /**
-     * @Utils\UsesSession
-     */
     public function moduleloginAction($module = '')
     {
-        $request = $this->container->get('request');
-        /* @var $request \Symfony\Component\HttpFoundation\Request */
-        $session = $request->getSession();
-        /* @var $session \Symfony\Component\HttpFoundation\Session\Session */
-
-        // last username entered by the user
-        $lastUsername = (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME);
-
-        $csrfToken = $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate');
-
+        $lastUsername = $this->container->getParameter('dof_user.last_username');
+        $csrfToken = $this->container->getParameter('dof_user.csrf_authenticate');
 
         return $this->renderModuleLogin(array(
                 'last_username' => $lastUsername,
