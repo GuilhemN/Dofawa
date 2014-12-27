@@ -1,6 +1,6 @@
 {% extends 'DofArticlesBundle::layout.html.twig' %}
 
-{% block title %}{{ article.getName(locales()) }} - {% if article.getType(locales()) == 1 %} Tutoriel {{ article.getCategory(locales()) }} Dofus{% elseif article.getType(locales()) == 2 %} Quête {{ article.getCategory(locales()) }} Dofus {% endif %}{% endblock %}
+{% block title %}{{ article.getName(locales()) }} - {% if article.getType(locales()) == 1 %} Tutoriel {{ article.getCategory(locales()) }} Dofus{% elseif article.getType(locales()) == 2 %} Quête {{ article.getCategory(locales()) }} Dofus {% elseif article.getType(locales()) == 3 %} Donjon {{ article.getCategory(locales()) }} Dofus {% else %} Dofawa {% endif %}{% endblock %}
 {% block breadcrumb %}
   <li><a href="{{ path('dof_articles_viewType', { 'type' : type }) }}">{{ type }}</a></li>
   <li>{{ article.getName(locales()) }}</li>
