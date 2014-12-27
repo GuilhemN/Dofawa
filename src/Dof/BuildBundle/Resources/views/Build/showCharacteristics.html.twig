@@ -12,31 +12,38 @@
 {% block body %}
 {% autoescape %}
     {% include 'DofBuildBundle::header.html.twig' %}
-    
+
     <div class="panel panel-default">
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ 'characteristic' | trans({},'build') }}</th><th class="text-right">{{ 'total' | trans({},'build') }}</th>
+                    <th>{{ 'characteristic' | trans({},'build') }}</th>
+                    <th class="text-right">{{ 'total' | trans({},'build') }}</th>
                 </tr>
             </thead>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt="">{{ 'vitality' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.vitality }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt="">{{ 'vitality' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.vitality }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/wisdom.png') }}" alt="">{{ 'wisdom' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.wisdom }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/wisdom.png') }}" alt="">{{ 'wisdom' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.wisdom }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt="">{{ 'strength' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.strength }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt="">{{ 'strength' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.strength }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt="">{{ 'intelligence' | trans({'%1%': ''},'item') }}</td ><td class="text-right">{{ characteristics.intelligence }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt="">{{ 'intelligence' | trans({'%1%': ''},'item') }}</td>
+                        <td class="text-right">{{ characteristics.intelligence }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/water.png') }}" alt="">{{ 'chance' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.chance }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/water.png') }}" alt="">{{ 'chance' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.chance }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/air.png') }}" alt="">{{ 'agility' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.agility }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/air.png') }}" alt="">{{ 'agility' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.agility }}</td>
                 </tr>
         </table>
     </div>
@@ -44,60 +51,45 @@
     <div class="panel panel-default">
         <table class="table">
             <thead>
-                <tr> <th>{{ 'secondCharacteristics' | trans({},'build') }}</th><th class="text-right">{{ 'total' | trans({},'build') }}</th>
+                <tr> <th>{{ 'secondCharacteristics' | trans({},'build') }}</th>
+                    <th class="text-right">{{ 'total' | trans({},'build') }}</th>
                 </tr>
             </thead>
                 <tr>
-                    <td>{{ 'power' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.power }}</td>
+                    <td>{{ 'power' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.power }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/dodge.png') }}" alt="">{{ 'dodge' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.dodge }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/dodge.png') }}" alt="">{{ 'dodge' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.dodge }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/lock.png') }}" alt="">{{ 'lock' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.lock }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/lock.png') }}" alt="">{{ 'lock' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.lock }}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'heals' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.heals }}</td>
-                </tr> 
-                <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt="">{{ 'criticalHits' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.criticalHits }}</td>
+                    <td>{{ 'heals' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.heals }}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'apReduction' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.apReduction }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt="">{{ 'criticalHits' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.criticalHits }}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'mpReduction' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.mpReduction }}</td>
+                    <td>{{ 'apReduction' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.apReduction }}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'apLossResistance' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.apLossResistance }}</td>
+                    <td>{{ 'mpReduction' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.mpReduction }}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'mpLossResistance' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.mpLossResistance }}</td>
-                </tr>
-        </table>
-    </div>
-
-    <div class="panel panel-default">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>{{ 'resistances' | trans({},'build') }}</th><th class="text-right">%</th><th class="text-right">{{ 'fixe' | trans({},'build') }}</th>
-                </tr>
-            </thead>
-                <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt="">{{ 'neutralResistance' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.percentNeutralResistance }} %</td><td class="text-right">{{ characteristics.neutralResistance }}</td>
+                    <td>{{ 'apLossResistance' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.apLossResistance }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt="">{{ 'earthResistance' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.percentEarthResistance }} %</td><td class="text-right">{{ characteristics.earthResistance }}</td>
-                </tr>
-                <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt="">{{ 'fireResistance' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.percentFireResistance }} %</td><td class="text-right">{{ characteristics.fireResistance }}</td>
-                </tr>
-                <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/water.png') }}" alt="">{{ 'waterResistance' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.percentWaterResistance }} %</td><td class="text-right">{{ characteristics.waterResistance }}</td>
-                </tr>
-                <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/air.png') }}" alt="">{{ 'airResistance' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.percentAirResistance }} %</td><td class="text-right">{{ characteristics.airResistance }}</td>
+                    <td>{{ 'mpLossResistance' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.mpLossResistance }}</td>
                 </tr>
         </table>
     </div>
@@ -106,29 +98,80 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ 'damage' | trans({'%1%': ''},'item') }}</th><th class="text-right">{{ 'fixe' | trans({},'build') }}</th><th class="text-right">{{ 'total' | trans({},'build') }}</th>
+                    <th>{{ 'resistances' | trans({},'build') }}</th>
+                    <th class="text-right">%</th>
+                    <th class="text-right">{{ 'fixe' | trans({},'build') }}</th>
                 </tr>
             </thead>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt="">{{ 'neutralDamage' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.damage }}</td><td class="text-right">{{ characteristics.neutralDamage + characteristics.damage }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt="">{{ 'neutralResistance' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.percentNeutralResistance }} %</td>
+                    <td class="text-right">{{ characteristics.neutralResistance }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt="">{{ 'earthDamage' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.damage }}</td><td class="text-right">{{ characteristics.earthDamage + characteristics.damage }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt="">{{ 'earthResistance' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.percentEarthResistance }} %</td><td class="text-right">{{ characteristics.earthResistance }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt="">{{ 'fireDamage' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.damage }}</td><td class="text-right">{{ characteristics.fireDamage + characteristics.damage }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt="">{{ 'fireResistance' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.percentFireResistance }} %</td>
+                    <td class="text-right">{{ characteristics.fireResistance }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/water.png') }}" alt="">{{ 'waterDamage' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.damage }}</td><td class="text-right">{{ characteristics.waterDamage + characteristics.damage }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/water.png') }}" alt="">{{ 'waterResistance' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.percentWaterResistance }} %</td>
+                    <td class="text-right">{{ characteristics.waterResistance }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/air.png') }}" alt="">{{ 'airDamage' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.damage }}</td><td class="text-right">{{ characteristics.airDamage + characteristics.damage }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/air.png') }}" alt="">{{ 'airResistance' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.percentAirResistance }} %</td>
+                    <td class="text-right">{{ characteristics.airResistance }}</td>
+                </tr>
+        </table>
+    </div>
+
+    <div class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{{ 'damage' | trans({'%1%': ''},'item') }}</th><th class="text-right">{{ 'fixe' | trans({},'build') }}</th>
+                    <th class="text-right">{{ 'total' | trans({},'build') }}</th>
+                </tr>
+            </thead>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/neutral.png') }}" alt="">{{ 'neutralDamage' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.damage }}</td>
+                    <td class="text-right">{{ characteristics.neutralDamage + characteristics.damage }}</td>
                 </tr>
                 <tr>
-                    <td><img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt="">{{ 'criticalDamage' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.criticalDamage }}</td><td class="text-right">{{ characteristics.criticalDamage }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/earth.png') }}" alt="">{{ 'earthDamage' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.damage }}</td>
+                    <td class="text-right">{{ characteristics.earthDamage + characteristics.damage }}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'pushbackDamage' | trans({'%1%': ''},'item') }}</td><td class="text-right">{{ characteristics.pushbackDamage }}</td><td class="text-right">{{ characteristics.pushbackDamage }}</td>
+                    <td><img src="{{ asset('bundles/dofitems/img/fire.png') }}" alt="">{{ 'fireDamage' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.damage }}</td>
+                    <td class="text-right">{{ characteristics.fireDamage + characteristics.damage }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/water.png') }}" alt="">{{ 'waterDamage' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.damage }}</td>
+                    <td class="text-right">{{ characteristics.waterDamage + characteristics.damage }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/air.png') }}" alt="">{{ 'airDamage' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.damage }}</td>
+                    <td class="text-right">{{ characteristics.airDamage + characteristics.damage }}</td>
+                </tr>
+                <tr>
+                    <td><img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt="">{{ 'criticalDamage' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.criticalDamage }}</td>
+                    <td class="text-right">{{ characteristics.criticalDamage }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'pushbackDamage' | trans({'%1%': ''},'item') }}</td>
+                    <td class="text-right">{{ characteristics.pushbackDamage }}</td>
+                    <td class="text-right">{{ characteristics.pushbackDamage }}</td>
                 </tr>
         </table>
     </div>

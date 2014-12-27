@@ -101,9 +101,11 @@ class BuildManager extends ServiceWithContainer
         $return['chance'] += $stuff->getChance();
         $return['agility'] += $stuff->getAgility();
 
+        $return['ap'] += 6;
+        $return['mp'] += 3;
+        $return['prospecting'] += 100;
         if($stuff->getCharacter()->getLevel() >= 100)
             $return['ap'] += 1;
-        $return['prospecting'] += 100;
 
         return $return;
     }
