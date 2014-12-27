@@ -34,7 +34,7 @@ class SecureControllerListener
         });
 
         foreach($annotations as $annotation)
-            if(!$this->sc->isGranted($annotation->role))
-                throw new AccessDeniedException(sprintf('Current user is not granted required role "%s".', $annotation->role));
+            if(!$this->sc->isGranted($annotation->value))
+                throw new AccessDeniedException(sprintf('Current user is not granted required role "%s".', $annotation->value));
     }
 }
