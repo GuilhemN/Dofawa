@@ -21,11 +21,11 @@ use Dof\BuildBundle\Form\ConfigurationForm;
 use Dof\ItemsBundle\EffectListHelper;
 use Dof\CharactersBundle\RankDamageEffect;
 
-/**
- * @XN\Secure("IS_AUTHENTICATED_REMEMBERED")
- */
 class BuildController extends Controller
 {
+    /**
+     * @XN\Secure("IS_AUTHENTICATED_REMEMBERED")
+     */
     public function indexAction()
     {
         $bm = $this->get('build_manager');
