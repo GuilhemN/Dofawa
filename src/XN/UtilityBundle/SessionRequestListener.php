@@ -1,5 +1,5 @@
 <?php
-namespace Dof\MainBundle;
+namespace XN\UtilityBundle;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
