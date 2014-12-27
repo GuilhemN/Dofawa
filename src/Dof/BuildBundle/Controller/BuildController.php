@@ -3,6 +3,7 @@
 namespace Dof\BuildBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use XN\Annotation\Secure;
 
 use Dof\UserBundle\Entity\User;
 use Dof\BuildBundle\Entity\PlayerCharacter;
@@ -20,27 +21,25 @@ use Dof\BuildBundle\Form\ConfigurationForm;
 use Dof\ItemsBundle\EffectListHelper;
 use Dof\CharactersBundle\RankDamageEffect;
 
+/**
+ * @Secure('IS_AUTHENTICATED_REMEMBERED')
+ */
 class BuildController extends Controller
 {
     public function indexAction()
     {
         $bm = $this->get('build_manager');
-        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            throw $this->createAccessDeniedException();
-
         $user = $this->getUser();
 
         $em = $this->getDoctrine()->getManager();
         $characters = $em->getRepository('DofBuildBundle:PlayerCharacter')->findByUser($user);
-        foreach($characters as $character){
+        foreach($characters as $character)
             $bm->transformStuff($character->getStuffs()[0]);
-        }
         $playerCharacter = new PlayerCharacter();
 
         // Si la demande d'ajout provient de la fiche de présentation d'une classe
         $newChar = $this->get('request')->get('newChar');
         if(!empty($newChar) && $newChar > 0 && $newChar < 17){
-            //$newBreed = new Breed();
             $newBreed = $em->getRepository('DofCharactersBundle:Breed')->find($newChar);
             $playerCharacter->setBreed($newBreed);
         }

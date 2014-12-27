@@ -7,8 +7,6 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\Common\Annotations\Reader;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-
 class SessionControllerListener
 {
     private $sc;
@@ -32,8 +30,7 @@ class SessionControllerListener
         if($token)
             $token->getUser();
 
-        $reader = new AnnotationReader();
-        if(!$this->re->getMethodAnnotation(new \ReflectionMethod($controller[0], $controller[1]), 'XN\Common\UsesSession'))
+        if(!$this->re->getMethodAnnotation(new \ReflectionMethod($controller[0], $controller[1]), 'XN\Annotation\UsesSession'))
             $this->se->save();
     }
 }
