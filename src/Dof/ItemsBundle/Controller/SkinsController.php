@@ -8,7 +8,7 @@ use XN\Annotations as Utils;
 use Dof\ItemsBundle\Entity\ItemTemplate;
 
 /**
-* @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+* @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
 */
 class SkinsController extends Controller
 {

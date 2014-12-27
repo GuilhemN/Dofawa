@@ -36,7 +36,7 @@ class GuildController extends Controller
     }
 
     /**
-     * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+     * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
      */
     public function addAction()
     {
@@ -61,7 +61,7 @@ class GuildController extends Controller
     }
 
     /**
-     * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+     * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
      */
     public function registerAction(Guild $guild)
     {

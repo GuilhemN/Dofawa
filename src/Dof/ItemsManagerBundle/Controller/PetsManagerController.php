@@ -9,8 +9,8 @@ use Dof\ItemsBundle\Entity\PetTemplate;
 use Dof\ItemsManagerBundle\Entity\Pet;
 
 /**
-* @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
-*/
+ * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+ */
 class PetsManagerController extends Controller
 {
     public function showAction()

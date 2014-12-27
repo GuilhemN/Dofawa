@@ -44,7 +44,7 @@ class CharacterLookController extends Controller
 	}
 
 	/**
-	 * @Utils\Secure('ROLE_STYLIST_BETA')
+	 * @Utils\Secure("ROLE_STYLIST_BETA")
 	 */
     public function createAction(Request $request)
     {
@@ -75,7 +75,7 @@ class CharacterLookController extends Controller
     }
 
 	/**
-	* @Utils\Secure('ROLE_STYLIST_BETA')
+	* @Utils\Secure("ROLE_STYLIST_BETA")
 	*/
     public function editAction(Request $request, CharacterLook $look)
     {

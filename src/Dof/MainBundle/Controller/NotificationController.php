@@ -9,7 +9,7 @@ use XN\Common\AjaxControllerTrait;
 use XN\Common\DateFormat;
 
 /**
- * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+ * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
  */
 class NotificationController extends Controller
 {

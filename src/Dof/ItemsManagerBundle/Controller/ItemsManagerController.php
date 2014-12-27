@@ -11,7 +11,7 @@ use Dof\ItemsManagerBundle\Form\InventorySearch;
 use Dof\UserBundle\Entity\User;
 
 /**
- * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+ * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
  */
 class ItemsManagerController extends Controller
 {

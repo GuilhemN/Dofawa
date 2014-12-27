@@ -8,7 +8,7 @@ use XN\Annotations as Utils;
 use Dof\MonsterBundle\Entity\Monster;
 
 /**
-* @Utils\Secure('ROLE_SUPER_ADMIN')
+* @Utils\Secure("ROLE_SUPER_ADMIN")
 */
 class SkinsController extends Controller
 {

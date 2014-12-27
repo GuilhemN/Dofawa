@@ -8,7 +8,7 @@ use XN\Annotations as Utils;
 use Dof\CharactersBundle\Entity\Spell;
 
 /**
-* @Utils\Secure('ROLE_SUPER_ADMIN')
+* @Utils\Secure("ROLE_SUPER_ADMIN")
 */
 class UpdateSpellController extends Controller
 {

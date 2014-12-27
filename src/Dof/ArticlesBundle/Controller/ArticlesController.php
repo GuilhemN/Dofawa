@@ -26,7 +26,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @Utils\Secure('IS_AUTHENTICATED_FULLY')
+     * @Utils\Secure("IS_AUTHENTICATED_FULLY")
      */
     public function editAction($type, Article $article)
     {
@@ -64,7 +64,7 @@ class ArticlesController extends Controller
     }
 
     /**
-    * @Utils\Secure('IS_AUTHENTICATED_FULLY')
+    * @Utils\Secure("IS_AUTHENTICATED_FULLY")
     */
     public function AddAction($type)
     {
@@ -120,7 +120,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @Utils\Secure('ROLE_REDACTOR')
+     * @Utils\Secure("ROLE_REDACTOR")
      */
     public function addListAction($type,$page)
     {
@@ -168,7 +168,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @Utils\Secure('ROLE_REDACTOR')
+     * @Utils\Secure("ROLE_REDACTOR")
      */
     public function validAction(Article $article)
     {

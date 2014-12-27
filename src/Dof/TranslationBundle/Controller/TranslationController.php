@@ -24,7 +24,7 @@ class TranslationController extends Controller
     }
 
     /**
-     * @Utils\Secure('IS_AUTHENTICATED_REMEMBERED')
+     * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
      */
     public function createAction($tLocale, $domain, $label, Request $request){
         $translator = $this->get('translator');

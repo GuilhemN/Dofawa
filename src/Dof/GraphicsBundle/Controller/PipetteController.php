@@ -14,7 +14,7 @@ use Dof\GraphicsBundle\EntityLookTransforms;
 use Dof\GraphicsBundle\Entity\CharacterLook;
 
 /**
- * @Utils\Secure('ROLE_STYLIST_BETA')
+ * @Utils\Secure("ROLE_STYLIST_BETA")
  */
 class PipetteController extends Controller
 {
