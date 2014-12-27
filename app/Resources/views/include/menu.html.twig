@@ -103,8 +103,8 @@
                         {{ 'nav.tools.title' | trans() }} <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-header">Stuffs</li>
                         {% if app.user is not null %}
+                        <li class="dropdown-header">Stuffs</li>
                         <li><a href="{{ path('dof_build_homepage') }}">Mes builds</a></li>
                         <li><a href="{{ path('dof_items_manager_homepage') }}">{{ 'inventory'|trans({}, 'generalTrans') }}</a></li>
                         {% endif %}

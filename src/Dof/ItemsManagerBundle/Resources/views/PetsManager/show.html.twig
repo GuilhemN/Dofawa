@@ -9,19 +9,18 @@
 {% autoescape %}
 	<h3>{{ 'petsManager' | trans({}, 'petsManager') }}</h3>
     {{ 'notifications' | trans({}, 'generalTrans') }} :
-    {% if app.user.petsManagerNotifications %}
-        <strong>{{ 'activated' | trans({}, 'generalTrans') }}</strong>
-        <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
+
+    <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
+        {% if app.user.petsManagerNotifications %}
+            <strong>{{ 'activated' | trans({}, 'generalTrans') }}</strong>
             <input type="hidden"  name="notif" value="0">
             <button type="submit" class="btn btn-primary">{{ 'deactivate' | trans({}, 'generalTrans') }}</button>
-        </form>
-    {% else %}
-        <strong>{{ 'deactivate' | trans({}, 'generalTrans') }}</strong>
-        <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
+        {% else %}
+            <strong>{{ 'deactivate' | trans({}, 'generalTrans') }}</strong>
             <input type="hidden"  name="notif" value="1">
             <button type="submit" class="btn btn-primary">{{ 'activate' | trans({}, 'generalTrans') }}</button>
-        </form>
-    {% endif %}
+        {% endif %}
+    </form>
     <div class="panel panel-default">
         <div class="panel-heading">{{ 'animals.pets' | transchoice(2,{}, 'type_item') }}</div>
         <form method="POST" name="feedPets" action="{{ path('dof_items_manager_pets_feed') }}">
@@ -38,13 +37,7 @@
                 <tbody>
                     {% for pet in pets %}
                         {% set hourMax = '+' ~ pet.itemTemplate.maxFeedInterval ~ ' hour' %}
-                        <tr {% if pet.lastMeal is not null and date(pet.nextMeal) > date() %}
-                                    class="success"
-                                {% elseif pet.lastMeal is not null and (date(pet.nextMeal) < date() and date(pet.lastMeal | date_modify(hourMax)) > date() ) %}
-                                    class="warning"
-                                {% else %}
-                                    class="danger"
-                                {% endif %}>
+                        <tr class="{% if date(pet.nextMeal) > date() %}success{% elseif (date(pet.nextMeal) < date() and date(pet.lastMeal | date_modify(hourMax)) > date() ) %}warning{% else %}danger{% endif %}">
                             <td>
 
                                 {% if pet.name is not null %}
