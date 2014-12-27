@@ -12,12 +12,12 @@ use FOS\UserBundle\Controller\SecurityController as BaseController;
 
 class SecurityController extends BaseController
 {
-    /**
-     * @Utils\UsesSession
-     */
-    public function loginAction(Request $request)
+    protected function renderLogin(array $data)
     {
-        return parent::loginAction($request);
+        $pb = $this->get('xn.parameter_bag');
+        $lastUsername = $pb->getParameter('dof_user_last_username');
+        $csrfToken = $pb->getParameter('dof_user_csrf_authenticate');
+        return $this->render('FOSUserBundle:Security:login.html.twig', $data + ['last_username' => $lastUsername, 'csrf_token' => $csrfToken]);
     }
 
     public function moduleloginAction($module = '')
