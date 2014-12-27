@@ -5,7 +5,7 @@ class ParameterBag
 {
     private $values;
 
-    public function __contruct(array $data = array()){
+    public function __construct(array $data = array()){
         $this->values = $data;
     }
 
