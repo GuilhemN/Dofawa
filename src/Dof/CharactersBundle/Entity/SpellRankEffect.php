@@ -11,6 +11,8 @@ use Dof\CharactersBundle\EffectTrait;
 
 use Dof\Common\GameTemplateString;
 
+use Dof\ItemsBundle\EffectListHelper;
+
 /**
  * SpellRankEffect
  *
@@ -362,6 +364,23 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     {
         return $this->critical;
     }
+
+	public function getDamageEntry()
+	{
+		static $map = null;
+		if ($map === null)
+			$map = EffectListHelper::getDamageMap();
+		$eid = $this->getEffectTemplate()->getId();
+		$entry = isset($map[$eid]) ? $map[$eid] : null;
+		if (!$entry || $entry[0] == Element::AP_LOSS)
+			return null;
+		return [
+			'element' => $entry[0],
+			'min' => $this->getParam1(),
+			'max' => $this->getParam2() ? $this->getParam2() : $this->getParam1(),
+			'leech' => $entry[1]
+		];
+	}
 
 	public function getDescription($locale = 'fr', $full = false)
 	{

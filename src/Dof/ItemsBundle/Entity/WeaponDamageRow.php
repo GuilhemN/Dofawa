@@ -236,6 +236,18 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
         return $this->element == Element::NEUTRAL && !$this->leech;
     }
 
+	public function getDamageEntry()
+	{
+		if ($this->element == Element::AP_LOSS)
+			return null;
+		return [
+			'element' => $this->element,
+			'min' => $this->min,
+			'max' => $this->max,
+			'leech' => $this->leech
+		];
+	}
+
     public function exportData($full = true, $locale = 'fr')
     {
         return [

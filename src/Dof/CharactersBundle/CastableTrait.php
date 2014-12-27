@@ -317,4 +317,7 @@ trait CastableTrait
 			'castArea' => $this->getCastArea()
         ] : [ ];
     }
+
+	public abstract function getDamageEntries();
+	public abstract function getCriticalDamageEntries();
 }
