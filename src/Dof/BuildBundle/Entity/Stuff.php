@@ -974,14 +974,14 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
                 return 'hat';
             case ItemSlot::CLOAK:
                 return 'cloak';
-            case ItemSlot::PET:
-            case ItemSlot::MOUNT:
-                return 'animal';
             case ItemSlot::DOFUS:
                 if($slot >= 1 && $slot <= 6)
                     return 'dofus' . $slot;
                 else
                     return 'dofus1';
+            default:
+                if($item->isAnimal)
+                    return 'animal';
         }
     }
 

@@ -53,6 +53,8 @@ class StuffController extends Controller
             $bItem = $iFact->createItem($item, $percent, $stuff->getCharacter()->getOwner());
             $bItem->setSticky(false);
             $type = $stuff->getItemType($bItem, $slot);
+            if(!$type)
+                continue;
             $lItem = $stuff->{'get' . ucfirst($type)}();
 
             if(!empty($lItem) && !$lItem->isSticky() && $lItem->getName() == null && count($lItem->getStuffs()) <= 1){

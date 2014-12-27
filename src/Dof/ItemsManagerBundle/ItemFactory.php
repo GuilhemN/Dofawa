@@ -49,7 +49,11 @@ class ItemFactory {
                 $ent = new Ent\Mount();
                 break;
             default:
-            $ent = new Ent\Item();
+                if($item->isMount())
+                    $ent = new Ent\Mount();
+                else
+                    $ent = new Ent\Item();
+                break;
         }
 
         $ent->setOwner($user);
