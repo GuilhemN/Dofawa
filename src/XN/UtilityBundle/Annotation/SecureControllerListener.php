@@ -1,5 +1,5 @@
 <?php
-namespace XN\UtilityBundle;
+namespace XN\UtilityBundle\Annotation;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -30,7 +30,7 @@ class SecureControllerListener
         $annotations = array_filter($annotations, function ($v) {
             return $v instanceof Secure;
         });
-        
+
         foreach($annotations as $annotation)
             if(!$this->sc->isGranted($annotation->role))
                 throw new AccessDeniedException(sprintf('Current user is not granted required role "%s".', $annotation->role));
