@@ -37,12 +37,11 @@ class ItemsController extends Controller
     public function showBuildItemsAction(Stuff $stuff, PlayerCharacter $character, User $user, $canWrite, $type, $slot, $page){
         if(!$canWrite)
             throw $this->createAccessDeniedException();
-        $slotNumber = $slot;
 
         $repo = 'DofItemsBundle:EquipmentTemplate';
         if($type == 'animal')
             $repo = 'DofItemsBundle:AnimalTemplate';
-        elseif(($slot = ItemSlot::getValue(strtoupper($type))) === null)
+        elseif(($iSlot = ItemSlot::getValue(strtoupper($type))) === null)
             throw $this->createNotFoundException('Type d\'item non trouvé');
         $slugs = [
                     'user' => $user->getSlug(),
@@ -52,7 +51,7 @@ class ItemsController extends Controller
 
         $form = $this->createForm(new ItemSearch(false));
         $form->handleRequest($this->get('request'));
-        $data = isset($slot) ? array_merge($form->getData(), ['type' => $slot]) : $form->getData();
+        $data = isset($iSlot) ? array_merge($form->getData(), ['type' => $iSlot]) : $form->getData();
         $params = $this->getItems($form->getData(), $page, $slugs + ['type' => $type], $repo);
 
         return $this->render('DofItemsBundle:Items:index.html.twig',
@@ -60,7 +59,7 @@ class ItemsController extends Controller
             [
                 'form' => $form->createView(),
                 'slugs' => $slugs,
-                'slot_number' => $slotNumber
+                'slot_number' => $slot
             ]
             );
     }
