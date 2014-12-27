@@ -16,6 +16,13 @@ class UtilityExtension extends \Twig_Extension
         $this->container = $container;
     }
 
+	public function getGlobals()
+	{
+		return array(
+			'variables' => $this->container->get('variables')
+		);
+	}
+
 	public function getFunctions()
 	{
 		return array(
