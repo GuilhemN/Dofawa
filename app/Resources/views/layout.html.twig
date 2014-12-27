@@ -233,14 +233,14 @@
     {% if is_granted('ROLE_SUPER_ADMIN') %}
     <script defer type="text/javascript">
         function websiteInUpdate() {
-            $.get( Routing.generate('root') + "in_update.php", function( data ) {
+            $.get( "{{ asset('in_update.php') }}", function( data ) {
                 if(data)
-                    $('#in_update').show()
+                    $('#in_update').show();
                 else
-                    $('#in_update').hide()
+                    $('#in_update').hide();
             });
         }
-
+        setInterval(function () {inUpdate();}, 5000);
         websiteInUpdate();
     </script>
     {% endif %}
