@@ -15,7 +15,7 @@ class SecurityController extends BaseController
     protected function renderLogin(array $data)
     {
         $vb = $this->get('variables');
-        $lastUsername = '';
+        $lastUsername = @$vb->get('dof_user_last_username');
         $csrfToken = $vb->get('dof_user_csrf_authenticate');
         return $this->render('FOSUserBundle:Security:login.html.twig', $data + ['last_username' => $lastUsername, 'csrf_token' => $csrfToken]);
     }
@@ -23,7 +23,7 @@ class SecurityController extends BaseController
     public function moduleloginAction($module = '')
     {
         $vb = $this->get('variables');
-        $lastUsername = '';
+        $lastUsername = @$vb->get('dof_user_last_username');
         $csrfToken = $vb->get('dof_user_csrf_authenticate');
 
         return $this->renderModuleLogin(array(
