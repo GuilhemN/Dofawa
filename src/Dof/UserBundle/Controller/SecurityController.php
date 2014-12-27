@@ -5,17 +5,20 @@ namespace Dof\UserBundle\Controller;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Httpfoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use XN\Annotations as Utils;
 
 use FOS\UserBundle\Controller\SecurityController as BaseController;
 
 class SecurityController extends BaseController
 {
+
+
     public function moduleloginAction($module = '')
     {
         $pb = $this->get('xn.parameter_bag');
-        $lastUsername = $pb->getParameter('dof_user.last_username');
-        $csrfToken = $pb->getParameter('dof_user.csrf_authenticate');
+        $lastUsername = $pb->getParameter('dof_userlast_username');
+        $csrfToken = $pb->getParameter('dof_usercsrf_authenticate');
 
         return $this->renderModuleLogin(array(
                 'last_username' => $lastUsername,
