@@ -94,6 +94,7 @@ class BuildController extends Controller
     }
 
     public function showAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+        $this->get('session')->save();
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
@@ -134,6 +135,7 @@ class BuildController extends Controller
     }
 
     public function configurationAction($user, Stuff $stuff, PlayerCharacter $character, $canWrite){
+        $this->get('session')->save();
         if(!$canWrite) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
         $em = $this->getDoctrine()->getManager();
@@ -196,6 +198,7 @@ class BuildController extends Controller
     }
 
     public function showCharacteristicsAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+        $this->get('session')->save();
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
@@ -212,6 +215,7 @@ class BuildController extends Controller
     }
 
     public function showWeaponDamagesAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+        $this->get('session')->save();
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
@@ -231,6 +235,7 @@ class BuildController extends Controller
     }
 
     public function showSpellsDamagesAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
+        $this->get('session')->save();
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
         $bm = $this->get('build_manager');
