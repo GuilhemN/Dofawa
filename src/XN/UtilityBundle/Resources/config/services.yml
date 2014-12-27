@@ -115,12 +115,12 @@ services:
 
     xn.session_controller_listener:
         class: %xn.session_controller_listener.class%
-        arguments: [ @security.context, @session, @annotation_reader ]
+        arguments: [ @security.context, @session, @annotation_reader, @service_container ]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
 
     xn.secure_controller_listener:
         class: %xn.secure_controller_listener.class%
-        arguments: [ @security.context, @annotation_reader, @service_container ]
+        arguments: [ @security.context, @annotation_reader ]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
