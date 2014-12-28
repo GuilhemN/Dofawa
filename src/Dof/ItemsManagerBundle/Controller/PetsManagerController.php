@@ -34,7 +34,7 @@ class PetsManagerController extends Controller
         $em->persist($pet);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('dof_items_manager_pets'));
+        return $this->createRedirection();
     }
 
     public function feedAction()
@@ -49,7 +49,7 @@ class PetsManagerController extends Controller
 
         $em->flush();
 
-         return $this->redirect($this->generateUrl('dof_items_manager_pets'));
+        return $this->createRedirection();
     }
 
     public function removeAction(Pet $pet)
@@ -60,7 +60,7 @@ class PetsManagerController extends Controller
         $pet->setRaise(false);
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->redirect($this->generateUrl('dof_items_manager_pets'));
+        return $this->createRedirection();
     }
 
     public function raiseAction(Pet $pet)
@@ -68,13 +68,13 @@ class PetsManagerController extends Controller
         if($pet->getOwner() !== $this->getUser())
             throw $this->createAccessDeniedException();
         if(!$pet->isRaise())
-            throw$this->createNotFoundException();
+            throw $this->createNotFoundException();
 
         $pet->setRaise(true);
         $pet->setLastMeal(new \DateTime());
         $em->flush();
 
-        return $this->redirect($this->generateUrl('dof_items_manager_pets'));
+        return $this->createRedirection();
     }
 
     public function notifAction()
@@ -82,6 +82,10 @@ class PetsManagerController extends Controller
         $this->getUser()->setPetsManagerNotifications((bool) $this->get('request')->get('notif'));
         $this->getDoctrine()->getManager()->flush();
 
-         return $this->redirect($this->generateUrl('dof_items_manager_pets'));
+        return $this->createRedirection();
+    }
+
+    protected function createRedirection(){
+        return $this->redirect($this->generateUrl('dof_items_manager_pets'));
     }
 }
