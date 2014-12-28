@@ -52,7 +52,7 @@ class ForumController extends Controller
      */
     public function addMessageAction(Topic $topic)
     {
-        if($topic->getLocked())
+        if($topic->getLocked() && !$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN'))
             throw $this->createAccessDeniedException();
 
         $message = new Message;

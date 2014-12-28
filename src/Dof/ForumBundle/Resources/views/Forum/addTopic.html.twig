@@ -11,13 +11,13 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">{{ forum.getName(locales()) }}</h3>
 		</div>
-		<table class="table">
+		<div class="panel-body">
             <form method="post" {{ form_enctype(formtopic) }} >
                 {{ form_widget(formtopic) }}
                 {{ form_rest(formtopic) }}
                 <input type="submit" class="btn btn-primary text-center" />
             </form>
-		</table>
+		</div>
 	</div>
 {% endautoescape %}
 {% endblock %}

@@ -9,22 +9,14 @@
 {% autoescape %}
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">{{ topic.getName(locales()) }}
-			{% if topic.locked %}
-			<b>({{ 'topic_lock' | trans({}, 'forum')}})</b>
-			{% endif %}
-			</h3>
+			<h3 class="panel-title">{{ topic.getName(locales()) }}</h3>
 		</div>
-		{% if not topic.locked %}
-			<table class="table">
-	            <form method="post" {{ form_enctype(form) }} >
-	                {{ form_widget(form) }}
-	                <input type="submit" class="btn btn-primary text-center" />
-	            </form>
-			</table>
-		{% else %}
-			<h1>{{ 'lock_mess' | trans({}, 'forum')}}</h1>
-		{% endif %}
+		<div class="panel-body">
+            <form method="post" {{ form_enctype(form) }} >
+                {{ form_widget(form) }}
+                <input type="submit" class="btn btn-primary text-center" />
+            </form>
+		</div>
 	</div>
 {% endautoescape %}
 {% endblock %}

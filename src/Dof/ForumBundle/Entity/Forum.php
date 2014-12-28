@@ -65,7 +65,6 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
         $this->topics = new ArrayCollection();
     }
 
-
     /**
      * Get id
      *
@@ -161,9 +160,9 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * isUnRead
+     * isRead
      *
-     * @param $repo, User $user
+     * @param User $user
      * @return boolean
      */
     public function isReadBy(User $user = null)
