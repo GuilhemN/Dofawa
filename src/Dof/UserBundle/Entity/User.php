@@ -65,9 +65,9 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     /**
      * @var string
      *
-     * @ORM\Column(name="guilde", type="string", length=100, nullable=true)
+     * @ORM\Column(name="guild", type="string", length=100, nullable=true)
      */
-    private $guilde = null;
+    private $guild = null;
 
     /**
      * @var string
@@ -228,26 +228,26 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set guilde
+     * Set guild
      *
-     * @param string $guilde
+     * @param string $guild
      * @return User
      */
-    public function setGuilde($guilde)
+    public function setGuild($guild)
     {
-        $this->guilde = $guilde;
+        $this->guild = $guild;
 
         return $this;
     }
 
     /**
-     * Get guilde
+     * Get guild
      *
      * @return string
      */
-    public function getGuilde()
+    public function getGuild()
     {
-        return $this->guilde;
+        return $this->guild;
     }
 
     /**

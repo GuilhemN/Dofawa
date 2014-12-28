@@ -1,7 +1,8 @@
 {% extends 'DofGuildBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-    {{ parent() }}<li>Ajout</li>
+    {{ parent() }}
+    <li>Ajout</li>
 {% endblock %}
 
 {% block body %}
@@ -14,7 +15,7 @@
                 	{{ form_widget(form) }}
                 <input type="submit" class="btn btn-primary text-center" />
             </form>
-				</table> 
+				</table>
 			</div>
 	</div>
 {% endautoescape %}

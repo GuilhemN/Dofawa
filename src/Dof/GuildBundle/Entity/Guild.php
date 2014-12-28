@@ -36,9 +36,9 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * @var string
      *
-     * @ORM\Column(name="serveur", type="string", length=255)
+     * @ORM\Column(name="server", type="string", length=255)
      */
-    private $serveur;
+    private $server;
 
     /**
      * @var integer
@@ -93,7 +93,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
      * @ORM\Column(name="speciality", type="string", length=255)
      */
     private $speciality;
- 
+
     /**
      * @var text
      *
@@ -112,7 +112,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -135,7 +135,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get serveur
      *
-     * @return string 
+     * @return string
      */
     public function getServeur()
     {
@@ -158,7 +158,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get lvlguild
      *
-     * @return integer 
+     * @return integer
      */
     public function getLvlguild()
     {
@@ -181,7 +181,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get lvlmini
      *
-     * @return integer 
+     * @return integer
      */
     public function getLvlmini()
     {
@@ -204,7 +204,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get leader
      *
-     * @return string 
+     * @return string
      */
     public function getLeader()
     {
@@ -227,7 +227,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get recruitment
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getRecruitment()
     {
@@ -250,7 +250,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get speciality
      *
-     * @return string 
+     * @return string
      */
     public function getSpeciality()
     {
@@ -273,7 +273,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get description
      *
-     * @return text 
+     * @return text
      */
     public function getDescription()
     {
@@ -296,7 +296,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get forum
      *
-     * @return string 
+     * @return string
      */
     public function getForum()
     {
@@ -319,7 +319,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
