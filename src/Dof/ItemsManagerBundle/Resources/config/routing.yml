@@ -11,6 +11,8 @@ dof_items_manager_pets:
 dof_items_manager_pets_feed:
     pattern:   /pets-manager/feed
     defaults: { _controller: DofItemsManagerBundle:PetsManager:feed }
+    requirements:
+        _method: POST
 
 dof_items_manager_pets_add:
     pattern:   /pets-manager/add/{id}
@@ -18,9 +20,9 @@ dof_items_manager_pets_add:
     requirements:
         id: \d+
 
-dof_items_manager_pets_del:
-    pattern:   /pets-manager/del/{id}
-    defaults: { _controller: DofItemsManagerBundle:PetsManager:del}
+dof_items_manager_pets_remove:
+    pattern:   /pets-manager/remove/{id}
+    defaults: { _controller: DofItemsManagerBundle:PetsManager:remove}
     requirements:
         id: \d+
 
@@ -33,3 +35,5 @@ dof_items_manager_pets_raise:
 dof_items_manager_pets_notif:
     pattern:   /pets-manager/notif
     defaults: { _controller: DofItemsManagerBundle:PetsManager:notif }
+    requirements:
+        _method: POST

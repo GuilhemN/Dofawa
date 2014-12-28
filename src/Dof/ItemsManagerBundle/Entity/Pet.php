@@ -15,15 +15,15 @@ class Pet extends Animal
     /**
     * @var datetime
     *
-    * @ORM\Column(name="last_meal", type="datetime")
+    * @ORM\Column(name="last_feeding", type="datetime")
     */
-    protected $lastMeal;
+    protected $lastFeeding;
     /**
     * @var datetime
     *
-    * @ORM\Column(name="next_meal", type="datetime")
+    * @ORM\Column(name="next_feeding", type="datetime")
     */
-    protected $nextMeal;
+    protected $nextFeeding;
 
     /**
      * @var boolean
@@ -33,7 +33,7 @@ class Pet extends Animal
     protected $raise;
 
     /**
-    * @var Mount
+    * @var PetTemplate
     *
     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\PetTemplate")
     * @ORM\JoinColumn(onDelete="SET NULL")
@@ -47,34 +47,29 @@ class Pet extends Animal
      */
     protected $lastNotification;
 
-    public function __construct(){
-        $this->lastMeal = new \DateTime('now');
-        $this->lastNotification = new \DateTime('now');
-        $this->nextMeal = ( new \DateTime('now') )->modify('+' . $this->getItemTemplate()->getMinFeedInterval() . ' hour');
-    }
     /**
-     * Set lastMeal
+     * Set lastFeeding
      *
-     * @param datetime $lastMeal
+     * @param datetime $lastFeeding
      * @return Pet
      */
-    public function setLastMeal($lastMeal)
+    public function setLastFeeding($lastFeeding)
     {
-        $this->lastMeal = $lastMeal;
-        $nextMeal = clone $lastMeal;
-        $this->nextMeal = $nextMeal->modify('+' . $this->getItemTemplate()->getMinFeedInterval() . ' hour');
+        $this->lastFeeding = $lastFeeding;
+        $nextFeeding = clone $lastFeeding;
+        $this->nextFeeding = $nextFeeding->modify('+' . $this->getItemTemplate()->getMinFeedInterval() . ' hour');
 
         return $this;
     }
 
     /**
-     * Get lastMeal
+     * Get lastFeeding
      *
      * @return datetime
      */
-    public function getLastMeal()
+    public function getLastFeeding()
     {
-        return $this->lastMeal;
+        return $this->lastFeeding;
     }
 
     /**
@@ -82,9 +77,9 @@ class Pet extends Animal
     *
     * @return datetime
     */
-    public function getNextMeal()
+    public function getNextFeeding()
     {
-        return $this->nextMeal;
+        return $this->nextFeeding;
     }
 
     /**

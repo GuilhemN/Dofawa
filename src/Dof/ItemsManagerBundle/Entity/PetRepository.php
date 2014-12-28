@@ -14,17 +14,6 @@ use Dof\UserBundle\Entity\User;
 */
 class PetRepository extends EntityRepository
 {
-	public function getRaisablePets(User $user){
-		$qb = $this->createQueryBuilder('i')
-				   ->select('i')
-				   ->where('i.raise = true and i.owner = :user')
-				   ->setParameter('user', $user)
-				   ->addOrderBy('i.nextMeal', 'ASC')
-		;
-
-		return $qb->getQuery()->getResult();
-	}
-
 	public function getAllPetsNotification(){
 		$qb = $this->createQueryBuilder('i')
 				   ->select('i', 'u', 'it')

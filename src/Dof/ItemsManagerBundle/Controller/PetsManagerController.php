@@ -16,7 +16,7 @@ class PetsManagerController extends Controller
     public function showAction()
     {
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
-        $pets = $repository->getRaisablePets($this->getUser());
+        $pets = $repository->findBy(['owner' => $this->getUser(), 'raise' => true], ['nextFeeding' => 'ASC']);
 
         return $this->render('DofItemsManagerBundle:PetsManager:show.html.twig', array('pets' => $pets));
     }
@@ -27,98 +27,61 @@ class PetsManagerController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $pet = $iFact->createItem($item, null, $this->getUser());
-        $pet->setRaise(true);
-        $pet->setSticky(true);
+        $pet->setRaise(true)
+            ->setSticky(true)
+            ->setLastFeeding(new \DateTime('now'))
+            ->setLastNotification(new \DateTime('now'));
         $em->persist($pet);
         $em->flush();
 
-        $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
-        $pets = $repository->getRaisablePets($this->getUser());
-
-        return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
-            'pets' => $pets
-            )));
+        return $this->redirect($this->generateUrl('dof_items_manager_pets'));
     }
 
     public function feedAction()
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
-        $pets = $repository->getRaisablePets($this->getUser());
-        $petsFeed = $repository->findBy(['id' => $this->get('request')->get('pets'), 'owner' => $this->getUser()]);
+        $petsFeed = $repository->findBy(['id' => $this->get('request')->get('pets'), 'owner' => $this->getUser(), 'raise' => true]);
 
-        $date = new \DateTime();
-        $date->format('Y-m-d H:i:s');
+        $lastFeeding = new \DateTime();
         foreach ($petsFeed as $pet)
-            if($pet->isRaise())
-                $pet->setLastMeal($date);
+            $pet->setLastFeeding($lastFeeding);
 
         $em->flush();
 
-         return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
-                'pets' => $pets
-                )));
+         return $this->redirect($this->generateUrl('dof_items_manager_pets'));
     }
 
-    public function delAction(Pet $item)
+    public function removeAction(Pet $pet)
     {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
-        $pets = $repository->getRaisablePets($this->getUser());
+        if($pet->getOwner() !== $this->getUser())
+            throw $this->createAccessDeniedException();
 
-        foreach ($pets as $pet) {
-            if( ($item->getOwner() === $pet->getOwner()) && ($item->getId() == $pet->getId()) ){
-                $pet->setRaise(false);
-                $em->persist($pet);
-                $em->flush();
-                break;
-            }
-        }
+        $pet->setRaise(false);
+        $this->getDoctrine()->getManager()->flush();
 
-
-   return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
-            'pets' => $pets
-            )));
+        return $this->redirect($this->generateUrl('dof_items_manager_pets'));
     }
 
-    public function raiseAction(Pet $item)
+    public function raiseAction(Pet $pet)
     {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
-        $petsRaisable = $repository->getRaisablePets($this->getUser());
+        if($pet->getOwner() !== $this->getUser())
+            throw $this->createAccessDeniedException();
+        if(!$pet->isRaise())
+            throw$this->createNotFoundException();
 
-        $repoItem = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Item');
-        $pets = $repoItem->findWithOptions(array(), $this->getUser());
+        $pet->setRaise(true);
+        $pet->setLastMeal(new \DateTime());
+        $em->flush();
 
-        foreach ($pets as $pet) {
-            if( ($item->getOwner() === $pet->getOwner()) && ($item->getId() == $pet->getId()) ){
-                $pet->setRaise(true);
-                $pet->setLastMeal(new \DateTime());
-                $em->persist($pet);
-                $em->flush();
-                break;
-            }
-        }
-
-        return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
-            'pets' => $petsRaisable
-            )));
+        return $this->redirect($this->generateUrl('dof_items_manager_pets'));
     }
 
     public function notifAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->getUser()->setPetsManagerNotifications((bool) $this->get('request')->get('notif'));
+        $this->getDoctrine()->getManager()->flush();
 
-        if(is_numeric($this->get('request')->get('notif'))){
-            $this->getUser()->setPetsManagerNotifications($this->get('request')->get('notif'));
-            $em->flush();
-        }
-
-        $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
-        $pets = $repository->getRaisablePets($this->getUser());
-
-         return $this->redirect($this->generateUrl('dof_items_manager_pets', array(
-                'pets' => $pets
-                )));
+         return $this->redirect($this->generateUrl('dof_items_manager_pets'));
     }
 }
