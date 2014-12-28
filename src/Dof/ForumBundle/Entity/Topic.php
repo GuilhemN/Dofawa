@@ -307,9 +307,6 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     {
         if($user === null)
             return true;
-        $criteria = Criteria::create()
-            ->where(Criteria::expr()->eq("id", $user->getId()))
-        ;
-        return count($this->readBy->matching($criteria)) > 0;
+        return $this->readBy->contains($user);
     }
 }
