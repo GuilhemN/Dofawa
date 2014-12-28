@@ -170,7 +170,7 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
         if($user === null)
             return true;
         foreach($this->topics as $t)
-            if(!$t->isReadBy())
+            if(!$t->isReadBy($user))
                 return false;
         return true;
     }
