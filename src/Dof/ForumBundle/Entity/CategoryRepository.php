@@ -3,7 +3,7 @@
 namespace Dof\ForumBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Dof\ForumBundle\Entity\Forum;
+
 /**
  * CategoryRepository
  *
@@ -12,14 +12,4 @@ use Dof\ForumBundle\Entity\Forum;
  */
 class CategoryRepository extends EntityRepository
 {
-	function displayOrder()
-	{
-		$qb = $this->createQueryBuilder('c')
-				->select('c', 'f')
-				->leftJoin('c.forums', 'f')
-                ->addOrderBy('c.index', 'ASC')
-                ->addOrderBy('f.index', 'ASC');
-
-		return $qb;
-	}
 }

@@ -22,11 +22,9 @@ class ForumController extends Controller
     public function indexAction()
     {
     	$em = $this->getDoctrine()->getManager();
-    	$categories = $em->getRepository('DofForumBundle:Category')->displayOrder()->getQuery()->getResult();
+    	$categories = $em->getRepository('DofForumBundle:Category')->findBy([], ['index' => 'ASC']);
 
-		$repo = $em->getRepository('DofForumBundle:Forum');
-
-        return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories, 'repo' => $repo));
+        return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories));
     }
 
     /**
@@ -35,13 +33,8 @@ class ForumController extends Controller
     public function showForumAction(Forum $forum)
     {
 		$user = $this->getUser();
-        if($user == 'anon.')
-            $user = null;
 
-		$em = $this->getDoctrine()->getManager();
-		$repo = $em->getRepository('DofForumBundle:Topic');
-
-        return $this->render('DofForumBundle:Forum:showForum.html.twig', ['forum' => $forum, 'user' => $user, 'repo' => $repo]);
+        return $this->render('DofForumBundle:Forum:showForum.html.twig', [ 'forum' => $forum, 'user' => $user ]);
     }
 
     public function showTopicAction(Topic $topic)
@@ -58,18 +51,7 @@ class ForumController extends Controller
             $em->flush();
         }
 
-        foreach ($topic->getMessages() as $message) {
-            if(!isset($countUser[$message->getOwner()->getId()]))
-            {
-                $uBadge = $em->getRepository('DofUserBundle:Badge')->findOneBy(array('badge' => $badge, 'owner' => $message->getOwner()));
-                if($uBadge === null)
-                $countUser[$message->getOwner()->getId()] = '0';
-                else
-                $countUser[$message->getOwner()->getId()] = $uBadge->getCount();
-            }
-        }
-
-        return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic, 'countUser' => $countUser));
+        return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic));
     }
 
     /**
@@ -78,6 +60,9 @@ class ForumController extends Controller
      */
     public function addMessageAction(Topic $topic)
     {
+        if($topic->getLocked())
+            throw $this->createAccessDeniedException();
+        
         $message = new Message;
         $form = $this->createForm(new MessageType, $message);
 
@@ -123,7 +108,7 @@ class ForumController extends Controller
             if ($formTopic->isValid()) {
 
                 $topic->setForum($forum);
-                $topic->setLocked(0);
+                $topic->setLocked(false);
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($topic);

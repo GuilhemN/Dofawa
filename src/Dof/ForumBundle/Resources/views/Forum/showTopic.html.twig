@@ -34,13 +34,12 @@
 					        <div class="thumbnail">
 						      <div class="caption {{ color |default() }}">
 						      	<table>
-						      		<tr><td><a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner }}</a></td></tr>
+						      		<tr><td><a href="{{ path('dof_profile_userpage', { 'slug' : message.owner }) }}">{{ message.owner.username }}</a></td></tr>
 						      		<tr class="hidden-xs"><td><img src="{{ asset(message.owner.getWebPath()) }}"></td></tr>
-						      		<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }}: {{ message.owner.guilde }}</td></tr>
+						      		<tr><td>{{ 'inputs.guild' | trans({}, 'profile') }}: {{ message.owner.guild }}</td></tr>
 						      		<tr><td>{{ 'inputs.location' | trans({}, 'profile') }}: {{ message.owner.lieu }}</td></tr>
 						      		<tr><td>{{ 'register_at' | trans({}, 'forum')}}: {{ message.owner.createdAt | date("d/m/Y") }}</td></tr>
-						      		<tr><td>Message(s): {{ countUser[message.owner.id] }}</td></tr>
-						      		<tr><td><b>{{ role |default() }}</b></td></tr>
+						      		<tr><td><b>{{ role | default() }}</b></td></tr>
 						      	</table>
 						      </div>
 						    </div>
@@ -55,13 +54,13 @@
 				        <td></td>
 				    </tr>
 				</table>
-				
+
 		  	</div>
 		</div>
 	{% endfor %}
 	<center>
-		 
-		{% if topic.getLocked() %}
+
+		{% if topic.locked %}
 			<a disabled="disabled">
 		<button type="button" class="btn btn-default btn-lg">
 		    {{ 'topic_lock' | trans({}, 'forum')}}

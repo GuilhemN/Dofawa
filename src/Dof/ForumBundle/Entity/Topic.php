@@ -5,6 +5,7 @@ namespace Dof\ForumBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
@@ -16,8 +17,6 @@ use Dof\UserBundle\OwnableTrait;
 
 use XN\L10n\LocalizedOriginInterface;
 use XN\L10n\LocalizedOriginTrait;
-
-use Doctrine\Common\Collections\Criteria;
 
 use Dof\ForumBundle\Entity\Forum;
 use Dof\ForumBundle\Entity\Message;
@@ -252,8 +251,8 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     public function getLastMessageCreatedAt() {
-    foreach ($this->messages->matching(Criteria::create()->orderBy('createdAt', 'DESC')->setFirstResult( 0 )->setMaxResults(1)) as $message)
-        return $message->getCreatedAt();
+        foreach ($this->messages->matching(Criteria::create()->orderBy('createdAt', 'DESC')->setFirstResult( 0 )->setMaxResults(1)) as $message)
+            return $message->getCreatedAt();
         return null;
     }
 
@@ -294,18 +293,21 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     public function cleanReadBy()
-    { 
-        $this->readBy->clear(); 
+    {
+        $this->readBy->clear();
     }
 
     /**
      * isReadBy
      *
-     * @param $repo, User $user
+     * @param User $user
      * @return boolean
      */
-    public function isReadBy($repo, User $user)
-    { 
-       return $repo->isReadByRepo($this,$user);
+    public function isReadBy(User $user)
+    {
+        $criteria = Criteria::create()
+            ->where(Criteria::expr()->eq("id", $user->getId()))
+        ;
+        return $this->readBy->matching($criteria);
     }
 }
