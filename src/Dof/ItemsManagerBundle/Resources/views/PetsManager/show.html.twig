@@ -18,10 +18,10 @@
     {{ 'notifications' | trans({}, 'generalTrans') }} :
 
     <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
-        <strong>{{ app.user.petsManagerNotifications ? 'activated' : 'deactivate'| trans({}, 'generalTrans') }}</strong>
+        <strong>{{ ( app.user.petsManagerNotifications ? 'activated' : 'deactivate' ) | trans({}, 'generalTrans') }}</strong>
         <input type="hidden"  name="notif" value="{{ not app.user.petsManagerNotifications }}">
         <button type="submit" class="btn btn-primary">
-			{{ app.user.petsManagerNotifications ? 'deactivate' : 'activate' | trans({}, 'generalTrans') }}
+			{{ ( app.user.petsManagerNotifications ? 'deactivate' : 'activate' ) | trans({}, 'generalTrans') }}
 		</button>
     </form>
     <div class="panel panel-default">
