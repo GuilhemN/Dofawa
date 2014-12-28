@@ -31,9 +31,9 @@ class PetsManagerCommand extends ContainerAwareCommand
 
             $notification = new Notification();
             $notification
-            ->setType('pets.hungry')
-            ->setOwner($pet->getOwner())
-            ->setEntity($pet);
+                ->setType('pets.hungry')
+                ->setOwner($pet->getOwner())
+                ->setEntity($pet);
             $em->persist($notification);
 
             $notifs++;
