@@ -40,7 +40,7 @@
                 <tbody>
                     {% for pet in pets %}
 					{% set hourMax = '+' ~ pet.itemTemplate.maxFeedInterval ~ ' hour' %}
-                        <tr class="{% if pet.nextMeal > date() %}success{% elseif (pet.nextMeal < date() and pet.lastFeeding | date_modify(hourMax)) > date() ) %}warning{% else %}danger{% endif %}">
+                        <tr class="{% if pet.nextMeal > date() %}success{% elseif pet.nextMeal < date() and pet.lastFeeding | date_modify(hourMax) > date() %}warning{% else %}danger{% endif %}">
                             <td>
                                 {% if pet.name is not null %}
                                     {{ pet.name }}({{ pet.itemTemplate.getName(locales()) }})
