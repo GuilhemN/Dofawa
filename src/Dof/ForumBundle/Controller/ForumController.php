@@ -42,7 +42,6 @@ class ForumController extends Controller
             $topic->addReadBy($this->getUser());
             $this->getDoctrine()->getManager()->flush();
         }
-
         return $this->render('DofForumBundle:Forum:showTopic.html.twig', [ 'topic' => $topic ]);
     }
 

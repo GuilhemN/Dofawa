@@ -13,19 +13,5 @@ use Dof\ForumBundle\Entity\Topic;
  * repository methods below.
  */
 class TopicRepository extends EntityRepository
-{	
-	function isReadByRepo(Topic $topic, User $user)
-	{
-		$qb = $this->createQueryBuilder('t')
-				->join('t.readBy', 'r')
-				->where('r.id = :user')
-				->andWhere('t.id = :topic')
-				->setParameters(array('user' => $user->getId(), 'topic' => $topic->getId()))
-				->getQuery()->getResult();
-			
-		if(!empty($qb))
-			return true;
-
-		return false;
-	}
+{
 }

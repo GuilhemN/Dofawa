@@ -20,7 +20,7 @@ class ItemEffectImporter extends AbstractGameDataImporter
     const BETA_DATA_SET = 'beta_item_template_effects';
 
     private $loaders;
-    
+
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $this->loaders[0]->setEnabled(false);
@@ -72,7 +72,7 @@ class ItemEffectImporter extends AbstractGameDataImporter
             $progress->start($output, count($items));
         foreach ($items as $item => $effects) {
             $item = $itemRepo->find($item);
-            if ($item === null || ($item->isPreliminary() ^ $beta))
+            if ($item === null || $item->isSticky() || ($item->isPreliminary() ^ $beta))
                 continue;
             ksort($effects);
             if ($item->isEquipment()) {

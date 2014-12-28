@@ -202,6 +202,13 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $visible;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sticky", type="boolean")
+     */
+    private $sticky;
+
+    /**
      * @var Job
      *
      * @ORM\ManyToOne(targetEntity="Job", inversedBy="gatherableItems")
@@ -865,6 +872,39 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function isVisible()
     {
         return $this->visible;
+    }
+
+    /**
+    * Set sticky
+    *
+    * @param boolean $sticky
+    * @return ItemTemplate
+    */
+    public function setSticky($sticky)
+    {
+        $this->sticky = $sticky;
+
+        return $this;
+    }
+
+    /**
+    * Get sticky
+    *
+    * @return boolean
+    */
+    public function getSticky()
+    {
+        return $this->sticky;
+    }
+
+    /**
+    * Get sticky
+    *
+    * @return boolean
+    */
+    public function isSticky()
+    {
+        return $this->sticky;
     }
 
     /**

@@ -14,52 +14,14 @@ use Dof\ForumBundle\Entity\Forum;
  */
 class ForumRepository extends EntityRepository
 {
-	function getOrderByDate($criteria = array())
+	function getOrderByDate()
 	{
-		$criteria = (array) $criteria;
-
 		$qb = $this->createQueryBuilder('f')
 				->select('f', 't', 'm')
 				->leftjoin('f.topics', 't')
 				->leftjoin('t.messages', 'm')
                 ->addOrderBy('m.createdAt', 'desc');
 
-		$i = 0;
-		// Ajout des critères à la requête
-		foreach($criteria as $k => $v){
-			$i++;
-			$qb
-				->andWhere('f.' . $k . ' LIKE :filterWord' . $i)
-				->setParameter('filterWord' . $i, $v)
-			;
-		}
-
-		return $qb->getQuery()
-        	->getSingleResult();
-	}
-
-	function isUnReadRepo(Forum $forum, User $user)
-	{
-		$nb = $this->createQueryBuilder('f')
-			->select('COUNT(f)')
-			->join('f.topics', 't')
-			->join('t.readBy', 'r')
-			->where('r.id = :user')
-			->andWhere('f.id = :forum')
-			->setParameters(array('user' => $user->getId(), 'forum' => $forum->getId()))
-			->getQuery()->getSingleScalarResult();
-
-		$nbtop = $this->createQueryBuilder('f')
-			->select('COUNT(t)')
-			->join('f.topics', 't')
-			->where('f.id = :forum')
-			->setParameters(array('forum' => $forum->getId()))
-			->getQuery()->getSingleScalarResult();
-
-		$result = $nbtop - $nb;
-		if( $result > 0)
-			return false;
-
-		return true;
+		return $qb->getQuery()->getSingleResult();
 	}
 }

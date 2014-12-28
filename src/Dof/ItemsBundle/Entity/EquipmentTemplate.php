@@ -41,7 +41,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
 	private $originalSets;
 
     /**
-     * @var boolean
+     * @var integer
      *
      * @ORM\Column(name="power_rate", type="integer")
      */
