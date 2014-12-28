@@ -73,7 +73,7 @@ class Pet extends Animal
     }
 
     /**
-    * Get nextMeal
+    * Get nextFeeding
     *
     * @return datetime
     */

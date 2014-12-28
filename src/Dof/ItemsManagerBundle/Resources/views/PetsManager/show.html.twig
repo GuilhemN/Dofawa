@@ -40,7 +40,7 @@
                 <tbody>
                     {% for pet in pets %}
 					{% set hourMax = '+' ~ pet.itemTemplate.maxFeedInterval ~ ' hour' %}
-                        <tr class="{% if pet.nextMeal > date() %}success{% elseif pet.nextMeal < date() and pet.lastFeeding | date_modify(hourMax) > date() %}warning{% else %}danger{% endif %}">
+                        <tr class="{% if pet.nextFeeding > date() %}success{% elseif pet.nextFeeding < date() and pet.lastFeeding | date_modify(hourMax) > date() %}warning{% else %}danger{% endif %}">
                             <td>
                                 {% if pet.name is not null %}
                                     {{ pet.name }}({{ pet.itemTemplate.getName(locales()) }})
@@ -52,7 +52,7 @@
                                 {{ pet.lastFeeding | date_format }}
                             </td>
                             <td>
-                                {{ pet.nextMeal | date("d/m/y H:i:s") }}
+                                {{ pet.nextFeeding | date("d/m/y H:i:s") }}
                             </td>
                             <td>
                                 <input type="checkbox"  name="pets[]" value="{{ pet.id }}" value="">

@@ -71,7 +71,7 @@ class PetsManagerController extends Controller
             throw $this->createNotFoundException();
 
         $pet->setRaise(true);
-        $pet->setLastMeal(new \DateTime());
+        $pet->setLastFeeding(new \DateTime());
         $em->flush();
 
         return $this->createRedirection();
