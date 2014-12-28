@@ -50,8 +50,7 @@ class Pet extends Animal
     public function __construct(){
         $this->lastMeal = new \DateTime('now');
         $this->lastNotification = new \DateTime('now');
-        $nextMeal = clone $this->lastMeal;
-        $this->nextMeal = $nextMeal->modify('+' . $this->getItemTemplate()->getMinFeedInterval() . ' hour');
+        $this->nextMeal = ( new \DateTime('now') )->modify('+' . $this->getItemTemplate()->getMinFeedInterval() . ' hour');
     }
     /**
      * Set lastMeal
