@@ -17,7 +17,7 @@
 			    {% for forum in category.forums %}
 			    	<tr>
                         <td>
-                            <span class="glyphicon glyphicon-star {% if forum.isReadBy(app.user) %}-empty{% endif %}"></span>
+                            <span class="glyphicon glyphicon-star{% if forum.isReadBy(app.user) %}-empty{% endif %}"></span>
                         </td>
                         <td>
                             <a href="{{ path('dof_forum_show_forum', { 'slug' : forum.slug }) }}">
