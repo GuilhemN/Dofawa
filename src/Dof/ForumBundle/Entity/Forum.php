@@ -166,8 +166,13 @@ class Forum implements IdentifiableInterface, TimestampableInterface, SluggableI
      * @param $repo, User $user
      * @return boolean
      */
-    public function isUnRead($repo, User $user)
+    public function isReadBy(User $user = null)
     {
-       return $repo->isUnReadRepo($this,$user);
+        if($user === null)
+            return true;
+        foreach($this->topics as $t)
+            if(!$t->isReadBy())
+                return false;
+        return true;
     }
 }

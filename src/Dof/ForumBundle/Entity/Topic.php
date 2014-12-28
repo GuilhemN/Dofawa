@@ -303,11 +303,13 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
      * @param User $user
      * @return boolean
      */
-    public function isReadBy(User $user)
+    public function isReadBy(User $user = null)
     {
+        if($user === null)
+            return true;
         $criteria = Criteria::create()
             ->where(Criteria::expr()->eq("id", $user->getId()))
         ;
-        return $this->readBy->matching($criteria);
+        return count($this->readBy->matching($criteria)) > 0;
     }
 }

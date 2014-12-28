@@ -24,7 +24,7 @@ class ForumController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$categories = $em->getRepository('DofForumBundle:Category')->findBy([], ['index' => 'ASC']);
 
-        return $this->render('DofForumBundle:Forum:index.html.twig', array('categories' => $categories));
+        return $this->render('DofForumBundle:Forum:index.html.twig', [ 'categories' => $categories ]);
     }
 
     /**
@@ -32,26 +32,18 @@ class ForumController extends Controller
      */
     public function showForumAction(Forum $forum)
     {
-		$user = $this->getUser();
-
-        return $this->render('DofForumBundle:Forum:showForum.html.twig', [ 'forum' => $forum, 'user' => $user ]);
+        return $this->render('DofForumBundle:Forum:showForum.html.twig', [ 'forum' => $forum, 'user' => $this->getUser() ]);
     }
 
     public function showTopicAction(Topic $topic)
     {
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('DofForumBundle:Topic');
-        $badge = $em->getRepository('DofMainBundle:Badge')->findOneBySlugWithLevels('forum-message');
-
-        if($this->getUser() !== null && !$topic->isReadBy($repo, $this->getUser()))
+        if($this->getUser() !== null && !$topic->isReadBy($this->getUser()))
         {
             $topic->addReadBy($this->getUser());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($topic);
-            $em->flush();
+            $this->getDoctrine()->getManager()->flush();
         }
 
-        return $this->render('DofForumBundle:Forum:showTopic.html.twig', array('topic' => $topic));
+        return $this->render('DofForumBundle:Forum:showTopic.html.twig', [ 'topic' => $topic ]);
     }
 
     /**
@@ -62,7 +54,7 @@ class ForumController extends Controller
     {
         if($topic->getLocked())
             throw $this->createAccessDeniedException();
-        
+
         $message = new Message;
         $form = $this->createForm(new MessageType, $message);
 
