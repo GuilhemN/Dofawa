@@ -37,17 +37,12 @@ class SetsController extends Controller
      */
     public function showAction(ItemSet $set)
     {
-        $characters = []; $stuffs = [];
+        $characters = [];
         if($this->getUser() !== null) {
             $em = $this->getDoctrine()->getManager();
             $repo = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
-            $entities = $repo->findBy(['owner' => $this->getUser()]);
-            foreach($entities as $character){
-                $characters[$character->getId()] = $character;
-                foreach($character->getStuffs() as $stuff)
-                    $stuffs[$character->getId()][] = $stuff;
-            }
+            $characters = $repo->findBy(['owner' => $this->getUser()]);
         }
         return $this->render('DofItemsBundle:Sets:show.html.twig', [
             'set' => $set,

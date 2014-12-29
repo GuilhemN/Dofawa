@@ -14,14 +14,14 @@
         </div>
         <hr/>
     {% endif %}
-    {% if stuffs is not empty %}
+    {% if characters is not empty %}
     <div class="well well-sm text-center">
         <form method="POST" action="{{ path('dof_build_additem_post') }}">
             <div class="row col-sm-6 col-sm-offset-3">
                 <select class="to-select2 col-xs-12" name="stuff">
-                    {% for k, v in stuffs %}
-                    <optgroup label="{{ characters[k].name ~ '(' ~ characters[k].breed.getName(locales()) ~ ')' }}">
-                        {% for stuff in v %}
+                    {% for character in characters %}
+                    <optgroup label="{{ (character.name ~ '(' ~ character.breed.getName(locales()) ~ ')') | e('html_attr') }}">
+                        {% for stuff in character.stuffs %}
                         <option value="{{ stuff.slug }}">{{ stuff.name }}</option>
                         {% endfor %}
                     </optgroup>
