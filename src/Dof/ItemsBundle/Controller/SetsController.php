@@ -4,6 +4,7 @@ namespace Dof\ItemsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use XN\Annotation as Utils;
 
 use Dof\ItemsBundle\Entity\ItemSet;
 use Dof\ItemsBundle\Form\SetSearch;
