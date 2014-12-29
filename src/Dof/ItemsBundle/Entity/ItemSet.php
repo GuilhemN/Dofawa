@@ -44,6 +44,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="EquipmentTemplate", mappedBy="set")
+     * @ORM\OrderBy({ "level" = "DESC" })
      */
     private $items;
 
