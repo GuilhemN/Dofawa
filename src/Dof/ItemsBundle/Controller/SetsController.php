@@ -39,10 +39,15 @@ class SetsController extends Controller
     {
         $characters = [];
         if($this->getUser() !== null) {
+            $criteriaLoader = $this->get('dof_items.criteria_loader');
+            $criteriaLoader->setEnabled(false);
             $em = $this->getDoctrine()->getManager();
             $repo = $em->getRepository('DofBuildBundle:PlayerCharacter');
 
             $characters = $repo->findBy(['owner' => $this->getUser()]);
+            foreach($characters as $character)
+                $character->getStuffs();
+            $criteriaLoader->setEnabled(true);
         }
         return $this->render('DofItemsBundle:Sets:show.html.twig', [
             'set' => $set,
