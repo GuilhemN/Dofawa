@@ -121,7 +121,7 @@
                                 <br>
                                 Seuil : {{ drop.threshold }} {{ 'prospecting' | trans({'%1%': ''}, 'item') }}
                             {% endif %}
-                            {% if drop.treatedCriteria != 0 %}
+                            {% if drop.treatedCriteria is not empty %}
                             <hr/>
                             <ul class="list-unstyled">
                                 {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': drop.treatedCriteria} %}
