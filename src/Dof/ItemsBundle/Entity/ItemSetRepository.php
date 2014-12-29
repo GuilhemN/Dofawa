@@ -23,7 +23,7 @@ class ItemSetRepository extends EntityRepository
                     's.release',
                     's.level',
                     's.primaryBonus',
-                    'COUNT(i.id) as count'
+                    'COUNT(i.id) as count_items'
                     ])
                 ->join('s.items', 'i')
                 ->addOrderBy('s.level', 'desc')
@@ -42,7 +42,7 @@ class ItemSetRepository extends EntityRepository
 
         return $qb
         	->getQuery()
-        	->getArrayResult()
+        	->getResult()
         ;
     }
 
