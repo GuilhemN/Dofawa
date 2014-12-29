@@ -1,7 +1,6 @@
 parameters:
     dof.main.doctrine.primary_bonus_updater.class: Dof\MainBundle\Doctrine\PrimaryBonusUpdater
     dof.main.doctrine.message_notification.class: Dof\MainBundle\Doctrine\MessageNotification
-    dof.main.doctrine.set_updater.class: Dof\MainBundle\Doctrine\SetUpdater
     dof_main.request_listener.class: Dof\MainBundle\RequestListener
 
 services:
@@ -38,13 +37,6 @@ services:
         arguments: [ "@service_container" ]
         tags:
             - { name: doctrine.event_listener, event: postPersist }
-
-    dof.main.doctrine.set_updater:
-        class: "%dof.main.doctrine.set_updater.class%"
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preRemove }
-            - { name: doctrine.event_listener, event: preUpdate }
 
     dof.main.doctrine.message_forum_updater:
         class: Dof\MainBundle\Doctrine\MessageForumUpdater

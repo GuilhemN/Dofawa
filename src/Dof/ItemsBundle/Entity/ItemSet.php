@@ -55,20 +55,6 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $combinations;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="level", type="integer", nullable=true)
-     */
-    private $level;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="item_count", type="integer", nullable=true)
-     */
-    private $itemCount;
-
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -171,26 +157,16 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set level
-     *
-     * @param integer $level
-     * @return ItemTemplate
-     */
-    public function setLevel($level)
-    {
-        $this->level = $level;
-
-        return $this;
-    }
-
-    /**
      * Get level
      *
      * @return integer
      */
     public function getLevel()
     {
-        return $this->level;
+        $max = 0;
+        foreach($this->items as $i)
+            $max = max($i->getLevel(), $max);
+        return $max;
     }
 
     /**

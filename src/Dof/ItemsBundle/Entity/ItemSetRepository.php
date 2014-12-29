@@ -21,8 +21,8 @@ class ItemSetRepository extends EntityRepository
                     's.name' . ucfirst($locale) . ' as name',
                     's.preliminary',
                     's.release',
-                    's.level',
                     's.primaryBonus',
+                    'MAX(i.level) as level',
                     'COUNT(i.id) as count_items'
                     ])
                 ->join('s.items', 'i')
