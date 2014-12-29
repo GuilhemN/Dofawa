@@ -11,10 +11,14 @@ use Dof\ItemsBundle\ItemSlot;
 class ItemSearch extends AbstractType
 {
     private $isTypeUpdatable;
+    private $is_admin;
     private $defaultTypes;
 
-    public function __construct($isTypeUpdatable = true){
+    public function __construct($isTypeUpdatable = null, $is_admin = false){
+        if($isTypeUpdatable === null)
+            $isTypeUpdatable = true;
         $this->isTypeUpdatable = $isTypeUpdatable;
+        $this->is_admin = $is_admin;
     }
 
     /**
@@ -33,7 +37,11 @@ class ItemSearch extends AbstractType
                 'attr'=> array('class' => 'to-select2', 'data-placeholder' => 'Sélectionner un type d\'item'),
                 'translation_domain' => 'type_item'
                 ))
-            ->add('maj', 'text', ['required' => false, 'attr' => ['placeholder' => 'ex: 2.22']])
+            ->add('maj', 'text', ['required' => false, 'attr' => ['placeholder' => 'ex: 2.22']]);
+        if($this->is_admin)
+            $builder
+                ->add('without-image', 'checkbox', ['label' => 'Sans image']);
+        $builder
             ->add('submit', 'submit',array('label' => 'search', 'translation_domain' => 'FOSMessageBundle'))
         ;
     }

@@ -20,7 +20,7 @@ class ItemsController extends Controller
      * @Utils\UsesSession
      */
     public function indexAction($page) {
-        $form = $this->createForm(new ItemSearch());
+        $form = $this->createForm(new ItemSearch(null, $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')));
         $form->handleRequest($this->get('request'));
 
         $params = $this->getItems($form->getData(), $page);
@@ -56,7 +56,7 @@ class ItemsController extends Controller
                     'stuff' => $stuff->getSlug()
                 ];
 
-        $form = $this->createForm(new ItemSearch(false));
+        $form = $this->createForm(new ItemSearch(false, $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')));
         $form->handleRequest($this->get('request'));
         $data = isset($iSlot) ? (array) $form->getData() + ['type' => $iSlot] : $form->getData();
         $params = $this->getItems($data, $page, $slugs + ['type' => $type], $repo);
