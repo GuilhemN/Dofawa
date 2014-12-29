@@ -17,12 +17,13 @@ class ItemSetRepository extends EntityRepository
         $qb = $this
                 ->createQueryBuilder('s')
                 ->select([
+                    's.slug',
                     's.name' . ucfirst($locale) . ' as name',
                     's.preliminary',
                     's.release',
                     's.level',
                     's.primaryBonus',
-                    'COUNT(i) as count'
+                    'COUNT(i.id) as count'
                     ])
                 ->join('s.items', 'i')
                 ->addOrderBy('s.level', 'desc')
