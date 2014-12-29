@@ -83,7 +83,7 @@ class ItemSetRepository extends EntityRepository
                       ->leftjoin('s.combinations', 'c')
                       ->leftjoin('i.components', 're')
                       ->leftjoin('re.component', 'rei')
-                      ->addOrderBy('COUNT(s.items)', 'asc')
+                      ->addOrderBy('COUNT(i.id)', 'ASC')
                 ;
         elseif($type == 'list')
             $qb = $this
