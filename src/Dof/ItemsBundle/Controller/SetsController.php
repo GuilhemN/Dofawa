@@ -46,8 +46,7 @@ class SetsController extends Controller
         }
         return $this->render('DofItemsBundle:Sets:show.html.twig', [
             'set' => $set,
-            'characters' => $characters,
-            'stuffs' => $stuffs
+            'characters' => $characters
             ]);
     }
 }

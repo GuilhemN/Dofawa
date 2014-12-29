@@ -59,11 +59,8 @@ class ItemSetRepository extends EntityRepository
         $qb =
             $this
                 ->createQueryBuilder('s')
-                ->select(array('s', 'i', 'c', 're', 'rei'))
+                ->select(array('s', 'i'))
                 ->leftjoin('s.items', 'i')
-                ->leftjoin('s.combinations', 'c')
-                ->leftjoin('i.components', 're')
-                ->leftjoin('re.component', 'rei')
         ;
 
 		$i = 0;
