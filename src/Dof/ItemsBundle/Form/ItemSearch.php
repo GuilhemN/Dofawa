@@ -40,7 +40,7 @@ class ItemSearch extends AbstractType
             ->add('maj', 'text', ['required' => false, 'attr' => ['placeholder' => 'ex: 2.22']]);
         if($this->is_admin)
             $builder
-                ->add('without-image', 'checkbox', ['label' => 'Sans image']);
+                ->add('without-image', 'checkbox', ['label' => 'Sans image', 'required' => false]);
         $builder
             ->add('submit', 'submit',array('label' => 'search', 'translation_domain' => 'FOSMessageBundle'))
         ;
