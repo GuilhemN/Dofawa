@@ -16,7 +16,14 @@ class ItemSetRepository extends EntityRepository
         $data = (array) $data;
         $qb = $this
                 ->createQueryBuilder('s')
-                ->select(['s', 'i.id'])
+                ->select([
+                    's.name' . ucfirst($locale) . ' as name',
+                    's.preliminary',
+                    's.release',
+                    's.level',
+                    's.primaryBonus',
+                    'COUNT(i) as count'
+                    ])
                 ->join('s.items', 'i')
                 ->addOrderBy('s.level', 'desc')
             ;
