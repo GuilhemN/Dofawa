@@ -15,7 +15,8 @@ class ItemSetRepository extends EntityRepository
     public function findForSearch($data, $locale = 'fr'){
         $data = (array) $data;
         $qb = $this
-                ->createQueryBuilder('s')
+                ->createQueryBuilder('s', 'i.id')
+                ->join('s.items', 'i')
                 ->addOrderBy('s.level', 'desc')
             ;
 

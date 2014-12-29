@@ -50,7 +50,7 @@
                 <span class="label label-default hidden-xs">{{ set.release }}</span>
             {% endif %}
             <br>
-            {{ set.itemCount }} Item
+            {{ set.items | length }} Item
         </p>
 
         {% for bonus in set.primaryBonus %}

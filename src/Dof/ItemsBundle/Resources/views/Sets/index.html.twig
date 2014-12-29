@@ -31,7 +31,7 @@
                             </a>
                         </td>
                         <td>{{ 'level' | trans({'%level%': set.level}, 'item') }}</td>
-                        <td>{{ set.itemCount }} items</td>
+                        <td>{{ set.items | length }} items</td>
                         <td class="hidden-xs">
                             {% for bonus in set.primaryBonus %}
                                 <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
