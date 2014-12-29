@@ -47,9 +47,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
 			->addOrderBy('i.level', 'DESC')
 		;
 		if(isset($options['without-image']) && $options['without-image'])
-			$qb
-				->andWhere('i.path = :path')
-				->setParameter('path', null);
+			$qb->andWhere('i.path IS NULL');
 		if(!$full)
 			$qb->andWhere('i.visible = true');
 		if(!empty($options['name']))
