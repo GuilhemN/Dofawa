@@ -27,6 +27,7 @@ class ItemSetRepository extends EntityRepository
                     ])
                 ->join('s.items', 'i')
                 ->addOrderBy('s.level', 'desc')
+                ->groupBy('s.id')
             ;
 
         if(!empty($data['name']))
