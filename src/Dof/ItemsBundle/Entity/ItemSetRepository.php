@@ -26,7 +26,7 @@ class ItemSetRepository extends EntityRepository
                     'COUNT(i.id) as count_items'
                     ])
                 ->join('s.items', 'i')
-                ->addOrderBy('s.level', 'desc')
+                ->addOrderBy('level', 'desc')
                 ->groupBy('s.id')
             ;
 
