@@ -16,7 +16,7 @@ class ItemSetRepository extends EntityRepository
         $data = (array) $data;
         $qb = $this
                 ->createQueryBuilder('s')
-                ->select(['s.*', 'i.id'])
+                ->select(['s', 'i.id'])
                 ->join('s.items', 'i')
                 ->addOrderBy('s.level', 'desc')
             ;
@@ -74,8 +74,8 @@ class ItemSetRepository extends EntityRepository
                       ->leftjoin('s.combinations', 'c')
                       ->leftjoin('i.components', 're')
                       ->leftjoin('re.component', 'rei')
-                      ->addOrderBy('c.itemCount', 'asc')
-                  ;
+                      ->addOrderBy('COUNT(s.items)', 'asc')
+                ;
         elseif($type == 'list')
             $qb = $this
                       ->createQueryBuilder('s')
