@@ -46,7 +46,7 @@ class SetsController extends Controller
 
             $characters = $repo->findBy(['owner' => $this->getUser()]);
             foreach($characters as $character)
-                $character->getStuffs();
+                $character->getStuffs()[0]->getName();
             $criteriaLoader->setEnabled(true);
         }
         return $this->render('DofItemsBundle:Sets:show.html.twig', [
