@@ -49,15 +49,13 @@ class LazyFieldListener
             $this->ca->save('xn-lazy-fields/' . $class, serialize($properties));
         }
 
-        var_dump($lazyFields);
-
         foreach($lazyFields as $k => $v) {
             $classMethod = !empty($v->classMethod) ? $v->classMethod : 'getClass';
             $valueMethod = !empty($v->valueMethod) ? $v->valueMethod : 'getClassId';
             $setter = !empty($v->setter) ? $v->setter : 'set' . ucfirst($k);
 
-            $table = call_user_func($ent, $classMethod);
-            $id = call_user_func($ent, $valueMethod);
+            $table = call_user_func([ $ent, $classMethod ]);
+            $id = call_user_func([ $ent, $valueMethod ]);
             if (method_exists($em, 'getReference'))
                 $result = $em->getReference($table, $id);
             else
