@@ -255,6 +255,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     public function isValid(){
-        return true;
+        return ($this->getEntity() === null && $this->getClass() === null)
+            or ($this->getEntity() !== null && $this->getClass() !== null);
     }
 }

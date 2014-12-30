@@ -49,6 +49,8 @@ class LazyFieldListener
             $this->get('cache')->save('xn-lazy-fields/' . $class, serialize($properties));
         }
 
+        var_dump($lazyFields);
+
         foreach($lazyFields as $k => $v) {
             $classMethod = !empty($v->classMethod) ? $v->classMethod : 'getClass';
             $valueMethod = !empty($v->valueMethod) ? $v->valueMethod : 'getClassId';
