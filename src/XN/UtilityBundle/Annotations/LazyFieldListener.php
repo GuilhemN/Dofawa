@@ -26,21 +26,19 @@ class LazyFieldListener
         $ent = $args->getEntity();
         $class = $em->getClassMetadata(get_class($ent))->getName();
 
+        //Properties
+        if ($propertiesString = $this->ca->fetch('xn-class-properties/' . $class)) {
+            $properties = unserialize($propertiesString);
+        } else {
+            $reflect = new \ReflectionClass($ent);
+            $properties = array_map(function($v){
+                return $v->getName();
+            }, $reflect->getProperties());
+            $this->ca->save('xn-class-properties/' . $class, serialize($properties));
+        }
         if ($lazyFieldsString = $this->ca->fetch('xn-lazy-fields/' . $class)) {
             $lazyFields = unserialize($lazyFieldsString);
         } else {
-            //Properties
-            if ($propertiesString = $this->ca->fetch('xn-class-properties/' . $class)) {
-                $properties = unserialize($propertiesString);
-            } else {
-                $reflect = new \ReflectionClass($ent);
-                $properties = array_map(function($v){
-                    return $v->getName();
-                }, $reflect->getProperties());
-                $this->ca->save('xn-class-properties/' . $class, serialize($properties));
-            }
-            var_dump($properties);
-            throw new \Exception(var_dump($properties));
             //Lazy Fields
             $lazyFields = [];
             foreach($properties as $property){
@@ -50,6 +48,7 @@ class LazyFieldListener
             }
             $this->ca->save('xn-lazy-fields/' . $class, serialize($properties));
         }
+        throw new \Exception(var_dump($lazyFields));
 
         foreach($lazyFields as $k => $v) {
             $classMethod = !empty($v->classMethod) ? $v->classMethod : 'getClass';
