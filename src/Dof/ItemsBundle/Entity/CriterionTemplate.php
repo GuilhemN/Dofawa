@@ -18,7 +18,7 @@ use Dof\Common\GameTemplateString;
 /**
  * Criterion
  *
- * @ORM\Table("dof_criterion_templates")
+ * @ORM\Table("dof_criterion_templates", indexes={ @ORM\Index(name="IX_criterion_unique", columns={ "characteristic", "operator", "value" }) })
  * @ORM\Entity(repositoryClass="Dof\ItemsBundle\Entity\CriterionTemplateRepository")
  */
 class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
@@ -125,7 +125,7 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     {
         return $this->operator;
     }
-    
+
     /**
     * Set value
     *

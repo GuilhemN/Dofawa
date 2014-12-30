@@ -14,7 +14,7 @@
         </div>
         <hr/>
     {% endif %}
-    {#% if characters is not empty %}
+    {% if characters is not empty %}
     <div class="well well-sm text-center">
         <form method="POST" action="{{ path('dof_build_additem_post') }}">
             <div class="row col-sm-6 col-sm-offset-3">
@@ -37,7 +37,7 @@
             </div>
         </form>
     </div>
-    {% endif %#}
+    {% endif %}
     <div class="well well-sm text-center">
         <div class="page-header nopadding marginbottom">
           <h1>{{ set.getName(locales()) }} <small>{{ 'level' | trans({'%level%': set.level}, 'item') }}</small></h1>

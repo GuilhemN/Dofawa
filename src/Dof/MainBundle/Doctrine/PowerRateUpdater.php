@@ -14,7 +14,7 @@ class PowerRateUpdater
 	{
 		$ent = $args->getEntity();
 		if ($ent instanceof EquipmentTemplate) {
-			$ent->setPowerRate($this->calcPowerRate($ent->getCharacteristics));
+			$ent->setPowerRate($this->calcPowerRate($ent->getCharacteristics()));
 		}
 	}
 
@@ -27,7 +27,7 @@ class PowerRateUpdater
 			return $ent instanceof EquipmentTemplate && self::hasCharactsChanges($ent, $uow->getEntityChangeSet($ent));
 		});
 		foreach ($updates as $ent) {
-			$ent->setPowerRate($this->calcPowerRate($ent->getCharacteristics));
+			$ent->setPowerRate($this->calcPowerRate($ent->getCharacteristics()));
 
 			$clazz = get_class($ent);
 			if (isset($mds[$clazz]))
