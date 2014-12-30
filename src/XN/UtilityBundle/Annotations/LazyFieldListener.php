@@ -42,10 +42,11 @@ class LazyFieldListener
 
             //Lazy Fields
             $lazyFields = [];
-            foreach($properties as $property)
-                if($annotation = $this->re->getPropertyAnnotation(new \ReflectionProperty($ent, $property), 'XN\Annotations\LazyField'))
+            foreach($properties as $property){
+                $annotation = $this->re->getPropertyAnnotation(new \ReflectionProperty($ent, $property), 'XN\Annotations\LazyField');
+                if($annotation)
                     $lazyFields[$property] = $annotation;
-
+            }
             $this->ca->save('xn-lazy-fields/' . $class, serialize($properties));
         }
 
