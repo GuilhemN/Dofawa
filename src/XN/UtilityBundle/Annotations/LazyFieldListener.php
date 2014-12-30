@@ -39,7 +39,8 @@ class LazyFieldListener
                 }, $reflect->getProperties());
                 $this->ca->save('xn-class-properties/' . $class, serialize($properties));
             }
-
+            var_dump($properties);
+            die();
             //Lazy Fields
             $lazyFields = [];
             foreach($properties as $property){
