@@ -24,7 +24,7 @@ class LazyFieldListener
     {
         $em = $args->getEntityManager();
         $ent = $args->getEntity();
-        $class = $em->getClassMetadata(get_class($object))->getName();
+        $class = $em->getClassMetadata(get_class($ent))->getName();
 
         if ($lazyFieldsString = $this->get('cache')->fetch('xn-lazy-fields/' . $class)) {
             $lazyFields = unserialize($lazyFieldsString);
