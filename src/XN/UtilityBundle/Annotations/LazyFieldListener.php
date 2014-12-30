@@ -4,7 +4,7 @@ namespace XN\UtilityBundle\Annotations;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 use Doctrine\Common\Annotations\Reader;
-use Doctrine\Common\Cache\AbstractCache;
+use Doctrine\Common\Cache\Cache;
 
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 
@@ -15,7 +15,7 @@ class LazyFieldListener
     private $ca;
     private $re;
 
-    public function __construct(AbstractCache $ca, Reader $re){
+    public function __construct(Cache $ca, Reader $re){
         $this->ca = $ca;
         $this->re = $re;
     }
