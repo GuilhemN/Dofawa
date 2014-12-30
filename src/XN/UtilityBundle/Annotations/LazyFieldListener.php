@@ -26,18 +26,18 @@ class LazyFieldListener
         $ent = $args->getEntity();
         $class = $em->getClassMetadata(get_class($ent))->getName();
 
-        if ($lazyFieldsString = $this->get('cache')->fetch('xn-lazy-fields/' . $class)) {
+        if ($lazyFieldsString = $this->ca->fetch('xn-lazy-fields/' . $class)) {
             $lazyFields = unserialize($lazyFieldsString);
         } else {
             //Properties
-            if ($propertiesString = $this->get('cache')->fetch('xn-class-properties/' . $class)) {
+            if ($propertiesString = $this->ca->fetch('xn-class-properties/' . $class)) {
                 $properties = unserialize($propertiesString);
             } else {
                 $reflect = new \ReflectionClass($ent);
                 $properties = array_map(function($v){
                     return $v->getName();
                 }, $reflect->getProperties());
-                $this->get('cache')->save('xn-class-properties/' . $class, serialize($properties));
+                $this->ca->save('xn-class-properties/' . $class, serialize($properties));
             }
 
             //Lazy Fields
@@ -46,7 +46,7 @@ class LazyFieldListener
                 if($annotation = $this->re->getPropertyAnnotation(new \ReflectionProperty($ent, $property), 'XN\Annotations\LazyField'))
                     $lazyFields[$property] = $annotation;
 
-            $this->get('cache')->save('xn-lazy-fields/' . $class, serialize($properties));
+            $this->ca->save('xn-lazy-fields/' . $class, serialize($properties));
         }
 
         var_dump($lazyFields);
