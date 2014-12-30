@@ -10,6 +10,8 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
+use XN\Annotations as Utils;
+
 /**
  * Notification
  *
@@ -71,6 +73,9 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
      */
     private $path;
 
+    /**
+     * @Utils\LazyField
+     */
     private $entity;
 
     private $valid;
@@ -246,10 +251,11 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     public function getValid(){
-        return $this->valid;
+        return $this->isValid();
     }
 
     public function isValid(){
-        return $this->valid;
+        return ($this->getEntity() === null && $this->getClass() === null)
+            or ($this->getEntity() !== null && $this->getClass() !== null);
     }
 }

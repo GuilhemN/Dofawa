@@ -1,5 +1,5 @@
 <?php
-namespace XN\UtilityBundle\Annotation;
+namespace XN\UtilityBundle\Annotations;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;

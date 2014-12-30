@@ -1,0 +1,67 @@
+<?php
+namespace XN\UtilityBundle\Annotations;
+
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+
+use Doctrine\Common\Annotations\Reader;
+use Doctrine\Common\Cache\AbstractCache;
+
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+
+use XN\Annotations\LazyField;
+
+class LazyFieldListener
+{
+    private $ca;
+    private $re;
+
+    public function __construct(AbstractCache $ca, Reader $re){
+        $this->ca = $ca;
+        $this->re = $re;
+    }
+
+    public function postLoad(LifecycleEventArgs $args)
+    {
+        $em = $args->getEntityManager();
+        $ent = $args->getEntity();
+
+        if ($lazyFieldsString = $this->get('cache')->fetch('xn-lazy-fields/' . $class)) {
+            $lazyFields = unserialize($lazyFieldsString);
+        } else {
+            //Properties
+            $class = $em->getClassMetadata(get_class($object))->getName();
+            if ($propertiesString = $this->get('cache')->fetch('xn-class-properties/' . $class)) {
+                $properties = unserialize($propertiesString);
+            } else {
+                $reflect = new \ReflectionClass($ent);
+                $properties = array_map(function($v){
+                    return $v->getName();
+                }, $reflect->getProperties());
+                $this->get('cache')->save('xn-class-properties/' . $class, serialize($properties));
+            }
+
+            //Lazy Fields
+            $lazyFields = [];
+            foreach($properties as $property)
+                if($annotation = $this->re->getPropertyAnnotation(new \ReflectionProperty($ent, $property), 'XN\Annotations\LazyField'))
+                    $lazyFields[$property] = $annotation;
+
+            $this->get('cache')->save('xn-lazy-fields/' . $class, serialize($properties));
+        }
+
+        foreach($lazyFields as $k => $v) {
+            $classMethod = !empty($v->classMethod) ? $v->classMethod : 'getClass';
+            $valueMethod = !empty($v->valueMethod) ? $v->valueMethod : 'getClassId';
+            $setter = !empty($v->setter) ? $v->setter : 'set' . ucfirst($k);
+
+            $table = call_user_func($ent, $classMethod);
+            $id = call_user_func($ent, $valueMethod);
+            if (method_exists($em, 'getReference'))
+                $result = $em->getReference($table, $id);
+            else
+                $result = $em->find($table, $id);
+
+            call_user_func($ent, $setter);
+        }
+    }
+}

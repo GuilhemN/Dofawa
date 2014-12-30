@@ -16,8 +16,9 @@ parameters:
     xn.doctrine.message_notification.class: XN\UtilityBundle\Doctrine\MessageNotification
     xn.doctrine.file_updater.class: XN\UtilityBundle\Doctrine\FileUpdater
 
-    xn.session_controller_listener.class: XN\UtilityBundle\Annotation\SessionControllerListener
-    xn.secure_controller_listener.class: XN\UtilityBundle\Annotation\SecureControllerListener
+    xn.session_controller_listener.class: XN\UtilityBundle\Annotations\SessionControllerListener
+    xn.secure_controller_listener.class: XN\UtilityBundle\Annotations\SecureControllerListener
+    xn.lazy_field_listener.class: XN\UtilityBundle\Annotations\LazyFieldListener
 
 services:
     lazy.doctrine.orm.default_entity_manager:
@@ -26,6 +27,9 @@ services:
 
     variables:
         class: %variables.class%
+
+    cache:
+        class: Doctrine\Common\Cache\ApcCache
 
     xn.twig_extension:
         class: %xn.twig_extension.class%
@@ -126,5 +130,11 @@ services:
     xn.secure_controller_listener:
         class: %xn.secure_controller_listener.class%
         arguments: [ @security.context, @annotation_reader ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+
+    xn.lazy_field_listener:
+        class: %xn.lazy_field_listener.class%
+        arguments: [ @cache, @annotation_reader ]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

@@ -18,7 +18,7 @@ class NotificationUpdater
     private $enabled;
 
     public function __construct(){
-        $this->enabled = true;
+        $this->enabled = false;
     }
 
     public function prePersist(LifecycleEventArgs $args)
