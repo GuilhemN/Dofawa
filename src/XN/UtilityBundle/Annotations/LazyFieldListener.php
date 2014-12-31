@@ -63,7 +63,7 @@ class LazyFieldListener
             else
                 $result = $em->find($table, $id);
 
-            call_user_func([ $ent, $setter ]);
+            call_user_func([ $ent, $setter ], $result);
         }
     }
 }
