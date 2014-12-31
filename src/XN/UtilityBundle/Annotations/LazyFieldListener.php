@@ -51,8 +51,6 @@ class LazyFieldListener
             $this->ca->save(md5('xn-lazy-fields/' . $class), serialize($lazyFields));
         }
 
-        throw new \Exception(var_dump($lazyFields));
-
         foreach($lazyFields as $k => $v) {
             $classMethod = !empty($v->classMethod) ? $v->classMethod : 'getClass';
             $valueMethod = !empty($v->valueMethod) ? $v->valueMethod : 'getClassId';
