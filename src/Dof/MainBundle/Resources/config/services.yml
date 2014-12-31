@@ -49,7 +49,7 @@ services:
         class: Dof\MainBundle\Doctrine\NotificationUpdater
         tags:
             - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: postLoad }
+#            - { name: doctrine.event_listener, event: postLoad }
 
     dof_main.admin.notification:
         class: Dof\MainBundle\Admin\NotificationAdmin
