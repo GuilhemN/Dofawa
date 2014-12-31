@@ -9,18 +9,6 @@ use XN\Persistence\IdentifiableInterface;
 
 class NotificationUpdater
 {
-    /**
-    * @var boolean
-    *
-    * Sometimes you may want to disable automatic parameter loading,
-    * for example when importing data
-    */
-    private $enabled;
-
-    public function __construct(){
-        $this->enabled = false;
-    }
-
     public function prePersist(LifecycleEventArgs $args)
     {
         $em = $args->getEntityManager();
@@ -32,37 +20,5 @@ class NotificationUpdater
                 ->setClassId($ent->getEntity()->getId())
                 ;
         }
-    }
-
-    public function postLoad(LifecycleEventArgs $args)
-    {
-        $em = $args->getEntityManager();
-        $ent = $args->getEntity();
-        if ($ent instanceof Notification)
-            if ($this->enabled) {
-                $ent->setValid(true);
-                if($ent->getClass() !== null && $ent->getClassId() !== null){
-                    $entity = $em->getRepository($ent->getClass())->find($ent->getClassId());
-                    $ent->setEntity($entity);
-                    if($entity === null)
-                        $ent->setValid(false);
-                }
-            }
-    }
-
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-        return $this;
-    }
-
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
-
-    public function isEnabled()
-    {
-        return $this->enabled;
     }
 }
