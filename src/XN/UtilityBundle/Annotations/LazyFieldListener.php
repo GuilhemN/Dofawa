@@ -38,7 +38,7 @@ class LazyFieldListener
                 $properties = array_map(function($v){
                     return $v->getName();
                 }, $reflect->getProperties());
-                $this->ca->save(md5('xn-class-properties/' . $class, serialize($properties)));
+                $this->ca->save(md5('xn-class-properties/' . $class), serialize($properties));
             }
 
             //Lazy Fields
@@ -48,7 +48,7 @@ class LazyFieldListener
                 if($annotation)
                     $lazyFields[$property] = $annotation;
             }
-            $this->ca->save(md5('xn-lazy-fields/' . $class, serialize($lazyFields)));
+            $this->ca->save(md5('xn-lazy-fields/' . $class), serialize($lazyFields));
         }
 
         throw new \Exception(var_dump($lazyFields));
