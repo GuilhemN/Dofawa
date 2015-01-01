@@ -40,7 +40,7 @@ class ArticleController extends Controller
         if($request->getMethod() === 'POST' && $request->request->has('article')){
             $em = $this->getDoctrine()->getManager();
             $data = $request->request->get('article');
-            $this->checkArticleEdit($data);
+            $this->checkArticleEdit($article, $data);
 
             $article
                 ->setName('Nouvel article', 'fr')
@@ -67,7 +67,7 @@ class ArticleController extends Controller
     public function editAction(Article $article, Request $request) {
         if($request->getMethod() === 'POST' && $request->request->has('article')){
             $data = $request->request->get('article');
-            $this->checkArticleEdit($data);
+            $this->checkArticleEdit($article, $data);
 
             $proposition = new Proposition();
             $proposition
@@ -83,7 +83,7 @@ class ArticleController extends Controller
         return $this->generateEditTemplate($article, $request);
     }
 
-    private function checkArticleEdit($data) {
+    private function checkArticleEdit(Article $article, $data) {
         if(empty($data['name']) or empty($data['description']))
             throw new \Exception('Empty title or decription');
 
