@@ -84,6 +84,7 @@ class ArticleController extends Controller
     }
 
     private function checkArticleEdit(Article $article, $data) {
+        $em = $this->getDoctrine()->getManager();
         if(empty($data['name']) or empty($data['description']))
             throw new \Exception('Empty title or decription');
 
