@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use XN\Annotations as Utils;
 
 use Dof\CMSBundle\Entity\Article;
+use Dof\CMSBundle\Entity\QuestArticle;
+use Dof\CMSBundle\Entity\DungeonArticle;
+use Dof\CMSBundle\Entity\TutorialArticle;
 use Dof\CMSBundle\Entity\Proposition;
 use Dof\MainBundle\Entity\Notification;
 
@@ -20,25 +23,49 @@ class ArticleController extends Controller
     }
 
     /**
+    * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+    */
+    public function createAction($type, Request $request){
+        if($type == 'new' && $this->get('security.context')->isGranted('ROLE_REDACTOR'))
+            $article = new Article();
+        elseif($type == 'dungeon')
+            $article = new DungeonArticle();
+        elseif($type == 'tutorial')
+            $article = new TutorialArticle();
+        else
+            throw new \LogicException('not implemented');
+
+        if($request->getMethod() === 'POST' && $request->request->has('article')){
+            $em = $this->getDoctrine()->getManager();
+            $data = $request->request->get('article');
+            $this->checkArticleEdit($data);
+
+            $article
+                ->setName('Nouvel article', 'fr')
+                ->setName($data['name'], $request->getLocale())
+                ->setDescription('Nouvel article', 'fr')
+                ->setDescription($data['description'], $request->getLocale())
+                ->setPublished(false);
+
+            if($article->isDungeonArticle())
+                $article->setDungeon($em->getRepository('DofMonsterBundle:Monster')->find($data['options']['dungeon']));
+            elseif($article->isQuestArticle())
+                $article->setQuest($em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest']));
+
+            $em->persist($article);
+            $em->flush($article);
+            return;
+        }
+        return $this->generateEditTemplate($article);
+    }
+
+    /**
      * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
      */
     public function editAction(Article $article, Request $request) {
-        $em = $this->getDoctrine()->getManager();
         if($request->getMethod() === 'POST' && $request->request->has('article')){
             $data = $request->request->get('article');
-            if(empty($data['name']) or empty($data['description']))
-                throw new \Exception('Empty title or decription');
-
-            if($article->isQuestArticle())
-                if(!$em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest']))
-                    throw new \Exception('Non-existant quest');
-            elseif($article->isDungeonArticle())
-                if(empty($data['options']['roomCount']))
-                    throw new \Exception('Non-existant quest');
-                elseif(!$em->getRepository('DofMonsterBundle:Dungeon')->find($data['options']['dungeon']))
-                    throw new \Exception('Non-existant dungeon');
-            elseif($article->isTutorialArticle())
-                throw new \LogicException('Not implemented');
+            $this->checkArticleEdit($data);
 
             $proposition = new Proposition();
             $proposition
@@ -51,7 +78,29 @@ class ArticleController extends Controller
             $em->flush($proposition);
             return;
         }
+        return $this->generateEditTemplate($article);
+    }
 
+    private function checkArticleEdit($data) {
+        if(empty($data['name']) or empty($data['description']))
+            throw new \Exception('Empty title or decription');
+
+        if($article->isQuestArticle()){
+            if(!($quest = $em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest'])))
+                throw new \Exception('Non-existant quest');
+        }
+        elseif($article->isDungeonArticle()){
+            if(empty($data['options']['roomCount']))
+                throw new \Exception('Non-existant quest');
+            elseif(!($dungeon = $em->getRepository('DofMonsterBundle:Dungeon')->find($data['options']['dungeon'])))
+                throw new \Exception('Non-existant dungeon');
+        }
+        elseif($article->isTutorialArticle())
+            throw new \LogicException('Not implemented');
+    }
+
+    private function generateEditTemplate(Article $article) {
+        $em = $this->getDoctrine()->getManager();
         if($article->isQuestArticle())
             $params = ['quests' => $em->getRepository('DofQuestBundle:Quest')->findBy([], ['name' . ucfirst($request->getLocale()) => 'ASC'])];
         else if($article->isDungeonArticle())

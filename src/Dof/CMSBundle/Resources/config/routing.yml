@@ -2,6 +2,10 @@ dof_cms_view:
     pattern: /{slug}
     defaults: { _controller: DofCMSBundle:Article:view }
 
+dof_cms_create:
+    pattern: /create/{type}
+    defaults: { _controller: DofCMSBundle:Article:create }
+
 dof_cms_edit:
     pattern: /edit/{id}
     defaults: { _controller: DofCMSBundle:Article:edit }
@@ -14,9 +18,6 @@ dof_cms_archive:
     requirements:
       page: \d+
 
-dof_cms_add:
-    pattern: /create/{type}
-    defaults: { _controller: DofCMSBundle:Article:add }
 
 dof_cms_viewType:
     pattern: /
