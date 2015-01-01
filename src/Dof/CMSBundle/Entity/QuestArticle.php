@@ -21,7 +21,8 @@ class QuestArticle extends Article
     private $quest;
 
     public function getName($locale = 'fr'){
-        return !empty($this->quest) ? $this->quest->getName($locale) : call_user_func([$this, 'getName' . ucfirst($locale)]);
+        $locale = (array) $locale;
+        return !empty($this->quest) ? $this->quest->getName($locale) : call_user_func([$this, 'getName' . ucfirst($locale[0])]);
     }
 
     /**
@@ -51,6 +52,6 @@ class QuestArticle extends Article
     public function getClass() { return 'quest'; }
 
     public function __toString() {
-        return !empty($this->quest) ? $this->quest->getNameFr() : call_user_func([$this, 'getName' . ucfirst($locale)]);
+        return !empty($this->quest) ? $this->quest->getNameFr() : $this->nameFr;
     }
 }
