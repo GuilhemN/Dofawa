@@ -59,7 +59,7 @@ class ArticleController extends Controller
         elseif($article->isTutorial() or $article->isCollection())
             throw new \LogicException('Not implemented');
 
-        return $this->render('DofCMSBundle:Article:edit.html.twig', ['article' => $article + $params]);
+        return $this->render('DofCMSBundle:Article:edit.html.twig', ['article' => $article] + $params);
     }
 
     /**
