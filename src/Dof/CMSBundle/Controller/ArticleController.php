@@ -56,7 +56,7 @@ class ArticleController extends Controller
             $em->flush($article);
             return;
         }
-        return $this->generateEditTemplate($article);
+        return $this->generateEditTemplate($article, $request);
     }
 
     /**
@@ -78,7 +78,7 @@ class ArticleController extends Controller
             $em->flush($proposition);
             return;
         }
-        return $this->generateEditTemplate($article);
+        return $this->generateEditTemplate($article, $request);
     }
 
     private function checkArticleEdit($data) {
@@ -99,7 +99,7 @@ class ArticleController extends Controller
             throw new \LogicException('Not implemented');
     }
 
-    private function generateEditTemplate(Article $article) {
+    private function generateEditTemplate(Article $article, Request $request) {
         $em = $this->getDoctrine()->getManager();
         if($article->isQuestArticle())
             $params = ['quests' => $em->getRepository('DofQuestBundle:Quest')->findBy([], ['name' . ucfirst($request->getLocale()) => 'ASC'])];
