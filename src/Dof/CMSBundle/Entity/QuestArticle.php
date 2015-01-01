@@ -20,6 +20,11 @@ class QuestArticle extends Article
     */
     private $quest;
 
+    public function getName($locale = 'fr'){
+        return $this->quest->getName($locale);
+    }
+
+    private function setName() {}
 
     /**
     * Set quest
@@ -46,4 +51,8 @@ class QuestArticle extends Article
 
     public function isQuestArticle() { return true; }
     public function getClass() { return 'quest'; }
+
+    public function __toString() {
+        return $this->quest->getNameFr();
+    }
 }

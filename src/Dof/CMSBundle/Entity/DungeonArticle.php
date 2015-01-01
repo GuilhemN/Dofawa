@@ -76,4 +76,8 @@ class DungeonArticle extends Article
 
     public function isDungeonArticle() { return true; }
     public function getClass() { return 'dungeon'; }
+
+    public function __toString() {
+        return $this->dungeon->getNameFr();
+    }
 }

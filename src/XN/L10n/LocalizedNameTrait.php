@@ -6,10 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait LocalizedNameTrait
 {
+    public static function isNameFrOptional() { return false; }
+
     /**
      * @var string
      *
-     * @ORM\Column(name="name_fr", type="string", length=150)
+     * @ORM\Column(name="name_fr", type="string", length=150, nullable=self::isNameFrOptional())
      */
     private $nameFr;
 

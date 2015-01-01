@@ -28,6 +28,8 @@ class ArticleController extends Controller
     public function createAction($type, Request $request){
         if($type == 'new' && $this->get('security.context')->isGranted('ROLE_REDACTOR'))
             $article = new Article();
+        elseif($type == 'quest')
+            $article = new QuestArticle();
         elseif($type == 'dungeon')
             $article = new DungeonArticle();
         elseif($type == 'tutorial')
