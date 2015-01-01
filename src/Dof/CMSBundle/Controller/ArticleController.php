@@ -66,6 +66,7 @@ class ArticleController extends Controller
      */
     public function editAction(Article $article, Request $request) {
         if($request->getMethod() === 'POST' && $request->request->has('article')){
+            $em = $this->getDoctrine()->getManager();
             $data = $request->request->get('article');
             $this->checkArticleEdit($article, $data);
 
