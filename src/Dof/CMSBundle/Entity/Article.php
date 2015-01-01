@@ -35,7 +35,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=self::NULLABLE_NAME_FR)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */

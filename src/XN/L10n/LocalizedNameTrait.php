@@ -9,7 +9,7 @@ trait LocalizedNameTrait
     /**
      * @var string
      *
-     * @ORM\Column(name="name_fr", type="string", length=150, nullable=self::NULLABLE_NAME_FR)
+     * @ORM\Column(name="name_fr", type="string", length=150)
      */
     private $nameFr;
 
