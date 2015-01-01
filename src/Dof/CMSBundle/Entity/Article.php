@@ -17,6 +17,7 @@ use Dof\UserBundle\OwnableTrait;
 //Traduction Titre/Description
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
+use XN\L10n\LocalizedDescriptionTrait;
 
 /**
  * Article
@@ -38,7 +39,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, OwnableTrait, LocalizedNameTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
     /**
      * @var string
