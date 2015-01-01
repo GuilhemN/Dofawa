@@ -21,7 +21,7 @@ use XN\L10n\LocalizedNameTrait;
 /**
  * Article
  *
- * @ORM\Table(name="dof_cms")
+ * @ORM\Table(name="dof_articles")
  * @ORM\Entity(repositoryClass="Dof\CMSBundle\Entity\ArticleRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="class", type="string")

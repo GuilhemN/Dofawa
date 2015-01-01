@@ -38,12 +38,12 @@ class ArticleRepository extends EntityRepository
     *
     * @return integer
     */
-    public function countTotal($type = 'article', $published = 1){
+    public function countTotal($class = 'article', $published = 1){
 
 		return $this->createQueryBuilder('a')
 		    ->select('COUNT(a)')
-			->where('a.type = :type and a.published = :published')
-			->setParameter('type', $type)
+			->where('a.class = :class and a.published = :published')
+			->setParameter('class', $class)
 			->setParameter('published', (bool) $published)
 		    ->getQuery()
 		    ->getSingleScalarResult();
