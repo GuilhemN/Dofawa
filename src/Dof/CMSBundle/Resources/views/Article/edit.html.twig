@@ -25,7 +25,7 @@
             <div class="col-sm-10">
                 <select name="article[options][quest]" id="inputQuest">
                     {% for quest in quests %}
-                    <option {% if article.quest == quest %}selected="selected" {% endif %}value="{{ quest.id }}">{{ quest.getName(locales) }}</option>
+                    <option {% if article.quest == quest %}selected="selected" {% elseif quest.article is not null %}disabled="disabled" {% endif %}value="{{ quest.id }}">{{ quest.getName(locales) }}</option>
                     {% endfor %}
                 </select>
             </div>
