@@ -12,13 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
-	public function findArticlesWithLimits($type = 'article', $firstresult = 0, $maxresults= 10, $published = 1)
+	public function findArticlesWithLimits($class = 'article', $firstresult = 0, $maxresults= 10, $published = 1)
 	{
 
 		$qb = $this->createQueryBuilder('a');
 
 		$qb
-			->where('a.type = :type and a.published = :published')
+			->where('a.class = :type and a.published = :published')
 			->setParameter('type', $type)
 			->setParameter('published', (bool) $published)
 	  		->addOrderBy('a.createdAt', 'DESC')
