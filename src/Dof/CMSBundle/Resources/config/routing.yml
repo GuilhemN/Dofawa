@@ -23,7 +23,7 @@ dof_cms_viewType:
     defaults: { _controller: DofCMSBundle:Article:viewType }
 
 dof_cms_addList:
-    pattern: addList/{type}/{page}
+    pattern: addList/{page}
     defaults: { _controller: DofCMSBundle:Article:addList, page: 1 }
     requirements:
       page: \d+
