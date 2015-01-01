@@ -1,14 +1,10 @@
 {% extends 'DofCMSBundle::layout.html.twig' %}
 
 {% block title %}
-    {{ article.getName(locales()) }} - {% if article.getType(locales()) == 1 %} Tutoriel {{ article.getCategory(locales()) }} Dofus
-    {% elseif article.getType(locales()) == 2 %} Quête {{ article.getCategory(locales()) }} Dofus
-    {% elseif article.getType(locales()) == 3 %} Donjon {{ article.getCategory(locales()) }} Dofus
-    {% else %}Dofawa {% endif %}
+    {{ article.getName(locales()) }} - Dofawa
 {% endblock %}
 
 {% block breadcrumb %}
-<li><a href="{{ path('dof_cms_viewType', { 'type' : type }) }}">{{ type }}</a></li>
 <li>{{ article.getName(locales()) }}</li>
 {% endblock %}
 
@@ -17,12 +13,12 @@
         <a class="btn btn-primary" href="{{ path('admin_dof_cms_article_edit', { 'id': article.id }) }}">
             Editer (ADMIN)
         </a>
-        <a class="btn btn-primary" href="{{ path('dof_cms_addList', {'page' : '1', 'type' : type }) }}">
+        <a class="btn btn-primary" href="{{ path('dof_cms_addList', {'page' : '1' }) }}">
             {{ type }} en attente
         </a>
     {% endif %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <a class="btn btn-primary" href="{{ path('dof_cms_edit', {'id' : article.id, 'type' : 'news' }) }}">
+        <a class="btn btn-primary" href="{{ path('dof_cms_edit', {'id' : article.id }) }}">
             Editer
         </a>
     {% endif %}

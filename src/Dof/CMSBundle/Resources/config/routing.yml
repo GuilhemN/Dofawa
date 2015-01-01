@@ -15,11 +15,11 @@ dof_cms_archive:
       page: \d+
 
 dof_cms_add:
-    pattern: add/{type}
+    pattern: create/{type}
     defaults: { _controller: DofCMSBundle:Article:add }
 
 dof_cms_viewType:
-    pattern: view/{type}
+    pattern: /
     defaults: { _controller: DofCMSBundle:Article:viewType }
 
 dof_cms_addList:
