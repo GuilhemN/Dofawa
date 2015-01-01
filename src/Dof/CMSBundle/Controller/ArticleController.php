@@ -26,7 +26,7 @@ class ArticleController extends Controller
         $em = $this->getDotrine()->getManager();
         if($request->getMethod() === 'POST' && $request->request->has('article')){
             $data = $request->request->get('article');
-            if(empty($data['name'] or empty($data['description'])))
+            if(empty($data['name']) or empty($data['description']))
                 throw new \Exception('Empty title or decription');
 
             if($article->isQuest())

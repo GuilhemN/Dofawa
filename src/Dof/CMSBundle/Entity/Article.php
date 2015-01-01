@@ -25,7 +25,7 @@ use XN\L10n\LocalizedNameTrait;
  * @ORM\Entity(repositoryClass="Dof\CMSBundle\Entity\ArticleRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="class", type="string")
- * @ORM\DiscriminatorMap({"article" = "Article", "textual" = "TextualDungeon", "dungeon" = "DungeonArticle", "quest" = "QuestArticle", "tutorial" = "TutorialArticle", "collection" = "CollectionArticle"})
+ * @ORM\DiscriminatorMap({"article" = "Article", "dungeon" = "DungeonArticle", "quest" = "QuestArticle", "tutorial" = "TutorialArticle", "collection" = "CollectionArticle"})
  */
 class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, LocalizedNameInterface
 {
