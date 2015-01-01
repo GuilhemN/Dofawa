@@ -14,12 +14,7 @@ class DefaultController extends Controller
 		$translator = $this->get('translator');
 
 		$em = $this->getDoctrine()->getManager();
-		$articles = $em->getRepository('DofCMSBundle:Article')->findArticlesWithLimits(4);
-
-		foreach ($articles as $k => &$article) {
-			$content = $article->getDescription($translator->getLocales());
-			$article->setDescription(preg_replace('/<img[^>]>/', '', $content), $translator->getLocales());
-		}
+		$articles = $em->getRepository('DofCMSBundle:Article')->findArticlesWithLimits('article');
 
 		return $this->render('DofMainBundle:Home:index.html.twig', array('articles' => $articles));
 	}
