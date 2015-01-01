@@ -34,5 +34,5 @@ dof_cms_valid:
     defaults: { _controller: DofCMSBundle:Article:valid }
 
 dof_cms_validate:
-    pattern: /valide/{id}
-    defaults: { _controller: DofCMSBundle:Article:validate }
+    pattern: /validate-proposition/{id}
+    defaults: { _controller: DofCMSBundle:Article:validateProposition }
