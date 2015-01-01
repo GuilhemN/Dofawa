@@ -21,7 +21,8 @@ class ArticleRepository extends EntityRepository
 			->where('a.type = :type and a.published = :published')
 			->setParameter('type', $type)
 			->setParameter('published', (bool) $published)
-	  		->orderBy('a.createdAt DESC, a.id DESC')
+	  		->addOrderBy('a.createdAt', 'DESC')
+			->addOrderBy('a.id', 'DESC')
 			->setFirstResult($firstresult)
 			->setMaxResults($maxresults);
 
