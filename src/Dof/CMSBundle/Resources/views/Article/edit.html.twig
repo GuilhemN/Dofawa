@@ -33,7 +33,7 @@
                     {% for quest in quests %}
                         <option {% if article.quest == quest %}selected="selected" {% endif %}value="{{ quest.id }}">{{ quest.getName(locales) }}</option>
                     {% endfor %}
-                </textarea>
+                </select>
             </div>
         </div>
         {% elseif article.dungeonArticle %}
