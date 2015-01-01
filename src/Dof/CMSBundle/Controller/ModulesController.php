@@ -17,7 +17,7 @@ class ModulesController extends Controller
         if($type == 'news')
             $modType = null;
         else
-            $modType = ['DofCMSBundle:DungeonArticle', 'DofCMSBundle:QuestArticle', 'DofCMSBundle:TutorialArticle'];
+            $modType = ['dungeon', 'quest', 'tutorial'];
 
         $em = $this->getDoctrine()->getManager();
         $articles = $em->getRepository('DofCMSBundle:Article')->findArticlesWithLimits($modType, 0, 11);

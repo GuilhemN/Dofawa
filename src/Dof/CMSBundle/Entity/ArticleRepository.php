@@ -15,7 +15,7 @@ class ArticleRepository extends EntityRepository
 	public function findArticlesWithLimits($class = null, $firstresult = 0, $maxresults= 10, $published = true)
 	{
 		if($class === null)
-			$class = 'DofCMSBundle:Article';
+			$class = 'article';
 		$qb = $this->createQueryBuilder('a');
 
 		$qb
@@ -41,7 +41,7 @@ class ArticleRepository extends EntityRepository
     */
     public function countTotal($class = null, $published = true){
 		if($class === null)
-			$class = 'DofCMSBundle:Article';
+			$class = 'article';
 
 		return $this->createQueryBuilder('a')
 		    ->select('COUNT(a)')
