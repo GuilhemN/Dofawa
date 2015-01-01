@@ -94,12 +94,12 @@ class ArticleController extends Controller
                 throw new \Exception('Non-existant quest');
         }
         elseif($article->isDungeonArticle()){
-            if(empty($data['options']['roomCount']))
-                throw new \Exception('Non-existant quest');
+            if(empty($data['options']['roomsCount']))
+                throw new \Exception('Needs the rooms count');
             elseif(!($dungeon = $em->getRepository('DofMonsterBundle:Dungeon')->find($data['options']['dungeon'])))
                 throw new \Exception('Non-existant dungeon');
         }
-        elseif($article->isTutorialArticle())
+        else// if($article->isTutorialArticle())
             throw new \LogicException('Not implemented');
     }
 
@@ -109,7 +109,7 @@ class ArticleController extends Controller
             $params = ['quests' => $em->getRepository('DofQuestBundle:Quest')->findBy([], ['name' . ucfirst($request->getLocale()) => 'ASC'])];
         else if($article->isDungeonArticle())
             $params = ['dungeons' => $em->getRepository('DofMonsterBundle:Dungeon')->findBy([], ['name' . ucfirst($request->getLocale()) => 'ASC'])];
-        elseif($article->isTutorialArticle() or $article->isCollection())
+        else// if($article->isTutorialArticle() or $article->isCollection())
             throw new \LogicException('Not implemented');
 
         return $this->render('DofCMSBundle:Article:edit.html.twig', ['article' => $article] + $params);
@@ -182,5 +182,27 @@ class ArticleController extends Controller
             'type' => $type,
             'newArticle' => $newArticle
         ));
+    }
+
+    /**
+     * @Utils\Secure("ROLE_REDACTOR")
+     */
+    public function validatePropositionAction(Proposition $proposition) {
+        $em = $this->getDoctrine()->getManager();
+        $locale = $proposition->getCreatedOnLocale();
+        $article = $proposition->getArticle();
+        $options = $proposition->getOptions();
+
+        $article->setName($proposition->getName(), $locale);
+        $article->setDescription($proposition->getDescription(), $locale);
+
+        if($article->isQuestArticle())
+            $article->setQuest($em->getRepository('DofQuestBundle:Quest')->find($options['quest']));
+        elseif($article->isDungeonArticle())
+            $article->setQuest($em->getRepository('DofMonsterBundle:Dungeon')->find($options['dungeon']));
+        else
+            throw new \LogicException('not implemented');
+
+        return $this->redirect($this->generateUrl('dof_cms_show', ['slug' => $article->getSlug()]));
     }
 }

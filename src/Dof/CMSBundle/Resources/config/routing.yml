@@ -1,4 +1,4 @@
-dof_cms_view:
+dof_cms_show:
     pattern: /{slug}
     defaults: { _controller: DofCMSBundle:Article:view }
 
@@ -32,3 +32,7 @@ dof_cms_addList:
 dof_cms_valid:
     pattern: /valid/{slug}
     defaults: { _controller: DofCMSBundle:Article:valid }
+
+dof_cms_validate:
+    pattern: /valide/{id}
+    defaults: { _controller: DofCMSBundle:Article:validate }
