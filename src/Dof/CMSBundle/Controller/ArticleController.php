@@ -52,11 +52,11 @@ class ArticleController extends Controller
             return;
         }
 
-        if($article->isQuest())
+        if($article->isQuestArticle())
             $params = ['quests' => $em->getRepository('DofQuestBundle:Quest')->findAll()];
-        else if($article->isDungeon())
+        else if($article->isDungeonArticle())
             $params = ['dungeons' => $em->getRepository('DofMonsterBundle:Dungeon')->findAll()];
-        elseif($article->isTutorial() or $article->isCollection())
+        elseif($article->isTutorialArticle() or $article->isCollection())
             throw new \LogicException('Not implemented');
 
         return $this->render('DofCMSBundle:Article:edit.html.twig', ['article' => $article] + $params);
