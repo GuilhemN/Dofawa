@@ -34,7 +34,7 @@
             {% endif %}
         </div>
         <div class="well well-lg" itemprop="articleBody">
-            {{ article.getDescription(locales()) | raw }}
+            {{ article.getDescription(locales()) | replace({'comic sans ms': ''})| raw }}
         </div>
     </article>
 {% endblock %}
