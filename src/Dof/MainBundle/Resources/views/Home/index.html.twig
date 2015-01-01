@@ -8,7 +8,7 @@
     <div class="row">
 		{% for article in articles %}
 			{% set type = 'news' %}
-			{% include 'DofArticlesBundle:Article:box.html.twig' %}
+			{% include 'DofCMSBundle:Article:box.html.twig' %}
 		{% else %}
 			<li>Pas (encore !) d'articles</li>
 		{% endfor %}

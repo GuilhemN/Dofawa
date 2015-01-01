@@ -1,0 +1,33 @@
+dof_cms_view:
+    pattern:  view/{slug}
+    defaults: { _controller: DofCMSBundle:Article:view }
+
+dof_cms_edit:
+    pattern:  edit/{id}
+    defaults: { _controller: DofCMSBundle:Article:edit }
+    requirements:
+      id: \d+
+
+dof_cms_archive:
+    pattern:  /archive/{page}
+    defaults: { _controller: DofCMSBundle:Archive:archive, page: 1 }
+    requirements:
+      page: \d+
+
+dof_cms_add:
+    pattern:  /add/{type}
+    defaults: { _controller: DofCMSBundle:Article:add }
+
+dof_cms_viewType:
+    pattern:  view/{type}
+    defaults: { _controller: DofCMSBundle:Article:viewType }
+
+dof_cms_addList:
+    pattern:  /addList/{type}/{page}
+    defaults: { _controller: DofCMSBundle:Article:addList, page: 1 }
+    requirements:
+      page: \d+
+
+dof_cms_valid:
+    pattern:  valid/{slug}
+    defaults: { _controller: DofCMSBundle:Article:valid }

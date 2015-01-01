@@ -20,7 +20,7 @@ class GuildController extends Controller
 
         $pagination = array(
             'page' => $page,
-            'route' => 'dof_articles_archive',
+            'route' => 'dof_cms_archive',
             'pages_count' => ceil($count / $this->perPage),
             'route_params' => array()
         );

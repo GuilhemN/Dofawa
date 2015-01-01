@@ -1,0 +1,47 @@
+{% extends 'DofCMSBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ article.getName(locales()) }} - {% if article.getType(locales()) == 1 %} Tutoriel {{ article.getCategory(locales()) }} Dofus
+    {% elseif article.getType(locales()) == 2 %} Quête {{ article.getCategory(locales()) }} Dofus
+    {% elseif article.getType(locales()) == 3 %} Donjon {{ article.getCategory(locales()) }} Dofus
+    {% else %}Dofawa {% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+<li><a href="{{ path('dof_cms_viewType', { 'type' : type }) }}">{{ type }}</a></li>
+<li>{{ article.getName(locales()) }}</li>
+{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_REDACTOR_FULL') or is_granted('ROLE_REDACTOR') and article.owner.id == app.user.id %}
+        <a class="btn btn-primary" href="{{ path('admin_dof_cms_article_edit', { 'id': article.id }) }}">
+            Editer (ADMIN)
+        </a>
+        <a class="btn btn-primary" href="{{ path('dof_cms_addList', {'page' : '1', 'type' : type }) }}">
+            {{ type }} en attente
+        </a>
+    {% endif %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a class="btn btn-primary" href="{{ path('dof_cms_edit', {'id' : article.id, 'type' : 'news' }) }}">
+            Editer
+        </a>
+    {% endif %}
+
+    <article itemscope itemtype="http://schema.org/Article">
+        <div class="page-header">
+            <h1>
+                <span itemprop="name">{{ article.getName(locales()) }}</span>
+                <small>
+                    <time itemprop="dateCreated" datetime="{{ article.createdAt | date("Y-m-d") }}">{{ article.createdAt | date("d/m/Y") }}</time>
+                </small>
+            </h1>
+            By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a>
+            {% if article.owner.username != article.updater.username %}
+                Edité par <a href="{{ path('dof_profile_userpage', {'slug' : article.updater.slug}) }}">{{ article.updater.username }}</a>
+            {% endif %}
+        </div>
+        <div class="well well-lg" itemprop="articleBody">
+            {{ article.getDescription(locales()) }}
+        </div>
+    </article>
+{% endblock %}

@@ -15,6 +15,7 @@ use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
 use Dof\MapBundle\Entity\MapPosition;
+use Dof\CMSBundle\Entity\DungeonArticle;
 
 /**
  * Dungeon
@@ -52,6 +53,13 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     * @ORM\JoinColumn(nullable=true)
     */
     private $exitMap;
+
+    /**
+    * @var DungeonArticle
+    *
+    * @ORM\OneToOne(targetEntity="Dof\CMSBundle\Entity\DungeonArticle", mappedBy="dungeon")
+    */
+    private $article;
 
 
     /**
@@ -144,6 +152,29 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getExitMap()
     {
         return $this->exitMap;
+    }
+
+    /**
+    * Set article
+    *
+    * @param DungeonArticle $article
+    * @return Dungeon
+    */
+    public function setArticle(DungeonArticle $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+    * Get article
+    *
+    * @return DungeonArticle
+    */
+    public function getArticle()
+    {
+        return $this->article;
     }
 
     public function __toString() {

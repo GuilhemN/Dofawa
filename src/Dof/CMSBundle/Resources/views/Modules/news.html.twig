@@ -1,0 +1,16 @@
+<header>
+  {{ trad | trans({}) }}
+</header>
+<div class="content nopadding">
+  <div class="list-group nopadding noborder">
+    {% for article in articles %}
+    <a class="list-group-item" href="{{ path('dof_cms_view', { 'slug' : article.slug, 'type' : 'news' }) }}" title="{{ article.getName(locales()) }}">
+      {{ article.getName(locales()) | striptags | slice(0, 40) }}
+      {% if  article.getName(locales()) | length > 40 %}
+      ...
+      {% endif  %}
+    </a>
+    {% endfor %}
+  </div>
+
+</div>

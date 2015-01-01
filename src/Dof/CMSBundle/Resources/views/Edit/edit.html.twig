@@ -1,0 +1,10 @@
+{% extends 'DofCMSBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+  <li>{{ type }}</li>
+  <li>Editer {{ newArticle.getName(locales())}}</li>
+{% endblock %}
+
+{% block body %}
+  {{ form(form, { 'style': 'horizontal' }) }}
+{% endblock %}

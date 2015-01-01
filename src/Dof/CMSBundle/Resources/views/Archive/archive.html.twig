@@ -1,0 +1,18 @@
+{% extends 'DofCMSBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+  {{ parent() }}
+  <li>Archive</li>
+{% endblock %}
+
+{% block body %}
+{% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+<ul class="list-group">
+  {% for article in articles %}
+      <li class="list-group-item"><a href="{{ path('dof_cms_view', { 'slug' : article.slug, 'type' : 'article' }) }}">{{ article.getName(locales()) }}</a><span class="badge hidden-sm hidden-md">le {{ article.createdAt | date("d/m/Y") }}</span></li>
+  {% else %}
+      <li>Pas (encore !) d'articles</li>
+  {% endfor %}
+</ul>
+{% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+{% endblock %}

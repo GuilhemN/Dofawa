@@ -58,6 +58,9 @@ class LazyFieldListener
 
             $table = call_user_func([ $ent, $classMethod ]);
             $id = call_user_func([ $ent, $valueMethod ]);
+
+            if($table === null or $id === null)
+                continue;
             if (method_exists($em, 'getReference'))
                 $result = $em->getReference($table, $id);
             else

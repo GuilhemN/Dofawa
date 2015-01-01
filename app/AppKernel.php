@@ -39,7 +39,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
 
             new Dof\UserBundle\DofUserBundle(),
-            new Dof\ArticlesBundle\DofArticlesBundle(),
+            new Dof\CMSBundle\DofCMSBundle(),
             new Dof\ItemsBundle\DofItemsBundle(),
             new Dof\MainBundle\DofMainBundle(),
             new Dof\ArtBundle\DofArtBundle(),

@@ -84,10 +84,9 @@ root:
         expose: true
         i18n: false
 
-dof_articles:
-    resource: "@DofArticlesBundle/Resources/config/routing.yml"
-    prefix:   /
-    prefix:   /news
+dof_article:
+    resource: "@DofCMSBundle/Resources/config/routing.yml"
+    prefix:   /articles
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -14,6 +14,8 @@ use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\ItemsBundle\ReleaseBoundTrait;
 
+use Dof\CMSBundle\Entity\QuestArticle;
+
 /**
  * Quest
  *
@@ -87,6 +89,13 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     * @ORM\Column(name="season", type="boolean", nullable=true)
     */
     private $season;
+
+    /**
+    * @var QuestArticle
+    *
+    * @ORM\OneToOne(targetEntity="Dof\CMSBundle\Entity\QuestArticle", mappedBy="quest")
+    */
+    private $article;
 
     /**
     * Set id
@@ -303,6 +312,29 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getSeason()
     {
         return $this->season;
+    }
+
+    /**
+    * Set article
+    *
+    * @param QuestArticle $article
+    * @return Quest
+    */
+    public function setArticle(QuestArticle $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+    * Get article
+    *
+    * @return QuestArticle
+    */
+    public function getArticle()
+    {
+        return $this->article;
     }
 
     public function __toString(){

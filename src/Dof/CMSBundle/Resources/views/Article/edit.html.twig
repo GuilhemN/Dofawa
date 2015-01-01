@@ -1,0 +1,57 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}
+    Édition de "{{ article.getName(locales()) }}" - Dofawa
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>Édition de "{{ article.getName(locales()) }}"</li>
+{% endblock %}
+
+{% block body %}
+    <form method="POST" class="form-horizontal">
+        <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Nom</label>
+            <div class="col-sm-10">
+                <input name="article[name]" type="text" class="form-control" id="inputName" value="{{ article.getName(app.request.locale) }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputContent" class="col-sm-2 control-label">Contenu</label>
+            <div class="col-sm-10">
+                <textarea name="article[description]" id="inputContent">
+                    {{ article.getDescription(app.request.locale) }}
+                </textarea>
+            </div>
+        </div>
+        {% if article.quest %}
+        <div class="form-group">
+            <label for="inputQuest" class="col-sm-2 control-label">Quête</label>
+            <div class="col-sm-10">
+                <select name="article[options[quest]]" id="inputQuest">
+                    {% for quest in quests %}
+                        <option value="{{ quest.id }}">{{ quest.getName(locales) }}</option>
+                    {% endfor %}
+                </textarea>
+            </div>
+        </div>
+        {% if article.dungeon %}
+        <div class="form-group">
+            <label for="inputDungeon" class="col-sm-2 control-label">Donjon</label>
+            <div class="col-sm-10">
+                <select name="article[options[dungeon]]" id="inputDungeon">
+                    {% for dungeon in dungeons %}
+                    <option value="{{ dungeon.id }}">{{ dungeon.getName(locales) }}</option>
+                    {% endfor %}
+                </textarea>
+            </div>
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Proposer</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

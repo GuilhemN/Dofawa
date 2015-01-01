@@ -1,0 +1,9 @@
+parameters:
+    dof_cms.article.form.class: Dof\CMSBundle\Form\ArticleType
+
+services:
+    dof_cms.profile.form.type:
+        class: %dof_cms.article.form.class%
+        arguments: ["@request_stack"]
+        tags:
+            - { name: form.type, alias: dof_CMSBundle_article }

@@ -3,34 +3,69 @@
 namespace Dof\CMSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
 use XN\Annotations as Utils;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\CMSBundle\Entity\Article;
-use Dof\CMSBundle\ArticleType;
-
+use Dof\CMSBundle\Entity\Proposition;
 use Dof\MainBundle\Entity\Notification;
 
-class ArticlesController extends Controller
+class ArticleController extends Controller
 {
-    public function viewAction(Article $article)
-    {
+    public function viewAction(Article $article) {
         return $this->render('DofCMSBundle:Article:view.html.twig', array(
             'article' => $article
         ));
     }
 
-    public function editAction(Article $article) {
+    /**
+     * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+     */
+    public function editAction(Article $article, Request $request) {
+        $em = $this->getDotrine()->getManager();
+        if($request->getMethod() === 'POST' && $request->request->has('article')){
+            $data = $request->request->get('article');
+            if(empty($data['name'] or empty($data['description'])))
+                throw new \Exception('Empty title or decription');
 
+            if($article->isQuest())
+                if(!$em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest']))
+                    throw new \Exception('Non-existant quest');
+            elseif($article->isDungeon())
+                if(empty($data['options']['roomCount']))
+                    throw new \Exception('Non-existant quest');
+                elseif(!$em->getRepository('DofMonsterBundle:Dungeon')->find($data['options']['dungeon']))
+                    throw new \Exception('Non-existant dungeon');
+            elseif($article->isTutorial())
+                throw new \LogicException('Not implemented');
+
+            $proposition = new Proposition();
+            $proposition
+                ->setArticle($article)
+                ->setName($data['name'])
+                ->setDescription($data['description'])
+                ->setOptions($options);
+
+            $em->persist($proposition);
+            $em->flush($proposition);
+            return;
+        }
+
+        if($article->isQuest())
+            $params = ['quests' => $em->getRepository('DofQuestBundle:Quest')->findAll()];
+        else if($article->isDungeon())
+            $params = ['dungeons' => $em->getRepository('DofMonsterBundle:Dungeon')->findAll()];
+        elseif($article->isTutorial() or $article->isCollection())
+            throw new \LogicException('Not implemented');
+
+        return $this->render('DofCMSBundle:Article:edit.html.twig', ['article' => $article + $params]);
     }
 
     /**
      * @Utils\Secure("ROLE_REDACTOR")
      */
-    public function validAction(Article $article)
-    {
+    public function validAction(Article $article) {
         $newArticle = true;
         $diffs = null;
         $original = $article->getOriginalArticle();

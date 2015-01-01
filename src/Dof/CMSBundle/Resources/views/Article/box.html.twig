@@ -1,0 +1,9 @@
+<div class="col-md-6">
+<div class="thumbnail content">
+		<div class="caption">
+			<h3>{{ article.getName(locales()) }}</h3>
+			<p>{{ article.getDescription(locales()) | truncatehtml('200')|raw}}</p>
+			<p><a href="{{ path('dof_cms_view', { 'slug' : article.slug, 'type' : type }) }}" class="btn btn-primary" role="button">{{ 'see' | trans({},'generalTrans') }}</a></p>
+		</div>
+	</div>
+</div>
