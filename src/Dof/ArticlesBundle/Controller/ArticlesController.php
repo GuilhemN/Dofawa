@@ -9,7 +9,6 @@ use XN\Annotations as Utils;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dof\CMSBundle\Entity\Article;
-use Dof\CMSBundle\ArticleType;
 
 use Dof\MainBundle\Entity\Notification;
 

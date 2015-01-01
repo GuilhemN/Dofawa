@@ -7,8 +7,6 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-use Dof\CMSBundle\ArticleType;
-
 class ArticleAdmin extends Admin
 {
     protected $locales = [
@@ -24,13 +22,10 @@ class ArticleAdmin extends Admin
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $typeValues = array_flip(ArticleType::getValues());
-
         $formMapper
           ->add('creator')
           ->add('keys')
           ->add('category')
-          ->add('type', 'choice', array('choices' => $typeValues))
           ->add('published', null, array('required' => false))
         ;
 
