@@ -203,6 +203,8 @@ class ArticleController extends Controller
         else
             throw new \LogicException('not implemented');
 
+        $em->flush();
+        
         return $this->redirect($this->generateUrl('dof_cms_show', ['slug' => $article->getSlug()]));
     }
 }
