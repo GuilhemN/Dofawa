@@ -1,9 +1,9 @@
 dof_cms_view:
-    pattern: {slug}
+    pattern: /{slug}
     defaults: { _controller: DofCMSBundle:Article:view }
 
 dof_cms_edit:
-    pattern: edit/{id}
+    pattern: /edit/{id}
     defaults: { _controller: DofCMSBundle:Article:edit }
     requirements:
       id: \d+
@@ -15,7 +15,7 @@ dof_cms_archive:
       page: \d+
 
 dof_cms_add:
-    pattern: create/{type}
+    pattern: /create/{type}
     defaults: { _controller: DofCMSBundle:Article:add }
 
 dof_cms_viewType:
@@ -23,11 +23,11 @@ dof_cms_viewType:
     defaults: { _controller: DofCMSBundle:Article:viewType }
 
 dof_cms_addList:
-    pattern: addList/{page}
+    pattern: /addList/{page}
     defaults: { _controller: DofCMSBundle:Article:addList, page: 1 }
     requirements:
       page: \d+
 
 dof_cms_valid:
-    pattern: valid/{slug}
+    pattern: /valid/{slug}
     defaults: { _controller: DofCMSBundle:Article:valid }
