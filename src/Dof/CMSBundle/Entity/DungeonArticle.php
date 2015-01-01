@@ -29,7 +29,7 @@ class DungeonArticle extends Article
 
 
     public function getName($locale = 'fr'){
-        return !empty($this->dungeon) ? $this->dungeon->getName($locale) : call_user_func([$this, 'getName' . ucfirt($locale)]);
+        return !empty($this->dungeon) ? $this->dungeon->getName($locale) : call_user_func([$this, 'getName' . ucfirst($locale)]);
     }
 
     /**
@@ -82,6 +82,6 @@ class DungeonArticle extends Article
     public function getClass() { return 'dungeon'; }
 
     public function __toString() {
-        return !empty($this->dungeon) ? $this->dungeon->getNameFr() : call_user_func([$this, 'getName' . ucfirt($locale)]);
+        return !empty($this->dungeon) ? $this->dungeon->getNameFr() : call_user_func([$this, 'getName' . ucfirst($locale)]);
     }
 }
