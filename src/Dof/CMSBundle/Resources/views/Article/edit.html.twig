@@ -40,7 +40,7 @@
         <div class="form-group">
             <label for="inputDungeon" class="col-sm-2 control-label">Donjon</label>
             <div class="col-sm-10">
-                <select name="article[options[dungeon]]" id="inputDungeon">
+                <select name="article[options][dungeon]" id="inputDungeon">
                     {% for dungeon in dungeons %}
                         <option {% if article.dungeon == dungeon %}selected="selected" {% endif %}value="{{ dungeon.id }}">{{ dungeon.getName(locales) }}</option>
                     {% endfor %}
