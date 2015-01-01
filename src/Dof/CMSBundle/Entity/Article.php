@@ -17,7 +17,6 @@ use Dof\UserBundle\OwnableTrait;
 //Traduction Titre/Description
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
-use XN\Metadata\MinorColumnsInterface;
 
 /**
  * Article
@@ -28,7 +27,7 @@ use XN\Metadata\MinorColumnsInterface;
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"article" = "Article", "textual" = "TextualDungeon", "dungeon" = "DungeonArticle", "quest" = "QuestArticle", "tutorial" = "TutorialArticle", "collection" = "CollectionArticle"})
  */
-class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, MinorColumnsInterface, LocalizedNameInterface
+class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, LocalizedNameInterface
 {
     /**
      * @var integer
