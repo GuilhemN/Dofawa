@@ -21,7 +21,7 @@ class QuestArticle extends Article
     private $quest;
 
     public function getName($locale = 'fr'){
-        return $this->quest->getName($locale);
+        return !empty($this->quest) ? $this->quest->getName($locale) : $this->getName($locale);
     }
 
     /**

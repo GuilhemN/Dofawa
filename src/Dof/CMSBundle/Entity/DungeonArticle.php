@@ -12,7 +12,7 @@ use Dof\MonsterBundle\Entity\Dungeon;
  * @ORM\Entity(repositoryClass="Dof\CMSBundle\Entity\DungeonArticleRepository")
  */
 class DungeonArticle extends Article
-{    
+{
     /**
      * @var integer
      *
@@ -27,6 +27,10 @@ class DungeonArticle extends Article
     */
     private $dungeon;
 
+
+    public function getName($locale = 'fr'){
+        return !empty($this->dungeon) ? $this->dungeon->getName($locale) : $this->getName($locale);
+    }
 
     /**
      * Set roomsCount
