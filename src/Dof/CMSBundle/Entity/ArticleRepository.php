@@ -12,14 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
-	public function findArticlesWithLimits($class = 'DofCMSBundle:Article', $firstresult = 0, $maxresults= 10, $published = 1)
+	public function findArticlesWithLimits($class = null, $firstresult = 0, $maxresults= 10, $published = true)
 	{
-
+		if($class === null)
+			$class = 'DofCMSBundle:Article';
 		$qb = $this->createQueryBuilder('a');
 
 		$qb
-			->where('a INSTANCE OF :class and a.published = :published')
-			->setParameter('class', $class)
+			->where('a INSTANCE IN :class and a.published = :published')
+			->setParameter('class', (array) $class)
 			->setParameter('published', (bool) $published)
 	  		->addOrderBy('a.createdAt', 'DESC')
 			->addOrderBy('a.id', 'DESC')
@@ -38,12 +39,14 @@ class ArticleRepository extends EntityRepository
     *
     * @return integer
     */
-    public function countTotal($class = 'DofCMSBundle:Article', $published = 1){
-
+    public function countTotal($class = null, $published = true){
+		if($class === null)
+			$class = 'DofCMSBundle:Article';
+			
 		return $this->createQueryBuilder('a')
 		    ->select('COUNT(a)')
-			->where('a INSTANCEOF :class and a.published = :published')
-			->setParameter('class', $class)
+			->where('a INSTANCE IN :class and a.published = :published')
+			->setParameter('class', (array) $class)
 			->setParameter('published', (bool) $published)
 		    ->getQuery()
 		    ->getSingleScalarResult();

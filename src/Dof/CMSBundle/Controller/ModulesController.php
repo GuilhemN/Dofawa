@@ -12,12 +12,12 @@ class ModulesController extends Controller
         if($type != 'news' and $type != 'tutoriels')
             throw new HttpException(500, "Error in the sended type to the module of the recent articles. It must be 'tutoriels' or 'news'. Please check the value in the page who called ".__FILE__.".");
 
-        $trad='menuright.'.$type;
+        $trad = 'menuright.'.$type;
 
         if($type == 'news')
-        $modType = 4;
+            $modType = null;
         else
-        $modType = "1 or a.type = 2 or a.type = 3";
+            $modType = ['DofCMSBundle:DungeonArticle', 'DofCMSBundle:QuestArticle', 'DofCMSBundle:TutorialArticle'];
 
         $em = $this->getDoctrine()->getManager();
         $articles = $em->getRepository('DofCMSBundle:Article')->findArticlesWithLimits($modType, 0, 11);
