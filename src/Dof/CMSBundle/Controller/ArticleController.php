@@ -86,8 +86,8 @@ class ArticleController extends Controller
 
     private function checkArticleEdit(Article $article, $data) {
         $em = $this->getDoctrine()->getManager();
-        if(empty($data['name']) or empty($data['description']))
-            throw new \Exception('Empty title or decription');
+        if(empty($data['description']))
+            throw new \Exception('Empty description');
 
         if($article->isQuestArticle()){
             if(!($quest = $em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest'])))
@@ -99,8 +99,13 @@ class ArticleController extends Controller
             elseif(!($dungeon = $em->getRepository('DofMonsterBundle:Dungeon')->find($data['options']['dungeon'])))
                 throw new \Exception('Non-existant dungeon');
         }
-        else// if($article->isTutorialArticle())
-            throw new \LogicException('Not implemented');
+        else {
+            if(empty($data['name']))
+                throw new \Exception('Empty name');
+
+            if($article->isTutorialArticle() or $article->isCollection())
+                throw new \LogicException('Not implemented');
+        }
     }
 
     private function generateEditTemplate(Article $article, Request $request) {
@@ -193,7 +198,8 @@ class ArticleController extends Controller
         $article = $proposition->getArticle();
         $options = $proposition->getOptions();
 
-        $article->setName($proposition->getName(), $locale);
+        if($proposition->getName() !== null)
+            $article->setName($proposition->getName(), $locale);
         $article->setDescription($proposition->getDescription(), $locale);
 
         if($article->isQuestArticle())
@@ -204,7 +210,7 @@ class ArticleController extends Controller
             throw new \LogicException('not implemented');
 
         $em->flush();
-        
+
         return $this->redirect($this->generateUrl('dof_cms_show', ['slug' => $article->getSlug()]));
     }
 }
