@@ -34,7 +34,7 @@
             {% endif %}
         </div>
         <div class="well well-lg" itemprop="articleBody">
-            {{ article.getDescription(locales()) }}
+            {{ article.getDescription(locales()) | raw }}
         </div>
     </article>
 {% endblock %}
