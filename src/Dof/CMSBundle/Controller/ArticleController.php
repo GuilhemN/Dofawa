@@ -30,7 +30,7 @@ class ArticleController extends Controller
                 throw new \Exception('Empty title or decription');
 
             if($article->isQuestArticle())
-                if(!$em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest']))
+                if(!$em->getRepository('DofQuestBundle:Quest')->find($data['options[quest]']))
                     throw new \Exception('Non-existant quest');
             elseif($article->isDungeonArticle())
                 if(empty($data['options']['roomCount']))
