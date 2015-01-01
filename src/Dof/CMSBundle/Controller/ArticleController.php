@@ -53,9 +53,9 @@ class ArticleController extends Controller
         }
 
         if($article->isQuestArticle())
-            $params = ['quests' => $em->getRepository('DofQuestBundle:Quest')->findAll()];
+            $params = ['quests' => $em->getRepository('DofQuestBundle:Quest')->findBy([], ['name' . ucfirst($request->getLocale()) => 'ASC'])];
         else if($article->isDungeonArticle())
-            $params = ['dungeons' => $em->getRepository('DofMonsterBundle:Dungeon')->findAll()];
+            $params = ['dungeons' => $em->getRepository('DofMonsterBundle:Dungeon')->findBy([], ['name' . ucfirst($request->getLocale()) => 'ASC'])];
         elseif($article->isTutorialArticle() or $article->isCollection())
             throw new \LogicException('Not implemented');
 
