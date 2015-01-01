@@ -54,6 +54,13 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     private $options;
 
     /**
+    * @var boolean
+    *
+    * @ORM\Column(name="published", type="boolean")
+    */
+    private $published;
+
+    /**
      * @var Article
      *
      * @ORM\ManyToOne(targetEntity="Dof\CMSBundle\Entity\Article")
@@ -139,6 +146,39 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     public function getOptions()
     {
         return $this->options;
+    }
+
+    /**
+    * Set published
+    *
+    * @param boolean $published
+    * @return Proposition
+    */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+    * Get published
+    *
+    * @return boolean
+    */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+    * Get published
+    *
+    * @return boolean
+    */
+    public function isPublished()
+    {
+        return $this->published;
     }
 
     /**

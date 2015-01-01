@@ -74,7 +74,8 @@ class ArticleController extends Controller
             $proposition
                 ->setArticle($article)
                 ->setDescription($data['description'])
-                ->setOptions($data['options']);
+                ->setOptions($data['options'])
+                ->setPublished(false);
 
             if(!empty($data['name']))
                 $proposition->setName($data['name']);
@@ -92,7 +93,7 @@ class ArticleController extends Controller
             throw new \Exception('Empty description');
 
         if($article->isQuestArticle()){
-            if(!($quest = $em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest'])))
+            if(!($quest = $em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest'])) or $quest->getArticle() !== null)
                 throw new \Exception('Non-existant quest');
         }
         elseif($article->isDungeonArticle()){
@@ -211,6 +212,7 @@ class ArticleController extends Controller
         else
             throw new \LogicException('not implemented');
 
+        $proposition->setPublished(true);
         $em->flush();
 
         return $this->redirect($this->generateUrl('dof_cms_show', ['slug' => $article->getSlug()]));
