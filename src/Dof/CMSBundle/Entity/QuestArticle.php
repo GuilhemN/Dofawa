@@ -44,6 +44,6 @@ class QuestArticle extends Article
         return $this->quest;
     }
 
-    public function isQuest() { return true; }
+    public function isQuestArticle() { return true; }
     public function getClass() { return 'quest'; }
 }

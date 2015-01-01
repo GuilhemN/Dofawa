@@ -29,15 +29,15 @@ class ArticleController extends Controller
             if(empty($data['name']) or empty($data['description']))
                 throw new \Exception('Empty title or decription');
 
-            if($article->isQuest())
+            if($article->isQuestArticle())
                 if(!$em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest']))
                     throw new \Exception('Non-existant quest');
-            elseif($article->isDungeon())
+            elseif($article->isDungeonArticle())
                 if(empty($data['options']['roomCount']))
                     throw new \Exception('Non-existant quest');
                 elseif(!$em->getRepository('DofMonsterBundle:Dungeon')->find($data['options']['dungeon']))
                     throw new \Exception('Non-existant dungeon');
-            elseif($article->isTutorial())
+            elseif($article->isTutorialArticle())
                 throw new \LogicException('Not implemented');
 
             $proposition = new Proposition();

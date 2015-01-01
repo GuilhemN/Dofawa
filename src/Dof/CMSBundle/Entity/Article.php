@@ -192,11 +192,10 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
         return $this->nameFr;
     }
 
-    public function isTextual() { return false; }
     public function isCollection() { return false; }
-    public function isQuest() { return false; }
-    public function isDungeon() { return false; }
-    public function isTutorial() { return false; }
+    public function isQuestArticle() { return false; }
+    public function isDungeonArticle() { return false; }
+    public function isTutorialArticle() { return false; }
 
     public function getClass() { return 'article'; }
 }

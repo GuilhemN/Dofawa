@@ -88,6 +88,6 @@ class TutorialArticle extends Article
         return $this;
     }
 
-    public function isTutorial() { return true; }
+    public function isTutorialArticle() { return true; }
     public function getClass() { return 'tutorial'; }
 }

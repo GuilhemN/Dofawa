@@ -74,6 +74,6 @@ class DungeonArticle extends Article
         return $this->dungeon;
     }
 
-    public function isDungeon() { return true; }
+    public function isDungeonArticle() { return true; }
     public function getClass() { return 'dungeon'; }
 }
