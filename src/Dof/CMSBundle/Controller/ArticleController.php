@@ -23,7 +23,7 @@ class ArticleController extends Controller
      * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
      */
     public function editAction(Article $article, Request $request) {
-        $em = $this->getDotrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         if($request->getMethod() === 'POST' && $request->request->has('article')){
             $data = $request->request->get('article');
             if(empty($data['name']) or empty($data['description']))
