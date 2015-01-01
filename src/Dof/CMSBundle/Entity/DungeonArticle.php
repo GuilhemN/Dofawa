@@ -23,7 +23,7 @@ class DungeonArticle extends Article
     /**
     * @var Dungeon
     *
-    * @ORM\OneToOne(targetEntity="Dof\MonsterBundle\Entity\Dungeon")
+    * @ORM\OneToOne(targetEntity="Dof\MonsterBundle\Entity\Dungeon", inversedBy="article")
     */
     private $dungeon;
 

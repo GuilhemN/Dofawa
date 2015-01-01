@@ -29,7 +29,6 @@ class ArticleRepository extends EntityRepository
 
 		return $qb
 			->getQuery()
-			->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
 			->useResultCache(true, 3600)
 			->getResult();
 	}

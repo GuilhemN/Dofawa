@@ -16,7 +16,7 @@ class QuestArticle extends Article
     /**
     * @var Dungeon
     *
-    * @ORM\OneToOne(targetEntity="Dof\QuestBundle\Entity\Quest")
+    * @ORM\OneToOne(targetEntity="Dof\QuestBundle\Entity\Quest", inversedBy="article")
     */
     private $quest;
 
