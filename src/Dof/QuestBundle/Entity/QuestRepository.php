@@ -19,7 +19,6 @@ class QuestRepository extends EntityRepository
         ->join('q.article', 'a')
         ->orderBy('q.name' . ucfirst($locale), 'ASC')
         ->getQuery()
-        ->setParameter('id', $id)
         ->getResult();
         ;
     }
