@@ -36,7 +36,11 @@ cp -f pinned/PDOStatement.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
 cp -f pinned/QueryBuilder.php vendor/doctrine/orm/lib/Doctrine/ORM
 
 php app/console cache:clear -e dev &
-php app/console cache:clear -e prod
+php app/console cache:clear -e prod &
+php app/console doctrine:cache:clear-metadata &
+php app/console doctrine:cache:clear-result &
+php app/console doctrine:cache:clear-query
+
 wait "$!"
 
 php app/console doctrine:schema:update --dump-sql
