@@ -18,7 +18,7 @@ class ArticleRepository extends EntityRepository
 		$qb = $this->createQueryBuilder('a');
 
 		$qb
-			->where('a.class INSTANCE OF :class and a.published = :published')
+			->where('a INSTANCE OF :class and a.published = :published')
 			->setParameter('class', $class)
 			->setParameter('published', (bool) $published)
 	  		->addOrderBy('a.createdAt', 'DESC')
