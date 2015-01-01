@@ -84,7 +84,7 @@ root:
         expose: true
         i18n: false
 
-dof_article:
+dof_cms:
     resource: "@DofCMSBundle/Resources/config/routing.yml"
     prefix:   /articles
 
