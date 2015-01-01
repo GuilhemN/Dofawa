@@ -13,8 +13,6 @@ use XN\Annotations as Utils;
  */
 class TutorialArticle extends Article
 {
-    const NULLABLE_NAME_FR = true;
-    
     /**
     * @var string
     *

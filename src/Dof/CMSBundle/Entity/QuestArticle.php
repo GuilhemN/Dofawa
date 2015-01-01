@@ -13,8 +13,6 @@ use Dof\QuestBundle\Entity\Quest;
  */
 class QuestArticle extends Article
 {
-    const NULLABLE_NAME_FR = true;
-    
     /**
     * @var Dungeon
     *

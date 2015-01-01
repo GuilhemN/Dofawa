@@ -12,9 +12,7 @@ use Dof\MonsterBundle\Entity\Dungeon;
  * @ORM\Entity(repositoryClass="Dof\CMSBundle\Entity\DungeonArticleRepository")
  */
 class DungeonArticle extends Article
-{
-    const NULLABLE_NAME_FR = true;
-    
+{    
     /**
      * @var integer
      *
