@@ -36,10 +36,7 @@ cp -f pinned/PDOStatement.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
 cp -f pinned/QueryBuilder.php vendor/doctrine/orm/lib/Doctrine/ORM
 
 php app/console cache:clear -e dev &
-php app/console cache:clear -e prod &
-php app/console doctrine:cache:clear-metadata &
-php app/console doctrine:cache:clear-result &
-php app/console doctrine:cache:clear-query
+php app/console cache:clear -e prod
 
 wait "$!"
 
@@ -52,6 +49,7 @@ if [ "$(id -u)" == 0 ]; then
 	chown -R www-data:www-data bin/cache
 	chown -R www-data:www-data web/uploads/
 	chown -R www-data:www-data web/media/
+	service hhvm restart
 fi
 
 if [ "$1" == --dev ]; then
