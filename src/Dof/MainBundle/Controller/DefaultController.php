@@ -27,6 +27,6 @@ class DefaultController extends Controller
 	 * @Utils\Secure('ROLE_SUPER_ADMIN')
 	 */
 	public function inUpdateAction() {
-		return new Response((string) file_exists('/var/lib/dofawa-repo/update'));
+		return new Response((int) file_exists('/var/lib/dofawa-repo/update'));
 	}
 }
