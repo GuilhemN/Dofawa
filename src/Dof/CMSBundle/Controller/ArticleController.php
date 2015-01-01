@@ -28,9 +28,10 @@ class ArticleController extends Controller
             $data = $request->request->get('article');
             if(empty($data['name']) or empty($data['description']))
                 throw new \Exception('Empty title or decription');
+            throw new \Exception(var_dump($data));
 
             if($article->isQuestArticle())
-                if(!$em->getRepository('DofQuestBundle:Quest')->find($data['options[quest]']))
+                if(!$em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest']))
                     throw new \Exception('Non-existant quest');
             elseif($article->isDungeonArticle())
                 if(empty($data['options']['roomCount']))
