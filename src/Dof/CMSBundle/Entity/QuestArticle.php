@@ -24,8 +24,6 @@ class QuestArticle extends Article
         return $this->quest->getName($locale);
     }
 
-    private function setName() {}
-
     /**
     * Set quest
     *
