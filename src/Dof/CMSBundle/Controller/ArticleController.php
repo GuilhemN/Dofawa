@@ -45,7 +45,7 @@ class ArticleController extends Controller
                 ->setArticle($article)
                 ->setName($data['name'])
                 ->setDescription($data['description'])
-                ->setOptions($options);
+                ->setOptions($data['options']);
 
             $em->persist($proposition);
             $em->flush($proposition);
