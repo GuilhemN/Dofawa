@@ -234,7 +234,7 @@
     <script defer type="text/javascript">
         function websiteInUpdate() {
             $.get( Routing.generate('dof_is_in_update'), function( data ) {
-                if(data)
+                if(data == 1)
                     $('#in_update').show();
                 else
                     $('#in_update').hide();
