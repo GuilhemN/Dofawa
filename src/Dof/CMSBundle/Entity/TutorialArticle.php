@@ -4,6 +4,8 @@ namespace Dof\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use XN\Annotations as Utils;
+
 /**
  * TutorialArticle
  *
