@@ -19,7 +19,7 @@ class ArticleRepository extends EntityRepository
 		$qb = $this->createQueryBuilder('a');
 
 		$qb
-			->where('a INSTANCE IN :class and a.published = :published')
+			->where('a INSTANCE OF :class and a.published = :published')
 			->setParameter('class', (array) $class)
 			->setParameter('published', (bool) $published)
 	  		->addOrderBy('a.createdAt', 'DESC')
@@ -42,10 +42,10 @@ class ArticleRepository extends EntityRepository
     public function countTotal($class = null, $published = true){
 		if($class === null)
 			$class = 'DofCMSBundle:Article';
-			
+
 		return $this->createQueryBuilder('a')
 		    ->select('COUNT(a)')
-			->where('a INSTANCE IN :class and a.published = :published')
+			->where('a INSTANCE OF :class and a.published = :published')
 			->setParameter('class', (array) $class)
 			->setParameter('published', (bool) $published)
 		    ->getQuery()
