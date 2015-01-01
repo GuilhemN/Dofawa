@@ -113,7 +113,7 @@ class ArticleController extends Controller
     private function generateEditTemplate(Article $article, Request $request) {
         $em = $this->getDoctrine()->getManager();
         if($article->isQuestArticle())
-            $params = ['quests' => $em->getRepository('DofQuestBundle:Quest')->findBy([], ['name' . ucfirst($request->getLocale()) => 'ASC'])];
+            $params = ['quests' => $em->getRepository('DofQuestBundle:Quest')->findAllWithArticles($request->getLocale())];
         else if($article->isDungeonArticle())
             $params = ['dungeons' => $em->getRepository('DofMonsterBundle:Dungeon')->findBy([], ['name' . ucfirst($request->getLocale()) => 'ASC'])];
         else// if($article->isTutorialArticle() or $article->isCollection())

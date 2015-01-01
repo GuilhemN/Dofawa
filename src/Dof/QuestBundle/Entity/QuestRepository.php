@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuestRepository extends EntityRepository
 {
+    public function findAllWithArticles($locale = 'fr') {
+        return $this
+        ->createQueryBuilder('q')
+        ->select(['q', 'a'])
+        ->join('q.article', 'a')
+        ->orderBy('q.name' . ucfirst($locale), 'ASC')
+        ->getQuery()
+        ->setParameter('id', $id)
+        ->getResult();
+        ;
+    }
 }
