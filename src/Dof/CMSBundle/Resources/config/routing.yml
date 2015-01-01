@@ -1,5 +1,5 @@
 dof_cms_view:
-    pattern: view/{slug}
+    pattern: {slug}
     defaults: { _controller: DofCMSBundle:Article:view }
 
 dof_cms_edit:
