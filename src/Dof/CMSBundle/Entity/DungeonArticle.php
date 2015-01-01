@@ -29,8 +29,7 @@ class DungeonArticle extends Article
 
 
     public function getName($locale = 'fr'){
-        $locale = (array) $locale;
-        return !empty($this->dungeon) ? $this->dungeon->getName($locale) : call_user_func([$this, 'getName' . ucfirst($locale[0])]);
+        return !empty($this->dungeon) ? $this->dungeon->getName($locale) : parent::getName($locale);
     }
 
     /**

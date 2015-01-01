@@ -21,8 +21,7 @@ class QuestArticle extends Article
     private $quest;
 
     public function getName($locale = 'fr'){
-        $locale = (array) $locale;
-        return !empty($this->quest) ? $this->quest->getName($locale) : call_user_func([$this, 'getName' . ucfirst($locale[0])]);
+        return !empty($this->quest) ? $this->quest->getName($locale) : parent::getName($locale);
     }
 
     /**
