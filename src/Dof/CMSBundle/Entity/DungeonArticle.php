@@ -13,6 +13,8 @@ use Dof\MonsterBundle\Entity\Dungeon;
  */
 class DungeonArticle extends Article
 {
+    const NULLABLE_NAME_FR = true;
+    
     /**
      * @var integer
      *

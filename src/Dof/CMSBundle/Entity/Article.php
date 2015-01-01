@@ -31,6 +31,7 @@ use XN\L10n\LocalizedDescriptionTrait;
 class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, LocalizedNameInterface
 {
     const NULLABLE_NAME_FR = true;
+
     /**
      * @var integer
      *
