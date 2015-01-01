@@ -14,9 +14,9 @@ class TutorialArticle extends Article
     /**
     * @var string
     *
-    * @ORM\Column(name="class", type="string", length=255, nullable=true)
+    * @ORM\Column(name="entity_class", type="string", length=255, nullable=true)
     */
-    private $class;
+    private $entityClass;
 
     /**
     * @var integer
@@ -26,9 +26,56 @@ class TutorialArticle extends Article
     private $classId;
 
     /**
-    * @Utils\LazyField
+    * @Utils\LazyField(classMethod="getEntityClass")
     */
     private $entity;
+
+
+    /**
+    * Set entityClass
+    *
+    * @param string $entityClass
+    * @return TutorialArticle
+    */
+    public function setEntityClass($entityClass)
+    {
+        $this->entityClass = $entityClass;
+
+        return $this;
+    }
+
+    /**
+    * Get entityClass
+    *
+    * @return string
+    */
+    public function getEntityClass()
+    {
+        return $this->entityClass;
+    }
+
+    /**
+    * Set classId
+    *
+    * @param integer $classId
+    * @return TutorialArticle
+    */
+    public function setClassId($classId)
+    {
+        $this->classId = $classId;
+
+        return $this;
+    }
+
+    /**
+    * Get classId
+    *
+    * @return integer
+    */
+    public function getClassId()
+    {
+        return $this->classId;
+    }
 
     public function getEntity() {
         return $this->entity;
