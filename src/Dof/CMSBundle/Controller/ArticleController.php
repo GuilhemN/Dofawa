@@ -73,9 +73,11 @@ class ArticleController extends Controller
             $proposition = new Proposition();
             $proposition
                 ->setArticle($article)
-                ->setName($data['name'])
                 ->setDescription($data['description'])
                 ->setOptions($data['options']);
+
+            if(!empty($data['name']))
+                $proposition->setName($data['name']);
 
             $em->persist($proposition);
             $em->flush($proposition);
