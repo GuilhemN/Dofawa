@@ -40,7 +40,7 @@ class Document implements NodeInterface
 	public function toDOMNode(\DOMDocument $doc)
 	{
 		$frag = $doc->createDocumentFragment();
-		$this->appendChildrenToDOM($frag);
+		$doc->appendChild($frag);
 		return $frag;
 	}
 
