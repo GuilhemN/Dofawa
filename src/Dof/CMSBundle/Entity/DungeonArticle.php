@@ -82,6 +82,6 @@ class DungeonArticle extends Article
     public function getClass() { return 'dungeon'; }
 
     public function __toString() {
-        return !empty($this->dungeon) ? $this->dungeon->getNameFr() : $this->nameFr;
+        return !empty($this->dungeon) ? $this->dungeon->getNameFr() : $this->getNameFr();
     }
 }

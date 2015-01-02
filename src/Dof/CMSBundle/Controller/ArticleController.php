@@ -197,7 +197,8 @@ class ArticleController extends Controller
      */
     public function validatePropositionAction(Proposition $proposition) {
         if($proposition->isPublished())
-            throw $this->createNotFoundException;
+            throw $this->createNotFoundException();
+
         $em = $this->getDoctrine()->getManager();
         $locale = $proposition->getCreatedOnLocale();
         $article = $proposition->getArticle();
