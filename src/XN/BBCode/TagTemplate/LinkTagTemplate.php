@@ -33,8 +33,8 @@ class LinkTagTemplate implements TagTemplateInterface
                 $href .= $child->getValue();
         }
         $elem = $doc->createElement('a');
-        if ($this->cssClass !== null)
-            $doc->setAttribute('href', $href);
+        $doc->setAttribute('href', $href);
+        
         $this->initializeElement($tag, $elem);
         $this->appendChildrenToDOM($tag, $elem);
         return $elem;
@@ -44,6 +44,6 @@ class LinkTagTemplate implements TagTemplateInterface
         if($parent instanceof Tag && $parent->getTemplate() instanceof self)
             throw new \Exception("Link can't be a child of another link.");
     }
-    
+
     public function verifyChild(Tag $parent, NodeInterface $child) { }
 }

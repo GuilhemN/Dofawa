@@ -61,6 +61,7 @@ services:
         tags:
             - { name: xn.bbcode.use, module: lists }
             - { name: xn.bbcode.use, module: basics }
+            - { name: xn.bbcode.use, module: media }
 
     xn.bbcode.item_tag_template:
         class: %xn.bbcode.item_tag_template.class%
@@ -91,16 +92,21 @@ services:
         tags:
             - { name: xn.bbcode.publish, module: basics }
 
-    xn.bbcode.link_tag_template:
-        class: %xn.bbcode.link_tag_template.class%
-        tags:
-            - { name: xn.bbcode.publish, module: basics }
-
     xn.bbcode.raw_tag_template:
         class: %xn.bbcode.raw_text_tag_template.class%
         arguments: [ 'raw' ]
         tags:
             - { name: xn.bbcode.publish, module: basics }
+
+    xn.bbcode.link_tag_template:
+        class: %xn.bbcode.link_tag_template.class%
+        tags:
+            - { name: xn.bbcode.publish, module: basics }
+
+    xn.bbcode.image_tag_template:
+        class: %xn.bbcode.image_tag_template.class%
+        tags:
+            - { name: xn.bbcode.publish, module: media }
 
 #    xn.doctrine.identifiable_updater:
 #        class:     "%xn.doctrine.identifiable_updater.class%"
