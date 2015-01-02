@@ -53,7 +53,7 @@ class Parser
 	{
 		$doc = $this->parse($source);
 		$htmlDoc = new \DOMDocument();
-		return DOMUtils::innerHTML($htmlDoc->saveHTML($doc->toDOMNode($htmlDoc)));
+		return $htmlDoc->saveHTML(DOMUtils::innerHTML($doc->toDOMNode($htmlDoc)));
 	}
 
 	public function message(Reader $src, &$retval, &$errCode, &$errOffset)
