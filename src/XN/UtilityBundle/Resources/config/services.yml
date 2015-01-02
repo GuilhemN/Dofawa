@@ -4,8 +4,11 @@ parameters:
     xn.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
     xn.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
     xn.grammar.class: XN\Grammar\ParserFactory
+
+    xn.bbcode.language.class: XN\BBCode\Language
     xn.bbcode.simple_tag_template.class: XN\BBCode\TagTemplate\SimpleTagTemplate
     xn.bbcode.item_tag_template.class: XN\BBCode\TagTemplate\ItemTagTemplate
+    xn.bbcode.link_tag_template.class: XN\BBCode\TagTemplate\LinkTagTemplate
 
     xn.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
     xn.doctrine.ownable_updater.class: XN\UtilityBundle\Doctrine\OwnableUpdater
@@ -52,6 +55,12 @@ services:
         class: %xn.grammar.class%
         arguments: [ "@annotation_reader" ]
 
+    simple_bbcode:
+        class: %xn.bbcode.language.class%
+        tags:
+            - { name: xn.bbcode.use, module: lists }
+            - { name: xn.bbcode.use, module: basics }
+
     xn.bbcode.item_tag_template:
         class: %xn.bbcode.item_tag_template.class%
         tags:
@@ -78,6 +87,11 @@ services:
     xn.bbcode.strikethrough_simple_tag_template:
         class: %xn.bbcode.simple_tag_template.class%
         arguments: [ [ 's', 'strike' ], 'span', ~, 'text-decoration: line-through;' ]
+        tags:
+            - { name: xn.bbcode.publish, module: basics }
+
+    xn.bbcode.link:
+        class: %xn.bbcode.link_tag_template.class%
         tags:
             - { name: xn.bbcode.publish, module: basics }
 

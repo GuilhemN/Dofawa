@@ -55,6 +55,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFilter('date_format', [ $this, 'formatDate' ]),
 			new \Twig_SimpleFilter('base64url_encode', array('XN\Common\UrlSafeBase64', 'encode')),
 			new \Twig_SimpleFilter('base64url_decode', array('XN\Common\UrlSafeBase64', 'decode')),
+			new \Twig_SimpleFilter('convert_to_html', [ $this, 'convertBBCodeToHTML' ], [ 'is_safe' => [ 'html' ] ]),
 		);
 	}
 
@@ -128,5 +129,13 @@ class UtilityExtension extends \Twig_Extension
 	public function blockFrom($template, $block, $context)
 	{
 		return $this->container->get('twig')->loadTemplate($template)->renderBlock($block, $context);
+	}
+
+	public function convertBBCodeToHTML($source, $language = 'simple_bbcode') {
+		$lg = $this->container->get($language);
+		if(!($lg instanceof \XN\BBCode\Language))
+			throw new \LogicException('%s service is not a language', $language);
+
+		return $lg->convertToHTML($source);
 	}
 }
