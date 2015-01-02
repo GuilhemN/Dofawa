@@ -94,7 +94,7 @@ class ArticleController extends Controller
 
         if($article->isQuestArticle()){
             if(!($quest = $em->getRepository('DofQuestBundle:Quest')->find($data['options']['quest'])) or ($quest->getArticle() !== null && $quest->getArticle() !== $article))
-                throw new \Exception('Non-existant quest');
+                throw new \Exception('Non-existant quest or article already existant');
         }
         elseif($article->isDungeonArticle()){
             if(empty($data['options']['roomsCount']))

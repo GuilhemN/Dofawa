@@ -51,9 +51,7 @@
         <div class="form-group">
             <label for="inputContent" class="col-sm-2 control-label">Contenu</label>
             <div class="col-sm-10">
-                <textarea name="article[description]" id="inputContent" required="required">
-                    {{ article.getDescription(app.request.locale) }}
-                </textarea>
+                <textarea name="article[description]" id="inputContent" required="required">{{ article.getDescription(app.request.locale) }}</textarea>
             </div>
         </div>
         <div class="form-group">
