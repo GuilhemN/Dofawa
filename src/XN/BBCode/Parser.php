@@ -128,6 +128,7 @@ class Parser
 			if (!$tpl) {
 				$errCode = ParserError::UNKNOWN_TAG;
 				$errOffset = $idOffset;
+				return false;
 			}
 			$retval = $this->makeTag($tpl, $tagName, $offset);
 			$state = $src->getState();
@@ -163,11 +164,9 @@ class Parser
 	{
 		$tagClass = $this->tagClass;
 		if (is_callable($tagClass))
-			$retval = call_user_func($tagClass, $tpl, $tagName, $offset);
+			return call_user_func($tagClass, $tpl, $tagName, $offset);
 		else
-			$retval = new $tagClass($tpl, $tagName, $offset);
-			
-		return $retval;
+			return new $tagClass($tpl, $tagName, $offset);
 	}
 	private function _tagRest(Reader $src, Tag $retval, $rawV, &$errCode, &$errOffset)
 	{
