@@ -52,8 +52,7 @@ class Parser
 	{
 		$doc = $this->parse($source);
 		$htmlDoc = new \DOMDocument();
-		$doc->toDOMNode($htmlDoc);
-		return $htmlDoc->saveHtml();
+		return $htmlDoc->saveHTML($doc->toDOMNode($htmlDoc));
 	}
 
 	public function message(Reader $src, &$retval, &$errCode, &$errOffset)
