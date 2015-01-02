@@ -3,6 +3,7 @@ namespace XN\BBCode;
 
 use XN\Grammar\Reader;
 use XN\Grammar\StringReader;
+use XN\Common\DOMUtils;
 
 class Parser
 {
@@ -52,7 +53,7 @@ class Parser
 	{
 		$doc = $this->parse($source);
 		$htmlDoc = new \DOMDocument();
-		return $htmlDoc->saveHTML($doc->toDOMNode($htmlDoc));
+		return DOMUtils::innerHTML($htmlDoc->saveHTML($doc->toDOMNode($htmlDoc)));
 	}
 
 	public function message(Reader $src, &$retval, &$errCode, &$errOffset)
