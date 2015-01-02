@@ -30,7 +30,7 @@ class ImageTagTemplate implements TagTemplateInterface
             $src .= $child->getValue();
 
         $elem = $doc->createElement('img');
-        $doc->setAttribute('src', $src);
+        $elem->setAttribute('src', $src);
         return $elem;
     }
 

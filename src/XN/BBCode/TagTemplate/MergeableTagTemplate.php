@@ -49,20 +49,20 @@ abstract class MergeableTagTemplate implements TagTemplateInterface
 			$elem = $child->toDOMNode($doc);
 			if ($myCSSClass) {
 				$cssClass = $doc->getAttribute('class');
-				$doc->setAttribute('class', $myCSSClass . ($cssClass ? (' ' . $cssClass) : ''));
+				$elem->setAttribute('class', $myCSSClass . ($cssClass ? (' ' . $cssClass) : ''));
 			}
 			if ($myCSSStyle) {
 				$cssStyle = $doc->getAttribute('style');
-				$doc->setAttribute('style', $myCSSStyle . ($cssStyle ? (' ' . $cssStyle) : ''));
+				$elem->setAttribute('style', $myCSSStyle . ($cssStyle ? (' ' . $cssStyle) : ''));
 			}
 			$this->mergeElement($tag, $elem);
 			return $elem;
 		} else {
 			$elem = $doc->createElement($this->domName);
 			if ($myCSSClass)
-				$doc->setAttribute('class', $myCSSClass);
+				$elem->setAttribute('class', $myCSSClass);
 			if ($myCSSStyle)
-				$doc->setAttribute('style', $myCSSStyle);
+				$elem->setAttribute('style', $myCSSStyle);
 			$this->initializeElement($tag, $elem);
 			$this->appendChildrenToDOM($tag, $elem);
 			return $elem;

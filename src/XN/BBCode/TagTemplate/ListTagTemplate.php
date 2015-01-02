@@ -50,9 +50,9 @@ class ListTagTemplate implements TagTemplateInterface
 	{
 		$elem = $doc->createElement($this->domName);
 		if ($this->cssClass !== null)
-			$doc->setAttribute('class', $this->cssClass);
+			$elem->setAttribute('class', $this->cssClass);
 		if ($this->cssStyle !== null)
-			$doc->setAttribute('style', $this->cssStyle);
+			$elem->setAttribute('style', $this->cssStyle);
 		$curItem = null;
 		foreach ($tag->getChildren() as $child) {
 			if ($child instanceof Tag && $child->getTemplate() instanceof ItemTagTemplate) {

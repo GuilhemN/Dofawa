@@ -33,8 +33,8 @@ class LinkTagTemplate implements TagTemplateInterface
                 $href .= $child->getValue();
         }
         $elem = $doc->createElement('a');
-        $doc->setAttribute('href', $href);
-        
+        $elem->setAttribute('href', $href);
+
         $this->initializeElement($tag, $elem);
         $this->appendChildrenToDOM($tag, $elem);
         return $elem;
