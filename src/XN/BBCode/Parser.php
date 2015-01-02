@@ -166,6 +166,8 @@ class Parser
 			$retval = call_user_func($tagClass, $tpl, $tagName, $offset);
 		else
 			$retval = new $tagClass($tpl, $tagName, $offset);
+			
+		return $retval;
 	}
 	private function _tagRest(Reader $src, Tag $retval, $rawV, &$errCode, &$errOffset)
 	{
