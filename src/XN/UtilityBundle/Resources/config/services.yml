@@ -9,6 +9,7 @@ parameters:
     xn.bbcode.simple_tag_template.class: XN\BBCode\TagTemplate\SimpleTagTemplate
     xn.bbcode.item_tag_template.class: XN\BBCode\TagTemplate\ItemTagTemplate
     xn.bbcode.link_tag_template.class: XN\BBCode\TagTemplate\LinkTagTemplate
+    xn.bbcode.image_tag_template.class: XN\BBCode\TagTemplate\ImageTagTemplate
     xn.bbcode.raw_text_tag_template.class: XN\BBCode\TagTemplate\RawTextTagTemplate
 
     xn.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
