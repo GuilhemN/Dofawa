@@ -205,7 +205,7 @@ class Parser
 		}
 		if (strlen($rest[0])) {
 			try {
-				$retval->appendChild($this->makeText($rest[0], $offset));
+				$retval->appendChild($this->makeText($rest[1], $offset));
 			} catch (\Exception $e) {
 				$errCode = ParserError::REJECTED_NODE;
 				$errOffset = $offset;
