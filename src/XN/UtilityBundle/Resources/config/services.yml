@@ -9,6 +9,7 @@ parameters:
     xn.bbcode.simple_tag_template.class: XN\BBCode\TagTemplate\SimpleTagTemplate
     xn.bbcode.item_tag_template.class: XN\BBCode\TagTemplate\ItemTagTemplate
     xn.bbcode.link_tag_template.class: XN\BBCode\TagTemplate\LinkTagTemplate
+    xn.bbcode.raw_text_tag_template.class: XN\BBCode\RawTextTagTemplate
 
     xn.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
     xn.doctrine.ownable_updater.class: XN\UtilityBundle\Doctrine\OwnableUpdater
@@ -90,8 +91,14 @@ services:
         tags:
             - { name: xn.bbcode.publish, module: basics }
 
-    xn.bbcode.link:
+    xn.bbcode.link_tag_template:
         class: %xn.bbcode.link_tag_template.class%
+        tags:
+            - { name: xn.bbcode.publish, module: basics }
+
+    xn.bbcode.raw_tag_template:
+        class: %xn.bbcode.raw_text_tag_template.class%
+        arguments: [ 'raw' ]
         tags:
             - { name: xn.bbcode.publish, module: basics }
 
