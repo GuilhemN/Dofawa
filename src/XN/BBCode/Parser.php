@@ -198,6 +198,7 @@ class Parser
 		$offset = $src->getConsumedBytes();
 		$ctag = '[/' . $retval->getName() . $rawV;
 		$rest = $src->eatRegex('#(.*?)(?!' . preg_quote($ctag, '#') . ')#As');
+		$srx->eat($ctag);
 		if (!$rest) {
 			$errCode = ParserError::EXPECTED_CTAG_START;
 			$errOffset = $offset + $src->getRemainingBytes();
