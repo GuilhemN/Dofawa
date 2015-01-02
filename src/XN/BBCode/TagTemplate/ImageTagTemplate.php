@@ -31,6 +31,7 @@ class ImageTagTemplate implements TagTemplateInterface
 
         $elem = $doc->createElement('img');
         $elem->setAttribute('src', $src);
+        $elem->setAttribute('alt', $tag->getAttribute('alt'));
         $elem->setAttribute('class', 'img-responsive');
         return $elem;
     }
