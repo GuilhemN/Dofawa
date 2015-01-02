@@ -48,7 +48,6 @@ if [ "$(id -u)" == 0 ]; then
 	chown -R www-data:www-data bin/cache
 	chown -R www-data:www-data web/uploads/
 	chown -R www-data:www-data web/media/
-	service hhvm restart
 fi
 
 if [ "$1" == --dev ]; then
