@@ -282,7 +282,7 @@ class Parser
 
 	public function identifier(Reader $src, &$retval, &$errCode, &$errOffset)
 	{
-		$id = $src->eatRegex('#[A-Za-z0-9_-\*]+#A');
+		$id = $src->eatRegex('#[A-Za-z0-9_\*-]+#A');
 		if ($id) {
 			$retval = $id[0];
 			return true;
