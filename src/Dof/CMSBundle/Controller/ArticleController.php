@@ -196,6 +196,8 @@ class ArticleController extends Controller
      * @Utils\Secure("ROLE_REDACTOR")
      */
     public function validatePropositionAction(Proposition $proposition) {
+        if($proposition->isPublished())
+            throw $this->createNotFoundException;
         $em = $this->getDoctrine()->getManager();
         $locale = $proposition->getCreatedOnLocale();
         $article = $proposition->getArticle();

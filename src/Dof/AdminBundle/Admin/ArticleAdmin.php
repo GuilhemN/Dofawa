@@ -25,7 +25,7 @@ class ArticleAdmin extends Admin
         $formMapper
           ->add('creator')
           ->add('keys')
-          ->add('category')
+          ->add('category', null, array('required' => false))
           ->add('published', null, array('required' => false))
         ;
 
