@@ -203,7 +203,7 @@ class Parser
 			$errOffset = $offset + $src->getRemainingBytes();
 			return false;
 		}
-		if (strlen($rest[0])) {
+		if (strlen($rest[1])) {
 			try {
 				$retval->appendChild($this->makeText($rest[1], $offset));
 			} catch (\Exception $e) {
