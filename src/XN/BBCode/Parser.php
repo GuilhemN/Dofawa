@@ -203,7 +203,7 @@ class Parser
 			$errOffset = $offset + $src->getRemainingBytes();
 			return false;
 		}
-		$src->eat($ctag);
+		$src->eatSpan($ctag);
 		if (strlen($rest[0])) {
 			try {
 				$retval->appendChild($this->makeText($rest[0], $offset));
