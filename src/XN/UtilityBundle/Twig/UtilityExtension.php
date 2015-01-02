@@ -138,7 +138,7 @@ class UtilityExtension extends \Twig_Extension
 
 		$doc = $lg->parse($source);
 		$htmlDoc = new \DOMDocument();
-		throw new \Exception(print_r($doc->toDOMNode($htmlDoc)->childNodes,true));
+		throw new \Exception(print_r($doc->toDOMNode($htmlDoc)->childNodes->item(1),true));
 		return $lg->convertToHTML($source);
 	}
 }
