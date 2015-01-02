@@ -135,10 +135,6 @@ class UtilityExtension extends \Twig_Extension
 		$lg = $this->container->get($language);
 		if(!($lg instanceof \XN\BBCode\Language))
 			throw new \LogicException('%s service is not a language', $language);
-
-		$doc = $lg->parse($source);
-		$htmlDoc = new \DOMDocument();
-		throw new \Exception(print_r($doc->toDOMNode($htmlDoc)->childNodes->item(0),true));
 		return $lg->convertToHTML($source);
 	}
 }
