@@ -11,7 +11,10 @@ class DOMUtils
 	{
 		if ($node === null)
 			return '';
-		return $node->ownerDocument->saveHTML($node);
+		if($node instanceof \DOMDocumentFragment)
+			return self::innerHTML($node);
+		else
+			return $node->ownerDocument->saveHTML($node);
 	}
 	public static function innerHTML(DOMNode $node = null)
 	{
@@ -48,7 +51,7 @@ class DOMUtils
 				return $frag;
 		}
 	}
-	
+
 	public static function getElementsByClassName(DOMNode $node = null, $className, $maxLevel = null)
 	{
 		return self::getElementsBy($node, function ($child) use ($className) {
@@ -75,7 +78,7 @@ class DOMUtils
 			return strtolower($child->nodeName) == $nodeName;
 		}, $maxLevel);
 	}
-	
+
 	public static function getElementsBy(DOMNode $node = null, $by, $maxLevel = null)
 	{
 		$elems = array();
@@ -100,7 +103,7 @@ class DOMUtils
 		}
 		return null;
 	}
-	
+
 	public static function getClasses(DOMElement $node = null)
 	{
 		if ($node === null)
@@ -113,7 +116,7 @@ class DOMUtils
 			return false;
 		return in_array($className, self::getClasses($node));
 	}
-	
+
 	private static function _getElementsBy(DOMNode $node, $by, $maxLevel, array &$elems)
 	{
 		if ($maxLevel !== null && $maxLevel <= 0)
