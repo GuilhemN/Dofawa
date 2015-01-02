@@ -41,6 +41,7 @@ class Document implements NodeInterface
 	{
 		$frag = $doc->createDocumentFragment();
 		$this->appendChildrenToDOM($frag);
+		$doc->appendChild($frag);
 		return $frag;
 	}
 
