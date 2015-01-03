@@ -44,7 +44,7 @@ class ObjectTagTemplate implements TagTemplateInterface
             return;
 
         $view = $this->tp->render('DofItemsBundle::item.html.twig', ['item' => $item]);
-        return DOMUtils::parseHTMLBodyFragment(str_replace("\n", '', $view), $doc); # FIXME Just temporarly
+        return DOMUtils::parseHTMLBodyFragment(str_replace(array("\r", "\n"), '', $view), $doc); # FIXME Just temporarly
     }
 
     public function verifyParent(Tag $child, NodeInterface $parent) {
