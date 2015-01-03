@@ -63,6 +63,7 @@ services:
             - { name: xn.bbcode.use, module: lists }
             - { name: xn.bbcode.use, module: basics }
             - { name: xn.bbcode.use, module: media }
+            - { name: xn.bbcode.use, module: entities }
 
     xn.bbcode.item_tag_template:
         class: %xn.bbcode.item_tag_template.class%
