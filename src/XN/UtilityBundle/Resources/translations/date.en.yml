@@ -34,5 +34,5 @@ formats:
 
         tomorrowAt: Tomorrow at %H:%M:%S
 
-        inXMinutes: In %m minutes
-        inXHours: In %h hours and %m%minutes
+        inXMinutes: In %m% minutes
+        inXHours: In %h% hours and %m% minutes
