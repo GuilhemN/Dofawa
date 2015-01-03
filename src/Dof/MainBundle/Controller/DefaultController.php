@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 use XN\Annotations as Utils;
+use XN\Common\DateFormat;
 
 class DefaultController extends Controller
 {
@@ -27,6 +28,13 @@ class DefaultController extends Controller
 	 * @Utils\Secure('ROLE_SUPER_ADMIN')
 	 */
 	public function inUpdateAction() {
-		return new Response((int) file_exists('/var/lib/dofawa-repo/update'));
+		return new Response((int) file_exists('/var/lib/dofawa-repo/in-update'));
+	}
+
+	/*
+	* @Utils\Secure('ROLE_SUPER_ADMIN')
+	*/
+	public function lastUpdateAction() {
+		return new Response(DateFormat::formatDate($this->get('translator'), new \Datetime(@file_get_contents('/var/lib/dofawa-repo/update'))));
 	}
 }
