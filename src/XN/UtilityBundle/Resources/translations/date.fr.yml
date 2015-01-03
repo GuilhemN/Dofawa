@@ -40,5 +40,5 @@ formats:
 
         tomorrowAt: Demain à %H:%M:%S
 
-        inXMinutes: Dans %m% minutes
-        inXHours: Dans %h% heures et %m% minutes
+        inXMinutes: Dans %m minutes
+        inXHours: Dans %h heures et %m minutes

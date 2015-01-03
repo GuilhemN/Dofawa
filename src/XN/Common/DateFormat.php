@@ -19,7 +19,7 @@ class DateFormat
 			if ($type == 'medium' && ($diff->y && $diff->m) == 0 ){
                 if($diff->d == 0 && $diff->h == 0 && $diff->i == 0)
                     return $translator->trans('formats.1.justNow', [], 'date', $locale);
-                elseif($now > $datetime){
+                elseif($now->getTimestamp() > time()){
     				if($diff->d == 1 or (date('G') < $diff->h && $diff->d == 0))
     					$format = self::dateParams('formats.1.yesterdayAt', $locale, $translator);
     				elseif($diff->d == 0 && $diff->h <= 2){
