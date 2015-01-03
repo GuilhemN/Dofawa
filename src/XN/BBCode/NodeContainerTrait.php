@@ -86,8 +86,11 @@ trait NodeContainerTrait
 	public function appendChildrenToDOM(\DOMNode $node)
 	{
 		$doc = $node->ownerDocument;
-		foreach ($this->children as $child)
-			$node->appendChild($child->toDOMNode($doc));
+		foreach ($this->children as $child){
+			$result = $child->toDOMNode($doc);
+			if($result !== null)
+				$node->appendChild($result);
+		}
 		return $this;
 	}
 
