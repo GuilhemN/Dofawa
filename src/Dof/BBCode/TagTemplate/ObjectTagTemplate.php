@@ -36,7 +36,7 @@ class ObjectTagTemplate implements TagTemplateInterface
 
     public function toDOMNode(Tag $tag, \DOMDocument $doc)
     {
-        if($tag->getValue() !== null)
+        if($tag->getValue() === null)
             return;
 
         $item = $this->em->getRepository('DofItemsBundle:ItemTemplate')->findOneBySlug($tag->getValue());
