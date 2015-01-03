@@ -31,3 +31,8 @@ formats:
 
         xDaysAgo: %d% days ago
         xMonthsAgo: %m% months and %d% days ago
+
+        tomorrowAt: Tomorrow at %H:%M:%S
+
+        inXMinutes: In %m% minutes
+        inXHours: In %h% hours and %m% minutes

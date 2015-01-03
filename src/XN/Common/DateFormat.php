@@ -13,26 +13,45 @@ class DateFormat
 		$infos = getdate($datetime->getTimestamp());
 
 		if($textual) {
-			$diff = $datetime->diff(new \Datetime);
+            $now = new \Datetime;
+			$diff = $datetime->diff($now);
 
-			if ($type == 'medium' && ($diff->y && $diff->m) == 0 )
-				if($diff->d == 1 or (date('G') < $diff->h && $diff->d == 0))
-					$format = self::dateParams('formats.1.yesterdayAt', $locale, $translator);
-				elseif($diff->d == 0 && $diff->h == 0 && $diff->i == 0)
-					return $translator->trans('formats.1.justNow', [], 'date', $locale);
-				elseif($diff->d == 0 && $diff->h <= 2)
-					if($diff->h == 0)
-						return $translator->trans('formats.1.xMinutesAgo', ['%m%' => $diff->i], 'date', $locale);
-					else
-						return $translator->trans('formats.1.xHoursAgo', ['%h%' => $diff->h, '%m%' => $diff->i], 'date', $locale);
-				elseif($diff->d == 0)
-					$format = self::dateParams('formats.1.todayAt', $locale, $translator);
-			elseif($type == 'short')
+			if ($type == 'medium' && ($diff->y && $diff->m) == 0 ){
+                if($diff->d == 0 && $diff->h == 0 && $diff->i == 0)
+                    return $translator->trans('formats.1.justNow', [], 'date', $locale);
+                elseif($now > $datetime){
+    				if($diff->d == 1 or (date('G') < $diff->h && $diff->d == 0))
+    					$format = self::dateParams('formats.1.yesterdayAt', $locale, $translator);
+    				elseif($diff->d == 0 && $diff->h <= 2){
+    					if($diff->h == 0)
+    						return $translator->trans('formats.1.xMinutesAgo', ['%m%' => $diff->i], 'date', $locale);
+    					else
+    						return $translator->trans('formats.1.xHoursAgo', ['%h%' => $diff->h, '%m%' => $diff->i], 'date', $locale);
+    				}
+                    elseif($diff->d == 0)
+                        $format = self::dateParams('formats.1.todayAt', $locale, $translator);
+                }
+                else {
+                    if($diff->d == 1 or (date('G') < $diff->h && $diff->d == 0))
+                        $format = self::dateParams('formats.1.tomorrowAt', $locale, $translator);
+                    elseif($diff->d == 0 && $diff->h <= 2){
+                        if($diff->h == 0)
+                            return $translator->trans('formats.1.inXMinutes', ['%m%' => $diff->i], 'date', $locale);
+                        else
+                            return $translator->trans('formats.1.inXHours', ['%h%' => $diff->h, '%m%' => $diff->i], 'date', $locale);
+                    }
+                    elseif($diff->d == 0)
+                        $format = self::dateParams('formats.1.todayAt', $locale, $translator);
+                }
+
+            }
+			elseif($type == 'short'){
 				if($diff->y == 0)
 					if($diff->m == (1 || 2))
 						return $translator->trans('formats.1.xMonthsAgo', ['%m%' => $diff->m, '%d%' => $diff->d], 'date', $locale);
 					elseif($diff->m == 0 && $diff->d > 0)
 						return $translator->trans('formats.1.xDaysAgo', ['%d%' => $diff->d], 'date', $locale);
+            }
 
 		}
 
