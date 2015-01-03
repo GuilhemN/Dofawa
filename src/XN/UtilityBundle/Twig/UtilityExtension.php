@@ -135,6 +135,6 @@ class UtilityExtension extends \Twig_Extension
 		$lg = $this->container->get($language);
 		if(!($lg instanceof \XN\BBCode\Language))
 			throw new \LogicException('%s service is not a language', $language);
-		return $lg->convertToHTML($source);
+		return nl2br($lg->convertToHTML($source));
 	}
 }
