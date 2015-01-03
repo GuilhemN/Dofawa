@@ -52,7 +52,7 @@
                                 {{ pet.lastFeeding | date_format }}
                             </td>
                             <td>
-                                {{ pet.nextFeeding | date("d/m/y H:i:s") }}
+                                {{ pet.nextFeeding | date_format }}
                             </td>
                             <td>
                                 <input type="checkbox"  name="pets[]" value="{{ pet.id }}" value="">
