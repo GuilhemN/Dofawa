@@ -41,7 +41,7 @@
                     <strong>{{ b.set.getName(locales()) }} ({{ b.itemCount }} items)</strong>
                 </center>
                 {# Get the characteristics #}
-                {% include 'DofItemsBundle::characteristics.html.twig' with {'item': combination} %}
+                {% include 'DofItemsBundle::characteristics.html.twig' with {'item': b} %}
             </div>
         </div>
         {% endfor %}
