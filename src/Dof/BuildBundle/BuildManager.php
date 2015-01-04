@@ -77,8 +77,7 @@ class BuildManager extends ServiceWithContainer
                 if($item === null)
                     continue;
                 foreach($item->getCharacteristics() as $k => $v)
-                    //if($v > 0)
-                        $return[$k] += $v;
+                    $return[$k] += $v;
 
                 // Panos et nombres d'items associés dans le stuff
                 if($item->getItemTemplate()->getSet() !== null)
@@ -105,10 +104,8 @@ class BuildManager extends ServiceWithContainer
         $return['ap'] += 6;
         $return['mp'] += 3;
         $return['prospecting'] += 100;
-        if($stuff->getCharacter()->getLevel() >= 100){
+        if($stuff->getCharacter()->getLevel() >= 100)
             $return['ap'] += 1;
-            $return['mp'] += 1;
-        }
 
         return $return;
     }
