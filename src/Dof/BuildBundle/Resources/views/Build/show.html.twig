@@ -32,6 +32,21 @@
             {% endfor %}
         </div>
     </div>
+    <hr />
+    <div class="row">
+        {% for b in bonus %}
+        <div class="col-xs-6 col-lg-4">
+            <div class="well well-sm">
+                <center>
+                    <strong>{{ b.set.getName(locales()) }} ({{ b.itemCount }} items)</strong>
+                </center>
+                {# Get the characteristics #}
+                {% include 'DofItemsBundle::characteristics.html.twig' with {'item': combination} %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
 {% endautoescape %}
 {% endblock %}
 
