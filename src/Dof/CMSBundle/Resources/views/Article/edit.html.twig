@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-    <form method="POST" class="form-horizontal">
+    <form method="POST">
         {% if not article.questArticle and not article.dungeonArticle %}
         <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Nom</label>
@@ -78,7 +78,7 @@
         $("textarea").sceditor({
             plugins: "bbcode",
             style: "minified/jquery.sceditor.default.min.css",
-            width: '100%',
+            width: '98%',
             height: '500px',
             resizeWidth: false
         });
