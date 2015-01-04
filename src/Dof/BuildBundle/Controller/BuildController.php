@@ -100,8 +100,6 @@ class BuildController extends Controller
         $bm = $this->get('build_manager');
         $items = $stuff->getItems();
 
-        $characteristics = $bm->getCharacteristics($stuff, $bonus);
-
         //Modification d'un item
         $request = $this->get('request');
         if ($canWrite && $request->isMethod('POST'))
@@ -118,6 +116,8 @@ class BuildController extends Controller
                         break 2;
                     }
         }
+
+        $characteristics = $bm->getCharacteristics($stuff, $bonus);
 
         return $this->render('DofBuildBundle:Build:show.html.twig', [
             // Perso
