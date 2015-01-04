@@ -78,9 +78,9 @@
         $("textarea").sceditor({
             plugins: "bbcode",
             style: "minified/jquery.sceditor.default.min.css",
-            width: '98%',
-            height: '500px',
-            resizeWidth: false
+            height: 500,
+            resizeWidth: false,
+            locale: "{{ app.request.locale }}"
         });
     });
     </script>
