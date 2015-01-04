@@ -70,13 +70,17 @@
 {% block js %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('bundles/dofcms/sceditor/minified/jquery.sceditor.bbcode.min.js') }}"></script>
+    <script src="{{ asset('bundles/dofcms/sceditor/languages/' ~ app.request.locale ~ '.js') }}"></script>
     <script>
     $(function() {
         // Replace all textarea's
         // with SCEditor
         $("textarea").sceditor({
             plugins: "bbcode",
-            style: "minified/jquery.sceditor.default.min.css"
+            style: "minified/jquery.sceditor.default.min.css",
+            width: '100%',
+            height: '500px',
+            resizeWidth: false
         });
     });
     </script>
