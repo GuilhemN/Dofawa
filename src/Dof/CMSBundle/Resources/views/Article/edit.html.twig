@@ -61,3 +61,23 @@
         </div>
     </form>
 {% endblock %}
+
+{% block style %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/dofcms/sceditor/minified/themes/default.min.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/dofcms/sceditor/minified/jquery.sceditor.bbcode.min.js') }}"></script>
+    <script>
+    $(function() {
+        // Replace all textarea's
+        // with SCEditor
+        $("textarea").sceditor({
+            plugins: "bbcode",
+            style: "minified/jquery.sceditor.default.min.css"
+        });
+    });
+    </script>
+{% endblock %}
