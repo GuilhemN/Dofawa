@@ -41,7 +41,7 @@ JS = $(ES6:.es6=.js) $(JSX:.jsx=.js) src/XN/UtilityBundle/Resources/public/js/ut
 
 # Our pre-existing or already generated non-minified file(s)
 CSS_PRE = $(shell find src -type f -name '*.css' ! -name '*.min.css')
-JS_PRE = $(shell find src -type f -name '*.js' ! -name '*.min.js')
+JS_PRE = $(shell find src -type f -name '*.js' ! -name '*.min.js' -not -path '*sceditor/*')
 
 # Our minified file list
 CSS_MIN = $(CSS:.css=.min.css) $(CSS_PRE:.css=.min.css)
