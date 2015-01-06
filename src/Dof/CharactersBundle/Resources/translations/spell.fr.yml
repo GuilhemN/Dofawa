@@ -38,22 +38,25 @@ trigger:
 target:
     A0: Adversaires
     a0: Lanceur, Alliés
-    B1: "#1"
-    b1: "Sauf #1"
-    E1: "Avec état #1{~c (Lanceur)}"
-    e1: "Sans état #1{~c (Lanceur)}"
-    F1: "#1"
-    f1: "Sauf #1"
+    B1: "{~cLanceur }#1"
+    b1: "{~cLanceur non}{~tSauf} #1"
+    E1: "{~cLanceur en}{~tEn} état #1"
+    e1: "{~cLanceur hors}{~tHors} état #1"
+    F1: "{~cLanceur }#1"
+    f1: "{~cLanceur non}{~tSauf} #1"
     g0: Alliés
     V1: "PV{~c du lanceur} < #1{~a0}%"
     v1: "PV{~c du lanceur} ≥ #1{~a0}%"
 area:
     P1: Cellule ciblée
-    C1: "Cercle de #1{~a0} cases (perte : 10%)"
-    C2: "Cercle de #2{~2 à }#1{~a0} cases (perte : 10%)"
-    C3: "Cercle de #2{~2 à }#1{~a0} cases{~3 (perte : #3%)}"
-# TODO : trouver la signification et gérer le #4
-    C4: "Cercle de #2{~2 à }#1{~a0} cases{~3 (perte : #3%)}"
+    C1: "Cercle de #1{~a0} cases"
+    C2: "Cercle de #2{~2 à }#1{~a0} cases"
+    C3: "Cercle de #2{~2 à }#1{~a0} cases"
+    C4: "Cercle de #2{~2 à }#1{~a0} cases"
+    X1: "Croix de #1{~a0} cases"
+    X2: "Croix de #2{~2 à }#1{~a0} cases"
+    X3: "Croix de #2{~2 à }#1{~a0} cases"
+    X4: "Croix de #2{~2 à }#1{~a0} cases"
     ';1': "Cellule #1{~a0}"
     A1: Tout le monde
     a1: Tout le monde
