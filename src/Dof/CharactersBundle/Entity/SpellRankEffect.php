@@ -440,6 +440,8 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 					$nparm = count($target) - 1;
 					if ($nparm)
 						$target['a'] = empty($target[1]);
+					$target['c'] = $caster;
+					$target['t'] = !$caster;
 					array_splice($desc, count($desc), 0, GameTemplateString::expand($translator->trans('target.' . $type . $nparm, [ ], 'spell'), $target));
 				}
 			}

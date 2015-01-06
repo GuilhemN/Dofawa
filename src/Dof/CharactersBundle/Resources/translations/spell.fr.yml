@@ -40,10 +40,18 @@ target:
     a0: Lanceur, Alliés
     B1: "#1"
     b1: "Sauf #1"
-    E1: "Avec état #1"
-    e1: "Sans état #1"
+    E1: "Avec état #1{~c (Lanceur)}"
+    e1: "Sans état #1{~c (Lanceur)}"
     F1: "#1"
     f1: "Sauf #1"
     g0: Alliés
-    V1: "PV >= #1%"
-    v1: "PV < #1%"
+    V1: "PV{~c du lanceur} < #1{~a0}%"
+    v1: "PV{~c du lanceur} ≥ #1{~a0}%"
+area:
+    P1: Cellule ciblée
+    C1: "Cercle de #1{~a0} cases (perte : 10%)"
+    C2: "Cercle de #2{~2 à }#1{~a0} cases (perte : 10%)"
+    C3: "Cercle de #2{~2 à }#1{~a0} cases{~3 (perte : #3%)}"
+# TODO : trouver la signification et gérer le #4
+    C4: "Cercle de #2{~2 à }#1{~a0} cases{~3 (perte : #3%)}"
+    ';1': "Cellule #1{~a0}"
