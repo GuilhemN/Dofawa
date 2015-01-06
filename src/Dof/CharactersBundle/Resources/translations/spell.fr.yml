@@ -1,1 +1,49 @@
-duration: "{-1} Infini|[1, Inf] %count% tours"
+duration: "{-1} Infini|{1} %count% tour|[1, Inf] %count% tours"
+delay: "{1} dans %count% tour|[1, Inf] dans %count% tours"
+on: sur
+triggered: Déclenché
+trigger:
+	I0: Immédiat
+	DM0: Dom. au contact
+	DR0: Dom. à distance
+	D0: Dom. directs
+	TE0: Fin de tour
+	DP0: Dom. de piège
+	TB0: Début de tour
+	H0: Soins
+	MD0: Dom. de poussée
+	DS0: Dom. de sort
+	DG0: Dom. de glyphe
+	A0: Perte de PA
+	m0: Perte de PM
+	DA0: Dom. air
+	DW0: Dom. eau
+	DF0: Dom. feu
+	DN0: Dom. neutres
+	DE0: Dom. terre
+	X0: Mort
+	MDP0: Dom. pou. indirects
+	DC0: Dom. d'arme
+	MDM0: Dom. pou. directs
+	tS0: Tacle réussi
+	MP0: Poussée
+	EO1: "Entrée dans l'état #1"
+	Eo1: "Sortie de l'état #1"
+	R0: Perte de PO
+	M0: Déplacement
+	DI0: Dom. par invocation
+	tF0: Fuite échouée
+	DTB0: Dom. en début de tour
+	DTE0: Dom. en fin de tour
+target:
+	A0: Adversaires
+	a0: Lanceur, Alliés
+	B1: "#1"
+	b1: "Sauf #1"
+	E1: "Avec état #1"
+	e1: "Sans état #1"
+	F1: "#1"
+	f1: "Sauf #1"
+	g0: Alliés
+	V1: "PV >= #1%"
+	v1: "PV < #1%"
