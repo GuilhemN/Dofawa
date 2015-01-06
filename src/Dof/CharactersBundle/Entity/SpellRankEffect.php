@@ -420,7 +420,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
         if ($full) {
 			if ($technical)
 				array_unshift($desc, [ '[' . $this->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
-			$desc[] = [ '(', GameTemplateString::COMES_FROM_TEMPLATE ];
+			$desc[] = [ ' (', GameTemplateString::COMES_FROM_TEMPLATE ];
 			if ($technical || !$this->hyTargets)
 				$desc[] = [ implode(', ', $this->targets), GameTemplateString::COMES_FROM_TEMPLATE ];
 			else {
@@ -463,7 +463,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 		if ($this->delay)
 			$desc[] = [ ' (' . $translator->transChoice('delay', $this->delay, ['%count%' => $this->delay], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
 		if (implode(',', $this->triggers) != 'I') {
-			$triggers[] = [ [ $translator->trans('triggered', [ ], 'spell') . ' ', GameTemplateString::COMES_FROM_TEMPLATE ] ];
+			$triggers = [ [ $translator->trans('triggered', [ ], 'spell') . ' ', GameTemplateString::COMES_FROM_TEMPLATE ] ];
             if ($full) {
 				$triggers[] = [ '(', GameTemplateString::COMES_FROM_TEMPLATE ];
 				if ($technical || !$this->hyTriggers)
