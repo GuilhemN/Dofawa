@@ -62,7 +62,7 @@ class EffectTLoader extends ServiceWithContainer
 					$hyTarget[] = $parm;
 				}
 				return $hyTarget;
-			}, $ent->getRawTargets());
+			}, $ent->getRawTargets()));
 			$ent->setTriggers(array_map(function ($trigger) use ($em) {
 				$hyTrigger = [ ];
 				$len = strlen($trigger);
