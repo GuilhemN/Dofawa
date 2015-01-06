@@ -55,5 +55,5 @@ area:
 # TODO : trouver la signification et gérer le #4
     C4: "Cercle de #2{~2 à }#1{~a0} cases{~3 (perte : #3%)}"
     ';1': "Cellule #1{~a0}"
-	A1: Tout le monde
-	a1: Tout le monde
+    A1: Tout le monde
+    a1: Tout le monde
