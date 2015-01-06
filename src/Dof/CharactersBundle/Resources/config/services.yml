@@ -1,9 +1,16 @@
 parameters:
     dof_characters.effect_param_loader.class: Dof\CharactersBundle\EffectParamLoader
+    dof_characters.effect_t_loader.class: Dof\CharactersBundle\EffectTLoader
 
 services:
     dof_characters.effect_param_loader:
         class: %dof_characters.effect_param_loader.class%
+        arguments: [ @service_container ]
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
+
+    dof_characters.effect_t_loader:
+        class: %dof_characters.effect_t_loader.class%
         arguments: [ @service_container ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }

@@ -26,10 +26,12 @@ class Areas
 			case AreaShape::CIRCLE:
 			case AreaShape::RING:
 			case AreaShape::NEGATED_CIRCLE:
-				if (!isset($params[1]))
-					$params[1] = ($shape == AreaShape::RING) ? $params[0] : 0;
 				if ($shape == AreaShape::NEGATED_CIRCLE)
-					$params = [ 63, $params[0] ];
+					array_unshift($params, 63);
+				elseif ($shape == AreaShape::RING)
+					array_splice($params, 1, 0, [ $params[0] ]);
+				elseif (!isset($params[1]))
+					$params[1] = ($shape == AreaShape::RING) ? $params[0] : 0;
 				return self::getCirclePolygons($params[0], $params[1]);
 			case AreaShape::SQUARE:
 				if (!isset($params[1]))

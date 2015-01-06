@@ -26,7 +26,7 @@ class GameTemplateString
 					$condlen = strlen($cond);
 					for ($i = 1; $i < $condlen; $i += 2) {
 						$key = $cond[$i];
-						if (!isset($context[$key]) || !$context[$key])
+						if (empty($context[$key]))
 							break 2;
 					}
 					$result[] = [ $match[2][0], self::COMES_FROM_TEMPLATE ];
@@ -40,12 +40,17 @@ class GameTemplateString
 		}
 		if (strlen($tpl) > $pos)
 			$result[] = [ substr($tpl, $pos), self::COMES_FROM_TEMPLATE ];
-		for ($i = count($result); $i-- > 1; ) {
-			if ($result[$i][1] == self::COMES_FROM_TEMPLATE && $result[$i - 1][1] == self::COMES_FROM_TEMPLATE) {
-				$result[$i - 1] = [ $result[$i - 1][0] . $result[$i][0], self::COMES_FROM_TEMPLATE ];
-				array_splice($result, $i, 1);
+		return self::clean($result);
+	}
+
+	public static function clean(array $expansion)
+	{
+		for ($i = count($expansion); $i-- > 1; ) {
+			if ($expansion[$i][1] == self::COMES_FROM_TEMPLATE && $expansion[$i - 1][1] == self::COMES_FROM_TEMPLATE) {
+				$expansion[$i - 1] = [ $expansion[$i - 1][0] . $expansion[$i][0], self::COMES_FROM_TEMPLATE ];
+				array_splice($expansion, $i, 1);
 			}
 		}
-		return $result;
+		return $expansion;
 	}
 }

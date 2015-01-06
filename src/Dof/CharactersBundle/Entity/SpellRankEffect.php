@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 use XN\Persistence\IdentifiableInterface;
 
+use Dof\CharactersBundle\Areas;
 use Dof\CharactersBundle\EffectInterface;
 use Dof\CharactersBundle\EffectTrait;
 
@@ -69,6 +70,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
      * @ORM\Column(name="targets", type="simple_array")
      */
     private $targets;
+	private $hyTargets;
 
     /**
      * @var integer
@@ -90,6 +92,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
      * @ORM\Column(name="triggers", type="simple_array")
      */
     private $triggers;
+	private $hyTriggers;
 
     /**
      * @var boolean
@@ -215,7 +218,15 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
      */
     public function setTargets($targets)
     {
-        $this->targets = $targets;
+		$this->hyTargets = $targets;
+        $this->targets = array_map(function ($target) {
+			if (!is_array($target))
+				return $target;
+			foreach ($target as &$part)
+				if ($part instanceof IdentifiableInterface)
+					$part = $part->getId();
+			return implode('', $target);
+		}, $targets);
 
         return $this;
     }
@@ -227,8 +238,12 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
      */
     public function getTargets()
     {
-        return $this->targets;
+        return $this->hyTargets ? $this->hyTargets : $this->targets;
     }
+	public function getRawTargets()
+	{
+		return $this->targets;
+	}
 
     /**
      * Set duration
@@ -284,7 +299,15 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
      */
     public function setTriggers($triggers)
     {
-        $this->triggers = $triggers;
+        $this->hyTriggers = $triggers;
+        $this->triggers = array_map(function ($trigger) {
+			if (!is_array($trigger))
+				return $trigger;
+			foreach ($trigger as &$part)
+				if ($part instanceof IdentifiableInterface)
+					$part = $part->getId();
+			return implode('', $trigger);
+		}, $trigger);
 
         return $this;
     }
@@ -296,8 +319,12 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
      */
     public function getTriggers()
     {
-        return $this->triggers;
+        return $this->hyTriggers ? $this->hyTriggers : $this->triggers;
     }
+	public function getRawTriggers()
+	{
+		return $this->triggers;
+	}
 
     /**
      * Set hidden
@@ -382,7 +409,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 		];
 	}
 
-	public function getDescription($locale = 'fr', $full = false)
+	public function getDescription($locale = 'fr', $full = false, $technical = false)
 	{
         $translator = $this->di->get('translator');
 		$desc = $this->getEffectTemplate()->expandDescription([
@@ -390,22 +417,80 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 			'2' => $this->getParam2(),
 			'3' => $this->getParam3()
 		], $locale);
-        if($full){
-		    array_unshift($desc, [ '[' . $this->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
-    		$desc[] = [ ' (' . implode(', ', $this->targets) . ' sur ' . $this->areaOfEffect . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
+        if ($full) {
+			if ($technical)
+				array_unshift($desc, [ '[' . $this->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
+			$desc[] = [ '(', GameTemplateString::COMES_FROM_TEMPLATE ];
+			if ($technical || !$this->hyTargets)
+				$desc[] = [ implode(', ', $this->targets), GameTemplateString::COMES_FROM_TEMPLATE ];
+			else {
+				$first = true;
+				foreach ($this->hyTargets as $target) {
+					if ($first)
+						$first = false;
+					else
+						$desc[] = [ ', ', GameTemplateString::COMES_FROM_TEMPLATE ];
+					if (!is_array($target))
+						$target = [ $target ];
+					$caster = $target[0] == '*';
+					if ($caster)
+						array_shift($target);
+					$type = $target[0];
+					$target[0] = null;
+					$nparm = count($target) - 1;
+					if ($nparm)
+						$target['a'] = empty($target[1]);
+					array_splice($desc, count($desc), 0, GameTemplateString::expand($translator->trans('target.' . $type . $nparm, [ ], 'spell'), $target));
+				}
+			}
+			$desc[] = [ ' ' . $translator->trans('on', [ ], 'spell') . ' ', GameTemplateString::COMES_FROM_TEMPLATE ];
+			if ($technical)
+				$desc[] = [ $this->areaOfEffect, GameTemplateString::COMES_FROM_TEMPLATE ];
+			else {
+				$aeparm = Areas::getParams($this->areaOfEffect);
+				$naeparm = count($aeparm);
+				// We can use {~1foo} to have "foo" on non-zero #1
+				// Allow {~afoo} to have "foo" on zero #1
+				for ($i = $naeparm; $i-- > 0; )
+					$aeparm[chr(97 + $i)] = empty($aeparm[$i]);
+				array_unshift($aeparm, null);
+				array_splice($desc, count($desc), 0, GameTemplateString::expand($translator->trans('area.' . Areas::getShape($this->areaOfEffect) . $naeparm, [ ], 'spell'), $aeparm));
+			}
+			$desc[] = [ ')', GameTemplateString::COMES_FROM_TEMPLATE ];
 	    }
         if ($this->duration)
 			$desc[] = [ ' (' . $translator->transChoice('duration', $this->duration, ['%count%' => $this->duration], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
 		if ($this->delay)
-			$desc[] = [ ' (dans ' . $this->delay . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
-		if (implode(',', $this->triggers) != 'I'){
-            if($full)
-                $triggers = '(' . implode(', ', $this->triggers) . ') ';
-            else
-                $triggers = '';
-			array_unshift($desc, [ 'Déclenché ' . $triggers . ': ', GameTemplateString::COMES_FROM_TEMPLATE ]);
+			$desc[] = [ ' (' . $translator->transChoice('delay', $this->delay, ['%count%' => $this->delay], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
+		if (implode(',', $this->triggers) != 'I') {
+			$triggers[] = [ [ $translator->trans('triggered', [ ], 'spell') . ' ', GameTemplateString::COMES_FROM_TEMPLATE ] ];
+            if ($full) {
+				$triggers[] = [ '(', GameTemplateString::COMES_FROM_TEMPLATE ];
+				if ($technical || !$this->hyTriggers)
+					$triggers[] = [ implode(', ', $this->triggers), GameTemplateString::COMES_FROM_TEMPLATE ];
+				else {
+					$first = true;
+					foreach ($this->hyTriggers as $trigger) {
+						if ($first)
+							$first = false;
+						else
+							$desc[] = [ ', ', GameTemplateString::COMES_FROM_TEMPLATE ];
+						if (!is_array($trigger))
+							$trigger = [ $trigger ];
+						$type = $trigger[0];
+						$trigger[0] = null;
+						$nparm = count($trigger) - 1;
+						if ($nparm)
+							$trigger['a'] = empty($trigger[1]);
+						array_splice($triggers, count($triggers), 0, GameTemplateString::expand($translator->trans('trigger.' . $type . $nparm, [ ], 'spell'), $trigger));
+					}
+				}
+				$triggers[] = [ ') ', GameTemplateString::COMES_FROM_TEMPLATE ];
+			}
+			$triggers[] = [ ': ', GameTemplateString::COMES_FROM_TEMPLATE ];
+			array_splice($desc, 0, 0, $triggers);
 		}
-        return $desc;
+        return GameTemplateString::clean($desc);
 	}
 
 	public function __toString()
