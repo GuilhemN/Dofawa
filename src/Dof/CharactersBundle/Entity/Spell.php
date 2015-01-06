@@ -85,6 +85,12 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     * @ORM\JoinTable(name="dof_monster_spells")
     */
     private $monsters;
+    
+	/**
+    * @ORM\ManyToMany(targetEntity="Dof\MonsterBundle\Entity\Monster", inversedBy="passiveSpells")
+    * @ORM\JoinTable(name="dof_monster_passive_spells")
+    */
+    private $passiveOfMonsters;
 
     /**
     * @Assert\Image(
@@ -102,6 +108,7 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
         $this->ranks = new ArrayCollection();
         $this->breeds = new ArrayCollection();
         $this->monsters = new ArrayCollection();
+        $this->passiveOfMonsters = new ArrayCollection();
     }
 
     /**
@@ -312,6 +319,42 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getMonsters()
     {
         return $this->monsters;
+    }
+
+    /**
+     * Add passiveOfMonsters
+     *
+     * @param Monster $passiveOfMonsters
+     * @return Spell
+     */
+    public function addPassiveOfMonster(Monster $passiveOfMonsters)
+    {
+        $this->passiveOfMonsters[] = $passiveOfMonsters;
+
+        return $this;
+    }
+
+    /**
+     * Remove passiveOfMonsters
+     *
+     * @param Monster $passiveOfMonsters
+     * @return Spell
+     */
+    public function removePassiveOfMonster(Monster $passiveOfMonsters)
+    {
+        $this->passiveOfMonsters->removeElement($passiveOfMonsters);
+
+        return $this;
+    }
+
+    /**
+     * Get passiveOfMonsters
+     *
+     * @return Collection
+     */
+    public function getPassiveOfMonsters()
+    {
+        return $this->passiveOfMonsters;
     }
 
     public function __toString()

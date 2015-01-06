@@ -81,6 +81,11 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $spells;
 
     /**
+    * @ORM\ManyToMany(targetEntity="Dof\CharactersBundle\Entity\Spell", mappedBy="passiveOfMonsters")
+    */
+    private $passiveSpells;
+
+    /**
     * @ORM\ManyToMany(targetEntity="Dof\MapBundle\Entity\SubArea", mappedBy="monsters")
     */
     private $subAreas;
@@ -169,6 +174,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
         $this->grades = new ArrayCollection();
         $this->drops = new ArrayCollection();
         $this->spells = new ArrayCollection();
+        $this->passiveSpells = new ArrayCollection();
         $this->subAreas = new ArrayCollection();
         $this->dungeons = new ArrayCollection();
     }
@@ -370,6 +376,42 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function getSpells()
     {
         return $this->spells;
+    }
+
+    /**
+     * Add passiveSpells
+     *
+     * @param Spell $passiveSpells
+     * @return Monster
+     */
+    public function addPassiveSpell(Spell $passiveSpells)
+    {
+        $this->passiveSpells[] = $passiveSpells;
+
+        return $this;
+    }
+
+    /**
+     * Remove passiveSpells
+     *
+     * @param Spell $passiveSpells
+     * @return Monster
+     */
+    public function removePassiveSpell(Spell $passiveSpells)
+    {
+        $this->passiveSpells->removeElement($passiveSpells);
+
+        return $this;
+    }
+
+    /**
+     * Get passiveSpells
+     *
+     * @return Collection
+     */
+    public function getPassiveSpells()
+    {
+        return $this->passiveSpells;
     }
 
     public function getSortedSpells(){
