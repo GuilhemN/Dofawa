@@ -476,7 +476,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 						if ($first)
 							$first = false;
 						else
-							$desc[] = [ ', ', GameTemplateString::COMES_FROM_TEMPLATE ];
+							$triggers[] = [ ', ', GameTemplateString::COMES_FROM_TEMPLATE ];
 						if (!is_array($trigger))
 							$trigger = [ $trigger ];
 						$type = $trigger[0];
