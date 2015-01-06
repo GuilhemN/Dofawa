@@ -307,7 +307,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
 				if ($part instanceof IdentifiableInterface)
 					$part = $part->getId();
 			return implode('', $trigger);
-		}, $trigger);
+		}, $triggers);
 
         return $this;
     }
