@@ -33,7 +33,7 @@ trait SnippetDescriptionTrait
         return $this->di;
     }
 
-    public function getPlainTextDescription($locale = 'fr', $full = false)
+    public function getPlainTextDescription($locale = 'fr', $full = false, $technical = false)
     {
         $securityContext = $this->di->get('security.context');
         $translator = $this->di->get('translator');
@@ -42,7 +42,7 @@ trait SnippetDescriptionTrait
                 return $row[0]->getName($translator->getLocales());
             else
                 return $row[0];
-        }, $this->getDescription($locale, $full)));
+        }, $this->getDescription($locale, $full, $technical)));
     }
 
     public function getHtmlDescription()
@@ -72,6 +72,6 @@ trait SnippetDescriptionTrait
                 else
                     return $name;
             }
-        }, $this->getDescription($translator->getLocale(), $securityContext->isGranted('ROLE_XRAY'))));
+        }, $this->getDescription($translator->getLocale(), $securityContext->isGranted('ROLE_XRAY'), false)));
     }
 }
