@@ -55,7 +55,7 @@ class EffectTLoader extends ServiceWithContainer
 							$parm = $em->find('DofCharactersBundle:State', $parm);
 							break;
 						case 'f':
-							$parm = $em->find('DofMonstersBundle:Monster', $parm);
+							$parm = $em->find('DofMonsterBundle:Monster', $parm);
 							break;
 					}
 					$hyTarget[] = $type;
