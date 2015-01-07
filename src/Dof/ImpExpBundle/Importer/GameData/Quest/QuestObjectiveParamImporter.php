@@ -30,7 +30,7 @@ class QuestObjectiveParamImporter extends AbstractGameDataImporter
         $progress->start($output, count($all));
         foreach ($params as $k => $p) {
             $objective = $repo->find($k);
-            if($objective === null or $objective->getQuestStep()->getQuest()->isPreliminary() ^ $beta)
+            if($objective === null or $objective->getStep()->getQuest()->isPreliminary() ^ $beta)
                 continue;
 
             foreach($p as $i => $v)
