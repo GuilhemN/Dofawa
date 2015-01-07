@@ -10,7 +10,7 @@ use Dof\ImpExpBundle\ImporterFlags;
 
 class QuestObjectiveParamImporter extends AbstractGameDataImporter
 {
-    const CURRENT_DATA_SET = 'quest_step_objectives_params';
+    const CURRENT_DATA_SET = 'quest_step_objective_params';
     const BETA_DATA_SET = 'beta_quest_step_objective_params';
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
@@ -30,7 +30,7 @@ class QuestObjectiveParamImporter extends AbstractGameDataImporter
         $progress->start($output, count($all));
         foreach ($params as $k => $p) {
             $objective = $repo->find($k);
-            if($objective === null or $$objective->getQuestStep()->getQuest()->isPreliminary() ^ $beta)
+            if($objective === null or $objective->getQuestStep()->getQuest()->isPreliminary() ^ $beta)
                 continue;
 
             foreach($p as $i => $v)
