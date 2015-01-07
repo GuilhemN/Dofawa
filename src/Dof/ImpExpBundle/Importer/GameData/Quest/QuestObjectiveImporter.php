@@ -23,20 +23,25 @@ class QuestObjectiveImporter extends AbstractGameDataImporter
         $stmt->closeCursor();
         $repo = $this->dm->getRepository('DofQuestBundle:QuestObjective');
         $questSRepo = $this->dm->getRepository('DofQuestBundle:QuestStep');
+        $objectiveTRepo = $this->dm->getRepository('DofQuestBundle:QuestObjectiveTemplate');
+        $mapRepo = $this->dm->getRepository('DofMapBundle:MapPosition');
         $rowsProcessed = 0;
         if ($output && $progress)
         $progress->start($output, count($all));
         foreach ($all as $row) {
             $questStep = $questSRepo->find($row['stepId']);
-            if($questStep === null or $questStep->getQuest()->isPreliminary() ^ $beta)
+            $objectiveT = $objectiveTRepo->find($row['typeId']);
+            if($questStep === null or $objectiveT === null or $questStep->getQuest()->isPreliminary() ^ $beta)
                 continue;
             $tpl = $repo->find($row['id']);
+            $map = $mapRepo->find($row['mapId']);
             if ($tpl === null) {
                 $tpl = new QuestObjective();
                 $tpl->setId($row['id']);
             }
             $tpl->setStep($questStep);
-            $tpl->setMapId($row['mapId']);
+            $tpl->setObjectiveTemplate($objectiveT);
+            $tpl->setMap($map);
             $tpl->setX($row['coords_x']);
             $tpl->setY($row['coords_y']);
 

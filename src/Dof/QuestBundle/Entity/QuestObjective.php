@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 use XN\Persistence\IdentifiableInterface;
 
+use Dof\MapBundle\Entity\MapPosition;
+
 /**
  * QuestObjective
  *
@@ -23,11 +25,20 @@ class QuestObjective implements IdentifiableInterface
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="mapId", type="integer")
-     */
-    private $mapId;
+    * @var QuestObjectiveTemplate
+    *
+    * @ORM\ManyToOne(targetEntity="QuestObjectiveTemplate")
+    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+    */
+    private $objectiveTemplate;
+
+    /**
+    * @var MapPosition
+    *
+    * @ORM\ManyToOne(targetEntity="Dof\MapBundle\Entity\MapPosition")
+    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+    */
+    private $map;
 
     /**
      * @var integer
@@ -74,26 +85,49 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-     * Set mapId
-     *
-     * @param integer $mapId
-     * @return QuestObjective
-     */
-    public function setMapId($mapId)
+    * Set objectiveTemplate
+    *
+    * @param QuestObjectiveTemplate $objectiveTemplate
+    * @return QuestObjective
+    */
+    public function setObjectiveTemplate(QuestObjectiveTemplate $objectiveTemplate)
     {
-        $this->mapId = $mapId;
+        $this->objectiveTemplate = $objectiveTemplate;
 
         return $this;
     }
 
     /**
-     * Get mapId
-     *
-     * @return integer
-     */
-    public function getMapId()
+    * Get objectiveTemplate
+    *
+    * @return QuestObjectiveTemplate
+    */
+    public function getObjectiveTemplate()
     {
-        return $this->mapId;
+        return $this->objectiveTemplate;
+    }
+
+    /**
+    * Set map
+    *
+    * @param MapPosition $map
+    * @return QuestObjective
+    */
+    public function setMap(MapPosition $map = null)
+    {
+        $this->map = $map;
+
+        return $this;
+    }
+
+    /**
+    * Get map
+    *
+    * @return MapPosition
+    */
+    public function getMap()
+    {
+        return $this->map;
     }
 
     /**

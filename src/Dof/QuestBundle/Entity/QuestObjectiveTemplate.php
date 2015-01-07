@@ -14,9 +14,9 @@ use Dof\ItemsBundle\ReleaseBoundTrait;
  * QuestObjectiveType
  *
  * @ORM\Table(name="dof_quest_objective_types")
- * @ORM\Entity(repositoryClass="Dof\QuestBundle\Entity\QuestObjectiveTypeRepository")
+ * @ORM\Entity(repositoryClass="Dof\QuestBundle\Entity\QuestObjectiveTemplateRepository")
  */
-class QuestObjectiveType implements IdentifiableInterface, LocalizedNameInterface
+class QuestObjectiveTemplate implements IdentifiableInterface, LocalizedNameInterface
 {
     use LocalizedNameTrait, ReleaseBoundTrait;
 

@@ -8,25 +8,25 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\QuestBundle\Entity\QuestObjectiveType;
+use Dof\QuestBundle\Entity\QuestObjectiveTemplate;
 
-class QuestObjectiveTypeImporter extends AbstractGameDataImporter
+class QuestObjectiveTemplateImporter extends AbstractGameDataImporter
 {
-    const CURRENT_DATA_SET = 'quest_objective_types';
-    const BETA_DATA_SET = 'beta_quest_objective_types';
+    const CURRENT_DATA_SET = 'quest_objective_templates';
+    const BETA_DATA_SET = 'beta_quest_objective_templates';
 
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
-        $this->dm->createQuery('UPDATE DofQuestBundle:QuestObjectiveType s SET s.deprecated = true')->execute();
+        $this->dm->createQuery('UPDATE DofQuestBundle:QuestObjectiveTemplate s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.*' .
         $this->generateD2ISelects('name', $locales) .
             ' FROM ' . $db . '.D2O_QuestObjectiveType o' .
             $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
-        $repo = $this->dm->getRepository('DofQuestBundle:QuestObjectiveType');
+        $repo = $this->dm->getRepository('DofQuestBundle:QuestObjectiveTemplate');
         $rowsProcessed = 0;
         if ($output && $progress)
         $progress->start($output, count($all));
