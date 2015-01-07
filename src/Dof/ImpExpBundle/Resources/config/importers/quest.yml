@@ -25,8 +25,15 @@ services:
         class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestObjectiveImporter
         arguments: [ "@importer_dependencies" ]
         tags:
-            - { name: dof_imp_exp.importer, provides: quest_step_objectives, requires: "quest_steps quest_objective_templates" }
-            - { name: dof_imp_exp.importer, provides: beta_quest_step_objectives, requires: "beta_quest_steps beta_quest_objective_templates" }
+            - { name: dof_imp_exp.importer, provides: quest_step_objectives, requires: "quest_steps quest_objective_templates map_positions" }
+            - { name: dof_imp_exp.importer, provides: beta_quest_step_objectives, requires: "beta_quest_steps beta_quest_objective_templates beta_map_positions" }
+
+    dof_imp_exp.importer.quest_step_objective_params:
+        class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestObjectiveParamImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_step_objective_params, requires: quest_step_objectives }
+            - { name: dof_imp_exp.importer, provides: beta_quest_step_objective_params, requires: beta_quest_step_objectives }
 
     dof_imp_exp.importer.quest_objective_templates:
         class: Dof\ImpExpBundle\Importer\GameData\Quest\QuestObjectiveTemplateImporter

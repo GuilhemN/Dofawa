@@ -63,6 +63,34 @@ class QuestObjective implements IdentifiableInterface
     private $step;
 
     /**
+    * @var integer
+    *
+    * @ORM\Column(name="param1", type="integer", nullable=true)
+    */
+    private $param1;
+
+    /**
+    * @var integer
+    *
+    * @ORM\Column(name="param2", type="integer", nullable=true)
+    */
+    private $param2;
+
+    /**
+    * @var integer
+    *
+    * @ORM\Column(name="param3", type="integer", nullable=true)
+    */
+    private $param3;
+
+    /**
+    * @var integer
+    *
+    * @ORM\Column(name="param4", type="integer", nullable=true)
+    */
+    private $param4;
+
+    /**
     * Set id
     *
     * @param integer $id
@@ -197,6 +225,112 @@ class QuestObjective implements IdentifiableInterface
     public function getStep()
     {
         return $this->step;
+    }
+
+    /**
+    * Set param1
+    *
+    * @param integer $param1
+    * @return QuestObjective
+    */
+    public function setParam1($param1)
+    {
+        $this->param1 = $param1;
+
+        return $this;
+    }
+
+    /**
+    * Get param1
+    *
+    * @return integer
+    */
+    public function getParam1()
+    {
+        return $this->param1;
+    }
+
+    /**
+    * Set param2
+    *
+    * @param integer $param2
+    * @return QuestObjective
+    */
+    public function setParam2($param2)
+    {
+        $this->param2 = $param2;
+
+        return $this;
+    }
+
+    /**
+    * Get param2
+    *
+    * @return integer
+    */
+    public function getParam2()
+    {
+        return $this->param2;
+    }
+
+    /**
+    * Set param3
+    *
+    * @param integer $param3
+    * @return QuestObjective
+    */
+    public function setParam3($param3)
+    {
+        $this->param3 = $param3;
+
+        return $this;
+    }
+
+    /**
+    * Get param3
+    *
+    * @return integer
+    */
+    public function getParam3()
+    {
+        return $this->param3;
+    }
+
+    /**
+    * Set param4
+    *
+    * @param integer $param4
+    * @return QuestObjective
+    */
+    public function setParam4($param4)
+    {
+        $this->param4 = $param4;
+
+        return $this;
+    }
+
+    /**
+    * Get param4
+    *
+    * @return integer
+    */
+    public function getParam4()
+    {
+        return $this->param4;
+    }
+
+    public function setParam($param, $id = 1) {
+        call_user_func([$this, 'setParam' . $id], $param);
+        return $this;
+    }
+    
+    public function getParams() {
+        return [
+            1 => $this->param1,
+            2 => $this->param2,
+            3 => $this->param3,
+            4 => $this->param4,
+        ];
     }
 
     public function __toStringByLocale($locales){
