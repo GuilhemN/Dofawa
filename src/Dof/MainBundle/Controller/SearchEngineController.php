@@ -21,7 +21,8 @@ class SearchEngineController extends Controller
                 ]
             ];
             $context = stream_context_create($opts);
-            $answer = json_decode(file_get_contents('https://api.wit.ai/message?q=' . urlencode($request->request->get('q')), false, $context));
+            $answer = (file_get_contents('https://api.wit.ai/message?q=' . urlencode($request->request->get('q')), false, $context));
+            die(print_r($answer,true));
             $result = $answer['outcomes'];
 
             if($result['indent'] === 'search_almanax')
