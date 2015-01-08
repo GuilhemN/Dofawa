@@ -5,7 +5,9 @@ use Dof\SearchBundle\Intent\IntentInterface;
 
 class SearchManager
 {
-    public function __construct(private string $key) {
+    private string $key;
+    public function __construct(string $key) {
+        $this->key = $key;
         $this->intents = [];
     }
 
