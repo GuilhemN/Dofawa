@@ -62,7 +62,7 @@ class LazyFieldListener
         foreach ($updates as $ent) {
             $lazyFields = $this->getLazyFields($ent);
             foreach($lazyFields as $k => $v){
-                $e = call_user_func([$ent, 'get' . ucfirst($k)];
+                $e = call_user_func([$ent, 'get' . ucfirst($k)]);
                 if($e instanceof IdentifiableInterface)
                     $ent
                         ->setClass($em->getClassMetadata(get_class($e))->getName())
