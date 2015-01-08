@@ -7,7 +7,7 @@ dof_search_engine:
     defaults: { _controller: DofMainBundle:Default:searchEngine }
 
 dof_intelligent_search_engine:
-    pattern:  /intelligent_search
+    pattern:  /intelligent-search
     defaults: { _controller: DofMainBundle:SearchEngine:index }
 
 dof_main_calculateur:

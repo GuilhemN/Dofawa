@@ -10,7 +10,7 @@ class SearchEngineController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $answer = '';
+        $view = '';
         if($request->request->has('q')) {
             $opts = [
                 'http' => [
