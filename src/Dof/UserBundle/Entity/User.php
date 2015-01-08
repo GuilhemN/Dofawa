@@ -137,6 +137,13 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     private $builds;
 
     /**
+    * @var array
+    *
+    * @ORM\Column(name="preferences", type="json_array")
+    */
+    private $preferences;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="petsManagerNotifications", type="boolean")
@@ -508,5 +515,37 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     public function getPetsManagerNotifications()
     {
         return $this->petsManagerNotifications;
+    }
+
+    public function hasPreference($id) {
+        return (bool) $this->preferences[$id];
+    }
+    
+    public function addPreference($id, $value) {
+        $this->preferences[$id] = $value;
+        return $this;
+    }
+
+    /**
+    * Set preferences
+    *
+    * @param array $preferences
+    * @return User
+    */
+    public function setPreferences(array $preferences)
+    {
+        $this->preferences = $preferences;
+
+        return $this;
+    }
+
+    /**
+    * Get preferences
+    *
+    * @return array
+    */
+    public function getPreferences()
+    {
+        return $this->preferences;
     }
 }

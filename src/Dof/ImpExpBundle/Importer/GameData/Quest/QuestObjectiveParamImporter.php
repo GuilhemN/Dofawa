@@ -27,7 +27,7 @@ class QuestObjectiveParamImporter extends AbstractGameDataImporter
         $repo = $this->dm->getRepository('DofQuestBundle:QuestObjective');
         $rowsProcessed = 0;
         if ($output && $progress)
-        $progress->start($output, count($all));
+            $progress->start($output, count($params));
         foreach ($params as $k => $p) {
             $objective = $repo->find($k);
             if($objective === null or $objective->getStep()->getQuest()->isPreliminary() ^ $beta)

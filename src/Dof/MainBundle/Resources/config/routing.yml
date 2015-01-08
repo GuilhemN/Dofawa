@@ -6,6 +6,10 @@ dof_search_engine:
     pattern:  /search
     defaults: { _controller: DofMainBundle:Default:searchEngine }
 
+dof_intelligent_search_engine:
+    pattern:  /intelligent_search
+    defaults: { _controller: DofMainBundle:SearchEngine:index }
+
 dof_main_calculateur:
     pattern:  /calculateur
     defaults: { _controller: DofMainBundle:Calculateur:index }
