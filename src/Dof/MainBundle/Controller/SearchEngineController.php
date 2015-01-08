@@ -24,7 +24,7 @@ class SearchEngineController extends Controller
             $answer = json_decode(file_get_contents('https://api.wit.ai/message?q=' . urlencode($request->request->get('q')), false, $context), true);
             $result = $answer['outcomes'][0];
 
-            if($result['indent'] === 'search_almanax')
+            if($result['intent'] === 'search_almanax')
                 $view = 'Salut je suis l\'almanax';
         }
 
