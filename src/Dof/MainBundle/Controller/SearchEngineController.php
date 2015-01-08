@@ -22,7 +22,7 @@ class SearchEngineController extends Controller
             ];
             $context = stream_context_create($opts);
             $answer = json_decode(file_get_contents('https://api.wit.ai/message?q=' . urlencode($request->request->get('q')), false, $context), true);
-            $result = $answer['outcomes'];
+            $result = $answer['outcomes'][0];
 
             if($result['indent'] === 'search_almanax')
                 $view = 'Salut je suis l\'almanax';
