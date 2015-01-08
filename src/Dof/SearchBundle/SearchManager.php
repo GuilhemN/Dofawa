@@ -5,24 +5,22 @@ use Dof\SearchBundle\Intent\IntentInterface;
 
 class SearchManager
 {
-
-    public function __construct(
-        private string $key
-        ) {
+    private string $key;
+    public function __construct(string $key ) {
+        $this->key = $key;
         $this->indents = [];
     }
 
-    public function addIntent($intent, IntentInterface $service) {
+    public function addIntent(string $intent, IntentInterface $service) {
         $this->indents[$intent] = $service;
     }
 
-    public function process($string) {
+    public function process(string $string) {
         $context = stream_context_create([
             'http' => [
                 'method' => 'GET',
                 'header' => "Authorization: Bearer " . $this->key . "\r\n" .
-                    "Accept: application/vnd.wit.20140401+json\r\n" .
-                    "Accept: application/json\r\n"
+                    "Accept: application/vnd.wit.20140401+json\r\n"
                 ]
             ]);
         $answer = json_decode(
