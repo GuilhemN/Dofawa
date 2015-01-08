@@ -1,15 +1,14 @@
-<?php
+<?hh
 namespace Dof\SearchBundle;
 
 use Dof\SearchBundle\Intent\IntentInterface;
 
 class SearchManager
 {
-    private $key;
-    private $indents;
 
-    public function __construct($key) {
-        $this->key = $key
+    public function __construct(
+        private string $key
+        ) {
         $this->indents = [];
     }
 
