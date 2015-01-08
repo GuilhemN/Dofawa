@@ -7,7 +7,7 @@ use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Cache\Cache;
 
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-
+use Doctrine\ORM\Event\OnFlushEventArgs;
 use XN\Annotations\LazyField;
 
 class LazyFieldListener
