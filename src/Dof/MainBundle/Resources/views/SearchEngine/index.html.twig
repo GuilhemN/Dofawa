@@ -4,7 +4,7 @@
     <form method="POST" class="form-inline">
         <div class="form-group">
             <label class="sr-only" for="questionInput">Question :</label>
-            <input type="text" name="q" class="form-control" id="questionInput" placeholder="Question (ex: alma)">
+            <input type="text" name="q" class="form-control" id="questionInput" placeholder="Question (ex: alma)" value="{{ app.request.request.get('q') | e('html_attr') | default }}">
         </div>
         <button type="submit" class="btn btn-default">Rechercher</button>
     </form>

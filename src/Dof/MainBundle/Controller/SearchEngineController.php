@@ -27,7 +27,7 @@ class SearchEngineController extends Controller
             if($result['intent'] === 'search_almanax')
                 $view = 'Salut je suis l\'almanax';
             elseif($result['intent'] === 'search_item')
-                $view = $this->searchItem($result['entities']['item']['value']);
+                $view = $this->searchItem($result['entities']['item'][0]['value']);
         }
 
         return $this->render('DofMainBundle:SearchEngine:index.html.twig', ['answer' => $view]);
