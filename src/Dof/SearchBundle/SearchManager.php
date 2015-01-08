@@ -13,7 +13,7 @@ class SearchManager
         $this->intents[$intent] = $service;
     }
 
-    public function process(?string $string) : string {
+    public function process(?string $string) : ?string {
         $context = stream_context_create([
             'http' => [
                 'method' => 'GET',
