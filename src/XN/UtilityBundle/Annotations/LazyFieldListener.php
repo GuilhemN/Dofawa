@@ -24,9 +24,69 @@ class LazyFieldListener
     {
         $em = $args->getEntityManager();
         $ent = $args->getEntity();
+        $lazyFields = $this->getLazyFields($ent);
+
+        foreach($lazyFields as $k => $v) {
+            $classMethod = $v->getClassMethod();
+            $valueMethod = $v->getValueMethod();
+            $setter = 'set' . ucfirst($k);
+
+            $table = call_user_func([ $ent, $classMethod ]);
+            $id = call_user_func([ $ent, $valueMethod ]);
+
+            if($table === null or $id === null)
+                continue;
+            if (method_exists($em, 'getReference'))
+                $result = $em->getReference($table, $id);
+            else
+                $result = $em->find($table, $id);
+
+            call_user_func([ $ent, $setter ], $result);
+        }
+    }
+
+    public function onFlush(OnFlushEventArgs $args)
+    {
+        $em = $args->getEntityManager();
+        $uow = $em->getUnitOfWork();
+        $mds = array();
+        $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $user) {
+            $lazyFields = $this->getLazyFields($ent);
+            if(empty($lazyFields))
+                return false;
+            $chgst = $uow->getEntityChangeSet($ent);
+            foreach($lazyFields as $k => $v)
+                if(isset($chgst[$k]))
+                    return true;
+        });
+        foreach ($updates as $ent) {
+            $lazyFields = $this->getLazyFields($ent);
+            foreach($lazyFields as $k => $v){
+                $e = call_user_func([$ent, 'get' . ucfirst($k)];
+                if($e instanceof IdentifiableInterface)
+                    $ent
+                        ->setClass($em->getClassMetadata(get_class($e))->getName())
+                        ->setClassId($e->getId())
+                        ;
+                else
+                    $ent
+                        ->setClass(null)
+                        ->setClassId(null)
+                    ;
+            }
+            $clazz = get_class($ent);
+            if (isset($mds[$clazz]))
+            $md = $mds[$clazz];
+            else {
+                $md = $em->getClassMetadata($clazz);
+                $mds[$clazz] = $md;
+            }
+            $uow->recomputeSingleEntityChangeSet($md, $ent);
+        }
+    }
+
+    private function getLazyFields($ent) {
         $class = $em->getClassMetadata(get_class($ent))->getName();
-
-
         if ($lazyFieldsString = $this->ca->fetch(md5('xn-lazy-fields/' . $class))) {
             $lazyFields = unserialize($lazyFieldsString);
         } else {
@@ -46,27 +106,10 @@ class LazyFieldListener
             foreach($properties as $property){
                 $annotation = $this->re->getPropertyAnnotation(new \ReflectionProperty($ent, $property), 'XN\Annotations\LazyField');
                 if($annotation)
-                    $lazyFields[$property] = $annotation;
+                $lazyFields[$property] = $annotation;
             }
             $this->ca->save(md5('xn-lazy-fields/' . $class), serialize($lazyFields));
         }
-
-        foreach($lazyFields as $k => $v) {
-            $classMethod = !empty($v->classMethod) ? $v->classMethod : 'getClass';
-            $valueMethod = !empty($v->valueMethod) ? $v->valueMethod : 'getClassId';
-            $setter = !empty($v->setter) ? $v->setter : 'set' . ucfirst($k);
-
-            $table = call_user_func([ $ent, $classMethod ]);
-            $id = call_user_func([ $ent, $valueMethod ]);
-
-            if($table === null or $id === null)
-                continue;
-            if (method_exists($em, 'getReference'))
-                $result = $em->getReference($table, $id);
-            else
-                $result = $em->find($table, $id);
-
-            call_user_func([ $ent, $setter ], $result);
-        }
+        return $lazyFields;
     }
 }

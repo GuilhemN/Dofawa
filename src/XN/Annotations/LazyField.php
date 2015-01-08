@@ -9,8 +9,14 @@ use Doctrine\Common\Annotations\Annotation;
 */
 final class LazyField extends Annotation
 {
-    public $classMethod;
-    public $valueMethod;
+    public $classProperty;
+    public $valueProperty;
 
-    public $setter;
+    public function getClassMethod() {
+        return !empty($this->classProperty) ? 'get' . ucfirst($this->classProperty) : 'getClass';
+    }
+
+    public function getValueMethod() {
+        return !empty($this->valueProperty) ? 'get' . ucfirst($this->valueProperty) : 'getClassId';
+    }
 }

@@ -1,18 +1,32 @@
 <?php
-
-namespace Dof\CMSBundle\Entity;
+namespace XN\UtilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Annotations as Utils;
 
+use XN\Persistence\IdentifiableInterface;
+use XN\L10n\LocalizedNameInterface;
+use XN\L10n\LocalizedNameTrait;
+
 /**
- * TutorialArticle
- *
- * @ORM\Entity(repositoryClass="Dof\CMSBundle\Entity\TutorialArticleRepository")
- */
-class TutorialArticle extends Article
+* NameIndex
+*
+* @ORM\Table(name="xn_name_index")
+* @ORM\Entity(repositoryClass="XN\UtilityBundle\Entity\NameIndexRepository")
+*/
+class NameIndex implements IdentifiableInterface, LocalizedNameInterface
 {
+    /**
+    * @var integer
+    *
+    * @ORM\Column(name="id", type="integer")
+    * @ORM\Id
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+    private $id;
+
+    use LocalizedNameTrait;
+
     /**
     * @var string
     *
@@ -28,10 +42,20 @@ class TutorialArticle extends Article
     private $classId;
 
     /**
-    * @Utils\LazyField(classProperty="entityClass")
+    * @Utils\LazyField(classMethod="getEntityClass")
     */
     private $entity;
 
+
+    /**
+    * Get id
+    *
+    * @return integer
+    */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
     * Set entityClass
@@ -87,7 +111,4 @@ class TutorialArticle extends Article
         $this->entity = $entity;
         return $this;
     }
-
-    public function isTutorialArticle() { return true; }
-    public function getClass() { return 'tutorial'; }
 }
