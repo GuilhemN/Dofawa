@@ -15,7 +15,7 @@ class SearchManager
         $this->indents[$intent] = $service;
     }
 
-    public function process(string $string) {
+    public function process(?string $string) {
         $context = stream_context_create([
             'http' => [
                 'method' => 'GET',
