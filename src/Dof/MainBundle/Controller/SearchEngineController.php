@@ -30,13 +30,20 @@ class SearchEngineController extends Controller
                 $view = $this->searchItem($result['entities']['item'][0]['value']);
         }
 
+        if($view === null)
+            $view = $this->notFound();
+
         return $this->render('DofMainBundle:SearchEngine:index.html.twig', ['answer' => $view]);
+    }
+
+    private function notFound() {
+        return 'Votre question n\'a pas été compris ou rien n\'a été trouvé.';
     }
 
     private function searchItem($name) {
         $em = $this->getDoctrine()->getManager();
         $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findOneBy(['name' . ucfirst($this->get('translator')->getLocale()) => $name]);
 
-        return $this->renderView('DofItemsBundle::item.html.twig', ['item' => $item]);
+        return $item !== null ? $this->renderView('DofItemsBundle::item.html.twig', ['item' => $item]) : null;
     }
 }
