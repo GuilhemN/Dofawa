@@ -50,7 +50,7 @@ class LazyFieldListener
         $em = $args->getEntityManager();
         $uow = $em->getUnitOfWork();
         $mds = array();
-        $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $user) {
+        $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $user, $em) {
             $lazyFields = $this->getLazyFields($ent, $em);
             if(empty($lazyFields))
                 return false;
