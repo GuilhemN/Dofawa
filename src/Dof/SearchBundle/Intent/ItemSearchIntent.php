@@ -1,9 +1,9 @@
-<?php
+<?hh
 namespace Dof\SearchBundle\Intent;
 
 class ItemSearchIntent implements IntentInterface
 {
-    public function process(array $entities, $intent) {
-        
+    public function process(array $entities, $intent) : string {
+        return 'test';
     }
 }

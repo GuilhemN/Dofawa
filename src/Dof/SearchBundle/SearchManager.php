@@ -5,11 +5,11 @@ use Dof\SearchBundle\Intent\IntentInterface;
 
 class SearchManager
 {
-    CONST KEY = 'DQCNE665II22LYW3SA7TTZ7GWR7NXLBI';
-
+    private $key;
     private $indents;
 
-    public function __construct() {
+    public function __construct($key) {
+        $this->key = $key
         $this->indents = [];
     }
 
@@ -21,7 +21,7 @@ class SearchManager
         $context = stream_context_create([
             'http' => [
                 'method' => 'GET',
-                'header' => "Authorization: Bearer " . self::KEY . "\r\n" .
+                'header' => "Authorization: Bearer " . $this->key . "\r\n" .
                     "Accept: application/vnd.wit.20140401+json\r\n" .
                     "Accept: application/json\r\n"
                 ]

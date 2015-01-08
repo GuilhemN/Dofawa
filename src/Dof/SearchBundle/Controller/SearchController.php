@@ -3,11 +3,14 @@
 namespace Dof\SearchBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class SearchController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction(Request $request)
     {
-        return $this->render('DofSearchBundle:Default:index.html.twig', array('name' => $name));
+        $sm = $this->get('dof_search.search_manager');
+        $output = $sm->process($request->query->get('q'));
+        return $this->render('DofMainBundle:SearchEngine:index.html.twig', ['answer' => $view]);
     }
 }

@@ -1,3 +1,9 @@
 services:
     dof_search.search_manager:
         class: Dof\SearchBundle\SearchManager
+        arguments: [ 'DQCNE665II22LYW3SA7TTZ7GWR7NXLBI' ]
+
+    dof_search.intent.item:
+        class: Dof\SearchBundle\Intent\ItemSearchIntent
+        tags:
+            - { name: dof_search.intent, intent: search_item }
