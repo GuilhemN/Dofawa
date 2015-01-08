@@ -35,7 +35,7 @@ class SearchEngineController extends Controller
 
     private function searchItem($name) {
         $em = $this->getDoctrine()->getManager();
-        $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findOneBy(['name' . ucfirst($request->getLocale()) => $name]);
+        $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findOneBy(['name' . ucfirst($this->get('translator')->getLocale()) => $name]);
 
         return $this->renderView('DofItemsBundle::item.html.twig', ['item' => $item]);
     }
