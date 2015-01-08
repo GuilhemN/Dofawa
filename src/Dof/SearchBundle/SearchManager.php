@@ -5,17 +5,15 @@ use Dof\SearchBundle\Intent\IntentInterface;
 
 class SearchManager
 {
-    private string $key;
-    public function __construct(string $key ) {
-        $this->key = $key;
-        $this->indents = [];
+    public function __construct(private string $key) {
+        $this->intents = [];
     }
 
     public function addIntent(string $intent, IntentInterface $service) {
-        $this->indents[$intent] = $service;
+        $this->intents[$intent] = $service;
     }
 
-    public function process(?string $string) {
+    public function process(?string $string) : string {
         $context = stream_context_create([
             'http' => [
                 'method' => 'GET',
@@ -31,7 +29,7 @@ class SearchManager
         if(!isset($this->indents[$intent]))
             return $this->notUnderstood();
 
-        return $this->indents[$intent]->process($answer['outcomes'][0]['entities'], $intent);
+        return $this->intents[$intent]->process($answer['outcomes'][0]['entities'], $intent);
     }
 
     public function notUnderstood() {
