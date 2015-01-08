@@ -26,8 +26,17 @@ class SearchEngineController extends Controller
 
             if($result['intent'] === 'search_almanax')
                 $view = 'Salut je suis l\'almanax';
+            elseif($result['intent'] === 'search_item')
+                $view = $this->searchItem($result['entities']['item']['value']);
         }
 
         return $this->render('DofMainBundle:SearchEngine:index.html.twig', ['answer' => $view]);
+    }
+
+    private function searchItem($name) {
+        $em = $this->getDoctrine()->getManager();
+        $item = $em->getRepository('DofItemsBundle:ItemTemplate')->findBy(['name' . ucfirst($request->getLocale()) => $name]);
+
+        return $this->renderView('DofItemsBundle::item.html.twig', ['item' => $item]);
     }
 }
