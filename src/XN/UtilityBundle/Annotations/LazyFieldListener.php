@@ -24,7 +24,7 @@ class LazyFieldListener
     {
         $em = $args->getEntityManager();
         $ent = $args->getEntity();
-        $lazyFields = $this->getLazyFields($ent);
+        $lazyFields = $this->getLazyFields($ent, $em);
 
         foreach($lazyFields as $k => $v) {
             $classMethod = $v->getClassMethod();
@@ -51,7 +51,7 @@ class LazyFieldListener
         $uow = $em->getUnitOfWork();
         $mds = array();
         $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $user) {
-            $lazyFields = $this->getLazyFields($ent);
+            $lazyFields = $this->getLazyFields($ent, $em);
             if(empty($lazyFields))
                 return false;
             $chgst = $uow->getEntityChangeSet($ent);
@@ -60,7 +60,7 @@ class LazyFieldListener
                     return true;
         });
         foreach ($updates as $ent) {
-            $lazyFields = $this->getLazyFields($ent);
+            $lazyFields = $this->getLazyFields($ent, $em);
             foreach($lazyFields as $k => $v){
                 $e = call_user_func([$ent, 'get' . ucfirst($k)]);
                 if($e instanceof IdentifiableInterface)
@@ -85,7 +85,7 @@ class LazyFieldListener
         }
     }
 
-    private function getLazyFields($ent) {
+    private function getLazyFields($ent, $em) {
         $class = $em->getClassMetadata(get_class($ent))->getName();
         if ($lazyFieldsString = $this->ca->fetch(md5('xn-lazy-fields/' . $class))) {
             $lazyFields = unserialize($lazyFieldsString);
