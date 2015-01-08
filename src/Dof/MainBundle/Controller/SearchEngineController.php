@@ -11,7 +11,7 @@ class SearchEngineController extends Controller
     public function indexAction(Request $request)
     {
         $view = '';
-        if($request->request->has('q')) {
+        if($request->query->has('q')) {
             $opts = [
                 'http' => [
                     'method'=>"GET",
@@ -21,7 +21,7 @@ class SearchEngineController extends Controller
                 ]
             ];
             $context = stream_context_create($opts);
-            $answer = json_decode(file_get_contents('https://api.wit.ai/message?q=' . urlencode($request->request->get('q')), false, $context), true);
+            $answer = json_decode(file_get_contents('https://api.wit.ai/message?q=' . urlencode($request->query->get('q')), false, $context), true);
             $result = $answer['outcomes'][0];
 
             if($result['intent'] === 'search_almanax')
