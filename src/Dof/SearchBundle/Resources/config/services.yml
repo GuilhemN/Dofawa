@@ -1,0 +1,3 @@
+services:
+    dof_search.search_manager:
+        class: Dof\SearchBundle\SearchManager

@@ -1,3 +1,7 @@
+dof_search:
+    resource: "@DofSearchBundle/Resources/config/routing.yml"
+    prefix:   /search
+
 dof_quest:
     resource: "@DofQuestBundle/Resources/config/routing.yml"
     prefix:   /quests

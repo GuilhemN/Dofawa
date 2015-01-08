@@ -56,6 +56,7 @@ class AppKernel extends Kernel
             new Dof\MonsterBundle\DofMonsterBundle(),
             new Dof\ItemsManagerBundle\DofItemsManagerBundle(),
             new Dof\QuestBundle\DofQuestBundle(),
+            new Dof\SearchBundle\DofSearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
