@@ -42,7 +42,7 @@ class NameIndex implements IdentifiableInterface, LocalizedNameInterface
     private $classId;
 
     /**
-    * @Utils\LazyField(classMethod="getEntityClass")
+    * @Utils\LazyField(classProperty="entityClass")
     */
     private $entity;
 
