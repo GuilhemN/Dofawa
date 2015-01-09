@@ -1,6 +1,7 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
+{% autoescape %}
     <form method="GET" class="form-inline">
         <div class="form-group">
             <label class="sr-only" for="questionInput">Question :</label>
@@ -10,4 +11,5 @@
     </form>
     <br /><br />
     {{ answer | raw }}
+{% endautoescape %}
 {% endblock %}
