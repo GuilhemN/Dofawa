@@ -15,7 +15,7 @@ trait IntentTrait implements IntentInterface {
     public function __construct(ServiceArray $sa) {
         $this->tp = $sa[0];
         $this->em = $sa[1];
-        $this->rs = $sa[1];
+        $this->rs = $sa[2];
     }
 
     public function getLocale() {
