@@ -7,7 +7,7 @@ class ItemSearchIntent
 
     public function process(array $entities, $intent) : string {
         $options = [
-            'name' => $entities['item'][0]['value'],
+            'name' => $entities['item']['value'],
         ];
         $items = $this->em->getRepository('DofItemsBundle:ItemTemplate')
             ->findWithOptions($options, [], 1, 1, $this->getLocale());
