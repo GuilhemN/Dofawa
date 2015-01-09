@@ -44,7 +44,9 @@ services:
         arguments: [ "http://exter-n.fr/dofus/its.json", "@doctrine.orm.entity_manager" ]
         tags:
             - { name: dof_imp_exp.importer, provides: item_template_skins, requires: item_templates }
-
+        calls:
+            - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
+            
     dof_imp_exp.importer.item_effects:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemEffectImporter
         arguments: [ "@importer_dependencies" ]
