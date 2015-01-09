@@ -34,7 +34,7 @@ class SearchManager
         if(!isset($this->intents[$intent]))
             return $this->notUnderstood();
 
-        return $this->intents[$intent]->process($answer['outcome'][0]['entities'], $intent);
+        return $this->intents[$intent]->process($answer['outcome']['entities'], $intent);
     }
 
     public function notUnderstood() {
