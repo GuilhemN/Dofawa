@@ -5,7 +5,7 @@ class ItemSearchIntent
 {
     use IntentTrait;
 
-    public function process(array $entities, $intent) : string {
+    public function process(array $entities, $intent) : ?string {
         $options = [
             'name' => $entities['item']['value'],
         ];
