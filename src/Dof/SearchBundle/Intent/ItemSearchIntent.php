@@ -12,6 +12,6 @@ class ItemSearchIntent
         $items = $this->em->getRepository('DofItemsBundle:ItemTemplate')
             ->findWithOptions($options, [], 1, 1, $this->getLocale());
 
-        return !empty($items) ? $this->renderView('DofItemsBundle::item.html.twig', ['item' => $items[0]]) : null;
+        return !empty($items) ? $this->tp->render('DofItemsBundle::item.html.twig', ['item' => $items[0]]) : null;
     }
 }
