@@ -3,7 +3,7 @@ namespace Dof\SearchBundle\Intent;
 
 use Dof\QuestBundle\QuestType;
 
-class ItemSearchIntent
+class AlmanaxSearchIntent
 {
     use IntentTrait;
 
