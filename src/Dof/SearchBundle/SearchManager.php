@@ -11,7 +11,7 @@ class SearchManager
     public function __construct($key) {
         $this->key = $key;
         $this->intents = [];
-        die();
+        die(print_r($key, true));
     }
 
     public function addIntent(string $intent, IntentInterface $service) {
