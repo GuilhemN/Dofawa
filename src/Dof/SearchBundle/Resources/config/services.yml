@@ -16,3 +16,9 @@ services:
         arguments: [ @intent_dependencies ]
         tags:
             - { name: dof_search.intent, intent: search_item }
+
+    dof_search.intent.almanax:
+        class: Dof\SearchBundle\Intent\AlmanaxSearchIntent
+        arguments: [ @intent_dependencies ]
+        tags:
+            - { name: dof_search.intent, intent: search_almanax }
