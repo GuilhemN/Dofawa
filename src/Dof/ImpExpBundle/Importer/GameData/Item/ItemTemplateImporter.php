@@ -54,6 +54,10 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                     $tpl->setRelease($release);
                 $tpl->setPreliminary($beta);
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                if($tpl->getNameFr() === null)
+                    $tpl->setNameFr('Item sans nom');
+                if($tpl->getDescriptionFr() === null)
+                    $tpl->setDescriptionFr('Item sans nom');
                 $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
                 $tpl->setCriteria(($row['criteria'] === 'null') ? null : $row['criteria']);
                 $tpl->setLevel($row['level']);
