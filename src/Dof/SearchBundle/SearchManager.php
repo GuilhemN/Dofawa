@@ -11,7 +11,6 @@ class SearchManager
     public function __construct($key) {
         $this->key = $key;
         $this->intents = [];
-        die(print_r($key, true));
     }
 
     public function addIntent(string $intent, IntentInterface $service) {
@@ -26,6 +25,8 @@ class SearchManager
                     "Accept: application/vnd.wit.20140401+json\r\n"
                 ]
             ]);
+            die("Authorization: Bearer " . $this->key . "\r\n" .
+            "Accept: application/vnd.wit.20140401+json\r\n");
         $answer = json_decode(
             file_get_contents('https://api.wit.ai/message?q=' . urlencode($string), false, $context)
         , true);
