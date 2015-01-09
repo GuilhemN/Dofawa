@@ -1,10 +1,24 @@
 <?hh
 namespace Dof\SearchBundle\Intent;
 
-use Symfony\Component\Templating\EngineInterface;
+use XN\DependencyInjection\ServiceArray;
 
-trait IntentTrait {
-    public function __construct(
-    private EngineInterface $tp
-    ) { }
+use Symfony\Component\Templating\EngineInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\RequestStack;
+
+trait IntentTrait implements IntentInterface {
+    private EngineInterface $tp;
+    private ObjectManager $em;
+    private RequestStack $rs;
+
+    public function __construct(ServiceArray $sa) {
+        $this->tp = $sa[0];
+        $this->em = $sa[1];
+        $this->rs = $sa[1];
+    }
+
+    public function getLocale() {
+        return $this->rs->getCurrentRequest()->getLocale();
+    }
 }

@@ -1,9 +1,17 @@
 <?hh
 namespace Dof\SearchBundle\Intent;
 
-class ItemSearchIntent implements IntentInterface
+class ItemSearchIntent
 {
+    use IntentTrait;
+
     public function process(array $entities, $intent) : string {
-        return 'test';
+        $options = [
+            'name' => $entities['item'][0]['value'],
+        ];
+        $items = $this->em->getRepository('DofItemsBundle:ItemTemplate')
+            ->findWithOptions($options, [], 1, 1, $this->getLocale());
+
+        return !empty($items) ? $this->renderView('DofItemsBundle::item.html.twig', ['item' => $items[0]]) : null;
     }
 }

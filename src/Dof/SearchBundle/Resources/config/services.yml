@@ -3,7 +3,16 @@ services:
         class: Dof\SearchBundle\SearchManager
         arguments: [ "DQCNE665II22LYW3SA7TTZ7GWR7NXLBI" ]
 
+
+    intent_dependencies:
+        class: XN\DependencyInjection\ServiceArray
+        arguments:
+            - "@templating"
+            - "@doctrine.orm.entity_manager"
+            - "@request_stack"
+
     dof_search.intent.item:
         class: Dof\SearchBundle\Intent\ItemSearchIntent
+        arguments: [ @intent_dependencies ]
         tags:
             - { name: dof_search.intent, intent: search_item }

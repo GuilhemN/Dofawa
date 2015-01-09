@@ -31,7 +31,7 @@ class SearchManager
         , true);
         $intent = $answer['outcome']['intent'];
 
-        if(!isset($this->indents[$intent]))
+        if(!isset($this->intents[$intent]))
             return $this->notUnderstood();
 
         return $this->intents[$intent]->process($answer['outcome'][0]['entities'], $intent);
