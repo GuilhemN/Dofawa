@@ -46,6 +46,7 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                 $tpl = $type->createItemTemplate();
                 $tpl->setDeprecated(true);
                 $tpl->setVisible(true);
+                $tpl->setSticky(false);
                 $tpl->setId($row['id']);
             }
             if ($tpl->isDeprecated()) {
