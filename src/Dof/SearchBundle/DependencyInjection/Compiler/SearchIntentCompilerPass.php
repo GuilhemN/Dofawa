@@ -16,9 +16,9 @@ class SearchIntentCompilerPass implements CompilerPassInterface
 			// $definition = $container->getDefinition($id);
 			foreach ($tagAttributes as $attributes) {
 				if (isset($attributes['intent'])) {
-					$sm->addMethodCall('registerTagTemplate', [
+					$sm->addMethodCall('addIntent', [
                         $attributes['intent'],
-					    new Reference($attributes['service'])
+					    new Reference($id)
 					]);
 				}
 			}
