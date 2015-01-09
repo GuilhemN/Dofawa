@@ -1,12 +1,12 @@
-<?hh
+<?php
 namespace Dof\SearchBundle;
 
 use Dof\SearchBundle\Intent\IntentInterface;
 
 class SearchManager
 {
-    private string $key;
-    public function __construct(string $key) {
+    private $key;
+    public function __construct($key) {
         $this->key = $key;
         $this->intents = [];
     }
@@ -15,7 +15,7 @@ class SearchManager
         $this->intents[$intent] = $service;
     }
 
-    public function process(?string $string) : ?string {
+    public function process($string) {
         $context = stream_context_create([
             'http' => [
                 'method' => 'GET',
