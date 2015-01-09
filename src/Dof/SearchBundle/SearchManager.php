@@ -1,14 +1,13 @@
-<?php
+<?hh
 namespace Dof\SearchBundle;
 
 use Dof\SearchBundle\Intent\IntentInterface;
 
 class SearchManager
 {
-    private $key;
     private $intents;
 
-    public function __construct($key) {
+    public function __construct(private string $key) {
         $this->key = $key;
         $this->intents = [];
     }
@@ -17,7 +16,9 @@ class SearchManager
         $this->intents[$intent] = $service;
     }
 
-    public function process($string) {
+    public function process(?string $string) : ?string {
+        if($sting === null)
+            return $this->notUnderstood();
         $context = stream_context_create([
             'http' => [
                 'method' => 'GET',
@@ -28,12 +29,12 @@ class SearchManager
         $answer = json_decode(
             file_get_contents('https://api.wit.ai/message?q=' . urlencode($string), false, $context)
         , true);
-        $intent = $answer['outcomes'][0]['intent'];
+        $intent = $answer['outcome']['intent'];
 
         if(!isset($this->indents[$intent]))
             return $this->notUnderstood();
 
-        return $this->intents[$intent]->process($answer['outcomes'][0]['entities'], $intent);
+        return $this->intents[$intent]->process($answer['outcome'][0]['entities'], $intent);
     }
 
     public function notUnderstood() {
