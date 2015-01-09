@@ -6,9 +6,12 @@ use Dof\SearchBundle\Intent\IntentInterface;
 class SearchManager
 {
     private $key;
+    private $intents;
+
     public function __construct($key) {
         $this->key = $key;
         $this->intents = [];
+        die();
     }
 
     public function addIntent(string $intent, IntentInterface $service) {
