@@ -1,4 +1,4 @@
-<?hh
+<?php
 
 namespace Dof\ItemsBundle\Entity;
 
@@ -1012,7 +1012,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         return $this->drops;
     }
 
-    public function __toString() : string
+    public function __toString()
     {
         return $this->nameFr;
     }

@@ -27,20 +27,20 @@ mkdir -p web/uploads/spells
 mkdir -p web/media/cache
 
 if [ "$1" == --dev ]; then
-	hhvm "$(type -p composer)" install --no-scripts
+	php "$(type -p composer)" install --no-scripts
 else
-	hhvm "$(type -p composer)" install -o --no-scripts
+	php "$(type -p composer)" install -o --no-scripts
 fi
 cp -f pinned/PDOConnection.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
 cp -f pinned/PDOStatement.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
 cp -f pinned/QueryBuilder.php vendor/doctrine/orm/lib/Doctrine/ORM
 
-hhvm app/console cache:clear -e dev &
-hhvm app/console cache:clear -e prod
+php app/console cache:clear -e dev &
+php app/console cache:clear -e prod
 wait "$!"
 
-hhvm app/console doctrine:schema:update --dump-sql
-hhvm app/console doctrine:schema:update --force
+php app/console doctrine:schema:update --dump-sql
+php app/console doctrine:schema:update --force
 
 if [ "$(id -u)" == 0 ]; then
 	chown -R www-data:www-data app/cache
@@ -51,9 +51,9 @@ if [ "$(id -u)" == 0 ]; then
 fi
 
 if [ "$1" == --dev ]; then
-	hhvm app/console assets:install --symlink --relative
+	php app/console assets:install --symlink --relative
 else
-	hhvm app/console assets:install
+	php app/console assets:install
 fi
 
-hhvm app/console bazinga:js-translation:dump web/js
+php app/console bazinga:js-translation:dump web/js
