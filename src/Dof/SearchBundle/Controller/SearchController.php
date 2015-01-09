@@ -11,6 +11,6 @@ class SearchController extends Controller
     {
         $sm = $this->get('dof_search.search_manager');
         $output = $sm->process($request->query->get('q'));
-        return $this->render('DofMainBundle:SearchEngine:index.html.twig', ['answer' => $output]);
+        return $this->render('DofSearchBundle:Search:index.html.twig', ['answer' => $output]);
     }
 }
