@@ -27,9 +27,9 @@ mkdir -p web/uploads/spells
 mkdir -p web/media/cache
 
 if [ "$1" == --dev ]; then
-	php "$(type -p composer)" install --no-scripts
+	hhvm -vEval.Jit=false "$(type -p composer)" install --no-scripts
 else
-	php "$(type -p composer)" install -o --no-scripts
+	hhvm -vEval.Jit=false "$(type -p composer)" install -o --no-scripts
 fi
 cp -f pinned/PDOConnection.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
 cp -f pinned/PDOStatement.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
