@@ -31,9 +31,9 @@ if [ "$1" == --dev ]; then
 else
 	hhvm "$(type -p composer)" install -o --no-scripts
 fi
-cp -f pinned/PDOConnection.hhvm vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
-cp -f pinned/PDOStatement.hhvm vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
-cp -f pinned/QueryBuilder.hhvm vendor/doctrine/orm/lib/Doctrine/ORM
+cp -f pinned/PDOConnection.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
+cp -f pinned/PDOStatement.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
+cp -f pinned/QueryBuilder.php vendor/doctrine/orm/lib/Doctrine/ORM
 
 hhvm app/console cache:clear -e dev &
 hhvm app/console cache:clear -e prod
