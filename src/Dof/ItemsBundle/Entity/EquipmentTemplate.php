@@ -38,8 +38,6 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      */
     private $set;
 
-	private $originalSets;
-
     /**
      * @var integer
      *
@@ -94,46 +92,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
      */
     public function setSet(ItemSet $set = null)
     {
-		$this->originalSets = (array) $this->originalSets;
-		if($this->set !== null){
-			$lset = $this->set;
-			$lset->removeItem($this);
-
-			$maxLevel = 0;
-			$i = 0;
-			foreach($lset->getItems() as $item){
-				$i++;
-				if($maxLevel < $item->getLevel())
-					$maxLevel = $item->getLevel();
-				if($item->getLevel() == 200)
-					break;
-			}
-
-			$lset->setLevel($maxLevel);
-			$lset->setItemCount($i);
-			$this->originalSets[$this->set->getId()] = $this->set;
-		}
-
-
 		$this->set = $set;
-
-		if($set !== null){
-			$set->addItem($this);
-			$maxLevel = 0;
-			$i = 0;
-			foreach($set->getItems() as $item){
-				$i++;
-				if($maxLevel < $item->getLevel())
-					$maxLevel = $item->getLevel();
-				if($item->getLevel() == 200)
-					break;
-			}
-
-			$set->setLevel($maxLevel);
-			$set->setItemCount($i);
-			$this->originalSets[$set->getId()] = $set;
-		}
-
         return $this;
     }
 
@@ -146,10 +105,6 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
     {
         return $this->set;
     }
-
-	public function getOriginalSets(){
-		return $this->originalSets;
-	}
 
 	public function getPowerRate(){
 		return $this->powerRate;
