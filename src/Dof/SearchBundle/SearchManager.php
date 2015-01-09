@@ -17,7 +17,7 @@ class SearchManager
     }
 
     public function process(?string $string) : ?string {
-        if($sting === null)
+        if($string === null)
             return $this->notUnderstood();
         $context = stream_context_create([
             'http' => [
