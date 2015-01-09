@@ -38,6 +38,6 @@ class SearchManager
     }
 
     public function notUnderstood() {
-
+        return "Votre requête n'a pas été comprise.";
     }
 }
