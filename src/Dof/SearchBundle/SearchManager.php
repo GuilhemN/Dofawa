@@ -25,8 +25,6 @@ class SearchManager
                     "Accept: application/vnd.wit.20140401+json\r\n"
                 ]
             ]);
-            die("Authorization: Bearer " . $this->key . "\r\n" .
-            "Accept: application/vnd.wit.20140401+json\r\n");
         $answer = json_decode(
             file_get_contents('https://api.wit.ai/message?q=' . urlencode($string), false, $context)
         , true);
