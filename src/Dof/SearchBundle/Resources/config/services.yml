@@ -23,7 +23,7 @@ services:
         tags:
             - { name: dof_search.intent, intent: search_almanax }
 
-    dof_search.intent.almanax:
+    dof_search.intent.user:
         class: Dof\SearchBundle\Intent\UserSearchIntent
         arguments: [ @intent_dependencies ]
         tags:
