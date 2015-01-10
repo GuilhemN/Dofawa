@@ -15,7 +15,7 @@
 						<p><strong>{{ 'inputs.point' | trans({}, 'profile') }}</strong> : {{ user.point }}</p>
 						<p><strong>{{ 'inputs.date.born' | trans({}, 'profile') }}</strong> : {{ user.born | date('d-m-Y') }}</p>
 						<p><strong>{{ 'inputs.location' | trans({}, 'profile') }}</strong> : {{ user.lieu }}</p>
-						<p><strong>{{ 'inputs.guild' | trans({}, 'profile') }}</strong> : {{ user.guilde }}</p>
+						<p><strong>{{ 'inputs.guild' | trans({}, 'profile') }}</strong> : {{ user.guild }}</p>
 						<p><strong>{{ 'inputs.website' | trans({}, 'profile') }}</strong> : <a href="{{ user.site }}" rel="nofollow" target="_blank">{{ user.site }}</a></p>
 					</div><!--/col-->
 					<div class="col-xs-12 col-sm-4 text-center">
@@ -43,9 +43,9 @@
 		</div><!--/panel-->
 	</div>
 	{% endif %}
-	
+
 	{% if app.user is not null and app.user.id == user.id %}
-		{# Edition du profil #}
+		{# Edition #}
 		<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">{{ 'edit' | trans({}, 'generalTrans') }}</a>
 		{# Changement de mot de passe #}
 		<a href="{{ path('fos_user_change_password') }}" class="btn btn-default">{{ 'change_password.submit' | trans({}, 'FOSUserBundle')}}</a>
