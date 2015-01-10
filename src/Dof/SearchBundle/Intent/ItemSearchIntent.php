@@ -4,14 +4,28 @@ namespace Dof\SearchBundle\Intent;
 class ItemSearchIntent
 {
     use IntentTrait;
+    private $perPage = 15;
 
     public function process(array $entities, $intent) : ?string {
         $options = [
             'name' => $entities['item']['value'],
         ];
-        $items = $this->em->getRepository('DofItemsBundle:ItemTemplate')
-            ->findWithOptions($options, [], 1, null, $this->getLocale());
-
-        return !empty($items) ? $this->tp->render('DofItemsBundle::item.html.twig', ['item' => $items[0]]) : null;
+        $repo = $this->em->getRepository('DofItemsBundle:ItemTemplate');
+        $count = $repo->countWithOptions($options, $this->getLocale());
+        $items = $repo
+            ->findWithOptions(
+                $options,
+                ['level' => 'DESC', 'name' . ucfirst($this->get('request')->getLocale()) => 'ASC'],
+                $this->perPage,
+                0,
+                $this->getLocale()
+            );
+        $pagination = array(
+            'page' => 1,
+            'route' => 'dof_items_homepage',
+            'pages_count' => ceil($count / $this->perPage),
+            'route_params' => [ 'items[name]' => $options['name'] ]
+        );
+        return $this->tp->render('DofSearchBundle::items.html.twig', ['items' => $items, 'pagination' => $pagination]);
     }
 }
