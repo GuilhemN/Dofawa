@@ -7,7 +7,7 @@ services:
     intent_dependencies:
         class: XN\DependencyInjection\ServiceArray
         arguments:
-            - "@templating"
+            - "@twig"
             - "@doctrine.orm.entity_manager"
             - "@request_stack"
 
