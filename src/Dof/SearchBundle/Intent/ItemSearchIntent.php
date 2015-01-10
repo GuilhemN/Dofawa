@@ -15,7 +15,7 @@ class ItemSearchIntent
         $items = $repo
             ->findWithOptions(
                 $options,
-                ['level' => 'DESC', 'name' . ucfirst($this->get('request')->getLocale()) => 'ASC'],
+                ['level' => 'DESC', 'name' . ucfirst($this->getLocale()) => 'ASC'],
                 $this->perPage,
                 0,
                 $this->getLocale()
