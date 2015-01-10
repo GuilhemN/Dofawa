@@ -9,6 +9,6 @@ class UserSearchIntent
     public function process(array $entities, $intent) : ?string {
         $user = $this->em->getRepository('DofUserBundle:User')->findOneByUsername($entities['username']['value']);
 
-        return $this->render('DofUserBundle:Profile:index.html.twig', ['user' => $user]);
+        return $this->renderBlock('DofUserBundle:Profile:index.html.twig', 'body', ['user' => $user]);
     }
 }

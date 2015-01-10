@@ -26,6 +26,6 @@ class ItemSearchIntent
             'pages_count' => ceil($count / $this->perPage),
             'route_params' => [ 'items[name]' => $options['name'] ]
         );
-        return $this->renderBlock('DofSearchBundle:Intent:items.html.twig', 'body', ['items' => $items, 'pagination' => $pagination]);
+        return $this->render('DofSearchBundle:Intent:items.html.twig', ['items' => $items, 'pagination' => $pagination]);
     }
 }
