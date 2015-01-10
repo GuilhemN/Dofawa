@@ -7,7 +7,7 @@ class UserSearchIntent
     private $perPage = 15;
 
     public function process(array $entities, $intent) : ?string {
-        $user = $this->em->getRepository('DofUserBundle:User')->findOneByUsername($entities['item']['username']);
+        $user = $this->em->getRepository('DofUserBundle:User')->findOneByUsername($entities['username']['value']);
 
         return $this->render('DofUserBundle:Profile:index.html.twig', ['user' => $user]);
     }
