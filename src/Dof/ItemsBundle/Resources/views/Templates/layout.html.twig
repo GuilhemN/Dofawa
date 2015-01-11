@@ -32,7 +32,7 @@
                     <hr />
                     <p>
                         {% if not itemTemplate.preliminary and itemTemplate.visible %}
-                        <a class="glyphicon glyphicon-link" target="_blank" href="{{ 'item' | trans({'id': itemTemplate.id, 'slug': itemTemplate.nameFr | slugify }, 'links') }}"></a>
+                        <a class="glyphicon glyphicon-link" target="_blank" href="{{ 'item' | trans({'%id%': itemTemplate.id, '%slug%': itemTemplate.nameFr | slugify }, 'links') }}"></a>
                         {% endif %}
                         <a class="glyphicon glyphicon-edit" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}"></a>
                         <a class="glyphicon glyphicon-camera" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}"></a>
