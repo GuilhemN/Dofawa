@@ -1,5 +1,5 @@
 La quête de l'almanax du jour est "{{ quest.getName(locales()) }}".<br />
 Vous pouvez en savoir plus sur <a href="http://www.krosmoz.com/fr/almanax">le site officiel</a>.
 <div class="text-center">
-    <iframe src="http://almanax.zone-bouffe.com/dofus/widget.php" frameborder="0" scrolling="no" width="451" height="236"></iframe><br />
+    <iframe src="{{ 'almanax' | trans({}, 'links') }}" frameborder="0" scrolling="no" width="451" height="236"></iframe><br />
 </div>
