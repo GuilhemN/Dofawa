@@ -9,58 +9,58 @@ tabs:
     # diet: Ernährung # TODO
 
 to: a
-vitality: %1% Vitalité # TODO
-strength: %1% Force # TODO
-intelligence: %1% Intelligence # TODO
-chance: %1% Chance # TODO
-agility: %1% Agilité # TODO
-wisdom: %1% Sagesse # TODO
-power: %1% Puissance # TODO
-criticalHits: %1% Coups Critiques # TODO
-ap: %1% PA # TODO
-mp: %1% PM # TODO
-range: %1% PO # TODO
-summons: %1% Invocations # TODO
-damage: %1% Dommages # TODO
-neutralDamage: %1% Dommages Neutre # TODO
-earthDamage: %1% Dommages Terre # TODO
-fireDamage: %1% Dommages Feu # TODO
-waterDamage: %1% Dommages Eau # TODO
-airDamage: %1% Dommages Air
-heals: %1% Soins # TODO
-prospecting: %1% Prospection # TODO
-initiative: %1% Initiative # TODO
-reflectedDamage: %1% Dommages Retournés # TODO
-percentNeutralResistance: %1% % Résistance Neutre # TODO
-percentEarthResistance: %1% % Résistance Terre # TODO
-percentFireResistance: %1% % Résistance Feu # TODO
-percentWaterResistance: %1% % Résistance Eau # TODO
-percentAirResistance: %1% % Résistance Air # TODO
-neutralResistance: %1% Résistance Neutre # TODO
-earthResistance: %1% Résistance Terre # TODO
-fireResistance: %1% Résistance Feu # TODO
-waterResistance: %1% Résistance Eau # TODO
-airResistance: %1% Résistance Air # TODO
-percentNeutralResistanceInPvp: %1% % Résistance Neutre (JcJ) # TODO
-percentEarthResistanceInPvp: %1% % Résistance Terre (JcJ) # TODO
-percentFireResistanceInPvp: %1% % Résistance Feu (JcJ) # TODO
-percentWaterResistanceInPvp: %1% % Résistance Eau (JcJ) # TODO
-percentAirResistanceInPvp: %1% % Résistance Air (JcJ) # TODO
-neutralResistanceInPvp: %1% Résistance Neutre (JcJ) # TODO
-earthResistanceInPvp: %1% Résistance Terre (JcJ) # TODO
-fireResistanceInPvp: %1% Résistance Feu (JcJ) # TODO
-waterResistanceInPvp: %1% Résistance Eau (JcJ) # TODO
-airResistanceInPvp: %1% Résistance Air (JcJ) # TODO
-lock: %1% Tacle # TODO
-dodge: %1% Fuite # TODO
-apReduction: %1% Retrait PA # TODO
-mpReduction: %1% Retrait PM # TODO
-apLossResistance: %1% Esquive PA # TODO
-mpLossResistance: %1% Esquive PM # TODO
-criticalDamage: %1% Dommages Critiques # TODO
-criticalResistance: %1% Résistance Critiques # TODO
-pushbackDamage: %1% Dommages Poussée # TODO
-pushbackResistance: %1% Dommages Poussée # TODO
-trapPower: %1% Puissance Pièges # TODO
-trapDamage: %1% Dommages Pièges # TODO
+vitality: %1% Vitalità
+strength: %1% Forza
+intelligence: %1% Intelligenza
+chance: %1% Fortuna
+agility: %1% Agilità
+wisdom: %1% Saggezza
+power: %1% Potenza
+criticalHits: %1% Colpi Critici
+ap: %1% PA
+mp: %1% PM
+range: %1% PO
+summons: %1% Evocazioni
+damage: %1% Danni
+neutralDamage: %1% Danni Neutro
+earthDamage: %1% Danni Terra
+fireDamage: %1% Danni Fuoco
+waterDamage: %1% Danni Acqua
+airDamage: %1% Danni Air
+heals: %1% Cure
+prospecting: %1% Prospezione
+initiative: %1% Iniziativa
+reflectedDamage: Rinvia %1% danni
+percentNeutralResistance: %1% % Resistenza Neutro
+percentEarthResistance: %1% % Resistenza Terra
+percentFireResistance: %1% % Resistenza Fuoco
+percentWaterResistance: %1% % Resistenza Acqua
+percentAirResistance: %1% % Resistenza Aria
+neutralResistance: %1% Resistenza Neutro
+earthResistance: %1% Resistenza Terra
+fireResistance: %1% Resistenza Fuoco
+waterResistance: %1% Resistenza Acqua
+airResistance: %1% Resistenza Aria
+percentNeutralResistanceInPvp: %1% % Resistenza Neutro (PvP)
+percentEarthResistanceInPvp: %1% % Resistenza Terra (PvP)
+percentFireResistanceInPvp: %1% % Resistenza Fuoco (PvP)
+percentWaterResistanceInPvp: %1% % Resistenza Acqua (PvP)
+percentAirResistanceInPvp: %1% % Resistenza Aria (PvP)
+neutralResistanceInPvp: %1% Resistenza Neutro (PvP)
+earthResistanceInPvp: %1% Resistenza Terra (PvP)
+fireResistanceInPvp: %1% Resistenza Fuoco (PvP)
+waterResistanceInPvp: %1% Resistenza Acqua (PvP)
+airResistanceInPvp: %1% Resistenza Aria (PvP)
+lock: %1% Contrasto
+dodge: %1% Fuga
+apReduction: %1% Sottrazione PA
+mpReduction: %1% Sottrazione PM
+apLossResistance: %1% Schivata PA
+mpLossResistance: %1% Schivata PM
+criticalDamage: %1% Danni Critici
+criticalResistance: %1% Resistenza Critici
+pushbackDamage: %1% Danni Spinta
+pushbackResistance: %1% Resistenza Spinta
+trapPower: %1% Potenza (Trappole)
+trapDamage: %1% Danni Trappole
 pods: %1% Pods # TODO
