@@ -1,3 +1,7 @@
+{% if passive is not defined %}
+{% set passive = false %}
+{% endif %}
+
 {% autoescape %}
 {% set xray = is_granted('ROLE_SPELL_XRAY') %}
 {% if spell.publiclyVisible or xray %}
@@ -7,7 +11,7 @@
             {{ spell.getName(locales()) }} <font size="2"></font>
             <span class="pull-right">
                 Niveau d'obtention :
-                {% if spell.ranks[0] is defined and spell.ranks[0].obtainmentLevel is not empty %}
+                {% if not passive and spell.ranks[0] is defined and spell.ranks[0].obtainmentLevel is not empty %}
                 <span class="level">
                     {{ spell.ranks[0].obtainmentLevel }}
                 </span>
@@ -58,6 +62,7 @@
                             <br>
                             {% include 'DofCharactersBundle::damages.html.twig' with {'effects': rank.criticalDamageEffects, 'critical': true} %}
                         {% endif %}
+						{% if not passive %}
                         <div class="row">
                             {# carcteristiques du sort #}
                             <hr />
@@ -96,6 +101,7 @@
                                 </table>
                             </div>
                         </div>
+						{% endif %}
                     </div>
                     {% endfor %}
                 </div>
