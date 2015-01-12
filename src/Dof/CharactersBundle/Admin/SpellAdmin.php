@@ -53,7 +53,7 @@ class SpellAdmin extends Admin
         $formMapper
             ->add('nameFr', null, ['disabled' => true])
             ->add('release', null, ['disabled' => true])
-            ->add('passiveOfMonsters', 'sonata_type_model_autocomplete', array('property' => 'nameFr'))
+            ->add('passiveOfMonsters', 'sonata_type_model_autocomplete', array('property' => 'nameFr', 'multiple' => true))
         ;
     }
 
