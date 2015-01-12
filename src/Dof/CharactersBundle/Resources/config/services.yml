@@ -24,4 +24,4 @@ services:
         class: Dof\CharactersBundle\Admin\SpellAdmin
         arguments: [~, Dof\CharactersBundle\Entity\Spell, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: Sorts}
+            - {name: sonata.admin, manager_type: orm, group: Personnages, label: Sorts}
