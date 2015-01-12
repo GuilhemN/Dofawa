@@ -19,3 +19,9 @@ services:
         class: Dof\CharactersBundle\Twig\EffectExtension
         tags:
             - { name: twig.extension }
+
+    dof_characters.admin.spell:
+        class: Dof\CharactersBundle\Admin\SpellAdmin
+        arguments: [~, Dof\CharactersBundle\Entity\Spell, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Sorts}
