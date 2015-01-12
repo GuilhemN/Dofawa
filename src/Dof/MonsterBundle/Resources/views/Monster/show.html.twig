@@ -4,9 +4,17 @@
     {% include 'DofMonsterBundle::monster.html.twig' %}
 
     {% if is_granted('ROLE_MONSTER_XRAY') %}
-        Sorts :<br>
+        <h4>Sort passif :</h4>
+        {% for spell in monster.passiveSpells %}
+            {% include 'DofCharactersBundle::spell.html.twig' with {'spell': spell} only %}
+		{% else %}
+			<p>Aucun{% if is_granted('ROLE_SONATA_ADMIN') or (is_granted('ROLE_DOF_CHARACTERS_ADMIN_SPELL_LIST') and is_granted('ROLE_DOF_CHARACTERS_ADMIN_SPELL_EDIT')) %} - <a href="{{ path('admin_dof_characters_spell_list') }}">Ajouter</a>{% endif %}</p>
+        {% endfor %}
+        <h4>Sorts :</h4>
         {% for spell in monster.sortedSpells %}
             {% include 'DofCharactersBundle::spell.html.twig' with {'spell': spell} only %}
+		{% else %}
+			<p>Aucun</p>
         {% endfor %}
     {% endif %}
 {% endblock %}
