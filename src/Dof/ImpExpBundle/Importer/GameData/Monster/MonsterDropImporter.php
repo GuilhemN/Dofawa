@@ -16,10 +16,14 @@ class MonsterDropImporter extends AbstractGameDataImporter
     const CURRENT_DATA_SET = 'monster_drops';
     const BETA_DATA_SET = 'beta_monster_drops';
 
+    private $loader;
+
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
 
+        $this->loader->setEnabled(false);
+        
         $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Monster_drop o');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -62,6 +66,11 @@ class MonsterDropImporter extends AbstractGameDataImporter
             }
         }
         if ($output && $progress)
-        $progress->finish();
+            $progress->finish();
+        $this->loader->setEnabled(true);
+    }
+
+    public function setLoader($loader) {
+        $this->loader = $loader;
     }
 }
