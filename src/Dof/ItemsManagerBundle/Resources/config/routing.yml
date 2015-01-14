@@ -37,3 +37,13 @@ dof_items_manager_pets_notif:
     defaults: { _controller: DofItemsManagerBundle:PetsManager:notif }
     requirements:
         _method: POST
+
+dof_crafts_homepage:
+    pattern:   /crafts
+    defaults: { _controller: DofItemsManagerBundle:Craft:index }
+
+dof_crafts_homepage:
+    pattern:   /crafts/create/{id}
+    defaults: { _controller: DofItemsManagerBundle:Craft:create }
+    requirements:
+        id: \d+

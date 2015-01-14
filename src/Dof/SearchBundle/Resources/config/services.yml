@@ -1,7 +1,7 @@
 services:
     dof_search.search_manager:
         class: Dof\SearchBundle\SearchManager
-        arguments: [ "DQCNE665II22LYW3SA7TTZ7GWR7NXLBI" ]
+        arguments: [ "@cache", "%wit_private_key%" ]
 
 
     intent_dependencies:

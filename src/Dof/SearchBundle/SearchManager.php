@@ -3,12 +3,13 @@ namespace Dof\SearchBundle;
 
 use Dof\SearchBundle\Intent\IntentInterface;
 
+use Doctrine\Common\Cache\Cache;
+
 class SearchManager
 {
     private $intents;
 
-    public function __construct(private string $key) {
-        $this->key = $key;
+    public function __construct(private Cache $ca, private string $key) {
         $this->intents = [];
     }
 
@@ -17,18 +18,27 @@ class SearchManager
     }
 
     public function process(?string $string) : ?string {
+        if(strlen($string) > 100)
+            throw new \Exception('String too long.');
         if($string === null)
             return $this->notUnderstood();
-        $context = stream_context_create([
-            'http' => [
-                'method' => 'GET',
-                'header' => "Authorization: Bearer " . $this->key . "\r\n" .
-                    "Accept: application/vnd.wit.20140401+json\r\n"
-                ]
-            ]);
-        $answer = json_decode(
-            file_get_contents('https://api.wit.ai/message?q=' . urlencode($string), false, $context)
-        , true);
+
+        if ($searchMessageString = $this->ca->fetch(md5('search-message/' . $string))) {
+            $searchMessage = unserialize($searchMessageString);
+        } else {
+            $context = stream_context_create([
+                'http' => [
+                    'method' => 'GET',
+                    'header' => "Authorization: Bearer " . $this->key . "\r\n" .
+                        "Accept: application/vnd.wit.20140401+json\r\n"
+                    ]
+                ]);
+            $answer = json_decode(
+                file_get_contents('https://api.wit.ai/message?q=' . urlencode($string), false, $context)
+            , true);
+            $this->ca->save(md5('search-message/' . $string)), serialize($answer));
+        }
+
         $intent = $answer['outcome']['intent'];
 
         if(!isset($this->intents[$intent]))
