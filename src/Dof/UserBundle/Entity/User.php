@@ -152,6 +152,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
 
     public function __construct()
     {
+        parent::__construct();
         $this->builds = new ArrayCollection();
     }
 
@@ -520,7 +521,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     public function hasPreference($id) {
         return (bool) $this->preferences[$id];
     }
-    
+
     public function addPreference($id, $value) {
         $this->preferences[$id] = $value;
         return $this;
