@@ -24,7 +24,7 @@ class SearchManager
             return $this->notUnderstood();
 
         if ($searchMessageString = $this->ca->fetch(md5('search-message/' . $string))) {
-            $searchMessage = unserialize($searchMessageString);
+            $answer = unserialize($searchMessageString);
         } else {
             $context = stream_context_create([
                 'http' => [
