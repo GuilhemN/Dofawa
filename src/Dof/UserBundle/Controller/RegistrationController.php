@@ -14,9 +14,9 @@ namespace Dof\UserBundle\Controller;
 use FOS\UserBundle\Controller as BaseController;
 use XN\Annotations as Utils;
 
-/*
-* @Utils\UsesSession()
-*/
+/**
+ * @Utils\UsesSession()
+ */
 class RegistrationController extends BaseController
 {
 }
