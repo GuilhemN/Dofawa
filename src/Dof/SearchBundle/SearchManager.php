@@ -36,7 +36,7 @@ class SearchManager
             $answer = json_decode(
                 file_get_contents('https://api.wit.ai/message?q=' . urlencode($string), false, $context)
             , true);
-            $this->ca->save(md5('search-message/' . $string)), serialize($answer));
+            $this->ca->save(md5('search-message/' . $string), serialize($answer));
         }
 
         $intent = $answer['outcome']['intent'];
