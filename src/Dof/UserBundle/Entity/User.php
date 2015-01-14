@@ -139,7 +139,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     /**
     * @var array
     *
-    * @ORM\Column(name="preferences", type="json_array")
+    * @ORM\Column(name="preferences", type="json_array", nullable=true)
     */
     private $preferences;
 
