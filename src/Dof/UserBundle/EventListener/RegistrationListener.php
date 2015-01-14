@@ -8,6 +8,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+use Dof\MainBundle\Entity\Notification;
+
 /**
  * Listener responsible to change the redirection at the end of the password resetting
  */
