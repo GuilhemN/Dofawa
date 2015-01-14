@@ -11,7 +11,7 @@
 
 namespace Dof\UserBundle\Controller;
 
-use FOS\UserBundle\Controller as BaseController;
+use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use XN\Annotations as Utils;
 
 /**
