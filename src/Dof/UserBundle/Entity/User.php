@@ -154,6 +154,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     {
         parent::__construct();
         $this->builds = new ArrayCollection();
+        $this->petsManagerNotifications = true;
     }
 
     /**
