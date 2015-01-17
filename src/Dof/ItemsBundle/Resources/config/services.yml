@@ -45,3 +45,9 @@ services:
         arguments: [ @service_container ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
+
+    dof_items.admin.mount_template:
+        class: Dof\ItemsBundle\Admin\MountTemplateAdmin
+        arguments: [~, Dof\ItemsBundle\Entity\MountTemplate, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Items, label: MountTemplate}

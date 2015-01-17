@@ -37,12 +37,14 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('is_object', 'is_object'),
 			new \Twig_SimpleFunction('class_of', [ $this, 'getClassName' ]),
 			new \Twig_SimpleFunction('block_from', [ $this, 'blockFrom' ], [ 'is_safe' => [ 'html' ] ]),
+			new \Twig_SimpleFunction('call', [ $this, 'callClass' ]),
 		);
 	}
 
 	public function getFilters()
 	{
 		return array(
+			new \Twig_SimpleFilter('dechex', array($this, 'dechex')),
 			new \Twig_SimpleFilter('tableize', [ self::INFLECTOR_CLASS, 'tableize' ]),
 			new \Twig_SimpleFilter('classify', [ self::INFLECTOR_CLASS, 'classify' ]),
 			new \Twig_SimpleFilter('camelize', [ self::INFLECTOR_CLASS, 'camelize' ]),
@@ -57,6 +59,15 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFilter('base64url_decode', array('XN\Common\UrlSafeBase64', 'decode')),
 			new \Twig_SimpleFilter('convert_to_html', [ $this, 'convertBBCodeToHTML' ], [ 'is_safe' => [ 'html' ] ]),
 		);
+	}
+
+	public function dechex($dec, $limiter = true){
+		$hex = str_pad(dechex($dec & 16777215), 6, '0', STR_PAD_LEFT);
+
+		if($limiter)
+		return '#' . $hex;
+		else
+		return $hex;
 	}
 
 	public function getName()
@@ -136,5 +147,9 @@ class UtilityExtension extends \Twig_Extension
 		if(!($lg instanceof \XN\BBCode\Language))
 			throw new \LogicException('%s service is not a language', $language);
 		return nl2br($lg->convertToHTML($source));
+	}
+
+	public function callClass($class, $method, $params = array()) {
+		return call_user_func_array([ $class, $method ], (array) $params);
 	}
 }
