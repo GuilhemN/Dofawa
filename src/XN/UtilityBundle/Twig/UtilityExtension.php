@@ -44,6 +44,7 @@ class UtilityExtension extends \Twig_Extension
 	public function getFilters()
 	{
 		return array(
+			new \Twig_SimpleFilter('dechex', array($this, 'dechex')),
 			new \Twig_SimpleFilter('tableize', [ self::INFLECTOR_CLASS, 'tableize' ]),
 			new \Twig_SimpleFilter('classify', [ self::INFLECTOR_CLASS, 'classify' ]),
 			new \Twig_SimpleFilter('camelize', [ self::INFLECTOR_CLASS, 'camelize' ]),
@@ -58,6 +59,15 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFilter('base64url_decode', array('XN\Common\UrlSafeBase64', 'decode')),
 			new \Twig_SimpleFilter('convert_to_html', [ $this, 'convertBBCodeToHTML' ], [ 'is_safe' => [ 'html' ] ]),
 		);
+	}
+
+	public function dechex($dec, $limiter = true){
+		$hex = str_pad(dechex($dec & 16777215), 6, '0', STR_PAD_LEFT);
+
+		if($limiter)
+		return '#' . $hex;
+		else
+		return $hex;
 	}
 
 	public function getName()
