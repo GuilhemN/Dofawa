@@ -29,16 +29,6 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: Items, label: AnimalTemplate}
 
-    dof_items.twig.element_extension:
-        class: Dof\ItemsBundle\Twig\ElementExtension
-        tags:
-            - { name: twig.extension }
-
-    dof_items.twig.criticalHit_extension:
-        class: Dof\ItemsBundle\Twig\CriticalHitExtension
-        tags:
-            - { name: twig.extension }
-
     # Criteria
     dof_items.criteria_loader:
         class: Dof\ItemsBundle\Criteria\CriteriaLoader
