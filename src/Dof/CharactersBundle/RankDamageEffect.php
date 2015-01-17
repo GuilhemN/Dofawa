@@ -60,11 +60,11 @@ class RankDamageEffect implements EffectInterface
         $desc[] = [ ' (' . $translator->transChoice('duration', $this->effect->getDuration(), ['%count%' => $this->effect->getDuration()], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
         if ($this->effect->getDelay())
         $desc[] = [ ' (dans ' . $this->effect->getDelay() . ' tours)', GameTemplateString::COMES_FROM_TEMPLATE ];
-        if (implode(',', $this->effect->getTriggers()) != 'I'){
+        if (implode(',', $this->effect->getRawTriggers()) != 'I'){
             if($full)
-            $triggers = '(' . implode(', ', $this->effect->getTriggers()) . ') ';
+                $triggers = '(' . implode(', ', $this->effect->getRawTriggers()) . ') ';
             else
-            $triggers = '';
+                $triggers = '';
             array_unshift($desc, [ 'Déclenché ' . $triggers . ': ', GameTemplateString::COMES_FROM_TEMPLATE ]);
         }
         return $desc;
