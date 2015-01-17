@@ -90,7 +90,7 @@
                             <div class="col-lg-6">
                                 <b>Autres caractéristiques :</b><br>
                                 <table>
-                                    <tr><td>Coups critiques : </td><td class="padLeftTab"> {% if rank.criticalHitDenominator != 0 %}1/{{ rank.criticalHitDenominator }}{% else %} Aucun{% endif %}</td></tr>
+                                    <tr><td>Coups critiques : </td><td class="padLeftTab"> {% if rank.criticalHitDenominator != 0 %}1/{{ rank.criticalHitDenominator }}{% if rank.normalDamageEffects is not empty %} (Réels :{{ rank.criticalHitDenominator | criticalHit(characteristics.agility) }}){% endif %}{% else %} Aucun{% endif %}</td></tr>
                                     {% if rank.maxCastsPerTarget != 0 %}<tr><td>Lancé(s) par tour par cible : </td><td class="padLeftTab"> {{ rank.maxCastsPerTarget }}</td></tr>{% endif %}
                                     <tr><td>PO modifiable : </td><td class="padLeftTab">{% if rank.modifiableCastRange %} Oui{% else %} Non{% endif %}</td></tr>
                                     <tr><td>Lancer en ligne : </td><td class="padLeftTab">{% if rank.lineCast %} Oui{% else %} Non{% endif %}</td></tr>
