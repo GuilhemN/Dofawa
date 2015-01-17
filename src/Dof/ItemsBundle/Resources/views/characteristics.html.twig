@@ -24,7 +24,7 @@
                         {% endif %}
                         {{ max is empty ? 0 : max }}
                     {% endset %}
-                    {{ call('Dof\ItemsBundle\Element', 'getName', damageRow.element) | trans({'%1%': range}) }}<br />
+                    {{ call('\Dof\ItemsBundle\Element', 'getName', damageRow.element) | trans({'%1%': range}) }}<br />
                 {% endif %}
             {% endfor %}
             <hr />
