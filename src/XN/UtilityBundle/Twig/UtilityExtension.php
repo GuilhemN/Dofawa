@@ -139,7 +139,7 @@ class UtilityExtension extends \Twig_Extension
 		return nl2br($lg->convertToHTML($source));
 	}
 
-	public function callClass($class, $method) {
-		return call_user_func([$class, $method]);
+	public function callClass($class, $method, $params = array()) {
+		return call_user_func_array([ $class, $method ], (array) $params);
 	}
 }
