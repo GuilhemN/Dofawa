@@ -34,6 +34,11 @@ services:
         tags:
             - { name: twig.extension }
 
+    dof_items.twig.criticalHit_extension:
+        class: Dof\ItemsBundle\Twig\CriticalHitExtension
+        tags:
+            - { name: twig.extension }
+
     # Criteria
     dof_items.criteria_loader:
         class: Dof\ItemsBundle\Criteria\CriteriaLoader
