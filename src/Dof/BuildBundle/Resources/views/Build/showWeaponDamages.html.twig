@@ -28,19 +28,19 @@
 
 		            {% if element == "neutral" %}
 		            	{% set carac = characteristics.strength %}
-		            	{% set domFix = characteristics.neutralDamage %}
+		            	{% set domFix = characteristics.neutralDamage + characteristics.damage %}
 		            {% elseif element == "earth" %}
 		            	{% set carac = characteristics.strength %}
-		            	{% set domFix = characteristics.earthDamage %}
+		            	{% set domFix = characteristics.earthDamage + characteristics.damage %}
 		            {% elseif element == "fire" %}
 		            	{% set carac = characteristics.intelligence %}
-		            	{% set domFix = characteristics.fireDamage %}
+		            	{% set domFix = characteristics.fireDamage + characteristics.damage %}
 		            {% elseif element == "water" %}
 		            	{% set carac = characteristics.chance %}
-		            	{% set domFix = characteristics.waterDamage %}
+		            	{% set domFix = characteristics.waterDamage + characteristics.damage %}
 		            {% elseif element == "air" %}
 		            	{% set carac = characteristics.agility %}
-		            	{% set domFix = characteristics.airDamage %}
+		            	{% set domFix = characteristics.airDamage + characteristics.damage %}
 		            {% elseif element == "heal" %}
 		            	{% set carac = characteristics.intelligence %}
 		            	{% set heal = characteristics.heals %}
