@@ -37,6 +37,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('is_object', 'is_object'),
 			new \Twig_SimpleFunction('class_of', [ $this, 'getClassName' ]),
 			new \Twig_SimpleFunction('block_from', [ $this, 'blockFrom' ], [ 'is_safe' => [ 'html' ] ]),
+			new \Twig_SimpleFunction('call', [ $this, 'callClass' ]),
 		);
 	}
 
@@ -136,5 +137,9 @@ class UtilityExtension extends \Twig_Extension
 		if(!($lg instanceof \XN\BBCode\Language))
 			throw new \LogicException('%s service is not a language', $language);
 		return nl2br($lg->convertToHTML($source));
+	}
+
+	public function callClass($class, $method) {
+		return call_user_func([$class, $method]);
 	}
 }
