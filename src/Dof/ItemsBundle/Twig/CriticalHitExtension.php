@@ -6,7 +6,7 @@ class CriticalHitExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('criticalHit', array($this, 'CriticalHit')),
+            new \Twig_SimpleFilter('criticalHit', array($this, 'getCriticalHit')),
         );
     }
 
