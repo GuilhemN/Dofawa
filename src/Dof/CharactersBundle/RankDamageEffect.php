@@ -54,7 +54,7 @@ class RankDamageEffect implements EffectInterface
         ], $locale);
         if($full){
             array_unshift($desc, [ '[' . $this->effect->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
-            $desc[] = [ ' (' . implode(', ', $this->effect->getTargets()) . ' sur ' . $this->effect->getAreaOfEffect() . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
+            $desc[] = [ ' (' . implode(', ', $this->effect->getRawTargets()) . ' sur ' . $this->effect->getAreaOfEffect() . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
         }
         if ($this->effect->getDuration())
         $desc[] = [ ' (' . $translator->transChoice('duration', $this->effect->getDuration(), ['%count%' => $this->effect->getDuration()], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
