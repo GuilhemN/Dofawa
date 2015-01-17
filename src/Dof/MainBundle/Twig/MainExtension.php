@@ -6,8 +6,8 @@ class MainExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('truncatehtml', array($this, 'truncateHtmlFilter'))
-        );
+            new \Twig_SimpleFilter('truncatehtml', array($this, 'truncateHtmlFilter')),
+            new  \Twig_SimpleFunction('critical_hit', array($this, 'getCriticalHit')));
     }
 
     public function truncateHtmlFilter($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true) {
@@ -98,6 +98,11 @@ class MainExtension extends \Twig_Extension
             }
         }
         return $truncate;
+    }
+
+    public function getCriticalHit($denominator, $agility, $bonusCC)
+    {
+        return floor(($denominator - $bonusCC) * 2.9901 / Log($agility + 12));
     }
 
     public function getName()
