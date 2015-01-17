@@ -6,7 +6,13 @@ class MainExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('truncatehtml', array($this, 'truncateHtmlFilter')),
+            new \Twig_SimpleFilter('truncatehtml', array($this, 'truncateHtmlFilter')));
+            
+    }
+
+    public function getFunctions()
+    {
+        return array(
             new  \Twig_SimpleFunction('critical_hit', array($this, 'getCriticalHit')));
     }
 
