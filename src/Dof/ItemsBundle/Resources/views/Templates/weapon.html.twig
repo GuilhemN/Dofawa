@@ -30,7 +30,7 @@
             <tr>
                 <td style="padding:4px;">
                     {{ 'criticalHits' | trans({'%1%': ''},'item') }}: 1/{{ itemTemplate.criticalHitDenominator }} (+{{ itemTemplate.criticalHitBonus }}) <img src="{{ asset('bundles/dofitems/img/criticalHits.png') }}" alt="">
-                    {% if type == "build" %}(<strong>Réels : 1/{{ critical_hit(itemTemplate.criticalHitDenominator, characteristics.agility, characteristics.criticalHits) }}</strong>){% endif %}
+                    {% if characteristics not empty %}(<strong>Réels : 1/{{ critical_hit(itemTemplate.criticalHitDenominator, characteristics.agility, characteristics.criticalHits) }}</strong>){% endif %}
                 </td>
             </tr>
         </table>
