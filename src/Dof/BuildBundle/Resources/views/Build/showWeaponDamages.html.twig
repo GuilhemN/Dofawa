@@ -13,7 +13,7 @@
 {% autoescape %}
     {% include 'DofBuildBundle::header.html.twig' %}
     {% if weapon is not null %}
-    	(Dégats avec maîtrise +300 puissance)
+    	(Dégats avec maîtrise +300 puissance) Coups Critique réel:<strong> 1/{{ critical_hit(weapon.itemTemplate.criticalHitDenominator, characteristics.agility, characteristics.criticalHits) }}</strong>
     	<div class="panel panel-default">
 	        <table class="table">
 	            <thead>
