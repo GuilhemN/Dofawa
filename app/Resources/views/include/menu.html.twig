@@ -77,13 +77,19 @@
                         <li class="divider"></li>
                         <li class="dropdown-header">Items</li>
                         <li>
-                            <a href="{{ path('dof_items_homepage') }}?items[type][]=1&amp;items[type][]=2&amp;items[type][]=3&amp;items[type][]=4&amp;items[type][]=5&amp;items[type][]=7&amp;items[type][]=11&amp;items[type][]=12&amp;items[type][]=13&amp;items[type][]=21&amp;items[type][]=22&amp;items[type][]=10">
+                            <a href="{{ path('dof_items_homepage', { 'items[type]': [ 1, 2, 3, 4, 5, 7, 11, 12, 13, 21, 22, 10 ]}) }}">
                                 {{ 'equipments.main' | transchoice(2, {}, 'type_item') }}
                             </a>
                         </li>
-                        <li><a href="{{ path('dof_items_homepage') }}?items[type][]=2">{{ 'weapons.main' | transchoice(2, {}, 'type_item') }}</a></li>
-                        <li><a href="{{ path('dof_items_homepage') }}?items[type][]=12&amp;items[type][]=21">{{ 'animals.main' | transchoice(2, {}, 'type_item') }}</a></li>
-                        <li><a href="{{ path('dof_items_homepage') }}?items[type][]=6&amp;items[type][]=9&amp;items[type][]=14">{{ 'resources.main' | transchoice(2, {}, 'type_item') }}</a></li>
+                        <li><a href="{{ path('dof_items_homepage', { 'items[type]': [ 2 ]}) }}">
+                            {{ 'weapons.main' | transchoice(2, {}, 'type_item') }}
+                        </a></li>
+                        <li><a href="{{ path('dof_items_homepage', { 'items[type]': [ 12, 21 ]}) }}">
+                            {{ 'animals.main' | transchoice(2, {}, 'type_item') }}
+                        </a></li>
+                        <li><a href="{{ path('dof_items_homepage', { 'items[type]': [ 6, 9, 14 ]}) }}">
+                            {{ 'resources.main' | transchoice(2, {}, 'type_item') }}
+                        </a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
