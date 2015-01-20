@@ -17,6 +17,12 @@
 	<h3>{{ 'petsManager' | trans({}, 'petsManager') }}</h3>
     {{ 'notifications' | trans({}, 'generalTrans') }} :
 
+	<div class="well">
+		Ajouter un familier :
+		<a href="{{ path('dof_items_homepage', {'items[type]': [ '12' ]})}}" class="btn btn-primary">Nouveau</a>
+		<a href="{{ path('dof_items_manager_homepage') }}" class="btn btn-default">Depuis l'inventaire</a>
+	</div>
+
     <form method="POST" name="petsNotifs" action="{{ path('dof_items_manager_pets_notif') }}">
         <strong>{{ ( app.user.petsManagerNotifications ? 'activated' : 'deactivate' ) | trans({}, 'generalTrans') }}</strong>
         <input type="hidden"  name="notif" value="{{ not app.user.petsManagerNotifications }}">
@@ -62,7 +68,7 @@
                             </td>
                         </tr>
                     {% else %}
-                    	<tr>
+                		<tr>
                             <td></td>
 							<td>{{ 'no_pets' | trans({}, 'petsManager') }}</td>
 							<td></td>

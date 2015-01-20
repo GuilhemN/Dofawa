@@ -13,12 +13,12 @@ use Dof\ItemsManagerBundle\Entity\Pet;
  */
 class PetsManagerController extends Controller
 {
-    public function showAction()
+    public function indexAction()
     {
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
         $pets = $repository->findBy(['owner' => $this->getUser(), 'raise' => true], ['nextFeeding' => 'ASC']);
 
-        return $this->render('DofItemsManagerBundle:PetsManager:show.html.twig', array('pets' => $pets));
+        return $this->render('DofItemsManagerBundle:PetsManager:index.html.twig', array('pets' => $pets));
     }
 
     public function addAction(PetTemplate $item)
