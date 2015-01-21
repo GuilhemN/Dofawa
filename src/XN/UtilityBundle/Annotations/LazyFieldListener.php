@@ -50,10 +50,9 @@ class LazyFieldListener
         $em = $args->getEntityManager();
         $uow = $em->getUnitOfWork();
         $mds = array();
+        var_dump($uow->getScheduledEntityUpdates());
         $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $em) {
             $lazyFields = $this->getLazyFields($ent, $em);
-            if($ent instanceof \Dof\MainBundle\Entity\Notification)
-                throw new \Exception(print_r($lazyFields, true));
             if(empty($lazyFields))
                 return false;
             $chgst = $uow->getEntityChangeSet($ent);
