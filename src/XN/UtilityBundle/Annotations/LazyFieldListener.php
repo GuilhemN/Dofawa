@@ -27,7 +27,7 @@ class LazyFieldListener
         if(!empty($lazyFields))
             $this->updateLazyFields($ent, $lazyFields, $em);
     }
-    
+
     public function postLoad(LifecycleEventArgs $args)
     {
         $em = $args->getEntityManager();
@@ -81,7 +81,7 @@ class LazyFieldListener
         }
     }
 
-    public function updateLazyFields($ent, $lazyFieds, $em) {
+    public function updateLazyFields($ent, $lazyFieds, $em) {
         foreach($lazyFields as $k => $v){
             $e = call_user_func([$ent, 'get' . ucfirst($k)]);
             $classSetter = $v->getSetterClassMethod();
