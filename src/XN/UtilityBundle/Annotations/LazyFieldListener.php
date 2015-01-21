@@ -52,10 +52,9 @@ class LazyFieldListener
         $mds = array();
         $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $em) {
             $lazyFields = $this->getLazyFields($ent, $em);
+            var_dump($lazyFields);
             if(empty($lazyFields))
                 return false;
-            else
-                throw new \Exception();
             $chgst = $uow->getEntityChangeSet($ent);
             foreach($lazyFields as $k => $v)
                 if(isset($chgst[$k]))
