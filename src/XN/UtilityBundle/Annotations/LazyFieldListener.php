@@ -52,7 +52,6 @@ class LazyFieldListener
         $mds = array();
         $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $em) {
             $lazyFields = $this->getLazyFields($ent, $em);
-            var_dump($lazyFields);
             if(empty($lazyFields))
                 return false;
             $chgst = $uow->getEntityChangeSet($ent);
@@ -88,11 +87,11 @@ class LazyFieldListener
 
     private function getLazyFields($ent, $em) {
         $class = $em->getClassMetadata(get_class($ent))->getName();
-        if ($lazyFieldsString = $this->ca->fetch(md5('xn-lazy-fields/' . $class))) {
+        if (false){// $lazyFieldsString = $this->ca->fetch(md5('xn-lazy-fields/' . $class))) {
             $lazyFields = unserialize($lazyFieldsString);
         } else {
             //Properties
-            if ($propertiesString = $this->ca->fetch(md5('xn-class-properties/' . $class))) {
+            if (false){// $propertiesString = $this->ca->fetch(md5('xn-class-properties/' . $class))) {
                 $properties = unserialize($propertiesString);
             } else {
                 $reflect = new \ReflectionClass($ent);
@@ -101,7 +100,6 @@ class LazyFieldListener
                 }, $reflect->getProperties());
                 $this->ca->save(md5('xn-class-properties/' . $class), serialize($properties));
             }
-            var_dump($properties);
 
             //Lazy Fields
             $lazyFields = [];
