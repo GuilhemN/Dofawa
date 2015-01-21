@@ -11,6 +11,7 @@ use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
 use XN\Annotations as Utils;
+use XN\Metadata\SimpleLazyTrait;
 
 /**
  * Notification
@@ -20,7 +21,7 @@ use XN\Annotations as Utils;
  */
 class Notification implements IdentifiableInterface, TimestampableInterface, OwnableInterface
 {
-    use TimestampableTrait, OwnableTrait;
+    use TimestampableTrait, OwnableTrait, SimpleLazyTrait;
 
     /**
      * @var integer
@@ -48,20 +49,6 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     /**
      * @var string
      *
-     * @ORM\Column(name="class", type="string", length=255, nullable=true)
-     */
-    private $class;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="class_id", type="integer", nullable=true)
-     */
-    private $classId;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="message", type="string", length=255, nullable=true)
      */
     private $message;
@@ -72,11 +59,6 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
      * @ORM\Column(name="path", type="string", length=255, nullable=true)
      */
     private $path;
-
-    /**
-     * @Utils\LazyField
-     */
-    private $entity;
 
     private $valid;
 
@@ -145,52 +127,6 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Set class
-     *
-     * @param string $class
-     * @return Notification
-     */
-    public function setClass($class)
-    {
-        $this->class = $class;
-
-        return $this;
-    }
-
-    /**
-     * Get class
-     *
-     * @return string
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
-
-    /**
-     * Set classId
-     *
-     * @param integer $classId
-     * @return Notification
-     */
-    public function setClassId($classId)
-    {
-        $this->classId = $classId;
-
-        return $this;
-    }
-
-    /**
-     * Get classId
-     *
-     * @return integer
-     */
-    public function getClassId()
-    {
-        return $this->classId;
-    }
-
-    /**
      * Set message
      *
      * @param string $message
@@ -234,15 +170,6 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     public function getPath()
     {
         return $this->path;
-    }
-
-    public function setEntity($entity){
-        $this->entity = $entity;
-        return $this;
-    }
-
-    public function getEntity(){
-        return $this->entity;
     }
 
     public function setValid($valid){
