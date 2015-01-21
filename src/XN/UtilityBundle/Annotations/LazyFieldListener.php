@@ -86,7 +86,6 @@ class LazyFieldListener
             $e = call_user_func([$ent, 'get' . ucfirst($k)]);
             $classSetter = $v->getSetterClassMethod();
             $valueSetter = $v->getSetterValueMethod();
-            var_dump($e);
             if($e instanceof IdentifiableInterface){
                 call_user_func([ $ent, $classSetter], $em->getClassMetadata(get_class($e))->getName());
                 call_user_func([ $ent, $valueSetter], $e->getId());
