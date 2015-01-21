@@ -166,6 +166,5 @@ services:
         class: %xn.lazy_field_listener.class%
         arguments: [ @cache, @annotation_reader ]
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: postLoad }
             - { name: doctrine.event_listener, event: onFlush }
