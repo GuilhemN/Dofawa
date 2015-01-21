@@ -47,12 +47,13 @@ class LazyFieldListener
 
     public function onFlush(OnFlushEventArgs $args)
     {
-        throw new \Exception('debug');
         $em = $args->getEntityManager();
         $uow = $em->getUnitOfWork();
         $mds = array();
         $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $em) {
             $lazyFields = $this->getLazyFields($ent, $em);
+            if($ent instanceof \Dof\UserBundle\Entity\Notification)
+                throw new \Exception(print_r($lazyFields, true));
             if(empty($lazyFields))
                 return false;
             $chgst = $uow->getEntityChangeSet($ent);
@@ -107,7 +108,7 @@ class LazyFieldListener
             foreach($properties as $property){
                 $annotation = $this->re->getPropertyAnnotation(new \ReflectionProperty($ent, $property), 'XN\Annotations\LazyField');
                 if($annotation)
-                $lazyFields[$property] = $annotation;
+                    $lazyFields[$property] = $annotation;
             }
             $this->ca->save(md5('xn-lazy-fields/' . $class), serialize($lazyFields));
         }
