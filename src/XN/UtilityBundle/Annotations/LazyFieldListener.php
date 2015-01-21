@@ -54,12 +54,13 @@ class LazyFieldListener
             $lazyFields = $this->getLazyFields($ent, $em);
             if(empty($lazyFields))
                 return false;
+            else
+                throw new \Exception();
             $chgst = $uow->getEntityChangeSet($ent);
             foreach($lazyFields as $k => $v)
                 if(isset($chgst[$k]))
                     return true;
         });
-        var_dump($updates);
         foreach ($updates as $ent) {
             $lazyFields = $this->getLazyFields($ent, $em);
             foreach($lazyFields as $k => $v){
