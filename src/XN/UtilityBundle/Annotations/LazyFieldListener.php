@@ -60,19 +60,20 @@ class LazyFieldListener
                     return true;
         });
         foreach ($updates as $ent) {
+            throw new \Exception('debug');
             $lazyFields = $this->getLazyFields($ent, $em);
             foreach($lazyFields as $k => $v){
                 $e = call_user_func([$ent, 'get' . ucfirst($k)]);
-                if($e instanceof IdentifiableInterface)
-                    $ent
-                        ->setClass($em->getClassMetadata(get_class($e))->getName())
-                        ->setClassId($e->getId())
-                        ;
-                else
-                    $ent
-                        ->setClass(null)
-                        ->setClassId(null)
-                    ;
+                $classSetter = $v->getSetterClassMethod();
+                $valueSetter = $v->getSetterValueMethod();
+                if($e instanceof IdentifiableInterface){
+                    call_user_func([ $ent, $classSetter], $em->getClassMetadata(get_class($e))->getName());
+                    call_user_func([ $ent, $valueSetter], $e->getId());
+                }
+                else{
+                    call_user_func([ $ent, $classSetter], null);
+                    call_user_func([ $ent, $valueSetter], null);
+                }
             }
             $clazz = get_class($ent);
             if (isset($mds[$clazz]))

@@ -19,4 +19,12 @@ final class LazyField extends Annotation
     public function getValueMethod() {
         return !empty($this->valueProperty) ? 'get' . ucfirst($this->valueProperty) : 'getClassId';
     }
+
+    public function getSetterClassMethod() {
+        return !empty($this->classProperty) ? 'set' . ucfirst($this->classProperty) : 'getClass';
+    }
+
+    public function getSetterValueMethod() {
+        return !empty($this->valueProperty) ? 'set' . ucfirst($this->valueProperty) : 'getClassId';
+    }
 }
