@@ -11,7 +11,7 @@ use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 
 use XN\Annotations as Utils;
-use XN\Metadata\SimpleLazyTrait;
+use XN\Metadata\SimpleLazyFieldTrait;
 
 /**
  * Notification
@@ -21,7 +21,7 @@ use XN\Metadata\SimpleLazyTrait;
  */
 class Notification implements IdentifiableInterface, TimestampableInterface, OwnableInterface
 {
-    use TimestampableTrait, OwnableTrait, SimpleLazyTrait;
+    use TimestampableTrait, OwnableTrait, SimpleLazyFieldTrait;
 
     /**
      * @var integer
