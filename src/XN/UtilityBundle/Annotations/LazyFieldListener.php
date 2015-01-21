@@ -24,6 +24,7 @@ class LazyFieldListener
         $em = $args->getEntityManager();
         $ent = $args->getEntity();
         $lazyFields = $this->getLazyFields($ent, $em);
+        var_dump($lazyFields);
         if(!empty($lazyFields))
             $this->updateLazyFields($ent, $lazyFields, $em);
     }
@@ -95,7 +96,6 @@ class LazyFieldListener
                 call_user_func([ $ent, $valueSetter], null);
             }
         }
-
     }
 
     private function getLazyFields($ent, $em) {
