@@ -47,6 +47,7 @@ class LazyFieldListener
 
     public function onFlush(OnFlushEventArgs $args)
     {
+        throw new \Exception('debug');
         $em = $args->getEntityManager();
         $uow = $em->getUnitOfWork();
         $mds = array();
@@ -60,7 +61,6 @@ class LazyFieldListener
                     return true;
         });
         foreach ($updates as $ent) {
-            throw new \Exception('debug');
             $lazyFields = $this->getLazyFields($ent, $em);
             foreach($lazyFields as $k => $v){
                 $e = call_user_func([$ent, 'get' . ucfirst($k)]);
