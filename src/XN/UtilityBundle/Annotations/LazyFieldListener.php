@@ -23,10 +23,7 @@ class LazyFieldListener
     public function prePersist(LifecycleEventArgs $args) {
         $em = $args->getEntityManager();
         $ent = $args->getEntity();
-        $lazyFields = $this->getLazyFields($ent, $em);
-        var_dump($lazyFields);
-        if(!empty($lazyFields))
-            $this->updateLazyFields($ent, $lazyFields, $em);
+        $this->updateLazyFields($ent, $this->getLazyFields($ent, $em), $em);
     }
 
     public function postLoad(LifecycleEventArgs $args)
@@ -87,6 +84,8 @@ class LazyFieldListener
             $e = call_user_func([$ent, 'get' . ucfirst($k)]);
             $classSetter = $v->getSetterClassMethod();
             $valueSetter = $v->getSetterValueMethod();
+            var_dump($classSetter);
+            var_dump($valueSetter);
             if($e instanceof IdentifiableInterface){
                 call_user_func([ $ent, $classSetter], $em->getClassMetadata(get_class($e))->getName());
                 call_user_func([ $ent, $valueSetter], $e->getId());
