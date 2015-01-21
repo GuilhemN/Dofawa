@@ -52,7 +52,7 @@ class LazyFieldListener
         $mds = array();
         $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $em) {
             $lazyFields = $this->getLazyFields($ent, $em);
-            if($ent instanceof \Dof\UserBundle\Entity\Notification)
+            if($ent instanceof \Dof\MainBundle\Entity\Notification)
                 throw new \Exception(print_r($lazyFields, true));
             if(empty($lazyFields))
                 return false;
