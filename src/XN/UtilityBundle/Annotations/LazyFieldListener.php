@@ -82,7 +82,7 @@ class LazyFieldListener
         }
     }
 
-    public function updateLazyFields($ent, $lazyFieds, $em) {
+    public function updateLazyFields($ent, $lazyFields, $em) {
         foreach($lazyFields as $k => $v){
             $e = call_user_func([$ent, 'get' . ucfirst($k)]);
             $classSetter = $v->getSetterClassMethod();
