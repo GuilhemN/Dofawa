@@ -8,6 +8,8 @@ use Doctrine\Common\Cache\Cache;
 
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+
+use XN\Persistence\IdentifiableInterface;
 use XN\Annotations\LazyField;
 
 class LazyFieldListener
@@ -88,10 +90,6 @@ class LazyFieldListener
             if($e instanceof IdentifiableInterface){
                 call_user_func([ $ent, $classSetter], $em->getClassMetadata(get_class($e))->getName());
                 call_user_func([ $ent, $valueSetter], $e->getId());
-            }
-            else{
-                call_user_func([ $ent, $classSetter], null);
-                call_user_func([ $ent, $valueSetter], null);
             }
         }
     }
