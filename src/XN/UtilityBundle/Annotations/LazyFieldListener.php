@@ -50,7 +50,6 @@ class LazyFieldListener
         $em = $args->getEntityManager();
         $uow = $em->getUnitOfWork();
         $mds = array();
-        var_dump($uow->getScheduledEntityUpdates());
         $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow, $em) {
             $lazyFields = $this->getLazyFields($ent, $em);
             if(empty($lazyFields))
@@ -60,6 +59,7 @@ class LazyFieldListener
                 if(isset($chgst[$k]))
                     return true;
         });
+        var_dump($updates);
         foreach ($updates as $ent) {
             $lazyFields = $this->getLazyFields($ent, $em);
             foreach($lazyFields as $k => $v){
