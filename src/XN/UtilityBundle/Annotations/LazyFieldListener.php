@@ -20,6 +20,14 @@ class LazyFieldListener
         $this->re = $re;
     }
 
+    public function prePersist(LifecycleEventArgs $args) {
+        $em = $args->getEntityManager();
+        $ent = $args->getEntity();
+        $lazyFields = $this->getLazyFields($ent, $em);
+        if(!empty($lazyFields))
+            $this->updateLazyFields($ent, $lazyFields, $em);
+    }
+    
     public function postLoad(LifecycleEventArgs $args)
     {
         $em = $args->getEntityManager();
@@ -61,19 +69,7 @@ class LazyFieldListener
         });
         foreach ($updates as $ent) {
             $lazyFields = $this->getLazyFields($ent, $em);
-            foreach($lazyFields as $k => $v){
-                $e = call_user_func([$ent, 'get' . ucfirst($k)]);
-                $classSetter = $v->getSetterClassMethod();
-                $valueSetter = $v->getSetterValueMethod();
-                if($e instanceof IdentifiableInterface){
-                    call_user_func([ $ent, $classSetter], $em->getClassMetadata(get_class($e))->getName());
-                    call_user_func([ $ent, $valueSetter], $e->getId());
-                }
-                else{
-                    call_user_func([ $ent, $classSetter], null);
-                    call_user_func([ $ent, $valueSetter], null);
-                }
-            }
+            $this->updateLazyFields($ent, $lazyFields, $em);
             $clazz = get_class($ent);
             if (isset($mds[$clazz]))
             $md = $mds[$clazz];
@@ -85,13 +81,30 @@ class LazyFieldListener
         }
     }
 
+    public function updateLazyFields($ent, $lazyFieds, $em) {
+        foreach($lazyFields as $k => $v){
+            $e = call_user_func([$ent, 'get' . ucfirst($k)]);
+            $classSetter = $v->getSetterClassMethod();
+            $valueSetter = $v->getSetterValueMethod();
+            if($e instanceof IdentifiableInterface){
+                call_user_func([ $ent, $classSetter], $em->getClassMetadata(get_class($e))->getName());
+                call_user_func([ $ent, $valueSetter], $e->getId());
+            }
+            else{
+                call_user_func([ $ent, $classSetter], null);
+                call_user_func([ $ent, $valueSetter], null);
+            }
+        }
+
+    }
+
     private function getLazyFields($ent, $em) {
         $class = $em->getClassMetadata(get_class($ent))->getName();
-        if (false){// $lazyFieldsString = $this->ca->fetch(md5('xn-lazy-fields/' . $class))) {
+        if ($lazyFieldsString = $this->ca->fetch(md5('xn-lazy-fields/' . $class))) {
             $lazyFields = unserialize($lazyFieldsString);
         } else {
             //Properties
-            if (false){// $propertiesString = $this->ca->fetch(md5('xn-class-properties/' . $class))) {
+            if ($propertiesString = $this->ca->fetch(md5('xn-class-properties/' . $class))) {
                 $properties = unserialize($propertiesString);
             } else {
                 $reflect = new \ReflectionClass($ent);
@@ -100,7 +113,6 @@ class LazyFieldListener
                 }, $reflect->getProperties());
                 $this->ca->save(md5('xn-class-properties/' . $class), serialize($properties));
             }
-            var_dump($properties);
 
             //Lazy Fields
             $lazyFields = [];
