@@ -342,5 +342,12 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
         return $this->quantity8;
     }
 
+    public function isPersonalized() { return $this->getItemTemplate()->isPersonalized(); }
+    public function isEquipment() { return $this->getItemTemplate()->isEquipment(); }
+    public function isSkinned() { return $this->getItemTemplate()->isSkinned(); }
+    public function isAnimal() { return $this->getItemTemplate()->isAnimal(); }
+    public function isPet() { return $this->getItemTemplate()->isPet(); }
+    public function isMount() { return $this->getItemTemplate()->isMount(); }
+    public function isWeapon() { return $this->getItemTemplate()->isWeapon(); }
     public function isCraft() { return true; }
 }

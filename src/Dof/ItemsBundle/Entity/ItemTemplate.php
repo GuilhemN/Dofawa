@@ -1025,6 +1025,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function isPet() { return false; }
     public function isMount() { return false; }
     public function isUseable() { return false; }
+    public function isCraft() { return false; }
     public function getClassId() { return 'item'; }
 
     public function exportData($full = true, $locale = 'fr')

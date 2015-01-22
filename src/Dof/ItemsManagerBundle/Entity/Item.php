@@ -252,7 +252,7 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
     {
         return $this->name;
     }
-    
+
     /**
     * Set sticky
     *
@@ -319,5 +319,6 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
     public function isPet() { return false; }
     public function isMount() { return false; }
     public function isWeapon() { return false; }
+    public function isCraft() { return false; }
     public function getClassId() { return 'item'; }
 }
