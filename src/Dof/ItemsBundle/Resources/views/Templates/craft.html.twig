@@ -1,1 +1,31 @@
 {% extends template %}
+{% import 'DofMainBundle::tabs.html.twig' as tabs %}
+
+{% block tabs_menu %}
+    {# Recette #}
+    {% if itemTemplate.components is not empty %}
+        <li{{ tabs.activate('craft-recipe') }}>
+            <a href="#craft-recipe-item{{ item.id }}" role="tab" data-toggle="tab">
+                Craft
+            </a>
+        </li>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block tabs_content %}
+
+    {# Recette #}
+    {% if itemTemplate.components is not empty %}
+        <div class="tab-pane{{ tabs.active('craft-recipe') }}" id="craft-recipe-item{{ item.id }}">
+            {% for component in itemTemplate.components %}
+                <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
+                    {{ component.component.getName(locales()) }}
+                </a>
+                x {{ component.quantity }}
+                <br />
+            {% endfor %}
+        </div>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}

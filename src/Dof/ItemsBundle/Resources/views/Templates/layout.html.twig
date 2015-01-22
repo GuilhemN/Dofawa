@@ -1,4 +1,5 @@
 {% trans_default_domain 'item' %}
+{% import 'DofMainBundle::tabs.html.twig' as tabs %}
 
 {% autoescape  %}
 {% if display != 'modal' %}
@@ -49,7 +50,9 @@
             <div class="col-sm-9">
                 {# Menu tabs #}
                 <ul class="nav nav-pills" role="tablist">
-                    {% set characts %}
+                    {{ tabs.initialize() }}
+
+                    {% set caracts %}
                         {% include 'DofItemsBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
                     {% endset %}
                     {% set criteria %}
@@ -59,9 +62,8 @@
                     {% variable active_tab = false %}
                     {% block tabs_menu %}
                         {# Effets #}
-                        {% if characts | trim is not empty %}
-                            {% variable active_tab = 'caracts' %}
-                            <li class="active">
+                        {% if caracts | trim is not empty %}
+                            <li{{ tabs.activate('item') }}>
                                 <a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">
                                     {{ 'tabs.effects' | trans() }}
                                 </a>
@@ -70,7 +72,7 @@
 
                         {# Recette #}
                         {% if itemTemplate.components is not empty %}
-                        <li{% if not variables.get('active_tab') %}{% variable active_tab = 'recipe' %} class="active"{% endif %}>
+                        <li{{ tabs.activate('recipe') }}>
                             <a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">
                                 {{ 'tabs.recipe' | trans() }}
                             </a>
@@ -79,7 +81,7 @@
 
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
-                            <li{% if not variables.get('active_tab') %}{% variable active_tab = 'criteria' %} class="active"{% endif %}>
+                            <li{{ tabs.activate('criteria') }}>
                                 <a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">
                                     {{ 'tabs.conditions' | trans() }}
                                 </a>
@@ -88,7 +90,7 @@
 
                         {# Drops #}
                         {% if itemTemplate.drops is not empty %}
-                            <li{% if not variables.get('active_tab') %}{% variable active_tab = 'drops' %} class="active"{% endif %}>
+                            <li{{ tabs.activate('drops') }}>
                                 <a href="#drops-item{{ item.id }}" role="tab" data-toggle="tab">
                                     Drop sur
                                 </a>
@@ -97,7 +99,7 @@
 
                         {# Drops #}
                         {% if itemTemplate.compounds is not empty %}
-                        <li{% if not variables.get('active_tab') %}{% variable active_tab = 'compounds' %} class="active"{% endif %}>
+                        <li{{ tabs.activate('compounds') }}>
                             <a href="#compounds-item{{ item.id }}" role="tab" data-toggle="tab">
                                 Dans la recette de
                             </a>
@@ -108,18 +110,16 @@
                 </ul>
                 <div class="tab-content">
                     {% block tabs_content %}
-                        {% set is_active_tab = false %}
                         {# Effets #}
-                        {% if characts | trim is not empty %}
-                        {% set is_active_tab = true %}
-                        <div class="tab-pane active" id="caracts-item{{ item.id }}">
-                            {{ characts }}
+                        {% if caracts is not empty %}
+                        <div class="tab-pane{{ tabs.active('item') }}" id="caracts-item{{ item.id }}">
+                            {{ caracts }}
                         </div>
                         {% endif %}
 
                         {# Recette #}
                         {% if itemTemplate.components is not empty %}
-                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="recipe-item{{ item.id }}">
+                        <div class="tab-pane{{ tabs.active('recipe') }}" id="recipe-item{{ item.id }}">
                             {% for component in itemTemplate.components %}
                             <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
                                 {{ component.component.getName(locales()) }}
@@ -132,7 +132,7 @@
 
                         {# Conditions #}
                         {% if criteria | trim is not empty %}
-                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="criteria-item{{ item.id }}">
+                        <div class="tab-pane{{ tabs.active('criteria') }}" id="criteria-item{{ item.id }}">
                             <ul class="list-unstyled">
                                 {{ criteria }}
                             </ul>
@@ -141,7 +141,7 @@
 
                         {# Drops #}
                         {% if itemTemplate.drops is not empty %}
-                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="drops-item{{ item.id }}">
+                        <div class="tab-pane{{ tabs.active('drops') }}" id="drops-item{{ item.id }}">
                             {% for drop in itemTemplate.drops %}
                                 <a href="{{ path('dof_monster_show', {'slug': drop.monster.slug}) }}">
                                     {{ drop.monster.getName(locales()) }}
@@ -153,7 +153,7 @@
 
                         {# Compounds #}
                         {% if itemTemplate.compounds is not empty %}
-                        <div class="tab-pane{% if not is_active_tab %}{% set is_active_tab = true %} active{% endif %}" id="compounds-item{{ item.id }}">
+                        <div class="tab-pane{{ tabs.active('compounds') }}" id="compounds-item{{ item.id }}">
                             {% for compound in itemTemplate.compounds %}
                             <a href="{{ path('dof_items_show', {'slug': compound.compound.slug}) }}">
                                 {{ compound.compound.getName(locales()) }}
