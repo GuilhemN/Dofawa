@@ -2,7 +2,7 @@
     {% set display = 'normal' %}
 {% endif %}
 
-{% if item.craft %}
+{% if item.craft is defined and item.craft %}
     {% set type = 'craft' %}
     {% set itemTemplate = item.itemTemplate %}
 {% elseif not item.personalized %}
