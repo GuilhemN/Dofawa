@@ -43,9 +43,17 @@ class SessionControllerListener
         if($token)
             $token->getUser();
 
-        if(!$this->re->getClassAnnotation(new \ReflectionClass($controller[0]), 'XN\Annotations\UsesSession') &&
-            !$this->re->getMethodAnnotation(new \ReflectionMethod($controller[0], $controller[1]), 'XN\Annotations\UsesSession') &&
-            !($controller[0] instanceof \Sonata\AdminBundle\Controller\CRUDController))
+        $rc = new \ReflectionClass($controller[0]);
+
+        $classNamespace = $rc->getNamespaceName();
+        $namespaces = (array) ($this->di->hasParameter('session_annotation_namespace') ? $this->di->getParameter('session_annotation_namespace') : '');
+        foreach($namespaces as $namespace){
+            if(substr($classNamespace, 0, strlen($namespace)) != $namespace)
+                return;
+        }
+
+        if(!$this->re->getClassAnnotation($rc, 'XN\Annotations\UsesSession') &&
+            !$this->re->getMethodAnnotation(new \ReflectionMethod($controller[0], $controller[1]), 'XN\Annotations\UsesSession'))
             $this->se->save();
     }
 }
