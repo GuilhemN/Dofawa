@@ -2,7 +2,10 @@
     {% set display = 'normal' %}
 {% endif %}
 
-{% if not item.personalized %}
+{% if item.craft %}
+    {% set type = 'craft' %}
+    {% set itemTemplate = item.itemTemplate %}
+{% elseif not item.personalized %}
     {% set type = 'item' %}
     {% set itemTemplate = item %}
 {% else %}
@@ -12,13 +15,19 @@
 
 {% set has_content = false %}
 {% if itemTemplate.weapon %}
-    {% include 'DofItemsBundle:Templates:weapon.html.twig' %}
+    {% set template = 'DofItemsBundle:Templates:weapon.html.twig' %}
 {% elseif itemTemplate.pet %}
-    {% include 'DofItemsBundle:Templates:pet.html.twig' %}
+    {% set template = 'DofItemsBundle:Templates:pet.html.twig' %}
 {% elseif itemTemplate.animal %}
-    {% include 'DofItemsBundle:Templates:animal.html.twig' %}
+    {% set template = 'DofItemsBundle:Templates:animal.html.twig' %}
 {% elseif itemTemplate.equipment %}
-    {% include 'DofItemsBundle:Templates:equipment.html.twig' %}
+    {% set template = 'DofItemsBundle:Templates:equipment.html.twig' %}
 {% else %}
-    {% include 'DofItemsBundle:Templates:layout.html.twig' %}
+    {% set template = 'DofItemsBundle:Templates:layout.html.twig' %}
+{% endif %}
+
+{% if type == 'craft' %}
+    {% include 'DofItemsBundle:Templates:craft.html.twig' %}
+{% else %}
+    {% include template %}
 {% endif %}

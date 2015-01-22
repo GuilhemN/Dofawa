@@ -2,5 +2,6 @@
 
 {% block body %}
     {% for craft in crafts %}
+        {% include 'DofItemsBundle::item.html.twig' with {'item': craft} only %}
     {% endfor %}
 {% endblock %}
