@@ -1,7 +1,7 @@
 <?php
 namespace XN\Common;
 
-class VariableBag
+class VariableBag implements \ArrayAccess
 {
     private $data;
 	private $lazy;
@@ -76,4 +76,17 @@ class VariableBag
 		}
 		return $this->data;
 	}
+
+    public function offsetSet($offset, $value) {
+        return $this->set($offset, $value);
+    }
+    public function offsetExists($offset) {
+        return $this->has($offset);
+    }
+    public function offsetUnset($offset) {
+        return $this->remove($offset);
+    }
+    public function offsetGet($offset) {
+        return $this->get($offset);
+    }
 }
