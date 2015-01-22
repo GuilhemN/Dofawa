@@ -4,6 +4,7 @@ namespace XN\UtilityBundle\Twig;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use XN\Common\DateFormat;
+use XN\UtilityBundle\TokenParser\VariableTokenParser;
 
 class UtilityExtension extends \Twig_Extension
 {
@@ -15,6 +16,11 @@ class UtilityExtension extends \Twig_Extension
     {
         $this->container = $container;
     }
+
+	public function getTokenParsers()
+	{
+		return array(new VariableTokenParser());
+	}
 
 	public function getGlobals()
 	{
