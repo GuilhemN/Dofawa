@@ -1,19 +1,22 @@
 {% trans_default_domain 'item' %}
 
-{% if item.personalized is defined and item.personalized %}
+{% if item.craft %}
+    {% set type = 'craft' %}
+    {% set itemTemplate = item.itemTemplate %}
+{% elseif item.personalized is defined and item.personalized %}
     {% set type = 'build' %}
-    {% set itemEntity = item.itemTemplate %}
+    {% set itemTemplate = item.itemTemplate %}
 {% else %}
     {% set type = 'normal' %}
-    {% set itemEntity = item %}
+    {% set itemTemplate = item %}
 {% endif %}
 
 {# Effets des équipements #}
-{% if itemEntity.equipment is not defined or itemEntity.equipment %}
+{% if itemTemplate.equipment is not defined or itemTemplate.equipment %}
     {% if not updatable | default(false) %}
         {# Affichage des dégats de l'arme #}
-        {% if itemEntity.weapon is defined and itemEntity.weapon %}
-            {% for damageRow in itemEntity.damageRows %}
+        {% if itemTemplate.weapon is defined and itemTemplate.weapon %}
+            {% for damageRow in itemTemplate.damageRows %}
                 {% set min = damageRow.min %}
                 {% set max = damageRow.max %}
 
@@ -69,7 +72,7 @@
 {% endif %}
 
 {# Tous les items #}
-{% include 'DofCharactersBundle::effects.html.twig' with {'effects': itemEntity.effects} %}
+{% include 'DofCharactersBundle::effects.html.twig' with {'effects': itemTemplate.effects} %}
 
 {% if type == 'build' and updatable | default(false) %}
     <br />
