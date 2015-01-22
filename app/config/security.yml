@@ -24,6 +24,12 @@ security:
                 target: /
             anonymous:    true
             switch_user: true
+            remember_me:
+                key:      "YsH.[Cg(LV}$jb7,yt\"34:$/)=qNWLb7@"
+                lifetime: 604800 # 7 jours en secondes
+                path:     /
+                domain:   ~
+
 
     access_control:
         - { path: "fos_user_security_login", role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -21,7 +21,7 @@ class UserAdmin extends Admin
           ->add('roles')
           ->add('point')
           ->add('groupe')
-          ->add('guilde')
+          ->add('guild')
           ->add('lieu')
           ->add('site')
           ->add('born')
