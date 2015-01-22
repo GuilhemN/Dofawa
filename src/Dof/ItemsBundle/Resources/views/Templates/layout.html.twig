@@ -60,7 +60,7 @@
                     {% block tabs_menu %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
-                            {{ variables.set('active_tab', 'caracts'}}
+                            {{ variables.set('active_tab', 'caracts') }}
                             <li class="active">
                                 <a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">
                                     {{ 'tabs.effects' | trans() }}
