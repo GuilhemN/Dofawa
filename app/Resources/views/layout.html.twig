@@ -189,8 +189,8 @@
     <script type="text/javascript" src="{{ asset('bundles/dofmain/js/material.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/dofmain/js/ripples.min.js') }}"></script>
     <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
-    {% if app.user is not null %}
-    <script src="{{ asset('bundles/dofmain/js/notifications.min.js') }}"></script>
+    {% if is_granted('ROLE_USER') %}
+        <script src="{{ asset('bundles/dofmain/js/notifications.min.js') }}"></script>
     {% endif %}
     <script type="text/javascript">
     $(function()
