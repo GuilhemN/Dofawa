@@ -33,7 +33,7 @@
             <hr />
         {% endif %}
 
-        {% for name, value in (not item.craft ? item.characteristics : itemTemplate.charateristics) %}
+        {% for name, value in (not item.craft ? item.characteristics : itemTemplate.characteristics) %}
             {% if value | is_array %}
                 {% set min = value.min %}
                 {% set max = value.max %}
