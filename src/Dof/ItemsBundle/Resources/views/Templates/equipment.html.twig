@@ -9,7 +9,7 @@
 {% block bonus %}
     {% if not item.personalized %}
     <p>
-        {% for bonus in (type != 'craft' ? item.primaryBonus : itemTemplate.primaryBonus)  %}
+        {% for bonus in (not item.craft ? item.primaryBonus : itemTemplate.primaryBonus)  %}
         <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
         {% endfor %}
     </p>
