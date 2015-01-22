@@ -44,6 +44,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('class_of', [ $this, 'getClassName' ]),
 			new \Twig_SimpleFunction('block_from', [ $this, 'blockFrom' ], [ 'is_safe' => [ 'html' ] ]),
 			new \Twig_SimpleFunction('call', [ $this, 'callClass' ]),
+			new \Twig_SimpleFunction('variable', [ $this->container->get('variables'), 'get' ]),
 		);
 	}
 
