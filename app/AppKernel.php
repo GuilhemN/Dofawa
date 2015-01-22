@@ -3,6 +3,11 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator;
+
+use XN\UtilityBundle\DependencyInjection\DelegatingContainerBuilder;
+
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -68,6 +73,22 @@ class AppKernel extends Kernel
 
         return $bundles;
     }
+
+	public function getContainerBaseClass()
+	{
+		return '\XN\UtilityBundle\DependencyInjection\DelegatingContainer';
+	}
+    
+	protected function getContainerBuilder()
+    {
+        $container = new DelegatingContainerBuilder(new ParameterBag($this->getKernelParameters()));
+
+        if (class_exists('ProxyManager\Configuration')) {
+            $container->setProxyInstantiator(new RuntimeInstantiator());
+        }
+
+        return $container;
+	}
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
