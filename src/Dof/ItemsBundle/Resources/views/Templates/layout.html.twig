@@ -111,9 +111,9 @@
                 <div class="tab-content">
                     {% block tabs_content %}
                         {# Effets #}
-                        {% if itemTemplate.components is not empty %}
+                        {% if caracts is not empty %}
                         <div class="tab-pane{{ tabs.active('item') }}" id="caracts-item{{ item.id }}">
-                            {{ characts }}
+                            {{ caracts }}
                         </div>
                         {% endif %}
 
