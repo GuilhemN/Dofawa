@@ -56,7 +56,7 @@
                         {% include 'DofItemsBundle::criteria.html.twig' with {'criterion': itemTemplate.treatedCriteria} %}
                     {% endset %}
 
-                    {{ variables.active_tab = false }}
+                    {{ (variables.active_tab = false) }}
                     {% block tabs_menu %}
                         {# Effets #}
                         {% if characts | trim is not empty %}
