@@ -1,0 +1,7 @@
+{% macro initialize() %}
+    {% variable active_tab = null %}
+{% endmacro %}
+
+{% macro activate(name) %}{% if variable('active_tab') is empty %}{% variable active_tab = name %} class="active"{% endif %}{% endmacro %}
+
+{% macro active(name) %}{% if variable('active_tab') == name %} active{% endif %}{% endmacro %}

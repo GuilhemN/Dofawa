@@ -1,4 +1,5 @@
 {% extends "DofItemsBundle:Templates:animal.html.twig" %}
+{% import 'DofMainBundle::tabs.html.twig' as tabs %}
 
 {% block left_menu %}
     {% if app.user is not empty and itemTemplate.minFeedInterval is not null %}
@@ -39,14 +40,16 @@
 {% block tabs_menu %}
     {{ parent() }}
     {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
-        <li><a href="#food-item{{ item.id }}" role="tab" data-toggle="tab">{{ 'tabs.diet' | trans({}, 'item') }}</a></li>
+        <li{{ tabs.activate('food') }}>
+            <a href="#food-item{{ item.id }}" role="tab" data-toggle="tab">{{ 'tabs.diet' | trans({}, 'item') }}</a>
+        </li>
     {% endif %}
 {% endblock %}
 
 {% block tabs_content %}
     {{ parent() }}
     {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
-        <div class="tab-pane" id="food-item{{ item.id }}">
+        <div class="tab-pane{{ tabs.active('food') }}" id="food-item{{ item.id }}">
             {% for food_type in itemTemplate.foodTypes %}
                 {{ food_type.getName(locales()) }}
             <br />
