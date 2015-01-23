@@ -176,7 +176,7 @@ services:
 
     xn.action_controller_listener:
         class: %xn.action_controller_listener.class%
-        arguments: [ @session, @annotation_reader, @event_dispatcher ]
+        arguments: [ @annotation_reader, @event_dispatcher ]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController, priority: -1 }
 
