@@ -20,7 +20,7 @@ dof_notifications_ajax_list:
     options:  { expose: true }
 
 dof_notifications_ajax_check_unread:
-    pattern:  /notifications/ajax/check_unread
+    pattern:  /notifications/ajax/check-unread
     defaults: { _controller: DofMainBundle:Notification:checkUnread }
     options:  { expose: true }
 
