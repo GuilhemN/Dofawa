@@ -26,8 +26,9 @@ parameters:
     xn.secure_controller_listener.class: XN\UtilityBundle\Annotations\SecureControllerListener
     xn.lazy_field_listener.class: XN\UtilityBundle\Annotations\LazyFieldListener
     xn.action_controller_listener.class: XN\UtilityBundle\Annotations\ActionControllerListener
-
     xn.event_listener.action_subsriber.class: XN\UtilityBundle\EventListener\ActionSubscriber
+
+    xn.action_logger.class: XN\UtilityBundle\ActionLogger
 
 services:
     lazy:
@@ -182,5 +183,10 @@ services:
 
     xn.event_listener.action_subsriber:
         class: %xn.event_listener.action_subsriber.class%
+        arguments: [ @xn.action_logger ]
         tags:
             - { name: kernel.event_subscriber }
+
+    xn.action_logger:
+        class: %xn.action_logger.class%
+        arguments: [ @session ]
