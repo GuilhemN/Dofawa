@@ -20,11 +20,11 @@ class CreateActionEvent extends Event
     */
     protected $stopSession = array();
 
-    public function __construct($name, array $context = array(), $stopSession = false) {
+    public function __construct($name, $context = array(), $stopSession = false) {
         if(empty($name))
             throw new \LogicException('An action must have a non-empty name.');
         $this->name = $name;
-        $this->context = array();
+        $this->context = (array) $context;
         $this->stopSession = false;
     }
     public function setName($name)
