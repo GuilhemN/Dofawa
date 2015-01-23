@@ -36,7 +36,9 @@ class ActionControllerListener
             return $v instanceof Action;
         });
 
-        foreach($annotations as $annotation)
-            $this->dispatcher->dispatch(ActionEvents::CREATE, new CreateActionEvent($annotation->name, $annotation->context));
+        foreach($annotations as $annotation){
+            $event = new CreateActionEvent($annotation->name, $annotation->context);
+            $this->dispatcher->dispatch(ActionEvents::CREATE, $event);
+        }
     }
 }
