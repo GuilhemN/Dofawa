@@ -1,6 +1,6 @@
 {% trans_default_domain 'item' %}
 
-{% if item.craft is defined and item.craft %} 
+{% if item.craft is defined and item.craft %}
     {% set type = 'craft' %}
     {% set itemTemplate = item.itemTemplate %}
 {% elseif item.personalized is defined and item.personalized %}
@@ -33,7 +33,7 @@
             <hr />
         {% endif %}
 
-        {% for name, value in (not item.craft ? item.characteristics : itemTemplate.characteristics) %}
+        {% for name, value in (item.craft is not defined or not item.craft ? item.characteristics : itemTemplate.characteristics) %}
             {% if value | is_array %}
                 {% set min = value.min %}
                 {% set max = value.max %}
