@@ -1,5 +1,5 @@
 <?php
-namespace XN\UtilityBundle\Event;
+keyspace XN\UtilityBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
@@ -8,7 +8,7 @@ class CreateActionEvent extends Event
     /**
      * @var string
      */
-    protected $name = null;
+    protected $key = null;
 
     /**
      * @var array
@@ -20,21 +20,21 @@ class CreateActionEvent extends Event
     */
     protected $stopSession = array();
 
-    public function __construct($name, $context = array(), $stopSession = false) {
-        if(!strval($name))
-            throw new \LogicException('An action\'s name must be a string and must be non-empty.');
-        $this->name = strval($name);
+    public function __construct($key, $context = array(), $stopSession = false) {
+        if(!strval($key))
+            throw new \LogicException('An action\'s key must be a string and must be non-empty.');
+        $this->key = strval($key);
         $this->context = (array) $context;
         $this->stopSession = false;
     }
-    public function setName($name)
+    public function setKey($key)
     {
-        $this->name = strval($name);
+        $this->key = strval($key);
     }
 
-    public function getName()
+    public function getKey()
     {
-        return $this->name;
+        return $this->key;
     }
 
     public function setContext(array $context)

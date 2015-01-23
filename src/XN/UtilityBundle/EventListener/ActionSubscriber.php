@@ -23,7 +23,7 @@ class ActionSubscriber implements EventSubscriberInterface
     }
 
     public function create(CreateActionEvent $event) {
-        $this->al->set($event->getName(), $event->getContext());
+        $this->al->set($event->getKey(), $event->getContext());
         if($event->getStopSession()) {
 
         }
