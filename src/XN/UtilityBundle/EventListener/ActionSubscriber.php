@@ -23,6 +23,7 @@ class ActionSubscriber implements EventSubscriberInterface
     }
 
     public function create(CreateActionEvent $event) {
+        throw new \Exception('debug');
         $this->al->set($event->getName(), $event->getContext());
         if($event->getStopSession()) {
 
