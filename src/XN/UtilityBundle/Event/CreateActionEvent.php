@@ -1,5 +1,5 @@
 <?php
-keyspace XN\UtilityBundle\Event;
+namespace XN\UtilityBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
