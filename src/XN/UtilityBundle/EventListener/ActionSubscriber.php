@@ -1,5 +1,5 @@
 <?php
-namespace Acme\UploadBundle\EventListener;
+namespace XN\UtilityBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use XN\UtilityBundle\ActionEvents;
@@ -25,7 +25,7 @@ class ActionSubscriber implements EventSubscriberInterface
     public function create(CreateActionEvent $event) {
         $this->al->set($event->getName(), $event->getContext());
         if($event->getStopSession()) {
-            
+
         }
     }
 }
