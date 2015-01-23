@@ -5,7 +5,7 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\Common\Annotations\Reader;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 use XN\Annotations\Action;
 
@@ -17,7 +17,7 @@ class ActionControllerListener
     private $re;
     private $dispatcher;
 
-    public function __construct(Reader $re, EventDispatcher $dispatcher){
+    public function __construct(Reader $re, EventDispatcherInterface $dispatcher){
         $this->re = $re;
         $this->dispatcher = $dispatcher;
     }
