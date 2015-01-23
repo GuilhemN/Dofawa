@@ -6,20 +6,22 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class LazyServiceBox
 {
     private $container;
-    private $name;
+    private $id;
+	private $invalidBehavior;
     private $service;
 
-    public function __construct(ContainerInterface $container, $name)
+    public function __construct(ContainerInterface $container, $id, $invalidBehavior = ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE)
     {
         $this->container = $container;
-        $this->name = $name;
+        $this->id = $id;
+		$this->invalidBehavior = $invalidBehavior;
         $this->service = null;
     }
 
     public function unwrap()
     {
         if (!$this->service)
-            $this->service = $this->container->get($this->name);
+            $this->service = $this->container->get($this->id, $this->invalidBehavior);
         return $this->service;
     }
 }

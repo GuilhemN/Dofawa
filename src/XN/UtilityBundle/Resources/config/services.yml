@@ -1,4 +1,5 @@
 parameters:
+    lazy.class: XN\UtilityBundle\DependencyInjection\LazyDelegateContainer
     variables.class: XN\Common\VariableBag
     xn.twig_extension.class: XN\UtilityBundle\Twig\UtilityExtension
     xn.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
@@ -29,9 +30,9 @@ parameters:
     xn.event_listener.action_subsriber.class: XN\UtilityBundle\EventListener\ActionSubscriber
 
 services:
-    lazy.doctrine.orm.default_entity_manager:
-        class: XN\DependencyInjection\LazyServiceBox
-        arguments: [ "@service_container", "doctrine.orm.default_entity_manager" ]
+    lazy:
+        class: %lazy.class%
+        arguments: [ "@service_container" ]
 
     variables:
         class: %variables.class%
@@ -135,7 +136,7 @@ services:
 
     xn.doctrine.sluggable_updater:
         class: "%xn.doctrine.sluggable_updater.class%"
-        arguments: [ "@lazy.doctrine.orm.default_entity_manager" ]
+        arguments: [ "@lazy\doctrine.orm.default_entity_manager" ]
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
