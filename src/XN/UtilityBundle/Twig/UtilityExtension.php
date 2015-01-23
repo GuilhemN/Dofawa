@@ -43,6 +43,7 @@ class UtilityExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('is_object', 'is_object'),
 			new \Twig_SimpleFunction('class_of', [ $this, 'getClassName' ]),
 			new \Twig_SimpleFunction('block_from', [ $this, 'blockFrom' ], [ 'is_safe' => [ 'html' ] ]),
+			new \Twig_SimpleFunction('constant', [ $this, 'constant' ]),
 			new \Twig_SimpleFunction('call', [ $this, 'callClass' ]),
 			new \Twig_SimpleFunction('variable', [ $this->container->get('variables'), 'get' ]),
 		);
@@ -156,6 +157,9 @@ class UtilityExtension extends \Twig_Extension
 		return nl2br($lg->convertToHTML($source));
 	}
 
+	public function constant($class, $name) {
+		return $class::$name;
+	}
 	public function callClass($class, $method, $params = array()) {
 		return call_user_func_array([ $class, $method ], (array) $params);
 	}

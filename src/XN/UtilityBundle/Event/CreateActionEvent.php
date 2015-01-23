@@ -15,6 +15,16 @@ class CreateActionEvent extends Event
      */
     protected $context = array();
 
+    /**
+    * @var boolean
+    */
+    protected $stopSession = array();
+
+    public function __construct($name, array $context = array(), $stopSession = false) {
+        $this->name = $name;
+        $this->context = array();
+        $this->stopSession = false;
+    }
     public function setName($name)
     {
         $this->name = strval($name);
@@ -33,5 +43,15 @@ class CreateActionEvent extends Event
     public function getContext()
     {
         return $this->context;
+    }
+
+    public function setStopSession($stopSession)
+    {
+        $this->stopSession = $stopSession;
+    }
+
+    public function getStopSession()
+    {
+        return $this->stopSession;
     }
 }

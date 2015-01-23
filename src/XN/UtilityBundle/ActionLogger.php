@@ -29,6 +29,13 @@ class ActionLogger
         return $this;
     }
 
+    public function getLastByTypes(array $types) {
+        foreach($this->actions as $key => $context)
+            if(in_array($key, $types))
+                return [ $key, $context ];
+        return null;
+    }
+
     private function sort() {
         uasort($this->actions, function($a, $b){
             if($a['time'] == $b['time'])

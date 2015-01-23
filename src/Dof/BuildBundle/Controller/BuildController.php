@@ -26,6 +26,7 @@ class BuildController extends Controller
     /**
      * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
      * @Utils\UsesSession
+     * @Utils\Action(name="build-test")
      */
     public function indexAction()
     {

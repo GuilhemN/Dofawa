@@ -24,6 +24,8 @@ parameters:
     xn.session_controller_listener.class: XN\UtilityBundle\Annotations\SessionControllerListener
     xn.secure_controller_listener.class: XN\UtilityBundle\Annotations\SecureControllerListener
     xn.lazy_field_listener.class: XN\UtilityBundle\Annotations\LazyFieldListener
+    xn.action_controller_listener.class: XN\UtilityBundle\Annotations\ActionControllerListener
+
     xn.event_listener.action_subsriber.class: XN\UtilityBundle\EventListener\ActionSubscriber
 
 services:
@@ -155,7 +157,7 @@ services:
         class: %xn.session_controller_listener.class%
         arguments: [ @security.context, @session, @annotation_reader, @variables, @service_container ]
         tags:
-            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController, priority: -1 }
 
     xn.secure_controller_listener:
         class: %xn.secure_controller_listener.class%
@@ -170,6 +172,12 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: postLoad }
             - { name: doctrine.event_listener, event: onFlush }
+
+    xn.action_controller_listener:
+        class: %xn.action_controller_listener.class%
+        arguments: [ @session, @annotation_reader, @event_dispatcher ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController, priority: -1 }
 
     xn.event_listener.action_subsriber:
         class: %xn.event_listener.action_subsriber.class%
