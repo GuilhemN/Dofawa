@@ -50,6 +50,7 @@
             <div class="col-sm-9">
                 {# Menu tabs #}
                 <ul class="nav nav-pills" role="tablist">
+                    {% set test = 'debug' %}
                     {{ tabs.initialize() }}
 
                     {% set caracts %}
@@ -106,7 +107,7 @@
                         </li>
                         {% endif %}
                     {% endblock %}
-
+                    {{ test }}
                 </ul>
                 <div class="tab-content">
                     {% block tabs_content %}

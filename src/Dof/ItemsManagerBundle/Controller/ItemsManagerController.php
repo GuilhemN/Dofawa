@@ -17,6 +17,7 @@ class ItemsManagerController extends Controller
 {
     /**
      * @Utils\UsesSession
+     * @Utils\Action(name="inventory")
      */
     public function indexAction($page) {
         $form = $this->createForm(new InventorySearch());

@@ -13,6 +13,9 @@ use Dof\ItemsManagerBundle\Entity\Craft;
 */
 class CraftController extends Controller
 {
+    /**
+     * @Utils\Action(name="craft")
+     */
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Craft');

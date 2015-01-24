@@ -26,7 +26,6 @@ class BuildController extends Controller
     /**
      * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
      * @Utils\UsesSession
-     * @Utils\Action(name="build-test")
      */
     public function indexAction()
     {
@@ -94,6 +93,9 @@ class BuildController extends Controller
         return $this->render('DofBuildBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
     }
 
+    /**
+     * @Utils\Action(name="build")
+     */
     public function showAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();

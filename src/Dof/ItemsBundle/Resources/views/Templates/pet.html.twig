@@ -38,6 +38,7 @@
 {% endblock %}
 
 {% block tabs_menu %}
+    {% set test = 'newttest' %}
     {{ parent() }}
     {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
         <li{{ tabs.activate('food') }}>

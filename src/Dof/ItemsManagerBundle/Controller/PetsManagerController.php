@@ -13,6 +13,9 @@ use Dof\ItemsManagerBundle\Entity\Pet;
  */
 class PetsManagerController extends Controller
 {
+    /**
+     * @Utils\Action(name="pets-manager")
+     */
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getRepository('DofItemsManagerBundle:Pet');
