@@ -47,7 +47,7 @@ class NotificationController extends Controller
 
         return $this->createJsonResponse([
             'content' => $this->renderView('DofMainBundle:Notification:ajax.html.twig', ['notifications' => $notifications]),
-            'unread' => $unread
+            'unread' => (int) $unread
         ]);;
     }
 
@@ -65,7 +65,7 @@ class NotificationController extends Controller
         $unread = $repo->countUnread($user);
 
         return $this->createJsonResponse([
-            'unread' => $unread,
+            'unread' => (int) $unread,
             'notifications' => $this->transform($notifications)
         ]);
     }
