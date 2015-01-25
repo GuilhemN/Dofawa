@@ -128,8 +128,6 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
             '2' => $this->getParam2(),
             '3' => $this->getParam3()
         ], $locale);
-        if($full)
-            array_unshift($desc, [ '[' . $this->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
         return $desc;
     }
 
