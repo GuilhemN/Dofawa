@@ -18,7 +18,7 @@ jQuery(function () {
         }).done(function(data) {
             jQuery('#notifications .dropdown-menu li:not(.to-keep)').remove();
             jQuery('#notifications .dropdown-menu').append(data.content);
-            jQuery('#notifications span.badge').html(data.unread);
+            jQuery('#notifications span.badge').html(data.unread === 0 ? '' : data.unread);
 
             delete localStorage.notified;
             majNotificationsTitle(data.unread);

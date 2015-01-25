@@ -1,5 +1,12 @@
 {% trans_default_domain 'item' %}
 {% import 'DofMainBundle::tabs.html.twig' as tabs %}
+{% variable actions = {
+    'craft': {
+        'path': path('dof_crafts_homepage'),
+        'name': 'craft',
+        'last_action': 'craft'
+    }
+} %}
 
 {% autoescape  %}
 {% if display != 'modal' %}
@@ -50,7 +57,6 @@
             <div class="col-sm-9">
                 {# Menu tabs #}
                 <ul class="nav nav-pills" role="tablist">
-                    {% set test = 'debug' %}
                     {{ tabs.initialize() }}
 
                     {% set caracts %}
@@ -107,7 +113,6 @@
                         </li>
                         {% endif %}
                     {% endblock %}
-                    {{ test }}
                 </ul>
                 <div class="tab-content">
                     {% block tabs_content %}
