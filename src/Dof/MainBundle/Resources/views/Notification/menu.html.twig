@@ -1,5 +1,5 @@
 <li class="dropdown" id="notifications">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notifications <span class="badge">{{ unread }}</span> <b class="caret"></b></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notifications <span class="badge">{{ unread == 0 ? '' : unread }}</span> <b class="caret"></b></a>
     <ul class="dropdown-menu" style="max-height: 80vh; overflow: auto;">
         <li id="checkbox" class="to-keep">
             <a>
