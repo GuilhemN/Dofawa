@@ -53,7 +53,7 @@ function checkUnreadNotifications(){
     jQuery.ajax({
         url: Routing.generate('dof_notifications_ajax_check_unread')
     }).done(function(data) {
-        jQuery('#notifications span.badge').html(data.unread);
+        jQuery('#notifications span.badge').html(data.unread === 0 ? '' : data.unread);
         majNotificationsTitle(data.unread);
 
         if (document.hidden)
