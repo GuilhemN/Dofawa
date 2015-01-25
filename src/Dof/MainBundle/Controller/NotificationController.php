@@ -93,6 +93,7 @@ class NotificationController extends Controller
             $template = 'DofMainBundle:Notification-Template:' . ($n->getType() !== null ? $n->getType() : 'simple') . '.html.twig';
             $context = ['notification' => $n, 'ent' => $n->getEntity()];
             $return[] = array(
+                'id' => $n->getId(),
                 'isRead' => $n->isRead(),
                 'message' => $this->get('twig')->loadTemplate($template)->renderBlock('title', $context),
                 'path' => $this->get('twig')->loadTemplate($template)->renderBlock('path', $context),
