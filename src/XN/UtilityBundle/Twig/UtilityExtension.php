@@ -155,7 +155,7 @@ class UtilityExtension extends \Twig_Extension
 				return $twig->loadTemplate($template)->renderBlock($block, $context);
 			}
 			catch(\Exception $e) {
-                if ((!$e instanceof \InvalidArgumentException))
+                if ((!$e instanceof \InvalidArgumentException) && !($e instanceof \Twig_Error_Loader))
                     throw $e;
 			}
 		}
