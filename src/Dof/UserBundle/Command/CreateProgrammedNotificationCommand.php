@@ -22,7 +22,7 @@ class CreateProgrammedNotificationCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine')->getManager();
-        $repo = $em->getRepository('DofUserBundleProgrammedNotification');
+        $repo = $em->getRepository('DofUserBundle:ProgrammedNotification');
 
         $notifications = $repo->findReadyNotifications();
         foreach($notifications as $pn) {
