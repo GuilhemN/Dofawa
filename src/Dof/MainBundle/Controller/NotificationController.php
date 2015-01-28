@@ -88,15 +88,25 @@ class NotificationController extends Controller
 
     private function transform(array $notifications) {
         $return = [];
+        $twig = $this->get('twig');
         $translator = $this->get('translator');
         foreach($notifications as $n){
             $template = 'DofMainBundle:Notification-Template:' . ($n->getType() !== null ? $n->getType() : 'simple') . '.html.twig';
+            try {
+                $tpl = $twig->loadTemplate($template);
+            }
+            catch (\Exception $e) {
+                if ($e instanceof \InvalidArgumentException)
+                    $tpl = $twig->loadTemplate('DofMainBundle:Notification-Template:default.html.twig');
+                else
+                    throw $e;
+            }
             $context = ['notification' => $n, 'ent' => $n->getEntity()];
             $return[] = array(
                 'id' => $n->getId(),
                 'isRead' => $n->isRead(),
-                'message' => $this->get('twig')->loadTemplate($template)->renderBlock('title', $context),
-                'path' => $this->get('twig')->loadTemplate($template)->renderBlock('path', $context),
+                'message' => $tpl->renderBlock('title', $context),
+                'path' => $tpl->renderBlock('path', $context),
                 'createdAt' => DateFormat::formatDate($translator, $n->getCreatedAt())
             );
         }
