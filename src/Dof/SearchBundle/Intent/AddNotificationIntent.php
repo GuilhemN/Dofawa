@@ -16,7 +16,7 @@ class AddNotificationIntent
             $drg = $this->em->getRepository('DofItemsBundle:MountTemplate')->findOneByNameFr($entities['dragoturkey']['value']);
             if($drg === null)
                 return 'Monture non trouvée.';
-            elseif($drg->getGestationPeriod() === null)
+            elseif($drg->getGestationDuration() === null)
                 return 'Cette dragodinde ne peut pas s\'accoupler.';
             $pn = new ProgrammedNotification;
             $pn
