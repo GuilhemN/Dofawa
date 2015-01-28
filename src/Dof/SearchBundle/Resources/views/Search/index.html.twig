@@ -2,12 +2,14 @@
 
 {% block body %}
 {% autoescape %}
-    <form method="GET" class="form-inline">
-        <div class="form-group">
+    <form method="GET">
+        <div class="form-group col-md-10">
             <label class="sr-only" for="questionInput">Question :</label>
             <input type="text" maxlength="100" name="q" class="form-control" id="questionInput" placeholder="Question (ex: alma)" value="{{ app.request.query.get('q') | default }}">
         </div>
-        <button type="submit" class="btn btn-default">Rechercher</button>
+        <div class="form-group col-md-2">
+            <button type="submit" class="btn btn-default">Rechercher</button>
+        </div>
     </form>
     <br /><br />
     {{ answer | raw }}
