@@ -1,4 +1,7 @@
-{% set template = 'DofMainBundle:Notification-Template:' ~ (notification.type is not empty ? notification.type : 'simple') ~ '.html.twig' %}
+{% set templates = [
+    'DofMainBundle:Notification-Template:' ~ (notification.type is not empty ? notification.type : 'simple') ~ '.html.twig',
+    'DofMainBundle:Notification-Template:default.html.twig'
+    ] %}
 {% set context = {'ent': notification.entity, 'notification': notification} %}
 
 <a href="{{ block_from(template, 'path', context) | trim }}">

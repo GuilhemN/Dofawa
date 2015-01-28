@@ -145,9 +145,21 @@ class UtilityExtension extends \Twig_Extension
 		return ($pos === false) ? $nClass : substr($nClass, $pos + 1);
 	}
 
-	public function blockFrom($template, $block, $context)
+	public function blockFrom($templates, $block, $context)
 	{
-		return $this->container->get('twig')->loadTemplate($template)->renderBlock($block, $context);
+		$twig = $this->container->get('twig');
+		$templates = (array) $templates;
+
+		foreach($templates as $template) {
+			try {
+				return $twig->loadTemplate($template)->renderBlock($block, $context);
+			}
+			catch(\Exception $e) {
+                if ((!$e instanceof \InvalidArgumentException))
+                    throw $e;
+			}
+		}
+		throw new \InvalidArgumentException('No template were found.');
 	}
 
 	public function convertBBCodeToHTML($source, $language = 'simple_bbcode') {
