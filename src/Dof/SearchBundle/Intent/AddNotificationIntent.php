@@ -23,7 +23,7 @@ class AddNotificationIntent
                 ->setOwner($user)
                 ->setType('dragoturkey_childbirth')
                 ->setEntity($drg)
-                ->setDate(new \Datetime(sprintf('+%d hour', $drg->getGestationPeriod())));
+                ->setDate(new \Datetime(sprintf('+%d hour', $drg->getGestationDuration())));
             $this->em->persist($pn);
             $this->em->flush($pn);
             return $this->render('DofSearchBundle:Intent:dragoturkey-childbirth.html.twig', ['drg' => $drg]);
