@@ -16,6 +16,11 @@
     {% endif %}
 {% endblock %}
 
+{% block admin_links %}
+    {% if item.mount %}
+    <a class="glyphicon glyphicon-plus" href="{{ path('admin_dof_items_mounttemplate_edit', {'id': itemTemplate.id}) }}"></a>
+{% endblock %}
+
 {% block left_menu %}
 {% endblock %}
 

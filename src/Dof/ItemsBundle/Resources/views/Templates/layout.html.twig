@@ -44,6 +44,8 @@
                         {% endif %}
                         <a class="glyphicon glyphicon-edit" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}"></a>
                         <a class="glyphicon glyphicon-camera" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}"></a>
+                        {% block admin_links %}
+                        {% endblock %}
                     </p>
                     {% endif %}
 
