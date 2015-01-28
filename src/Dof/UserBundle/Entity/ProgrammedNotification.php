@@ -51,7 +51,10 @@ class ProgrammedNotification implements IdentifiableInterface, TimestampableInte
      */
     private $created;
 
-
+    public function __construct() {
+        $this->created = false;
+    }
+    
     /**
      * Get id
      *

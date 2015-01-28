@@ -25,6 +25,7 @@ class CreateProgrammedNotificationCommand extends ContainerAwareCommand
         $repo = $em->getRepository('DofUserBundle:ProgrammedNotification');
 
         $notifications = $repo->findReadyNotifications();
+        $i = 0;
         foreach($notifications as $pn) {
             $n = new Notification();
             $n
@@ -34,7 +35,10 @@ class CreateProgrammedNotificationCommand extends ContainerAwareCommand
                 ->setClassId($pn->getClassId());
             $em->persist($n);
             $pn->setCreated(true);
+            $i++;
         }
         $em->flush();
+
+        $output->writeLn(sprintf('<info>%s notification(s) ont été crée(s).', $i));
     }
 }
