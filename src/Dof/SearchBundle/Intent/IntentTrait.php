@@ -24,7 +24,7 @@ trait IntentTrait implements IntentInterface {
         return $this->rs->getCurrentRequest()->getLocale();
     }
 
-    public function render($template, $context)
+    public function render($template, $context = array())
     {
         return $this->twig->loadTemplate($template)->render($context);
     }
