@@ -18,7 +18,7 @@ class ProgrammedNotificationRepository extends EntityRepository
 
         return $this
               ->createQueryBuilder('n')
-              ->where('n.date < :date and n.create = false')
+              ->where('n.date < :date and n.created = false')
               ->getQuery()
               ->setParameter('date', $date)
               ->getResult();
