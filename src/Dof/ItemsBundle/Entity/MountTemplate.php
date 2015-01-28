@@ -27,6 +27,12 @@ class MountTemplate extends AnimalTemplate
      */
     private $colors;
 
+    /**
+     * @var integer
+     * @ORM\Column(name="gestation_duration", type="integer", nullable=true)
+     */
+    private $gestationDuration;
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -76,6 +82,29 @@ class MountTemplate extends AnimalTemplate
     public function getColors()
     {
         return $this->colors;
+    }
+
+    /**
+     * Set gestationDuration
+     *
+     * @param integer $gestationDuration
+     * @return MountTemplate
+     */
+    public function setGestationDuration($gestationDuration)
+    {
+        $this->gestationDuration = $gestationDuration;
+
+        return $this;
+    }
+
+    /**
+     * Get gestationDuration
+     *
+     * @return integer
+     */
+    public function getGestationDuration()
+    {
+        return $this->gestationDuration;
     }
 
 	public function isMount() { return true; }

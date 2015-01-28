@@ -47,6 +47,7 @@ class MountTemplateAdmin extends Admin
     {
         $formMapper
             ->add('nameFr', null, ['disabled' => true])
+            ->add('gestationPeriod', null, ['required' => false])
             ->add('minVitality', null, ['required' => false])
             ->add('maxVitality', null, ['required' => false])
             ->add('minStrength', null, ['required' => false])
