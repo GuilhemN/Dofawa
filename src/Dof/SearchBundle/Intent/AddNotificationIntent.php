@@ -13,7 +13,7 @@ class AddNotificationIntent
         $user = $this->sc->getToken()->getUser();
         $type = $entities['type']['value'];
         if($type == 'dragoturkey_childbirth') {
-            $drg = $this->em->getRepository('DofItemsBundle:Mount')->findOneByNameFr($entities['dragoturkey']['value']);
+            $drg = $this->em->getRepository('DofItemsBundle:MountTemplate')->findOneByNameFr($entities['dragoturkey']['value']);
             if($drg === null)
                 return 'Monture non trouvée.';
             $pn = new ProgrammedNotification;
@@ -21,7 +21,7 @@ class AddNotificationIntent
                 ->setOwner($user)
                 ->setType('dragoturkey_childbirth')
                 ->setEntity($drg)
-                ->setDate(new \Datetime('6 hours'));
+                ->setDate(new \Datetime('+6 hour'));
             $em
                 ->persist($pn)
                 ->flush($pn);
