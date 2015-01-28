@@ -1,0 +1,7 @@
+message.receive: "<strong>%by%</strong> sent you a private message."
+badge.receive: "Vous avez reçu un nouveau Badge : <strong>%name%</strong>"
+welcome: "Welcome %name% on Dofawa !"
+news.validated: "The article <strong>%name%</strong> has been valided !"
+news.deleted: "The article <strong>%name%</strong> has been rejected !"
+pets.hungry: "Your %petName% <strong>%name%</strong> is hungry!"
+dragoturkey.childbirth: "Your <strong>%name%</strong> is ready to give birth !"
