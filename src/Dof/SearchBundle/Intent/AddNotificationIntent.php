@@ -22,9 +22,8 @@ class AddNotificationIntent
                 ->setType('dragoturkey_childbirth')
                 ->setEntity($drg)
                 ->setDate(new \Datetime('+6 hour'));
-            $this->em
-                ->persist($pn)
-                ->flush($pn);
+            $this->em->persist($pn);
+            $this->em->flush($pn);
             return $this->render('DofSearchBundle:Intent:dragoturkey-childbirth.html.twig', ['drg' => $drg]);
         }
 
