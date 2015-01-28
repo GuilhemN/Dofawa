@@ -4,11 +4,11 @@
     ] %}
 {% set context = {'ent': notification.entity, 'notification': notification} %}
 
-<a href="{{ block_from(template, 'path', context) | trim }}">
-    {{ block_from(template, 'title', context) }}
+<a href="{{ block_from(templates, 'path', context) | trim }}">
+    {{ block_from(templates, 'title', context) }}
     <br>
     <small>{{ notification.createdAt | date_format }}</small>
 </a>
 <div class="text-center">
-    {{ block_from(template, 'actions', context) }}
+    {{ block_from(templates, 'actions', context) }}
 </div>
