@@ -82,5 +82,6 @@ security:
             - ROLE_STYLIST_ADMIN
             - ROLE_XRAY
             - ROLE_ALLOWED_TO_SWITCH
+            - ROLE_HIDE_RIGHT_MENU
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
