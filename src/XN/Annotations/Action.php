@@ -8,11 +8,13 @@ use Doctrine\Common\Annotations\Annotation;
  * @Target({"CLASS", "METHOD"})
  * @Attributes({
  *   @Attribute("name", type = "string"),
+ *   @Attribute("precision", type = "string"),
  *   @Attribute("context",  type = "array"),
  * })
  */
 final class Action extends Annotation
 {
     public $name;
+    public $precision;
     public $context;
 }

@@ -9,6 +9,7 @@ use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait; # TO CHANGE ACCORDING TO THE PROJECT
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
+use XN\Metadata\SimpleLazyFieldTrait;
 
 /**
  * LoggedAction
@@ -18,7 +19,7 @@ use XN\Metadata\TimestampableTrait;
  */
 class LoggedAction implements IdentifiableInterface, OwnableInterface, TimestampableInterface
 {
-    use OwnableTrait, OwnableTrait;
+    use OwnableTrait, OwnableTrait, SimpleLazyFieldTrait;
 
     /**
      * @var integer

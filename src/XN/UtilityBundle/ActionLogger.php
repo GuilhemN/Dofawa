@@ -19,7 +19,7 @@ class ActionLogger
         $this->sc = $sc;
     }
 
-    public function set($key, array $context = array(), AdvancedUserInterface $user = null) {
+    public function set($key, $entity = null, array $context = array(), AdvancedUserInterface $user = null) {
         $this->load();
         if($user === null){
             $user = $this->getUser();
@@ -29,6 +29,7 @@ class ActionLogger
         $action = new LoggedAction();
         $action
             ->setKey($key)
+            ->setEntity($precision)
             ->setContext($context)
             ->setOwner($user);
         $this->em->persist($action);

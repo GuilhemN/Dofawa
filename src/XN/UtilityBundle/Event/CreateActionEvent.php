@@ -11,6 +11,11 @@ class CreateActionEvent extends Event
     protected $key = null;
 
     /**
+     * @var string
+     */
+    protected $entity = null;
+
+    /**
      * @var array
      */
     protected $context = array();
@@ -20,13 +25,15 @@ class CreateActionEvent extends Event
     */
     protected $stopSession = array();
 
-    public function __construct($key, $context = array(), $stopSession = false) {
+    public function __construct($key, $entity = null, $context = array(), $stopSession = false) {
         if(!strval($key))
             throw new \LogicException('An action\'s key must be a string and must be non-empty.');
         $this->key = strval($key);
+        $this->entity = $entity;
         $this->context = (array) $context;
         $this->stopSession = false;
     }
+    
     public function setKey($key)
     {
         $this->key = strval($key);
@@ -35,6 +42,16 @@ class CreateActionEvent extends Event
     public function getKey()
     {
         return $this->key;
+    }
+
+    public function setEntity($entity)
+    {
+        $this->entity = $entity;
+    }
+
+    public function getEntity()
+    {
+        return $this->entity;
     }
 
     public function setContext(array $context)
