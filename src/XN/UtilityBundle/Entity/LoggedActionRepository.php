@@ -17,7 +17,7 @@ class LoggedActionRepository extends EntityRepository
     public function findLastActions(AdvancedUserInterface $user, $max = 20) {
         return $this
                   ->createQueryBuilder('a')
-                  ->where('a.user = :user')
+                  ->where('a.owner = :user')
                   ->orderBy('a.createdAt', 'DESC')
                   ->groupBy('a.key')
                   ->setMaxResults($max)
