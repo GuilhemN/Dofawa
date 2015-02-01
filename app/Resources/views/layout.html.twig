@@ -77,7 +77,7 @@
         {% endif %}
         <div class="row">
             {# Colonne principale, à gauche #}
-            <div class="{% if not is_granted('ROLE_HIDE_RIGHT_MENU') %}col-sm-7 col-lg-8 {% endif %}nopadding" itemscope itemtype="http://schema.org/mainContentOfPage">
+            <div class="{#% if not is_granted('ROLE_HIDE_RIGHT_MENU') %#}col-sm-7 col-lg-8 {#% endif %#}nopadding" itemscope itemtype="http://schema.org/mainContentOfPage">
                 <section class="col-xs-12 col-sm-11 content-box nopadding">
                     <header>
                         <ol class="breadcrumb" itemscope itemtype="http://schema.org/breadcrumb">
