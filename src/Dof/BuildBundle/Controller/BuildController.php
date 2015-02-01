@@ -101,7 +101,7 @@ class BuildController extends Controller
             throw $this->createAccessDeniedException();
 
         $event = new CreateActionEvent('action', $character);
-        $this->get('dispatcher')->dispatch(ActionEvents::CREATE, $event);
+        $this->get('event_dispatcher')->dispatch(ActionEvents::CREATE, $event);
 
         $bm = $this->get('build_manager');
         $items = $stuff->getItems();
