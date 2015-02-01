@@ -45,17 +45,6 @@ class ProgrammedNotification implements IdentifiableInterface, TimestampableInte
     private $date;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="created", type="boolean")
-     */
-    private $created;
-
-    public function __construct() {
-        $this->created = false;
-    }
-    
-    /**
      * Get id
      *
      * @return integer
@@ -109,38 +98,5 @@ class ProgrammedNotification implements IdentifiableInterface, TimestampableInte
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * Set created
-     *
-     * @param boolean $created
-     * @return ProgrammedNotification
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
-     * Get created
-     *
-     * @return boolean
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Get created
-     *
-     * @return boolean
-     */
-    public function isCreated()
-    {
-        return $this->created;
     }
 }
