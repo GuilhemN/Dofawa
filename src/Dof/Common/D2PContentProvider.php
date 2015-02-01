@@ -78,7 +78,6 @@ class D2PContentProvider
                 $buf = fread($fs, $length);
                 if(strlen($buf) < $length)
                     throw new Exceptions\EndOfStreamException(sprintf('Erreur ligne %s', __LINE__));
-                echo $buf;
                 $this->toc[substr($buf, 0, $length - 8)] = [
                     'stream' => $idx,
                     'offset' => $bpos + unpack('Nint', substr($buf, $length - 8, 4))['int'],
