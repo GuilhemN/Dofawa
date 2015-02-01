@@ -46,8 +46,12 @@ class ActionLogger
     }
 
     protected function getUser() {
-        if(!($token = $this->sc->getToken() or !(($user = $token->getUser()) instanceof AdvancedUserInterface)))
-            return null;
+        $token = $this->sc->getToken();
+        if($token === null)
+            return;
+        $user = $token->getUser();
+        if($user === null)
+            return;
         return $user;
     }
 
