@@ -29,7 +29,7 @@ class ActionLogger
         $action = new LoggedAction();
         $action
             ->setKey($key)
-            ->setEntity($precision)
+            ->setEntity($entity)
             ->setContext($context)
             ->setOwner($user);
         $this->em->persist($action);
