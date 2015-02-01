@@ -12,7 +12,7 @@ use XN\Annotations\Action;
 use XN\UtilityBundle\ActionEvents;
 use XN\UtilityBundle\Event\CreateActionEvent;
 
-class ActionControllerListener
+class ActionControllerListener 
 {
     private $re;
     private $dispatcher;
