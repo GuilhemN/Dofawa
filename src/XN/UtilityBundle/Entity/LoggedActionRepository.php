@@ -26,6 +26,4 @@ class LoggedActionRepository extends EntityRepository
                   ->getResult();
               ;
     }
-
-    public function findLastUsedCharacter(AdvancedUserInterface $user)
 }
