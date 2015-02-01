@@ -194,6 +194,16 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
+    * Get outdoor
+    *
+    * @return boolean
+    */
+    public function isOutdoor()
+    {
+        return $this->outdoor;
+    }
+
+    /**
      * Set capabilities
      *
      * @param integer $capabilities
