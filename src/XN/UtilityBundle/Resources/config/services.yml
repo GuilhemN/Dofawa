@@ -189,4 +189,4 @@ services:
 
     xn.action_logger:
         class: %xn.action_logger.class%
-        arguments: [ @session ]
+        arguments: [ @doctrine.orm.entity_manager, @security.context ]

@@ -1,46 +1,63 @@
 <?php
 namespace XN\UtilityBundle;
 
-use Symfony\Component\HttpFoundation\Session\Session;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\SecurityContext;
+
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use XN\UtilityBundle\Entity\LoggedAction;
 
 class ActionLogger
 {
-    const PRESERVED_ACTIONS = 20;
-
-    private $session;
+    private $em;
+    private $sc;
 
     private $actions;
 
-    public function __construct(Session $session) {
-        $this->session = $session;
-        if($this->session->has('last_actions'))
-            $this->actions = $this->session->get('last_actions');
-        else
-            $this->actions = [];
+    public function __construct(ObjectManager $em, SecurityContext $sc) {
+        $this->em = $em;
+        $this->sc = $sc;
     }
 
-    public function set($key, array $context = array()) {
-        $this->actions[$key] = [ 'time' => time(), 'context' => $context ];
-        $this->sort();
-        if (count($this->actions) > self::PRESERVED_ACTIONS)
-            array_splice($this->actions, 0, count($this->actions) - self::PRESERVED_ACTIONS);
-
-        $this->session->set('last_actions', $this->actions);
+    public function set($key, array $context = array(), AdvancedUserInterface $user = null) {
+        $this->load();
+        if($user === null){
+            $user = $this->getUser();
+            if($user === null)
+                return $this;
+        }
+        $action = new LoggedAction();
+        $action
+            ->setKey($key)
+            ->setContext($context)
+            ->setOwner($user);
+        $this->em->persist($action);
+        $this->em->flush($action);
         return $this;
     }
 
     public function getLastByTypes(array $types) {
+        $this->load();
         foreach($this->actions as $key => $context)
             if(in_array($key, $types))
                 return [ $key, $context ];
         return null;
     }
 
-    private function sort() {
-        uasort($this->actions, function($a, $b){
-            if($a['time'] == $b['time'])
-                return 0;
-            return $a['time'] > $b['time'] ? -1 : 1;
-        });
+    protected function getUser() {
+        if(!($token = $this->sc->getToken() or !(($user = $token->getUser()) instanceof AdvancedUserInterface)))
+            return null;
+        return $user;
+    }
+
+    protected function load() {
+        if($this->actions !== null)
+            return;
+
+        $user = $this->getUser();
+        if($user !== null)
+            $this->actions = $this->em->getRepository('XNUtilityBundle:LoggedAction')->findLastActions($user);
+        else
+            $this->actions = [];
     }
 }
