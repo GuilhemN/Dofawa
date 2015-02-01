@@ -54,7 +54,7 @@
                     {{ render(controller('DofMainBundle:Default:lastUpdate')) }}
                 </div>
                 {% endif %}
-                <div class="{% if not is_granted('ROLE_SUPER_ADMIN') %}col-lg-offset-3 {% endif %}col-lg-6">
+                <div class="{#% if not is_granted('ROLE_SUPER_ADMIN') %#}col-lg-offset-3 {#% endif %#}col-lg-6">
                     <div class="input-group custom-search-form">
                         <input type="text" class="form-control" name="q" placeholder="Rechercher" value="{{ app.request.query.get('q') }}">
                         <span class="input-group-btn">
@@ -105,7 +105,7 @@
                 </section>
                 <div class="col-sm-1 hidden-xs"></div>
             </div>
-            {% if not is_granted('ROLE_HIDE_RIGHT_MENU') %}
+            {#% if not is_granted('ROLE_HIDE_RIGHT_MENU') %#}
             <div class="visible-xs" style="height: 20px; clear: both;"></div>
             <div class="col-sm-5 col-lg-4 content-box">
                 {# Colonne de droite (pub + bonus) #}
@@ -124,7 +124,7 @@
                     {{ render_esi(controller('DofCMSBundle:Modules:moduleRight', {'type': 'tutoriels'})) }}
                 </section>
             </div>
-            {% endif %}
+            {#% endif %#}
         </div>
 
     </div>
