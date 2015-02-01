@@ -19,7 +19,7 @@ use XN\Metadata\SimpleLazyFieldTrait;
  */
 class LoggedAction implements IdentifiableInterface, OwnableInterface, TimestampableInterface
 {
-    use OwnableTrait, SimpleLazyFieldTrait;
+    use OwnableTrait, TimestampableTrait, SimpleLazyFieldTrait;
 
     /**
      * @var integer
