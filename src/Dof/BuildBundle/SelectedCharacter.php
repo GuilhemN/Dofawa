@@ -11,7 +11,7 @@ class SelectedCharacter
     private $em;
     private $sc;
 
-    private $character;
+    private $stuff;
     private $processed;
 
     public function __construct(ObjectManager $em, SecurityContext $sc) {
@@ -27,8 +27,13 @@ class SelectedCharacter
             return;
         $repo = $this->em->getRepository('XNUtilityBundle:LoggedAction');
         $this->processed = true;
-        $this->character = $repo->findLastCharacter($user);
-        return $this->character;
+        $this->stuff = $repo->findLastStuff($user);
+        return $this->stuff->getCharacter();
+    }
+
+    public function lastStuff() {
+        $this->find();
+        return $this->stuff;
     }
 
     public function getUser() {

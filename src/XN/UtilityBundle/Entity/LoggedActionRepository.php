@@ -29,7 +29,7 @@ class LoggedActionRepository extends EntityRepository
     }
 
     // TODO : Specific to Dofawa
-    public function findLastCharacter(AdvancedUserInterface $user) {
+    public function findLastStuff(AdvancedUserInterface $user) {
         $qb = $this
             ->createQueryBuilder('a');
         $e = $qb->expr();
