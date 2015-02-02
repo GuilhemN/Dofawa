@@ -3,7 +3,7 @@
 namespace XN\UtilityBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\Expr;
+use Doctrine\ORM\Query\Expr\Join;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
@@ -35,7 +35,7 @@ class LoggedActionRepository extends EntityRepository
             ->createQueryBuilder('c');
         $e = $qb->expr();
         $qb
-            ->join('DofBuildBundle:PlayerCharacter', 'pc', Expr\Join::ON, 'c.classId = pc.id and a.owner = pc.owner')
+            ->join('DofBuildBundle:PlayerCharacter', 'pc', Join::ON, 'c.classId = pc.id and a.owner = pc.owner')
             ->where(
                 $e->andX(
                     $e->eq('a.key', $e->literal('build')),
