@@ -20,12 +20,13 @@ class SelectedCharacter
     }
 
     public function find() {
-        if($processed)
+        if($this->processed)
             return $this->character;
         $user = $this->getUser();
         if($user === null)
             return;
         $repo = $this->em->getRepository('XNUtilityBundle:LoggedAction');
+        $this->processed = true;
         $this->character = $repo->findLastCharacter($user);
         return $this->character;
     }
