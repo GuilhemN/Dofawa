@@ -66,3 +66,4 @@ class ActionLogger
             $this->actions = [];
     }
 }
+
