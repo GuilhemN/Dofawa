@@ -120,26 +120,26 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set serveur
+     * Set server
      *
-     * @param string $serveur
+     * @param string $server
      * @return Guild
      */
-    public function setServeur($serveur)
+    public function setServer($server)
     {
-        $this->serveur = $serveur;
+        $this->server = $server;
 
         return $this;
     }
 
     /**
-     * Get serveur
+     * Get server
      *
      * @return string
      */
-    public function getServeur()
+    public function getServer()
     {
-        return $this->serveur;
+        return $this->server;
     }
 
     /**
