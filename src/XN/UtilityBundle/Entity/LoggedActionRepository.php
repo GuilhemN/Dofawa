@@ -32,10 +32,10 @@ class LoggedActionRepository extends EntityRepository
     // TODO : Specific to Dofawa
     public function findLastCharacter(AdvancedUserInterface $user) {
         $qb = $this
-            ->createQueryBuilder('c');
+            ->createQueryBuilder('a');
         $e = $qb->expr();
         $qb
-            ->join('DofBuildBundle:PlayerCharacter', 'pc', Join::WITH, 'c.classId = pc.id and a.owner = pc.owner')
+            ->join('DofBuildBundle:PlayerCharacter', 'c', Join::WITH, 'a.classId = c.id and a.owner = c.owner')
             ->where(
                 $e->andX(
                     $e->eq('a.key', $e->literal('build')),
