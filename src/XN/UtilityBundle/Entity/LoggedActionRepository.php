@@ -33,7 +33,7 @@ class LoggedActionRepository extends EntityRepository
             ->createQueryBuilder('a');
         $e = $qb->expr();
         $qb
-            ->select('c')
+            ->select([ 's' ])
             ->join('DofBuildBundle:Stuff', 's', Join::WITH, 'a.classId = c.id and a.owner = c.owner')
             ->join('s.character', 'c')
             ->where(
@@ -44,8 +44,9 @@ class LoggedActionRepository extends EntityRepository
             )
             ->setParameter('user', $user)
             ->orderBy('a.createdAt', 'DESC')
-            ->groupBy('a.key');
+            ->groupBy('a.key')
+            ->setMaxResults(1);
         ;
-        return $qb->getQuery()->getOneOrNullResult();
+        return $qb->getQuery()->getOneOrNullResult()->getEntity();
     }
 }
