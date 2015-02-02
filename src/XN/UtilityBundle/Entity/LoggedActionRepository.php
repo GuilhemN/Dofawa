@@ -17,7 +17,8 @@ class LoggedActionRepository extends EntityRepository
 {
     public function findLastActions(AdvancedUserInterface $user, $max = 20) {
         $qb = $this
-            ->createQueryBuilder('a')
+            ->createQueryBuilder('a');
+        $qb
             ->where($qb->expr()->eq('a.owner', ':user'))
             ->setParameter('user', $user)
             ->orderBy('a.createdAt', 'DESC')
@@ -49,6 +50,6 @@ class LoggedActionRepository extends EntityRepository
             ->groupBy('a.key')
             ->setMaxResults(1);
         ;
-        return $qb->getQuery()->getOneOrNullResult()->getEntity();
+        return ($result = $qb->getQuery()->getOneOrNullResult()) !== null ? $result->getEntity() : null;
     }
 }
