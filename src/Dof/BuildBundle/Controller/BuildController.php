@@ -100,7 +100,7 @@ class BuildController extends Controller
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
-        $event = new CreateActionEvent('build', $character);
+        $event = new CreateActionEvent('build', $stuff);
         $this->get('event_dispatcher')->dispatch(ActionEvents::CREATE, $event);
 
         $bm = $this->get('build_manager');

@@ -33,7 +33,9 @@ class LoggedActionRepository extends EntityRepository
             ->createQueryBuilder('a');
         $e = $qb->expr();
         $qb
-            ->join('DofBuildBundle:PlayerCharacter', 'c', Join::WITH, 'a.classId = c.id and a.owner = c.owner')
+            ->select('c')
+            ->join('DofBuildBundle:Stuff', 's', Join::WITH, 'a.classId = c.id and a.owner = c.owner')
+            ->join('s.character', 'c')
             ->where(
                 $e->andX(
                     $e->eq('a.key', $e->literal('build')),
