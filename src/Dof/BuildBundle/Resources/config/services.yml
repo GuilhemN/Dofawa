@@ -16,3 +16,7 @@ services:
     build_manager:
         class: Dof\BuildBundle\BuildManager
         arguments: ['@service_container']
+
+    selected_character:
+        class: Dof\BuildBundle\SelectedCharacter
+        arguments: [ @doctrine.orm.entity_manager, @security.context ]

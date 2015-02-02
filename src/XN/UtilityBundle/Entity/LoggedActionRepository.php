@@ -3,6 +3,7 @@
 namespace XN\UtilityBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
@@ -15,15 +16,39 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 class LoggedActionRepository extends EntityRepository
 {
     public function findLastActions(AdvancedUserInterface $user, $max = 20) {
-        return $this
-                  ->createQueryBuilder('a')
-                  ->where('a.owner = :user')
-                  ->orderBy('a.createdAt', 'DESC')
-                  ->groupBy('a.key')
-                  ->setMaxResults($max)
-                  ->getQuery()
-                  ->setParameter('user', $user)
-                  ->getResult();
-              ;
+        $qb = $this
+            ->createQueryBuilder('a')
+            ->where($qb->expr()->eq('a.owner', ':user'))
+            ->setParameter('user', $user)
+            ->orderBy('a.createdAt', 'DESC')
+            ->groupBy('a.key')
+            ->setMaxResults($max)
+            ->getQuery()
+            ->getResult();
+          ;
+        return $qb;
+    }
+
+    // TODO : Specific to Dofawa
+    public function findLastCharacter(AdvancedUserInterface $user) {
+        $qb = $this
+            ->createQueryBuilder('c');
+        $e = $qb->expr();
+        $qb
+            ->join('DofBuildBundle:PlayerCharacter', 'pc', \Expr\Join::ON, 'c.classId = pc.id and a.owner = pc.owner')
+            ->where(
+                $e->andX(
+                    $e->eq('a.key', $e->literal('build')),
+                    $e->eq('a.owner', ':user')
+                )
+            )
+            ->setParameter('user', $user)
+            ->orderBy('a.createdAt', 'DESC')
+            ->groupBy('a.key')
+            ->setMaxResults($max)
+            ->getQuery()
+            ->getResult();
+        ;
+        return $qb;
     }
 }
