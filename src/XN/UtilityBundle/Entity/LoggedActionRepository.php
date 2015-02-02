@@ -23,10 +23,8 @@ class LoggedActionRepository extends EntityRepository
             ->orderBy('a.createdAt', 'DESC')
             ->groupBy('a.key')
             ->setMaxResults($max)
-            ->getQuery()
-            ->getResult();
           ;
-        return $qb;
+        return $qb->getQuery()->getResult();
     }
 
     // TODO : Specific to Dofawa
