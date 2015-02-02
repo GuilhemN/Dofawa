@@ -39,7 +39,7 @@
                 <thead>
                     <tr>
                         <th>{{ 'name' | trans({}, 'generalTrans') }}</th>
-                        <th>{{ 'lastFeeding' | trans({}, 'petsManager') }}</th>
+                        <th class="hidden-sm hidden-xs">{{ 'lastFeeding' | trans({}, 'petsManager') }}</th>
                         <th>{{ 'nextFeeding' | trans({}, 'petsManager') }}</th>
                         <th>{{ 'feed' | trans({}, 'petsManager') }}</th>
                         <th></th>
@@ -56,7 +56,7 @@
                                     {{ pet.itemTemplate.getName(locales()) }}
                                 {% endif %}
                             </td>
-                            <td>
+                            <td class="hidden-sm hidden-xs">
                                 {{ pet.lastFeeding | date_format }}
                             </td>
                             <td>
