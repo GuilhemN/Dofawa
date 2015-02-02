@@ -10,7 +10,7 @@ class SearchController extends Controller
     public function indexAction(Request $request)
     {
         if($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')){
-            throw new \Exception($this->get('selected_character')->find()->getName());
+            throw new \Exception($this->get('selected_character')->find()->getEntity()->getName());
         }
         $sm = $this->get('dof_search.search_manager');
         $output = $sm->process($request->query->get('q'));
