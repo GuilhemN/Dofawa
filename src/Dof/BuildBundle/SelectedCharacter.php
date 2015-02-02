@@ -31,7 +31,7 @@ class SelectedCharacter
         return $this->stuff->getCharacter();
     }
 
-    public function lastStuff() {
+    public function findLastStuff() {
         $this->find();
         return $this->stuff;
     }

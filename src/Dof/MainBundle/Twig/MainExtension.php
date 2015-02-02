@@ -1,19 +1,32 @@
 <?php
 namespace Dof\MainBundle\Twig;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 class MainExtension extends \Twig_Extension
 {
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function getFilters()
     {
         return array(
             new \Twig_SimpleFilter('truncatehtml', array($this, 'truncateHtmlFilter')));
-            
+
     }
 
     public function getFunctions()
     {
+        $sc = $this->container->get('selected_character');
         return array(
-            new  \Twig_SimpleFunction('critical_hit', array($this, 'getCriticalHit')));
+            new  \Twig_SimpleFunction('critical_hit', array($this, 'getCriticalHit')),
+            new  \Twig_SimpleFunction('selected_character', array($sc, 'find')),
+            new  \Twig_SimpleFunction('selected_stuff', array($sc, 'findLastStuff'))
+        );
     }
 
     public function truncateHtmlFilter($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true) {

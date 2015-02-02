@@ -8,6 +8,7 @@ services:
         class: Dof\MainBundle\Twig\MainExtension
         tags:
             - { name: twig.extension }
+        arguments: [ "@service_container" ]
 
     dof_main.admin.badge:
         class: Dof\MainBundle\Admin\BadgeAdmin
