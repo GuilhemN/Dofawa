@@ -17,7 +17,7 @@ class GuildType extends AbstractType
     {
         $builder
             ->add('name', null,array('label' => 'Nom de la guilde'))
-            ->add('serveur')
+            ->add('server', null,array('label' => 'Serveur'))
             ->add('lvlguild', null,array('label' => 'Niveau de la guilde','attr' => array('min' => '1', 'max' => '200', 'step' => '1')))
             ->add('lvlmini', null,array('label' => 'Niveau minimum de recrutement','attr' => array('min' => '1', 'max' => '200', 'step' => '1')))
             ->add('leader', null,array('label' => 'Meneur'))
