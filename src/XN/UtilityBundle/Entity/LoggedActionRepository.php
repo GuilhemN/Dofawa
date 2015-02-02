@@ -45,9 +45,8 @@ class LoggedActionRepository extends EntityRepository
             ->setParameter('user', $user)
             ->orderBy('a.createdAt', 'DESC')
             ->groupBy('a.key')
-            ->setMaxResults($max)
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
         ;
         return $qb;
     }
