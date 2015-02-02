@@ -16,15 +16,15 @@ class GuildType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null,array('label' => 'Nom de la guilde'))
-            ->add('server', null,array('label' => 'Serveur'))
-            ->add('lvlguild', null,array('label' => 'Niveau de la guilde','attr' => array('min' => '1', 'max' => '200', 'step' => '1')))
-            ->add('lvlmini', null,array('label' => 'Niveau minimum de recrutement','attr' => array('min' => '1', 'max' => '200', 'step' => '1')))
-            ->add('leader', null,array('label' => 'Meneur'))
-            ->add('recruitment', null, array('required' => false, 'label' => 'Recrutement (on/off)'))
-            ->add('speciality', null,array('required' => false,'label' => 'Spécialité de la guilde'))
-            ->add('description')
-            ->add('forum', null,array('required' => false)) 
+            ->add('name', null,array('label' => 'name_guild', 'translation_domain' => 'guild'))
+            ->add('server', null,array('label' => 'serv', 'translation_domain' => 'guild'))
+            ->add('lvlguild', null,array('label' => 'lvl_guild', 'translation_domain' => 'guild','attr' => array('min' => '1', 'max' => '200', 'step' => '1')))
+            ->add('lvlmini', null,array('label' => 'lvl_min_rec', 'translation_domain' => 'guild','attr' => array('min' => '1', 'max' => '200', 'step' => '1')))
+            ->add('leader', null,array('label' => 'leader', 'translation_domain' => 'guild'))
+            ->add('recruitment', null, array('required' => false, 'label' => 'recruitment', 'translation_domain' => 'guild'))
+            ->add('speciality', null,array('required' => false,'label' => 'specialty', 'translation_domain' => 'guild'))
+            ->add('description', null, array('label' => 'description', 'translation_domain' => 'guild'))
+            ->add('forum', null,array('label' => 'forum', 'translation_domain' => 'guild','required' => false)) 
         ;
     }
     
