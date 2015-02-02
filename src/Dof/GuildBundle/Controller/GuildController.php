@@ -15,7 +15,7 @@ class GuildController extends Controller
     public function indexAction($page)
     {
 		$repository = $this->getDoctrine()->getRepository('DofGuildBundle:Guild');
-		$guilds = $repository->findBy([], [], ($page - 1) * $this->perPage, $this->perPage);
+		$guilds = $repository->findBy([], [], $this->perPage, ($page - 1) * $this->perPage);
 		$count = $repository->count();
 
         $pagination = array(
