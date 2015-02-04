@@ -27,7 +27,7 @@ dof_user_character_show_characteristics:
         stuff: '[0-9a-z-]+'
 
 dof_user_character_show_weapondamages:
-    path:     /{user}/{character}/stuffs/{stuff}/weaponDamages
+    path:     /{user}/{character}/stuffs/{stuff}/weapon-damages
     defaults: { _controller: DofUserCharacterBundle:Build:showWeaponDamages }
     requirements:
         user: '[0-9a-z-]+'
