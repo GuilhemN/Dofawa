@@ -34,7 +34,7 @@ class BuildController extends Controller
         if($user === null)
             $user = $this->getUser();
         $bm = $this->get('build_manager');
-        if($user !== $this->getUser() && !$this->get('security.context')->isGranted('ROLE_ADMIN'))
+        if(!$this->get('security.context')->isGranted('ROLE_ADMIN') && $user !== $this->getUser())
             throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
