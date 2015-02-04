@@ -44,7 +44,7 @@ class ItemSetEffectImporter extends AbstractGameDataImporter
         $stmt->closeCursor();
         ksort($sets);
         $setRepo = $this->dm->getRepository('DofItemBundle:ItemSet');
-        $effectRepo = $this->dm->getRepository('DofCharacterBundle:EffectTemplate');
+        $effectRepo = $this->dm->getRepository('DofCharacterBundle:EffectTemplate'); 
         foreach ($sets as $set => $combos) {
             $set = $setRepo->find($set);
             if ($set === null || ($set->isPreliminary() ^ $beta))
