@@ -40,7 +40,7 @@ class MonsterDungeonImporter implements ImporterInterface
             foreach($row->getSubAreas() as $subArea){
                 $dungeon = $dungeonRepo->findOneByNameFr($subArea->getNameFr());
 
-                if($dungeon !== null){
+                if($dungeon !== null && !$row->getDungeons()->contains($dungeon)){
                     $row->addDungeon($dungeon);
                 }
             }
