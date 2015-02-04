@@ -45,7 +45,7 @@ class AppKernel extends Kernel
 
             new Dof\UserBundle\DofUserBundle(),
             new Dof\CMSBundle\DofCMSBundle(),
-            new Dof\ItemsBundle\DofItemsBundle(),
+            new Dof\ItemBundle\DofItemBundle(),
             new Dof\MainBundle\DofMainBundle(),
             new Dof\ArtBundle\DofArtBundle(),
             new Dof\MapBundle\DofMapBundle(),
@@ -78,7 +78,7 @@ class AppKernel extends Kernel
 	{
 		return '\XN\UtilityBundle\DependencyInjection\DelegatingContainer';
 	}
-    
+
 	protected function getContainerBuilder()
     {
         $container = new DelegatingContainerBuilder(new ParameterBag($this->getKernelParameters()));

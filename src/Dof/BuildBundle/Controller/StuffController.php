@@ -10,7 +10,7 @@ use Dof\BuildBundle\Entity\Stuff;
 use Dof\ItemsManagerBundle\Entity\PersonalizedItem;
 
 use Dof\GraphicsBundle\Entity\BuildLook;
-use Dof\ItemsBundle\ItemSlot;
+use Dof\ItemBundle\ItemSlot;
 
 class StuffController extends Controller
 {
@@ -40,7 +40,7 @@ class StuffController extends Controller
             $useSlot = 0;
 
         $rel = array_flip($itemsIds);
-        $items = $em->getRepository('DofItemsBundle:EquipmentTemplate')->findById($itemsIds);
+        $items = $em->getRepository('DofItemBundle:EquipmentTemplate')->findById($itemsIds);
         $look = $stuff->getLook();
 
         $bItemRepo = $em->getRepository('DofItemsManagerBundle:Item');

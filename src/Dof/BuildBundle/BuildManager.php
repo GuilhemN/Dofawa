@@ -6,7 +6,7 @@ use XN\Common\ServiceWithContainer;
 use Dof\BuildBundle\Entity\Stuff;
 use Dof\UserBundle\Entity\User;
 
-use Dof\ItemsBundle\CharacteristicsMetadata;
+use Dof\ItemBundle\CharacteristicsMetadata;
 
 class BuildManager extends ServiceWithContainer
 {
@@ -85,7 +85,7 @@ class BuildManager extends ServiceWithContainer
             }
 
         // Bonus de panos ($bonus)
-        $setBonusRepo = $em->getRepository('DofItemsBundle:ItemSetCombination');
+        $setBonusRepo = $em->getRepository('DofItemBundle:ItemSetCombination');
         foreach($sets as $set => $v)
             if(($b = $setBonusRepo->findOneBy(array('set' => $set, 'itemCount' => $v))) !== null)
                 $bonus[] = $b;

@@ -39,11 +39,11 @@ class ObjectTagTemplate implements TagTemplateInterface
         if($tag->getValue() === null)
             return;
 
-        $item = $this->em->getRepository('DofItemsBundle:ItemTemplate')->findOneBySlug($tag->getValue());
+        $item = $this->em->getRepository('DofItemBundle:ItemTemplate')->findOneBySlug($tag->getValue());
         if($item === null)
             return;
 
-        $view = $this->tp->render('DofItemsBundle::item.html.twig', ['item' => $item]);
+        $view = $this->tp->render('DofItemBundle::item.html.twig', ['item' => $item]);
         return DOMUtils::parseHTMLBodyFragment(str_replace(array("\r", "\n"), '', $view), $doc); # FIXME Just temporarly
     }
 

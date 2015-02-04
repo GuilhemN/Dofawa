@@ -18,7 +18,7 @@ use Dof\CharactersBundle\Gender;
 
 use Dof\BuildBundle\Form\ConfigurationForm;
 
-use Dof\ItemsBundle\EffectListHelper;
+use Dof\ItemBundle\EffectListHelper;
 use Dof\CharactersBundle\RankDamageEffect;
 
 use XN\UtilityBundle\ActionEvents;

@@ -12,7 +12,7 @@ use Dof\CharactersBundle\EffectTrait;
 
 use Dof\Common\GameTemplateString;
 
-use Dof\ItemsBundle\EffectListHelper;
+use Dof\ItemBundle\EffectListHelper;
 
 /**
  * SpellRankEffect

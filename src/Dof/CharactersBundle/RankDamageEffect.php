@@ -2,7 +2,7 @@
 namespace Dof\CharactersBundle;
 
 use Dof\CharactersBundle\Entity\SpellRankEffect;
-use Dof\ItemsBundle\EffectListHelper;
+use Dof\ItemBundle\EffectListHelper;
 
 use Dof\CharactersBundle\EffectInterface;
 use Dof\CharactersBundle\EffectTrait;

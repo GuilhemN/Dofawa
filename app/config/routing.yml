@@ -63,8 +63,8 @@ dof_main:
     resource: "@DofMainBundle/Resources/config/routing.yml"
     prefix:   /
 
-dof_items:
-    resource: "@DofItemsBundle/Resources/config/routing.yml"
+dof_item:
+    resource: "@DofItemBundle/Resources/config/routing.yml"
     prefix:   /items
 
 dof_user_account:

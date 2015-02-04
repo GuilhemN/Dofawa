@@ -10,7 +10,7 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 
-use Dof\ItemsBundle\ReleaseBoundTrait;
+use Dof\ItemBundle\ReleaseBoundTrait;
 
 /**
  * Title

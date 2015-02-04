@@ -16,7 +16,7 @@ use Dof\ItemsManagerBundle\Entity\Animal;
 use Dof\ItemsManagerBundle\Entity\Weapon;
 use Dof\GraphicsBundle\Entity\BuildLook;
 
-use Dof\ItemsBundle\ItemSlot;
+use Dof\ItemBundle\ItemSlot;
 
 /**
  * Stuff

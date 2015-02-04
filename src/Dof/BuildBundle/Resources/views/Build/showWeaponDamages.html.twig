@@ -24,7 +24,7 @@
 	            {% for damageRow in weapon.itemTemplate.damageRows %}
 		            {% set min = damageRow.min %}
 		            {% set max = damageRow.max %}
-		            {% set element =  call('Dof\\ItemsBundle\\Element', 'getName', damageRow.element) | lower %}
+		            {% set element =  call('Dof\\ItemBundle\\Element', 'getName', damageRow.element) | lower %}
 
 		            {% if element == "neutral" %}
 		            	{% set carac = characteristics.strength %}
@@ -77,7 +77,7 @@
 	        </table>
 	    </div>
 
-        {% include 'DofItemsBundle::item.html.twig' with {'item': weapon, display: '', type: 'build', 'can_write': ''} only %}
+        {% include 'DofItemBundle::item.html.twig' with {'item': weapon, display: '', type: 'build', 'can_write': ''} only %}
     {% else %}
     	<h3>Aucune arme équipée.</h3>
     {% endif %}

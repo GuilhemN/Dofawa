@@ -12,7 +12,7 @@ use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 
 use XN\L10n\LocalizedDescriptionTrait;
-use Dof\ItemsBundle\ReleaseBoundTrait;
+use Dof\ItemBundle\ReleaseBoundTrait;
 
 use Dof\Common\GameTemplateString;
 
