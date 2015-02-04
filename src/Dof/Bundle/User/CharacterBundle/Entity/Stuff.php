@@ -21,7 +21,7 @@ use Dof\Bundle\ItemBundle\ItemSlot;
 /**
  * Stuff
  *
- * @ORM\Table(name="dof_build_character_stuff")
+ * @ORM\Table(name="dof_build_stuff")
  * @ORM\Entity(repositoryClass="Dof\Bundle\User\CharacterBundle\Entity\StuffRepository")
  */
 class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableInterface

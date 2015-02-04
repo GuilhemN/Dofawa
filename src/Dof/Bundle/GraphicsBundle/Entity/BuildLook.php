@@ -12,7 +12,7 @@ use Dof\Bundle\User\CharacterBundle\Entity\Stuff;
 /**
  * BuildLook
  *
- * @ORM\Table(name="dof_user_character_look")
+ * @ORM\Table(name="dof_build_look")
  * @ORM\Entity(repositoryClass="Dof\Bundle\GraphicsBundle\Entity\BuildLookRepository")
  */
 class BuildLook extends BasicPCLook implements IdentifiableInterface
