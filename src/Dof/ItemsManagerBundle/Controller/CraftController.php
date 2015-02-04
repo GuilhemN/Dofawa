@@ -5,7 +5,7 @@ namespace Dof\ItemsManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use XN\Annotations as Utils;
 
-use Dof\ItemsBundle\Entity\ItemTemplate;
+use Dof\ItemBundle\Entity\ItemTemplate;
 use Dof\ItemsManagerBundle\Entity\Craft;
 
 /**

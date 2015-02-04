@@ -24,7 +24,7 @@ class TranslationController extends Controller
     }
 
     /**
-     * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+     * @Utils\Secure("ROLE_USER")
      * @Utils\UsesSession
      */
     public function createAction($tLocale, $domain, $label, Request $request){

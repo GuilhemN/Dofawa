@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\ItemsBundle\Entity\Document;
+use Dof\ItemBundle\Entity\Document;
 
 class DocumentImporter extends AbstractGameDataImporter
 {
@@ -18,14 +18,14 @@ class DocumentImporter extends AbstractGameDataImporter
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
-            $this->dm->createQuery('UPDATE DofItemsBundle:Document s SET s.deprecated = true')->execute();
+            $this->dm->createQuery('UPDATE DofItemBundle:Document s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.id' .
         $this->generateD2ISelects('title', $locales) .
         ' FROM ' . $db . '.D2O_Document o' .
         $this->generateD2IJoins('title', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
-        $repo = $this->dm->getRepository('DofItemsBundle:Document');
+        $repo = $this->dm->getRepository('DofItemBundle:Document');
         $rowsProcessed = 0;
         if ($output && $progress)
         $progress->start($output, count($all));

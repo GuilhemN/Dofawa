@@ -8,7 +8,7 @@ use XN\Persistence\IdentifiableInterface;
 
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
-use Dof\ItemsBundle\ReleaseBoundTrait;
+use Dof\ItemBundle\ReleaseBoundTrait;
 
 /**
  * QuestObjectiveType

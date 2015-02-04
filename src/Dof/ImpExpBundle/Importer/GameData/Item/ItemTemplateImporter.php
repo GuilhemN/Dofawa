@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\ItemsBundle\Entity\ItemType;
+use Dof\ItemBundle\Entity\ItemType;
 
 class ItemTemplateImporter extends AbstractGameDataImporter
 {
@@ -24,7 +24,7 @@ class ItemTemplateImporter extends AbstractGameDataImporter
 
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
-            $this->dm->createQuery('UPDATE DofItemsBundle:ItemTemplate s SET s.deprecated = true')->execute();
+            $this->dm->createQuery('UPDATE DofItemBundle:ItemTemplate s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.*' .
             $this->generateD2ISelects('name', $locales) .
             $this->generateD2ISelects('description', $locales) .
@@ -33,9 +33,9 @@ class ItemTemplateImporter extends AbstractGameDataImporter
             $this->generateD2IJoins('description', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
-        $typeRepo = $this->dm->getRepository('DofItemsBundle:ItemType');
-        $setRepo = $this->dm->getRepository('DofItemsBundle:ItemSet');
-        $repo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
+        $typeRepo = $this->dm->getRepository('DofItemBundle:ItemType');
+        $setRepo = $this->dm->getRepository('DofItemBundle:ItemSet');
+        $repo = $this->dm->getRepository('DofItemBundle:ItemTemplate');
         $rowsProcessed = 0;
         if ($output && $progress)
             $progress->start($output, count($all));

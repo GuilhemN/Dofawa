@@ -70,9 +70,9 @@ EOQ
 
 		$context = [ 'characteristics' => $chara ];
 
-		self::generate($twig, 'ItemsBundle:CharacteristicsMetadata', $context);
-		self::generate($twig, 'ItemsBundle:CharacteristicsTrait', $context);
-		self::generate($twig, 'ItemsBundle:CharacteristicsRangeTrait', $context);
+		self::generate($twig, 'ItemBundle:CharacteristicsMetadata', $context);
+		self::generate($twig, 'ItemBundle:CharacteristicsTrait', $context);
+		self::generate($twig, 'ItemBundle:CharacteristicsRangeTrait', $context);
 	}
 
 	private static function generate(Twig_Environment $twig, $elementName, $context)

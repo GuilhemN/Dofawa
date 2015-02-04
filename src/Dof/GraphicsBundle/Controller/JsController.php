@@ -5,7 +5,7 @@ namespace Dof\GraphicsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-use Dof\ItemsBundle\ItemSlot;
+use Dof\ItemBundle\ItemSlot;
 use Dof\GraphicsBundle\LivingItem;
 
 class JsController extends Controller
@@ -15,13 +15,13 @@ class JsController extends Controller
         $locale = $this->get('request')->getLocale();
 
         $itemTemplate = $this->getDoctrine()->getManager()
-            ->getRepository('DofItemsBundle:ItemTemplate');
+            ->getRepository('DofItemBundle:ItemTemplate');
         $skinned = $this->getDoctrine()->getManager()
-            ->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
+            ->getRepository('DofItemBundle:SkinnedEquipmentTemplate');
         $animal  = $this->getDoctrine()->getManager()
-            ->getRepository('DofItemsBundle:AnimalTemplate');
+            ->getRepository('DofItemBundle:AnimalTemplate');
         $weapon  = $this->getDoctrine()->getManager()
-            ->getRepository('DofItemsBundle:WeaponTemplate');
+            ->getRepository('DofItemBundle:WeaponTemplate');
 
         $chameleonDrago = $this->get('dof_graphics.chameleon_dragoturkey');
 

@@ -2,7 +2,7 @@
 namespace Dof\ItemsManagerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Dof\ItemsBundle\Entity\MountTemplate;
+use Dof\ItemBundle\Entity\MountTemplate;
 
 /**
 * Mount
@@ -15,7 +15,7 @@ class Mount extends Animal
     /**
     * @var Mount
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\MountTemplate")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\MountTemplate")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     private $mimibioteTemplate;

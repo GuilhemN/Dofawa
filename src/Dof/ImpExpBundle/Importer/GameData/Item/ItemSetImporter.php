@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\ItemsBundle\Entity\ItemSet;
+use Dof\ItemBundle\Entity\ItemSet;
 
 class ItemSetImporter extends AbstractGameDataImporter
 {
@@ -19,14 +19,14 @@ class ItemSetImporter extends AbstractGameDataImporter
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
         if (!$beta && $write)
-            $this->dm->createQuery('UPDATE DofItemsBundle:ItemSet s SET s.deprecated = true')->execute();
+            $this->dm->createQuery('UPDATE DofItemBundle:ItemSet s SET s.deprecated = true')->execute();
         $stmt = $conn->query('SELECT o.*' .
             $this->generateD2ISelects('name', $locales) .
             ' FROM ' . $db . '.D2O_ItemSet o' .
             $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
-        $repo = $this->dm->getRepository('DofItemsBundle:ItemSet');
+        $repo = $this->dm->getRepository('DofItemBundle:ItemSet');
         foreach ($all as $row) {
             $set = $repo->find($row['id']);
             if ($set === null) {

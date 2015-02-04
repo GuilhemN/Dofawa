@@ -4,9 +4,9 @@ namespace Dof\GraphicsBundle;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Dof\ItemsBundle\Entity\ItemTemplate;
-use Dof\ItemsBundle\Entity\ItemTemplateRepository;
-use Dof\ItemsBundle\Entity\ItemTypeRepository;
+use Dof\ItemBundle\Entity\ItemTemplate;
+use Dof\ItemBundle\Entity\ItemTemplateRepository;
+use Dof\ItemBundle\Entity\ItemTypeRepository;
 
 class LivingItemFactory
 {
@@ -21,8 +21,8 @@ class LivingItemFactory
 
     public function __construct(ObjectManager $dm)
     {
-        $this->itemTemplates = $dm->getRepository('DofItemsBundle:ItemTemplate');
-        $this->itemTypes = $dm->getRepository('DofItemsBundle:ItemType');
+        $this->itemTemplates = $dm->getRepository('DofItemBundle:ItemTemplate');
+        $this->itemTypes = $dm->getRepository('DofItemBundle:ItemType');
     }
 
     public function createFromSkin($skin)

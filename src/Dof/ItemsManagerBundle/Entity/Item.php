@@ -6,17 +6,17 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-use Dof\ItemsBundle\CharacteristicsTrait;
+use Dof\ItemBundle\CharacteristicsTrait;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\OwnableInterface;
 use Dof\UserBundle\OwnableTrait;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 
-use Dof\ItemsBundle\ItemSlot;
+use Dof\ItemBundle\ItemSlot;
 
 use Dof\BuildBundle\Entity\Stuff;
-use Dof\ItemsBundle\Entity\EquipmentTemplate;
+use Dof\ItemBundle\Entity\EquipmentTemplate;
 
 /**
 * Item
@@ -43,7 +43,7 @@ class Item implements IdentifiableInterface, OwnableInterface, TimestampableInte
     /**
     * @var EquipmentTemplate
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\EquipmentTemplate")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\EquipmentTemplate")
     * @ORM\JoinColumn(onDelete="CASCADE")
     */
     protected $itemTemplate;

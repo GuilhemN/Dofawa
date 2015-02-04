@@ -48,7 +48,7 @@ services:
             - { name: dof_imp_exp.importer, provides: breed_soft_caps, requires: breeds }
             - { name: dof_imp_exp.importer, provides: beta_breed_soft_caps, requires: beta_breeds }
 
-    # DofItemsBundle:Job
+    # DofItemBundle:Job
     dof_imp_exp.importer.job:
         class: Dof\ImpExpBundle\Importer\GameData\JobImporter
         arguments: [ "@importer_dependencies" ]
@@ -88,7 +88,7 @@ services:
             - { name: dof_imp_exp.importer, provides: titles }
             - { name: dof_imp_exp.importer, provides: beta_titles }
 
-    # DofItemsBundle:Document
+    # DofItemBundle:Document
     dof_imp_exp.importer.documents:
         class: Dof\ImpExpBundle\Importer\GameData\DocumentImporter
         arguments: [ "@importer_dependencies" ]

@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use XN\Annotations as Utils;
 
 use Dof\GraphicsBundle\Entity\CharacterLook;
-use Dof\ItemsBundle\ItemSlot;
+use Dof\ItemBundle\ItemSlot;
 use Dof\GraphicsBundle\LivingItem;
 
 class CharacterLookController extends Controller
@@ -115,11 +115,11 @@ class CharacterLookController extends Controller
         $form = $request->request->get('character_look');
 
         $itemTemplate = $this->getDoctrine()->getManager()
-                        ->getRepository('DofItemsBundle:ItemTemplate');
+                        ->getRepository('DofItemBundle:ItemTemplate');
         $animal  = $this->getDoctrine()->getManager()
-                        ->getRepository('DofItemsBundle:AnimalTemplate');
+                        ->getRepository('DofItemBundle:AnimalTemplate');
         $weapon  = $this->getDoctrine()->getManager()
-                        ->getRepository('DofItemsBundle:WeaponTemplate');
+                        ->getRepository('DofItemBundle:WeaponTemplate');
         $face  = $this->getDoctrine()->getManager()
                         ->getRepository('DofCharactersBundle:Face');
         $livingItemFactory = $this->get('dof_graphics.living_item_factory');

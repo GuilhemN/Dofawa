@@ -7,12 +7,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 
-use Dof\ItemsBundle\Entity\ItemTemplateEffect;
-use Dof\ItemsBundle\Entity\WeaponDamageRow;
+use Dof\ItemBundle\Entity\ItemTemplateEffect;
+use Dof\ItemBundle\Entity\WeaponDamageRow;
 
 use XN\Persistence\CollectionSynchronizationHelper;
 
-use Dof\ItemsBundle\EffectListHelper;
+use Dof\ItemBundle\EffectListHelper;
 
 class ItemEffectImporter extends AbstractGameDataImporter
 {
@@ -64,7 +64,7 @@ class ItemEffectImporter extends AbstractGameDataImporter
         $stmt->closeCursor();
         $stmt2->closeCursor();
         ksort($items);
-        $itemRepo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
+        $itemRepo = $this->dm->getRepository('DofItemBundle:ItemTemplate');
         $effectRepo = $this->dm->getRepository('DofCharactersBundle:EffectTemplate');
 
         $rowsProcessed = 0;

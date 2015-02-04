@@ -7,12 +7,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 
-use Dof\ItemsBundle\Entity\ItemSetCombination;
-use Dof\ItemsBundle\Entity\ItemSetEffect;
+use Dof\ItemBundle\Entity\ItemSetCombination;
+use Dof\ItemBundle\Entity\ItemSetEffect;
 
 use XN\Persistence\CollectionSynchronizationHelper;
 
-use Dof\ItemsBundle\EffectListHelper;
+use Dof\ItemBundle\EffectListHelper;
 
 class ItemSetEffectImporter extends AbstractGameDataImporter
 {
@@ -43,7 +43,7 @@ class ItemSetEffectImporter extends AbstractGameDataImporter
         }
         $stmt->closeCursor();
         ksort($sets);
-        $setRepo = $this->dm->getRepository('DofItemsBundle:ItemSet');
+        $setRepo = $this->dm->getRepository('DofItemBundle:ItemSet');
         $effectRepo = $this->dm->getRepository('DofCharactersBundle:EffectTemplate');
         foreach ($sets as $set => $combos) {
             $set = $setRepo->find($set);

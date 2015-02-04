@@ -5,7 +5,7 @@ services:
             - "@dof_characters.effect_param_loader"
             - "@dof_items.criteria_loader"
 
-    # DofItemsBundle:ItemSet
+    # DofItemBundle:ItemSet
     dof_imp_exp.importer.item_sets:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemSetImporter
         arguments: [ "@importer_dependencies" ]
@@ -13,7 +13,7 @@ services:
             - { name: dof_imp_exp.importer, provides: item_sets }
             - { name: dof_imp_exp.importer, provides: beta_item_sets, requires: item_sets }
 
-    # DofItemsBundle:ItemSetCombination, DofItemsBundle:ItemSetEffect
+    # DofItemBundle:ItemSetCombination, DofItemBundle:ItemSetEffect
     dof_imp_exp.importer.item_set_effects:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemSetEffectImporter
         arguments: [ "@importer_dependencies" ]
@@ -21,7 +21,7 @@ services:
             - { name: dof_imp_exp.importer, provides: item_set_effects, requires: item_sets }
             - { name: dof_imp_exp.importer, provides: beta_item_set_effects, requires: beta_item_sets }
 
-    # DofItemsBundle:ItemType
+    # DofItemBundle:ItemType
     dof_imp_exp.importer.item_types:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemTypeImporter
         arguments: [ "@importer_dependencies" ]
@@ -29,7 +29,7 @@ services:
             - { name: dof_imp_exp.importer, provides: item_types }
             - { name: dof_imp_exp.importer, provides: beta_item_types, requires: item_types }
 
-    # DofItemsBundle:ItemTemplate and subclasses
+    # DofItemBundle:ItemTemplate and subclasses
     dof_imp_exp.importer.item_templates:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemTemplateImporter
         arguments: [ "@importer_dependencies" ]
@@ -56,7 +56,7 @@ services:
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
-    # DofItemsBundle:ItemComponent
+    # DofItemBundle:ItemComponent
     dof_imp_exp.importer.item_components:
         class: Dof\ImpExpBundle\Importer\GameData\Item\ItemComponentImporter
         arguments: [ "@importer_dependencies" ]
@@ -66,7 +66,7 @@ services:
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
-    # DofItemsBundle:PetTemplate and subclasses
+    # DofItemBundle:PetTemplate and subclasses
     dof_imp_exp.importer.pet_food:
         class: Dof\ImpExpBundle\Importer\GameData\Item\PetFoodImporter
         arguments: [ "@importer_dependencies" ]
@@ -76,7 +76,7 @@ services:
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
-    # DofItemsBundle:MountTemplate
+    # DofItemBundle:MountTemplate
     dof_imp_exp.importer.mount_looks:
         class: Dof\ImpExpBundle\Importer\GameData\Item\MountLookImporter
         arguments: [ "@importer_dependencies" ]

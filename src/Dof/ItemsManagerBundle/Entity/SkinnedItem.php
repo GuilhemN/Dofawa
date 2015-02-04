@@ -3,7 +3,7 @@ namespace Dof\ItemsManagerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate;
+use Dof\ItemBundle\Entity\SkinnedEquipmentTemplate;
 
 /**
 * SkinnedItem
@@ -16,7 +16,7 @@ class SkinnedItem extends Item
     /**
     * @var SkinnedEquipmentTemplate
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\SkinnedEquipmentTemplate")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     protected $mimibioteTemplate;

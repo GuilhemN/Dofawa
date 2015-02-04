@@ -5,7 +5,7 @@ namespace Dof\ItemsManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use XN\Annotations as Utils;
 
-use Dof\ItemsBundle\Entity\PetTemplate;
+use Dof\ItemBundle\Entity\PetTemplate;
 use Dof\ItemsManagerBundle\Entity\Pet;
 
 /**

@@ -4,10 +4,10 @@ namespace Dof\ItemsManagerBundle;
 use Symfony\Component\Security\Core\SecurityContext;
 
 use Dof\UserBundle\Entity\User;
-use Dof\ItemsBundle\Entity\EquipmentTemplate;
+use Dof\ItemBundle\Entity\EquipmentTemplate;
 use Dof\ItemsManagerBundle\Entity as Ent;
 
-use Dof\ItemsBundle\ItemSlot;
+use Dof\ItemBundle\ItemSlot;
 
 class ItemFactory {
 

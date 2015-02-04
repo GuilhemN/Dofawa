@@ -3,7 +3,7 @@ namespace Dof\ItemsManagerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Dof\ItemsBundle\Entity\PetTemplate;
+use Dof\ItemBundle\Entity\PetTemplate;
 
 /**
 * Pet
@@ -35,7 +35,7 @@ class Pet extends Animal
     /**
     * @var PetTemplate
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\PetTemplate")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\PetTemplate")
     * @ORM\JoinColumn(onDelete="SET NULL")
     */
     protected $mimibioteTemplate;

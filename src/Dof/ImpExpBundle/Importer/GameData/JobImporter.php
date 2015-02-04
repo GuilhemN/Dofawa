@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\ItemsBundle\Entity\Job;
+use Dof\ItemBundle\Entity\Job;
 
 class JobImporter extends AbstractGameDataImporter
 {
@@ -25,7 +25,7 @@ class JobImporter extends AbstractGameDataImporter
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
-        $repo = $this->dm->getRepository('DofItemsBundle:Job');
+        $repo = $this->dm->getRepository('DofItemBundle:Job');
 
         $rowsProcessed = 0;
         if ($output && $progress)

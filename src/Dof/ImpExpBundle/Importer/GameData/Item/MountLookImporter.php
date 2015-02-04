@@ -9,7 +9,7 @@ use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
 use Dof\GraphicsBundle\EntityLook;
-use Dof\ItemsBundle\AnimalColorizationType;
+use Dof\ItemBundle\AnimalColorizationType;
 
 class MountLookImporter extends AbstractGameDataImporter
 {
@@ -29,7 +29,7 @@ class MountLookImporter extends AbstractGameDataImporter
         $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
-        $repo = $this->dm->getRepository('DofItemsBundle:MountTemplate');
+        $repo = $this->dm->getRepository('DofItemBundle:MountTemplate');
         $rowsProcessed = 0;
         if ($output && $progress)
         $progress->start($output, count($all));

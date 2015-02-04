@@ -8,10 +8,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Dof\CharactersBundle\Entity\Breed;
 use Dof\CharactersBundle\Entity\Face;
-use Dof\ItemsBundle\Entity\AnimalTemplate;
-use Dof\ItemsBundle\Entity\WeaponTemplate;
-use Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate;
-use Dof\ItemsBundle\AnimalColorizationType;
+use Dof\ItemBundle\Entity\AnimalTemplate;
+use Dof\ItemBundle\Entity\WeaponTemplate;
+use Dof\ItemBundle\Entity\SkinnedEquipmentTemplate;
+use Dof\ItemBundle\AnimalColorizationType;
 use Dof\CharactersBundle\Gender;
 
 /**
@@ -37,13 +37,13 @@ class BasicPCLook
     protected $face;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\WeaponTemplate")
+     * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\WeaponTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $weapon;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate")
+     * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\SkinnedEquipmentTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $shield;
@@ -51,7 +51,7 @@ class BasicPCLook
     protected $hat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate")
+     * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\ItemTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $dbHat;
@@ -64,7 +64,7 @@ class BasicPCLook
     protected $cloak;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate")
+     * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\ItemTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $dbCloak;
@@ -82,7 +82,7 @@ class BasicPCLook
     protected $animal;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\AnimalTemplate")
+     * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\AnimalTemplate")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     protected $dbAnimal;

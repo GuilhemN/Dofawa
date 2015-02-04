@@ -6,8 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Doctrine\ORM\EntityManager;
 
 use XN\Common\Inflector;
-use Dof\ItemsBundle\AnimalColorizationType;
-use Dof\ItemsBundle\ItemSlot;
+use Dof\ItemBundle\AnimalColorizationType;
+use Dof\ItemBundle\ItemSlot;
 
 class ChameleonDragoturkey
 {
@@ -44,7 +44,7 @@ class ChameleonDragoturkey
 
     public function getType(){
       if (empty($this->type))
-          $this->type = $this->em->getRepository('DofItemsBundle:ItemType')->findBySlot(ItemSlot::MOUNT)[0];
+          $this->type = $this->em->getRepository('DofItemBundle:ItemType')->findBySlot(ItemSlot::MOUNT)[0];
 
       return $this->type;
     }

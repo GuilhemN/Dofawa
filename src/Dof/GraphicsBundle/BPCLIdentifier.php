@@ -4,16 +4,16 @@ namespace Dof\GraphicsBundle;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Dof\ItemsBundle\Entity\SkinnedEquipmentTemplate;
-use Dof\ItemsBundle\Entity\SkinnedEquipmentTemplateRepository;
-use Dof\ItemsBundle\Entity\AnimalTemplate;
-use Dof\ItemsBundle\Entity\AnimalTemplateRepository;
+use Dof\ItemBundle\Entity\SkinnedEquipmentTemplate;
+use Dof\ItemBundle\Entity\SkinnedEquipmentTemplateRepository;
+use Dof\ItemBundle\Entity\AnimalTemplate;
+use Dof\ItemBundle\Entity\AnimalTemplateRepository;
 use Dof\CharactersBundle\Entity\Breed;
 use Dof\CharactersBundle\Entity\BreedRepository;
 use Dof\CharactersBundle\Entity\Face;
 use Dof\CharactersBundle\Entity\FaceRepository;
 
-use Dof\ItemsBundle\ItemSlot;
+use Dof\ItemBundle\ItemSlot;
 use Dof\CharactersBundle\Gender;
 
 class BPCLIdentifier
@@ -50,8 +50,8 @@ class BPCLIdentifier
 
     public function __construct(ObjectManager $dm, LivingItemFactory $livingItemFactory, ChameleonDragoturkey $chameleonDragoturkey)
     {
-        $this->skinnedEquipmentTemplates = $dm->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
-        $this->animalTemplates = $dm->getRepository('DofItemsBundle:AnimalTemplate');
+        $this->skinnedEquipmentTemplates = $dm->getRepository('DofItemBundle:SkinnedEquipmentTemplate');
+        $this->animalTemplates = $dm->getRepository('DofItemBundle:AnimalTemplate');
         $this->breeds = $dm->getRepository('DofCharactersBundle:Breed');
         $this->faces = $dm->getRepository('DofCharactersBundle:Face');
         $this->livingItemFactory = $livingItemFactory;

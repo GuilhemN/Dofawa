@@ -14,7 +14,7 @@
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
 
     {% for item in items %}
-        {% include 'DofItemsBundle::item.html.twig' with {'item': item, 'slugs': slugs | default(null)} %}
+        {% include 'DofItemBundle::item.html.twig' with {'item': item, 'slugs': slugs | default(null)} %}
     {% else %}
     	Pas encore d'items dans l'inventaire!
     {% endfor %}

@@ -4,8 +4,8 @@ namespace Dof\GraphicsBundle;
 
 use XN\Common\Inflector;
 
-use Dof\ItemsBundle\Entity\ItemTemplate;
-use Dof\ItemsBundle\Entity\ItemType;
+use Dof\ItemBundle\Entity\ItemTemplate;
+use Dof\ItemBundle\Entity\ItemType;
 
 class LivingItem
 {

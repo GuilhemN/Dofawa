@@ -10,7 +10,7 @@ use Dof\UserBundle\OwnableTrait;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 
-use Dof\ItemsBundle\Entity\ItemTemplate;
+use Dof\ItemBundle\Entity\ItemTemplate;
 
 /**
  * Craft
@@ -34,7 +34,7 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     /**
     * @var ItemTemplate
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\ItemTemplate")
     */
     private $itemTemplate;
 

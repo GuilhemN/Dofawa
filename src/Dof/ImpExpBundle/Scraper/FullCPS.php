@@ -37,7 +37,7 @@ class FullCPS extends BaseScraper
                 }
 
                 $container = new ContainerBuilder();
-                $repository = $container->get('doctrine.orm.default_entity_manager')->getRepository('DofItemsBundle:ItemTemplate');
+                $repository = $container->get('doctrine.orm.default_entity_manager')->getRepository('DofItemBundle:ItemTemplate');
 
                 $this->items = $repository->findById($idItems);
             }

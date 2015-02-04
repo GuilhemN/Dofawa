@@ -33,7 +33,7 @@ class MonsterDropImporter extends AbstractGameDataImporter
             $g[$row['monsterId']][] = $row;
 
         $repo = $this->dm->getRepository('DofMonsterBundle:Monster');
-        $itemRepo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
+        $itemRepo = $this->dm->getRepository('DofItemBundle:ItemTemplate');
 
         $rowsProcessed = 0;
         if ($output && $progress)

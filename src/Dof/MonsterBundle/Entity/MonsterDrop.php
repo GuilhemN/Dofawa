@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use Dof\ItemsBundle\Criteria\ParsedCriteriaTrait;
-use Dof\ItemsBundle\Criteria\ParsedCriteriaInterface;
+use Dof\ItemBundle\Criteria\ParsedCriteriaTrait;
+use Dof\ItemBundle\Criteria\ParsedCriteriaInterface;
 
-use Dof\ItemsBundle\Entity\ItemTemplate;
+use Dof\ItemBundle\Entity\ItemTemplate;
 
 /**
  * MonsterDrop
@@ -42,7 +42,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     /**
     * @var ItemTemplate
     *
-    * @ORM\ManyToOne(targetEntity="Dof\ItemsBundle\Entity\ItemTemplate", inversedBy="drops")
+    * @ORM\ManyToOne(targetEntity="Dof\ItemBundle\Entity\ItemTemplate", inversedBy="drops")
     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
     */
     private $object;

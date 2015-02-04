@@ -13,7 +13,7 @@ use XN\Metadata\TimestampableTrait;
 # L'interface n'est pas utilisé afin que le __toString() soit utilisé et non le nom de l'entité
 # use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
-use Dof\ItemsBundle\ReleaseBoundTrait;
+use Dof\ItemBundle\ReleaseBoundTrait;
 
 use Dof\MonsterBundle\Entity\Dungeon;
 

@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\ItemsBundle\Entity\Job;
+use Dof\ItemBundle\Entity\Job;
 
 class PetFoodImporter extends AbstractGameDataImporter
 {
@@ -38,9 +38,9 @@ class PetFoodImporter extends AbstractGameDataImporter
         $stmt1->closeCursor();
         $stmt2->closeCursor();
 
-        $repo = $this->dm->getRepository('DofItemsBundle:PetTemplate');
-        $typeRepo = $this->dm->getRepository('DofItemsBundle:ItemType');
-        $itemRepo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
+        $repo = $this->dm->getRepository('DofItemBundle:PetTemplate');
+        $typeRepo = $this->dm->getRepository('DofItemBundle:ItemType');
+        $itemRepo = $this->dm->getRepository('DofItemBundle:ItemTemplate');
 
         $rowsProcessed = 0;
         if ($output && $progress)

@@ -5,7 +5,7 @@ namespace Dof\MainBundle\Doctrine;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
-use Dof\ItemsBundle\Entity\EquipmentTemplate;
+use Dof\ItemBundle\Entity\EquipmentTemplate;
 
 class PowerRateUpdater
 {

@@ -13,7 +13,7 @@ use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
-use Dof\ItemsBundle\ReleaseBoundTrait;
+use Dof\ItemBundle\ReleaseBoundTrait;
 
 /**
  * Achievement

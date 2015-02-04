@@ -9,7 +9,7 @@ use Dof\ImpExpBundle\ImporterFlags;
 
 use Dof\CharactersBundle\Entity\EffectTemplate;
 
-use Dof\ItemsBundle\Element;
+use Dof\ItemBundle\Element;
 
 class EffectTemplateImporter extends AbstractGameDataImporter
 {

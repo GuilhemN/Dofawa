@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\ImpExpBundle\ImporterFlags;
 
-use Dof\ItemsBundle\Entity\ItemComponent;
+use Dof\ItemBundle\Entity\ItemComponent;
 
 class ItemComponentImporter extends AbstractGameDataImporter
 {
@@ -31,7 +31,7 @@ class ItemComponentImporter extends AbstractGameDataImporter
               ORDER BY o.resultId');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
-        $repo = $this->dm->getRepository('DofItemsBundle:ItemTemplate');
+        $repo = $this->dm->getRepository('DofItemBundle:ItemTemplate');
 
         $items = array();
         foreach($all as $row){

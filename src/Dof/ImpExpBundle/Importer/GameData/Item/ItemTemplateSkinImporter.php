@@ -39,7 +39,7 @@ class ItemTemplateSkinImporter implements ImporterInterface
 
         $data = json_decode(file_get_contents($this->path), true);
         $this->dm->clear();
-        $repo = $this->dm->getRepository('DofItemsBundle:SkinnedEquipmentTemplate');
+        $repo = $this->dm->getRepository('DofItemBundle:SkinnedEquipmentTemplate');
         foreach ($data as $row) {
             $equip = $repo->find($row['id']);
             if ($equip !== null) {
