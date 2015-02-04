@@ -1,0 +1,49 @@
+dof_items_manager_homepage:
+    pattern:   /{page}
+    defaults: { _controller: DofUserItemBundle:ItemsManager:index, page: 1}
+    requirements:
+        page: \d+
+
+dof_items_manager_pets:
+    pattern:   /pets-manager
+    defaults: { _controller: DofUserItemBundle:PetsManager:index }
+
+dof_items_manager_pets_feed:
+    pattern:   /pets-manager/feed
+    defaults: { _controller: DofUserItemBundle:PetsManager:feed }
+    requirements:
+        _method: POST
+
+dof_items_manager_pets_add:
+    pattern:   /pets-manager/add/{id}
+    defaults: { _controller: DofUserItemBundle:PetsManager:add}
+    requirements:
+        id: \d+
+
+dof_items_manager_pets_remove:
+    pattern:   /pets-manager/remove/{id}
+    defaults: { _controller: DofUserItemBundle:PetsManager:remove}
+    requirements:
+        id: \d+
+
+dof_items_manager_pets_raise:
+    pattern:   /pets-manager/raise/{id}
+    defaults: { _controller: DofUserItemBundle:PetsManager:raise}
+    requirements:
+        id: \d+
+
+dof_items_manager_pets_notif:
+    pattern:   /pets-manager/notif
+    defaults: { _controller: DofUserItemBundle:PetsManager:notif }
+    requirements:
+        _method: POST
+
+dof_crafts_homepage:
+    pattern:   /crafts
+    defaults: { _controller: DofUserItemBundle:Craft:index }
+
+dof_crafts_create:
+    pattern:   /crafts/create/{id}
+    defaults: { _controller: DofUserItemBundle:Craft:create }
+    requirements:
+        id: \d+

@@ -1,0 +1,7 @@
+dof_quest_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: DofQuestBundle:Default:index }
+
+dof_quest_eternal_harvest:
+    resource: "@DofQuestBundle/Resources/config/eternal-harvest.yml"
+    prefix:   /an-eternal-harvest

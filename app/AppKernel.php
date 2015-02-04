@@ -43,32 +43,32 @@ class AppKernel extends Kernel
 
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
 
-            new Dof\UserBundle\DofUserBundle(),
-            new Dof\CMSBundle\DofCMSBundle(),
-            new Dof\ItemBundle\DofItemBundle(),
-            new Dof\MainBundle\DofMainBundle(),
-            new Dof\ArtBundle\DofArtBundle(),
-            new Dof\MapBundle\DofMapBundle(),
-            new Dof\GraphicsBundle\DofGraphicsBundle(),
-            new Dof\AdminBundle\DofAdminBundle(),
-            new Dof\CharactersBundle\DofCharactersBundle(),
-            new Dof\ImpExpBundle\DofImpExpBundle(),
-            new Dof\MessageBundle\DofMessageBundle(),
-            new Dof\TranslationBundle\DofTranslationBundle(),
-            new Dof\BuildBundle\DofBuildBundle(),
-            new Dof\ForumBundle\DofForumBundle(),
-            new Dof\GuildBundle\DofGuildBundle(),
-            new Dof\MonsterBundle\DofMonsterBundle(),
-            new Dof\ItemsManagerBundle\DofItemsManagerBundle(),
-            new Dof\QuestBundle\DofQuestBundle(),
-            new Dof\SearchBundle\DofSearchBundle(),
+            new Dof\Bundle\UserBundle\DofUserBundle(),
+            new Dof\Bundle\CMSBundle\DofCMSBundle(),
+            new Dof\Bundle\ItemBundle\DofItemBundle(),
+            new Dof\Bundle\MainBundle\DofMainBundle(),
+            new Dof\Bundle\ArtBundle\DofArtBundle(),
+            new Dof\Bundle\MapBundle\DofMapBundle(),
+            new Dof\Bundle\GraphicsBundle\DofGraphicsBundle(),
+            new Dof\Bundle\AdminBundle\DofAdminBundle(),
+            new Dof\Bundle\CharacterBundle\DofCharacterBundle(),
+            new Dof\Bundle\ImpExpBundle\DofImpExpBundle(),
+            new Dof\Bundle\Social\MessageBundle\DofMessageBundle(),
+            new Dof\Bundle\TranslationBundle\DofTranslationBundle(),
+            new Dof\Bundle\User\CharacterBundle\DofUserCharacterBundle(),
+            new Dof\Bundle\Social\ForumBundle\DofForumBundle(),
+            new Dof\Bundle\GuildBundle\DofGuildBundle(),
+            new Dof\Bundle\MonsterBundle\DofMonsterBundle(),
+            new Dof\Bundle\User\ItemBundle\DofUserItemBundle(),
+            new Dof\Bundle\QuestBundle\DofQuestBundle(),
+            new Dof\Bundle\SearchBundle\DofSearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new Dof\GeneratorBundle\DofGeneratorBundle();
+            $bundles[] = new Dof\Bundle\GeneratorBundle\DofGeneratorBundle();
         }
 
         return $bundles;

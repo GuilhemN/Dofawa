@@ -1,0 +1,10 @@
+parameters:
+    dof_imp_exp.import_manager.class: Dof\Bundle\ImpExpBundle\ImportManager
+    dof_imp_exp.game_data_provider.class: Dof\Bundle\ImpExpBundle\GameDataProvider
+
+services:
+    dof_imp_exp.import_manager:
+        class: %dof_imp_exp.import_manager.class%
+    dof_imp_exp.game_data_provider:
+        class: %dof_imp_exp.game_data_provider.class%
+        arguments: [ @database_connection, %current_release_number%, %beta_release_number%, %current_release_database%, %beta_release_database% ]

@@ -1,3 +1,0 @@
-dof_quest_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: DofQuestBundle:Default:index }

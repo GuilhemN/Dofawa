@@ -1,0 +1,46 @@
+{% extends '::layout.html.twig' %}
+
+{% block breadcrumb %}
+    <li>Classes</li>
+    <li>
+        <a href="{{ path('dof_characters_show', {'slug': breed.slug}) }}">
+            {{ breed.getName(locales()) }}
+        </a>
+    </li>
+{% endblock %}
+
+{% block body %}
+{% autoescape %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="thumbnail row">
+            <div class="col-md-3 text-center">
+                {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {'look': look} only %}
+                {% include 'DofMainBundle::release-labels.html.twig' with {'item': breed} only %}
+            </div>
+            <div class="caption col-md-9">
+                <h2 class="nopadding">{{ breed.getLongName(locales()) }}</h2>
+                <section>
+                    <h4>GamePlay</h4>
+                    <p>{{ breed.getGameplayDescription(locales()) }}</p>
+                </section>
+                {% if breed.getGameplayDescription(locales()) != breed.getDescription(locales()) %}
+                    <section>
+            	        <h4>Description</h4>
+            	        <p>{{ breed.getDescription(locales()) }}</p>
+                    </section>
+        	    {% endif %}
+                <form method="POST" action="{{ path('dof_user_character_homepage') }}#form_create">
+                	<input name="newChar" value="{{ breed.id }}" type="hidden">
+                	<button class="btn btn-primary" type="submit">Créer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for spell in breed.sortedSpells %}
+    {% include 'DofCharacterBundle::spell.html.twig' %}
+{% endfor %}
+{% endautoescape %}
+{% endblock %}

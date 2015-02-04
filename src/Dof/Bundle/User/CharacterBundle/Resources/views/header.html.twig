@@ -1,0 +1,93 @@
+{% set slugs = {
+    'user': user.slug,
+    'character': character.slug,
+    'stuff': stuff.slug
+} %}
+<ul class="nav nav-pills" role="tablist">
+    {% if can_write | default(false) %}
+    <li {{ is_current_page('dof_user_character_edit') | raw }}>
+        <a href="{{ path('dof_user_character_edit', slugs) }}">Configuration</a>
+    </li>
+    {% endif %}
+    <li {{ is_current_page('dof_user_character_show') | raw }}>
+        <a href="{{ path('dof_user_character_show', slugs) }}">Build</a>
+    </li>
+    <li {{ is_current_page('dof_user_character_show_characteristics') | raw }}>
+        <a href="{{ path('dof_user_character_show_characteristics', slugs) }}">Caractéristiques</a>
+    </li>
+    <li {{ is_current_page('dof_user_character_show_weapondamages') | raw }}>
+        <a href="{{ path('dof_user_character_show_weapondamages', slugs) }}">Arme</a>
+    </li>
+    <li {{ is_current_page('dof_user_character_show_spellsDamages') | raw }}>
+        <a href="{{ path('dof_user_character_show_spellsDamages', slugs) }}">Sorts</a>
+    </li>
+    <li role="presentation" class="dropdown">
+        <a aria-expanded="false" href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">Stuffs <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+            <li class="pointer" data-toggle="modal" data-target=".new-stuff-modal"><a>Créer</a></li>
+            <li class="divider"></li>
+            {% for s in character.stuffs %}
+            <li{% if s == stuff %} class="active"{% endif %}><a href="{{ path('dof_user_character_show', slugs | merge({'stuff': s.slug})) }}">{{ s.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+
+<div class="modal fade new-stuff-modal" tabindex="-1" role="dialog" aria-labelledby="createStuffModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="createStuffModal">Créer un stuff</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ path('dof_user_character_create_stuff', {'slug': stuff.slug}) }}" method="POST">
+                    Nom : <input type="text" name="name" /><br>
+                    <input type="submit" class="btn" value="Créer"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><strong>{{ character.name }}</strong>, {{ 'level' | trans({'%level%': character.level}, 'item')}}</h3>
+    </div>
+    <div class="panel-body text-center">
+        <div class="row">
+            {% if characteristics is defined %}
+            <div class="col-xs-0 col-md-4"></div>
+            <div class="col-xs-6 col-md-4">
+            {% endif %}
+
+                {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
+                'look': stuff.look.toEntityLook()} only %}
+
+            {% if characteristics is defined %}
+            </div>
+            {% set pdv = 55 + (5 * character.level) + characteristics.vitality %}
+            {% set ini = characteristics.strength + characteristics.intelligence + characteristics.chance + characteristics.agility + characteristics.initiative %}
+
+            <div class="col-xs-6 col-md-4">
+                <div class="panel panel-default">
+                    <table class="table">
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/vitality.png') }}" alt=""></td><td>{{ pdv }}</td></tr>
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/ap.png') }}" alt=""></td><td>{{ characteristics.ap }}</td></tr>
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/mp.png') }}" alt=""></td><td>{{ characteristics.mp }}</td></tr>
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/initiative.png') }}" alt=""></td><td>{{ ini }}</td></tr>
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/prospecting.png') }}" alt=""></td><td>{{ characteristics.prospecting }}</td></tr>
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/range.png') }}" alt=""></td><td>{{ characteristics.range }}</td></tr>
+                        <tr><td><img src="{{ asset('bundles/dofitems/img/summons.png') }}" alt=""></td><td>{{ characteristics.summons }}</td></tr>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <p>
+            {#% for bonus in stuff.primaryBonus %}
+                <img src="{{ asset('bundles/dofitems/img/' ~ bonus ~ '.png') }}" alt="{{ bonus }}">
+            {% endfor %#}
+        </p>
+    </div>
+</div>

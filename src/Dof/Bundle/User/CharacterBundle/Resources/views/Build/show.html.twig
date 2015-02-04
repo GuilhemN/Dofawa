@@ -1,0 +1,68 @@
+{% extends 'DofUserCharacterBundle::layout.html.twig' %}
+
+{% trans_default_domain "build" %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('dof_profile_userpage', {'slug': character.owner.slug}) }}">{{ character.owner.username }}</a></li>
+    <li>{{ character.name }}</li>
+    <li>{{ stuff.name }}</li>
+{% endblock %}
+
+{% block body %}
+{% autoescape %}
+    {% include 'DofUserCharacterBundle::header.html.twig' %}
+
+    <div class="row">
+        <div class="col-md-4">
+            {% for number, item in items['dofus'] %}
+                {% set k = 'dofus' %}
+                <div class="col-xs-3 col-md-12 col-lg-6">
+                    {% include 'DofUserCharacterBundle::slot.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-8">
+            {% for k, v in items if k != 'dofus' %}
+                {% for number, item in v %}
+                    <div class="col-xs-3 col-md-6 col-lg-4">
+                        {% include 'DofUserCharacterBundle::slot.html.twig' %}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        {% for b in bonus %}
+        <div class="col-xs-6 col-lg-4">
+            <div class="well well-sm">
+                <center>
+                    <strong>{{ b.set.getName(locales()) }} ({{ b.itemCount }} items)</strong>
+                </center>
+                {# Get the characteristics #}
+                {% include 'DofItemBundle::characteristics.html.twig' with {'item': b} %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endautoescape %}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(function(){
+            {% if app.request.method == 'POST' and app.request.request.has('slot') %}
+                $('#modalItem-{{ app.request.request.get('slot') | e('js') }}').modal('show');
+            {% endif %}
+            $('.add-build-fm').on('click', function(){
+                var itemBody = $(this).parent();
+                var fmCaract = itemBody.find('select.build-fm').val();
+
+                itemBody.find('[data-name="' + fmCaract + '"]').show();
+                itemBody.find('select option[value="' + fmCaract + '"]').remove();
+            });
+        });
+    </script>
+{% endblock %}

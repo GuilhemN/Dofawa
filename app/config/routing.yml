@@ -7,7 +7,7 @@ dof_quest:
     prefix:   /quests
 
 dof_items_manager:
-    resource: "@DofItemsManagerBundle/Resources/config/routing.yml"
+    resource: "@DofUserItemBundle/Resources/config/routing.yml"
     prefix:   /inventory
 
 dof_monster:
@@ -22,8 +22,8 @@ dof_forum:
     resource: "@DofForumBundle/Resources/config/routing.yml"
     prefix:   /forum
 
-dof_build:
-    resource: "@DofBuildBundle/Resources/config/routing.yml"
+dof_user_character:
+    resource: "@DofUserCharacterBundle/Resources/config/routing.yml"
     prefix:   /builds
 
 dof_translation:
@@ -35,7 +35,7 @@ dof_translation:
 #    prefix:   /
 
 dof_characters:
-    resource: "@DofCharactersBundle/Resources/config/routing.yml"
+    resource: "@DofCharacterBundle/Resources/config/routing.yml"
     prefix:   /characters
 
 admin:

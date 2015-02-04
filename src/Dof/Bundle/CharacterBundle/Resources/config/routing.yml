@@ -1,0 +1,34 @@
+dof_characters_show:
+    pattern:  /{slug}
+    defaults: { _controller: DofCharacterBundle:Breed:show }
+    requirements:
+       slug: '[0-9a-z-]+'
+
+
+dof_spell_show:
+    pattern:  /spells/{slug}
+    defaults: { _controller: DofCharacterBundle:Spell:show }
+    requirements:
+       slug: '[0-9a-z-]+'
+
+dof_spell_addskin:
+   pattern: /spells/add-skin/{id}
+   defaults: { _controller: DofCharacterBundle:UpdateSpell:addImage }
+
+dof_spell_change_visibility:
+    pattern: /spells/change-visibility/{id}
+    defaults: { _controller: DofCharacterBundle:UpdateSpell:changeVisibility }
+
+dof_area_render_glyphtrap:
+    pattern:  /area/{area}/{color}.svg
+    defaults: { _controller: DofCharacterBundle:Area:renderGlyphTrap }
+    requirements:
+        area: '[0-9A-Za-z_-]+'
+        color: '[0-9a-f]{6}'
+
+dof_area_render_normal:
+    pattern:  /area/{area}/{type}.svg
+    defaults: { _controller: DofCharacterBundle:Area:renderNormal }
+    requirements:
+        area: '[0-9A-Za-z_-]+'
+        color: 'cast|effect'

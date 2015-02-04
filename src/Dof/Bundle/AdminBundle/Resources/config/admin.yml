@@ -1,0 +1,35 @@
+services:
+    sonata.admin.user:
+        class: Dof\Bundle\AdminBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Utilisateurs", label: "Utilisateurs" }
+        arguments:
+            - ~
+            - Dof\Bundle\UserBundle\Entity\User
+            - ~
+
+        calls:
+            - [ setTranslationDomain, [DofUserBundle]]
+
+    sonata.admin.article:
+        class: Dof\Bundle\AdminBundle\Admin\ArticleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Contenu", label: "Articles" }
+        arguments:
+            - ~
+            - Dof\Bundle\CMSBundle\Entity\Article
+            - DofAdminBundle:CRUDOwn
+        calls:
+            - [ setTranslationDomain, [DofCMSBundle]]
+
+    dof_admin.translation:
+        class: Dof\Bundle\AdminBundle\Admin\TranslationAdmin
+        arguments: [~, Dof\Bundle\TranslationBundle\Entity\Translation, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Contenu, label: Traductions}
+
+    dof_admin.character_look:
+        class: Dof\Bundle\AdminBundle\Admin\CharacterLookAdmin
+        arguments: [~, Dof\Bundle\GraphicsBundle\Entity\CharacterLook, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Contenu, label: CharacterLook}

@@ -1,0 +1,7 @@
+parameters:
+#    dof_art.example.class: Dof\Bundle\ArtBundle\Example
+
+services:
+#    dof_art.example:
+#        class: %dof_art.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

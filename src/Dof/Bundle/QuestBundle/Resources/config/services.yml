@@ -1,0 +1,4 @@
+services:
+#    dof_quest.example:
+#        class: Dof\Bundle\QuestBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

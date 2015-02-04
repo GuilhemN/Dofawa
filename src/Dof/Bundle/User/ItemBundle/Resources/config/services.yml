@@ -1,0 +1,4 @@
+services:
+    item_factory:
+        class: Dof\Bundle\User\ItemBundle\ItemFactory
+        arguments: [@security.context]

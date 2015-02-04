@@ -1,0 +1,55 @@
+{% extends 'DofUserCharacterBundle::layout.html.twig' %}
+
+{% trans_default_domain "build" %}
+
+{% block breadcrumb %}
+{{ parent() }}
+<li><a href="{{ path('dof_profile_userpage', {'slug': character.owner.slug}) }}">{{ character.owner.username }}</a></li>
+<li>{{ character.name }}</li>
+<li>{{ stuff.name }}</li>
+{% endblock %}
+
+{% block body %}
+{% autoescape %}
+{% include 'DofUserCharacterBundle::header.html.twig' %}
+
+{% set style = { 'style': 'horizontal' } %}
+<form method="POST">
+    <div class="text-center">
+        <button type="submit" class="btn btn-default">Enregistrer</button>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Stuff</h3>
+        </div>
+        <div class="panel-body">
+            {{ form_row(form.title, style) }}
+            {{ form_row(form.face, style) }}
+            {{ form_row(form.gender, style) }}
+            {{ form_row(form.vitality, style) }}
+            {{ form_row(form.wisdom, style) }}
+            {{ form_row(form.strength, style) }}
+            {{ form_row(form.intelligence, style) }}
+            {{ form_row(form.chance, style) }}
+            {{ form_row(form.agility, style) }}
+            {{ form_row(form.stuffVisibility, style) }}
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Personnage</h3>
+        </div>
+        <div class="panel-body">
+            {{ form_row(form.name, style) }}
+            {{ form_row(form.level, style) }}
+            {{ form_row(form.breed, style) }}
+            {{ form_row(form.characterVisibility, style) }}
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-default">Enregistrer</button>
+    </div>
+    {{ form_rest(form) }}
+</form>
+{% endautoescape %}
+{% endblock %}

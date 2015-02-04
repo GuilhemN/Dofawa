@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\OwnableInterface;
-use Dof\UserBundle\OwnableTrait; # TO CHANGE ACCORDING TO THE PROJECT
+use Dof\Bundle\UserBundle\OwnableTrait; # TO CHANGE ACCORDING TO THE PROJECT
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SimpleLazyFieldTrait;

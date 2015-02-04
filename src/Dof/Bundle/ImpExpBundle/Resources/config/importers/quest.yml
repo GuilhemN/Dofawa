@@ -1,0 +1,58 @@
+services:
+    # DofQuestBundle:Quest and subclasses
+    dof_imp_exp.importer.quest_categories:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Quest\QuestCategoryImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_categories }
+            - { name: dof_imp_exp.importer, provides: beta_quest_categories }
+
+    dof_imp_exp.importer.quests:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Quest\QuestImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quests, requires: quest_categories }
+            - { name: dof_imp_exp.importer, provides: beta_quests, requires: beta_quest_categories }
+
+    dof_imp_exp.importer.quest_steps:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Quest\QuestStepImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_steps, requires: quests }
+            - { name: dof_imp_exp.importer, provides: beta_quest_steps, requires: beta_quests }
+
+    dof_imp_exp.importer.quest_step_objectives:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Quest\QuestObjectiveImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_step_objectives, requires: "quest_steps quest_objective_templates map_positions" }
+            - { name: dof_imp_exp.importer, provides: beta_quest_step_objectives, requires: "beta_quest_steps beta_quest_objective_templates beta_map_positions" }
+
+    dof_imp_exp.importer.quest_step_objective_params:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Quest\QuestObjectiveParamImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_step_objective_params, requires: quest_step_objectives }
+            - { name: dof_imp_exp.importer, provides: beta_quest_step_objective_params, requires: beta_quest_step_objectives }
+
+    dof_imp_exp.importer.quest_objective_templates:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Quest\QuestObjectiveTemplateImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: quest_objective_templates }
+            - { name: dof_imp_exp.importer, provides: beta_quest_objective_templates }
+
+    # DofQuestBundle:Achievement and subclasses
+    dof_imp_exp.importer.achievement_categories:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Quest\AchievementCategoryImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: achievement_categories }
+            - { name: dof_imp_exp.importer, provides: beta_achievement_categories }
+
+    dof_imp_exp.importer.achievements:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Quest\AchievementImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: achievements, requires: achievement_categories }
+            - { name: dof_imp_exp.importer, provides: beta_achievements, requires: beta_achievement_categories }

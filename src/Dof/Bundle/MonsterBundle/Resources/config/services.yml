@@ -1,0 +1,9 @@
+services:
+#    dof_monster.example:
+#        class: Dof\Bundle\MonsterBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    dof_monster.admin.monster:
+        class: Dof\Bundle\MonsterBundle\Admin\MonsterAdmin
+        arguments: [~, Dof\Bundle\MonsterBundle\Entity\Monster, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Bestiaire, label: Monstres}

@@ -1,0 +1,58 @@
+parameters:
+    dof.main.doctrine.primary_bonus_updater.class: Dof\Bundle\MainBundle\Doctrine\PrimaryBonusUpdater
+    dof.main.doctrine.message_notification.class: Dof\Bundle\MainBundle\Doctrine\MessageNotification
+    dof_main.request_listener.class: Dof\Bundle\MainBundle\RequestListener
+
+services:
+    dof.twig.main_extension:
+        class: Dof\Bundle\MainBundle\Twig\MainExtension
+        tags:
+            - { name: twig.extension }
+        arguments: [ "@service_container" ]
+
+    dof_main.admin.badge:
+        class: Dof\Bundle\MainBundle\Admin\BadgeAdmin
+        arguments: [~, Dof\Bundle\MainBundle\Entity\Badge, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Badge, label: Badge}
+
+    dof_main.admin.badge_level:
+        class: Dof\Bundle\MainBundle\Admin\BadgeLevelAdmin
+        arguments: [~, Dof\Bundle\MainBundle\Entity\BadgeLevel, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Badge, label: BadgeLevel}
+
+    badge_manager:
+        class: Dof\Bundle\MainBundle\BadgeManager
+        arguments: [ "@service_container" ]
+
+    dof.main.doctrine.primary_bonus_updater:
+        class: "%dof.main.doctrine.primary_bonus_updater.class%"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: onFlush }
+
+    dof.main.doctrine.message_notification:
+        class: "%dof.main.doctrine.message_notification.class%"
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    dof.main.doctrine.message_forum_updater:
+        class: Dof\Bundle\MainBundle\Doctrine\MessageForumUpdater
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preRemove }
+
+    dof.main.doctrine.notification_updater:
+        class: Dof\Bundle\MainBundle\Doctrine\NotificationUpdater
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    dof_main.admin.notification:
+        class: Dof\Bundle\MainBundle\Admin\NotificationAdmin
+        arguments: [~, Dof\Bundle\MainBundle\Entity\Notification, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Utilisateurs, label: Notification}

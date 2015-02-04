@@ -1,0 +1,27 @@
+parameters:
+    dof_characters.effect_param_loader.class: Dof\Bundle\CharacterBundle\EffectParamLoader
+    dof_characters.effect_t_loader.class: Dof\Bundle\CharacterBundle\EffectTLoader
+
+services:
+    dof_characters.effect_param_loader:
+        class: %dof_characters.effect_param_loader.class%
+        arguments: [ @service_container ]
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
+
+    dof_characters.effect_t_loader:
+        class: %dof_characters.effect_t_loader.class%
+        arguments: [ @service_container ]
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
+
+    dof_characters.twig.effect_extension:
+        class: Dof\Bundle\CharacterBundle\Twig\EffectExtension
+        tags:
+            - { name: twig.extension }
+
+    dof_characters.admin.spell:
+        class: Dof\Bundle\CharacterBundle\Admin\SpellAdmin
+        arguments: [~, Dof\Bundle\CharacterBundle\Entity\Spell, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Personnages, label: Sorts}

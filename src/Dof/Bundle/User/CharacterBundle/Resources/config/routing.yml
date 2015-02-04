@@ -1,0 +1,69 @@
+dof_user_character_homepage:
+    path:     /
+    defaults: { _controller: DofUserCharacterBundle:Build:index }
+
+# Affichage des builds
+dof_user_character_show:
+    path:     /{user}/{character}/{stuff}
+    defaults: { _controller: DofUserCharacterBundle:Build:show }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+
+
+dof_user_character_show_characteristics:
+    path:     /{user}/{character}/{stuff}/characteristics
+    defaults: { _controller: DofUserCharacterBundle:Build:showCharacteristics }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+
+dof_user_character_show_weapondamages:
+    path:     /{user}/{character}/{stuff}/weaponDamages
+    defaults: { _controller: DofUserCharacterBundle:Build:showWeaponDamages }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+
+dof_user_character_show_spellsDamages:
+    path:     /{user}/{character}/{stuff}/spell-damages
+    defaults: { _controller: DofUserCharacterBundle:Build:showSpellsDamages }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+
+dof_user_character_edit:
+    path:     /{user}/{character}/{stuff}/configuration
+    defaults: { _controller: DofUserCharacterBundle:Build:configuration }
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+
+# Ajout dans les builds
+dof_user_character_additem_post:
+    path:     /add-items/
+    defaults: { _controller: DofUserCharacterBundle:Stuff:addItems}
+    requirements:
+        _method: POST
+
+dof_user_character_additem:
+    path:     /{user}/{character}/{stuff}/add/{type}/{slot}/{page}
+    defaults: { _controller: DofItemBundle:Items:showBuildItems, slot: 0, page: 1}
+    requirements:
+        user: '[0-9a-z-]+'
+        character: '[0-9a-z-]+'
+        stuff: '[0-9a-z-]+'
+        page: \d+
+
+
+dof_user_character_create_stuff:
+    path:     /create-stuff/{slug}/
+    defaults: { _controller: DofUserCharacterBundle:Stuff:createStuff}
+    requirements:
+        slug: '[0-9a-z-]+'
+        _method: POST

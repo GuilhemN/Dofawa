@@ -1,0 +1,29 @@
+services:
+    # DofMapBundle:SuperArea and subclasses
+    dof_imp_exp.importer.map_super_areas:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Map\SuperAreaImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: map_super_areas }
+            - { name: dof_imp_exp.importer, provides: beta_map_super_areas }
+
+    dof_imp_exp.importer.map_areas:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Map\AreaImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: map_areas, requires: map_super_areas }
+            - { name: dof_imp_exp.importer, provides: beta_map_areas, requires: beta_map_super_areas }
+
+    dof_imp_exp.importer.map_sub_areas:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Map\SubAreaImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: map_sub_areas, requires: map_areas }
+            - { name: dof_imp_exp.importer, provides: beta_map_sub_areas, requires: beta_map_areas }
+
+    dof_imp_exp.importer.map_positions:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\Map\PositionImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: map_positions, requires: map_sub_areas }
+            - { name: dof_imp_exp.importer, provides: beta_map_positions, requires: beta_map_sub_areas }

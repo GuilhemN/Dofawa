@@ -111,7 +111,7 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Dof\UserBundle\Entity\User
+    user_class: Dof\Bundle\UserBundle\Entity\User
     profile:
         form:
             type: dof_user_profile
@@ -124,8 +124,8 @@ fos_user:
 
 fos_message:
     db_driver: orm
-    thread_class: Dof\MessageBundle\Entity\Thread
-    message_class: Dof\MessageBundle\Entity\Message
+    thread_class: Dof\Bundle\Social\MessageBundle\Entity\Thread
+    message_class: Dof\Bundle\Social\MessageBundle\Entity\Message
 
 # app/config/config.yml
 sonata_block:

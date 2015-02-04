@@ -1,0 +1,22 @@
+parameters:
+    dof_user_character.playerCharacter.form.class: Dof\Bundle\User\CharacterBundle\Form\PlayerCharacterType
+
+services:
+    dof_user_character.playerCharacter.form.type:
+        class: '%dof_user_character.playerCharacter.form.class%'
+        tags:
+            - { name: form.type, alias: dof_user_characterbundle_playercharacter }
+
+    dof_user_character.stuff_converter:
+        class: Dof\Bundle\User\CharacterBundle\ParamConverter\BuildParamConverter
+        arguments: ['@service_container']
+        tags:
+            - { name: request.param_converter, priority: 1}
+
+    build_manager:
+        class: Dof\Bundle\User\CharacterBundle\BuildManager
+        arguments: ['@service_container']
+
+    selected_character:
+        class: Dof\Bundle\User\CharacterBundle\SelectedCharacter
+        arguments: [ @doctrine.orm.entity_manager, @security.context ]
