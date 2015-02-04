@@ -8,7 +8,7 @@
 {% block body %}
 {% autoescape %}
 	<div class="panel panel-default">
-		<div class="panel-heading"><h3>Ajouter une guilde</h3></div>
+		<div class="panel-heading"><h3>{{ 'add_guild' | trans({},'guild') }}</h3></div>
 			<div class="panel-body">
 				<table class="table">
 			        <form method="post" {{ form_enctype(form) }} >
