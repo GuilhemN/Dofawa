@@ -9,20 +9,31 @@
                 <h3>{{ character.name }}</h3>
                 <p>{{ 'level' | trans({'%level%': character.level}, 'item')}}</p>
                 <p>
-                    {% if character.stuffs.toArray() is not empty %}
-                    <a href="{{ path('dof_user_character_show', {'user': character.owner.slug, 'character': character.slug, 'stuff': character.stuffs[0].slug}) }}" class="btn btn-primary" role="button">
-                        Stuffs
-                    </a>
-                    {% endif %}
-                    {% if app.user == character.owner or is_granted('ROLE_USER') %}
-                    <form action="{{ path('dof_user_character_remove') }}" method="POST" onsubmit="return window.confirm('Êtes-vous sûr de vouloir supprimer {{ character.name | e('js') }} et tous ce qui lui est lié ?')">
-                        <input type="hidden" name="id" value="{{ character.id }}">
-                        <button class="btn btn-warning" role="button">
-                            Supprimer
+                    <div class="btn-group">
+                        <a class="btn btn-primary" href="{{ path('dof_user_character_show', {'user': character.owner.slug, 'character': character.slug, 'stuff': character.stuffs[0].slug}) }}">
+                            Voir
+                        </a>
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
                         </button>
-                    </a>
-                    </form>
-                    {% endif %}
+                        <ul class="dropdown-menu" role="menu">
+                            {% if app.user == character.owner or is_granted('ROLE_USER') %}
+                            <li>
+                                <form action="{{ path('dof_user_character_remove') }}" method="POST" onsubmit="return window.confirm('Êtes-vous sûr de vouloir supprimer {{ character.name | e('js') }} et tout ce qui lui est lié ?')">
+                                    <input type="hidden" name="id" value="{{ character.id }}">
+                                    <button class="btn btn-warning" role="button">Supprimer</button>
+                                </form>
+                            </li>
+                            {% endif %}
+                            {#
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            #}
+                        </ul>
+                    </div>
                 </p>
             </div>
         </div>
