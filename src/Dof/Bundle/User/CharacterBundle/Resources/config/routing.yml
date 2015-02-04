@@ -2,6 +2,14 @@ dof_user_character_homepage:
     path:     /{slug}
     defaults: { _controller: DofUserCharacterBundle:Character:index, slug: ~ }
 
+
+dof_user_character_create:
+    path: /create/{slug}
+    defaults: { _controller: DofUserCharacterBundle:Character:create }
+    requirements:
+        _method: POST
+        slug: '[0-9a-z-]+'
+
 dof_user_character_remove:
     path: /remove/
     defaults: { _controller: DofUserCharacterBundle:Character:remove }

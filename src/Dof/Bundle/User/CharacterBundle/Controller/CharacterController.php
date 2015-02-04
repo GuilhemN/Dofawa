@@ -15,13 +15,43 @@ class CharacterController extends Controller
      * @Utils\Secure("ROLE_USER")
      */
     public function indexAction(User $user = null){
-        if($user === null)
-            $user = $this->getUser();
-        elseif(!$this->get('security.context')->isGranted('ROLE_ADMIN') && $user !== $this->getUser())
-            throw $this->createAccessDeniedException();
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->checkUser($user);
         return $this->render('DofUserCharacterBundle:Character:index.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'breeds' => $em->getRepository('DofCharacterBundle:Breed')->findAll()
         ]);
+    }
+
+    /**
+     * @Utils\Secure("ROLE_USER")
+     */
+    public function createAction(User $user = null, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->checkUser($user);
+        if(!$request->request->has('character'))
+            throw new \Exception('New character data needed');
+        else
+            $data = $request->request->get('character');
+
+        $character = new PlayerCharacter();
+        //Name
+        if(empty($data['name']))
+            $data['name'] = 'Personnage sans nom';
+        $character->setName($data['name']);
+        // Level
+        $data['level'] = round((int) $data['level']);
+        if($data['level'] > 200) $data['level'] = 200; else if($data['level'] < 1) $data['level'] = 1;
+        $character->setLevel($data['level']);
+        // Breed
+        $breed = $em->getRepository('DofCharacterBundle:Breed')->find($data['breed']);
+        if($breed === null)
+            throw new \Exception('Breed not found');
+        $character->setBreed($breed);
+        $character->setVisible((boolean) $data['visible']);
+        $em->persist($character);
+        $em->flush($character);
+        return $this->redirect($this->generateUrl('dof_user_character_homepage'));
     }
 
     /**
@@ -35,5 +65,13 @@ class CharacterController extends Controller
         $em->remove($character);
         $em->flush();
         return $this->redirect($this->generateUrl('dof_user_character_homepage'));
+    }
+
+    private function checkUser(User $user = null) {
+        if($user === null)
+            return $this->getUser();
+        if(!$this->get('security.context')->isGranted('ROLE_ADMIN') && $user !== $this->getUser())
+            throw $this->createAccessDeniedException();
+        return $user;
     }
 }

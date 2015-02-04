@@ -13,5 +13,37 @@
 {% block body %}
 {% autoescape %}
     {% include 'DofUserCharacterBundle::list.html.twig' with { 'characters': user.characters } only %}
+
+    {% if app.user == user or is_granted('ROLE_ADMIN') %}
+    <div class="well">
+        <div class="page-header">
+            Créer un personnage
+        </div>
+        <form action="{{ path('dof_user_character_create', {'slug': user.slug}) }}" method="POST">
+            <div class="form-group">
+                <label for="character-name">Nom</label>
+                <input class="form-control" id="character-name" name="character[name]" type="text" required="required">
+            </div>
+            <div class="form-group">
+                <label for="character-level">Niveau</label>
+                <input class="form-control" id="character-level" name="character[level]" placeholder="Password" type="number" step="1" min="1" max="200">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">Classe</label>
+                <select name="character[breed]">
+                    {% for breed in breeds %}
+                        <option value="{{ breed.id }}">{{ breed.getName(locales()) }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input name="character[visible]" type="checkbox"> Confidentiel
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default">Créer</button>
+        </form>
+    </div>
+    {% endif %}
 {% endautoescape %}
 {% endblock %}
