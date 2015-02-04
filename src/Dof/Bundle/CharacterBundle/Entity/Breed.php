@@ -18,6 +18,8 @@ use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
+use Dof\Bundle\CharacterBundle\Gender;
+
 /**
  * Breed
  *
@@ -1033,6 +1035,14 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getFaces()
     {
         return $this->faces;
+    }
+
+    public function getFace($gender = Gender::MALE, $label = 'I') {
+        $expr = Criteria::expr();
+        $criteria = Criteria::create();
+        $criteria->where($expr->eq('gender', $gender));
+        $criteria->andWhere($expr->eq('label', $label));
+        return $this->faces->matching($criteria);
     }
 
     /**

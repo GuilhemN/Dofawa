@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
@@ -14,6 +15,9 @@ use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
+
+use Dof\Bundle\GraphicsBundle\BasicPCLook;
+use Dof\Bundle\CharacterBundle\Gender;
 
 use Dof\Bundle\CharacterBundle\Entity\Breed;
 use Dof\Bundle\User\CharacterBundle\Entity\Stuff;
@@ -216,6 +220,16 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     public function isVisible()
     {
         return $this->visible;
+    }
+
+    public function getLook() {
+        $bpcl = new BasicPCLook();
+        $bpcl
+            ->setBreed($this->getBreed())
+            ->setGender(Gender::MALE)
+            ->setFace($this->getBreed()->getFace(Gender::MALE, 'I'))
+            ->setColors($this->getBreed()->getMaleDefaultColors())
+        ;
     }
 
     public function __toString()

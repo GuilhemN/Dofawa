@@ -134,7 +134,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     * @ORM\OneToMany(targetEntity="Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter", mappedBy="owner")
     * @ORM\JoinColumn(nullable=true)
     */
-    private $builds;
+    private $characters;
 
     /**
     * @var array
@@ -444,14 +444,14 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-    * Add builds
+    * Add characters
     *
-    * @param PlayerCharacter $builds
+    * @param PlayerCharacter $characters
     * @return object
     */
-    public function addBuild(PlayerCharacter $builds)
+    public function addCharacter(PlayerCharacter $characters)
     {
-        $this->builds[] = $builds;
+        $this->characters[] = $characters;
 
         return $this;
     }
@@ -462,21 +462,21 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     * @param PlayerCharacter $builds
     * @return object
     */
-    public function removeBuild(PlayerCharacter $builds)
+    public function removeCharacter(PlayerCharacter $characters)
     {
-        $this->builds->removeElement($builds);
+        $this->characters->removeElement($characters);
 
         return $this;
     }
 
     /**
-    * Get builds
+    * Get characters
     *
     * @return Collection
     */
-    public function getBuilds()
+    public function getCharacters()
     {
-        return $this->builds;
+        return $this->characters;
     }
 
     public function getMinorColumns()

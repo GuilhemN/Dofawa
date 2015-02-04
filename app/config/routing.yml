@@ -24,7 +24,7 @@ dof_forum:
 
 dof_user_character:
     resource: "@DofUserCharacterBundle/Resources/config/routing.yml"
-    prefix:   /builds
+    prefix:   /user/characters
 
 dof_translation:
     resource: "@DofTranslationBundle/Resources/config/routing.yml"
