@@ -1,6 +1,6 @@
 dof_user_character_homepage:
-    path:     /
-    defaults: { _controller: DofUserCharacterBundle:Build:index }
+    path:     /{slug}
+    defaults: { _controller: DofUserCharacterBundle:Build:index, slug: ~ }
 
 # Affichage des builds
 dof_user_character_show:

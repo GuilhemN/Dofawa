@@ -12,7 +12,6 @@ use Dof\Bundle\User\CharacterBundle\Entity\Item;
 use Dof\Bundle\GraphicsBundle\Entity\BuildLook;
 use Dof\Bundle\CharacterBundle\Entity\Breed;
 
-
 use Dof\Bundle\User\CharacterBundle\BuildSlot;
 use Dof\Bundle\CharacterBundle\Gender;
 
@@ -30,10 +29,13 @@ class BuildController extends Controller
      * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
      * @Utils\UsesSession
      */
-    public function indexAction()
+    public function indexAction(User $user = null)
     {
+        if($user === null)
+            $user = $this->getUser();
         $bm = $this->get('build_manager');
-        $user = $this->getUser();
+        if($user !== $this->getUser())
+            throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
         $characters = $em->getRepository('DofUserCharacterBundle:PlayerCharacter')->findByUser($user);
