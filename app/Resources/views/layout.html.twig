@@ -54,7 +54,7 @@
                     {{ render(controller('DofMainBundle:Default:lastUpdate')) }}
                 </div>
                 {% endif %}
-                <div class="{#% if not is_granted('ROLE_SUPER_ADMIN') %#}col-lg-offset-3 {#% endif %#}col-lg-6">
+                <div class="{% if not is_granted('ROLE_SUPER_ADMIN') %}col-lg-offset-3 {% endif %}col-lg-6">
                     <div class="input-group custom-search-form">
                         <input type="text" class="form-control" name="q" placeholder="Rechercher" value="{{ app.request.query.get('q') }}" style="margin-top:10px;">
                         <span class="input-group-btn">
