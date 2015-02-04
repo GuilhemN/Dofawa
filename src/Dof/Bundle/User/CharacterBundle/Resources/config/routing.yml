@@ -1,10 +1,10 @@
-dof_user_character_homepage:
-    path:     /
-    defaults: { _controller: DofUserCharacterBundle:Character:index }
+#dof_user_character_homepage:
+#    path:     /
+#    defaults: { _controller: DofUserCharacterBundle:Character:index }
 
 # Affichage des builds
 dof_user_character_show:
-    path:     /{user}/{character}/{stuff}
+    path:     /{user}/{character}/stuffs/{stuff}
     defaults: { _controller: DofUserCharacterBundle:Build:show }
     requirements:
         user: '[0-9a-z-]+'
@@ -13,7 +13,7 @@ dof_user_character_show:
 
 
 dof_user_character_show_characteristics:
-    path:     /{user}/{character}/{stuff}/characteristics
+    path:     /{user}/{character}/stuffs/{stuff}/characteristics
     defaults: { _controller: DofUserCharacterBundle:Build:showCharacteristics }
     requirements:
         user: '[0-9a-z-]+'
@@ -21,7 +21,7 @@ dof_user_character_show_characteristics:
         stuff: '[0-9a-z-]+'
 
 dof_user_character_show_weapondamages:
-    path:     /{user}/{character}/{stuff}/weaponDamages
+    path:     /{user}/{character}/stuffs/{stuff}/weaponDamages
     defaults: { _controller: DofUserCharacterBundle:Build:showWeaponDamages }
     requirements:
         user: '[0-9a-z-]+'
@@ -29,7 +29,7 @@ dof_user_character_show_weapondamages:
         stuff: '[0-9a-z-]+'
 
 dof_user_character_show_spellsDamages:
-    path:     /{user}/{character}/{stuff}/spell-damages
+    path:     /{user}/{character}/stuffs/{stuff}/spell-damages
     defaults: { _controller: DofUserCharacterBundle:Build:showSpellsDamages }
     requirements:
         user: '[0-9a-z-]+'
@@ -37,7 +37,7 @@ dof_user_character_show_spellsDamages:
         stuff: '[0-9a-z-]+'
 
 dof_user_character_edit:
-    path:     /{user}/{character}/{stuff}/configuration
+    path:     /{user}/{character}/stuffs/{stuff}/configuration
     defaults: { _controller: DofUserCharacterBundle:Build:configuration }
     requirements:
         user: '[0-9a-z-]+'
@@ -52,7 +52,7 @@ dof_user_character_additem_post:
         _method: POST
 
 dof_user_character_additem:
-    path:     /{user}/{character}/{stuff}/add/{type}/{slot}/{page}
+    path:     /{user}/{character}/stuffs/{stuff}/add/{type}/{slot}/{page}
     defaults: { _controller: DofItemBundle:Items:showBuildItems, slot: 0, page: 1}
     requirements:
         user: '[0-9a-z-]+'
