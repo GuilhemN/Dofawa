@@ -10,7 +10,7 @@ class ItemSearchIntent
         $options = [
             'name' => $entities['item']['value'],
         ];
-        $repo = $this->em->getRepository('DofItemsBundle:ItemTemplate');
+        $repo = $this->em->getRepository('DofItemBundle:ItemTemplate');
         $count = $repo->countWithOptions($options, $this->getLocale());
         $items = $repo
             ->findWithOptions(

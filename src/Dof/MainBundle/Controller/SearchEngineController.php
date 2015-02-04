@@ -45,9 +45,9 @@ class SearchEngineController extends Controller
             'name' => $name,
         ];
         $em = $this->getDoctrine()->getManager();
-        $item = $em->getRepository('DofItemsBundle:ItemTemplate')
+        $item = $em->getRepository('DofItemBundle:ItemTemplate')
             ->findWithOptions($options, [], 1, null, $this->get('translator')->getLocale());
 
-        return !empty($item) ? $this->renderView('DofItemsBundle::item.html.twig', ['item' => $item[0]]) : null;
+        return !empty($item) ? $this->renderView('DofItemBundle::item.html.twig', ['item' => $item[0]]) : null;
     }
 }
