@@ -1043,7 +1043,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
         $criteria = Criteria::create();
         $criteria->where($expr->eq('gender', $gender));
         $criteria->andWhere($expr->eq('label', $label));
-        return $this->faces->matching($criteria);
+        return $this->faces->matching($criteria)->first();
     }
 
     /**
