@@ -221,7 +221,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
         return $this->visible;
     }
 
-    public function getLook() {
+    public function getEntityLook() {
         $bpcl = new BasicPCLook();
         $bpcl
             ->setBreed($this->getBreed())
@@ -229,6 +229,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
             ->setFace($this->getBreed()->getFace(Gender::MALE, 'I'))
             ->setColors($this->getBreed()->getMaleDefaultColors())
         ;
+        return $bpcl->toEntityLook();
     }
 
     public function __toString()
