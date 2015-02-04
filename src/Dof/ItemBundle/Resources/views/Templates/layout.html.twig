@@ -1,0 +1,204 @@
+{% trans_default_domain 'item' %}
+{% import 'DofMainBundle::tabs.html.twig' as tabs %}
+{% variable actions = {
+    'craft': {
+        'path': path('dof_crafts_homepage'),
+        'name': 'craft',
+        'last_action': 'craft'
+    }
+} %}
+
+{% autoescape  %}
+{% if display != 'modal' %}
+<div class="panel panel-default item">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            {% block name %}
+                {{ itemTemplate.getName(locales()) }}
+            {% endblock %}
+            <font size="2">{{ 'level' | trans({'%level%': itemTemplate.level}) }}</font>
+            <span class="pull-right">{{ itemTemplate.type.getName(locales()) }}</span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        {% endif %}
+        <div class="row">
+            {# Left column #}
+            <div class="col-sm-3">
+                <a href="{{ path('dof_items_show', {'slug': itemTemplate.slug}) }}" class="thumbnail">
+                    <img class="img-responsive" src="{{ (itemTemplate.webPath) ? asset(itemTemplate.webPath) : asset('bundles/dofitems/img/default.png') }}" alt="{{ itemTemplate.getName(locales()) }}">
+                </a>
+                <div class="text-center">
+                    <p>
+                        {% include 'DofMainBundle::release-labels.html.twig' with {'item': itemTemplate} only %}
+                    </p>
+
+                    {% block bonus %}
+                    {% endblock %}
+
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <hr />
+                    <p>
+                        {% if not itemTemplate.preliminary and itemTemplate.visible %}
+                        <a class="glyphicon glyphicon-link" target="_blank" href="{{ 'item' | trans({'%id%': itemTemplate.id, '%slug%': itemTemplate.getName(locales()) | slugify }, 'links') }}"></a>
+                        {% endif %}
+                        <a class="glyphicon glyphicon-edit" href="{{ path('admin_dof_items_itemtemplate_edit', {'id': itemTemplate.id}) }}"></a>
+                        <a class="glyphicon glyphicon-camera" href="{{ path('dof_items_addskin', {'id': itemTemplate.id}) }}"></a>
+                        {% block admin_links %}
+                        {% endblock %}
+                    </p>
+                    {% endif %}
+
+                    {% block left_menu %}
+                    {% endblock %}
+
+                </div>
+            </div>
+
+            {# Right column #}
+            <div class="col-sm-9">
+                {# Menu tabs #}
+                <ul class="nav nav-pills" role="tablist">
+                    {{ tabs.initialize() }}
+
+                    {% set caracts %}
+                        {% include 'DofItemBundle::characteristics.html.twig' with {'item': item, 'updatable': type == 'build' and can_write | default(false)} %}
+                    {% endset %}
+                    {% set criteria %}
+                        {% include 'DofItemBundle::criteria.html.twig' with {'criterion': itemTemplate.treatedCriteria} %}
+                    {% endset %}
+
+                    {% variable active_tab = false %}
+                    {% block tabs_menu %}
+                        {# Effets #}
+                        {% if caracts | trim is not empty %}
+                            <li{{ tabs.activate('item') }}>
+                                <a href="#caracts-item{{ item.id }}" role="tab" data-toggle="tab">
+                                    {{ 'tabs.effects' | trans() }}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {# Recette #}
+                        {% if itemTemplate.components is not empty %}
+                        <li{{ tabs.activate('recipe') }}>
+                            <a href="#recipe-item{{ item.id }}" role="tab" data-toggle="tab">
+                                {{ 'tabs.recipe' | trans() }}
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {# Conditions #}
+                        {% if criteria | trim is not empty %}
+                            <li{{ tabs.activate('criteria') }}>
+                                <a href="#criteria-item{{ item.id }}" role="tab" data-toggle="tab">
+                                    {{ 'tabs.conditions' | trans() }}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {# Drops #}
+                        {% if itemTemplate.drops is not empty %}
+                            <li{{ tabs.activate('drops') }}>
+                                <a href="#drops-item{{ item.id }}" role="tab" data-toggle="tab">
+                                    Drop sur
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {# Drops #}
+                        {% if itemTemplate.compounds is not empty %}
+                        <li{{ tabs.activate('compounds') }}>
+                            <a href="#compounds-item{{ item.id }}" role="tab" data-toggle="tab">
+                                Dans la recette de
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% endblock %}
+                </ul>
+                <div class="tab-content">
+                    {% block tabs_content %}
+                        {# Effets #}
+                        {% if caracts is not empty %}
+                        <div class="tab-pane{{ tabs.active('item') }}" id="caracts-item{{ item.id }}">
+                            {{ caracts }}
+                        </div>
+                        {% endif %}
+
+                        {# Recette #}
+                        {% if itemTemplate.components is not empty %}
+                        <div class="tab-pane{{ tabs.active('recipe') }}" id="recipe-item{{ item.id }}">
+                            {% for component in itemTemplate.components %}
+                            <a href="{{ path('dof_items_show', {'slug': component.component.slug}) }}">
+                                {{ component.component.getName(locales()) }}
+                            </a>
+                            x {{ component.quantity }}
+                            <br />
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        {# Conditions #}
+                        {% if criteria | trim is not empty %}
+                        <div class="tab-pane{{ tabs.active('criteria') }}" id="criteria-item{{ item.id }}">
+                            <ul class="list-unstyled">
+                                {{ criteria }}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                        {# Drops #}
+                        {% if itemTemplate.drops is not empty %}
+                        <div class="tab-pane{{ tabs.active('drops') }}" id="drops-item{{ item.id }}">
+                            {% for drop in itemTemplate.drops %}
+                                <a href="{{ path('dof_monster_show', {'slug': drop.monster.slug}) }}">
+                                    {{ drop.monster.getName(locales()) }}
+                                </a>
+                                <br/>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        {# Compounds #}
+                        {% if itemTemplate.compounds is not empty %}
+                        <div class="tab-pane{{ tabs.active('compounds') }}" id="compounds-item{{ item.id }}">
+                            {% for compound in itemTemplate.compounds %}
+                            <a href="{{ path('dof_items_show', {'slug': compound.compound.slug}) }}">
+                                {{ compound.compound.getName(locales()) }}
+                            </a>
+                            <br/>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+
+            {# Close right column #}
+            </div>
+        {% set descriptionCriteria = block('tabs_menu') | trim is empty %}
+        {% if not descriptionCriteria %}
+        </div>
+        {% endif %}
+        <div>
+            <hr />
+            {% block footer %}
+            {% endblock %}
+
+            {% if itemTemplate.description == '#1' %}
+                Arme éthérée
+            {% else %}
+                {{ itemTemplate.getDescription(locales()) }}
+            {% endif %}
+        </div>
+        {% if descriptionCriteria %}
+        </div>
+        {% endif %}
+
+        {% block more %}
+        {% endblock %}
+
+        {% if display != 'modal' %}
+    </div>
+</div>
+{% endif %}
+{% endautoescape %}

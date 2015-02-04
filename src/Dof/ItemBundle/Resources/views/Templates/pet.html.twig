@@ -1,0 +1,64 @@
+{% extends "DofItemBundle:Templates:animal.html.twig" %}
+{% import 'DofMainBundle::tabs.html.twig' as tabs %}
+
+{% block left_menu %}
+    {% if app.user is not empty and itemTemplate.minFeedInterval is not null %}
+        {% if not item.personalized %}
+        <p>
+            <a href="{{ path('dof_items_manager_pets_add', {id: itemTemplate.id}) }}">
+                <button type="button" class="btn btn-primary">Elever</button>
+            </a>
+        </p>
+        {% else %}
+        <p>
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger">Elever</button>
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+
+                    {% if item.raise %}
+                        <li>
+                            <form method="POST" action="{{ path('dof_items_manager_pets_feed') }}">
+                                <input type="hidden"  name="pets[]" value="{{ item.id }}" >
+                                <button type="submit" class="btn btn-link">Nourrir</button>
+                            </form>
+                        </li>
+                        <a href="{{ path('dof_items_manager_pets_remove', {id: item.id}) }}"><button class="btn btn-link">Supprimer</button></a>
+                    {% else %}
+                        <a href="{{ path('dof_items_manager_pets_raise', {id: item.id}) }}"><button class="btn btn-link">Elever</button></a>
+                    {% endif %}
+                </ul>
+            </div>
+        </p>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block tabs_menu %}
+    {% set test = 'newttest' %}
+    {{ parent() }}
+    {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
+        <li{{ tabs.activate('food') }}>
+            <a href="#food-item{{ item.id }}" role="tab" data-toggle="tab">{{ 'tabs.diet' | trans({}, 'item') }}</a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block tabs_content %}
+    {{ parent() }}
+    {% if itemTemplate.foodTypes is not empty or itemTemplate.foodItems is not empty %}
+        <div class="tab-pane{{ tabs.active('food') }}" id="food-item{{ item.id }}">
+            {% for food_type in itemTemplate.foodTypes %}
+                {{ food_type.getName(locales()) }}
+            <br />
+            {% endfor %}
+            {% for food_item in itemTemplate.foodItems %}
+                {{ food_item.getName(locales()) }}
+            <br />
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

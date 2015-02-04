@@ -1,0 +1,14 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+    {{ form(form, { 'style': 'horizontal', 'action': path(app.request.get('_route'), app.request.attributes.get('_route_params') | merge({'page': 1})) }) }}
+    Il y a {{ count }} résultats.
+
+    {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+
+    {% for item in items %}
+        {% include 'DofItemBundle::item.html.twig' with {'item': item, 'slugs': slugs | default(null)} %}
+    {% endfor %}
+
+    {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+{% endblock %}

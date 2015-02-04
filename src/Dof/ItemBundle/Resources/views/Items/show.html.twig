@@ -1,0 +1,11 @@
+{% extends 'DofItemBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ item.getName(locales()) }}</li>
+{% endblock %}
+
+{% trans_default_domain 'item' %}
+{% block body %}
+    {% include 'DofItemBundle::item.html.twig' with {'item': item} %}
+{% endblock %}

@@ -1,0 +1,3 @@
+dof_quest_eternal_harvest_homepage:
+    path:     /
+    defaults: { _controller: DofQuestBundle:EternalHarvest:index }

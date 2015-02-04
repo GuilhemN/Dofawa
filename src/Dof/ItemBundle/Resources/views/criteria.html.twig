@@ -1,0 +1,33 @@
+{% if criterion is not empty and criterion.visible %}
+    {% set class = class_of(criterion) %}
+    {% set description = criterion.htmlDescription is defined ? criterion.htmlDescription : null %}
+    {% if class != 'SimpleCriterion' or description | trim is not empty %}
+        {% if criterion.structureVisible %}
+
+        <li>
+        {% endif %}
+            {% if class == 'SimpleCriterion' %}
+                {{ description | raw }}
+            {% else %}
+                {% if criterion.structureVisible %}
+                    {% if class == 'AndCriterion' %}
+                        Toutes ces conditions :
+                    {% else %}
+                        Au moins une de ces conditions :
+                    {% endif %}
+                    <ul>
+                        {% for c in criterion.criteria %}
+                            {% include 'DofItemBundle::criteria.html.twig' with {'criterion': c} only %}
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {% for c in criterion.criteria %}
+                        {% include 'DofItemBundle::criteria.html.twig' with {'criterion': c} only %}
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        {% if criterion.structureVisible %}
+        </li>
+        {% endif %}
+    {% endif %}
+{% endif %}
