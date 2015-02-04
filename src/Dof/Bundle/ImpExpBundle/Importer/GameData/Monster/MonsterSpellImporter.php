@@ -41,7 +41,6 @@ class MonsterSpellImporter extends AbstractGameDataImporter
                         continue;
 
                     $monster->addSpell($spell);
-                    $spell->addMonster($monster);
                 }
 
             ++$rowsProcessed;
