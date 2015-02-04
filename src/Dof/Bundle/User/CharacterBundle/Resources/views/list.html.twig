@@ -3,14 +3,26 @@
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
             {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
-                'look': character.stuffs[0].look.toEntityLook()
+                'look': character.entityLook
             } only %}
             <div class="caption">
                 <h3>{{ character.name }}</h3>
                 <p>{{ 'level' | trans({'%level%': character.level}, 'item')}}</p>
                 <p>
-                    <a href="{{ path('dof_user_character_show', {'user': character.owner.slug, 'character': character.slug, 'stuff': character.stuffs[0].slug}) }}" class="btn btn-primary" role="button">{{ 'see' | trans({},'generalTrans') }}</a>
-                    {#<a href="#" class="btn btn-default" role="button">Button</a>#}
+                    {% if character.stuffs.toArray() is not empty %}
+                    <a href="{{ path('dof_user_character_show', {'user': character.owner.slug, 'character': character.slug, 'stuff': character.stuffs[0].slug}) }}" class="btn btn-primary" role="button">
+                        Stuffs
+                    </a>
+                    {% endif %}
+                    {% if app.user == character.owner or is_granted('ROLE_USER') %}
+                    <form action="{{ path('dof_user_character_remove') }}" method="POST" onsubmit="return windows.confirm('Êtes-vous sûr de vouloir supprimer {{ character.name | e('js') }} et tous ce qui lui est lié ?')">
+                        <input type="hidden" name="id" value="{{ character.id }}">
+                        <button class="btn btn-warning" role="button">
+                            Supprimer
+                        </button>
+                    </a>
+                    </form>
+                    {% endif %}
                 </p>
             </div>
         </div>

@@ -2,6 +2,12 @@ dof_user_character_homepage:
     path:     /{slug}
     defaults: { _controller: DofUserCharacterBundle:Character:index, slug: ~ }
 
+dof_user_character_remove:
+    path: /remove/
+    defaults: { _controller: DofUserCharacterBundle:Character:remove }
+    requirements:
+        _method: POST
+
 # Affichage des builds
 dof_user_character_show:
     path:     /{user}/{character}/stuffs/{stuff}
