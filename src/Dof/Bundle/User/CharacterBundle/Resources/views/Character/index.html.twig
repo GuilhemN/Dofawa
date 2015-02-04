@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block body %}
+{% autoescape %}
     {% for character in user.characters %}
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
@@ -25,4 +26,5 @@
         </div>
     </div>
     {% endfor %}
+{% endautoescape %}
 {% endblock %}
