@@ -22,7 +22,7 @@
                             <li>
                                 <form action="{{ path('dof_user_character_remove') }}" method="POST" onsubmit="return window.confirm('Êtes-vous sûr de vouloir supprimer {{ character.name | e('js') }} et tout ce qui lui est lié ?')">
                                     <input type="hidden" name="id" value="{{ character.id }}">
-                                    <input type="submit" value="Supprimer" />
+                                    <button type="submit" class="btn btn-link">Supprimer</button>
                                 </form>
                             </li>
                             {% endif %}
