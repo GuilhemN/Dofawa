@@ -132,7 +132,7 @@
                 {% endfor %}
             </div>
             {% endif %}
-            {% if paramOf | length > 0 %}
+            {% if paramOf | default({}) | length > 0 %}
                 <hr />
                 <b>Invoqué / Influencé par :</b>
                 {% for spell in paramOf %}
