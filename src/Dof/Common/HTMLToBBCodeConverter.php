@@ -5,9 +5,9 @@ class HTMLToBBCodeConverter
 {
     public static function process ($text) {
         $replaces = [
-            '<h[1-7](.*)>(.*)</h[1-7]>' => '[b]$2[/b]',
+            '<h[1-7].*>(.*)</h[1-7]>' => '[b]$1[/b]',
             '</p><p' => "</p>\n<p",
-            '<p[^>]*>' => "\n\n",
+            '<p[^>]*>' => "\n",
             '</p>' => '',
             '<br(.*)>' => "\n",
             '<b>' => '[b]',
@@ -40,9 +40,9 @@ class HTMLToBBCodeConverter
         $values = array_values($replaces);
 
         $keys = array_map(function ($k) {
-            return '#' . $k . '#Ui';
+            return '#' . $k . '#Uis';
         }, $keys);
 
-        return preg_replace($keys, $values, $text);
+        return preg_replace($keys, $values, htmlspecialchars_decode($text));
     }
 }
