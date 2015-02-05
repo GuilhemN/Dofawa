@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+{% autoescape %}
     <form class="form-horizontal" action="{{ path('dof_monster_homepage') }}" method="GET">
         <div class="form-group">
             <label for="monster-name" class="col-sm-2 control-label">Nom</label>
@@ -39,6 +40,7 @@
     {% for monster in monsters %}
         {% include 'DofMonsterBundle::monster.html.twig' with {'monster': monster} only %}
     {% endfor %}
-    
+
     {% include 'DofMainBundle:Default:pagination.html.twig' with {'pagination': pagination} %}
+{% endautoescape %}
 {% endblock %}
