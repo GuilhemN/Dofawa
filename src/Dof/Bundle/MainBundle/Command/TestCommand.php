@@ -38,7 +38,12 @@ class TestCommand extends ContainerAwareCommand
                 $article->setDescriptionPt(HTMLToBBCodeConverter::process($article->getDescriptionPt()));
                 $article->setDescriptionJa(HTMLToBBCodeConverter::process($article->getDescriptionJa()));
                 $article->setDescriptionRu(HTMLToBBCodeConverter::process($article->getDescriptionRu()));
+                try{
                 $su->reassignSlug($article);
+            }
+            catch(\Exception $e) {
+                throw  new \Exception($article->getId());
+            }
             }
             $em->flush();
             $em->clear();
