@@ -44,7 +44,6 @@ class TestCommand extends ContainerAwareCommand
             $em->flush();
             $em->clear();
             $i++;
-            break;
         }
     }
 }
