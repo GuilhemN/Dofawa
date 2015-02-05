@@ -8,6 +8,7 @@ parameters:
 
     xn.bbcode.language.class: XN\BBCode\Language
     xn.bbcode.simple_tag_template.class: XN\BBCode\TagTemplate\SimpleTagTemplate
+    xn.bbcode.list_tag_template.class: XN\BBCode\TagTemplate\ListTagTemplate
     xn.bbcode.item_tag_template.class: XN\BBCode\TagTemplate\ItemTagTemplate
     xn.bbcode.link_tag_template.class: XN\BBCode\TagTemplate\LinkTagTemplate
     xn.bbcode.image_tag_template.class: XN\BBCode\TagTemplate\ImageTagTemplate
@@ -69,6 +70,12 @@ services:
             - { name: xn.bbcode.use, module: basics }
             - { name: xn.bbcode.use, module: media }
             - { name: xn.bbcode.use, module: entities }
+
+    xn.bbcode.list_tag_template:
+        class: %xn.bbcode.list_tag_template.class%
+        arguments: ['list', 'ul', '', '']
+        tags:
+            - { name: xn.bbcode.publish, module: lists }
 
     xn.bbcode.item_tag_template:
         class: %xn.bbcode.item_tag_template.class%
