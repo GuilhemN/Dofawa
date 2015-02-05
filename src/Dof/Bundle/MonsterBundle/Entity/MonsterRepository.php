@@ -19,6 +19,8 @@ class MonsterRepository extends EntityRepository
         $qb->join('m.grades', 'g');
         if($type == 'count')
             $qb->select(array('COUNT(m)'));
+        else
+            $qb->select(['m', 'g']);
 
         if(!empty($options['name']))
             $qb
