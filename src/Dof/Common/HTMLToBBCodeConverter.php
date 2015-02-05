@@ -36,7 +36,7 @@ class HTMLToBBCodeConverter
             '<img.+src="(.*)".*>' => '[img]$1[/img]',
             '<a.+href="(.*)".*>(.*)</a>' => '[url=$1]$2[/url]',
             '<span.*>(.*)</span>' => '$1',
-            '(\[-?[0-9]+(,|;)-?[0-9]+\])' => '[raw]$1[/raw]'
+            '?<!\[raw[^\]]*\])(\[-?[0-9]+(,|;)-?[0-9]+\])' => '[raw]$1[/raw]'
         ];
 
         $keys = array_keys($replaces);
