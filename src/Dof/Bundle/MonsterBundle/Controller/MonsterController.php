@@ -22,7 +22,7 @@ class MonsterController extends Controller
         $pagination = array(
             'page' => $page,
             'route' => $request->attributes->get('_route'),
-            'pages_count' => ceil($count / $perPage),
+            'pages_count' => ceil($count / self::PER_PAGE),
             'route_params' => []
         );
         return $this->render('DofMonsterBundle:Monster:index.html.twig', [
