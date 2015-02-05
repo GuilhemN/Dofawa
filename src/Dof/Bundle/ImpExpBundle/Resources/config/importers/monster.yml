@@ -5,7 +5,7 @@ services:
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: dungeons, requires: map_positions }
-            - { name: dof_imp_exp.importer, provides: beta_dungeons, requires: beta_map_positions }
+            - { name: dof_imp_exp.importer, provides: beta_dungeons, requires: "dungeons beta_map_positions" }
 
     dof_imp_exp.importer.monster_dungeons:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterDungeonImporter
@@ -26,14 +26,14 @@ services:
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: monster_races, requires: monster_super_races }
-            - { name: dof_imp_exp.importer, provides: beta_monster_races, requires: beta_monster_super_races }
+            - { name: dof_imp_exp.importer, provides: beta_monster_races, requires: "monster_races beta_monster_super_races" }
 
     dof_imp_exp.importer.monsters:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterImporter
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: monsters, requires: monster_races }
-            - { name: dof_imp_exp.importer, provides: beta_monsters, requires: beta_monster_races }
+            - { name: dof_imp_exp.importer, provides: beta_monsters, requires: "monsters beta_monster_races" }
 
     dof_imp_exp.importer.arch_monsters:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\ArchMonsterImporter

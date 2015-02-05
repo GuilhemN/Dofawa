@@ -54,7 +54,7 @@ services:
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: job }
-            - { name: dof_imp_exp.importer, provides: beta_job }
+            - { name: dof_imp_exp.importer, provides: beta_job, requires: job }
 
     # DofCharacterBundle:EffectTemplate
     dof_imp_exp.importer.effect_templates:
@@ -70,7 +70,7 @@ services:
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: states }
-            - { name: dof_imp_exp.importer, provides: beta_states }
+            - { name: dof_imp_exp.importer, provides: beta_states, requires: states }
 
     # DofCharacterBundle:Emoticon
     dof_imp_exp.importer.emoticons:
@@ -78,7 +78,7 @@ services:
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: emoticons }
-            - { name: dof_imp_exp.importer, provides: beta_emoticons }
+            - { name: dof_imp_exp.importer, provides: beta_emoticons, requires: emoticons }
 
     # DofCharacterBundle:Titles
     dof_imp_exp.importer.titles:
@@ -86,7 +86,7 @@ services:
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: titles }
-            - { name: dof_imp_exp.importer, provides: beta_titles }
+            - { name: dof_imp_exp.importer, provides: beta_titles, requires: titles }
 
     # DofItemBundle:Document
     dof_imp_exp.importer.documents:
@@ -94,7 +94,7 @@ services:
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: documents }
-            - { name: dof_imp_exp.importer, provides: beta_documents }
+            - { name: dof_imp_exp.importer, provides: beta_documents, requires: documents }
 
     # DofCharacterBundle:AlignmentSide
     dof_imp_exp.importer.alignment_sides:
@@ -102,7 +102,7 @@ services:
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: alignment_sides }
-            - { name: dof_imp_exp.importer, provides: beta_alignment_sides }
+            - { name: dof_imp_exp.importer, provides: beta_alignment_sides, requires: alignment_sides }
 
 
     # DofMainBundle:Month
