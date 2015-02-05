@@ -53,7 +53,7 @@ class QuestArticle extends Article
     public function __toString() {
         try {
             if(empty($this->quest))
-                return $this->nameFr;
+                return $this->nameFr . '[' . $this->id . ']';
             return $this->quest->getNameFr();
         } catch (\Exception $e) {
 
