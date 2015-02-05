@@ -17,7 +17,7 @@ class MonsterController extends Controller
         $options = $request->query->get('monster');
         $locale = $this->get('translator')->getLocale();
 
-        $monsters = $repo->findWithOptions($options, ['level' => 'DESC'], self::PER_PAGE, ($page - 1) * self::PER_PAGE, $locale);
+        $monsters = $repo->findWithOptions($options, [], self::PER_PAGE, ($page - 1) * self::PER_PAGE, $locale);
         $count = $repo->countWithOptions($options, $locale);
         $pagination = array(
             'page' => $page,

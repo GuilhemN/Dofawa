@@ -16,6 +16,7 @@ class MonsterRepository extends EntityRepository
         $options = (array) $options;
         $qb = $this->createQueryBuilder('m');
 
+        $qb->join('m.grades', 'g');
         if($type == 'count')
             $qb->select(array('COUNT(m)'));
 
@@ -29,7 +30,9 @@ class MonsterRepository extends EntityRepository
                 ->andWhere('m.release LIKE :release')
                 ->setParameter('release', '%' . $options['maj'] . '%')
             ;
-        $qb->andWhere('m.deprecated = false');
+        $qb
+            ->andWhere('m.deprecated = false')
+            ->addOrderBy('g.level', 'DESC');
 
         foreach($orders as $column => $order)
             $qb->addOrderBy('m.' . $column, $order);
@@ -47,7 +50,7 @@ class MonsterRepository extends EntityRepository
                 ->getResult();
                   ;
     }
-    
+
 	public function countWithOptions($options = array(), $locale = 'fr'){
 		return $this->findWithOptions($options, array(), null, null, $locale, 'count');
 	}
