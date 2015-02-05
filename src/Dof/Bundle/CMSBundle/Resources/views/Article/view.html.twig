@@ -29,7 +29,7 @@
                 </small>
             </h1>
             By <a href="{{ path('dof_profile_userpage', {'slug' : article.owner.slug}) }}">{{ article.owner.username }}</a>
-            {% if article.owner.username != article.updater.username %}
+            {% if article.updater is not null and article.owner.username != article.updater.username %}
                 Edité par <a href="{{ path('dof_profile_userpage', {'slug' : article.updater.slug}) }}">{{ article.updater.username }}</a>
             {% endif %}
         </div>
