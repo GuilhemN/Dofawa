@@ -28,7 +28,7 @@ class MonsterRepository extends EntityRepository
         if(!empty($options['update']))
             $qb
                 ->andWhere('m.release LIKE :release')
-                ->setParameter('release', '%' . $options['maj'] . '%')
+                ->setParameter('release', '%' . $options['update'] . '%')
             ;
         $qb
             ->andWhere('m.deprecated = false')
