@@ -1,8 +1,8 @@
 {% trans_default_domain 'monster' %}
 
 {% autoescape  %}
-{% set min = monster.minGrade %}
-{% set max = monster.maxGrade %}
+    {% set min = monster.minGrade %}
+    {% set max = monster.maxGrade %}
     <div class="panel panel-default item">
         <div class="panel-heading">
             <h3 class="panel-title">{{ monster.getName(locales())}} <font size="2">Niveau : {{ min.level }} {% if max.level != min.level %}- {{ max.level}}{% endif %}</font></h3>
