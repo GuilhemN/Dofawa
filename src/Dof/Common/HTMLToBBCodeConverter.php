@@ -5,6 +5,8 @@ class HTMLToBBCodeConverter
 {
     public static function process ($text) {
         $replaces = [
+            "\n" => '',
+            "\r" => '',
             '<h[1-7].*>(.*)</h[1-7]>' => '[b]$1[/b]',
             '</p><p' => "</p>\n<p",
             '<p[^>]*>' => "\n",
