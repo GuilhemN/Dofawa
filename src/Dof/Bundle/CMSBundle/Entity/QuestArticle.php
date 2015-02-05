@@ -51,12 +51,6 @@ class QuestArticle extends Article
     public function getClass() { return 'quest'; }
 
     public function __toString() {
-        try {
-            if(empty($this->quest))
-                return $this->nameFr . '[' . $this->id . ']';
-            return $this->quest->getNameFr();
-        } catch (\Exception $e) {
-
-        }
+        return empty($this->quest) ? ($this->nameFr . '[' . $this->id . ']') : $this->quest->getNameFr();
     }
 }
