@@ -25,13 +25,10 @@ class TestCommand extends ContainerAwareCommand
         $i = 0;
         while(1){
             $articles = $em->getRepository('DofCMSBundle:Article')->findBy([], ['id' => 'DESC'], 60, $i * 60);
+            $output->writeLn($i);
             if(empty($articles))
                 break;
-                $i2 = 0;
             foreach($articles as $article) {
-                $i2++;
-                if($i2 == 3)
-                    echo HTMLToBBCodeConverter::process($article->getDescriptionFr());
                 $article->setDescriptionFr(HTMLToBBCodeConverter::process($article->getDescriptionFr()));
                 $article->setDescriptionEn(HTMLToBBCodeConverter::process($article->getDescriptionEn()));
                 $article->setDescriptionDe(HTMLToBBCodeConverter::process($article->getDescriptionDe()));
