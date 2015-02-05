@@ -43,6 +43,6 @@ class HTMLToBBCodeConverter
             return '#' . $k . '#Uis';
         }, $keys);
 
-        return preg_replace($keys, $values, htmlspecialchars_decode($text));
+        return preg_replace($keys, $values, html_entity_decode($text));
     }
 }
