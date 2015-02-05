@@ -32,7 +32,8 @@ class MonsterRepository extends EntityRepository
             ;
         $qb
             ->andWhere('m.deprecated = false')
-            ->addOrderBy('g.level', 'DESC');
+            ->addOrderBy('g.level', 'DESC')
+            ->groupBy('m.id');
 
         foreach($orders as $column => $order)
             $qb->addOrderBy('m.' . $column, $order);
