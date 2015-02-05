@@ -22,6 +22,7 @@ class TestCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine')->getManager();
+        $su = $this->getContainer()->get('xn.doctrine.sluggable_updater');
         $i = 0;
         while(1){
             $articles = $em->getRepository('DofCMSBundle:Article')->findBy([], ['id' => 'DESC'], 60, $i * 60);
@@ -37,7 +38,7 @@ class TestCommand extends ContainerAwareCommand
                 $article->setDescriptionPt(HTMLToBBCodeConverter::process($article->getDescriptionPt()));
                 $article->setDescriptionJa(HTMLToBBCodeConverter::process($article->getDescriptionJa()));
                 $article->setDescriptionRu(HTMLToBBCodeConverter::process($article->getDescriptionRu()));
-                $em->persist($article);
+                $su->reassignSlug($tpl);
             }
             $em->flush();
             $em->clear();
