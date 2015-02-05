@@ -7,9 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use XN\Grammar\Reader;
-use XN\Grammar\StringReader;
-use Dof\ItemsBundle\Criteria\CriteriaParser;
+use Dof\Common\HTMLToBBCodeConverter;
 
 class TestCommand extends ContainerAwareCommand
 {
@@ -24,15 +22,29 @@ class TestCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine')->getManager();
-
-        $replace = [
-            '<textarea(.*?)>(.*?)<\/textarea>' => '[code]$2[/code]',
-            
-        ];
-        $keys = array_map(function($v) {
-            return '#' . $v . '#';
-        }, array_keys($replace));
-
-        preg_replace($keys, $replace, $content);
+        $i = 0;
+        while(1){
+            $articles = $em->getRepository('DofCMSBundle:Article')->findBy([], ['id' => 'DESC'], 60, $i * 60);
+            if(empty($articles))
+                break;
+                $i2 = 0;
+            foreach($articles as $article) {
+                $i2++;
+                if($i2 == 3)
+                    echo HTMLToBBCodeConverter::process($article->getDescriptionFr());
+                $article->setDescriptionFr(HTMLToBBCodeConverter::process($article->getDescriptionFr()));
+                $article->setDescriptionEn(HTMLToBBCodeConverter::process($article->getDescriptionEn()));
+                $article->setDescriptionDe(HTMLToBBCodeConverter::process($article->getDescriptionDe()));
+                $article->setDescriptionEs(HTMLToBBCodeConverter::process($article->getDescriptionEs()));
+                $article->setDescriptionIt(HTMLToBBCodeConverter::process($article->getDescriptionIt()));
+                $article->setDescriptionPt(HTMLToBBCodeConverter::process($article->getDescriptionPt()));
+                $article->setDescriptionJa(HTMLToBBCodeConverter::process($article->getDescriptionJa()));
+                $article->setDescriptionRu(HTMLToBBCodeConverter::process($article->getDescriptionRu()));
+            }
+            $em->flush();
+            $em->clear();
+            $i++;
+            break;
+        }
     }
 }
