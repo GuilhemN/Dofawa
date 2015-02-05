@@ -6,7 +6,7 @@
 
 {% block body %}
 {% autoescape %}
-    {% set options = app.request.request.has('monster') ? app.request.request.get('monster') : {} %}
+    {% set options = app.request.query.has('monster') ? app.request.query.get('monster') : {} %}
     <form class="form-horizontal" action="{{ path('dof_monster_homepage') }}" method="GET">
         <div class="form-group">
             <label for="monster-name" class="col-sm-2 control-label">Nom</label>

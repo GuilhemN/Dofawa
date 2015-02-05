@@ -16,11 +16,8 @@ class MonsterRepository extends EntityRepository
         $options = (array) $options;
         $qb = $this->createQueryBuilder('m');
 
-        $qb->join('m.grades', 'g');
         if($type == 'count')
             $qb->select(array('COUNT(m)'));
-        else
-            $qb->select(['m', 'g']);
 
         if(!empty($options['name']))
             $qb
@@ -34,7 +31,8 @@ class MonsterRepository extends EntityRepository
             ;
         $qb
             ->andWhere('m.deprecated = false')
-            ->addOrderBy('g.level', 'DESC');
+            ->orderBy('m.name' . ucfirst($locale))
+        ;
 
         foreach($orders as $column => $order)
             $qb->addOrderBy('m.' . $column, $order);
@@ -46,7 +44,6 @@ class MonsterRepository extends EntityRepository
 
         else
             return $qb
-                ->groupBy('m.id')
                 ->getQuery()
                 ->setFirstResult($offset)
                 ->setMaxResults($limit)
