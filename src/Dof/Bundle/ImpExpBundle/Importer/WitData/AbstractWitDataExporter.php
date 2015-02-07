@@ -83,7 +83,7 @@ abstract class AbstractWitDataExporter implements ImporterInterface
         'http' => [
             'method' => strtoupper($method),
             'header' => "Authorization: Bearer " . $this->key . "\r\n" .
-                "Accept: application/vnd.wit.20140401+json\r\n" .
+                "Accept: application/vnd.wit.20150201+json\r\n" .
                 $header
             ]
         ];
