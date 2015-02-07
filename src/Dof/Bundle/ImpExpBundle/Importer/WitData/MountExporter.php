@@ -17,7 +17,7 @@ class MountExporter extends AbstractWitDataExporter
         $mounts = $this->dm->getRepository('DofItemBundle:MountTemplate')->findNames();
 
         foreach($mounts as $mount)
-            $data['values'] = [
+            $data['values'][] = [
                 'value' => $mount['nameFr'],
                 'expression' => $mount['nameEn'],
                 'metadata' => [
