@@ -103,7 +103,7 @@ class URLBuilder
         .((isset($parse_url['port'])) ? ':' . $parse_url['port'] : '')
         . '/'
         .((isset($parse_url['path'])) ? $parse_url['path'] : '')
-        .((isset($parse_url['query'])) ? '?' . $parse_url['query'] : '')
+        .((!empty($parse_url['query'])) ? '?' . $parse_url['query'] : '')
         .((isset($parse_url['fragment'])) ? '#' . $parse_url['fragment'] : '')
         ;
     }
