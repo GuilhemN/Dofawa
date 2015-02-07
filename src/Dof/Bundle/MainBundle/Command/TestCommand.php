@@ -37,7 +37,6 @@ class TestCommand extends ContainerAwareCommand
         $i = 0;
         while(1){
             $articles = $em->getRepository('DofCMSBundle:Article')->findBy([], ['id' => 'DESC'], 30, $i * 30);
-            $output->writeLn($i);
             if(empty($articles))
                 break;
             foreach($articles as $article) {
