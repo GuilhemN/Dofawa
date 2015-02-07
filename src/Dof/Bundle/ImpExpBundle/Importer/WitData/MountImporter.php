@@ -1,13 +1,13 @@
 <?php
 
-namespace Dof\Bundle\ImpExpBundle\Importer\GameData;
+namespace Dof\Bundle\ImpExpBundle\Importer\WitData;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
 
-class MountImporter extends AbstractGameDataImporter
+class MountImporter extends AbstractWitDataImporter
 {
     protected function doImport(OutputInterface $output = null)
     {
