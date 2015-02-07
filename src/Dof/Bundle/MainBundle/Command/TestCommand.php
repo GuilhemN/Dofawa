@@ -43,7 +43,7 @@ class TestCommand extends ContainerAwareCommand
                 $su->reassignSlug($article);
                 $em->flush($article);
             }
-            $progress->advance(30);
+            $progress->advance(count($articles));
             $em->clear();
             $i++;
         }
