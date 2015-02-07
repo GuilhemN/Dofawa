@@ -22,6 +22,7 @@
                 <th>#</th>
                 <th>Nom</th>
                 <th>Utilisateur</th>
+                <th>Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -31,6 +32,7 @@
                 <th scope="row">{{ loop.index }}</th>
                 <td>{{ proposition.article.name }}</td>
                 <td>{{ proposition.owner.username }}</td>
+                <td>{{ proposition.createdAt | date_format }}</td>
                 <td><a href="{{ path('dof_cms_validate', {'id': proposition.id}) }}" class="glyphicon glyphicon-ok"></a></td>
             </tr>
             {% endfor %}
