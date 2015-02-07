@@ -106,6 +106,12 @@ services:
         tags:
             - { name: xn.bbcode.publish, module: basics }
 
+    xn.bbcode.strikethrough_simple_tag_template:
+        class: %xn.bbcode.simple_tag_template.class%
+        arguments: [ [ 's', 'center' ], 'div', ~, 'text-align: center;' ]
+        tags:
+            - { name: xn.bbcode.publish, module: basics }
+
     xn.bbcode.raw_tag_template:
         class: %xn.bbcode.raw_text_tag_template.class%
         arguments: [ 'raw' ]
