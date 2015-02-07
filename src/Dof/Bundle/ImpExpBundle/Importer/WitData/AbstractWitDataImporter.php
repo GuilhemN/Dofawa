@@ -54,7 +54,7 @@ abstract class AbstractWitDataImporter implements ImporterInterface
         if(!empty($params))
             $context = stream_context_create(
                 array_merge_recursive(
-                    $this->createContext($method),
+                    $c = $this->createContext($method),
                     [
                         'http' => [
                             'header' => $c['header'] .
