@@ -18,11 +18,11 @@ class PropositionController extends Controller
 {
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
-        $propositions = $em->getRepository('DofCMSBundle:Proposition')->findBy([], [], 40, 40 * ($page - 1));
+        $propositions = $em->getRepository('DofCMSBundle:Proposition')->findAll();
 
         return $this->render('DofCMSBundle:Proposition:index.html.twig', ['propositions' => $propositions]);
     }
-    
+
     /**
      * @Utils\Secure("ROLE_REDACTOR")
      */
