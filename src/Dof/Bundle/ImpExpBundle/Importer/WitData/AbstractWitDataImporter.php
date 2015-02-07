@@ -1,0 +1,91 @@
+<?php
+namespace Dof\Bundle\ImpExpBundle\Importer\WitData;
+
+use Symfony\Component\Console\Helper\ProgressHelper;
+use Symfony\Component\Console\Output\OutputInterface;
+
+use XN\DependencyInjection\ServiceArray;
+use Dof\Bundle\ImpExpBundle\ImporterInterface;
+use Dof\Bundle\ImpExpBundle\ImporterFlags;
+
+abstract class AbstractWitDataImporter implements ImporterInterface
+{
+    /**
+     * @var ObjectManager
+     */
+    protected $dm;
+
+    protected $key;
+
+    public function __construct(ServiceArray $sa, $key)
+    {
+        $this->dm = $sa[0];
+        $this->key = $key;
+    }
+
+    public function import($dataSet, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
+    {
+        $this->dm->clear();
+        $this->doImport($conn, $beta, $release, $db, $locales, $flags, $output, $progress);
+        if (($flags & ImporterFlags::DRY_RUN) == 0)
+            $this->dm->flush();
+        $this->dm->clear();
+    }
+
+    protected abstract function doImport(OutputInterface $output = null);
+
+    protected function callGet($path, array $getParams = array()) {
+        return $this->call('get', $path, [], $getParams);
+    }
+
+    protected function callPost($path, array $params, array $getParams = array()) {
+        return $this->call('post', $path, $params, $getParams);
+    }
+
+    protected function callPut($path, array $params, array $getParams = array()) {
+        return $this->call('put', $path, $params, $getParams);
+    }
+
+    protected function callDelete($path, array $params, array $getParams = array()) {
+        return $this->call('delete', $path, $params, $getParams);
+    }
+
+    protected function call($method, $path, array $params = array(), array $getParams = array()) {
+        if(!empty($params))
+            $context = stream_context_create(
+                array_merge_recursive(
+                    $this->createContext($method),
+                    [
+                        'http' => [
+                            'header' => $c['header'] .
+                                "Content-type: application/json\r\n",
+                            'content' => json_encode($params)
+                        ]
+                    ]
+                )
+            );
+        else
+            $context = $this->createContext($method);
+
+        return json_decode(
+            file_get_contents(
+                http_build_url(
+                    'https://api.wit.ai',
+                    [
+                        'path' => $path,
+                        'query' => http_build_query((array) $getParams)
+                    ]
+                ), false, $context)
+        , true);
+    }
+
+    protected function createContext($method) {
+        return [
+        'http' => [
+            'method' => strtoupper($method),
+            'header' => "Authorization: Bearer " . $this->key . "\r\n" .
+                "Accept: application/vnd.wit.20140401+json\r\n"
+            ]
+        ];
+    }
+}
