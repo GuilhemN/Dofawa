@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Dof\Bundle\ImpExpBundle\ImporterInterface;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
 
-use XN\Common\UrlBuilder;
+use XN\Common\URLBuilder;
 
 abstract class AbstractWitDataExporter implements ImporterInterface
 {
@@ -71,11 +71,11 @@ abstract class AbstractWitDataExporter implements ImporterInterface
 
         return json_decode(
             file_get_contents(
-                UrlBuilder::http_build_url(
+                URLBuilder::http_build_url(
                     'https://api.wit.ai',
                     [
                         'path' => $path,
-                        'query' => UrlBuilder::http_build_query((array) $getParams)
+                        'query' => URLBuilder::http_build_query((array) $getParams)
                     ]
                 ), false, $context)
         , true);
