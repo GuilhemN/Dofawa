@@ -15,11 +15,22 @@ class MountExporter extends AbstractWitDataExporter
             'values' => []
         ];
         $mounts = $this->dm->getRepository('DofItemBundle:MountTemplate')->findNames();
+        foreach($mounts as $mount)
+            $data['values'][] = [
+                'value' => $mount['nameFr'],
+                'expressions' => [
+                    $mount['nameFr'],
+                    $mount['nameEn'],
+                    $mount['nameDe'],
+                    $mount['nameEs'],
+                    $mount['nameIt'],
+                    $mount['nameJa'],
+                    $mount['namePt'],
+                    $mount['nameRu']
+                ],
+                'metadata' => json_encode(['id' => $mount['id']])
+            ];
 
-        $rowsProcessed = 0;
-        foreach($mounts as $mount){
-            $this->callPut('entities/dragoturkey/values', ['value' => $mount['nameFr']]);
-        }
-
+        $this->callPut('entities/mount', $data);
     }
 }

@@ -39,7 +39,8 @@
         "h4cc/wkhtmltopdf-amd64": "dev-master",
         "h4cc/wkhtmltoimage-amd64": "dev-master",
         "willdurand/js-translation-bundle": "@stable",
-        "liip/imagine-bundle": "dev-master"
+        "liip/imagine-bundle": "dev-master",
+        "guzzlehttp/guzzle": "~5.2"
     },
     "scripts": {
         "post-install-cmd": [

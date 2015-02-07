@@ -103,12 +103,12 @@ class URLBuilder
         .((isset($parse_url['port'])) ? ':' . $parse_url['port'] : '')
         . '/'
         .((isset($parse_url['path'])) ? $parse_url['path'] : '')
-        .((!empty($parse_url['query'])) ? '?' . $parse_url['query'] : '')
+        .((isset($parse_url['query'])) ? '?' . $parse_url['query'] : '')
         .((isset($parse_url['fragment'])) ? '#' . $parse_url['fragment'] : '')
         ;
     }
 
-    public static function http_build_query($data, $prefix='', $sep='', $key='') {
+    public static function http_build_query($data, $prefix = '', $sep = '', $key = '') {
         $ret = array();
         foreach ((array) $data as $k => $v) {
             if (is_int($k) && $prefix != null)
