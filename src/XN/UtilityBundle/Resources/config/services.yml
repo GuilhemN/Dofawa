@@ -106,9 +106,9 @@ services:
         tags:
             - { name: xn.bbcode.publish, module: basics }
 
-    xn.bbcode.strikethrough_simple_tag_template:
+    xn.bbcode.align_center_simple_tag_template:
         class: %xn.bbcode.simple_tag_template.class%
-        arguments: [ [ 's', 'center' ], 'div', ~, 'text-align: center;' ]
+        arguments: [ ['center' ], 'div', ~, 'text-align: center;' ]
         tags:
             - { name: xn.bbcode.publish, module: basics }
 
