@@ -40,10 +40,19 @@ class TestCommand extends ContainerAwareCommand
             if(empty($articles))
                 break;
             foreach($articles as $article) {
+                $article->setDescriptionFr(HTMLToBBCodeConverter::process($article->getDescriptionFr()));
+                $article->setDescriptionEn(HTMLToBBCodeConverter::process($article->getDescriptionEn()));
+                $article->setDescriptionDe(HTMLToBBCodeConverter::process($article->getDescriptionDe()));
+                $article->setDescriptionEs(HTMLToBBCodeConverter::process($article->getDescriptionEs()));
+                $article->setDescriptionIt(HTMLToBBCodeConverter::process($article->getDescriptionIt()));
+                $article->setDescriptionPt(HTMLToBBCodeConverter::process($article->getDescriptionPt()));
+                $article->setDescriptionJa(HTMLToBBCodeConverter::process($article->getDescriptionJa()));
+                $article->setDescriptionRu(HTMLToBBCodeConverter::process($article->getDescriptionRu()));
+
                 $su->reassignSlug($article);
-                $em->flush($article);
             }
             $progress->advance(count($articles));
+            $em->flush($article);
             $em->clear();
             $i++;
         }
