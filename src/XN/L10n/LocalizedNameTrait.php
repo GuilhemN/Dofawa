@@ -11,56 +11,56 @@ trait LocalizedNameTrait
      *
      * @ORM\Column(name="name_fr", type="string", length=150)
      */
-    private $nameFr;
+    protected $nameFr;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name_en", type="string", length=150, nullable=true)
      */
-    private $nameEn;
+    protected $nameEn;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name_de", type="string", length=150, nullable=true)
      */
-    private $nameDe;
+    protected $nameDe;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name_es", type="string", length=150, nullable=true)
      */
-    private $nameEs;
+    protected $nameEs;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name_it", type="string", length=150, nullable=true)
      */
-    private $nameIt;
+    protected $nameIt;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name_pt", type="string", length=150, nullable=true)
      */
-    private $namePt;
+    protected $namePt;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name_ja", type="string", length=150, nullable=true)
      */
-    private $nameJa;
+    protected $nameJa;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name_ru", type="string", length=150, nullable=true)
      */
-    private $nameRu;
+    protected $nameRu;
 
     /**
      * Set nameFr

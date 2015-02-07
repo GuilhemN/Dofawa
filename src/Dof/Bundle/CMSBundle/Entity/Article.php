@@ -37,7 +37,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     use TimestampableTrait, SluggableTrait, OwnableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
@@ -46,26 +46,26 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
      *
      * @ORM\Column(name="keys_", type="string", length=150)
      */
-    private $keys;
+    protected $keys;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="validation", type="boolean")
      */
-    private $published;
+    protected $published;
 
     /**
      * @var string
      *
      * @ORM\Column(name="category", type="string", length=150)
      */
-    private $category;
+    protected $category;
 
     /**
     * @ORM\ManyToMany(targetEntity="Dof\Bundle\CMSBundle\Entity\CollectionArticle", inversedBy="children")
     */
-    private $parents;
+    protected $parents;
 
     public function __construct()
     {
