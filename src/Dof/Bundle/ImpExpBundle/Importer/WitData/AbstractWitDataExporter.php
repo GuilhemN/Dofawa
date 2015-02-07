@@ -68,6 +68,14 @@ abstract class AbstractWitDataExporter implements ImporterInterface
             );
         else
             $context = $this->createContext($method);
+        echo 
+            URLBuilder::http_build_url(
+                'https://api.wit.ai/',
+                [
+                    'path' => $path,
+                    'query' => URLBuilder::http_build_query((array) $getParams)
+                ]
+            );
         return json_decode(
             file_get_contents(
                 URLBuilder::http_build_url(
