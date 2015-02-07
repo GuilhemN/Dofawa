@@ -10,4 +10,22 @@ namespace Dof\Bundle\CMSBundle\Entity;
  */
 class QuestArticleRepository extends ArticleRepository
 {
+    public function findArticlesWithLimits($class = null, $firstresult = 0, $maxresults= 10, $published = true)
+	{
+		$qb = $this->createQueryBuilder('a');
+
+		$qb
+			->where('a INSTANCE OF :class and a.published = :published')
+			->setParameter('class', (array) $class)
+			->setParameter('published', (bool) $published)
+	  		->addOrderBy('a.createdAt', 'DESC')
+			->addOrderBy('a.id', 'DESC')
+			->setFirstResult($firstresult)
+			->setMaxResults($maxresults);
+
+		return $qb
+			->getQuery()
+			->useResultCache(true, 3600)
+			->getResult();
+	}
 }

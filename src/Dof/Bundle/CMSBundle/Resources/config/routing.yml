@@ -1,3 +1,23 @@
+# Propositions
+dof_cms_propositions_homepage:
+    pattern: /propositions/{page}
+    defaults: { _controller: DofCMSBundle:Proposition:index, page: 1 }
+
+dof_cms_addList:
+    pattern: /addList/{page}
+    defaults: { _controller: DofCMSBundle:Article:addList, page: 1 }
+    requirements:
+      page: \d+
+
+dof_cms_valid:
+    pattern: /valid/{slug}
+    defaults: { _controller: DofCMSBundle:Article:valid }
+
+dof_cms_validate:
+    pattern: /validate-proposition/{id}
+    defaults: { _controller: DofCMSBundle:Article:validateProposition }
+
+# Articles
 dof_cms_show:
     pattern: /{slug}
     defaults: { _controller: DofCMSBundle:Article:view }
@@ -17,22 +37,3 @@ dof_cms_archive:
     defaults: { _controller: DofCMSBundle:Archive:archive, page: 1 }
     requirements:
       page: \d+
-
-
-dof_cms_viewType:
-    pattern: /
-    defaults: { _controller: DofCMSBundle:Article:viewType }
-
-dof_cms_addList:
-    pattern: /addList/{page}
-    defaults: { _controller: DofCMSBundle:Article:addList, page: 1 }
-    requirements:
-      page: \d+
-
-dof_cms_valid:
-    pattern: /valid/{slug}
-    defaults: { _controller: DofCMSBundle:Article:valid }
-
-dof_cms_validate:
-    pattern: /validate-proposition/{id}
-    defaults: { _controller: DofCMSBundle:Article:validateProposition }

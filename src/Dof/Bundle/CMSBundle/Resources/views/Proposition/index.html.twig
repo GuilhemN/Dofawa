@@ -1,0 +1,40 @@
+{% extends '::layout.html.twig' %}
+
+{% block breadcrumb %}
+    <li>Propositions de modification d'article</li>
+{% endblock %}
+
+{% block body %}
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Propositions</div>
+    <div class="panel-body">
+        <p>
+            Toutes les propositions de modification d'articles que les utilisateurs proposent sont listées ici.
+            Vous pouvez les valider ou les supprimer.
+        </p>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Utilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for propositions in proposition %}
+            <tr>
+                <th scope="row">{{ loop._index }}</th>
+                <td>{{ proposition.article.name }}</td>
+                <td>{{ proposition.owner.username }}</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
