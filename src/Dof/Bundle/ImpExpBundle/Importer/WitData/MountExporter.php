@@ -16,7 +16,8 @@ class MountExporter extends AbstractWitDataExporter
         ];
         $mounts = $this->dm->getRepository('DofItemBundle:MountTemplate')->findNames();
 
-        foreach($mounts as $mount)
+        $rowsProcessed = 0;
+        foreach($mounts as $mount){
             $data['values'][] = [
                 'value' => $mount['nameFr'],
                 'expression' => $mount['nameEn'],
@@ -24,7 +25,12 @@ class MountExporter extends AbstractWitDataExporter
                     'id' => $mount['id']
                     ]
             ];
+            ++$rowsProcessed;
+            if (($rowsProcessed % 20) == 0) {
+                $this->callPut('entities/dragoturkey', $data);
+                $data['values'] = [];
+            }
+        }
 
-        $this->callPut('entities/dragoturkey', $data);
     }
 }

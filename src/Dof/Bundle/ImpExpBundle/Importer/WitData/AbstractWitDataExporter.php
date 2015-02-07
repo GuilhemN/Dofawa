@@ -55,27 +55,17 @@ abstract class AbstractWitDataExporter implements ImporterInterface
     protected function call($method, $path, array $params = array(), array $getParams = array()) {
         if(!empty($params))
             $context = stream_context_create(
-                array_merge_recursive(
-                    $c = $this->createContext($method),
+                array_replace_recursive(
+                    $c = $this->createContext($method, 'Content-type: application/json\r\n'),
                     [
                         'http' => [
-                            'header' => $c['http']['header'] .
-                                "Content-type: application/json\r\n",
                             'content' => json_encode($params)
                         ]
                     ]
                 )
             );
         else
-            $context = $this->createContext($method);
-        echo 
-            URLBuilder::http_build_url(
-                'https://api.wit.ai/',
-                [
-                    'path' => $path,
-                    'query' => URLBuilder::http_build_query((array) $getParams)
-                ]
-            );
+            $context = stream_context_create($this->createContext($method));
         return json_decode(
             file_get_contents(
                 URLBuilder::http_build_url(
@@ -88,12 +78,13 @@ abstract class AbstractWitDataExporter implements ImporterInterface
         , true);
     }
 
-    protected function createContext($method) {
+    protected function createContext($method, $header = '') {
         return [
         'http' => [
             'method' => strtoupper($method),
             'header' => "Authorization: Bearer " . $this->key . "\r\n" .
-                "Accept: application/vnd.wit.20140401+json\r\n"
+                "Accept: application/vnd.wit.20140401+json\r\n" .
+                $header
             ]
         ];
     }
