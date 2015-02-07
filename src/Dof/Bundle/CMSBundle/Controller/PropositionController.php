@@ -115,7 +115,7 @@ class PropositionController extends Controller
         else
             throw new \LogicException('not implemented');
 
-        $proposition->setPublished(true);
+        $em->remove($proposition);
         $em->flush();
 
         return $this->redirect($this->generateUrl('dof_cms_show', ['slug' => $article->getSlug()]));
