@@ -26,9 +26,10 @@ class MountExporter extends AbstractWitDataExporter
                     ]
             ];
             ++$rowsProcessed;
-            if (($rowsProcessed % 20) == 0) {
+            if (($rowsProcessed % 2) == 0) {
                 $this->callPut('entities/dragoturkey', $data);
                 $data['values'] = [];
+                echo "d\n";
             }
         }
 
