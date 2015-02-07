@@ -26,7 +26,7 @@ abstract class AbstractWitDataImporter implements ImporterInterface
     public function import($dataSet, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $this->dm->clear();
-        $this->doImport($conn, $beta, $release, $db, $locales, $flags, $output, $progress);
+        $this->doImport($output);
         if (($flags & ImporterFlags::DRY_RUN) == 0)
             $this->dm->flush();
         $this->dm->clear();
