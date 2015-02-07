@@ -82,7 +82,7 @@ class ArticleController extends Controller
 
             $em->persist($proposition);
             $em->flush($proposition);
-            return;
+            return $this->render('DofCMSBundle:Article:edit-response.html.twig', ['proposition' => $proposition]);
         }
         return $this->generateEditTemplate($article, $request);
     }

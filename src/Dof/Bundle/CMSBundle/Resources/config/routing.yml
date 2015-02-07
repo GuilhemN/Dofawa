@@ -3,12 +3,6 @@ dof_cms_propositions_homepage:
     pattern: /propositions/{page}
     defaults: { _controller: DofCMSBundle:Proposition:index, page: 1 }
 
-dof_cms_addList:
-    pattern: /addList/{page}
-    defaults: { _controller: DofCMSBundle:Article:addList, page: 1 }
-    requirements:
-      page: \d+
-
 dof_cms_valid:
     pattern: /valid/{slug}
     defaults: { _controller: DofCMSBundle:Article:valid }

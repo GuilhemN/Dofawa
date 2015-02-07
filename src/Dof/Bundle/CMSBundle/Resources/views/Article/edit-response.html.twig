@@ -1,0 +1,19 @@
+{% extends '::layout.html.twig' %}
+
+{% block breadcrumb %}
+<li>Proposition d'une modification d'article</li>
+{% endblock %}
+
+{% block body %}
+    Merci de votre proposition de modification d'article {{ app.user.username }}.<br/>
+    Elle sera vérifiée sous peu.<br /> <br/>
+
+    Vous pouvez retourner sur
+    <a href="{{ path('dof_cms_show', {'slug': proposition.article.slug}) }}">la page de cet article</a>
+    ou continuer de visiter le site.
+    <br><br>
+
+    {% if is_granted('ROLE_REDACTOR') %}
+        <a href="{{ path('dof_cms_validate', {'id': proposition.id}) }}">Directement valider cette proposition.</a>
+    {% endif %}
+{% endblock %}
