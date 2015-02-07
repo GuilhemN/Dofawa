@@ -1,10 +1,12 @@
-parameters:
-    wit.importer_arguments: [@doctrine.orm.entity_manager, %wit_private_key%]
-
 services:
+    wit.importer_dependencies:
+        class: XN\DependencyInjection\ServiceArray
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
     # DofItemBundle:MountTemplate
     dof_imp_exp.wit_importer.mounts:
         class: Dof\Bundle\ImpExpBundle\Importer\WitData\MountImporter
-        arguments: [ "@importer_dependencies" ]
+        arguments: [ "@importer_dependencies", %wit_private_key% ]
         tags:
             - { name: dof_imp_exp.importer, provides: wit_mounts, requires: beta_item_templates }

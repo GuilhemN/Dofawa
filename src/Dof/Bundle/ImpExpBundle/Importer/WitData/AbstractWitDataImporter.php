@@ -1,7 +1,6 @@
 <?php
 namespace Dof\Bundle\ImpExpBundle\Importer\WitData;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -17,9 +16,9 @@ abstract class AbstractWitDataImporter implements ImporterInterface
 
     protected $key;
 
-    public function __construct(ObjectManager $dm, $key)
+    public function __construct(ServiceArray $sa, $key)
     {
-        $this->dm = $dm;
+        $this->dm = $sa[0];
         $this->key = $key;
     }
 
