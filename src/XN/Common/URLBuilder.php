@@ -89,7 +89,7 @@ class URLBuilder
         // Note: Scheme and Host are never stripped
         foreach ($keys as $key)
         {
-            if ($flags & (int)constant('HTTP_URL_STRIP_' . strtoupper($key)))
+            if ($flags & (int) constant('self::HTTP_URL_STRIP_' . strtoupper($key)))
             unset($parse_url[$key]);
         }
 
