@@ -7,6 +7,6 @@ services:
     # DofItemBundle:MountTemplate
     dof_imp_exp.wit_importer.mounts:
         class: Dof\Bundle\ImpExpBundle\Importer\WitData\MountImporter
-        arguments: [ "@importer_dependencies", %wit_private_key% ]
+        arguments: [ "@wit.importer_dependencies", %wit_private_key% ]
         tags:
             - { name: dof_imp_exp.importer, provides: wit_mounts, requires: beta_item_templates }
