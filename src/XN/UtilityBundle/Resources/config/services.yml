@@ -73,7 +73,7 @@ services:
 
     xn.bbcode.list_tag_template:
         class: %xn.bbcode.list_tag_template.class%
-        arguments: ['list', 'ul', '', '']
+        arguments: [ [ 'list', 'ul' ], 'ul', '', '']
         tags:
             - { name: xn.bbcode.publish, module: lists }
 
