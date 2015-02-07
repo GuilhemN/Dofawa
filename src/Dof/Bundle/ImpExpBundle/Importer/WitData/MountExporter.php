@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
 
-class MountImporter extends AbstractWitDataImporter
+class MountExporter extends AbstractWitDataExporter
 {
     protected function doImport(OutputInterface $output = null)
     {
