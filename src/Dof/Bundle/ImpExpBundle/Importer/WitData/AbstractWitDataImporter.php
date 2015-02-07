@@ -57,7 +57,7 @@ abstract class AbstractWitDataImporter implements ImporterInterface
                     $c = $this->createContext($method),
                     [
                         'http' => [
-                            'header' => $c['header'] .
+                            'header' => $c['http']['header'] .
                                 "Content-type: application/json\r\n",
                             'content' => json_encode($params)
                         ]
