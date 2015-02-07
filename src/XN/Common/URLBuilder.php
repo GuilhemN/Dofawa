@@ -107,7 +107,7 @@ class URLBuilder
         ;
     }
 
-    public function http_build_query($data, $prefix='', $sep='', $key='') {
+    public static function http_build_query($data, $prefix='', $sep='', $key='') {
         $ret = array();
         foreach ((array) $data as $k => $v) {
             if (is_int($k) && $prefix != null)
