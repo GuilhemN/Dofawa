@@ -41,9 +41,9 @@ class TestCommand extends ContainerAwareCommand
                 break;
             foreach($articles as $article) {
                 $su->reassignSlug($article);
+                $em->flush($article);
             }
             $progress->advance(count($articles));
-            $em->flush();
             $em->clear();
             $i++;
         }
