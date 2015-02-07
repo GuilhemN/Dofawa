@@ -52,11 +52,11 @@ class TestCommand extends ContainerAwareCommand
                 $su->reassignSlug($article);
             }
             $progress->advance(count($articles));
-            $em->flush($article);
+            $em->flush();
             $em->clear();
             $i++;
         }
         $progress->finish();
-        $output->writeLn();
+        $output->writeLn('');
     }
 }
