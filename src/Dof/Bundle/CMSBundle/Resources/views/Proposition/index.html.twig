@@ -31,7 +31,7 @@
                 <th scope="row">{{ loop.index }}</th>
                 <td>{{ proposition.article.name }}</td>
                 <td>{{ proposition.owner.username }}</td>
-                <td></td>
+                <td><a href="{{ path('dof_cms_validate', {'id': proposition.id}) }}" class="glyphicon glyphicon-ok"></a></td>
             </tr>
             {% endfor %}
         </tbody>

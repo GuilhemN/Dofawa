@@ -95,7 +95,7 @@ class PropositionController extends Controller
     /**
      * @Utils\Secure("ROLE_REDACTOR")
      */
-    public function validatePropositionAction(Proposition $proposition) {
+    public function validateAction(Proposition $proposition) {
         if($proposition->isPublished())
             throw $this->createNotFoundException();
 
