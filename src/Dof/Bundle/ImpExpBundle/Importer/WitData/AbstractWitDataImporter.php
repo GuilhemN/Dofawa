@@ -1,7 +1,7 @@
 <?php
 namespace Dof\Bundle\ImpExpBundle\Importer\WitData;
 
-use XN\DependencyInjection\ServiceArrayXN\DependencyInjection\ServiceArray;
+use XN\DependencyInjection\ServiceArray;
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
