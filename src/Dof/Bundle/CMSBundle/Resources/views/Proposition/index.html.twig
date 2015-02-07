@@ -28,7 +28,7 @@
         <tbody>
             {% for proposition in propositions %}
             <tr>
-                <th scope="row">{{ loop._index }}</th>
+                <th scope="row">{{ loop.index }}</th>
                 <td>{{ proposition.article.name }}</td>
                 <td>{{ proposition.owner.username }}</td>
                 <td></td>
