@@ -14,7 +14,7 @@
             Editer (ADMIN)
         </a>
     {% endif %}
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if is_granted('ROLE_USER') %}
         <a class="btn btn-primary" href="{{ path('dof_cms_edit', {'id' : article.id }) }}">
             Editer
         </a>
