@@ -14,8 +14,10 @@ class ItemExporter extends AbstractWitDataExporter
         $data = [
             'values' => []
         ];
-        $items = $this->dm->getRepository('DofItemBundle:ItemTemplate')->findNames();
-        foreach($items as $item)
+        $items = $this->dm->getRepository('DofItemBundle:EquipmentTemplate')->findNames();
+        $i = 0;
+        foreach($items as $item){
+            $i++;
             $data['values'][] = [
                 'value' => $item['nameFr'],
                 'expressions' => [
@@ -30,7 +32,10 @@ class ItemExporter extends AbstractWitDataExporter
                 ],
                 'metadata' => json_encode(['id' => $item['id']])
             ];
-
-        $this->callPut('entities/item', $data);
+            if($i % 200 == 0){
+                $this->callPut('entities/item', $data);
+                $data['values'] = '';
+            }
+        }
     }
 }
