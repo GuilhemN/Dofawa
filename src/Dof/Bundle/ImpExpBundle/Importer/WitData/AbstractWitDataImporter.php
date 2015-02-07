@@ -69,11 +69,11 @@ abstract class AbstractWitDataImporter implements ImporterInterface
 
         return json_decode(
             file_get_contents(
-                http_build_url(
+                \http_build_url(
                     'https://api.wit.ai',
                     [
                         'path' => $path,
-                        'query' => http_build_query((array) $getParams)
+                        'query' => \http_build_query((array) $getParams)
                     ]
                 ), false, $context)
         , true);
