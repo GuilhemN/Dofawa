@@ -18,19 +18,7 @@ class MountExporter extends AbstractWitDataExporter
 
         $rowsProcessed = 0;
         foreach($mounts as $mount){
-            $data['values'][] = [
-                'value' => $mount['nameFr'],
-                'expression' => $mount['nameEn'],
-                'metadata' => [
-                    'id' => $mount['id']
-                    ]
-            ];
-            ++$rowsProcessed;
-            if (($rowsProcessed % 2) == 0) {
-                $this->callPut('entities/dragoturkey', $data);
-                $data['values'] = [];
-                echo "d\n";
-            }
+            $this->callPut('entities/dragoturkey/values', ['value' => $mount['nameFr']]);
         }
 
     }
