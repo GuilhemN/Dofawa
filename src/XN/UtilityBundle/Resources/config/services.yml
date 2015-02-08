@@ -67,9 +67,9 @@ services:
 
     simple_bbcode:
         class: %xn.bbcode.language.class%
-        methodCalls:
-            - { name: setLenient, arguments: [ true ] }
-            - { name: registerTextFilter, arguments: [ @xn.bbcode.text_filter.new_line ] }
+        calls:
+            - [ setLenient, [ true ] ]
+            - [ registerTextFilter, [ @xn.bbcode.text_filter.new_line ] ]
         tags:
             - { name: xn.bbcode.use, module: lists }
             - { name: xn.bbcode.use, module: basics }

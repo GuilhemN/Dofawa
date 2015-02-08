@@ -12,6 +12,7 @@ class Language
 	public function __construct()
 	{
 		$this->tags = [ ];
+		$this->filters = [ ];
 		$this->lenient = false;
 		$this->parser = null;
 	}
