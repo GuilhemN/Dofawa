@@ -69,7 +69,7 @@ services:
         class: %xn.bbcode.language.class%
         calls:
             - [ setLenient, [ true ] ]
-            - [ registerTextFilter, [ @xn.bbcode.text_filter.new_line ] ]
+            - [ addTextFilter, [ @xn.bbcode.text_filter.new_line ] ]
         tags:
             - { name: xn.bbcode.use, module: lists }
             - { name: xn.bbcode.use, module: basics }
