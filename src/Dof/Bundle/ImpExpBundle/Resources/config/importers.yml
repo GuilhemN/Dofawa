@@ -4,6 +4,7 @@ imports:
     - { resource: importers/spell.yml }
     - { resource: importers/map.yml }
     - { resource: importers/monster.yml }
+    - { resource: importers/wit.yml }
 
 services:
     importer_dependencies:

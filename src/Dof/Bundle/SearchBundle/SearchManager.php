@@ -18,7 +18,7 @@ class SearchManager
     }
 
     public function process(?string $string) : ?string {
-        if(strlen($string) > 100)
+        if(strlen($string) > 150)
             throw new \Exception('String too long.');
         if($string === null)
             return $this->notUnderstood();

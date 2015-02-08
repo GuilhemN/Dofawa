@@ -159,4 +159,26 @@ class ItemTemplateRepository extends FilterableEntityRepository
 
 		return $qb;
 	}
+
+	public function findNames(){
+		$qb = $this
+				->createQueryBuilder('i')
+				->select([
+					'i.id',
+					'i.nameFr',
+					'i.nameEn',
+					'i.nameDe',
+					'i.nameEs',
+					'i.nameIt',
+					'i.namePt',
+					'i.nameJa',
+					'i.nameRu'
+				])
+			;
+
+		return $qb
+			->getQuery()
+			->getResult()
+		;
+	}
 }
