@@ -90,6 +90,10 @@ class FileReader implements Reader
     {
         throw new \LogicException('not supported yet'); # TODO
     }
+	public function eatToEnd()
+	{
+        throw new \LogicException('not supported yet'); # TODO
+	}
 
     public function read($byteCount, $allowIncomplete = false)
     {
@@ -122,7 +126,7 @@ class FileReader implements Reader
         if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
             return 0;
         $byteCount = min($byteCount, $maxByteCount);
-        fseek($this->data, ftell($this->data) + $byteCount);
+        fseek($this->data, $byteCount, SEEK_CUR);
         return $byteCount;
     }
 

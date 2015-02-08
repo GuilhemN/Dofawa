@@ -14,7 +14,7 @@ class FullCPS extends BaseScraper
 
     public function __construct($url)
     {
-        preg_match(static::URL_FAMILY_REGEX, $url, $matches));
+        preg_match(static::URL_FAMILY_REGEX, $url, $matches);
 
         $url = 'http://www.dofus.com/fr/' . $matches[1] . '/caracteristiques';
         parent::__construct($url);
@@ -31,7 +31,7 @@ class FullCPS extends BaseScraper
                         continue;
 
                     $data = $span->getAttribute('data-hasqtip');
-                    preg_match('~^linker_item_([0-9]+)$~', $data, $matches));
+                    preg_match('~^linker_item_([0-9]+)$~', $data, $matches);
 
                     $idsItems[] = $matches[1];
                 }

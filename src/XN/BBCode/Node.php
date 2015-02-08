@@ -32,5 +32,10 @@ abstract class Node implements NodeInterface
 		return $this;
 	}
 
+	public function isContainer()
+	{
+		return false;
+	}
+
 	protected abstract function verifyParent(NodeInterface $parent);
 }

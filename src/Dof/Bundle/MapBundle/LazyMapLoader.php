@@ -10,7 +10,8 @@ class LazyMapLoader
     public function get($id) {
         if(isset($this->map[$id]))
             return $this->map[$id];
-        else
-        thr
+		// FIXME
+        //else
+        //thr
     }
 }

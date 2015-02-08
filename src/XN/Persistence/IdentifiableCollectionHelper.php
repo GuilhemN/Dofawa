@@ -46,7 +46,7 @@ class IdentifiableCollectionHelper
 		foreach ($inserts as $ent) {
 			$coll[] = $ent;
 			if ($inverse)
-				call_user_func([ $ent, $inverseGetter ])[] = $that;
+				call_user_func([ $ent, $inverseGetter ])->add($that);
 		}
 
 		return [ $inserts, $removals ];

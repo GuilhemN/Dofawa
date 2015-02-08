@@ -19,9 +19,10 @@ class ParserError extends Enum
 	const EXPECTED_STRING = -11;
 	const INVALID_ESCAPE = -12;
 	const REJECTED_NODE = -13;
+	const STOP_MATCH = -14;
 
 	public static function isValid($error)
 	{
-		return $error >= -13;
+		return $error >= -14;
 	}
 }

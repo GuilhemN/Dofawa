@@ -39,6 +39,8 @@ class Parser
 			$doc = $this->makeDocument();
 		foreach ($parts as $part)
 			$doc->appendChild($part);
+		$filters = $this->lg->getTextFilters();
+		self::_walkAndApplyTextFilters($doc, $filters, 0);
 		return $doc;
 	}
 	protected function makeDocument()
@@ -56,10 +58,61 @@ class Parser
 		return DOMUtils::outerHTML($doc->toDOMNode($htmlDoc));
 	}
 
+	private static function _walkAndApplyTextFilters(NodeInterface $node, array &$filters, $i)
+	{
+		if ($node->isContainer() && $node->hasChildren() && $i < count($filters)) {
+			$k = 0;
+			foreach ($node->getChildren() as $j => $subNode) {
+				if ($node instanceof Text) {
+					$nodes = [ ];
+					self::_applyTextFilters($nodes, $subNode, $filters, $i);
+					$hold = true;
+					if (count($nodes) == 0 || $nodes[0] !== $subNode) {
+						$hold = false;
+						$node->removeChildAt($k);
+					}
+					foreach ($nodes as $subNode) {
+						if ($hold)
+							$hold = false;
+						else
+							$node->insertChildAt($k, $subNode);
+						++$k;
+					}
+				} else {
+					self::_walkAndApplyTextFilters($subNode, $filters, $i);
+					++$k;
+				}
+			}
+		}
+	}
+	private static function _applyTextFilters(array &$nodes, Text $text, array &$filters, $i)
+	{
+		if ($i >= count($filters)) {
+			$nodes[] = $text;
+			return;
+		}
+		$matches = $filters[$i]->matchAll($node);
+		if (count($matches) == 0)
+			return self::_applyTextFilters($nodes, $text, $filters, $i + 1);
+		$textValue = $text->getValue();
+		$textOffset = $text->getOffset();
+		$pos = 0;
+		foreach ($matches as $match) {
+			if ($match[0] > $pos)
+				self::_applyTextFilters($nodes, $this->makeText(substr($textValue, $pos, $match[0] - $pos), $textOffset + $pos), $filters, $i + 1);
+			if (isset($match[2])) {
+				self::_walkAndApplyTextFilters($match[2], $filters, $i + 1);
+				$nodes[] = $match[2];
+			}
+		}
+		if (strlen($textValue) > $pos)
+			self::_applyTextFilters($nodes, $this->makeText(substr($textValue, $pos), $textOffset + $pos), $filters, $i + 1);
+	}
+
 	public function message(Reader $src, &$retval, &$errCode, &$errOffset)
 	{
 		return $src->transact(function () use ($src, &$retval, &$errCode, &$errOffset) {
-			return $this->parts($src, $retval, $errCode, $errOffset)
+			return $this->parts($src, null, $retval, $errCode, $errOffset)
 				&& $this->_eof($src, $errCode, $errOffset);
 		});
 	}
@@ -77,18 +130,45 @@ class Parser
 		}
 	}
 
-	public function parts(Reader $src, &$retval, &$errCode, &$errOffset)
+	public function parts(Reader $src, $stopRegex, &$retval, &$errCode, &$errOffset)
 	{
 		$retval = [ ];
-		while ($this->part($src, $part, $errCode, $errOffset))
-			$retval[] = $part;
+		$last = null;
+		while ($this->part($src, $stopRegex, $part, $errCode, $errOffset)) {
+			if ($last instanceof MergeableInterface && $part instanceof MergeableInterface && $last->canMerge($part))
+				$last->inplaceMerge($part);
+			else {
+				$retval[] = $part;
+				$last = $part;
+			}
+		}
 		return true;
 	}
 
-	public function part(Reader $src, &$retval, &$errCode, &$errOffset)
+	public function part(Reader $src, $stopRegex, &$retval, &$errCode, &$errOffset)
 	{
+		if (!$src->transact(function () use ($src, $stopRegex) {
+				return !$src->eatRegex($stopRegex);
+			})) {
+			$errCode = ParserError::STOP_MATCH;
+			$errOffset = $src->getConsumedBytes();
+			return false;
+		}
 		return $this->text($src, $retval, $errCode, $errOffset)
-			|| $this->tag($src, $retval, $errCode, $errOffset);
+			|| $this->tag($src, $retval, $errCode, $errOffset)
+			|| $this->lg->isLenient() && $this->_bracket($src, $retval, $errCode, $errOffset);
+	}
+	private function _bracket(Reader $src, &$retval, &$errCode, &$errOffset)
+	{
+		$offset = $src->getConsumedBytes();
+		if ($src->eat('[')) {
+			$retval = $this->makeText('[', $offset);
+			return true;
+		} else {
+			$errCode = ParserError::EXPECTED_TEXT;
+			$errOffset = $src->getConsumedBytes();
+			return false;
+		}
 	}
 
 	public function text(Reader $src, &$retval, &$errCode, &$errOffset)
@@ -200,9 +280,14 @@ class Parser
 		$ctag = '[/' . $retval->getName() . $rawV;
 		$rest = $src->eatRegex('#(.*?)' . preg_quote($ctag, '#') . '#As');
 		if (!$rest) {
-			$errCode = ParserError::EXPECTED_CTAG_START;
-			$errOffset = $offset + $src->getRemainingBytes();
-			return false;
+			if ($this->lg->isLenient()) {
+				$retval->appendChild($this->makeText($src->eatToEnd(), $offset));
+				return true;
+			} else {
+				$errCode = ParserError::EXPECTED_CTAG_START;
+				$errOffset = $offset + $src->getRemainingBytes();
+				return false;
+			}
 		}
 		if (strlen($rest[1])) {
 			try {
@@ -217,7 +302,8 @@ class Parser
 	}
 	private function _fullTagRest(Reader $src, Tag $retval, &$errCode, &$errOffset)
 	{
-		if (!$this->parts($src, $parts, $errCode, $errOffset))
+		$stopRegex = '#' . preg_quote('[/' . $retval->getName(), '#') . '#Ai';
+		if (!$this->parts($src, $stopRegex, $parts, $errCode, $errOffset))
 			return false;
 		foreach ($parts as $part) {
 			try {
@@ -228,10 +314,14 @@ class Parser
 				return false;
 			}
 		}
-		if (!$src->eatRegex('#' . preg_quote('[/' . $retval->getName(), '#') . '#Ai')) {
-			$errCode = ParserError::EXPECTED_CTAG_START;
-			$errOffset = $src->getConsumedBytes();
-			return false;
+		if (!$src->eatRegex($stopRegex)) {
+			if ($this->lg->isLenient() && $src->isEof())
+				return true;
+			else {
+				$errCode = ParserError::EXPECTED_CTAG_START;
+				$errOffset = $src->getConsumedBytes();
+				return false;
+			}
 		}
 		if ($src->eat('=')) {
 			if ($this->value($src, $endValue, $errCode, $errOffset))

@@ -10,5 +10,7 @@ interface NodeInterface
 	public function getName();
 	public function getValue();
 
+	public function isContainer();
+
 	public function toDOMNode(\DOMDocument $doc);
 }

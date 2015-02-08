@@ -21,6 +21,7 @@ interface Reader
 	public function eatSpan($mask, $length = null);
 	public function eatCSpan($mask, $length = null);
     public function eatWhiteSpace();
+	public function eatToEnd();
 
     public function read($byteCount, $allowIncomplete = false);
     public function peek($byteCount, $allowIncomplete = false);

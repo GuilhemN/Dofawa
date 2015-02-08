@@ -4,17 +4,23 @@ namespace XN\BBCode;
 class Language
 {
 	private $tags;
+	private $filters;
+	private $lenient;
+
 	private $parser;
 
 	public function __construct()
 	{
 		$this->tags = [ ];
+		$this->lenient = false;
+		$this->parser = null;
 	}
 
 	public function registerTagTemplate(TagTemplateInterface $tag)
 	{
 		foreach ($tag->getNames() as $name)
 			$this->tags[strtolower($name)] = $tag;
+		return $this;
 	}
 
 	public function getTagTemplateByName($name)
@@ -24,6 +30,10 @@ class Language
 			return $this->tags[$name];
 		return null;
 	}
+	public function getTagTemplates()
+	{
+		return $this->tags;
+	}
 
 	public function createTag($name)
 	{
@@ -31,6 +41,32 @@ class Language
 		if ($tpl === null)
 			throw new \Exception('Unknown tag : ' . $name);
 		return new Tag($tpl, $name);
+	}
+
+	public function addTextFilter(TextFilterInterface $filter)
+	{
+		$this->filters[] = $filter;
+		return $this;
+	}
+
+	public function getTextFilters()
+	{
+		return $this->filters;
+	}
+
+	public function setLenient($lenient)
+	{
+		$this->lenient = !!$lenient;
+		return $this;
+	}
+
+	public function getLenient()
+	{
+		return $this->lenient;
+	}
+	public function isLenient()
+	{
+		return $this->lenient;
 	}
 
 	public function getParser()

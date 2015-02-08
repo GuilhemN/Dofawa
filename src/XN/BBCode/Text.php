@@ -1,7 +1,7 @@
 <?php
 namespace XN\BBCode;
 
-class Text extends Node
+class Text extends Node implements MergeableInterface
 {
 	private $value;
 
@@ -31,4 +31,24 @@ class Text extends Node
 	}
 
 	protected function verifyParent(NodeInterface $parent) { }
+
+	public function canMerge(MergeableInterface $other)
+	{
+		return $other instanceof self;
+	}
+	public function inplaceMerge(MergeableInterface $other)
+	{
+		if (!$this->canMerge($other))
+			throw new \Exception();
+		$this->value .= $other->value;
+		return $this;
+	}
+	public function merge(MergeableInterface $other)
+	{
+		if (!$this->canMerge($other))
+			throw new \Exception();
+		$clone = clone $this;
+		$clone->value .= $other->value;
+		return $clone;
+	}
 }

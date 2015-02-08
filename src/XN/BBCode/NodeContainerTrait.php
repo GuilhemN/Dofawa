@@ -17,6 +17,11 @@ trait NodeContainerTrait
 			$this->appendChild(clone $child);
 	}
 
+	public function isContainer()
+	{
+		return true;
+	}
+
 	public function hasChildren()
 	{
 		return !empty($this->children);

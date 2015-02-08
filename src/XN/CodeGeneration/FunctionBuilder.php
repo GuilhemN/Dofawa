@@ -185,7 +185,7 @@ class FunctionBuilder
 		--$this->stackH;
 		try {
 			$this->setLabelStackH($labelId, $this->stackH);
-		} catch ($e) {
+		} catch (\Exception $e) {
 			++$this->stackH;
 			throw $e;
 		}
@@ -205,7 +205,7 @@ class FunctionBuilder
 		--$this->stackH;
 		try {
 			$this->setLabelStackH($labelId, $this->stackH);
-		} catch ($e) {
+		} catch (\Exception $e) {
 			++$this->stackH;
 			throw $e;
 		}

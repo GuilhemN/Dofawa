@@ -162,6 +162,15 @@ class StringReader implements Reader
         list($wspace) = $this->eatRegex('/\s+/A');
         return strlen($wspace);
     }
+	public function eatToEnd()
+	{
+		$byteCount = $this->end - $this->offset;
+		if ($byteCount <= 0)
+			return null;
+		$str = substr($this->data, $this->offset, $byteCount);
+		$this->offset = $this->end;
+		return $str;
+	}
 
     public function read($byteCount, $allowIncomplete = false)
     {
