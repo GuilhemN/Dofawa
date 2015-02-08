@@ -147,7 +147,7 @@ class Parser
 
 	public function part(Reader $src, $stopRegex, &$retval, &$errCode, &$errOffset)
 	{
-		if (!$src->transact(function () use ($src, $stopRegex) {
+		if ($stopRegex && !$src->transact(function () use ($src, $stopRegex) {
 				return !$src->eatRegex($stopRegex);
 			})) {
 			$errCode = ParserError::STOP_MATCH;
