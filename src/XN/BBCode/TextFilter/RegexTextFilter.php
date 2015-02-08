@@ -2,6 +2,7 @@
 namespace XN\BBCode\TextFilter;
 
 use XN\BBCode\Text;
+use XN\BBCode\TextFilterInterface;
 
 abstract class RegexTextFilter implements TextFilterInterface
 {
