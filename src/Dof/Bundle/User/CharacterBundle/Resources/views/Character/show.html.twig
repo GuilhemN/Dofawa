@@ -73,7 +73,7 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                {% if character.canWrite() %}
+                                {% if stuff.canWrite() %}
                                 <li>
                                     <form action="{{ path('dof_user_character_stuff_remove') }}" method="POST">
                                         <input type="hidden" name="stuff" value="{{ stuff.id }}">
