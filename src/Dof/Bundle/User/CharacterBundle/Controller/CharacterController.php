@@ -25,8 +25,8 @@ class CharacterController extends Controller
     }
 
     /**
-     * @ParamConverter("user", options={"mappings": {"user": "slug"}})
-     * @ParamConverter("character", options={"mappings": {"character": "slug"}})
+     * @ParamConverter("user", options={"mapping": {"user": "slug"}})
+     * @ParamConverter("character", options={"mapping": {"character": "slug"}})
      */
     public function showAction(User $user, PlayerCharacter $character) {
         if($character->getOwner() != $user)
