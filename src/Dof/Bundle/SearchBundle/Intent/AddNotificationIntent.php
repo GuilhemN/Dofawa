@@ -13,9 +13,8 @@ class AddNotificationIntent
         $user = $this->sc->getToken()->getUser();
         $type = $entities['type']['value'];
         if($type == 'dragoturkey_childbirth') {
-            $drg = isset($entities['dragoturkey']) ?
-                $this->em->getRepository('DofItemBundle:MountTemplate')->findOneByNameFr($entities['dragoturkey']['value'])
-                : null;
+            var_dump($entities);
+            $drg = $this->em->getRepository('DofItemBundle:MountTemplate')->findOneByNameFr($entities['dragoturkey']['value']);
             if($drg === null)
                 return 'Monture non trouvée.';
             elseif($drg->getGestationDuration() === null)
