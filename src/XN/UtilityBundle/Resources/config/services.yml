@@ -151,7 +151,7 @@ services:
 
     xn.doctrine.entity_dependency_injection:
         class:     "%xn.doctrine.entity_dependency_injection.class%"
-        arguments: [ "@security.context" ]
+        arguments: [ @lazy\security.context ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
 
@@ -223,4 +223,4 @@ services:
 
     xn.action_logger:
         class: %xn.action_logger.class%
-        arguments: [ @doctrine.orm.entity_manager, @lazy\security.context ]
+        arguments: [ @doctrine.orm.entity_manager, @security.context ]
