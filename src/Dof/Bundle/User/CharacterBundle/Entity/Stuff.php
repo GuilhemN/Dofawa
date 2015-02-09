@@ -987,7 +987,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
         }
     }
 
-    public function canSee(){
+    public function canSee() {
         static $canSee = null;
         if($canSee === null){
             $sc = $this->getCharacter()->getSecurityContext();
