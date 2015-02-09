@@ -38,7 +38,7 @@ class BuildController extends Controller
 
         //Modification d'un item
         $request = $this->get('request');
-        if ($canWrite && $request->isMethod('POST')) {
+        if ($stuff->canWrite() && $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
             $itemId = $request->request->get('id');
             foreach($items as $v)
@@ -63,7 +63,7 @@ class BuildController extends Controller
             'bonus' => $bonus,
             'characteristics' => $characteristics,
             // Permissions
-            'can_write' => $canWrite,
+            'can_write' => $stuff->canWrite(),
             'user' => $user
             ]);
     }
@@ -127,7 +127,7 @@ class BuildController extends Controller
             'character' => $stuff->getCharacter(),
             'stuff' => $stuff,
             'user' => $user,
-            'can_write' => $canWrite,
+            'can_write' => $stuff->canWrite(),
             'form' => $form->createView()
             ]);
     }
@@ -144,7 +144,7 @@ class BuildController extends Controller
             'character' => $character,
             'stuff' => $stuff,
             'user' => $user,
-            'can_write' => $canWrite,
+            'can_write' => $stuff->canWrite(),
             ]);
     }
 
@@ -163,7 +163,7 @@ class BuildController extends Controller
             'weapon' => $weapon,
             'stuff' => $stuff,
             'user' => $user,
-            'can_write' => $canWrite,
+            'can_write' => $stuff->canWrite(),
             ]);
     }
 
@@ -191,7 +191,7 @@ class BuildController extends Controller
             'character' => $character,
             'stuff' => $stuff,
             'user' => $user,
-            'can_write' => $canWrite,
+            'can_write' => $stuff->canWrite(),
             ]);
     }
 
