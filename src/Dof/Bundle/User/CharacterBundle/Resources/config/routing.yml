@@ -1,3 +1,32 @@
+# REMOVE
+dof_user_character_remove:
+    path: /remove/character
+    defaults: { _controller: DofUserCharacterBundle:Character:remove }
+    requirements:
+        _method: POST
+
+dof_user_character_stuff_remove:
+    path:     /remove/stuff
+    defaults: { _controller: DofUserCharacterBundle:Build:remove }
+    requirements:
+        _method: POST
+
+# CREATE
+dof_user_character_create:
+    path: /create/character/{slug}
+    defaults: { _controller: DofUserCharacterBundle:Character:create }
+    requirements:
+        slug: '[0-9a-z-]+'
+        _method: POST
+
+dof_user_character_create_stuff:
+    path:     /create/stuff/{slug}
+    defaults: { _controller: DofUserCharacterBundle:Stuff:createStuff}
+    requirements:
+        slug: '[0-9a-z-]+'
+        _method: POST
+
+# SHOW PAGE
 dof_user_character_homepage:
     path:     /{slug}
     defaults: { _controller: DofUserCharacterBundle:Character:index, slug: ~ }
@@ -6,25 +35,6 @@ dof_user_character_show:
     path:     /{user}/{character}
     defaults: { _controller: DofUserCharacterBundle:Character:show}
 
-dof_user_character_create:
-    path: /create/{slug}
-    defaults: { _controller: DofUserCharacterBundle:Character:create }
-    requirements:
-        _method: POST
-        slug: '[0-9a-z-]+'
-
-dof_user_character_remove:
-    path: /remove/
-    defaults: { _controller: DofUserCharacterBundle:Character:remove }
-    requirements:
-        _method: POST
-
-# Affichage des builds
-dof_user_character_stuff_remove:
-    path:     /stuff/remove
-    defaults: { _controller: DofUserCharacterBundle:Build:remove }
-    requirements:
-        _method: POST
 
 dof_user_character_stuff:
     path:     /{user}/{character}/stuffs/{stuff}
@@ -81,11 +91,3 @@ dof_user_character_additem:
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
         page: \d+
-
-
-dof_user_character_create_stuff:
-    path:     /create-stuff/{slug}/
-    defaults: { _controller: DofUserCharacterBundle:Stuff:createStuff}
-    requirements:
-        slug: '[0-9a-z-]+'
-        _method: POST
