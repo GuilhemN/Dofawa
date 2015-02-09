@@ -988,24 +988,11 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     public function canSee() {
-        static $canSee = null;
-        if($canSee === null){
-            $sc = $this->getCharacter()->getSecurityContext();
-            $canSee = $this->getCharacter()->canSee() && ($this->isVisible() || $this->canWrite());
-        }
-        return $canSee;
+        return $this->getCharacter()->canSee() && ($this->isVisible() || $this->canWrite());
     }
 
     public function canWrite() {
         return $this->getCharacter()->canWrite();
-    }
-
-    public function getCanSee() {
-        return $this->canSee();
-    }
-
-    public function getCanWrite() {
-        return $this->canWrite();
     }
 
     public function __toString()

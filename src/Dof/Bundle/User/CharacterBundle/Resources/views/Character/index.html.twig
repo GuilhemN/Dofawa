@@ -2,11 +2,11 @@
 
 {% block breadcrumb %}
     <li>
-            {% if app.user == user %}
-                Mes personnages
-            {% else %}
-                Personnages de {{ user.username }}
-            {% endif %}
+        {% if app.user == user %}
+            Mes personnages
+        {% else %}
+            Personnages de {{ user.username }}
+        {% endif %}
     </li>
 {% endblock %}
 

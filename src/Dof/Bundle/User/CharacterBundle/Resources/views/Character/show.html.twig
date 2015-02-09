@@ -30,7 +30,7 @@
     </div>
 
     <div class="row">
-        {% if character.canWrite %}
+        {% if character.canWrite() %}
         <div class="well well-sm">
             <div class="page-header">
                 Créer un stuff
@@ -51,8 +51,7 @@
             </form>
         </div>
         {% endif %}
-        {% for stuff in character.stuffs %}
-        {% if stuff.canSee() %}
+        {% for stuff in character.stuffs if stuff.canSee() %}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
@@ -74,7 +73,7 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                {% if stuff.canWrite %}
+                                {% if stuff.canWrite() %}
                                 <li>
                                     <form action="{{ path('dof_user_character_stuff_remove') }}" method="POST">
                                         <input type="hidden" name="stuff" value="{{ stuff.id }}">
@@ -90,7 +89,6 @@
                 </div>
             </div>
         </div>
-        {% endif %}
         {% endfor %}
     </div>
 {% endautoescape %}
