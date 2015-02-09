@@ -3,6 +3,7 @@
 namespace Dof\Bundle\User\CharacterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use XN\Annotations as Utils;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +22,15 @@ class CharacterController extends Controller
             'user' => $user,
             'breeds' => $em->getRepository('DofCharacterBundle:Breed')->findAll()
         ]);
+    }
+
+    /**
+     * @ParamConverter("user", options={"mappings": {"user": "slug"}})
+     * @ParamConverter("character", options={"mappings": {"character": "slug"}})
+     */
+    public function showAction(User $user, PlayerCharacter $character) {
+        if($character->getOwner() !== $user)
+            throw $this->createNotFoundException();
     }
 
     /**

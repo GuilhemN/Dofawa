@@ -10,7 +10,10 @@
                 <p>{{ 'level' | trans({'%level%': character.level}, 'item')}}</p>
                 <p>
                     <div class="btn-group">
-                        <a class="btn btn-primary" href="{{ path('dof_user_character_show', {'user': character.owner.slug, 'character': character.slug, 'stuff': character.stuffs[0].slug}) }}">
+                        <a class="btn btn-primary" href="{{ path('dof_user_character_show', {
+                            'user': character.owner.slug,
+                            'character': character.slug
+                        }) }}">
                             Voir
                         </a>
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -18,7 +21,17 @@
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            {% if app.user == character.owner or is_granted('ROLE_USER') %}
+                            <li>
+                                <a href="{{ path('dof_user_character_stuff', {
+                                    'user': character.owner.slug,
+                                    'character': character.slug,
+                                    'stuff': character.stuffs[0].slug
+                                }) }}">
+                                    Stuffs
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            {% if app.user == character.owner or is_granted('ROLE_ADMIN') %}
                             <li>
                                 <form action="{{ path('dof_user_character_remove') }}" method="POST" onsubmit="return window.confirm('Êtes-vous sûr de vouloir supprimer {{ character.name | e('js') }} et tout ce qui lui est lié ?')">
                                     <input type="hidden" name="id" value="{{ character.id }}">
@@ -26,12 +39,6 @@
                                 </form>
                             </li>
                             {% endif %}
-                            {#
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            #}
                         </ul>
                     </div>
                 </p>

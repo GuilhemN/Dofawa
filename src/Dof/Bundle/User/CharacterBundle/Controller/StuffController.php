@@ -70,7 +70,7 @@ class StuffController extends Controller
 
         $em->flush();
 
-        return $this->redirect($this->generateUrl('dof_user_character_show', [
+        return $this->redirect($this->generateUrl('dof_user_character_stuff', [
             'user' => $stuff->getCharacter()->getOwner()->getSlug(),
             'character' => $stuff->getCharacter()->getSlug(),
             'stuff' => $stuff->getSlug()
@@ -114,7 +114,7 @@ class StuffController extends Controller
         $em->flush();
 
         $character = $stuff->getCharacter();
-        return $this->redirect($this->generateUrl('dof_user_character_show', array(
+        return $this->redirect($this->generateUrl('dof_user_character_stuff', array(
             'user' => $character->getOwner()->getSlug(),
             'character' => $character->getSlug(),
             'stuff' => $stuff->getSlug()

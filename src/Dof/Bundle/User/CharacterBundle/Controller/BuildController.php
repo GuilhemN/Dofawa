@@ -88,7 +88,7 @@ class BuildController extends Controller
             // Badge
             $this->get('badge_manager')->addBadge('create-build');
 
-            return $this->redirect($this->generateUrl('dof_user_character_show', array(
+            return $this->redirect($this->generateUrl('dof_user_character_stuff', array(
                 'user' => $this->getUser()->getSlug(),
                 'character' => $character->getSlug(),
                 'stuff' => $stuff->getSlug()

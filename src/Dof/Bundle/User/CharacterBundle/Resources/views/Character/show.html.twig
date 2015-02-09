@@ -1,0 +1,40 @@
+{% extends '::layout.html.twig' %}
+
+{% block breadcrumb %}
+    <li>
+        <a href="{{ path('dof_user_character_homepage', {'slug': character.owner.slug}) }}">
+            {% if app.user == character.owner %}
+                Mes personnages
+            {% else %}
+                Personnages de {{ character.owner.username }}
+            {% endif %}
+        </a>
+    </li>
+    <li>
+        {{ character.name }}
+    </li>
+{% endblock %}
+
+{% block body %}
+{% autoescape %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <strong>{{ charater.name }}</strong> {{ character.breed.getName(locales())}},
+                {{ 'level' | trans({'%level%': character.level}, 'item')}}
+            </h3>
+        </div>
+        <div class="panel-body text-center">
+            <div class="row">
+                <div class="col-xs-0 col-md-4"></div>
+                <div class="col-xs-6 col-md-4">
+
+                        {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
+                            'look': character.entityLook
+                        } only %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endautoescape %}
+{% endblock %}

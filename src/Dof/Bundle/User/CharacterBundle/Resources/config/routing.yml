@@ -2,6 +2,9 @@ dof_user_character_homepage:
     path:     /{slug}
     defaults: { _controller: DofUserCharacterBundle:Character:index, slug: ~ }
 
+dof_user_character_show:
+    path:     /{user}/{character}
+    defaults: { _controller: DofUserCharacterBundle:Character:index}
 
 dof_user_character_create:
     path: /create/{slug}
@@ -17,7 +20,7 @@ dof_user_character_remove:
         _method: POST
 
 # Affichage des builds
-dof_user_character_show:
+dof_user_character_stuff:
     path:     /{user}/{character}/stuffs/{stuff}
     defaults: { _controller: DofUserCharacterBundle:Build:show }
     requirements:
@@ -26,7 +29,7 @@ dof_user_character_show:
         stuff: '[0-9a-z-]+'
 
 
-dof_user_character_show_characteristics:
+dof_user_character_stuff_characteristics:
     path:     /{user}/{character}/stuffs/{stuff}/characteristics
     defaults: { _controller: DofUserCharacterBundle:Build:showCharacteristics }
     requirements:
@@ -34,7 +37,7 @@ dof_user_character_show_characteristics:
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
 
-dof_user_character_show_weapondamages:
+dof_user_character_stuff_weapondamages:
     path:     /{user}/{character}/stuffs/{stuff}/weapon-damages
     defaults: { _controller: DofUserCharacterBundle:Build:showWeaponDamages }
     requirements:
@@ -42,7 +45,7 @@ dof_user_character_show_weapondamages:
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
 
-dof_user_character_show_spellsDamages:
+dof_user_character_stuff_spellsDamages:
     path:     /{user}/{character}/stuffs/{stuff}/spell-damages
     defaults: { _controller: DofUserCharacterBundle:Build:showSpellsDamages }
     requirements:
