@@ -258,6 +258,14 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
         : null;
     }
 
+    public function getCanSee() {
+        return $this->canSee();
+    }
+
+    public function getCanWrite() {
+        return $this->canWrite();
+    }
+
     public function __toString()
     {
       return $this->getName();

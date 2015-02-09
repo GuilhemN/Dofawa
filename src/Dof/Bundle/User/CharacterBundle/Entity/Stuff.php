@@ -1000,6 +1000,14 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
         return $this->getCharacter()->canWrite();
     }
 
+    public function getCanSee() {
+        return $this->canSee();
+    }
+
+    public function getCanWrite() {
+        return $this->canWrite();
+    }
+
     public function __toString()
     {
         return $this->getName();
