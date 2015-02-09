@@ -58,8 +58,8 @@ class BuildParamConverter extends ServiceWithContainer implements ParamConverter
         $request->attributes->set('character', $character = $stuff->getCharacter());
         $request->attributes->set('user', $user = $character->getOwner());
 
-        $request->attributes->set('canSee', $bm->canSee($stuff));
-        $request->attributes->set('canWrite', $bm->canWrite($stuff));
+        $request->attributes->set('canSee', $stuff->canSee());
+        $request->attributes->set('canWrite', $stuff->canWrite());
 
         return true;
     }

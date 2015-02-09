@@ -14,7 +14,7 @@
 {% autoescape %}
     {% include 'DofUserCharacterBundle::list.html.twig' with { 'characters': user.characters } only %}
 
-    {% if app.user == user or is_granted('ROLE_ADMIN') %}
+    {% if character.canWrite() %}
     <div class="well well-sm">
         <div class="page-header">
             Créer un personnage

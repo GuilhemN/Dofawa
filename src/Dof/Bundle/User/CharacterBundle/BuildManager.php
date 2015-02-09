@@ -49,24 +49,6 @@ class BuildManager extends ServiceWithContainer
         return $stuff;
     }
 
-    public function canSee(Stuff $stuff, $user = null){
-        if($user !== null && !($user instanceof User))
-            throw new \InvalidArgumentException('The canSee function of the build Manager only accept instance of User or null for $user. Given ' . gettype($user) . '.');
-        if($user === null)
-            $user = $this->getSecurityContext()->getToken()->getUser();
-
-        return ($stuff->isVisible() && $stuff->getCharacter()->isVisible()) or ($user !== 'anon.' && $this->canWrite($stuff, $user));
-    }
-
-    public function canWrite(Stuff $stuff, $user = null){
-        if($user !== null && !($user instanceof User))
-            throw new \InvalidArgumentException('The canWrite function of the build Manager only accept instance of User or null for $user. Given ' . gettype($user) . '.');
-        if($user === null)
-            $user = $this->getSecurityContext()->getToken()->getUser();
-
-        return $user !== 'anon.' && ($user == $stuff->getCharacter()->getOwner() || $this->getSecurityContext()->isGranted('ROLE_SUPER_ADMIN'));
-    }
-
     public function getCharacteristics(Stuff $stuff, &$bonus){
         $em = $this->getEntityManager();
         $return = array_map(function () { return 0; }, CharacteristicsMetadata::getAll());

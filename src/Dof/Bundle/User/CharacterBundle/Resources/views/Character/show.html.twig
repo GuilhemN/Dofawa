@@ -30,7 +30,7 @@
     </div>
 
     <div class="row">
-        {% if app.user == user or is_granted('ROLE_ADMIN') %}
+        {% if character.canWrite() %}
         <div class="well well-sm">
             <div class="page-header">
                 Créer un stuff
@@ -73,7 +73,7 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                {% if app.user == character.owner or is_granted('ROLE_ADMIN') %}
+                                {% if character.canWrite() %}
                                 <li>
                                     <form action="{{ path('dof_user_character_stuff_remove') }}" method="POST">
                                         <input type="hidden" name="stuff" value="{{ stuff.id }}">

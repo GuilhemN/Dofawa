@@ -26,8 +26,8 @@ use XN\UtilityBundle\Event\CreateActionEvent;
 
 class BuildController extends Controller
 {
-    public function showAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
-        if(!$canSee) // Si n'a pas le droit de voir ce build
+    public function showAction($user, Stuff $stuff, PlayerCharacter $character){
+        if(!$stuff->canSee()) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
         $event = new CreateActionEvent('build', $stuff);
@@ -71,8 +71,8 @@ class BuildController extends Controller
     /**
      * @Utils\UsesSession
      */
-    public function configurationAction($user, Stuff $stuff, PlayerCharacter $character, $canWrite){
-        if(!$canWrite) // Si n'a pas le droit de modifier ce build
+    public function configurationAction($user, Stuff $stuff, PlayerCharacter $character){
+        if(!$stuff->canWrite()) // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
         $em = $this->getDoctrine()->getManager();
 
@@ -132,8 +132,8 @@ class BuildController extends Controller
             ]);
     }
 
-    public function showCharacteristicsAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
-        if(!$canSee) // Si n'a pas le droit de voir ce build
+    public function showCharacteristicsAction($user, Stuff $stuff, PlayerCharacter $character){
+        if(!$stuff->canSee()) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
         $bm = $this->get('build_manager');
@@ -148,8 +148,8 @@ class BuildController extends Controller
             ]);
     }
 
-    public function showWeaponDamagesAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
-        if(!$canSee) // Si n'a pas le droit de voir ce build
+    public function showWeaponDamagesAction($user, Stuff $stuff, PlayerCharacter $character){
+        if(!$stuff->canSee()) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
 
         $bm = $this->get('build_manager');
@@ -167,8 +167,8 @@ class BuildController extends Controller
             ]);
     }
 
-    public function showSpellsDamagesAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
-        if(!$canSee) // Si n'a pas le droit de voir ce build
+    public function showSpellsDamagesAction($user, Stuff $stuff, PlayerCharacter $character){
+        if(!$stuff->canSee()) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
         $bm = $this->get('build_manager');
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
@@ -200,7 +200,7 @@ class BuildController extends Controller
         $character = $em->getRepository('DofUserCharacterBundle:PlayerCharacter')->find($request->request->get('character'));
         if($character === null)
             return $this->createNotFoundException('Character not found.');
-        if(!$this->get('security.context')->isGranted('ROLE_ADMIN') && $character->getOwner() !== $this->getUser())
+        if(!$character->canWrite())
             throw $this->createAccessDeniedException();
 
         $stuff = new Stuff();
@@ -232,8 +232,7 @@ class BuildController extends Controller
         $stuff = $em->getRepository('DofUserCharacterBundle:Stuff')->find($request->request->get('stuff'));
         if($stuff === null)
             throw $this->createNotFoundException('Stuff not found');
-        elseif(!$this->get('security.context')->isGranted('ROLE_ADMIN') &&
-            $stuff->getCharacter->getOwner() !== $this->getUser())
+        elseif(!$stuff->canWrite())
             throw $this->createAccessDeniedException();
 
         $redirect = $this->redirect($this->generateUrl('dof_user_character_show', [

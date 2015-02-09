@@ -18,13 +18,11 @@ class StuffController extends Controller
         $bm = $this->get('build_manager');
         $iFact = $this->get('item_factory');
         $request = $this->get('request');
-        $stuffSlug = $request->request->get('stuff');
 
-        $stuff = $bm->getStuffBySlug($stuffSlug);
+        $stuff = $bm->getStuffBySlug($request->request->get('stuff'));
         if($stuff === null)
             throw $this->createNotFoundException();
-
-        if(!$bm->canWrite($stuff))
+        if(!$stuff->canWrite())
             throw $this->createAccessDeniedException();
 
         $em = $this->getDoctrine()->getManager();
@@ -82,7 +80,7 @@ class StuffController extends Controller
         $em = $this->getDoctrine()->getManager();
         $name = $this->get('request')->request->get('name');
 
-        if(!$bm->canWrite($oldStuff) or empty($name))
+        if(!$oldStuff->canWrite() or empty($name))
             throw $this->createAccessDeniedException();
 
         $stuff = new Stuff;

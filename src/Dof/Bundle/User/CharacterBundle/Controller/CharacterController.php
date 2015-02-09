@@ -31,6 +31,8 @@ class CharacterController extends Controller
     public function showAction(User $user, PlayerCharacter $character) {
         if($character->getOwner() != $user)
             throw $this->createNotFoundException();
+        if(!$character->canSee())
+            throw $this->createAccessDeniedException();
 
         return $this->render('DofUserCharacterBundle:Character:show.html.twig', ['character' => $character]);
     }
@@ -72,7 +74,7 @@ class CharacterController extends Controller
     public function removeAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $character = $em->getRepository('DofUserCharacterBundle:PlayerCharacter')->find($request->request->get('id'));
-        if(!$this->get('security.context')->isGranted('ROLE_ADMIN') && $character->getOwner() !== $this->getUser())
+        if(!$character->canWrite())
             throw $this->createAccessDeniedException();
         $em->remove($character);
         $em->flush();

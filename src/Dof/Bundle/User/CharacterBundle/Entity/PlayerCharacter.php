@@ -14,6 +14,8 @@ use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
+use XN\DependencyInjection\RequireSecurityContextInterface;
+use XN\DependencyInjection\RequireSecurityContextTrait;
 
 use Dof\Bundle\GraphicsBundle\BasicPCLook;
 use Dof\Bundle\CharacterBundle\Gender;
@@ -27,9 +29,9 @@ use Dof\Bundle\User\CharacterBundle\Entity\Stuff;
  * @ORM\Table(name="dof_build_playercharacter")
  * @ORM\Entity(repositoryClass="Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacterRepository")
  */
-class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
+class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, RequireSecurityContextInterface
 {
-    use TimestampableTrait, SluggableTrait, OwnableTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait, RequireSecurityContextTrait;
 
     /**
      * @var integer
@@ -234,6 +236,26 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
 
     public function getEntityLook() {
         return $this->getLook()->toEntityLook();
+    }
+
+    public function canSee() {
+        static $canSee = null;
+        if($canSee === null)
+            $canSee = $this->isVisible() || $this->sc->isGranted('ROLE_ADMIN') || $this->getOwner() === $this->getCurrentUser();
+        return $canSee;
+    }
+
+    public function canWrite() {
+        static $canWrite = null;
+        if($canWrite === null)
+            $canWrite = $this->getCurrentUser() === $this->getOwner();
+        return $canWrite;
+    }
+
+    public function getCurrentUser() {
+        return ($token = $this->sc->getToken()) !== null ?
+            is_object($user = $token->getUser()) ? $user : null
+        : null;
     }
 
     public function __toString()
