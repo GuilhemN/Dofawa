@@ -77,9 +77,10 @@ class CharacterController extends Controller
         $character = $em->getRepository('DofUserCharacterBundle:PlayerCharacter')->find($request->request->get('id'));
         if(!$character->canWrite())
             throw $this->createAccessDeniedException();
+        $redirect = $this->redirect($this->generateUrl('dof_user_character_homepage', ['slug' => $character->getOwner()->getSlug()]));
         $em->remove($character);
         $em->flush();
-        return $this->redirect($this->generateUrl('dof_user_character_homepage'));
+        return $redirect;
     }
 
     private function checkUser(User $user = null) {
