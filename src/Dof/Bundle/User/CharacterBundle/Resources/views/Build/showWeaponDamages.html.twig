@@ -5,7 +5,9 @@
 {% block breadcrumb %}
     {{ parent() }}
     <li><a href="{{ path('dof_profile_userpage', {'slug': character.owner.slug}) }}">{{ character.owner.username }}</a></li>
-    <li>{{ character.name }}</li>
+    <li><a href="{{ path('dof_user_character_show', {'user': character.owner.slug, 'character': character.slug})}}">
+        {{ character.name }}
+    </a></li>
     <li>{{ stuff.name }}</li>
 {% endblock %}
 
