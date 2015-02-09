@@ -239,11 +239,11 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     public function canSee() {
-        return $this->isVisible() || $this->sc->isGranted('ROLE_ADMIN') || $this->getOwner() === $this->getCurrentUser();;
+        return $this->isVisible() || $this->canWrite();
     }
 
     public function canWrite() {
-        return $this->getCurrentUser() === $this->getOwner();
+        return $this->sc->isGranted('ROLE_ADMIN') || $this->getCurrentUser() === $this->getOwner();
     }
 
     public function getCurrentUser() {
