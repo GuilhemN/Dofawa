@@ -20,7 +20,9 @@
             <div class="row">
                 <div class="col-xs-0 col-md-4"></div>
                 <div class="col-xs-6 col-md-4">
-
+                        {% if not stuff.visible %}
+                        <span class="glyphicon glyphicon-eye-close pull-left"></span>
+                        {% endif %}
                         {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
                             'look': character.entityLook
                         } only %}
@@ -54,6 +56,9 @@
         {% for stuff in character.stuffs if stuff.canSee() %}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
+                {% if not stuff.visible %}
+                <span class="glyphicon glyphicon-eye-close pull-right"></span>
+                {% endif %}
                 {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
                     'look': stuff.look.toEntityLook()
                 } only %}

@@ -2,6 +2,9 @@
     {% for character in characters if character.canSee %}
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
+            {% if not character.visible %}
+            <span class="glyphicon glyphicon-eye-close pull-right"></span>
+            {% endif %}
             {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
                 'look': character.entityLook
             } only %}
