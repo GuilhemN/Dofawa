@@ -18,7 +18,7 @@ class MountExporter extends AbstractWitDataExporter
         foreach($mounts as $mount)
             $data['values'][] = [
                 'value' => $mount['nameFr'],
-                'expressions' => [
+                'expressions' => array_unique([
                     $mount['nameFr'],
                     $mount['nameEn'],
                     $mount['nameDe'],
@@ -27,7 +27,7 @@ class MountExporter extends AbstractWitDataExporter
                     $mount['nameJa'],
                     $mount['namePt'],
                     $mount['nameRu']
-                ],
+                ]),
                 'metadata' => json_encode(['id' => $mount['id']])
             ];
 
