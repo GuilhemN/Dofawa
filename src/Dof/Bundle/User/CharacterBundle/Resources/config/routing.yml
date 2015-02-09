@@ -20,6 +20,12 @@ dof_user_character_remove:
         _method: POST
 
 # Affichage des builds
+dof_user_character_stuff_remove:
+    path:     /stuff/remove
+    defaults: { _controller: DofUserCharacterBundle:Build:remove }
+    requirements:
+        _method: POST
+
 dof_user_character_stuff:
     path:     /{user}/{character}/stuffs/{stuff}
     defaults: { _controller: DofUserCharacterBundle:Build:show }
@@ -27,7 +33,6 @@ dof_user_character_stuff:
         user: '[0-9a-z-]+'
         character: '[0-9a-z-]+'
         stuff: '[0-9a-z-]+'
-
 
 dof_user_character_stuff_characteristics:
     path:     /{user}/{character}/stuffs/{stuff}/characteristics

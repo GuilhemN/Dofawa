@@ -3,6 +3,7 @@
 namespace Dof\Bundle\User\CharacterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use XN\Annotations as Utils;
 
 use Dof\Bundle\UserBundle\Entity\User;
@@ -25,79 +26,6 @@ use XN\UtilityBundle\Event\CreateActionEvent;
 
 class BuildController extends Controller
 {
-    /**
-     * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
-     * @Utils\UsesSession
-     */
-    public function indexAction(User $user = null)
-    {
-        if($user === null)
-            $user = $this->getUser();
-        $bm = $this->get('build_manager');
-        if(!$this->get('security.context')->isGranted('ROLE_ADMIN') && $user !== $this->getUser())
-            throw $this->createAccessDeniedException();
-
-        $em = $this->getDoctrine()->getManager();
-        $characters = $em->getRepository('DofUserCharacterBundle:PlayerCharacter')->findByUser($user);
-        foreach($characters as $character)
-            $bm->transformStuff($character->getStuffs()[0]);
-        $playerCharacter = new PlayerCharacter();
-
-        // Si la demande d'ajout provient de la fiche de présentation d'une classe
-        $newChar = $this->get('request')->get('newChar');
-        if(!empty($newChar) && $newChar > 0 && $newChar < 17){
-            $newBreed = $em->getRepository('DofCharacterBundle:Breed')->find($newChar);
-            $playerCharacter->setBreed($newBreed);
-        }
-
-        $form = $this->createForm('dof_user_characterbundle_playercharacter', $playerCharacter);
-        $form->handleRequest($this->get('request'));
-
-        if($form->isValid()){
-            $character = $form->getData();
-            $stuff = new Stuff();
-            $look = new BuildLook();
-            $breed = $character->getBreed();
-
-            $dform = $this->get('request')->request->get('dof_user_characterbundle_playercharacter');
-
-            // Apparence du 1er personnage
-            $look->setColors($breed->{'get'.strtolower(ucfirst(Gender::getName($dform['gender']))).'DefaultColors'}());
-            $look->setGender($dform['gender']);
-
-            // Ajout d'un nom au premier stuff
-            $stuff->setName('1er Stuff de '  . $character->getName());
-
-            // Relations
-            $character->addStuff($stuff);
-            $character->setVisible(true);
-            $stuff->setCharacter($character);
-
-            $stuff->setLook($look);
-            $stuff->setVisible(true);
-            $stuff->setFaceLabel($dform['face']);
-            $look->setStuff($stuff);
-
-            // Persistance
-            $em->persist($character);
-            $em->persist($stuff);
-            $em->persist($look);
-
-            $em->flush();
-
-            // Badge
-            $this->get('badge_manager')->addBadge('create-build');
-
-            return $this->redirect($this->generateUrl('dof_user_character_stuff', array(
-                'user' => $this->getUser()->getSlug(),
-                'character' => $character->getSlug(),
-                'stuff' => $stuff->getSlug()
-                )));
-        }
-
-        return $this->render('DofUserCharacterBundle:Build:index.html.twig', array('characters' => $characters, 'form' => $form->createView()));
-    }
-
     public function showAction($user, Stuff $stuff, PlayerCharacter $character, $canSee, $canWrite){
         if(!$canSee) // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
@@ -265,6 +193,24 @@ class BuildController extends Controller
             'user' => $user,
             'can_write' => $canWrite,
             ]);
+    }
+
+    public function removeAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $stuff = $em->getRepository('DofUserCharacterBundle:Stuff')->find($request->request->get('stuff'));
+        if($stuff === null)
+            throw $this->createNotFoundException('Stuff not found');
+        elseif(!$this->get('security.context')->isGranted('ROLE_ADMIN') &&
+            $stuff->getCharacter->getOwner() !== $this->getUser())
+            throw $this->createAccessDeniedException();
+
+        $redirect = $this->redirect($this->generateUrl('dof_user_character_show', [
+            'user' => $stuff->getCharacter()->getOwner()->getSlug(),
+            'character' => $stuff->getCharacter()->getSlug()
+            ]));
+        $em->remove($stuff);
+        $em->flush();
+        return $redirect;
     }
 
 }

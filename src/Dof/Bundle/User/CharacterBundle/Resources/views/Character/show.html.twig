@@ -54,6 +54,12 @@
                         }) }}">
                             Voir
                         </a>
+                        <form action="{{ path('dof_user_character_stuff_remove') }}">
+                            <input type="hidden" name="stuff" value="{{ stuff.id }}">
+                            <button type="submit" class="btn btn-danger">
+                                Supprimer
+                            </button>
+                        </form>
                     </p>
                 </div>
             </div>
