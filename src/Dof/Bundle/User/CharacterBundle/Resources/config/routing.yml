@@ -4,7 +4,7 @@ dof_user_character_homepage:
 
 dof_user_character_show:
     path:     /{user}/{character}
-    defaults: { _controller: DofUserCharacterBundle:Character:index}
+    defaults: { _controller: DofUserCharacterBundle:Character:show}
 
 dof_user_character_create:
     path: /create/{slug}

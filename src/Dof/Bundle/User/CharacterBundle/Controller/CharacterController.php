@@ -31,6 +31,8 @@ class CharacterController extends Controller
     public function showAction(User $user, PlayerCharacter $character) {
         if($character->getOwner() !== $user)
             throw $this->createNotFoundException();
+
+        return $this->render('DofUserCharacterBundle:Character:show.html.twig', ['character' => $character]);
     }
 
     /**
