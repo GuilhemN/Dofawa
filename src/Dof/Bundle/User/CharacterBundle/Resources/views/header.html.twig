@@ -24,9 +24,11 @@
     <li role="presentation" class="dropdown">
         <a aria-expanded="false" href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">Stuffs <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+            {% if stuff.canWrite() %}
             <li class="pointer" data-toggle="modal" data-target=".new-stuff-modal"><a>Créer</a></li>
             <li class="divider"></li>
-            {% for s in character.stuffs %}
+            {% endif %}
+            {% for s in character.stuffs if s.canSee() %}
             <li{% if s == stuff %} class="active"{% endif %}><a href="{{ path('dof_user_character_stuff', slugs | merge({'stuff': s.slug})) }}">{{ s.name }}</a></li>
             {% endfor %}
         </ul>
