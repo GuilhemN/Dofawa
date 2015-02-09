@@ -1,3 +1,3 @@
 dof_search_homepage:
-    path:     /index
+    path:     /
     defaults: { _controller: DofSearchBundle:Search:index }

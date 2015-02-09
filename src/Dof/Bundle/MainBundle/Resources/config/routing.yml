@@ -2,13 +2,9 @@ dof_main_homepage:
     pattern:  /
     defaults: { _controller: DofMainBundle:Default:index }
 
-dof_search_engine:
-    pattern:  /search
-    defaults: { _controller: DofMainBundle:Default:searchEngine }
-
-dof_intelligent_search_engine:
-    pattern:  /intelligent-search
-    defaults: { _controller: DofMainBundle:SearchEngine:index }
+#dof_search_engine:
+#    pattern:  /search
+#    defaults: { _controller: DofMainBundle:Default:searchEngine }
 
 dof_main_calculateur:
     pattern:  /calculateur
