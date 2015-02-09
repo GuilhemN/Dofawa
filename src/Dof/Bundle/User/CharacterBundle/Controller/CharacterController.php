@@ -17,7 +17,6 @@ class CharacterController extends Controller
      */
     public function indexAction(User $user = null){
         $em = $this->getDoctrine()->getManager();
-        $user = $this->checkUser($user);
         return $this->render('DofUserCharacterBundle:Character:index.html.twig', [
             'user' => $user,
             'breeds' => $em->getRepository('DofCharacterBundle:Breed')->findAll()
