@@ -51,7 +51,7 @@
             </form>
         </div>
         {% endif %}
-        {% for stuff in character.stuffs %}
+        {% for stuff in character.stuffs if stuff.canSee() %}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {

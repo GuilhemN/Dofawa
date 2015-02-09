@@ -1,5 +1,5 @@
 <div class="row">
-    {% for character in characters %}
+    {% for character in characters if character.canSee() %}
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
             {% include 'DofGraphicsBundle:Component:renderer.html.twig' with {
