@@ -53,7 +53,11 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><strong>{{ character.name }}</strong>, {{ 'level' | trans({'%level%': character.level}, 'item')}}</h3>
+        <h3 class="panel-title">
+            Stuff <strong>{{ stuff.name }}</strong>
+            de <strong>{{ character.name }}</strong>,
+            {{ character.breed.getName(locales())}} {{ 'level' | trans({'%level%': character.level}, 'item')}}
+        </h3>
     </div>
     <div class="panel-body text-center">
         <div class="row">
