@@ -1,15 +1,7 @@
-{% extends '::layout.html.twig' %}
+{% extends 'DofUserCharacterBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
-    <li>
-        <a href="{{ path('dof_user_character_homepage', {'slug': character.owner.slug}) }}">
-            {% if app.user == character.owner %}
-                Mes personnages
-            {% else %}
-                Personnages de {{ character.owner.username }}
-            {% endif %}
-        </a>
-    </li>
+    {{ parent() }}
     <li>
         {{ character.name }}
     </li>

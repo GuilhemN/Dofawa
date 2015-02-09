@@ -1,14 +1,4 @@
-{% extends '::layout.html.twig' %}
-
-{% block breadcrumb %}
-    <li>
-        {% if app.user == user %}
-            Mes personnages
-        {% else %}
-            Personnages de {{ user.username }}
-        {% endif %}
-    </li>
-{% endblock %}
+{% extends 'DofUserCharacterBundle::layout.html.twig' %}
 
 {% block body %}
 {% autoescape %}
