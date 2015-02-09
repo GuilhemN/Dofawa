@@ -27,7 +27,8 @@ class MountExporter extends AbstractWitDataExporter
                     $mount['nameJa'],
                     $mount['namePt'],
                     $mount['nameRu']
-                ]
+                ],
+                'metadata' => json_encode(['id' => $mount['id']])
             ];
 
         $this->callPut('entities/mount', $data);
