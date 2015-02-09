@@ -62,9 +62,9 @@
                             <ul class="dropdown-menu" role="menu">
                                 {% if app.user == character.owner or is_granted('ROLE_ADMIN') %}
                                 <li>
-                                    <form action="{{ path('dof_user_character_stuff_remove') }}">
+                                    <form action="{{ path('dof_user_character_stuff_remove') }}" method="POST">
                                         <input type="hidden" name="stuff" value="{{ stuff.id }}">
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-link">
                                             Supprimer
                                         </button>
                                     </form>
