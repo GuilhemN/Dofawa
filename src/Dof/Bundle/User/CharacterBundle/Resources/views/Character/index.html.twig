@@ -1,5 +1,15 @@
 {% extends 'DofUserCharacterBundle::layout.html.twig' %}
 
+{% block breadcrumb %}
+    <li>
+            {% if app.user == user %}
+                Mes personnages
+            {% else %}
+                Personnages de {{ user.username }}
+            {% endif %}
+    </li>
+{% endblock %}
+
 {% block body %}
 {% autoescape %}
     {% include 'DofUserCharacterBundle::list.html.twig' with { 'characters': user.characters } only %}
