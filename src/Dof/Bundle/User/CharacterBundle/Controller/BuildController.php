@@ -195,6 +195,38 @@ class BuildController extends Controller
             ]);
     }
 
+    public function createStuffAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $character = $em->getRepository('DofUserCharacterBundle:PlayerCharacter')->find($request->request->get('character'));
+        if($character === null)
+            return $this->createNotFoundException('Character not found.');
+        if(!$this->get('security.context')->isGranted('ROLE_ADMIN') && $character->getOwner() !== $this->getUser())
+            throw $this->createAccessDeniedException();
+
+        $stuff = new Stuff();
+        $stuff->setName($request->request->get('name'));
+        $stuff->setFaceLabel('I');
+        $stuff->setCharacter($character);
+        $stuff->setVisible(true);
+
+        $cLook = $character->getLook();
+        $look = new BuildLook();
+        $look->setGender($cLook->getGender());
+        $look->setColors($cLook->getColors());
+        $look->setStuff($stuff);
+        $stuff->setLook($look);
+        $stuff->setCharacter($character);
+
+        $em->persist($look);
+        $em->persist($stuff);
+        $em->flush();
+        return $this->redirect($this->generateUrl('dof_user_character_stuff', array(
+            'user' => $character->getOwner()->getSlug(),
+            'character' => $character->getSlug(),
+            'stuff' => $stuff->getSlug()
+        )));
+    }
+
     public function removeAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $stuff = $em->getRepository('DofUserCharacterBundle:Stuff')->find($request->request->get('stuff'));

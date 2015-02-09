@@ -20,8 +20,8 @@ dof_user_character_create:
         _method: POST
 
 dof_user_character_stuff_create:
-    path:     /create/stuff/{slug}
-    defaults: { _controller: DofUserCharacterBundle:Stuff:createStuff}
+    path:     /create/stuff
+    defaults: { _controller: DofUserCharacterBundle:Build:createStuff}
     requirements:
         slug: '[0-9a-z-]+'
         _method: POST

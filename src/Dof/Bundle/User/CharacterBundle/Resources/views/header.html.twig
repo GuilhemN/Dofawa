@@ -41,7 +41,8 @@
                 <h4 class="modal-title" id="createStuffModal">Créer un stuff</h4>
             </div>
             <div class="modal-body">
-                <form action="{{ path('dof_user_character_stuff_create', {'slug': stuff.slug}) }}" method="POST">
+                <form action="{{ path('dof_user_character_stuff_create') }}" method="POST">
+                    <input type="hidden" name="character" value="{{ character.id }}">
                     Nom : <input type="text" name="name" /><br>
                     <input type="submit" class="btn" value="Créer"/>
                 </form>
