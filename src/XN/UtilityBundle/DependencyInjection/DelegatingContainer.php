@@ -2,6 +2,7 @@
 namespace XN\UtilityBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\Exception as Exceptions;
 
 class DelegatingContainer extends Container
 {
@@ -9,7 +10,7 @@ class DelegatingContainer extends Container
     {
 		if (parent::has($id))
 			return true;
-		
+
 		if (false !== ($pos = strpos($id, '\\'))) {
 			// Proceed with a delegate container
 			if ($this->has($delegateId = substr($id, 0, $pos))
@@ -45,7 +46,7 @@ class DelegatingContainer extends Container
         }
 
         if (isset($this->loading[$id])) {
-            throw new ServiceCircularReferenceException($id, array_keys($this->loading));
+            throw new Exceptions\ServiceCircularReferenceException($id, array_keys($this->loading));
         }
 
         if (isset($this->methodMap[$id])) {
@@ -58,7 +59,7 @@ class DelegatingContainer extends Container
         } else {
             if (self::EXCEPTION_ON_INVALID_REFERENCE === $invalidBehavior) {
                 if (!$id) {
-                    throw new ServiceNotFoundException($id);
+                    throw new Exceptions\ServiceNotFoundException($id);
                 }
 
                 $alternatives = array();
@@ -69,7 +70,7 @@ class DelegatingContainer extends Container
                     }
                 }
 
-                throw new ServiceNotFoundException($id, null, null, $alternatives);
+                throw new Exceptions\ServiceNotFoundException($id, null, null, $alternatives);
             }
 
             return;
@@ -86,7 +87,7 @@ class DelegatingContainer extends Container
                 unset($this->services[$id]);
             }
 
-            if ($e instanceof InactiveScopeException && self::EXCEPTION_ON_INVALID_REFERENCE !== $invalidBehavior) {
+            if ($e instanceof Exceptions\InactiveScopeException && self::EXCEPTION_ON_INVALID_REFERENCE !== $invalidBehavior) {
                 return;
             }
 
