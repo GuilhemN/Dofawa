@@ -15,7 +15,7 @@
     {% include 'DofUserCharacterBundle::list.html.twig' with { 'characters': user.characters } only %}
 
     {% if app.user == user or is_granted('ROLE_ADMIN') %}
-    <div class="well">
+    <div class="well well-sm">
         <div class="page-header">
             Créer un personnage
         </div>

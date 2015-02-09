@@ -16,6 +16,7 @@ parameters:
     xn.bbcode.tag_template.raw.class: XN\BBCode\TagTemplate\RawTextTagTemplate
     xn.bbcode.text_filter.new_line.class: XN\BBCode\TextFilter\NewLineTextFilter
 
+    xn.doctrine.entity_dependency_injection.class: XN\UtilityBundle\Doctrine\EntityDependencyInjection
     xn.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
     xn.doctrine.ownable_updater.class: XN\UtilityBundle\Doctrine\OwnableUpdater
     xn.doctrine.localized_origin_updater.class: XN\UtilityBundle\Doctrine\LocalizedOriginUpdater
@@ -147,6 +148,12 @@ services:
 #        arguments: [ "@xn.id_generator" ]
 #        tags:
 #            - { name: doctrine.event_listener, event: prePersist }
+
+    xn.doctrine.entity_dependency_injection:
+        class:     "%xn.doctrine.entity_dependency_injection.class%"
+        arguments: [ "@security.context" ]
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
 
     xn.doctrine.ownable_updater:
         class:     "%xn.doctrine.ownable_updater.class%"
