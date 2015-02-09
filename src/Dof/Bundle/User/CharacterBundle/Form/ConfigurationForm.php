@@ -32,17 +32,17 @@ class ConfigurationForm extends AbstractType
         $builder
             // Stuff
             ->add('title', 'text', ['required' => true, 'trim' => true, 'label' => 'title', 'translation_domain' => 'generalTrans'])
-            ->add('stuffVisibility', 'checkbox', ['label' => 'Visible', 'required' => false])
-            ->add('vitality', 'number', $caractOptions+['label' => 'Vitality', 'translation_domain' => 'item'])
-            ->add('wisdom', 'number', $caractOptions+['label' => 'Wisdom', 'translation_domain' => 'item'])
-            ->add('strength', 'number', $caractOptions+['label' => 'Strength', 'translation_domain' => 'item'])
+            ->add('stuffVisibility', 'checkbox', ['label' => 'Public', 'required' => false])
+            ->add('vitality', 'number', $caractOptions + ['label' => 'Vitality', 'translation_domain' => 'item'])
+            ->add('wisdom', 'number', $caractOptions + ['label' => 'Wisdom', 'translation_domain' => 'item'])
+            ->add('strength', 'number', $caractOptions + ['label' => 'Strength', 'translation_domain' => 'item'])
             ->add('intelligence', 'number', $caractOptions+['label' => 'Intelligence', 'translation_domain' => 'item'])
-            ->add('chance', 'number', $caractOptions+['label' => 'Chance', 'translation_domain' => 'item'])
-            ->add('agility', 'number', $caractOptions+['label' => 'Agility', 'translation_domain' => 'item'])
+            ->add('chance', 'number', $caractOptions + ['label' => 'Chance', 'translation_domain' => 'item'])
+            ->add('agility', 'number', $caractOptions + ['label' => 'Agility', 'translation_domain' => 'item'])
 
             // Character
             ->add('name', 'text', ['required' => true, 'trim' => true, 'label' => 'name', 'translation_domain' => 'generalTrans'])
-            ->add('characterVisibility', 'checkbox', ['label' => 'Visible', 'required' => false])
+            ->add('characterVisibility', 'checkbox', ['label' => 'Public', 'required' => false])
             ->add('level', 'number', array(
                 'attr' => array('min' => '1', 'max' => '200', 'step' => '1'),
                 'constraints' => new Assert\Range(['min' => 1, 'max' => 200]), 'label' => 'list.level', 'translation_domain' => 'item'
