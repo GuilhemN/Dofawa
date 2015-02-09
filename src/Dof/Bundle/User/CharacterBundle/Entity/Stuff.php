@@ -993,7 +993,7 @@ class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableI
             $sc = $this->getCharacter()->getSecurityContext();
             $canSee = $this->getCharacter()->canSee() && ($this->isVisible() || $this->canWrite());
         }
-        return $canSee();
+        return $canSee;
     }
 
     public function canWrite() {
