@@ -29,7 +29,7 @@ class CharacterController extends Controller
      * @ParamConverter("character", options={"mappings": {"character": "slug"}})
      */
     public function showAction(User $user, PlayerCharacter $character) {
-        if($character->getOwner() !== $user)
+        if($character->getOwner() != $user)
             throw $this->createNotFoundException();
 
         return $this->render('DofUserCharacterBundle:Character:show.html.twig', ['character' => $character]);
