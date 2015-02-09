@@ -10,7 +10,7 @@
             } only %}
             <div class="caption">
                 <h3>{{ character.name }}</h3>
-                <p>{{ 'level' | trans({'%level%': character.level}, 'item')}}</p>
+                <p>{{ character.breed.getName(locales()) }} {{ 'level' | trans({'%level%': character.level}, 'item')}}</p>
                 <p>
                     <div class="btn-group">
                         <a class="btn btn-primary" href="{{ path('dof_user_character_show', {
