@@ -32,27 +32,6 @@
     </div>
 
     <div class="row">
-        {% if character.canWrite() %}
-        <div class="well well-sm col-xs-12">
-            <div class="page-header">
-                Créer un stuff
-            </div>
-            <form class="form-horizontal" action="{{ path('dof_user_character_stuff_create') }}" method="POST">
-                <input type="hidden" name="character" value="{{ character.id }}">
-                <div class="form-group">
-                    <label for="stuff-name" class="col-sm-2 control-label">Nom</label>
-                    <div class="col-sm-10">
-                        <input class="form-control col-xs-12" id="stuff-name" name="name" type="text" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Créer</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        {% endif %}
         {% for stuff in character.stuffs if stuff.canSee() %}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
@@ -95,6 +74,29 @@
             </div>
         </div>
         {% endfor %}
+        {% if character.canWrite() %}
+        <div class="col-xs-12">
+            <div class="well well-sm">
+                <div class="page-header">
+                    Créer un stuff
+                </div>
+                <form class="form-horizontal" action="{{ path('dof_user_character_stuff_create') }}" method="POST">
+                    <input type="hidden" name="character" value="{{ character.id }}">
+                    <div class="form-group">
+                        <label for="stuff-name" class="col-sm-2 control-label">Nom</label>
+                        <div class="col-sm-10">
+                            <input class="form-control col-xs-12" id="stuff-name" name="name" type="text" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Créer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
     </div>
 {% endautoescape %}
 {% endblock %}
