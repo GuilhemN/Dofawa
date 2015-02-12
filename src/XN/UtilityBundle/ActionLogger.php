@@ -42,7 +42,7 @@ class ActionLogger
     public function getLastByTypes($types) {
         $types = (array) $types;
         $user = $this->getUser();
-        if($user === null)
+        if(!is_object($user))
             return;
         $serial = serialize($types);
         if(isset($this->results[$serial]))
