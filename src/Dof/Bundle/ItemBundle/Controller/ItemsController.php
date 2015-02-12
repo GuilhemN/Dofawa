@@ -59,7 +59,7 @@ class ItemsController extends Controller
         $form = $this->createForm(new ItemSearch(false, $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')));
         $form->handleRequest($this->get('request'));
         $data = isset($iSlot) ? (array) $form->getData() + ['type' => $iSlot] : $form->getData();
-        $params = $this->getItems($data, $page, $slugs + ['type' => $type], $repo);
+        $params = $this->getItems($data, $page, $slugs + ['type' => $type, 'slot' => $slot], $repo);
 
         return $this->render('DofItemBundle:Items:index.html.twig',
             $params +
