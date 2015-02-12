@@ -31,8 +31,8 @@
             <input name="useSlot" value="{{ slot_number is defined }}" type="hidden" />
             <input name="items[{{ slot_number | default(0) }}]" type="hidden" value="{{ itemTemplate.id }}">
             <div class="btn-group">
-                <button type="submit" class="btn btn-default">Équiper</button>
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <button type="submit" class="btn btn-primary">Equip</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
