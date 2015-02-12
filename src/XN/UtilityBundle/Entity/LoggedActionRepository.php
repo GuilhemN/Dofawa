@@ -19,7 +19,7 @@ class LoggedActionRepository extends EntityRepository
         $qb = $this
             ->createQueryBuilder('a');
         $qb
-            ->where('a.owner = :user and a.key IN :keys')
+            ->where('a.owner = :user and a.key IN (:keys)')
             ->setParameter('user', $user)
             ->setParameter('keys', $keys)
             ->orderBy('a.createdAt', 'DESC')
