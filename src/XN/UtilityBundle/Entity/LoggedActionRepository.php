@@ -21,7 +21,7 @@ class LoggedActionRepository extends EntityRepository
         $qb
             ->where('a.owner = :user and a.key IN :keys')
             ->setParameter('user', $user)
-            ->setParameter('keys', $types)
+            ->setParameter('keys', $keys)
             ->orderBy('a.createdAt', 'DESC')
             ->setMaxResults(1)
           ;
