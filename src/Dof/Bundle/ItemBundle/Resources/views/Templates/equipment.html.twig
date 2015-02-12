@@ -24,7 +24,7 @@
 
 {% block actions %}
     {% set last_stuff_action = action_logger.getLastByTypes('build_stuff') %}
-    {% if app.user is not null and last_stuff_action.entity is not null %}
+    {% if app.user is not null and last_stuff_action is not null and last_stuff_action.entity is not null %}
         {% set last_stuff = last_stuff_action.entity %}
         <form class="form-horizontal" method="POST" action="{{ path('dof_user_character_additem_post') }}">
             <input name="stuff" type="hidden" value="{{ last_stuff.slug }}">
