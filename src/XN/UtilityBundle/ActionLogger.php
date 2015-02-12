@@ -11,12 +11,14 @@ class ActionLogger
 {
     private $em;
     private $sc;
+    private $repo;
 
-    private $actions;
+    private $results;
 
     public function __construct(ObjectManager $em, SecurityContext $sc) {
         $this->em = $em;
         $this->sc = $sc;
+        $this->repo = $em->getRepository('XNUtilityBundle:LoggedAction');
     }
 
     public function set($key, $entity = null, array $context = array(), AdvancedUserInterface $user = null) {
@@ -37,12 +39,17 @@ class ActionLogger
         return $this;
     }
 
-    public function getLastByTypes(array $types) {
-        $this->load();
-        foreach($this->actions as $key => $context)
-            if(in_array($key, $types))
-                return [ $key, $context ];
-        return null;
+    public function getLastByTypes($types) {
+        $types = (array) $types;
+        $user = $this->getUser();
+        if($user === null)
+            return;
+        $serial = serialize($types);
+        if(isset($this->results[$serial]))
+            return $this->results[$serial];
+        $result = $this->repo->findLastAction($user, $types);
+        $this->results[$serial] = $result;
+        return $result;
     }
 
     protected function getUser() {
@@ -54,16 +61,4 @@ class ActionLogger
             return;
         return $user;
     }
-
-    protected function load() {
-        if($this->actions !== null)
-            return;
-
-        $user = $this->getUser();
-        if($user !== null)
-            $this->actions = $this->em->getRepository('XNUtilityBundle:LoggedAction')->findLastActions($user);
-        else
-            $this->actions = [];
-    }
 }
-

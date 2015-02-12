@@ -15,17 +15,17 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  */
 class LoggedActionRepository extends EntityRepository
 {
-    public function findLastActions(AdvancedUserInterface $user, $max = 20) {
+    public function findLastAction(AdvancedUserInterface $user, array $keys = array()) {
         $qb = $this
             ->createQueryBuilder('a');
         $qb
-            ->where($qb->expr()->eq('a.owner', ':user'))
+            ->where('a.owner = :user and a.key IN :keys')
             ->setParameter('user', $user)
+            ->setParameter('keys', $types)
             ->orderBy('a.createdAt', 'DESC')
-            ->groupBy('a.key')
-            ->setMaxResults($max)
+            ->setMaxResults(1)
           ;
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
     // TODO : Specific to Dofawa
