@@ -22,7 +22,6 @@ class ActionLogger
     }
 
     public function set($key, $entity = null, array $context = array(), AdvancedUserInterface $user = null) {
-        $this->load();
         if($user === null){
             $user = $this->getUser();
             if($user === null)
