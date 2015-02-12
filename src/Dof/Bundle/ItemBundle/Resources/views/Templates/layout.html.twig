@@ -183,12 +183,17 @@
             <hr />
             {% block footer %}
             {% endblock %}
+            <a data-toggle="collapse" href="#item{{ item.id }}-description" aria-expanded="false" aria-controls="item{{ item.id }}-description">
+              Link with href
+            </a>
 
-            {% if itemTemplate.description == '#1' %}
-                Arme éthérée
-            {% else %}
-                {{ itemTemplate.getDescription(locales()) }}
-            {% endif %}
+            <div class="collapse" id="item{{ item.id }}-description">
+                {% if itemTemplate.description == '#1' %}
+                    Arme éthérée
+                {% else %}
+                    {{ itemTemplate.getDescription(locales()) }}
+                {% endif %}
+            </div>
         </div>
         {% if descriptionCriteria %}
         </div>
