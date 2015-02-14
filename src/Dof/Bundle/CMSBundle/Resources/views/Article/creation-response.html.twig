@@ -1,0 +1,15 @@
+{% extends '::layout.html.twig' %}
+
+{% block breadcrumb %}
+<li>Proposition d'un article</li>
+{% endblock %}
+
+{% block body %}
+    Merci de votre proposition d'article, {{ app.user.username }}.<br/>
+    Il sera vérifié dès que possible et vous serez informé de sa publication.
+    <br /><br/>
+
+    {% if is_granted('ROLE_REDACTOR') %}
+        <a href="{{ path('dof_cms_validate', {'id': proposition.id}) }}">Directement valider cette proposition.</a>
+    {% endif %}
+{% endblock %}

@@ -56,7 +56,7 @@ class ArticleController extends Controller
 
             $em->persist($article);
             $em->flush($article);
-            return;
+            return $this->render('DofCMSBundle:Article:creation-response.html.twig');
         }
         return $this->generateEditTemplate($article, $request);
     }
@@ -102,7 +102,8 @@ class ArticleController extends Controller
             elseif(!($dungeon = $em->getRepository('DofMonsterBundle:Dungeon')->find($data['options']['dungeon'])))
                 throw new \Exception('Non-existant dungeon');
         }
-        else {
+        // elseif($article->isTutorialArticle()){ }
+        elseif(!$article->isTutorialArticle()) {
             if(empty($data['name']))
                 throw new \Exception('Empty name');
 
@@ -118,7 +119,7 @@ class ArticleController extends Controller
         else if($article->isDungeonArticle())
             $params = ['dungeons' => $em->getRepository('DofMonsterBundle:Dungeon')->findBy([], ['name' . ucfirst($request->getLocale()) => 'ASC'])];
         else// if($article->isTutorialArticle() or $article->isCollection())
-            throw new \LogicException('Not implemented');
+            $params = [];
 
         return $this->render('DofCMSBundle:Article:edit.html.twig', ['article' => $article] + $params);
     }
