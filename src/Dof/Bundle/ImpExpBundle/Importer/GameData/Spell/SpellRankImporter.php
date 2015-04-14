@@ -34,6 +34,13 @@ class SpellRankImporter extends AbstractGameDataImporter
                 continue;
 
             $tpl = $repo->find($row['id']);
+            $spellRank = $repo->findBy([ 'spell' => $spell, 'rank' => $row['grade']]);
+            if($tpl != $spellRank)
+                if($beta)
+                    continue;
+                else {
+                    $this->dm->remove($spellRank);
+                }
             if ($tpl === null) {
                 $tpl = new SpellRank();
                 $tpl->setId($row['id']);
