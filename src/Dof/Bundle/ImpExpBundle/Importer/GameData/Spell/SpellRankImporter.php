@@ -35,7 +35,7 @@ class SpellRankImporter extends AbstractGameDataImporter
 
             $tpl = $repo->find($row['id']);
             $spellRank = $repo->findOneBy([ 'spell' => $spell, 'rank' => $row['grade']]);
-            if($tpl != $spellRank){
+            if($spellRank !== null && $tpl !== $spellRank){
                 $this->dm->remove($spellRank);
                 $this->dm->flush();
             }
