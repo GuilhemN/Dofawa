@@ -3,7 +3,6 @@
 namespace Dof\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -12,7 +11,7 @@ use Dof\Bundle\UserBundle\OwnableTrait;
 use XN\Metadata\SimpleLazyFieldTrait;
 
 /**
- * ProgrammedNotification
+ * ProgrammedNotification.
  *
  * @ORM\Table(name="dof_user_programmed_notifications")
  * @ORM\Entity(repositoryClass="Dof\Bundle\UserBundle\Entity\ProgrammedNotificationRepository")
@@ -22,7 +21,7 @@ class ProgrammedNotification implements IdentifiableInterface, TimestampableInte
     use TimestampableTrait, OwnableTrait, SimpleLazyFieldTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -45,9 +44,9 @@ class ProgrammedNotification implements IdentifiableInterface, TimestampableInte
     private $date;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -55,9 +54,10 @@ class ProgrammedNotification implements IdentifiableInterface, TimestampableInte
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param string $type
+     *
      * @return ProgrammedNotification
      */
     public function setType($type)
@@ -68,7 +68,7 @@ class ProgrammedNotification implements IdentifiableInterface, TimestampableInte
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return string
      */
@@ -78,9 +78,10 @@ class ProgrammedNotification implements IdentifiableInterface, TimestampableInte
     }
 
     /**
-     * Set date
+     * Set date.
      *
      * @param \DateTime $date
+     *
      * @return ProgrammedNotification
      */
     public function setDate($date)
@@ -91,7 +92,7 @@ class ProgrammedNotification implements IdentifiableInterface, TimestampableInte
     }
 
     /**
-     * Get date
+     * Get date.
      *
      * @return \DateTime
      */

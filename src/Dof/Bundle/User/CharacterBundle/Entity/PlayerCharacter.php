@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -16,15 +15,12 @@ use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
 use XN\DependencyInjection\RequireSecurityContextInterface;
 use XN\DependencyInjection\RequireSecurityContextTrait;
-
 use Dof\Bundle\GraphicsBundle\BasicPCLook;
 use Dof\Bundle\CharacterBundle\Gender;
-
 use Dof\Bundle\CharacterBundle\Entity\Breed;
-use Dof\Bundle\User\CharacterBundle\Entity\Stuff;
 
 /**
- * PlayerCharacter
+ * PlayerCharacter.
  *
  * @ORM\Table(name="dof_build_playercharacter")
  * @ORM\Entity(repositoryClass="Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacterRepository")
@@ -34,7 +30,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     use TimestampableTrait, SluggableTrait, OwnableTrait, RequireSecurityContextTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -50,7 +46,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     private $name;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="level", type="integer", nullable=false)1
      * @Assert\Range(
@@ -76,7 +72,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     private $stuffs;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="visible", type="boolean")
      */
@@ -88,9 +84,9 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -98,9 +94,10 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return PlayerCharacter
      */
     public function setName($name)
@@ -111,7 +108,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -121,9 +118,10 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Set level
+     * Set level.
      *
-     * @param integer $level
+     * @param int $level
+     *
      * @return PlayerCharacter
      */
     public function setLevel($level)
@@ -134,9 +132,9 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Get level
+     * Get level.
      *
-     * @return integer
+     * @return int
      */
     public function getLevel()
     {
@@ -146,6 +144,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     public function setBreed(Breed $breed)
     {
         $this->breed = $breed;
+
         return $this;
     }
 
@@ -155,9 +154,10 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Add stuffs
+     * Add stuffs.
      *
      * @param Stuff $stuffs
+     *
      * @return PlayerCharacter
      */
     public function addStuff(Stuff $stuffs)
@@ -168,9 +168,10 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Remove stuffs
+     * Remove stuffs.
      *
      * @param Stuff $stuffs
+     *
      * @return PlayerCharacter
      */
     public function removeStuff(Stuff $stuffs)
@@ -181,7 +182,7 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Get stuffs
+     * Get stuffs.
      *
      * @return Collection
      */
@@ -191,9 +192,10 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Set visible
+     * Set visible.
      *
-     * @param boolean $visible
+     * @param bool $visible
+     *
      * @return Stuff
      */
     public function setVisible($visible)
@@ -204,9 +206,9 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Get visible
+     * Get visible.
      *
-     * @return boolean
+     * @return bool
      */
     public function getVisible()
     {
@@ -214,16 +216,17 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
     }
 
     /**
-     * Get visible
+     * Get visible.
      *
-     * @return boolean
+     * @return bool
      */
     public function isVisible()
     {
         return $this->visible;
     }
 
-    public function getLook() {
+    public function getLook()
+    {
         $bpcl = new BasicPCLook();
         $bpcl
             ->setBreed($this->getBreed())
@@ -231,22 +234,27 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
             ->setFace($this->getBreed()->getFace(Gender::MALE, 'I'))
             ->setColors($this->getBreed()->getMaleDefaultColors())
         ;
+
         return $bpcl;
     }
 
-    public function getEntityLook() {
+    public function getEntityLook()
+    {
         return $this->getLook()->toEntityLook();
     }
 
-    public function canSee() {
+    public function canSee()
+    {
         return $this->isVisible() || $this->canWrite();
     }
 
-    public function canWrite() {
+    public function canWrite()
+    {
         return $this->sc->isGranted('ROLE_ADMIN') || $this->getCurrentUser() === $this->getOwner();
     }
 
-    public function getCurrentUser() {
+    public function getCurrentUser()
+    {
         return ($token = $this->sc->getToken()) !== null ?
             is_object($user = $token->getUser()) ? $user : null
         : null;
@@ -254,6 +262,6 @@ class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, 
 
     public function __toString()
     {
-      return $this->getName();
+        return $this->getName();
     }
 }

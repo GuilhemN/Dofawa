@@ -5,21 +5,16 @@ namespace Dof\Bundle\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-
 //Traduction Titre/Description
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
-use XN\L10n\LocalizedDescriptionTrait;
-
-use Dof\Bundle\MainBundle\Entity\BadgeLevel;
 use Dof\Bundle\UserBundle\Entity\Badge as UserBadge;
 
 /**
- * Badge
+ * Badge.
  *
  * @ORM\Table(name="dof_badges")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MainBundle\Entity\BadgeRepository")
@@ -28,7 +23,7 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
 {
     use TimestampableTrait, LocalizedNameTrait;
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -63,11 +58,10 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
         $this->userBadges = new ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -75,9 +69,10 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Badge
      */
     public function setSlug($slug)
@@ -88,7 +83,7 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -97,11 +92,11 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
         return $this->slug;
     }
 
-
     /**
-     * Add levels
+     * Add levels.
      *
      * @param BadgeLevel $levels
+     *
      * @return Badge
      */
     public function addLevel(BadgeLevel $levels)
@@ -112,9 +107,10 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
     }
 
     /**
-     * Remove levels
+     * Remove levels.
      *
      * @param BadgeLevel $levels
+     *
      * @return Badge
      */
     public function removeLevel(BadgeLevel $levels)
@@ -125,7 +121,7 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
     }
 
     /**
-     * Get levels
+     * Get levels.
      *
      * @return Collection
      */
@@ -134,15 +130,16 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
         return $this->levels;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->getName();
     }
 
-
     /**
-     * Add userBadges
+     * Add userBadges.
      *
      * @param UserBadge $userBadges
+     *
      * @return Badge
      */
     public function addUserBadge(UserBadge $userBadges)
@@ -153,9 +150,10 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
     }
 
     /**
-     * Remove userBadges
+     * Remove userBadges.
      *
      * @param UserBadge $userBadges
+     *
      * @return Badge
      */
     public function removeUserBadge(UserBadge $userBadges)
@@ -166,7 +164,7 @@ class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedN
     }
 
     /**
-     * Get userBadges
+     * Get userBadges.
      *
      * @return Collection
      */

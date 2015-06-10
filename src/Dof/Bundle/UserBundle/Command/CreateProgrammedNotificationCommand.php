@@ -1,12 +1,10 @@
 <?php
+
 namespace Dof\Bundle\UserBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\MainBundle\Entity\Notification;
 
 class CreateProgrammedNotificationCommand extends ContainerAwareCommand
@@ -26,7 +24,7 @@ class CreateProgrammedNotificationCommand extends ContainerAwareCommand
 
         $notifications = $repo->findReadyNotifications();
         $i = 0;
-        foreach($notifications as $pn) {
+        foreach ($notifications as $pn) {
             $n = new Notification();
             $n
                 ->setOwner($pn->getOwner())

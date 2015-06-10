@@ -3,14 +3,13 @@
 namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 
 /**
- * QuestStep
+ * QuestStep.
  *
  * @ORM\Table(name="dof_quest_steps")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\QuestStepRepository")
@@ -20,7 +19,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     use LocalizedNameTrait, LocalizedDescriptionTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -28,7 +27,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="optimal_level", type="integer")
      */
@@ -56,34 +55,35 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     private $xpRatio;
 
     /**
-    * @var QuestCategory
-    *
-    * @ORM\ManyToOne(targetEntity="Quest", inversedBy="steps")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var QuestCategory
+     *
+     * @ORM\ManyToOne(targetEntity="Quest", inversedBy="steps")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $quest;
 
     /**
-    * @ORM\OneToMany(targetEntity="QuestObjective", mappedBy="step")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\OneToMany(targetEntity="QuestObjective", mappedBy="step")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $objectives;
 
     /**
-    * Set id
-    *
-    * @return Quest
-    */
+     * Set id.
+     *
+     * @return Quest
+     */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -91,9 +91,10 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Set optimalLevel
+     * Set optimalLevel.
      *
-     * @param integer $optimalLevel
+     * @param int $optimalLevel
+     *
      * @return QuestStep
      */
     public function setOptimalLevel($optimalLevel)
@@ -104,9 +105,9 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Get optimalLevel
+     * Get optimalLevel.
      *
-     * @return integer
+     * @return int
      */
     public function getOptimalLevel()
     {
@@ -114,9 +115,10 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Set duration
+     * Set duration.
      *
      * @param float $duration
+     *
      * @return QuestStep
      */
     public function setDuration($duration)
@@ -127,9 +129,9 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Get float
+     * Get float.
      *
-     * @return integer
+     * @return int
      */
     public function getDuration()
     {
@@ -137,9 +139,10 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Set kamasRatio
+     * Set kamasRatio.
      *
      * @param float $kamasRatio
+     *
      * @return QuestStep
      */
     public function setKamasRatio($kamasRatio)
@@ -150,7 +153,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Get kamasRatio
+     * Get kamasRatio.
      *
      * @return float
      */
@@ -160,9 +163,10 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Set xpRatio
+     * Set xpRatio.
      *
      * @param float $xpRatio
+     *
      * @return QuestStep
      */
     public function setXpRatio($xpRatio)
@@ -173,7 +177,7 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Get xpRatio
+     * Get xpRatio.
      *
      * @return float
      */
@@ -183,11 +187,12 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-    * Set quest
-    *
-    * @param Quest $quest
-    * @return QuestStep
-    */
+     * Set quest.
+     *
+     * @param Quest $quest
+     *
+     * @return QuestStep
+     */
     public function setQuest(Quest $quest)
     {
         $this->quest = $quest;
@@ -196,21 +201,22 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-    * Get quest
-    *
-    * @return Quest
-    */
+     * Get quest.
+     *
+     * @return Quest
+     */
     public function getQuest()
     {
         return $this->quest;
     }
-    
+
     /**
-    * Add objectives
-    *
-    * @param QuestObjective $objectives
-    * @return QuestStep
-    */
+     * Add objectives.
+     *
+     * @param QuestObjective $objectives
+     *
+     * @return QuestStep
+     */
     public function addObjective(QuestObjective $objectives)
     {
         $this->objectives[] = $objectives;
@@ -219,11 +225,12 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-    * Remove objectives
-    *
-    * @param QuestObjective $objectives
-    * @return QuestStep
-    */
+     * Remove objectives.
+     *
+     * @param QuestObjective $objectives
+     *
+     * @return QuestStep
+     */
     public function removeObjective(QuestObjective $objectives)
     {
         $this->objectives->removeElement($objectives);
@@ -232,10 +239,10 @@ class QuestStep implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-    * Get objectives
-    *
-    * @return Collection
-    */
+     * Get objectives.
+     *
+     * @return Collection
+     */
     public function getObjectives()
     {
         return $this->objectives;

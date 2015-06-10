@@ -4,17 +4,14 @@ namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use Dof\Bundle\ItemBundle\PrimaryBonusInterface;
 use Dof\Bundle\ItemBundle\PrimaryBonusTrait;
-
 use Dof\Bundle\ItemBundle\CharacteristicsTrait;
 
 /**
- * ItemSetCombination
+ * ItemSetCombination.
  *
  * @ORM\Table(name="dof_item_set_combinations")
  * @ORM\Entity(repositoryClass="Dof\Bundle\ItemBundle\Entity\ItemSetCombinationRepository")
@@ -24,7 +21,7 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     use PrimaryBonusTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -41,7 +38,7 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     private $set;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="item_count", type="integer")
      */
@@ -63,9 +60,9 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -73,9 +70,10 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     }
 
     /**
-     * Set set
+     * Set set.
      *
      * @param ItemSet $set
+     *
      * @return ItemSetCombination
      */
     public function setSet(ItemSet $set)
@@ -86,7 +84,7 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     }
 
     /**
-     * Get set
+     * Get set.
      *
      * @return ItemSet
      */
@@ -96,9 +94,10 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     }
 
     /**
-     * Set itemCount
+     * Set itemCount.
      *
-     * @param integer $itemCount
+     * @param int $itemCount
+     *
      * @return ItemSetCombination
      */
     public function setItemCount($itemCount)
@@ -109,9 +108,9 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     }
 
     /**
-     * Get itemCount
+     * Get itemCount.
      *
-     * @return integer
+     * @return int
      */
     public function getItemCount()
     {
@@ -119,9 +118,10 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     }
 
     /**
-     * Add effects
+     * Add effects.
      *
      * @param ItemSetEffect $effects
+     *
      * @return ItemSetCombination
      */
     public function addEffect(ItemSetEffect $effects)
@@ -132,20 +132,21 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
     }
 
     /**
-     * Remove effects
+     * Remove effects.
      *
      * @param ItemSetEffect $effects
+     *
      * @return ItemSetCombination
      */
     public function removeEffect(ItemSetEffect $effects)
     {
         $this->effects->removeElement($effects);
 
-        return $this; 
+        return $this;
     }
 
     /**
-     * Get effects
+     * Get effects.
      *
      * @return Collection
      */
@@ -154,18 +155,21 @@ class ItemSetCombination implements IdentifiableInterface, PrimaryBonusInterface
         return $this->effects;
     }
 
-    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
-        foreach($primaryFields as $k => $v){
-			if(!isset($caracts[$v['primaryBonus']]))
-				$caracts[$v['primaryBonus']] = 0;
+    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array())
+    {
+        foreach ($primaryFields as $k => $v) {
+            if (!isset($caracts[$v['primaryBonus']])) {
+                $caracts[$v['primaryBonus']] = 0;
+            }
 
-            $caracts[$v['primaryBonus']] += $this->{'get' . ucfirst($k)}() * $v['weight'];
+            $caracts[$v['primaryBonus']] += $this->{'get'.ucfirst($k)}() * $v['weight'];
         }
 
         return $caracts;
     }
 
-    public function getCascadeForPrimaryBonus(){
+    public function getCascadeForPrimaryBonus()
+    {
         return $this->set;
     }
 }

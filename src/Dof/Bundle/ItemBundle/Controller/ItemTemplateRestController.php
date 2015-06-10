@@ -1,12 +1,10 @@
 <?php
+
 namespace Dof\Bundle\ItemBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use Doctrine\Common\Persistence\ObjectManager;
-
 use XN\Rest\Level1RestController;
 
 class ItemTemplateRestController extends Level1RestController
@@ -17,13 +15,15 @@ class ItemTemplateRestController extends Level1RestController
 
     public function searchEquipmentAction(Request $req)
     {
-        if (strlen(trim($req->query->get('filter'))) < 3)
-            return $this->createJsonResponse([ ]);
+        if (strlen(trim($req->query->get('filter'))) < 3) {
+            return $this->createJsonResponse([]);
+        }
         $dm = $this->getDoctrine()->getManager();
         $locale = $this->get('translator')->getLocale();
         $repo = $dm->getRepository('DofItemBundle:EquipmentTemplate');
         $qb = $repo->createFilteredQueryBuilder('e', $req, $locale);
         $repo->orderByText($qb, 'e', $locale);
+
         return $this->createJsonResponse(array_map(function ($equip) use ($locale) {
             return $equip->exportData(false, $locale);
         }, $qb->getQuery()->getResult()));

@@ -1,7 +1,8 @@
 <?php
+
 namespace XN\UtilityBundle;
 
 final class ActionEvents
 {
-    const CREATE = "xn.action.create";
+    const CREATE = 'xn.action.create';
 }

@@ -3,14 +3,9 @@
 namespace Dof\Bundle\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\MinorColumnsInterface;
 use XN\Metadata\TimestampableInterface;
@@ -21,15 +16,13 @@ use XN\Metadata\OwnableInterface;
 use XN\Security\TOTPAuthenticatableInterface;
 use XN\Security\TOTPAuthenticatableTrait;
 use Dof\Bundle\UserBundle\OwnableTrait;
-
 use XN\Metadata\FileTrait;
 use XN\Metadata\FileInterface;
-
 use FOS\MessageBundle\Model\ParticipantInterface;
 use Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="dof_user")
  * @ORM\Entity(repositoryClass="Dof\Bundle\UserBundle\Entity\UserRepository")
@@ -38,7 +31,7 @@ use Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter;
 class User extends BaseUser implements ParticipantInterface, IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, TOTPAuthenticatableInterface, MinorColumnsInterface, FileInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -49,7 +42,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     use TimestampableTrait, SluggableTrait, OwnableTrait, TOTPAuthenticatableTrait, FileTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="point", type="integer", nullable=true)
      */
@@ -91,7 +84,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     private $born;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="nbvisite", type="integer", nullable=true)
      */
@@ -131,20 +124,20 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     private $avatar;
 
     /**
-    * @ORM\OneToMany(targetEntity="Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter", mappedBy="owner")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\OneToMany(targetEntity="Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter", mappedBy="owner")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $characters;
 
     /**
-    * @var array
-    *
-    * @ORM\Column(name="preferences", type="json_array", nullable=true)
-    */
+     * @var array
+     *
+     * @ORM\Column(name="preferences", type="json_array", nullable=true)
+     */
     private $preferences;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="petsManagerNotifications", type="boolean")
      */
@@ -158,9 +151,9 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -168,9 +161,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set point
+     * Set point.
      *
-     * @param integer $point
+     * @param int $point
+     *
      * @return User
      */
     public function setPoint($point)
@@ -181,9 +175,9 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get point
+     * Get point.
      *
-     * @return integer
+     * @return int
      */
     public function getPoint()
     {
@@ -191,9 +185,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set groupe
+     * Set groupe.
      *
      * @param string $groupe
+     *
      * @return User
      */
     public function setGroupe($groupe)
@@ -204,7 +199,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get groupe
+     * Get groupe.
      *
      * @return string
      */
@@ -214,9 +209,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set confirme
+     * Set confirme.
      *
-     * @param boolean $confirme
+     * @param bool $confirme
+     *
      * @return User
      */
     public function setConfirme($confirme)
@@ -227,9 +223,9 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get confirme
+     * Get confirme.
      *
-     * @return boolean
+     * @return bool
      */
     public function getConfirme()
     {
@@ -237,9 +233,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set guild
+     * Set guild.
      *
      * @param string $guild
+     *
      * @return User
      */
     public function setGuild($guild)
@@ -250,7 +247,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get guild
+     * Get guild.
      *
      * @return string
      */
@@ -260,9 +257,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set lieu
+     * Set lieu.
      *
      * @param string $lieu
+     *
      * @return User
      */
     public function setLieu($lieu)
@@ -273,7 +271,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get lieu
+     * Get lieu.
      *
      * @return string
      */
@@ -283,9 +281,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set site
+     * Set site.
      *
      * @param string $site
+     *
      * @return User
      */
     public function setSite($site)
@@ -296,7 +295,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get site
+     * Get site.
      *
      * @return string
      */
@@ -306,9 +305,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set born
+     * Set born.
      *
      * @param \DateTime $born
+     *
      * @return User
      */
     public function setBorn($born)
@@ -319,7 +319,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get born
+     * Get born.
      *
      * @return \DateTime
      */
@@ -329,9 +329,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set nbvisite
+     * Set nbvisite.
      *
-     * @param integer $nbvisite
+     * @param int $nbvisite
+     *
      * @return User
      */
     public function setNbvisite($nbvisite)
@@ -342,9 +343,9 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get nbvisite
+     * Get nbvisite.
      *
-     * @return integer
+     * @return int
      */
     public function getNbvisite()
     {
@@ -352,9 +353,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set commentaire
+     * Set commentaire.
      *
      * @param string $commentaire
+     *
      * @return User
      */
     public function setCommentaire($commentaire)
@@ -365,7 +367,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get commentaire
+     * Get commentaire.
      *
      * @return string
      */
@@ -375,9 +377,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set presentation
+     * Set presentation.
      *
      * @param string $presentation
+     *
      * @return User
      */
     public function setPresentation($presentation)
@@ -388,7 +391,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get presentation
+     * Get presentation.
      *
      * @return string
      */
@@ -398,9 +401,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set horaires
+     * Set horaires.
      *
      * @param string $horaires
+     *
      * @return User
      */
     public function setHoraires($horaires)
@@ -411,7 +415,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get horaires
+     * Get horaires.
      *
      * @return string
      */
@@ -421,9 +425,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set differentpseudo
+     * Set differentpseudo.
      *
      * @param string $differentpseudo
+     *
      * @return User
      */
     public function setDifferentpseudo($differentpseudo)
@@ -434,7 +439,7 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get differentpseudo
+     * Get differentpseudo.
      *
      * @return string
      */
@@ -444,11 +449,12 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-    * Add characters
-    *
-    * @param PlayerCharacter $characters
-    * @return object
-    */
+     * Add characters.
+     *
+     * @param PlayerCharacter $characters
+     *
+     * @return object
+     */
     public function addCharacter(PlayerCharacter $characters)
     {
         $this->characters[] = $characters;
@@ -457,11 +463,12 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-    * Remove builds
-    *
-    * @param PlayerCharacter $builds
-    * @return object
-    */
+     * Remove builds.
+     *
+     * @param PlayerCharacter $builds
+     *
+     * @return object
+     */
     public function removeCharacter(PlayerCharacter $characters)
     {
         $this->characters->removeElement($characters);
@@ -470,10 +477,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-    * Get characters
-    *
-    * @return Collection
-    */
+     * Get characters.
+     *
+     * @return Collection
+     */
     public function getCharacters()
     {
         return $this->characters;
@@ -497,9 +504,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Set petsManagerNotifications
+     * Set petsManagerNotifications.
      *
-     * @param boolean $petsManagerNotifications
+     * @param bool $petsManagerNotifications
+     *
      * @return User
      */
     public function setPetsManagerNotifications($petsManagerNotifications)
@@ -510,30 +518,34 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-     * Get petsManagerNotifications
+     * Get petsManagerNotifications.
      *
-     * @return boolean
+     * @return bool
      */
     public function getPetsManagerNotifications()
     {
         return $this->petsManagerNotifications;
     }
 
-    public function hasPreference($id) {
+    public function hasPreference($id)
+    {
         return (bool) $this->preferences[$id];
     }
 
-    public function addPreference($id, $value) {
+    public function addPreference($id, $value)
+    {
         $this->preferences[$id] = $value;
+
         return $this;
     }
 
     /**
-    * Set preferences
-    *
-    * @param array $preferences
-    * @return User
-    */
+     * Set preferences.
+     *
+     * @param array $preferences
+     *
+     * @return User
+     */
     public function setPreferences(array $preferences)
     {
         $this->preferences = $preferences;
@@ -542,10 +554,10 @@ class User extends BaseUser implements ParticipantInterface, IdentifiableInterfa
     }
 
     /**
-    * Get preferences
-    *
-    * @return array
-    */
+     * Get preferences.
+     *
+     * @return array
+     */
     public function getPreferences()
     {
         return $this->preferences;

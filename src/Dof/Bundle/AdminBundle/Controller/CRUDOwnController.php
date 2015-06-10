@@ -1,15 +1,15 @@
 <?php
+
 namespace Dof\Bundle\AdminBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController as BaseController;
-
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class CRUDOwnController extends BaseController{
-
-  /**
-   * return the Response object associated to the edit action
+class CRUDOwnController extends BaseController
+{
+    /**
+   * return the Response object associated to the edit action.
    *
    *
    * @param mixed $id

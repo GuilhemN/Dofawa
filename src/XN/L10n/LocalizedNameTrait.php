@@ -63,9 +63,10 @@ trait LocalizedNameTrait
     protected $nameRu;
 
     /**
-     * Set nameFr
+     * Set nameFr.
      *
      * @param string $nameFr
+     *
      * @return object
      */
     public function setNameFr($nameFr)
@@ -76,7 +77,7 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Get nameFr
+     * Get nameFr.
      *
      * @return string
      */
@@ -86,9 +87,10 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Set nameEn
+     * Set nameEn.
      *
      * @param string $nameEn
+     *
      * @return object
      */
     public function setNameEn($nameEn)
@@ -99,7 +101,7 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Get nameEn
+     * Get nameEn.
      *
      * @return string
      */
@@ -109,9 +111,10 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Set nameDe
+     * Set nameDe.
      *
      * @param string $nameDe
+     *
      * @return object
      */
     public function setNameDe($nameDe)
@@ -122,7 +125,7 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Get nameDe
+     * Get nameDe.
      *
      * @return string
      */
@@ -132,9 +135,10 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Set nameEs
+     * Set nameEs.
      *
      * @param string $nameEs
+     *
      * @return object
      */
     public function setNameEs($nameEs)
@@ -145,7 +149,7 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Get nameEs
+     * Get nameEs.
      *
      * @return string
      */
@@ -155,9 +159,10 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Set nameIt
+     * Set nameIt.
      *
      * @param string $nameIt
+     *
      * @return object
      */
     public function setNameIt($nameIt)
@@ -168,7 +173,7 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Get nameIt
+     * Get nameIt.
      *
      * @return string
      */
@@ -178,9 +183,10 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Set namePt
+     * Set namePt.
      *
      * @param string $namePt
+     *
      * @return object
      */
     public function setNamePt($namePt)
@@ -191,7 +197,7 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Get namePt
+     * Get namePt.
      *
      * @return string
      */
@@ -201,9 +207,10 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Set nameJa
+     * Set nameJa.
      *
      * @param string $nameJa
+     *
      * @return object
      */
     public function setNameJa($nameJa)
@@ -214,7 +221,7 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Get nameJa
+     * Get nameJa.
      *
      * @return string
      */
@@ -224,9 +231,10 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Set nameRu
+     * Set nameRu.
      *
      * @param string $nameRu
+     *
      * @return object
      */
     public function setNameRu($nameRu)
@@ -237,7 +245,7 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Get nameRu
+     * Get nameRu.
      *
      * @return string
      */
@@ -247,57 +255,63 @@ trait LocalizedNameTrait
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      * @param string $locale
+     *
      * @return object
      */
     public function setName($name, $locale = 'fr')
     {
-    	switch ($locale) {
-    		case 'fr': $this->nameFr = $name; break;
-    		case 'en': $this->nameEn = $name; break;
-    		case 'de': $this->nameDe = $name; break;
-    		case 'es': $this->nameEs = $name; break;
-    		case 'it': $this->nameIt = $name; break;
-    		case 'pt': $this->namePt = $name; break;
-    		case 'ja': $this->nameJa = $name; break;
-    		case 'ru': $this->nameRu = $name; break;
-    	}
-    	return $this;
+        switch ($locale) {
+            case 'fr': $this->nameFr = $name; break;
+            case 'en': $this->nameEn = $name; break;
+            case 'de': $this->nameDe = $name; break;
+            case 'es': $this->nameEs = $name; break;
+            case 'it': $this->nameIt = $name; break;
+            case 'pt': $this->namePt = $name; break;
+            case 'ja': $this->nameJa = $name; break;
+            case 'ru': $this->nameRu = $name; break;
+        }
+
+        return $this;
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @param string|array $locale
+     *
      * @return string
      */
     public function getName($locale = 'fr')
     {
-    	if (is_array($locale)) {
-    		foreach ($locale as $loc) {
-    			$name = $this->getName($loc);
-    			if ($name !== null)
-    				return $name;
-    		}
-    		return null;
-    	}
-    	switch ($locale) {
-    		case 'fr': return $this->nameFr;
-    		case 'en': return $this->nameEn;
-    		case 'de': return $this->nameDe;
-    		case 'es': return $this->nameEs;
-    		case 'it': return $this->nameIt;
-    		case 'pt': return $this->namePt;
-    		case 'ja': return $this->nameJa;
-    		case 'ru': return $this->nameRu;
-    		default: return null;
-    	}
+        if (is_array($locale)) {
+            foreach ($locale as $loc) {
+                $name = $this->getName($loc);
+                if ($name !== null) {
+                    return $name;
+                }
+            }
+
+            return;
+        }
+        switch ($locale) {
+            case 'fr': return $this->nameFr;
+            case 'en': return $this->nameEn;
+            case 'de': return $this->nameDe;
+            case 'es': return $this->nameEs;
+            case 'it': return $this->nameIt;
+            case 'pt': return $this->namePt;
+            case 'ja': return $this->nameJa;
+            case 'ru': return $this->nameRu;
+            default: return;
+        }
     }
 
-    public function getNames(){
+    public function getNames()
+    {
         return [
             'nameFr' => $this->nameFr,
             'nameEn' => $this->nameEn,
@@ -306,7 +320,7 @@ trait LocalizedNameTrait
             'nameIt' => $this->nameIt,
             'namePt' => $this->namePt,
             'nameJa' => $this->nameJa,
-            'nameRu' => $this->nameRu
+            'nameRu' => $this->nameRu,
         ];
     }
 }

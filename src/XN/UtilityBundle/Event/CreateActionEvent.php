@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\UtilityBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
@@ -21,19 +22,21 @@ class CreateActionEvent extends Event
     protected $context = array();
 
     /**
-    * @var boolean
-    */
+     * @var bool
+     */
     protected $stopSession = array();
 
-    public function __construct($key, $entity = null, $context = array(), $stopSession = false) {
-        if(!strval($key))
+    public function __construct($key, $entity = null, $context = array(), $stopSession = false)
+    {
+        if (!strval($key)) {
             throw new \LogicException('An action\'s key must be a string and must be non-empty.');
+        }
         $this->key = strval($key);
         $this->entity = $entity;
         $this->context = (array) $context;
         $this->stopSession = false;
     }
-    
+
     public function setKey($key)
     {
         $this->key = strval($key);

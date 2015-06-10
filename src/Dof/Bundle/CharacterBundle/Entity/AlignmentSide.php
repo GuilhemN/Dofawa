@@ -3,17 +3,15 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * AlignmentSide
+ * AlignmentSide.
  *
  * @ORM\Table(name="dof_alignment_sides")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CharacterBundle\Entity\AlignmentSideRepository")
@@ -23,7 +21,7 @@ class AlignmentSide implements IdentifiableInterface, SluggableInterface, Locali
     use SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -31,28 +29,30 @@ class AlignmentSide implements IdentifiableInterface, SluggableInterface, Locali
     private $id;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="canConquest", type="boolean")
      */
     private $canConquest;
 
     /**
-    * Get id
-    *
-    * @param id $id
-    * @return AlignmentSide
-    */
+     * Get id.
+     *
+     * @param id $id
+     *
+     * @return AlignmentSide
+     */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -60,9 +60,10 @@ class AlignmentSide implements IdentifiableInterface, SluggableInterface, Locali
     }
 
     /**
-     * Set canConquest
+     * Set canConquest.
      *
-     * @param boolean $canConquest
+     * @param bool $canConquest
+     *
      * @return AlignmentSide
      */
     public function setCanConquest($canConquest)
@@ -73,16 +74,17 @@ class AlignmentSide implements IdentifiableInterface, SluggableInterface, Locali
     }
 
     /**
-     * Get canConquest
+     * Get canConquest.
      *
-     * @return boolean
+     * @return bool
      */
     public function getCanConquest()
     {
         return $this->canConquest;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }

@@ -9,7 +9,9 @@ class Gender extends Enum
     const MALE = 0;
     const FEMALE = 1;
 
-    private function __construct() { }
+    private function __construct()
+    {
+    }
 
     public static function isValid($gender)
     {

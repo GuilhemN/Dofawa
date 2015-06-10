@@ -4,20 +4,17 @@ namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 
 /**
- * Job
+ * Job.
  *
  * @ORM\Table(name="dof_jobs")
  * @ORM\Entity(repositoryClass="JobRepository")
@@ -25,7 +22,7 @@ use XN\L10n\LocalizedNameTrait;
 class Job implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -55,9 +52,10 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return Job
      */
     public function setId($id)
@@ -68,9 +66,9 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -78,9 +76,10 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
     }
 
     /**
-     * Add gatherableItems
+     * Add gatherableItems.
      *
      * @param ItemTemplate $gatherableItems
+     *
      * @return Job
      */
     public function addGatherableItem(ItemTemplate $gatherableItems)
@@ -91,9 +90,10 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
     }
 
     /**
-     * Remove gatherableItems
+     * Remove gatherableItems.
      *
      * @param ItemTemplate $gatherableItems
+     *
      * @return Job
      */
     public function removeGatherableItem(ItemTemplate $gatherableItems)
@@ -104,7 +104,7 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
     }
 
     /**
-     * Get gatherableItems
+     * Get gatherableItems.
      *
      * @return Collection
      */
@@ -114,9 +114,10 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
     }
 
     /**
-     * Add craftableItems
+     * Add craftableItems.
      *
      * @param ItemTemplate $craftableItems
+     *
      * @return Job
      */
     public function addCraftableItem(ItemTemplate $craftableItems)
@@ -127,9 +128,10 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
     }
 
     /**
-     * Remove craftableItems
+     * Remove craftableItems.
      *
      * @param ItemTemplate $craftableItems
+     *
      * @return Job
      */
     public function removeCraftableItem(ItemTemplate $craftableItems)
@@ -140,7 +142,7 @@ class Job implements IdentifiableInterface, TimestampableInterface, SluggableInt
     }
 
     /**
-     * Get craftableItems
+     * Get craftableItems.
      *
      * @return Collection
      */

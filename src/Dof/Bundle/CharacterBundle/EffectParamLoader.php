@@ -1,12 +1,11 @@
 <?php
+
 namespace Dof\Bundle\CharacterBundle;
 
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Common\ServiceWithContainer;
-
 use Dof\Common\PseudoRepositoriesTrait;
 
 class EffectParamLoader extends ServiceWithContainer
@@ -14,7 +13,7 @@ class EffectParamLoader extends ServiceWithContainer
     use PseudoRepositoriesTrait;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * Sometimes you may want to disable automatic parameter loading,
      * for example when importing data
@@ -39,55 +38,68 @@ class EffectParamLoader extends ServiceWithContainer
                 // So this may or may not work
                 $tpl = $ent->getEffectTemplate();
                 $param1 = $ent->getParam1();
-                if ($param1 instanceof IdentifiableInterface)
+                if ($param1 instanceof IdentifiableInterface) {
                     $param1 = $param1->getId();
+                }
                 $param2 = $ent->getParam2();
-                if ($param2 instanceof IdentifiableInterface)
+                if ($param2 instanceof IdentifiableInterface) {
                     $param2 = $param2->getId();
+                }
                 $param3 = $ent->getParam3();
-                if ($param3 instanceof IdentifiableInterface)
+                if ($param3 instanceof IdentifiableInterface) {
                     $param3 = $param3->getId();
+                }
                 $ent->getFragments()->clear();
                 foreach ($tpl->getRelations() as $rel) {
-                    if ($rel->getColumn1() === null && $rel->getColumn2() === null && $rel->getColumn3() === null)
-						continue;
+                    if ($rel->getColumn1() === null && $rel->getColumn2() === null && $rel->getColumn3() === null) {
+                        continue;
+                    }
                     $isReplacement =
                         $rel->getColumn1() === 'id' && $rel->getColumn2() === null && $rel->getColumn3() === null ||
                         $rel->getColumn1() === null && $rel->getColumn2() === 'id' && $rel->getColumn3() === null ||
                         $rel->getColumn1() === null && $rel->getColumn2() === null && $rel->getColumn3() === 'id';
-                    if (!$isReplacement && !$rel->isFragment())
-						continue;
-					$type = $rel->getTargetEntity();
-					if (strpos($type, ':') === false)
-						$repo = $this->getPseudoRepository($type);
-					else
-						$repo = $em->getRepository($type);
-					if ($isReplacement) {
-						if ($rel->getColumn1() !== null) {
-							$target = $repo->find($param1);
-							if ($target)
-								$ent->setParam1($target);
-						} elseif ($rel->getColumn2() !== null) {
-							$target = $repo->find($param2);
-							if ($target)
-								$ent->setParam2($target);
-						} else {
-							$target = $repo->find($param3);
-							if ($target)
-								$ent->setParam3($target);
-						}
-					} else {
-						$criteria = [ ];
-						if ($rel->getColumn1() !== null)
-							$criteria[$rel->getColumn1()] = $param1;
-						if ($rel->getColumn2() !== null)
-							$criteria[$rel->getColumn2()] = $param2;
-						if ($rel->getColumn3() !== null)
-							$criteria[$rel->getColumn3()] = $param3;
-						$target = $repo->findOneBy($criteria);
-					}
-					if ($rel->isFragment() && $target)
-						$ent->addFragment($target);
+                    if (!$isReplacement && !$rel->isFragment()) {
+                        continue;
+                    }
+                    $type = $rel->getTargetEntity();
+                    if (strpos($type, ':') === false) {
+                        $repo = $this->getPseudoRepository($type);
+                    } else {
+                        $repo = $em->getRepository($type);
+                    }
+                    if ($isReplacement) {
+                        if ($rel->getColumn1() !== null) {
+                            $target = $repo->find($param1);
+                            if ($target) {
+                                $ent->setParam1($target);
+                            }
+                        } elseif ($rel->getColumn2() !== null) {
+                            $target = $repo->find($param2);
+                            if ($target) {
+                                $ent->setParam2($target);
+                            }
+                        } else {
+                            $target = $repo->find($param3);
+                            if ($target) {
+                                $ent->setParam3($target);
+                            }
+                        }
+                    } else {
+                        $criteria = [];
+                        if ($rel->getColumn1() !== null) {
+                            $criteria[$rel->getColumn1()] = $param1;
+                        }
+                        if ($rel->getColumn2() !== null) {
+                            $criteria[$rel->getColumn2()] = $param2;
+                        }
+                        if ($rel->getColumn3() !== null) {
+                            $criteria[$rel->getColumn3()] = $param3;
+                        }
+                        $target = $repo->findOneBy($criteria);
+                    }
+                    if ($rel->isFragment() && $target) {
+                        $ent->addFragment($target);
+                    }
                 }
             }
         }
@@ -96,6 +108,7 @@ class EffectParamLoader extends ServiceWithContainer
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+
         return $this;
     }
 

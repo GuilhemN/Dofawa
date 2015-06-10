@@ -3,16 +3,15 @@
 namespace XN\UtilityBundle\Doctrine;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-
 use XN\DependencyInjection\LazyServiceBox;
-
 use XN\DependencyInjection\RequireSecurityContextInterface;
 
 class EntityDependencyInjection
 {
     private $sc;
 
-    public function __construct(LazyServiceBox $sc) {
+    public function __construct(LazyServiceBox $sc)
+    {
         $this->sc = $sc;
     }
 

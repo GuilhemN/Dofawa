@@ -3,15 +3,13 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * State
+ * State.
  *
  * @ORM\Table(name="dof_states")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CharacterBundle\Entity\StateRepository")
@@ -21,7 +19,7 @@ class State implements IdentifiableInterface, LocalizedNameInterface
     use LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,25 +27,26 @@ class State implements IdentifiableInterface, LocalizedNameInterface
     private $id;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="prevents_spell_usage", type="boolean")
      */
     private $preventsSpellUsage;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="prevents_weapon_usage", type="boolean")
      */
     private $preventsWeaponUsage;
 
     /**
-    * Set id
-    *
-    * @param integer $id
-    * @return Spell
-    */
+     * Set id.
+     *
+     * @param int $id
+     *
+     * @return Spell
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -56,9 +55,9 @@ class State implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -66,9 +65,10 @@ class State implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Set preventsSpellUsage
+     * Set preventsSpellUsage.
      *
-     * @param boolean $preventsSpellUsage
+     * @param bool $preventsSpellUsage
+     *
      * @return State
      */
     public function setPreventsSpellUsage($preventsSpellUsage)
@@ -79,9 +79,9 @@ class State implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Get preventsSpellUsage
+     * Get preventsSpellUsage.
      *
-     * @return boolean
+     * @return bool
      */
     public function getPreventsSpellUsage()
     {
@@ -89,9 +89,10 @@ class State implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Set preventsWeaponUsage
+     * Set preventsWeaponUsage.
      *
-     * @param boolean $preventsWeaponUsage
+     * @param bool $preventsWeaponUsage
+     *
      * @return State
      */
     public function setPreventsWeaponUsage($preventsWeaponUsage)
@@ -102,9 +103,9 @@ class State implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Get preventsWeaponUsage
+     * Get preventsWeaponUsage.
      *
-     * @return boolean
+     * @return bool
      */
     public function getPreventsWeaponUsage()
     {

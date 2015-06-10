@@ -21,9 +21,10 @@ trait LocalizedOriginTrait
     private $updatedOnLocale;
 
     /**
-     * Set createdOnLocale
+     * Set createdOnLocale.
      *
      * @param string $createdOnLocale
+     *
      * @return object
      */
     public function setCreatedOnLocale($createdOnLocale)
@@ -34,7 +35,7 @@ trait LocalizedOriginTrait
     }
 
     /**
-     * Get createdOnLocale
+     * Get createdOnLocale.
      *
      * @return string
      */
@@ -44,9 +45,10 @@ trait LocalizedOriginTrait
     }
 
     /**
-     * Set updatedOnLocale
+     * Set updatedOnLocale.
      *
      * @param string $updatedOnLocale
+     *
      * @return object
      */
     public function setUpdatedOnLocale($updatedOnLocale)
@@ -57,7 +59,7 @@ trait LocalizedOriginTrait
     }
 
     /**
-     * Get updatedOnLocale
+     * Get updatedOnLocale.
      *
      * @return string
      */
@@ -65,5 +67,4 @@ trait LocalizedOriginTrait
     {
         return $this->updatedOnLocale;
     }
-
 }

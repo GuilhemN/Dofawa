@@ -3,7 +3,7 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 /**
- * SkinnedEquipmentTemplateRepository
+ * SkinnedEquipmentTemplateRepository.
  */
 class SkinnedEquipmentTemplateRepository extends EquipmentTemplateRepository
 {
@@ -14,16 +14,19 @@ class SkinnedEquipmentTemplateRepository extends EquipmentTemplateRepository
             ->where('e.skin IN (:skinIds)')
             ->setParameter('skinIds', $skinIds)
             ->getQuery()
-            ->getResult() as $skin)
+            ->getResult() as $skin) {
             $skins[$skin->getSkin()] = $skin;
+        }
         ksort($skins);
+
         return $skins;
     }
 
-    public function findBySlot($slot, $locale) {
+    public function findBySlot($slot, $locale)
+    {
         return $this
                   ->createQueryBuilder('se')
-                  ->select(array('se.id', 'se.name' . ucfirst($locale) . ' as name'))
+                  ->select(array('se.id', 'se.name'.ucfirst($locale).' as name'))
                   ->join('se.type', 't')
                   ->where('t.slot = :slot AND se.skin IS NOT NULL')
                   ->getQuery()
@@ -31,7 +34,5 @@ class SkinnedEquipmentTemplateRepository extends EquipmentTemplateRepository
                   ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
                   ->useResultCache(true, 3600)
                   ->getArrayResult();
-              ;
     }
-
 }

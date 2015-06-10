@@ -12,10 +12,6 @@
 namespace Dof\Bundle\UserBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Validator\Constraint\UserPassword as OldUserPassword;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
-
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseForm;
 
 class ProfileFormType extends BaseForm
@@ -40,7 +36,6 @@ class ProfileFormType extends BaseForm
      */
     protected function buildUserForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))

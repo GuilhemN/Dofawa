@@ -5,24 +5,20 @@ namespace Dof\Bundle\CharacterBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
-
 use Dof\Bundle\CharacterBundle\Gender;
 
 /**
- * Breed
+ * Breed.
  *
  * @ORM\Table(name="dof_breeds")
  * @ORM\Entity(repositoryClass="BreedRepository")
@@ -30,7 +26,7 @@ use Dof\Bundle\CharacterBundle\Gender;
 class Breed implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -152,14 +148,14 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $gameplayDescriptionRu;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="male_skin", type="integer", unique=true)
      */
     private $maleSkin;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="male_lodef_skin", type="integer", unique=true)
      */
@@ -173,28 +169,28 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $maleDefaultColors;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="male_size", type="integer")
      */
     private $maleSize;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="male_artwork_bone", type="integer", unique=true)
      */
     private $maleArtworkBone;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="female_skin", type="integer", unique=true)
      */
     private $femaleSkin;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="female_lodef_skin", type="integer", unique=true)
      */
@@ -208,21 +204,21 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $femaleDefaultColors;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="female_size", type="integer")
      */
     private $femaleSize;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="female_artwork_bone", type="integer", unique=true)
      */
     private $femaleArtworkBone;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="creature_bone", type="integer", unique=true)
      */
@@ -245,8 +241,8 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $softCaps;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\CharacterBundle\Entity\Spell", mappedBy="breeds")
-    */
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\CharacterBundle\Entity\Spell", mappedBy="breeds")
+     */
     private $spells;
 
     public function __construct()
@@ -257,9 +253,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return Face
      */
     public function setId($id)
@@ -270,9 +267,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -280,9 +277,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longNameFr
+     * Set longNameFr.
      *
      * @param string $longNameFr
+     *
      * @return Breed
      */
     public function setLongNameFr($longNameFr)
@@ -293,7 +291,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get longNameFr
+     * Get longNameFr.
      *
      * @return string
      */
@@ -303,9 +301,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longNameEn
+     * Set longNameEn.
      *
      * @param string $longNameEn
+     *
      * @return Breed
      */
     public function setLongNameEn($longNameEn)
@@ -316,7 +315,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get longNameEn
+     * Get longNameEn.
      *
      * @return string
      */
@@ -326,9 +325,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longNameDe
+     * Set longNameDe.
      *
      * @param string $longNameDe
+     *
      * @return Breed
      */
     public function setLongNameDe($longNameDe)
@@ -339,7 +339,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get longNameDe
+     * Get longNameDe.
      *
      * @return string
      */
@@ -349,9 +349,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longNameEs
+     * Set longNameEs.
      *
      * @param string $longNameEs
+     *
      * @return Breed
      */
     public function setLongNameEs($longNameEs)
@@ -362,7 +363,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get longNameEs
+     * Get longNameEs.
      *
      * @return string
      */
@@ -372,9 +373,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longNameIt
+     * Set longNameIt.
      *
      * @param string $longNameIt
+     *
      * @return Breed
      */
     public function setLongNameIt($longNameIt)
@@ -385,7 +387,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get longNameIt
+     * Get longNameIt.
      *
      * @return string
      */
@@ -395,9 +397,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longNamePt
+     * Set longNamePt.
      *
      * @param string $longNamePt
+     *
      * @return Breed
      */
     public function setLongNamePt($longNamePt)
@@ -408,7 +411,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get longNamePt
+     * Get longNamePt.
      *
      * @return string
      */
@@ -418,9 +421,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longNameJa
+     * Set longNameJa.
      *
      * @param string $longNameJa
+     *
      * @return Breed
      */
     public function setLongNameJa($longNameJa)
@@ -431,7 +435,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get longNameJa
+     * Get longNameJa.
      *
      * @return string
      */
@@ -441,9 +445,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longNameRu
+     * Set longNameRu.
      *
      * @param string $longNameRu
+     *
      * @return Breed
      */
     public function setLongNameRu($longNameRu)
@@ -454,7 +459,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get longNameRu
+     * Get longNameRu.
      *
      * @return string
      */
@@ -464,10 +469,11 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set longName
+     * Set longName.
      *
      * @param string $longName
      * @param string $locale
+     *
      * @return Breed
      */
     public function setLongName($longName, $locale = 'fr')
@@ -482,13 +488,15 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'ja': $this->longNameJa = $longName; break;
             case 'ru': $this->longNameRu = $longName; break;
         }
+
         return $this;
     }
 
     /**
-     * Get longName
+     * Get longName.
      *
      * @param string|array $locale
+     *
      * @return string
      */
     public function getLongName($locale = 'fr')
@@ -496,10 +504,12 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
         if (is_array($locale)) {
             foreach ($locale as $loc) {
                 $longName = $this->getLongName($loc);
-                if ($longName !== null)
+                if ($longName !== null) {
                     return $longName;
+                }
             }
-            return null;
+
+            return;
         }
         switch ($locale) {
             case 'fr': return $this->longNameFr;
@@ -510,14 +520,15 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'pt': return $this->longNamePt;
             case 'ja': return $this->longNameJa;
             case 'ru': return $this->longNameRu;
-            default: return null;
+            default: return;
         }
     }
 
     /**
-     * Set gameplayDescriptionFr
+     * Set gameplayDescriptionFr.
      *
      * @param string $gameplayDescriptionFr
+     *
      * @return Breed
      */
     public function setGameplayDescriptionFr($gameplayDescriptionFr)
@@ -528,7 +539,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get gameplayDescriptionFr
+     * Get gameplayDescriptionFr.
      *
      * @return string
      */
@@ -538,9 +549,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set gameplayDescriptionEn
+     * Set gameplayDescriptionEn.
      *
      * @param string $gameplayDescriptionEn
+     *
      * @return Breed
      */
     public function setGameplayDescriptionEn($gameplayDescriptionEn)
@@ -551,7 +563,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get gameplayDescriptionEn
+     * Get gameplayDescriptionEn.
      *
      * @return string
      */
@@ -561,9 +573,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set gameplayDescriptionDe
+     * Set gameplayDescriptionDe.
      *
      * @param string $gameplayDescriptionDe
+     *
      * @return Breed
      */
     public function setGameplayDescriptionDe($gameplayDescriptionDe)
@@ -574,7 +587,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get gameplayDescriptionDe
+     * Get gameplayDescriptionDe.
      *
      * @return string
      */
@@ -584,9 +597,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set gameplayDescriptionEs
+     * Set gameplayDescriptionEs.
      *
      * @param string $gameplayDescriptionEs
+     *
      * @return Breed
      */
     public function setGameplayDescriptionEs($gameplayDescriptionEs)
@@ -597,7 +611,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get gameplayDescriptionEs
+     * Get gameplayDescriptionEs.
      *
      * @return string
      */
@@ -607,9 +621,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set gameplayDescriptionIt
+     * Set gameplayDescriptionIt.
      *
      * @param string $gameplayDescriptionIt
+     *
      * @return Breed
      */
     public function setGameplayDescriptionIt($gameplayDescriptionIt)
@@ -620,7 +635,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get gameplayDescriptionIt
+     * Get gameplayDescriptionIt.
      *
      * @return string
      */
@@ -630,9 +645,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set gameplayDescriptionPt
+     * Set gameplayDescriptionPt.
      *
      * @param string $gameplayDescriptionPt
+     *
      * @return Breed
      */
     public function setGameplayDescriptionPt($gameplayDescriptionPt)
@@ -643,7 +659,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get gameplayDescriptionPt
+     * Get gameplayDescriptionPt.
      *
      * @return string
      */
@@ -653,9 +669,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set gameplayDescriptionJa
+     * Set gameplayDescriptionJa.
      *
      * @param string $gameplayDescriptionJa
+     *
      * @return Breed
      */
     public function setGameplayDescriptionJa($gameplayDescriptionJa)
@@ -666,7 +683,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get gameplayDescriptionJa
+     * Get gameplayDescriptionJa.
      *
      * @return string
      */
@@ -676,9 +693,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set gameplayDescriptionRu
+     * Set gameplayDescriptionRu.
      *
      * @param string $gameplayDescriptionRu
+     *
      * @return Breed
      */
     public function setGameplayDescriptionRu($gameplayDescriptionRu)
@@ -689,7 +707,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get gameplayDescriptionRu
+     * Get gameplayDescriptionRu.
      *
      * @return string
      */
@@ -699,10 +717,11 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set gameplayDescription
+     * Set gameplayDescription.
      *
      * @param string $gameplayDescription
      * @param string $locale
+     *
      * @return Breed
      */
     public function setGameplayDescription($gameplayDescription, $locale = 'fr')
@@ -717,13 +736,15 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'ja': $this->gameplayDescriptionJa = $gameplayDescription; break;
             case 'ru': $this->gameplayDescriptionRu = $gameplayDescription; break;
         }
+
         return $this;
     }
 
     /**
-     * Get gameplayDescription
+     * Get gameplayDescription.
      *
      * @param string|array $locale
+     *
      * @return string
      */
     public function getGameplayDescription($locale = 'fr')
@@ -731,10 +752,12 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
         if (is_array($locale)) {
             foreach ($locale as $loc) {
                 $gameplayDescription = $this->getGameplayDescription($loc);
-                if ($gameplayDescription !== null)
+                if ($gameplayDescription !== null) {
                     return $gameplayDescription;
+                }
             }
-            return null;
+
+            return;
         }
         switch ($locale) {
             case 'fr': return $this->gameplayDescriptionFr;
@@ -745,14 +768,15 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'pt': return $this->gameplayDescriptionPt;
             case 'ja': return $this->gameplayDescriptionJa;
             case 'ru': return $this->gameplayDescriptionRu;
-            default: return null;
+            default: return;
         }
     }
 
     /**
-     * Set maleSkin
+     * Set maleSkin.
      *
-     * @param integer $maleSkin
+     * @param int $maleSkin
+     *
      * @return Breed
      */
     public function setMaleSkin($maleSkin)
@@ -763,9 +787,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get maleSkin
+     * Get maleSkin.
      *
-     * @return integer
+     * @return int
      */
     public function getMaleSkin()
     {
@@ -773,9 +797,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set maleLodefSkin
+     * Set maleLodefSkin.
      *
-     * @param integer $maleLodefSkin
+     * @param int $maleLodefSkin
+     *
      * @return Breed
      */
     public function setMaleLodefSkin($maleLodefSkin)
@@ -786,9 +811,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get maleLodefSkin
+     * Get maleLodefSkin.
      *
-     * @return integer
+     * @return int
      */
     public function getMaleLodefSkin()
     {
@@ -796,9 +821,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set maleDefaultColors
+     * Set maleDefaultColors.
      *
      * @param array $maleDefaultColors
+     *
      * @return Breed
      */
     public function setMaleDefaultColors(array $maleDefaultColors)
@@ -809,7 +835,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get maleDefaultColors
+     * Get maleDefaultColors.
      *
      * @return array
      */
@@ -819,9 +845,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set maleSize
+     * Set maleSize.
      *
-     * @param integer $maleSize
+     * @param int $maleSize
+     *
      * @return Breed
      */
     public function setMaleSize($maleSize)
@@ -832,9 +859,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get maleSize
+     * Get maleSize.
      *
-     * @return integer
+     * @return int
      */
     public function getMaleSize()
     {
@@ -842,9 +869,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set maleArtworkBone
+     * Set maleArtworkBone.
      *
-     * @param integer $maleArtworkBone
+     * @param int $maleArtworkBone
+     *
      * @return Breed
      */
     public function setMaleArtworkBone($maleArtworkBone)
@@ -855,9 +883,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get maleArtworkBone
+     * Get maleArtworkBone.
      *
-     * @return integer
+     * @return int
      */
     public function getMaleArtworkBone()
     {
@@ -865,9 +893,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set femaleSkin
+     * Set femaleSkin.
      *
-     * @param integer $femaleSkin
+     * @param int $femaleSkin
+     *
      * @return Breed
      */
     public function setFemaleSkin($femaleSkin)
@@ -878,9 +907,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get femaleSkin
+     * Get femaleSkin.
      *
-     * @return integer
+     * @return int
      */
     public function getFemaleSkin()
     {
@@ -888,9 +917,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set femaleLodefSkin
+     * Set femaleLodefSkin.
      *
-     * @param integer $femaleLodefSkin
+     * @param int $femaleLodefSkin
+     *
      * @return Breed
      */
     public function setFemaleLodefSkin($femaleLodefSkin)
@@ -901,9 +931,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get femaleLodefSkin
+     * Get femaleLodefSkin.
      *
-     * @return integer
+     * @return int
      */
     public function getFemaleLodefSkin()
     {
@@ -911,9 +941,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set femaleDefaultColors
+     * Set femaleDefaultColors.
      *
      * @param array $femaleDefaultColors
+     *
      * @return Breed
      */
     public function setFemaleDefaultColors(array $femaleDefaultColors)
@@ -924,7 +955,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get femaleDefaultColors
+     * Get femaleDefaultColors.
      *
      * @return array
      */
@@ -934,9 +965,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set femaleSize
+     * Set femaleSize.
      *
-     * @param integer $femaleSize
+     * @param int $femaleSize
+     *
      * @return Breed
      */
     public function setFemaleSize($femaleSize)
@@ -947,9 +979,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get femaleSize
+     * Get femaleSize.
      *
-     * @return integer
+     * @return int
      */
     public function getFemaleSize()
     {
@@ -957,9 +989,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set femaleArtworkBone
+     * Set femaleArtworkBone.
      *
-     * @param integer $femaleArtworkBone
+     * @param int $femaleArtworkBone
+     *
      * @return Breed
      */
     public function setFemaleArtworkBone($femaleArtworkBone)
@@ -970,9 +1003,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get femaleArtworkBone
+     * Get femaleArtworkBone.
      *
-     * @return integer
+     * @return int
      */
     public function getFemaleArtworkBone()
     {
@@ -980,9 +1013,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set creatureBone
+     * Set creatureBone.
      *
-     * @param integer $creatureBone
+     * @param int $creatureBone
+     *
      * @return Breed
      */
     public function setCreatureBone($creatureBone)
@@ -993,9 +1027,9 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get creatureBone
+     * Get creatureBone.
      *
-     * @return integer
+     * @return int
      */
     public function getCreatureBone()
     {
@@ -1003,9 +1037,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Add faces
+     * Add faces.
      *
      * @param Face $faces
+     *
      * @return Breed
      */
     public function addFace(Face $faces)
@@ -1016,9 +1051,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Remove faces
+     * Remove faces.
      *
      * @param Face $faces
+     *
      * @return Breed
      */
     public function removeFace(Face $faces)
@@ -1029,7 +1065,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get faces
+     * Get faces.
      *
      * @return Collection
      */
@@ -1038,18 +1074,21 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
         return $this->faces;
     }
 
-    public function getFace($gender = Gender::MALE, $label = 'I') {
+    public function getFace($gender = Gender::MALE, $label = 'I')
+    {
         $expr = Criteria::expr();
         $criteria = Criteria::create();
         $criteria->where($expr->eq('gender', $gender));
         $criteria->andWhere($expr->eq('label', $label));
+
         return $this->faces->matching($criteria)->first();
     }
 
     /**
-     * Add softCaps
+     * Add softCaps.
      *
      * @param SoftCap $softCaps
+     *
      * @return Breed
      */
     public function addSoftCap(SoftCap $softCaps)
@@ -1060,9 +1099,10 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Remove softCaps
+     * Remove softCaps.
      *
      * @param SoftCap $softCaps
+     *
      * @return Breed
      */
     public function removeSoftCap(SoftCap $softCaps)
@@ -1073,7 +1113,7 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get softCaps
+     * Get softCaps.
      *
      * @return Collection
      */
@@ -1083,11 +1123,12 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Add spells
-    *
-    * @param Spell $spells
-    * @return Breed
-    */
+     * Add spells.
+     *
+     * @param Spell $spells
+     *
+     * @return Breed
+     */
     public function addSpell(Spell $spells)
     {
         $this->spells[] = $spells;
@@ -1096,11 +1137,12 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Remove spells
-    *
-    * @param Spell $spells
-    * @return Breed
-    */
+     * Remove spells.
+     *
+     * @param Spell $spells
+     *
+     * @return Breed
+     */
     public function removeSpell(Spell $spells)
     {
         $this->spells->removeElement($spells);
@@ -1109,22 +1151,25 @@ class Breed implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get spells
-    *
-    * @return Collection
-    */
+     * Get spells.
+     *
+     * @return Collection
+     */
     public function getSpells()
     {
         return $this->spells;
     }
 
-    public function getSortedSpells(){
+    public function getSortedSpells()
+    {
         $spells = $this->spells->toArray();
-        usort($spells, function($a, $b){
+        usort($spells, function ($a, $b) {
             $aLevel = $a->getRanks()[0]->getObtainmentLevel();
             $bLevel = $b->getRanks()[0]->getObtainmentLevel();
+
             return $aLevel - $bLevel;
         });
+
         return $spells;
     }
 

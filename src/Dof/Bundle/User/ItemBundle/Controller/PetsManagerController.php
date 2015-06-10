@@ -4,7 +4,6 @@ namespace Dof\Bundle\User\ItemBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use XN\Annotations as Utils;
-
 use Dof\Bundle\ItemBundle\Entity\PetTemplate;
 use Dof\Bundle\User\ItemBundle\Entity\Pet;
 
@@ -47,8 +46,9 @@ class PetsManagerController extends Controller
         $petsFeed = $repository->findBy(['id' => $this->get('request')->get('pets'), 'owner' => $this->getUser(), 'raise' => true]);
 
         $lastFeeding = new \DateTime();
-        foreach ($petsFeed as $pet)
+        foreach ($petsFeed as $pet) {
             $pet->setLastFeeding($lastFeeding);
+        }
 
         $em->flush();
 
@@ -57,8 +57,9 @@ class PetsManagerController extends Controller
 
     public function removeAction(Pet $pet)
     {
-        if($pet->getOwner() !== $this->getUser())
+        if ($pet->getOwner() !== $this->getUser()) {
             throw $this->createAccessDeniedException();
+        }
 
         $pet->setRaise(false);
         $this->getDoctrine()->getManager()->flush();
@@ -68,10 +69,12 @@ class PetsManagerController extends Controller
 
     public function raiseAction(Pet $pet)
     {
-        if($pet->getOwner() !== $this->getUser())
+        if ($pet->getOwner() !== $this->getUser()) {
             throw $this->createAccessDeniedException();
-        if(!$pet->isRaise())
+        }
+        if (!$pet->isRaise()) {
             throw $this->createNotFoundException();
+        }
 
         $pet->setRaise(true);
         $pet->setLastFeeding(new \DateTime());
@@ -88,7 +91,8 @@ class PetsManagerController extends Controller
         return $this->createRedirection();
     }
 
-    protected function createRedirection(){
+    protected function createRedirection()
+    {
         return $this->redirect($this->generateUrl('dof_items_manager_pets'));
     }
 }

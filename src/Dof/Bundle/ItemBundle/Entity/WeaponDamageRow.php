@@ -4,23 +4,21 @@ namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
-
 use Dof\Bundle\ItemBundle\Element;
 
 /**
- * WeaponDamageRow
+ * WeaponDamageRow.
  *
  * @ORM\Table(name="dof_weapon_damage_rows")
  * @ORM\Entity(repositoryClass="WeaponDamageRowRepository")
  */
 class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
 {
-	/**
-     * @var integer
+    /**
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -39,44 +37,44 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     private $weapon;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="order_", type="integer")
      */
     private $order;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="element", type="integer")
      */
     private $element;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="min", type="integer")
      */
     private $min;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="max", type="integer")
      */
     private $max;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="leech", type="boolean")
      */
     private $leech;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -84,9 +82,10 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Set weapon
+     * Set weapon.
      *
      * @param WeaponTemplate $weapon
+     *
      * @return WeaponDamageRow
      */
     public function setWeapon(WeaponTemplate $weapon)
@@ -97,7 +96,7 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Get weapon
+     * Get weapon.
      *
      * @return WeaponTemplate
      */
@@ -107,9 +106,10 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Set order
+     * Set order.
      *
-     * @param integer $order
+     * @param int $order
+     *
      * @return WeaponDamageRow
      */
     public function setOrder($order)
@@ -120,9 +120,9 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
@@ -130,9 +130,10 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Set element
+     * Set element.
      *
-     * @param integer $element
+     * @param int $element
+     *
      * @return WeaponDamageRow
      */
     public function setElement($element)
@@ -143,9 +144,9 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Get element
+     * Get element.
      *
-     * @return integer
+     * @return int
      */
     public function getElement()
     {
@@ -153,9 +154,10 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Set min
+     * Set min.
      *
-     * @param integer $min
+     * @param int $min
+     *
      * @return WeaponDamageRow
      */
     public function setMin($min)
@@ -166,9 +168,9 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Get min
+     * Get min.
      *
-     * @return integer
+     * @return int
      */
     public function getMin()
     {
@@ -176,9 +178,10 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Set max
+     * Set max.
      *
-     * @param integer $max
+     * @param int $max
+     *
      * @return WeaponDamageRow
      */
     public function setMax($max)
@@ -189,9 +192,9 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Get max
+     * Get max.
      *
-     * @return integer
+     * @return int
      */
     public function getMax()
     {
@@ -199,9 +202,10 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Set leech
+     * Set leech.
      *
-     * @param boolean $leech
+     * @param bool $leech
+     *
      * @return WeaponDamageRow
      */
     public function setLeech($leech)
@@ -212,9 +216,9 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Get leech
+     * Get leech.
      *
-     * @return boolean
+     * @return bool
      */
     public function getLeech()
     {
@@ -222,9 +226,9 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
     }
 
     /**
-     * Get leech
+     * Get leech.
      *
-     * @return boolean
+     * @return bool
      */
     public function isLeech()
     {
@@ -236,17 +240,19 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
         return $this->element == Element::NEUTRAL && !$this->leech;
     }
 
-	public function getDamageEntry()
-	{
-		if ($this->element == Element::AP_LOSS)
-			return null;
-		return [
-			'element' => $this->element,
-			'min' => $this->min,
-			'max' => $this->max,
-			'leech' => $this->leech
-		];
-	}
+    public function getDamageEntry()
+    {
+        if ($this->element == Element::AP_LOSS) {
+            return;
+        }
+
+        return [
+            'element' => $this->element,
+            'min' => $this->min,
+            'max' => $this->max,
+            'leech' => $this->leech,
+        ];
+    }
 
     public function exportData($full = true, $locale = 'fr')
     {
@@ -254,11 +260,11 @@ class WeaponDamageRow implements IdentifiableInterface, ExportableInterface
             'element' => $this->element,
             'min' => $this->min,
             'max' => $this->max,
-            'leech' => $this->leech
+            'leech' => $this->leech,
         ] + ($full ? [
             'weapon' => $this->weapon->exportData(false, $locale),
-            'order' => $this->order
-        ] : [ ]);
+            'order' => $this->order,
+        ] : []);
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {

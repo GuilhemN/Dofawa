@@ -4,73 +4,78 @@ namespace Dof\Bundle\MainBundle\Doctrine;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-
 use Dof\Bundle\ItemBundle\Entity\EquipmentTemplate;
 
 class PowerRateUpdater
 {
+    public function prePersist(LifecycleEventArgs $args)
+    {
+        $ent = $args->getEntity();
+        if ($ent instanceof EquipmentTemplate) {
+            $ent->setPowerRate($this->calcPowerRate($ent->getCharacteristics()));
+        }
+    }
 
-	public function prePersist(LifecycleEventArgs $args)
-	{
-		$ent = $args->getEntity();
-		if ($ent instanceof EquipmentTemplate) {
-			$ent->setPowerRate($this->calcPowerRate($ent->getCharacteristics()));
-		}
-	}
+    public function onFlush(OnFlushEventArgs $args)
+    {
+        $em = $args->getEntityManager();
+        $uow = $em->getUnitOfWork();
+        $mds = array();
+        $updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow) {
+            return $ent instanceof EquipmentTemplate && self::hasCharactsChanges($ent, $uow->getEntityChangeSet($ent));
+        });
+        foreach ($updates as $ent) {
+            $ent->setPowerRate($this->calcPowerRate($ent->getCharacteristics()));
 
-	public function onFlush(OnFlushEventArgs $args)
-	{
-		$em = $args->getEntityManager();
-		$uow = $em->getUnitOfWork();
-		$mds = array();
-		$updates = array_filter($uow->getScheduledEntityUpdates(), function ($ent) use ($uow) {
-			return $ent instanceof EquipmentTemplate && self::hasCharactsChanges($ent, $uow->getEntityChangeSet($ent));
-		});
-		foreach ($updates as $ent) {
-			$ent->setPowerRate($this->calcPowerRate($ent->getCharacteristics()));
+            $clazz = get_class($ent);
+            if (isset($mds[$clazz])) {
+                $md = $mds[$clazz];
+            } else {
+                $md = $em->getClassMetadata($clazz);
+                $mds[$clazz] = $md;
+            }
+            $uow->recomputeSingleEntityChangeSet($md, $ent);
+        }
+    }
 
-			$clazz = get_class($ent);
-			if (isset($mds[$clazz]))
-				$md = $mds[$clazz];
-			else {
-				$md = $em->getClassMetadata($clazz);
-				$mds[$clazz] = $md;
-			}
-			$uow->recomputeSingleEntityChangeSet($md, $ent);
-		}
-	}
-
-    protected function hasCharactsChanges($entity, $chgset){
-		$metadata = $this->getPowerRate();
+    protected function hasCharactsChanges($entity, $chgset)
+    {
+        $metadata = $this->getPowerRate();
         $charactsFields = array();
-        foreach(array_keys($metadata) as $charact){
+        foreach (array_keys($metadata) as $charact) {
             // $charactsFields[ ] = $charact;
-			$charactsFields[ ] = 'max' . ucfirst($charact);
-			$charactsFields[ ] = 'min' . ucfirst($charact);
-		}
+            $charactsFields[ ] = 'max'.ucfirst($charact);
+            $charactsFields[ ] = 'min'.ucfirst($charact);
+        }
 
-		foreach ($chgset as $key => $value)
-			if (in_array($key, $charactsFields))
-				return true;
-		return false;
-	}
+        foreach ($chgset as $key => $value) {
+            if (in_array($key, $charactsFields)) {
+                return true;
+            }
+        }
 
-    protected function calcPowerRate(array $characts, $range = true){
+        return false;
+    }
+
+    protected function calcPowerRate(array $characts, $range = true)
+    {
         $powerRates = $this->getPowerRate();
 
         $pwrg = 0; // Power-Rate Global
-        foreach($powerRates as $charact => $powerRate){
+        foreach ($powerRates as $charact => $powerRate) {
             $row = $characts[$charact];
-            if($range)
+            if ($range) {
                 $pwrg += ($row['min'] + $row['max']) / 2 * $powerRate;
-            else
+            } else {
                 $pwrg += $row * $powerRate;
+            }
         }
 
         return $pwrg;
     }
 
-    protected function getPowerRate() {
+    protected function getPowerRate()
+    {
         return [
             // Caracts
             'vitality' => 0.25,
@@ -120,7 +125,7 @@ class PowerRateUpdater
             'earthDamage' => 5,
             'fireDamage' => 5,
             'waterDamage' => 5,
-            'airDamage' => 5
+            'airDamage' => 5,
             ];
     }
 }

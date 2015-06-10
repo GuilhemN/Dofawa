@@ -3,17 +3,15 @@
 namespace Dof\Bundle\User\ItemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-
 use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
 
 /**
- * Craft
+ * Craft.
  *
  * @ORM\Table(name="dof_user_crafts")
  * @ORM\Entity(repositoryClass="Dof\Bundle\User\ItemBundle\Entity\CraftRepository")
@@ -23,7 +21,7 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     use OwnableTrait, TimestampableTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -32,80 +30,79 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     private $id;
 
     /**
-    * @var ItemTemplate
-    *
-    * @ORM\ManyToOne(targetEntity="Dof\Bundle\ItemBundle\Entity\ItemTemplate")
-    */
+     * @var ItemTemplate
+     *
+     * @ORM\ManyToOne(targetEntity="Dof\Bundle\ItemBundle\Entity\ItemTemplate")
+     */
     private $itemTemplate;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="index_", type="integer")
      */
     private $index;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity1", type="integer")
      */
     private $quantity1;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity2", type="integer")
      */
     private $quantity2;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity3", type="integer")
      */
     private $quantity3;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity4", type="integer")
      */
     private $quantity4;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity5", type="integer")
      */
     private $quantity5;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity6", type="integer")
      */
     private $quantity6;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity7", type="integer")
      */
     private $quantity7;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity8", type="integer")
      */
     private $quantity8;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -113,11 +110,12 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-    * Set itemTemplate
-    *
-    * @param ItemTemplate $itemTemplate
-    * @return Craft
-    */
+     * Set itemTemplate.
+     *
+     * @param ItemTemplate $itemTemplate
+     *
+     * @return Craft
+     */
     public function setItemTemplate(ItemTemplate $item)
     {
         $this->itemTemplate = $itemTemplate;
@@ -126,21 +124,22 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-    * Get itemTemplate
-    *
-    * @return ItemTemplate
-    */
+     * Get itemTemplate.
+     *
+     * @return ItemTemplate
+     */
     public function getItemTemplate()
     {
         return $this->itemTemplate;
     }
 
     /**
-    * Set index
-    *
-    * @param integer $index
-    * @return Craft
-    */
+     * Set index.
+     *
+     * @param int $index
+     *
+     * @return Craft
+     */
     public function setIndex($index)
     {
         $this->index = $index;
@@ -149,19 +148,20 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-    * Get index
-    *
-    * @return integer
-    */
+     * Get index.
+     *
+     * @return int
+     */
     public function getIndex()
     {
         return $this->index;
     }
 
     /**
-     * Set quantity1
+     * Set quantity1.
      *
-     * @param integer $quantity1
+     * @param int $quantity1
+     *
      * @return Craft
      */
     public function setQuantity1($quantity1)
@@ -172,9 +172,9 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Get quantity1
+     * Get quantity1.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity1()
     {
@@ -182,9 +182,10 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Set quantity2
+     * Set quantity2.
      *
-     * @param integer $quantity2
+     * @param int $quantity2
+     *
      * @return Craft
      */
     public function setQuantity2($quantity2)
@@ -195,9 +196,9 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Get quantity2
+     * Get quantity2.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity2()
     {
@@ -205,9 +206,10 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Set quantity3
+     * Set quantity3.
      *
-     * @param integer $quantity3
+     * @param int $quantity3
+     *
      * @return Craft
      */
     public function setQuantity3($quantity3)
@@ -218,9 +220,9 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Get quantity3
+     * Get quantity3.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity3()
     {
@@ -228,9 +230,10 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Set quantity4
+     * Set quantity4.
      *
-     * @param integer $quantity4
+     * @param int $quantity4
+     *
      * @return Craft
      */
     public function setQuantity4($quantity4)
@@ -241,9 +244,9 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Get quantity4
+     * Get quantity4.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity4()
     {
@@ -251,9 +254,10 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Set quantity5
+     * Set quantity5.
      *
-     * @param integer $quantity5
+     * @param int $quantity5
+     *
      * @return Craft
      */
     public function setQuantity5($quantity5)
@@ -264,9 +268,9 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Get quantity5
+     * Get quantity5.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity5()
     {
@@ -274,9 +278,10 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Set quantity6
+     * Set quantity6.
      *
-     * @param integer $quantity6
+     * @param int $quantity6
+     *
      * @return Craft
      */
     public function setQuantity6($quantity6)
@@ -287,9 +292,9 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Get quantity6
+     * Get quantity6.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity6()
     {
@@ -297,9 +302,10 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Set quantity7
+     * Set quantity7.
      *
-     * @param integer $quantity7
+     * @param int $quantity7
+     *
      * @return Craft
      */
     public function setQuantity7($quantity7)
@@ -310,9 +316,9 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Get quantity7
+     * Get quantity7.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity7()
     {
@@ -320,9 +326,10 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Set quantity8
+     * Set quantity8.
      *
-     * @param integer $quantity8
+     * @param int $quantity8
+     *
      * @return Craft
      */
     public function setQuantity8($quantity8)
@@ -333,21 +340,45 @@ class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInt
     }
 
     /**
-     * Get quantity8
+     * Get quantity8.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity8()
     {
         return $this->quantity8;
     }
 
-    public function isPersonalized() { return $this->getItemTemplate()->isPersonalized(); }
-    public function isEquipment() { return $this->getItemTemplate()->isEquipment(); }
-    public function isSkinned() { return $this->getItemTemplate()->isSkinned(); }
-    public function isAnimal() { return $this->getItemTemplate()->isAnimal(); }
-    public function isPet() { return $this->getItemTemplate()->isPet(); }
-    public function isMount() { return $this->getItemTemplate()->isMount(); }
-    public function isWeapon() { return $this->getItemTemplate()->isWeapon(); }
-    public function isCraft() { return true; }
+    public function isPersonalized()
+    {
+        return $this->getItemTemplate()->isPersonalized();
+    }
+    public function isEquipment()
+    {
+        return $this->getItemTemplate()->isEquipment();
+    }
+    public function isSkinned()
+    {
+        return $this->getItemTemplate()->isSkinned();
+    }
+    public function isAnimal()
+    {
+        return $this->getItemTemplate()->isAnimal();
+    }
+    public function isPet()
+    {
+        return $this->getItemTemplate()->isPet();
+    }
+    public function isMount()
+    {
+        return $this->getItemTemplate()->isMount();
+    }
+    public function isWeapon()
+    {
+        return $this->getItemTemplate()->isWeapon();
+    }
+    public function isCraft()
+    {
+        return true;
+    }
 }

@@ -3,16 +3,14 @@
 namespace Dof\Bundle\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 
 /**
- * Month
+ * Month.
  *
  * @ORM\Table(name="dof_months")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MainBundle\Entity\MonthRepository")
@@ -22,20 +20,20 @@ class Month implements IdentifiableInterface, SluggableInterface, LocalizedNameI
     use SluggableTrait, LocalizedNameTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      */
     private $id;
 
-
     /**
-    * Set id
-    *
-    * @param integer $id
-    * @return Month
-    */
+     * Set id.
+     *
+     * @param int $id
+     *
+     * @return Month
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -44,16 +42,17 @@ class Month implements IdentifiableInterface, SluggableInterface, LocalizedNameI
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }

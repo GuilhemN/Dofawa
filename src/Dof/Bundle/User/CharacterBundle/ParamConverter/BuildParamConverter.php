@@ -12,12 +12,11 @@
 namespace Dof\Bundle\User\CharacterBundle\ParamConverter;
 
 use XN\Common\ServiceWithContainer;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
-
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
+
 /**
  * DoctrineParamConverter.
  *
@@ -25,7 +24,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInte
  */
 class BuildParamConverter extends ServiceWithContainer implements ParamConverterInterface
 {
-
     /**
      * {@inheritdoc}
      *
@@ -34,14 +32,15 @@ class BuildParamConverter extends ServiceWithContainer implements ParamConverter
      */
     public function apply(Request $request, ParamConverter $configuration)
     {
-        $name  = $configuration->getName();
+        $name = $configuration->getName();
         $class = $configuration->getClass();
 
         if (!$request->attributes->has('user') or
             !$request->attributes->has('character') or
             !$request->attributes->has('stuff')
-            )
+            ) {
             throw new \LogicException('Paramètres manquants dans la route pour récupérer le playerCharacter (doit contenir user, character et stuff).');
+        }
 
         $bm = $this->di->get('build_manager');
         $stuff = $bm->getBySlugs(
@@ -69,9 +68,10 @@ class BuildParamConverter extends ServiceWithContainer implements ParamConverter
      */
     public function supports(ParamConverter $configuration)
     {
-        if (null === $configuration->getClass())
+        if (null === $configuration->getClass()) {
             return false;
+        }
 
-        return $configuration->getName() === "stuff" && "Dof\Bundle\User\CharacterBundle\Entity\Stuff" === $configuration->getClass();
+        return $configuration->getName() === 'stuff' && "Dof\Bundle\User\CharacterBundle\Entity\Stuff" === $configuration->getClass();
     }
 }

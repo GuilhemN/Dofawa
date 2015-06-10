@@ -3,7 +3,6 @@
 namespace Dof\Bundle\GraphicsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -11,11 +10,10 @@ use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
-
 use Dof\Bundle\GraphicsBundle\BasicPCLook;
 
 /**
- * CharacterLook
+ * CharacterLook.
  *
  * @ORM\Table(name="dof_character_looks")
  * @ORM\Entity(repositoryClass="CharacterLookRepository")
@@ -23,7 +21,7 @@ use Dof\Bundle\GraphicsBundle\BasicPCLook;
 class CharacterLook extends BasicPCLook implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -41,16 +39,16 @@ class CharacterLook extends BasicPCLook implements IdentifiableInterface, Timest
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="publiclyVisible", type="boolean")
      */
     private $publiclyVisible;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -58,9 +56,10 @@ class CharacterLook extends BasicPCLook implements IdentifiableInterface, Timest
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return CharacterLook
      */
     public function setName($name)
@@ -71,7 +70,7 @@ class CharacterLook extends BasicPCLook implements IdentifiableInterface, Timest
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -81,9 +80,10 @@ class CharacterLook extends BasicPCLook implements IdentifiableInterface, Timest
     }
 
     /**
-     * Set publiclyVisible
+     * Set publiclyVisible.
      *
-     * @param boolean $publiclyVisible
+     * @param bool $publiclyVisible
+     *
      * @return CharacterLook
      */
     public function setPubliclyVisible($publiclyVisible)
@@ -94,9 +94,9 @@ class CharacterLook extends BasicPCLook implements IdentifiableInterface, Timest
     }
 
     /**
-     * Get publiclyVisible
+     * Get publiclyVisible.
      *
-     * @return boolean
+     * @return bool
      */
     public function getPubliclyVisible()
     {
@@ -104,9 +104,9 @@ class CharacterLook extends BasicPCLook implements IdentifiableInterface, Timest
     }
 
     /**
-     * Get publiclyVisible
+     * Get publiclyVisible.
      *
-     * @return boolean
+     * @return bool
      */
     public function isPubliclyVisible()
     {

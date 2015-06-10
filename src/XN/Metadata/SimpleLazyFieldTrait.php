@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\Metadata;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,30 +8,31 @@ use XN\Annotations as Utils;
 trait SimpleLazyFieldTrait
 {
     /**
-    * @var string
-    *
-    * @ORM\Column(name="class", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="class", type="string", length=255, nullable=true)
+     */
     private $class;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="class_id", type="integer", nullable=true)
-    */
+     * @var int
+     *
+     * @ORM\Column(name="class_id", type="integer", nullable=true)
+     */
     private $classId;
 
     /**
-    * @Utils\LazyField
-    */
+     * @Utils\LazyField
+     */
     private $entity;
 
     /**
-    * Set class
-    *
-    * @param string $class
-    * @return Notification
-    */
+     * Set class.
+     *
+     * @param string $class
+     *
+     * @return Notification
+     */
     public function setClass($class)
     {
         $this->class = $class;
@@ -39,21 +41,22 @@ trait SimpleLazyFieldTrait
     }
 
     /**
-    * Get class
-    *
-    * @return string
-    */
+     * Get class.
+     *
+     * @return string
+     */
     public function getClass()
     {
         return $this->class;
     }
 
     /**
-    * Set classId
-    *
-    * @param integer $classId
-    * @return Notification
-    */
+     * Set classId.
+     *
+     * @param int $classId
+     *
+     * @return Notification
+     */
     public function setClassId($classId)
     {
         $this->classId = $classId;
@@ -62,21 +65,24 @@ trait SimpleLazyFieldTrait
     }
 
     /**
-    * Get classId
-    *
-    * @return integer
-    */
+     * Get classId.
+     *
+     * @return int
+     */
     public function getClassId()
     {
         return $this->classId;
     }
 
-    public function setEntity($entity){
+    public function setEntity($entity)
+    {
         $this->entity = $entity;
+
         return $this;
     }
 
-    public function getEntity(){
+    public function getEntity()
+    {
         return $this->entity;
     }
 }

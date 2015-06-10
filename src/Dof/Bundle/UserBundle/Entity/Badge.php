@@ -3,17 +3,15 @@
 namespace Dof\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
-
 use Dof\Bundle\MainBundle\Entity\Badge as BaseBadge;
 
 /**
- * Badge
+ * Badge.
  *
  * @ORM\Table(name="dof_user_badges")
  * @ORM\Entity(repositoryClass="Dof\Bundle\UserBundle\Entity\BadgeRepository")
@@ -23,7 +21,7 @@ class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInt
     use TimestampableTrait, OwnableTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -32,7 +30,7 @@ class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInt
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="count", type="integer")
      */
@@ -44,11 +42,10 @@ class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInt
      */
     protected $badge;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -56,9 +53,10 @@ class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set count
+     * Set count.
      *
-     * @param integer $count
+     * @param int $count
+     *
      * @return Badge
      */
     public function setCount($count)
@@ -69,9 +67,9 @@ class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get count
+     * Get count.
      *
-     * @return integer
+     * @return int
      */
     public function getCount()
     {
@@ -79,9 +77,10 @@ class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set badge
+     * Set badge.
      *
      * @param BaseBadge $badge
+     *
      * @return Badge
      */
     public function setBadge(BaseBadge $badge)
@@ -92,7 +91,7 @@ class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get badge
+     * Get badge.
      *
      * @return BaseBadge
      */

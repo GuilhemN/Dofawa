@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\Grammar;
 
 use Doctrine\Common\Annotations\Annotation;
@@ -9,6 +10,6 @@ use Doctrine\Common\Annotations\Annotation;
  */
 final class Grammar extends Annotation
 {
-	public $ignore;
-	public $synonyms;
+    public $ignore;
+    public $synonyms;
 }

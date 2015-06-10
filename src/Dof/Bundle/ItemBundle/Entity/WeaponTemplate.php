@@ -5,93 +5,96 @@ namespace Dof\Bundle\ItemBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use Dof\Bundle\CharacterBundle\CastableTrait;
 
 /**
- * WeaponTemplate
+ * WeaponTemplate.
  *
  * @ORM\Entity(repositoryClass="Dof\Bundle\ItemBundle\Entity\WeaponTemplateRepository")
  */
 class WeaponTemplate extends SkinnedEquipmentTemplate
 {
-	/**
-	 * @var Collection
-	 *
-	 * @ORM\OneToMany(targetEntity="Dof\Bundle\ItemBundle\Entity\WeaponDamageRow", mappedBy="weapon")
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="Dof\Bundle\ItemBundle\Entity\WeaponDamageRow", mappedBy="weapon")
      * @ORM\OrderBy({ "order" = "ASC", "id" = "ASC" })
-	 */
-	private $damageRows;
+     */
+    private $damageRows;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="two_handed", type="boolean")
      */
     private $twoHanded;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="ethereal", type="boolean")
      */
     private $ethereal;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="critical_hit_bonus", type="integer")
      */
     private $criticalHitBonus;
 
-	use CastableTrait;
+    use CastableTrait;
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->damageRows = new ArrayCollection();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->damageRows = new ArrayCollection();
+    }
 
     /**
-     * Add damageRows
+     * Add damageRows.
      *
      * @param WeaponDamageRow $damageRow
+     *
      * @return WeaponTemplate
      */
     public function addDamageRow(WeaponDamageRow $damageRow)
     {
-    	$this->damageRows[] = $damageRow;
-    	return $this;
+        $this->damageRows[] = $damageRow;
+
+        return $this;
     }
 
     /**
-     * Remove damageRows
+     * Remove damageRows.
      *
      * @param WeaponDamageRow $damageRow
+     *
      * @return WeaponTemplate
      */
     public function removeDamageRow(WeaponDamageRow $damageRow)
     {
-    	$this->damageRows->removeElement($damageRow);
-    	return $this;
+        $this->damageRows->removeElement($damageRow);
+
+        return $this;
     }
 
     /**
-     * Get damageRows
+     * Get damageRows.
      *
      * @return Collection
      */
     public function getDamageRows()
     {
-    	return $this->damageRows;
+        return $this->damageRows;
     }
 
     /**
-     * Set twoHanded
+     * Set twoHanded.
      *
-     * @param boolean $twoHanded
+     * @param bool $twoHanded
+     *
      * @return WeaponTemplate
      */
     public function setTwoHanded($twoHanded)
@@ -102,9 +105,9 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
     }
 
     /**
-     * Get twoHanded
+     * Get twoHanded.
      *
-     * @return boolean
+     * @return bool
      */
     public function getTwoHanded()
     {
@@ -112,9 +115,9 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
     }
 
     /**
-     * Get twoHanded
+     * Get twoHanded.
      *
-     * @return boolean
+     * @return bool
      */
     public function isTwoHanded()
     {
@@ -122,9 +125,10 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
     }
 
     /**
-     * Set ethereal
+     * Set ethereal.
      *
-     * @param boolean $ethereal
+     * @param bool $ethereal
+     *
      * @return WeaponTemplate
      */
     public function setEthereal($ethereal)
@@ -135,9 +139,9 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
     }
 
     /**
-     * Get ethereal
+     * Get ethereal.
      *
-     * @return boolean
+     * @return bool
      */
     public function getEthereal()
     {
@@ -145,9 +149,9 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
     }
 
     /**
-     * Get ethereal
+     * Get ethereal.
      *
-     * @return boolean
+     * @return bool
      */
     public function isEthereal()
     {
@@ -155,9 +159,10 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
     }
 
     /**
-     * Set criticalHitBonus
+     * Set criticalHitBonus.
      *
-     * @param integer $criticalHitBonus
+     * @param int $criticalHitBonus
+     *
      * @return WeaponTemplate
      */
     public function setCriticalHitBonus($criticalHitBonus)
@@ -168,55 +173,69 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
     }
 
     /**
-     * Get criticalHitBonus
+     * Get criticalHitBonus.
      *
-     * @return integer
+     * @return int
      */
     public function getCriticalHitBonus()
     {
         return $this->criticalHitBonus;
     }
 
-	public function getDamageEntries()
-	{
-		$ents = [ ];
-		foreach ($this->damageRows as $row) {
-			$ent = $row->getDamageEntry();
-			if ($ent)
-				$ents[] = $ent;
-		}
-		return $ents;
-	}
-	
-	public function getCriticalDamageEntries()
-	{
-		if (!$this->getCriticalHitDenominator())
-			return $this->getDamageEntries();
-		$ents = [ ];
-		$chb = $this->criticalHitBonus;
-		foreach ($this->damageRows as $row) {
-			$ent = $row->getDamageEntry();
-			if ($ent) {
-				$ent['min'] += $chb;
-				$ent['max'] += $chb;
-				$ents[] = $ent;
-			}
-		}
-		return $ents;
-	}
+    public function getDamageEntries()
+    {
+        $ents = [];
+        foreach ($this->damageRows as $row) {
+            $ent = $row->getDamageEntry();
+            if ($ent) {
+                $ents[] = $ent;
+            }
+        }
+
+        return $ents;
+    }
+
+    public function getCriticalDamageEntries()
+    {
+        if (!$this->getCriticalHitDenominator()) {
+            return $this->getDamageEntries();
+        }
+        $ents = [];
+        $chb = $this->criticalHitBonus;
+        foreach ($this->damageRows as $row) {
+            $ent = $row->getDamageEntry();
+            if ($ent) {
+                $ent['min'] += $chb;
+                $ent['max'] += $chb;
+                $ents[] = $ent;
+            }
+        }
+
+        return $ents;
+    }
 
     public function canMage()
     {
-        if (!$this->isEnhanceable())
+        if (!$this->isEnhanceable()) {
             return false;
-        foreach ($this->damageRows as $row)
-            if ($row->canMage())
+        }
+        foreach ($this->damageRows as $row) {
+            if ($row->canMage()) {
                 return true;
+            }
+        }
+
         return false;
     }
 
-	public function isWeapon() { return true; }
-	public function getClassId() { return 'weapon'; }
+    public function isWeapon()
+    {
+        return true;
+    }
+    public function getClassId()
+    {
+        return 'weapon';
+    }
 
     public function exportData($full = true, $locale = 'fr')
     {
@@ -224,13 +243,15 @@ class WeaponTemplate extends SkinnedEquipmentTemplate
             'damageRows' => array_map(function ($ent) use ($locale) { return $ent->exportData(false, $locale); }, $this->damageRows->toArray()),
             'twoHanded' => $this->twoHanded,
             'ethereal' => $this->ethereal,
-            'criticalHitBonus' => $this->criticalHitBonus
-        ] : [ ]);
+            'criticalHitBonus' => $this->criticalHitBonus,
+        ] : []);
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
-        if (parent::importField($key, $value, $dm, $locale))
+        if (parent::importField($key, $value, $dm, $locale)) {
             return true;
+        }
+
         return false;
     }
 }

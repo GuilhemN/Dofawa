@@ -5,7 +5,6 @@ namespace Dof\Bundle\User\CharacterBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use XN\Annotations as Utils;
-
 use Symfony\Component\HttpFoundation\Request;
 use Dof\Bundle\UserBundle\Entity\User;
 use Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter;
@@ -15,13 +14,16 @@ class CharacterController extends Controller
     /**
      * @Utils\Secure("ROLE_USER")
      */
-    public function indexAction(User $user = null){
-        if($user === null)
+    public function indexAction(User $user = null)
+    {
+        if ($user === null) {
             $user = $this->getUser();
+        }
         $em = $this->getDoctrine()->getManager();
+
         return $this->render('DofUserCharacterBundle:Character:index.html.twig', [
             'user' => $user,
-            'breeds' => $em->getRepository('DofCharacterBundle:Breed')->findAll()
+            'breeds' => $em->getRepository('DofCharacterBundle:Breed')->findAll(),
         ]);
     }
 
@@ -29,11 +31,14 @@ class CharacterController extends Controller
      * @ParamConverter("user", options={"mapping": {"user": "slug"}})
      * @ParamConverter("character", options={"mapping": {"character": "slug"}})
      */
-    public function showAction(User $user, PlayerCharacter $character) {
-        if($character->getOwner() != $user)
+    public function showAction(User $user, PlayerCharacter $character)
+    {
+        if ($character->getOwner() != $user) {
             throw $this->createNotFoundException();
-        if(!$character->canSee())
+        }
+        if (!$character->canSee()) {
             throw $this->createAccessDeniedException();
+        }
 
         return $this->render('DofUserCharacterBundle:Character:show.html.twig', ['character' => $character]);
     }
@@ -41,53 +46,69 @@ class CharacterController extends Controller
     /**
      * @Utils\Secure("ROLE_USER")
      */
-    public function createAction(User $user = null, Request $request) {
+    public function createAction(User $user = null, Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
         $user = $this->checkUser($user);
-        if(!$request->request->has('character'))
+        if (!$request->request->has('character')) {
             throw new \Exception('New character data needed');
-        else
+        } else {
             $data = $request->request->get('character');
+        }
 
         $character = new PlayerCharacter();
         //Name
-        if(empty($data['name']))
+        if (empty($data['name'])) {
             $data['name'] = 'Personnage sans nom';
+        }
         $character->setName($data['name']);
         // Level
         $data['level'] = round((int) $data['level']);
-        if($data['level'] > 200) $data['level'] = 200; else if($data['level'] < 1) $data['level'] = 1;
+        if ($data['level'] > 200) {
+            $data['level'] = 200;
+        } elseif ($data['level'] < 1) {
+            $data['level'] = 1;
+        }
         $character->setLevel($data['level']);
         // Breed
         $breed = $em->getRepository('DofCharacterBundle:Breed')->find($data['breed']);
-        if($breed === null)
+        if ($breed === null) {
             throw new \Exception('Breed not found');
+        }
         $character->setBreed($breed);
         $character->setVisible((boolean) $data['visible']);
         $em->persist($character);
         $em->flush($character);
+
         return $this->redirect($this->generateUrl('dof_user_character_homepage'));
     }
 
     /**
      * @Utils\Secure("ROLE_USER")
      */
-    public function removeAction(Request $request) {
+    public function removeAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
         $character = $em->getRepository('DofUserCharacterBundle:PlayerCharacter')->find($request->request->get('id'));
-        if(!$character->canWrite())
+        if (!$character->canWrite()) {
             throw $this->createAccessDeniedException();
+        }
         $redirect = $this->redirect($this->generateUrl('dof_user_character_homepage', ['slug' => $character->getOwner()->getSlug()]));
         $em->remove($character);
         $em->flush();
+
         return $redirect;
     }
 
-    private function checkUser(User $user = null) {
-        if($user === null)
+    private function checkUser(User $user = null)
+    {
+        if ($user === null) {
             return $this->getUser();
-        if(!$this->get('security.context')->isGranted('ROLE_ADMIN') && $user !== $this->getUser())
+        }
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN') && $user !== $this->getUser()) {
             throw $this->createAccessDeniedException();
+        }
+
         return $user;
     }
 }

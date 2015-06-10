@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\DependencyInjection;
 
 use Symfony\Component\Security\Core\SecurityContextInterface;

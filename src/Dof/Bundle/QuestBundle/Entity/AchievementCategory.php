@@ -4,19 +4,17 @@ namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * AchievementCategory
+ * AchievementCategory.
  *
  * @ORM\Table(name="dof_achievement_categories")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\AchievementCategoryRepository")
@@ -26,7 +24,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -41,7 +39,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     private $icon;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="order_", type="integer")
      */
@@ -55,45 +53,47 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     private $color;
 
     /**
-    * @var AchievementCategory
-    *
-    * @ORM\ManyToOne(targetEntity="AchievementCategory", inversedBy="child")
-    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-    */
+     * @var AchievementCategory
+     *
+     * @ORM\ManyToOne(targetEntity="AchievementCategory", inversedBy="child")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
     private $parent;
 
     /**
-    * @ORM\OneToMany(targetEntity="AchievementCategory", mappedBy="parent")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\OneToMany(targetEntity="AchievementCategory", mappedBy="parent")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $children;
 
     /**
-    * @ORM\OneToMany(targetEntity="Achievement", mappedBy="category")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\OneToMany(targetEntity="Achievement", mappedBy="category")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $achievements;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->children = new ArrayCollection();
         $this->achievements = new ArrayCollection();
     }
 
     /**
-    * set id
-    *
-    * @return Achievement
-    */
+     * set id.
+     *
+     * @return Achievement
+     */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -101,9 +101,10 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-     * Set icon
+     * Set icon.
      *
      * @param string $icon
+     *
      * @return AchievementCategory
      */
     public function setIcon($icon)
@@ -114,7 +115,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-     * Get icon
+     * Get icon.
      *
      * @return string
      */
@@ -124,9 +125,10 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-     * Set order
+     * Set order.
      *
-     * @param integer $order
+     * @param int $order
+     *
      * @return AchievementCategory
      */
     public function setOrder($order)
@@ -137,9 +139,9 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
@@ -147,9 +149,10 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-     * Set color
+     * Set color.
      *
      * @param string $color
+     *
      * @return AchievementCategory
      */
     public function setColor($color)
@@ -160,7 +163,7 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-     * Get color
+     * Get color.
      *
      * @return string
      */
@@ -170,11 +173,12 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-    * Set parent
-    *
-    * @param AchievementCategory $parent
-    * @return AchievementCategory
-    */
+     * Set parent.
+     *
+     * @param AchievementCategory $parent
+     *
+     * @return AchievementCategory
+     */
     public function setParent(AchievementCategory $parent = null)
     {
         $this->parent = $parent;
@@ -183,21 +187,22 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-    * Get parent
-    *
-    * @return AchievementCategory
-    */
+     * Get parent.
+     *
+     * @return AchievementCategory
+     */
     public function getParent()
     {
         return $this->parent;
     }
 
     /**
-    * Add children
-    *
-    * @param AchievementCategory $children
-    * @return AchievementCategory
-    */
+     * Add children.
+     *
+     * @param AchievementCategory $children
+     *
+     * @return AchievementCategory
+     */
     public function addChild(AchievementCategory $children)
     {
         $this->children[] = $children;
@@ -206,11 +211,12 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-    * Remove children
-    *
-    * @param AchievementCategory $children
-    * @return AchievementCategory
-    */
+     * Remove children.
+     *
+     * @param AchievementCategory $children
+     *
+     * @return AchievementCategory
+     */
     public function removeChild(AchievementCategory $children)
     {
         $this->children->removeElement($children);
@@ -219,21 +225,22 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-    * Get children
-    *
-    * @return Collection
-    */
+     * Get children.
+     *
+     * @return Collection
+     */
     public function getChildren()
     {
         return $this->children;
     }
 
     /**
-    * Add achievements
-    *
-    * @param Achievement $achievements
-    * @return AchievementCategory
-    */
+     * Add achievements.
+     *
+     * @param Achievement $achievements
+     *
+     * @return AchievementCategory
+     */
     public function addAchievement(Achievement $achievements)
     {
         $this->achievements[] = $achievements;
@@ -242,11 +249,12 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-    * Remove achievements
-    *
-    * @param Achievement $achievements
-    * @return AchievementCategory
-    */
+     * Remove achievements.
+     *
+     * @param Achievement $achievements
+     *
+     * @return AchievementCategory
+     */
     public function removeAchievement(Achievement $achievements)
     {
         $this->achievements->removeElement($achievements);
@@ -255,16 +263,17 @@ class AchievementCategory implements IdentifiableInterface, TimestampableInterfa
     }
 
     /**
-    * Get achievements
-    *
-    * @return Collection
-    */
+     * Get achievements.
+     *
+     * @return Collection
+     */
     public function getAchievements()
     {
         return $this->achievements;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }

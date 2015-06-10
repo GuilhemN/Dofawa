@@ -3,7 +3,6 @@
 namespace Dof\Bundle\GraphicsBundle;
 
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Dof\Bundle\ItemBundle\Entity\SkinnedEquipmentTemplate;
 use Dof\Bundle\ItemBundle\Entity\SkinnedEquipmentTemplateRepository;
 use Dof\Bundle\ItemBundle\Entity\AnimalTemplate;
@@ -12,7 +11,6 @@ use Dof\Bundle\CharacterBundle\Entity\Breed;
 use Dof\Bundle\CharacterBundle\Entity\BreedRepository;
 use Dof\Bundle\CharacterBundle\Entity\Face;
 use Dof\Bundle\CharacterBundle\Entity\FaceRepository;
-
 use Dof\Bundle\ItemBundle\ItemSlot;
 use Dof\Bundle\CharacterBundle\Gender;
 
@@ -61,7 +59,8 @@ class BPCLIdentifier
     public function identify($entityLooks, $basicPCLooks0 = null)
     {
         if (!is_array($entityLooks)) {
-            $retval = $this->identify([ $entityLooks ], ($basicPCLooks0 === null) ? [ new BasicPCLook() ] : [ $basicPCLooks0 ]);
+            $retval = $this->identify([$entityLooks], ($basicPCLooks0 === null) ? [new BasicPCLook()] : [$basicPCLooks0]);
+
             return $retval[0];
         }
         $animalLooks = array();
@@ -89,20 +88,22 @@ class BPCLIdentifier
         foreach ($entityLooks as $key => $look) {
             if ($look !== null) {
                 $result = $basicPCLooks[$key];
-                foreach ($look->getColors() as $index => $color)
+                foreach ($look->getColors() as $index => $color) {
                     $result->setColor($index, $color);
+                }
                 foreach ($look->getSkins() as $skin) {
                     if (isset($skins[$skin])) {
                         $obj = $skins[$skin];
                         if ($obj instanceof Breed) {
                             $result->setBreed($obj);
-                            if ($skin == $obj->getMaleSkin() || $skin == $obj->getMaleLodefSkin())
+                            if ($skin == $obj->getMaleSkin() || $skin == $obj->getMaleLodefSkin()) {
                                 $result->setGender(Gender::MALE);
-                            elseif ($skin == $obj->getFemaleSkin() || $skin == $obj->getFemaleLodefSkin())
+                            } elseif ($skin == $obj->getFemaleSkin() || $skin == $obj->getFemaleLodefSkin()) {
                                 $result->setGender(Gender::FEMALE);
-                        } elseif ($obj instanceof Face)
+                            }
+                        } elseif ($obj instanceof Face) {
                             $result->setFace($obj);
-                        elseif ($obj instanceof SkinnedEquipmentTemplate || $obj instanceof LivingItem) {
+                        } elseif ($obj instanceof SkinnedEquipmentTemplate || $obj instanceof LivingItem) {
                             switch ($obj->getType()->getSlot()) {
                                 case ItemSlot::WEAPON:
                                     $result->setWeapon($obj);
@@ -121,11 +122,13 @@ class BPCLIdentifier
                                     break;
                             }
                         }
-                    } else
+                    } else {
                         $result->addExtraSkin($skin);
+                    }
                 }
             }
         }
+
         return $basicPCLooks;
     }
 }

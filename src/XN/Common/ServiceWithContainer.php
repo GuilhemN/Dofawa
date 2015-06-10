@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\Common;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;

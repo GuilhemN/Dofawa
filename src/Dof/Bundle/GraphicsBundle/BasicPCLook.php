@@ -3,9 +3,7 @@
 namespace Dof\Bundle\GraphicsBundle;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Dof\Bundle\CharacterBundle\Entity\Breed;
 use Dof\Bundle\CharacterBundle\Entity\Face;
 use Dof\Bundle\ItemBundle\Entity\AnimalTemplate;
@@ -107,6 +105,7 @@ class BasicPCLook
     public function setBreed(Breed $breed = null)
     {
         $this->breed = $breed;
+
         return $this;
     }
     public function getBreed()
@@ -117,6 +116,7 @@ class BasicPCLook
     public function setGender($gender)
     {
         $this->gender = $gender;
+
         return $this;
     }
     public function getGender()
@@ -127,6 +127,7 @@ class BasicPCLook
     public function setFace(Face $face = null)
     {
         $this->face = $face;
+
         return $this;
     }
     public function getFace()
@@ -137,6 +138,7 @@ class BasicPCLook
     public function setWeapon(WeaponTemplate $weapon = null)
     {
         $this->weapon = $weapon;
+
         return $this;
     }
     public function getWeapon()
@@ -147,6 +149,7 @@ class BasicPCLook
     public function setShield(SkinnedEquipmentTemplate $shield = null)
     {
         $this->shield = $shield;
+
         return $this;
     }
     public function getShield()
@@ -167,6 +170,7 @@ class BasicPCLook
             $this->dbHat = null;
             $this->hatLevel = null;
         }
+
         return $this;
     }
     public function getHat()
@@ -187,6 +191,7 @@ class BasicPCLook
             $this->dbCloak = null;
             $this->cloakLevel = null;
         }
+
         return $this;
     }
     public function getCloak()
@@ -197,18 +202,22 @@ class BasicPCLook
     public function setExtraSkins(array $extraSkins)
     {
         $this->extraSkins = $extraSkins;
+
         return $this;
     }
     public function addExtraSkin($extraSkin)
     {
         $this->extraSkins[] = $extraSkin;
+
         return $this;
     }
     public function removeExtraSkin($extraSkin)
     {
         $key = array_search($extraSkin, $this->extraSkins);
-        if ($key !== false)
+        if ($key !== false) {
             array_splice($this->extraSkins, $key, 1);
+        }
+
         return $this;
     }
     public function getExtraSkins()
@@ -219,11 +228,13 @@ class BasicPCLook
     public function setAnimal($animal = null)
     {
         $this->animal = $animal;
-        if ($animal instanceof AnimalTemplate)
+        if ($animal instanceof AnimalTemplate) {
             $this->dbAnimal = $animal;
-        else
+        } else {
             $this->dbAnimal = null;
+        }
         $this->animalIsChameleonDragoturkey = $animal instanceof ChameleonDragoturkey;
+
         return $this;
     }
     public function getAnimal()
@@ -234,18 +245,22 @@ class BasicPCLook
     public function setColors(array $colors)
     {
         $this->colors = $colors;
+
         return $this;
     }
     public function setColor($index, $color)
     {
-        if ($color === null)
+        if ($color === null) {
             return $this->removeColor($index);
+        }
         $this->colors[$index] = $color;
+
         return $this;
     }
     public function removeColor($index)
     {
         unset($this->colors[$index]);
+
         return $this;
     }
     public function getColor($index)
@@ -273,64 +288,85 @@ class BasicPCLook
                     break;
             }
         }
-        if ($this->face !== null)
+        if ($this->face !== null) {
             $pcLook->addSkin($this->face->getId());
-        if ($this->getHat() !== null)
+        }
+        if ($this->getHat() !== null) {
             $pcLook->addSkin($this->getHat()->getSkin());
-        if ($this->getCloak() !== null)
+        }
+        if ($this->getCloak() !== null) {
             $pcLook->addSkin($this->getCloak()->getSkin());
-        if ($this->getShield() !== null)
+        }
+        if ($this->getShield() !== null) {
             $pcLook->addSkin($this->getShield()->getSkin());
-        if ($this->getWeapon() !== null)
+        }
+        if ($this->getWeapon() !== null) {
             $pcLook->addSkin($this->getWeapon()->getSkin());
-        foreach ($this->extraSkins as $skin)
+        }
+        foreach ($this->extraSkins as $skin) {
             $pcLook->addSkin($skin);
-        foreach ($this->colors as $index => $color)
+        }
+        foreach ($this->colors as $index => $color) {
             $pcLook->setColor($index, $color);
+        }
         if ($this->getAnimal() !== null && $this->getAnimal()->getBone() !== null) {
             $aniLook = new EntityLook();
             $aniLook->setBone($this->getAnimal()->getBone());
             $aniLook->setScale(($this->getAnimal()->getSize() !== null) ? $this->getAnimal()->getSize() / 100 : 1);
             switch ($this->getAnimal()->getColorizationType()) {
                 case AnimalColorizationType::CHAMELEON:
-                    foreach ($this->colors as $index => $color)
+                    foreach ($this->colors as $index => $color) {
                         $aniLook->setColor($index, $color);
+                    }
                     break;
                 case AnimalColorizationType::SHIFTED_CHAMELEON:
-                    foreach ($this->colors as $index => $color)
-                        if ($index >= 3 && $index <= 5)
+                    foreach ($this->colors as $index => $color) {
+                        if ($index >= 3 && $index <= 5) {
                             $aniLook->setColor($index - 2, $color);
+                        }
+                    }
                     break;
             }
             if ($this->getAnimal()->isMount()) {
-				$pcLook->setBone(2);
-                foreach ($this->getAnimal()->getSkins() as $skin)
+                $pcLook->setBone(2);
+                foreach ($this->getAnimal()->getSkins() as $skin) {
                     $aniLook->addSkin($skin);
-                if ($this->getAnimal()->getColorizationType() === AnimalColorizationType::COLORS)
-                    foreach ($this->getAnimal()->getColors() as $index => $color)
+                }
+                if ($this->getAnimal()->getColorizationType() === AnimalColorizationType::COLORS) {
+                    foreach ($this->getAnimal()->getColors() as $index => $color) {
                         $aniLook->setColor($index, $color);
+                    }
+                }
                 $aniLook->setSubEntity(2, 0, $pcLook);
+
                 return $aniLook;
-            } else
+            } else {
                 $pcLook->setSubEntity(1, 0, $aniLook);
+            }
         }
+
         return $pcLook;
     }
 
     public function translateRelations(ObjectManager $dm, LivingItemFactory $livingItemFactory, ChameleonDragoturkey $chameleonDragoturkey)
     {
-        if ($this->hatLevel !== null)
+        if ($this->hatLevel !== null) {
             $this->hat = $livingItemFactory->createFromTemplateAndLevel($this->dbHat, $this->hatLevel);
-        else
+        } else {
             $this->hat = $this->dbHat;
-        if ($this->cloakLevel !== null)
+        }
+        if ($this->cloakLevel !== null) {
             $this->cloak = $livingItemFactory->createFromTemplateAndLevel($this->dbCloak, $this->cloakLevel);
-        else
+        } else {
             $this->cloak = $this->dbCloak;
-        if ($this->animalIsChameleonDragoturkey)
+        }
+        if ($this->animalIsChameleonDragoturkey) {
             $this->animal = $chameleonDragoturkey;
-        if ($this->dbAnimal !== null)
+        }
+        if ($this->dbAnimal !== null) {
             $this->animal = $this->dbAnimal;
+        }
+
         return $this;
     }
 
@@ -352,6 +388,7 @@ class BasicPCLook
         $this->dbAnimal = $look->dbAnimal;
         $this->animalIsChameleonDragoturkey = $look->animalIsChameleonDragoturkey;
         $this->colors = $look->colors;
+
         return $this;
     }
 }

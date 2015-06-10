@@ -5,20 +5,17 @@ namespace Dof\Bundle\MapBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-
 # L'interface n'est pas utilisé afin que le __toString() soit utilisé et non le nom de l'entité
 # use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
-
 use Dof\Bundle\MonsterBundle\Entity\Dungeon;
 
 /**
- * MapPosition
+ * MapPosition.
  *
  * @ORM\Table(name="dof_map_positions")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MapBundle\Entity\MapPositionRepository")
@@ -28,7 +25,7 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     use TimestampableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -36,63 +33,63 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="x", type="integer")
      */
     private $x;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="y", type="integer")
      */
     private $y;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="outdoor", type="boolean")
      */
     private $outdoor;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="capabilities", type="integer")
      */
     private $capabilities;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="worldMap", type="integer")
-    */
+     * @var int
+     *
+     * @ORM\Column(name="worldMap", type="integer")
+     */
     private $worldMap;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="hasPriorityOnWorldMap", type="boolean")
      */
     private $hasPriorityOnWorldMap;
 
     /**
-    * @var Monster
-    *
-    * @ORM\ManyToOne(targetEntity="SubArea", inversedBy="maps")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @var Monster
+     *
+     * @ORM\ManyToOne(targetEntity="SubArea", inversedBy="maps")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $subArea;
 
     /**
-    * @ORM\OneToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Dungeon", mappedBy="entranceMap")
-    */
+     * @ORM\OneToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Dungeon", mappedBy="entranceMap")
+     */
     private $entranceDungeons;
 
     /**
-    * @ORM\OneToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Dungeon", mappedBy="exitMap")
-    */
+     * @ORM\OneToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Dungeon", mappedBy="exitMap")
+     */
     private $exitDungeons;
 
     public function __construct()
@@ -102,11 +99,12 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Set id
-    *
-    * @param integer $id
-    * @return MapPosition
-    */
+     * Set id.
+     *
+     * @param int $id
+     *
+     * @return MapPosition
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -115,9 +113,9 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -125,9 +123,10 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set x
+     * Set x.
      *
-     * @param integer $x
+     * @param int $x
+     *
      * @return MapPosition
      */
     public function setX($x)
@@ -138,9 +137,9 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get x
+     * Get x.
      *
-     * @return integer
+     * @return int
      */
     public function getX()
     {
@@ -148,9 +147,10 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set y
+     * Set y.
      *
-     * @param integer $y
+     * @param int $y
+     *
      * @return MapPosition
      */
     public function setY($y)
@@ -161,9 +161,9 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get y
+     * Get y.
      *
-     * @return integer
+     * @return int
      */
     public function getY()
     {
@@ -171,9 +171,10 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set outdoor
+     * Set outdoor.
      *
-     * @param boolean $outdoor
+     * @param bool $outdoor
+     *
      * @return MapPosition
      */
     public function setOutdoor($outdoor)
@@ -184,9 +185,9 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get outdoor
+     * Get outdoor.
      *
-     * @return boolean
+     * @return bool
      */
     public function getOutdoor()
     {
@@ -194,19 +195,20 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get outdoor
-    *
-    * @return boolean
-    */
+     * Get outdoor.
+     *
+     * @return bool
+     */
     public function isOutdoor()
     {
         return $this->outdoor;
     }
 
     /**
-     * Set capabilities
+     * Set capabilities.
      *
-     * @param integer $capabilities
+     * @param int $capabilities
+     *
      * @return MapPosition
      */
     public function setCapabilities($capabilities)
@@ -217,9 +219,9 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get capabilities
+     * Get capabilities.
      *
-     * @return integer
+     * @return int
      */
     public function getCapabilities()
     {
@@ -227,11 +229,12 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Set worldMap
-    *
-    * @param integer $worldMap
-    * @return MapPosition
-    */
+     * Set worldMap.
+     *
+     * @param int $worldMap
+     *
+     * @return MapPosition
+     */
     public function setWorldMap($worldMap)
     {
         $this->worldMap = $worldMap;
@@ -240,19 +243,20 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get worldMap
-    *
-    * @return integer
-    */
+     * Get worldMap.
+     *
+     * @return int
+     */
     public function getWorldMap()
     {
         return $this->worldMap;
     }
 
     /**
-     * Set hasPriorityOnWorldMap
+     * Set hasPriorityOnWorldMap.
      *
-     * @param boolean $hasPriorityOnWorldMap
+     * @param bool $hasPriorityOnWorldMap
+     *
      * @return MapPosition
      */
     public function setHasPriorityOnWorldMap($hasPriorityOnWorldMap)
@@ -263,9 +267,9 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get hasPriorityOnWorldMap
+     * Get hasPriorityOnWorldMap.
      *
-     * @return boolean
+     * @return bool
      */
     public function getHasPriorityOnWorldMap()
     {
@@ -273,11 +277,12 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Set subArea
-    *
-    * @param SubArea $subArea
-    * @return MapPosition
-    */
+     * Set subArea.
+     *
+     * @param SubArea $subArea
+     *
+     * @return MapPosition
+     */
     public function setSubArea(SubArea $subArea = null)
     {
         $this->subArea = $subArea;
@@ -286,21 +291,22 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get subArea
-    *
-    * @return SubArea
-    */
+     * Get subArea.
+     *
+     * @return SubArea
+     */
     public function getSubArea()
     {
         return $this->subArea;
     }
 
     /**
-    * Add entranceDungeon
-    *
-    * @param Dungeon $entranceDungeon
-    * @return MapPosition
-    */
+     * Add entranceDungeon.
+     *
+     * @param Dungeon $entranceDungeon
+     *
+     * @return MapPosition
+     */
     public function addEntranceDungeon(Dungeon $entranceDungeon)
     {
         $this->entranceDungeon[] = $entranceDungeon;
@@ -309,11 +315,12 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Remove entranceDungeon
-    *
-    * @param Dungeon $entranceDungeon
-    * @return MapPosition
-    */
+     * Remove entranceDungeon.
+     *
+     * @param Dungeon $entranceDungeon
+     *
+     * @return MapPosition
+     */
     public function removeEntranceDungeon(Dungeon $entranceDungeon)
     {
         $this->entranceDungeon->removeElement($entranceDungeon);
@@ -322,21 +329,22 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get entranceDungeon
-    *
-    * @return Collection
-    */
+     * Get entranceDungeon.
+     *
+     * @return Collection
+     */
     public function getEntranceDungeon()
     {
         return $this->entranceDungeon;
     }
 
     /**
-    * Add exitDungeon
-    *
-    * @param Dungeon $exitDungeon
-    * @return MapPosition
-    */
+     * Add exitDungeon.
+     *
+     * @param Dungeon $exitDungeon
+     *
+     * @return MapPosition
+     */
     public function addExitDungeon(Dungeon $exitDungeon)
     {
         $this->exitDungeon[] = $exitDungeon;
@@ -345,11 +353,12 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Remove exitDungeon
-    *
-    * @param Dungeon $exitDungeon
-    * @return MapPosition
-    */
+     * Remove exitDungeon.
+     *
+     * @param Dungeon $exitDungeon
+     *
+     * @return MapPosition
+     */
     public function removeExitDungeon(Dungeon $exitDungeon)
     {
         $this->exitDungeon->removeElement($exitDungeon);
@@ -358,16 +367,17 @@ class MapPosition implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get exitDungeon
-    *
-    * @return Collection
-    */
+     * Get exitDungeon.
+     *
+     * @return Collection
+     */
     public function getExitDungeon()
     {
         return $this->exitDungeon;
     }
 
-    public function __toString() {
-        return '[' . $this->x . ', ' . $this->y . ']';
+    public function __toString()
+    {
+        return '['.$this->x.', '.$this->y.']';
     }
 }

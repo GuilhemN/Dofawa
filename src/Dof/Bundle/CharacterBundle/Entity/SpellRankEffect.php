@@ -3,19 +3,15 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
-
 use Dof\Bundle\CharacterBundle\Areas;
 use Dof\Bundle\CharacterBundle\EffectInterface;
 use Dof\Bundle\CharacterBundle\EffectTrait;
-
 use Dof\Common\GameTemplateString;
-
 use Dof\Bundle\ItemBundle\EffectListHelper;
 
 /**
- * SpellRankEffect
+ * SpellRankEffect.
  *
  * @ORM\Table(name="dof_spell_rank_effects", uniqueConstraints={
  *     @ORM\UniqueConstraint(name="UQ_sre_spellrank_critical_order", columns={ "spellRank_id", "critical", "_order" })
@@ -25,7 +21,7 @@ use Dof\Bundle\ItemBundle\EffectListHelper;
 class SpellRankEffect implements IdentifiableInterface, EffectInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -42,7 +38,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     private $spellRank;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="_order", type="integer")
      */
@@ -70,17 +66,17 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
      * @ORM\Column(name="targets", type="simple_array")
      */
     private $targets;
-	private $hyTargets;
+    private $hyTargets;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="duration", type="integer")
      */
     private $duration;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="delay", type="integer")
      */
@@ -92,26 +88,26 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
      * @ORM\Column(name="triggers", type="simple_array")
      */
     private $triggers;
-	private $hyTriggers;
+    private $hyTriggers;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="hidden", type="boolean")
      */
     private $hidden;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="critical", type="boolean")
      */
     private $critical;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -119,11 +115,12 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-    * Set spellRank
-    *
-    * @param SpellRank $spellRank
-    * @return SpellRankEffect
-    */
+     * Set spellRank.
+     *
+     * @param SpellRank $spellRank
+     *
+     * @return SpellRankEffect
+     */
     public function setSpellRank(SpellRank $spellRank)
     {
         $this->spellRank = $spellRank;
@@ -132,19 +129,20 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-    * Get spellRank
-    *
-    * @return SpellRank
-    */
+     * Get spellRank.
+     *
+     * @return SpellRank
+     */
     public function getSpellRank()
     {
         return $this->spellRank;
     }
 
     /**
-     * Set order
+     * Set order.
      *
-     * @param integer $order
+     * @param int $order
+     *
      * @return SpellRankEffect
      */
     public function setOrder($order)
@@ -155,9 +153,9 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
@@ -165,9 +163,10 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Set probability
+     * Set probability.
      *
      * @param float $probability
+     *
      * @return SpellRankEffect
      */
     public function setProbability($probability)
@@ -178,7 +177,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get probability
+     * Get probability.
      *
      * @return float
      */
@@ -188,9 +187,10 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Set areaOfEffect
+     * Set areaOfEffect.
      *
      * @param string $areaOfEffect
+     *
      * @return SpellRankEffect
      */
     public function setAreaOfEffect($areaOfEffect)
@@ -201,7 +201,7 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get areaOfEffect
+     * Get areaOfEffect.
      *
      * @return string
      */
@@ -211,28 +211,33 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Set targets
+     * Set targets.
      *
      * @param array $targets
+     *
      * @return SpellRankEffect
      */
     public function setTargets($targets)
     {
-		$this->hyTargets = $targets;
+        $this->hyTargets = $targets;
         $this->targets = array_map(function ($target) {
-			if (!is_array($target))
-				return $target;
-			foreach ($target as &$part)
-				if ($part instanceof IdentifiableInterface)
-					$part = $part->getId();
-			return implode('', $target);
-		}, $targets);
+            if (!is_array($target)) {
+                return $target;
+            }
+            foreach ($target as &$part) {
+                if ($part instanceof IdentifiableInterface) {
+                    $part = $part->getId();
+                }
+            }
+
+            return implode('', $target);
+        }, $targets);
 
         return $this;
     }
 
     /**
-     * Get targets
+     * Get targets.
      *
      * @return array
      */
@@ -240,15 +245,16 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     {
         return $this->hyTargets ? $this->hyTargets : $this->targets;
     }
-	public function getRawTargets()
-	{
-		return $this->targets;
-	}
+    public function getRawTargets()
+    {
+        return $this->targets;
+    }
 
     /**
-     * Set duration
+     * Set duration.
      *
-     * @param integer $duration
+     * @param int $duration
+     *
      * @return SpellRankEffect
      */
     public function setDuration($duration)
@@ -259,9 +265,9 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get duration
+     * Get duration.
      *
-     * @return integer
+     * @return int
      */
     public function getDuration()
     {
@@ -269,9 +275,10 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Set delay
+     * Set delay.
      *
-     * @param integer $delay
+     * @param int $delay
+     *
      * @return SpellRankEffect
      */
     public function setDelay($delay)
@@ -282,9 +289,9 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get delay
+     * Get delay.
      *
-     * @return integer
+     * @return int
      */
     public function getDelay()
     {
@@ -292,28 +299,33 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Set triggers
+     * Set triggers.
      *
      * @param array $triggers
+     *
      * @return SpellRankEffect
      */
     public function setTriggers($triggers)
     {
         $this->hyTriggers = $triggers;
         $this->triggers = array_map(function ($trigger) {
-			if (!is_array($trigger))
-				return $trigger;
-			foreach ($trigger as &$part)
-				if ($part instanceof IdentifiableInterface)
-					$part = $part->getId();
-			return implode('', $trigger);
-		}, $triggers);
+            if (!is_array($trigger)) {
+                return $trigger;
+            }
+            foreach ($trigger as &$part) {
+                if ($part instanceof IdentifiableInterface) {
+                    $part = $part->getId();
+                }
+            }
+
+            return implode('', $trigger);
+        }, $triggers);
 
         return $this;
     }
 
     /**
-     * Get triggers
+     * Get triggers.
      *
      * @return array
      */
@@ -321,15 +333,16 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     {
         return $this->hyTriggers ? $this->hyTriggers : $this->triggers;
     }
-	public function getRawTriggers()
-	{
-		return $this->triggers;
-	}
+    public function getRawTriggers()
+    {
+        return $this->triggers;
+    }
 
     /**
-     * Set hidden
+     * Set hidden.
      *
-     * @param boolean $hidden
+     * @param bool $hidden
+     *
      * @return SpellRankEffect
      */
     public function setHidden($hidden)
@@ -340,9 +353,9 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get hidden
+     * Get hidden.
      *
-     * @return boolean
+     * @return bool
      */
     public function getHidden()
     {
@@ -350,9 +363,9 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get hidden
+     * Get hidden.
      *
-     * @return boolean
+     * @return bool
      */
     public function isHidden()
     {
@@ -360,9 +373,10 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Set critical
+     * Set critical.
      *
-     * @param boolean $critical
+     * @param bool $critical
+     *
      * @return SpellRankEffect
      */
     public function setCritical($critical)
@@ -373,9 +387,9 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get critical
+     * Get critical.
      *
-     * @return boolean
+     * @return bool
      */
     public function getCritical()
     {
@@ -383,120 +397,135 @@ class SpellRankEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get critical
+     * Get critical.
      *
-     * @return boolean
+     * @return bool
      */
     public function isCritical()
     {
         return $this->critical;
     }
 
-	public function getDamageEntry()
-	{
-		static $map = null;
-		if ($map === null)
-			$map = EffectListHelper::getDamageMap();
-		$eid = $this->getEffectTemplate()->getId();
-		$entry = isset($map[$eid]) ? $map[$eid] : null;
-		if (!$entry || $entry[0] == Element::AP_LOSS)
-			return null;
-		return [
-			'element' => $entry[0],
-			'min' => $this->getParam1(),
-			'max' => $this->getParam2() ? $this->getParam2() : $this->getParam1(),
-			'leech' => $entry[1]
-		];
-	}
+    public function getDamageEntry()
+    {
+        static $map = null;
+        if ($map === null) {
+            $map = EffectListHelper::getDamageMap();
+        }
+        $eid = $this->getEffectTemplate()->getId();
+        $entry = isset($map[$eid]) ? $map[$eid] : null;
+        if (!$entry || $entry[0] == Element::AP_LOSS) {
+            return;
+        }
 
-	public function getDescription($locale = 'fr', $full = false, $technical = false)
-	{
+        return [
+            'element' => $entry[0],
+            'min' => $this->getParam1(),
+            'max' => $this->getParam2() ? $this->getParam2() : $this->getParam1(),
+            'leech' => $entry[1],
+        ];
+    }
+
+    public function getDescription($locale = 'fr', $full = false, $technical = false)
+    {
         $translator = $this->di->get('translator');
-		$desc = $this->getEffectTemplate()->expandDescription([
-			'1' => $this->getParam1(),
-			'2' => $this->getParam2(),
-			'3' => $this->getParam3()
-		], $locale);
+        $desc = $this->getEffectTemplate()->expandDescription([
+            '1' => $this->getParam1(),
+            '2' => $this->getParam2(),
+            '3' => $this->getParam3(),
+        ], $locale);
         if ($full) {
-			if ($technical)
-				array_unshift($desc, [ '[' . $this->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
-			$desc[] = [ ' (', GameTemplateString::COMES_FROM_TEMPLATE ];
-			if ($technical || !$this->hyTargets)
-				$desc[] = [ implode(', ', $this->targets), GameTemplateString::COMES_FROM_TEMPLATE ];
-			else {
-				$first = true;
-				foreach ($this->hyTargets as $target) {
-					if ($first)
-						$first = false;
-					else
-						$desc[] = [ ', ', GameTemplateString::COMES_FROM_TEMPLATE ];
-					if (!is_array($target))
-						$target = [ $target ];
-					$caster = $target[0] == '*';
-					if ($caster)
-						array_shift($target);
-					$type = $target[0];
-					$target[0] = null;
-					$nparm = count($target) - 1;
-					if ($nparm)
-						$target['a'] = empty($target[1]);
-					$target['c'] = $caster;
-					$target['t'] = !$caster;
-					array_splice($desc, count($desc), 0, GameTemplateString::expand($translator->trans('target.' . $type . $nparm, [ ], 'spell'), $target));
-				}
-			}
-			$desc[] = [ ' ' . $translator->trans('on', [ ], 'spell') . ' ', GameTemplateString::COMES_FROM_TEMPLATE ];
-			if ($technical)
-				$desc[] = [ $this->areaOfEffect, GameTemplateString::COMES_FROM_TEMPLATE ];
-			else {
-				$aeparm = Areas::getParams($this->areaOfEffect);
-				$naeparm = count($aeparm);
-				// We can use {~1foo} to have "foo" on non-zero #1
-				// Allow {~afoo} to have "foo" on zero #1
-				for ($i = $naeparm; $i-- > 0; )
-					$aeparm[chr(97 + $i)] = empty($aeparm[$i]);
-				array_unshift($aeparm, null);
-				array_splice($desc, count($desc), 0, GameTemplateString::expand($translator->trans('area.' . Areas::getShape($this->areaOfEffect) . $naeparm, [ ], 'spell'), $aeparm));
-			}
-			$desc[] = [ ')', GameTemplateString::COMES_FROM_TEMPLATE ];
-	    }
-        if ($this->duration)
-			$desc[] = [ ' (' . $translator->transChoice('duration', $this->duration, ['%count%' => $this->duration], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
-		if ($this->delay)
-			$desc[] = [ ' (' . $translator->transChoice('delay', $this->delay, ['%count%' => $this->delay], 'spell') . ')', GameTemplateString::COMES_FROM_TEMPLATE ];
-		if (implode(',', $this->triggers) != 'I') {
-			$triggers = [ [ $translator->trans('triggered', [ ], 'spell') . ' ', GameTemplateString::COMES_FROM_TEMPLATE ] ];
+            if ($technical) {
+                array_unshift($desc, ['['.$this->getEffectTemplate()->getId().'] ', GameTemplateString::COMES_FROM_TEMPLATE]);
+            }
+            $desc[] = [' (', GameTemplateString::COMES_FROM_TEMPLATE];
+            if ($technical || !$this->hyTargets) {
+                $desc[] = [implode(', ', $this->targets), GameTemplateString::COMES_FROM_TEMPLATE];
+            } else {
+                $first = true;
+                foreach ($this->hyTargets as $target) {
+                    if ($first) {
+                        $first = false;
+                    } else {
+                        $desc[] = [', ', GameTemplateString::COMES_FROM_TEMPLATE];
+                    }
+                    if (!is_array($target)) {
+                        $target = [$target];
+                    }
+                    $caster = $target[0] == '*';
+                    if ($caster) {
+                        array_shift($target);
+                    }
+                    $type = $target[0];
+                    $target[0] = null;
+                    $nparm = count($target) - 1;
+                    if ($nparm) {
+                        $target['a'] = empty($target[1]);
+                    }
+                    $target['c'] = $caster;
+                    $target['t'] = !$caster;
+                    array_splice($desc, count($desc), 0, GameTemplateString::expand($translator->trans('target.'.$type.$nparm, [], 'spell'), $target));
+                }
+            }
+            $desc[] = [' '.$translator->trans('on', [], 'spell').' ', GameTemplateString::COMES_FROM_TEMPLATE];
+            if ($technical) {
+                $desc[] = [$this->areaOfEffect, GameTemplateString::COMES_FROM_TEMPLATE];
+            } else {
+                $aeparm = Areas::getParams($this->areaOfEffect);
+                $naeparm = count($aeparm);
+                // We can use {~1foo} to have "foo" on non-zero #1
+                // Allow {~afoo} to have "foo" on zero #1
+                for ($i = $naeparm; $i-- > 0;) {
+                    $aeparm[chr(97 + $i)] = empty($aeparm[$i]);
+                }
+                array_unshift($aeparm, null);
+                array_splice($desc, count($desc), 0, GameTemplateString::expand($translator->trans('area.'.Areas::getShape($this->areaOfEffect).$naeparm, [], 'spell'), $aeparm));
+            }
+            $desc[] = [')', GameTemplateString::COMES_FROM_TEMPLATE];
+        }
+        if ($this->duration) {
+            $desc[] = [' ('.$translator->transChoice('duration', $this->duration, ['%count%' => $this->duration], 'spell').')', GameTemplateString::COMES_FROM_TEMPLATE];
+        }
+        if ($this->delay) {
+            $desc[] = [' ('.$translator->transChoice('delay', $this->delay, ['%count%' => $this->delay], 'spell').')', GameTemplateString::COMES_FROM_TEMPLATE];
+        }
+        if (implode(',', $this->triggers) != 'I') {
+            $triggers = [[$translator->trans('triggered', [], 'spell').' ', GameTemplateString::COMES_FROM_TEMPLATE]];
             if ($full) {
-				$triggers[] = [ '(', GameTemplateString::COMES_FROM_TEMPLATE ];
-				if ($technical || !$this->hyTriggers)
-					$triggers[] = [ implode(', ', $this->triggers), GameTemplateString::COMES_FROM_TEMPLATE ];
-				else {
-					$first = true;
-					foreach ($this->hyTriggers as $trigger) {
-						if ($first)
-							$first = false;
-						else
-							$triggers[] = [ ', ', GameTemplateString::COMES_FROM_TEMPLATE ];
-						if (!is_array($trigger))
-							$trigger = [ $trigger ];
-						$type = $trigger[0];
-						$trigger[0] = null;
-						$nparm = count($trigger) - 1;
-						if ($nparm)
-							$trigger['a'] = empty($trigger[1]);
-						array_splice($triggers, count($triggers), 0, GameTemplateString::expand($translator->trans(['trigger.' . $type . $nparm, 'trigger.' . $type ], [ '%n%' => $nparm], 'spell'), $trigger));
-					}
-				}
-				$triggers[] = [ ') ', GameTemplateString::COMES_FROM_TEMPLATE ];
-			}
-			$triggers[] = [ ': ', GameTemplateString::COMES_FROM_TEMPLATE ];
-			array_splice($desc, 0, 0, $triggers);
-		}
-        return GameTemplateString::clean($desc);
-	}
+                $triggers[] = ['(', GameTemplateString::COMES_FROM_TEMPLATE];
+                if ($technical || !$this->hyTriggers) {
+                    $triggers[] = [implode(', ', $this->triggers), GameTemplateString::COMES_FROM_TEMPLATE];
+                } else {
+                    $first = true;
+                    foreach ($this->hyTriggers as $trigger) {
+                        if ($first) {
+                            $first = false;
+                        } else {
+                            $triggers[] = [', ', GameTemplateString::COMES_FROM_TEMPLATE];
+                        }
+                        if (!is_array($trigger)) {
+                            $trigger = [$trigger];
+                        }
+                        $type = $trigger[0];
+                        $trigger[0] = null;
+                        $nparm = count($trigger) - 1;
+                        if ($nparm) {
+                            $trigger['a'] = empty($trigger[1]);
+                        }
+                        array_splice($triggers, count($triggers), 0, GameTemplateString::expand($translator->trans(['trigger.'.$type.$nparm, 'trigger.'.$type], ['%n%' => $nparm], 'spell'), $trigger));
+                    }
+                }
+                $triggers[] = [') ', GameTemplateString::COMES_FROM_TEMPLATE];
+            }
+            $triggers[] = [': ', GameTemplateString::COMES_FROM_TEMPLATE];
+            array_splice($desc, 0, 0, $triggers);
+        }
 
-	public function __toString()
-	{
-		return $this->getPlainTextDescription();
-	}
+        return GameTemplateString::clean($desc);
+    }
+
+    public function __toString()
+    {
+        return $this->getPlainTextDescription();
+    }
 }

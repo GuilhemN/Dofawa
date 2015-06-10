@@ -4,21 +4,17 @@ namespace Dof\Bundle\MapBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
-use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * Area
+ * Area.
  *
  * @ORM\Table(name="dof_map_areas")
  * @ORM\Entity(repositoryClass="AreaRepository")
@@ -26,7 +22,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 class Area implements IdentifiableInterface, TimestampableInterface, SluggableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -51,28 +47,28 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     private $subAreas;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="left_", type="integer")
      */
     private $left;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="top_", type="integer")
      */
     private $top;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="width_", type="integer")
      */
     private $width;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="height_", type="integer")
      */
@@ -84,9 +80,10 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return Area
      */
     public function setId($id)
@@ -97,9 +94,9 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -107,9 +104,10 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Set superArea
+     * Set superArea.
      *
      * @param SuperArea $superArea
+     *
      * @return Area
      */
     public function setSuperArea(SuperArea $superArea)
@@ -120,7 +118,7 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Get superArea
+     * Get superArea.
      *
      * @return SuperArea
      */
@@ -130,9 +128,10 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Add subAreas
+     * Add subAreas.
      *
      * @param SubArea $subAreas
+     *
      * @return Area
      */
     public function addSubArea(SubArea $subAreas)
@@ -143,9 +142,10 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Remove subAreas
+     * Remove subAreas.
      *
      * @param SubArea $subAreas
+     *
      * @return Area
      */
     public function removeSubArea(SubArea $subAreas)
@@ -156,7 +156,7 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Get subAreas
+     * Get subAreas.
      *
      * @return Collection
      */
@@ -166,9 +166,10 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Set left
+     * Set left.
      *
-     * @param integer $left
+     * @param int $left
+     *
      * @return Area
      */
     public function setLeft($left)
@@ -179,9 +180,9 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Get left
+     * Get left.
      *
-     * @return integer
+     * @return int
      */
     public function getLeft()
     {
@@ -189,9 +190,10 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Set top
+     * Set top.
      *
-     * @param integer $top
+     * @param int $top
+     *
      * @return Area
      */
     public function setTop($top)
@@ -202,9 +204,9 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Get top
+     * Get top.
      *
-     * @return integer
+     * @return int
      */
     public function getTop()
     {
@@ -212,9 +214,10 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Set width
+     * Set width.
      *
-     * @param integer $width
+     * @param int $width
+     *
      * @return Area
      */
     public function setWidth($width)
@@ -225,9 +228,9 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Get width
+     * Get width.
      *
-     * @return integer
+     * @return int
      */
     public function getWidth()
     {
@@ -235,9 +238,10 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Set height
+     * Set height.
      *
-     * @param integer $height
+     * @param int $height
+     *
      * @return Area
      */
     public function setHeight($height)
@@ -248,9 +252,9 @@ class Area implements IdentifiableInterface, TimestampableInterface, SluggableIn
     }
 
     /**
-     * Get height
+     * Get height.
      *
-     * @return integer
+     * @return int
      */
     public function getHeight()
     {

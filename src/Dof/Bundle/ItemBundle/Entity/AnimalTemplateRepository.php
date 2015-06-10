@@ -3,7 +3,7 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 /**
- * AnimalTemplateRepository
+ * AnimalTemplateRepository.
  */
 class AnimalTemplateRepository extends EquipmentTemplateRepository
 {
@@ -16,20 +16,23 @@ class AnimalTemplateRepository extends EquipmentTemplateRepository
             ->getQuery()
             ->getResult() as $bone) {
             $id = $bone->getId();
-            if (!isset($bones[$id]))
-                $bones[$id] = [ ];
+            if (!isset($bones[$id])) {
+                $bones[$id] = [];
+            }
             $bones[$id][] = $bone;
         }
         ksort($bones);
+
         return $bones;
     }
 
-
-    public function hasBone($format = 'normal', $locale = 'fr') {
+    public function hasBone($format = 'normal', $locale = 'fr')
+    {
         $req = $this->createQueryBuilder('a');
 
-        if($format == 'json')
-          $req->select(array('a.id', 'a.name' . ucfirst($locale) . ' as name'));
+        if ($format == 'json') {
+            $req->select(array('a.id', 'a.name'.ucfirst($locale).' as name'));
+        }
 
         $req
             ->where('a.bone IS NOT NULL')
@@ -37,6 +40,5 @@ class AnimalTemplateRepository extends EquipmentTemplateRepository
             ->setResultCacheDriver(new \Doctrine\Common\Cache\FilesystemCache('../app/cache/'))
             ->useResultCache(true, 3600)
             ->getArrayResult();
-        ;
     }
 }

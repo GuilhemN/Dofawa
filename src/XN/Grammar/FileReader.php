@@ -1,21 +1,22 @@
 <?php
+
 namespace XN\Grammar;
 
 class FileReader implements Reader
 {
     /**
-    * @var string
-    */
+     * @var string
+     */
     private $data;
 
     /**
-    * @var integer
-    */
+     * @var int
+     */
     private $start;
 
     /**
-    * @var integer
-    */
+     * @var int
+     */
     private $end;
 
     public function __construct($data, $start = 0, $end = null)
@@ -52,13 +53,16 @@ class FileReader implements Reader
     }
     public function transact($transactionFn)
     {
-        if (!is_callable($transactionFn))
+        if (!is_callable($transactionFn)) {
             return;
+        }
         $offset = ftell($this->data);
         try {
             $retval = call_user_func($transactionFn);
-            if (!$retval && $retval !== null)
+            if (!$retval && $retval !== null) {
                 fseek($this->data, $offset);
+            }
+
             return $retval;
         } catch (\Exception $ex) {
             fseek($this->data, $offset);
@@ -90,43 +94,52 @@ class FileReader implements Reader
     {
         throw new \LogicException('not supported yet'); # TODO
     }
-	public function eatToEnd()
-	{
+    public function eatToEnd()
+    {
         throw new \LogicException('not supported yet'); # TODO
-	}
+    }
 
     public function read($byteCount, $allowIncomplete = false)
     {
-        if ($byteCount < 0)
-            return null;
+        if ($byteCount < 0) {
+            return;
+        }
         $maxByteCount = $this->getRemainingBytes();
-        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
-            return null;
+        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete) {
+            return;
+        }
         $byteCount = min($byteCount, $maxByteCount);
+
         return fread($this->data, $byteCount);
     }
     public function peek($byteCount, $allowIncomplete = false)
     {
-        if ($byteCount < 0)
-            return null;
+        if ($byteCount < 0) {
+            return;
+        }
         $maxByteCount = $this->getRemainingBytes();
-        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
-            return null;
+        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete) {
+            return;
+        }
         $offset = ftell($this->data);
         $byteCount = min($byteCount, $maxByteCount);
         $string = fread($this->data, $byteCount);
         fseek($this->data, $offset);
+
         return $string;
     }
     public function skip($byteCount, $allowIncomplete = false)
     {
-        if ($byteCount < 0)
+        if ($byteCount < 0) {
             return 0;
+        }
         $maxByteCount = $this->getRemainingBytes();
-        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
+        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete) {
             return 0;
+        }
         $byteCount = min($byteCount, $maxByteCount);
         fseek($this->data, $byteCount, SEEK_CUR);
+
         return $byteCount;
     }
 

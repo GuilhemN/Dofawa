@@ -5,31 +5,26 @@ namespace Dof\Bundle\User\CharacterBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use XN\Annotations as Utils;
-
 use Dof\Bundle\UserBundle\Entity\User;
 use Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter;
 use Dof\Bundle\User\CharacterBundle\Entity\Stuff;
 use Dof\Bundle\User\CharacterBundle\Entity\Item;
 use Dof\Bundle\GraphicsBundle\Entity\BuildLook;
 use Dof\Bundle\CharacterBundle\Entity\Breed;
-
-use Dof\Bundle\User\CharacterBundle\BuildSlot;
 use Dof\Bundle\CharacterBundle\Gender;
-
 use Dof\Bundle\User\CharacterBundle\Form\ConfigurationForm;
-
-use Dof\Bundle\ItemBundle\EffectListHelper;
 use Dof\Bundle\CharacterBundle\RankDamageEffect;
-
 use XN\UtilityBundle\ActionEvents;
 use XN\UtilityBundle\Event\CreateActionEvent;
 
 class BuildController extends Controller
 {
-    public function showAction($user, Stuff $stuff, PlayerCharacter $character){
-        if(!$stuff->canSee()) // Si n'a pas le droit de voir ce build
+    public function showAction($user, Stuff $stuff, PlayerCharacter $character)
+    {
+        if (!$stuff->canSee()) { // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
-        if($stuff->canWrite()){
+        }
+        if ($stuff->canWrite()) {
             $event = new CreateActionEvent('build_stuff', $stuff);
             $this->get('event_dispatcher')->dispatch(ActionEvents::CREATE, $event);
         }
@@ -42,15 +37,17 @@ class BuildController extends Controller
         if ($stuff->canWrite() && $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
             $itemId = $request->request->get('id');
-            foreach($items as $v)
-                foreach($v as $i)
-                    if($i !== null && $i->getId() == $itemId){
+            foreach ($items as $v) {
+                foreach ($v as $i) {
+                    if ($i !== null && $i->getId() == $itemId) {
                         $i->setCharacteristics($request->request->get('caracts'), true);
 
                         $em->persist($i);
                         $em->flush($i);
                         break 2;
                     }
+                }
+            }
         }
 
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
@@ -65,21 +62,23 @@ class BuildController extends Controller
             'characteristics' => $characteristics,
             // Permissions
             'can_write' => $stuff->canWrite(),
-            'user' => $user
+            'user' => $user,
             ]);
     }
 
     /**
      * @Utils\UsesSession
      */
-    public function configurationAction($user, Stuff $stuff, PlayerCharacter $character){
-        if(!$stuff->canWrite()) // Si n'a pas le droit de modifier ce build
+    public function configurationAction($user, Stuff $stuff, PlayerCharacter $character)
+    {
+        if (!$stuff->canWrite()) { // Si n'a pas le droit de modifier ce build
             throw $this->createAccessDeniedException();
+        }
         $em = $this->getDoctrine()->getManager();
 
         $look = $stuff->getLook();
 
-        $form = $this->createForm(new ConfigurationForm ($this->get('translator')->getLocale()), [
+        $form = $this->createForm(new ConfigurationForm($this->get('translator')->getLocale()), [
             'title' => $stuff->getName(),
             'stuffVisibility' => $stuff->getVisible(),
             'vitality' => $stuff->getVitality(),
@@ -94,14 +93,15 @@ class BuildController extends Controller
             'level' => $character->getLevel(),
             'breed' => $character->getBreed(),
             'gender' => $look->getGender(),
-            'face' => $stuff->getFaceLabel()
+            'face' => $stuff->getFaceLabel(),
         ]);
         $form->handleRequest($this->get('request'));
-        if($form->isValid()){
+        if ($form->isValid()) {
             $bm = $this->get('build_manager');
             $data = $form->getData();
-            if(!empty($data['title']))
+            if (!empty($data['title'])) {
                 $stuff->setName($data['title']);
+            }
 
             $stuff->setVitality($data['vitality']);
             $stuff->setWisdom($data['wisdom']);
@@ -112,8 +112,9 @@ class BuildController extends Controller
             $stuff->setVisible($data['stuffVisibility']);
             $stuff->setFaceLabel($data['face']);
 
-            if(!empty($data['name']))
+            if (!empty($data['name'])) {
                 $character->setName($data['name']);
+            }
             $character->setLevel($data['level']);
             $character->setVisible($data['characterVisibility']);
             $character->setBreed($data['breed']);
@@ -129,13 +130,15 @@ class BuildController extends Controller
             'stuff' => $stuff,
             'user' => $user,
             'can_write' => $stuff->canWrite(),
-            'form' => $form->createView()
+            'form' => $form->createView(),
             ]);
     }
 
-    public function showCharacteristicsAction($user, Stuff $stuff, PlayerCharacter $character){
-        if(!$stuff->canSee()) // Si n'a pas le droit de voir ce build
+    public function showCharacteristicsAction($user, Stuff $stuff, PlayerCharacter $character)
+    {
+        if (!$stuff->canSee()) { // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
+        }
 
         $bm = $this->get('build_manager');
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
@@ -149,9 +152,11 @@ class BuildController extends Controller
             ]);
     }
 
-    public function showWeaponDamagesAction($user, Stuff $stuff, PlayerCharacter $character){
-        if(!$stuff->canSee()) // Si n'a pas le droit de voir ce build
+    public function showWeaponDamagesAction($user, Stuff $stuff, PlayerCharacter $character)
+    {
+        if (!$stuff->canSee()) { // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
+        }
 
         $bm = $this->get('build_manager');
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
@@ -168,17 +173,19 @@ class BuildController extends Controller
             ]);
     }
 
-    public function showSpellsDamagesAction($user, Stuff $stuff, PlayerCharacter $character){
-        if(!$stuff->canSee()) // Si n'a pas le droit de voir ce build
+    public function showSpellsDamagesAction($user, Stuff $stuff, PlayerCharacter $character)
+    {
+        if (!$stuff->canSee()) { // Si n'a pas le droit de voir ce build
             throw $this->createAccessDeniedException();
+        }
         $bm = $this->get('build_manager');
         $characteristics = $bm->getCharacteristics($stuff, $bonus);
 
-        foreach($character->getBreed()->getSpells() as $spell)
-            foreach($spell->getRanks() as $rank){
+        foreach ($character->getBreed()->getSpells() as $spell) {
+            foreach ($spell->getRanks() as $rank) {
                 $de = $rank->getEffectsForDamage();
                 $dmes = [];
-                foreach($de as $effect){
+                foreach ($de as $effect) {
                     $row = new RankDamageEffect($effect);
                     $row->applyCharateristics($characteristics);
                     $dmes[] = $row;
@@ -186,6 +193,7 @@ class BuildController extends Controller
 
                 $rank->setDamageEffects($dmes);
             }
+        }
 
         return $this->render('DofUserCharacterBundle:Build:showSpellsDamages.html.twig', [
             'characteristics' => $characteristics,
@@ -196,13 +204,16 @@ class BuildController extends Controller
             ]);
     }
 
-    public function createStuffAction(Request $request) {
+    public function createStuffAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
         $character = $em->getRepository('DofUserCharacterBundle:PlayerCharacter')->find($request->request->get('character'));
-        if($character === null)
+        if ($character === null) {
             return $this->createNotFoundException('Character not found.');
-        if(!$character->canWrite())
+        }
+        if (!$character->canWrite()) {
             throw $this->createAccessDeniedException();
+        }
 
         $stuff = new Stuff();
         $stuff->setName($request->request->get('name'));
@@ -221,28 +232,31 @@ class BuildController extends Controller
         $em->persist($look);
         $em->persist($stuff);
         $em->flush();
+
         return $this->redirect($this->generateUrl('dof_user_character_stuff', array(
             'user' => $character->getOwner()->getSlug(),
             'character' => $character->getSlug(),
-            'stuff' => $stuff->getSlug()
+            'stuff' => $stuff->getSlug(),
         )));
     }
 
-    public function removeAction(Request $request) {
+    public function removeAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
         $stuff = $em->getRepository('DofUserCharacterBundle:Stuff')->find($request->request->get('stuff'));
-        if($stuff === null)
+        if ($stuff === null) {
             throw $this->createNotFoundException('Stuff not found');
-        elseif(!$stuff->canWrite())
+        } elseif (!$stuff->canWrite()) {
             throw $this->createAccessDeniedException();
+        }
 
         $redirect = $this->redirect($this->generateUrl('dof_user_character_show', [
             'user' => $stuff->getCharacter()->getOwner()->getSlug(),
-            'character' => $stuff->getCharacter()->getSlug()
+            'character' => $stuff->getCharacter()->getSlug(),
             ]));
         $em->remove($stuff);
         $em->flush();
+
         return $redirect;
     }
-
 }

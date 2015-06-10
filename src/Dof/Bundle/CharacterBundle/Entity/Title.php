@@ -3,17 +3,15 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * Title
+ * Title.
  *
  * @ORM\Table(name="dof_titles")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CharacterBundle\Entity\TitleRepository")
@@ -23,7 +21,7 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     use TimestampableTrait, SluggableTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -31,137 +29,138 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $id;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="visible", type="boolean")
      */
     private $visible;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="categoryId", type="integer")
      */
     private $categoryId;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_male_fr", type="string", length=255)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_male_fr", type="string", length=255)
+     */
     private $nameMaleFr;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_male_en", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_male_en", type="string", length=255, nullable=true)
+     */
     private $nameMaleEn;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_male_de", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_male_de", type="string", length=255, nullable=true)
+     */
     private $nameMaleDe;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_male_es", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_male_es", type="string", length=255, nullable=true)
+     */
     private $nameMaleEs;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_male_it", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_male_it", type="string", length=255, nullable=true)
+     */
     private $nameMaleIt;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_male_pt", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_male_pt", type="string", length=255, nullable=true)
+     */
     private $nameMalePt;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_male_ja", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_male_ja", type="string", length=255, nullable=true)
+     */
     private $nameMaleJa;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="nameMale_ru", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="nameMale_ru", type="string", length=255, nullable=true)
+     */
     private $nameMaleRu;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_female_fr", type="string", length=255)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_female_fr", type="string", length=255)
+     */
     private $nameFemaleFr;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_female_en", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_female_en", type="string", length=255, nullable=true)
+     */
     private $nameFemaleEn;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_female_de", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_female_de", type="string", length=255, nullable=true)
+     */
     private $nameFemaleDe;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_female_es", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_female_es", type="string", length=255, nullable=true)
+     */
     private $nameFemaleEs;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_female_it", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_female_it", type="string", length=255, nullable=true)
+     */
     private $nameFemaleIt;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_female_pt", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_female_pt", type="string", length=255, nullable=true)
+     */
     private $nameFemalePt;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="name_female_ja", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name_female_ja", type="string", length=255, nullable=true)
+     */
     private $nameFemaleJa;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="nameFemale_ru", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="nameFemale_ru", type="string", length=255, nullable=true)
+     */
     private $nameFemaleRu;
 
     /**
-    * Set id
-    *
-    * @param integer $id
-    * @return Emoticon
-    */
+     * Set id.
+     *
+     * @param int $id
+     *
+     * @return Emoticon
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -170,19 +169,20 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get id
-    *
-    * @return integer
-    */
+     * Get id.
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set visible
+     * Set visible.
      *
-     * @param boolean $visible
+     * @param bool $visible
+     *
      * @return Title
      */
     public function setVisible($visible)
@@ -193,9 +193,9 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get visible
+     * Get visible.
      *
-     * @return boolean
+     * @return bool
      */
     public function getVisible()
     {
@@ -203,9 +203,10 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set categoryId
+     * Set categoryId.
      *
-     * @param integer $categoryId
+     * @param int $categoryId
+     *
      * @return Title
      */
     public function setCategoryId($categoryId)
@@ -216,9 +217,9 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get categoryId
+     * Get categoryId.
      *
-     * @return integer
+     * @return int
      */
     public function getCategoryId()
     {
@@ -226,11 +227,12 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Set nameMaleFr
-    *
-    * @param string $nameMaleFr
-    * @return Emoticon
-    */
+     * Set nameMaleFr.
+     *
+     * @param string $nameMaleFr
+     *
+     * @return Emoticon
+     */
     public function setNameMaleFr($nameMaleFr)
     {
         $this->nameMaleFr = $nameMaleFr;
@@ -239,21 +241,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameMaleNameFr
-    *
-    * @return string
-    */
+     * Get nameMaleNameFr.
+     *
+     * @return string
+     */
     public function getNameMaleFr()
     {
         return $this->nameMaleNameFr;
     }
 
     /**
-    * Set nameMaleNameEn
-    *
-    * @param string $nameMaleNameEn
-    * @return Emoticon
-    */
+     * Set nameMaleNameEn.
+     *
+     * @param string $nameMaleNameEn
+     *
+     * @return Emoticon
+     */
     public function setNameMaleEn($nameMaleNameEn)
     {
         $this->nameMaleNameEn = $nameMaleNameEn;
@@ -262,21 +265,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameMaleNameEn
-    *
-    * @return string
-    */
+     * Get nameMaleNameEn.
+     *
+     * @return string
+     */
     public function getNameMaleEn()
     {
         return $this->nameMaleNameEn;
     }
 
     /**
-    * Set nameMaleNameDe
-    *
-    * @param string $nameMaleNameDe
-    * @return Emoticon
-    */
+     * Set nameMaleNameDe.
+     *
+     * @param string $nameMaleNameDe
+     *
+     * @return Emoticon
+     */
     public function setNameMaleDe($nameMaleNameDe)
     {
         $this->nameMaleNameDe = $nameMaleNameDe;
@@ -285,21 +289,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameMaleNameDe
-    *
-    * @return string
-    */
+     * Get nameMaleNameDe.
+     *
+     * @return string
+     */
     public function getNameMaleDe()
     {
         return $this->nameMaleDe;
     }
 
     /**
-    * Set nameMaleEs
-    *
-    * @param string $nameMaleEs
-    * @return Emoticon
-    */
+     * Set nameMaleEs.
+     *
+     * @param string $nameMaleEs
+     *
+     * @return Emoticon
+     */
     public function setNameMaleEs($nameMaleEs)
     {
         $this->nameMaleEs = $nameMaleEs;
@@ -308,21 +313,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameMaleEs
-    *
-    * @return string
-    */
+     * Get nameMaleEs.
+     *
+     * @return string
+     */
     public function getNameMaleEs()
     {
         return $this->nameMaleEs;
     }
 
     /**
-    * Set nameMaleIt
-    *
-    * @param string $nameMaleIt
-    * @return Emoticon
-    */
+     * Set nameMaleIt.
+     *
+     * @param string $nameMaleIt
+     *
+     * @return Emoticon
+     */
     public function setNameMaleIt($nameMaleIt)
     {
         $this->nameMaleIt = $nameMaleIt;
@@ -331,21 +337,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameMaleIt
-    *
-    * @return string
-    */
+     * Get nameMaleIt.
+     *
+     * @return string
+     */
     public function getNameMaleIt()
     {
         return $this->nameMaleIt;
     }
 
     /**
-    * Set nameMalePt
-    *
-    * @param string $nameMalePt
-    * @return Emoticon
-    */
+     * Set nameMalePt.
+     *
+     * @param string $nameMalePt
+     *
+     * @return Emoticon
+     */
     public function setNameMalePt($nameMalePt)
     {
         $this->nameMalePt = $nameMalePt;
@@ -354,21 +361,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get longNamePt
-    *
-    * @return string
-    */
+     * Get longNamePt.
+     *
+     * @return string
+     */
     public function getNameMalePt()
     {
         return $this->longNamePt;
     }
 
     /**
-    * Set nameMaleNameJa
-    *
-    * @param string $nameMaleNameJa
-    * @return Emoticon
-    */
+     * Set nameMaleNameJa.
+     *
+     * @param string $nameMaleNameJa
+     *
+     * @return Emoticon
+     */
     public function setNameMaleJa($nameMaleNameJa)
     {
         $this->nameMaleNameJa = $nameMaleNameJa;
@@ -377,21 +385,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameMaleNameJa
-    *
-    * @return string
-    */
+     * Get nameMaleNameJa.
+     *
+     * @return string
+     */
     public function getNameMaleJa()
     {
         return $this->nameMaleNameJa;
     }
 
     /**
-    * Set nameMaleNameRu
-    *
-    * @param string $nameMaleNameRu
-    * @return Emoticon
-    */
+     * Set nameMaleNameRu.
+     *
+     * @param string $nameMaleNameRu
+     *
+     * @return Emoticon
+     */
     public function setNameMaleRu($nameMaleNameRu)
     {
         $this->nameMaleNameRu = $nameMaleNameRu;
@@ -400,22 +409,23 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameMaleNameRu
-    *
-    * @return string
-    */
+     * Get nameMaleNameRu.
+     *
+     * @return string
+     */
     public function getNameMaleRu()
     {
         return $this->nameMaleNameRu;
     }
 
     /**
-    * Set nameMale
-    *
-    * @param string $nameMale
-    * @param string $locale
-    * @return Emoticon
-    */
+     * Set nameMale.
+     *
+     * @param string $nameMale
+     * @param string $locale
+     *
+     * @return Emoticon
+     */
     public function setNameMale($nameMale, $locale = 'fr')
     {
         switch ($locale) {
@@ -428,24 +438,28 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'ja': $this->nameMaleJa = $nameMale; break;
             case 'ru': $this->nameMaleRu = $nameMale; break;
         }
+
         return $this;
     }
 
     /**
-    * Get nameMale
-    *
-    * @param string|array $locale
-    * @return string
-    */
+     * Get nameMale.
+     *
+     * @param string|array $locale
+     *
+     * @return string
+     */
     public function getNameMale($locale = 'fr')
     {
         if (is_array($locale)) {
             foreach ($locale as $loc) {
                 $nameMale = $this->getNameMale($loc);
-                if ($nameMale !== null)
-                return $nameMale;
+                if ($nameMale !== null) {
+                    return $nameMale;
+                }
             }
-            return null;
+
+            return;
         }
         switch ($locale) {
             case 'fr': return $this->nameMaleFr;
@@ -456,15 +470,16 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'pt': return $this->nameMalePt;
             case 'ja': return $this->nameMaleJa;
             case 'ru': return $this->nameMaleRu;
-            default: return null;
+            default: return;
         }
     }
     /**
-    * Set nameFemaleFr
-    *
-    * @param string $nameFemaleFr
-    * @return Emoticon
-    */
+     * Set nameFemaleFr.
+     *
+     * @param string $nameFemaleFr
+     *
+     * @return Emoticon
+     */
     public function setNameFemaleFr($nameFemaleFr)
     {
         $this->nameFemaleFr = $nameFemaleFr;
@@ -473,21 +488,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameFemaleNameFr
-    *
-    * @return string
-    */
+     * Get nameFemaleNameFr.
+     *
+     * @return string
+     */
     public function getNameFemaleFr()
     {
         return $this->nameFemaleNameFr;
     }
 
     /**
-    * Set nameFemaleNameEn
-    *
-    * @param string $nameFemaleNameEn
-    * @return Emoticon
-    */
+     * Set nameFemaleNameEn.
+     *
+     * @param string $nameFemaleNameEn
+     *
+     * @return Emoticon
+     */
     public function setNameFemaleEn($nameFemaleNameEn)
     {
         $this->nameFemaleNameEn = $nameFemaleNameEn;
@@ -496,21 +512,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameFemaleNameEn
-    *
-    * @return string
-    */
+     * Get nameFemaleNameEn.
+     *
+     * @return string
+     */
     public function getNameFemaleEn()
     {
         return $this->nameFemaleNameEn;
     }
 
     /**
-    * Set nameFemaleNameDe
-    *
-    * @param string $nameFemaleNameDe
-    * @return Emoticon
-    */
+     * Set nameFemaleNameDe.
+     *
+     * @param string $nameFemaleNameDe
+     *
+     * @return Emoticon
+     */
     public function setNameFemaleDe($nameFemaleNameDe)
     {
         $this->nameFemaleNameDe = $nameFemaleNameDe;
@@ -519,21 +536,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameFemaleNameDe
-    *
-    * @return string
-    */
+     * Get nameFemaleNameDe.
+     *
+     * @return string
+     */
     public function getNameFemaleDe()
     {
         return $this->nameFemaleDe;
     }
 
     /**
-    * Set nameFemaleEs
-    *
-    * @param string $nameFemaleEs
-    * @return Emoticon
-    */
+     * Set nameFemaleEs.
+     *
+     * @param string $nameFemaleEs
+     *
+     * @return Emoticon
+     */
     public function setNameFemaleEs($nameFemaleEs)
     {
         $this->nameFemaleEs = $nameFemaleEs;
@@ -542,21 +560,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameFemaleEs
-    *
-    * @return string
-    */
+     * Get nameFemaleEs.
+     *
+     * @return string
+     */
     public function getNameFemaleEs()
     {
         return $this->nameFemaleEs;
     }
 
     /**
-    * Set nameFemaleIt
-    *
-    * @param string $nameFemaleIt
-    * @return Emoticon
-    */
+     * Set nameFemaleIt.
+     *
+     * @param string $nameFemaleIt
+     *
+     * @return Emoticon
+     */
     public function setNameFemaleIt($nameFemaleIt)
     {
         $this->nameFemaleIt = $nameFemaleIt;
@@ -565,21 +584,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameFemaleIt
-    *
-    * @return string
-    */
+     * Get nameFemaleIt.
+     *
+     * @return string
+     */
     public function getNameFemaleIt()
     {
         return $this->nameFemaleIt;
     }
 
     /**
-    * Set nameFemalePt
-    *
-    * @param string $nameFemalePt
-    * @return Emoticon
-    */
+     * Set nameFemalePt.
+     *
+     * @param string $nameFemalePt
+     *
+     * @return Emoticon
+     */
     public function setNameFemalePt($nameFemalePt)
     {
         $this->nameFemalePt = $nameFemalePt;
@@ -588,21 +608,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get longNamePt
-    *
-    * @return string
-    */
+     * Get longNamePt.
+     *
+     * @return string
+     */
     public function getNameFemalePt()
     {
         return $this->longNamePt;
     }
 
     /**
-    * Set nameFemaleNameJa
-    *
-    * @param string $nameFemaleNameJa
-    * @return Emoticon
-    */
+     * Set nameFemaleNameJa.
+     *
+     * @param string $nameFemaleNameJa
+     *
+     * @return Emoticon
+     */
     public function setNameFemaleJa($nameFemaleNameJa)
     {
         $this->nameFemaleNameJa = $nameFemaleNameJa;
@@ -611,21 +632,22 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameFemaleNameJa
-    *
-    * @return string
-    */
+     * Get nameFemaleNameJa.
+     *
+     * @return string
+     */
     public function getNameFemaleJa()
     {
         return $this->nameFemaleNameJa;
     }
 
     /**
-    * Set nameFemaleNameRu
-    *
-    * @param string $nameFemaleNameRu
-    * @return Emoticon
-    */
+     * Set nameFemaleNameRu.
+     *
+     * @param string $nameFemaleNameRu
+     *
+     * @return Emoticon
+     */
     public function setNameFemaleRu($nameFemaleNameRu)
     {
         $this->nameFemaleNameRu = $nameFemaleNameRu;
@@ -634,22 +656,23 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get nameFemaleNameRu
-    *
-    * @return string
-    */
+     * Get nameFemaleNameRu.
+     *
+     * @return string
+     */
     public function getNameFemaleRu()
     {
         return $this->nameFemaleNameRu;
     }
 
     /**
-    * Set nameFemale
-    *
-    * @param string $nameFemale
-    * @param string $locale
-    * @return Emoticon
-    */
+     * Set nameFemale.
+     *
+     * @param string $nameFemale
+     * @param string $locale
+     *
+     * @return Emoticon
+     */
     public function setNameFemale($nameFemale, $locale = 'fr')
     {
         switch ($locale) {
@@ -662,24 +685,28 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'ja': $this->nameFemaleJa = $nameFemale; break;
             case 'ru': $this->nameFemaleRu = $nameFemale; break;
         }
+
         return $this;
     }
 
     /**
-    * Get nameFemale
-    *
-    * @param string|array $locale
-    * @return string
-    */
+     * Get nameFemale.
+     *
+     * @param string|array $locale
+     *
+     * @return string
+     */
     public function getNameFemale($locale = 'fr')
     {
         if (is_array($locale)) {
             foreach ($locale as $loc) {
                 $nameFemale = $this->getNameFemale($loc);
-                if ($nameFemale !== null)
-                return $nameFemale;
+                if ($nameFemale !== null) {
+                    return $nameFemale;
+                }
             }
-            return null;
+
+            return;
         }
         switch ($locale) {
             case 'fr': return $this->nameFemaleFr;
@@ -690,11 +717,12 @@ class Title implements IdentifiableInterface, TimestampableInterface, SluggableI
             case 'pt': return $this->nameFemalePt;
             case 'ja': return $this->nameFemaleJa;
             case 'ru': return $this->nameFemaleRu;
-            default: return null;
+            default: return;
         }
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->nameMaleFr;
     }
 }

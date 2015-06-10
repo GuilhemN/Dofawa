@@ -3,32 +3,31 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UseableItemTemplate
+ * UseableItemTemplate.
  *
  * @ORM\Entity(repositoryClass="Dof\Bundle\ItemBundle\Entity\UseableItemTemplateRepository")
  */
 class UseableItemTemplate extends ItemTemplate
 {
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="useable_on_self", type="boolean")
      */
     private $useableOnSelf;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="useable_on_others", type="boolean")
      */
     private $useableOnOthers;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="targetable", type="boolean")
      */
@@ -41,15 +40,16 @@ class UseableItemTemplate extends ItemTemplate
      */
     private $targetCriteria;
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
-     * Set useableOnSelf
+     * Set useableOnSelf.
      *
-     * @param boolean $useableOnSelf
+     * @param bool $useableOnSelf
+     *
      * @return UseableItemTemplate
      */
     public function setUseableOnSelf($useableOnSelf)
@@ -60,9 +60,9 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Get useableOnSelf
+     * Get useableOnSelf.
      *
-     * @return boolean
+     * @return bool
      */
     public function getUseableOnSelf()
     {
@@ -70,9 +70,9 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Get useableOnSelf
+     * Get useableOnSelf.
      *
-     * @return boolean
+     * @return bool
      */
     public function isUseableOnSelf()
     {
@@ -80,9 +80,10 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Set useableOnOthers
+     * Set useableOnOthers.
      *
-     * @param boolean $useableOnOthers
+     * @param bool $useableOnOthers
+     *
      * @return UseableItemTemplate
      */
     public function setUseableOnOthers($useableOnOthers)
@@ -93,9 +94,9 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Get useableOnOthers
+     * Get useableOnOthers.
      *
-     * @return boolean
+     * @return bool
      */
     public function getUseableOnOthers()
     {
@@ -103,9 +104,9 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Get useableOnOthers
+     * Get useableOnOthers.
      *
-     * @return boolean
+     * @return bool
      */
     public function isUseableOnOthers()
     {
@@ -113,9 +114,10 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Set targetable
+     * Set targetable.
      *
-     * @param boolean $targetable
+     * @param bool $targetable
+     *
      * @return UseableItemTemplate
      */
     public function setTargetable($targetable)
@@ -126,9 +128,9 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Get targetable
+     * Get targetable.
      *
-     * @return boolean
+     * @return bool
      */
     public function getTargetable()
     {
@@ -136,9 +138,9 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Get targetable
+     * Get targetable.
      *
-     * @return boolean
+     * @return bool
      */
     public function isTargetable()
     {
@@ -146,9 +148,10 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Set targetCriteria
+     * Set targetCriteria.
      *
      * @param string $targetCriteria
+     *
      * @return UseableItemTemplate
      */
     public function setTargetCriteria($targetCriteria)
@@ -159,7 +162,7 @@ class UseableItemTemplate extends ItemTemplate
     }
 
     /**
-     * Get targetCriteria
+     * Get targetCriteria.
      *
      * @return string
      */
@@ -168,8 +171,14 @@ class UseableItemTemplate extends ItemTemplate
         return $this->targetCriteria;
     }
 
-	public function isUseable() { return true; }
-    public function getClassId() { return 'useable'; }
+    public function isUseable()
+    {
+        return true;
+    }
+    public function getClassId()
+    {
+        return 'useable';
+    }
 
     public function exportData($full = true, $locale = 'fr')
     {
@@ -177,13 +186,15 @@ class UseableItemTemplate extends ItemTemplate
             'useableOnSelf' => $this->useableOnSelf,
             'useableOnOthers' => $this->useableOnOthers,
             'targetable' => $this->targetable,
-            'targetCriteria' => $this->targetCriteria
-        ] : [ ]);
+            'targetCriteria' => $this->targetCriteria,
+        ] : []);
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
-        if (parent::importField($key, $value, $dm, $locale))
+        if (parent::importField($key, $value, $dm, $locale)) {
             return true;
+        }
+
         return false;
     }
 }

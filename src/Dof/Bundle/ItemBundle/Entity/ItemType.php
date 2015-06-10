@@ -5,9 +5,7 @@ namespace Dof\Bundle\ItemBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
@@ -15,15 +13,13 @@ use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
-
 use Dof\Bundle\ItemBundle\ItemTemplateFactory;
 
 /**
- * ItemType
+ * ItemType.
  *
  * @ORM\Table(name="dof_item_types")
  * @ORM\Entity(repositoryClass="ItemTypeRepository")
@@ -31,7 +27,7 @@ use Dof\Bundle\ItemBundle\ItemTemplateFactory;
 class ItemType implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, LocalizedNameInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -41,7 +37,7 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="slot", type="integer")
      */
@@ -67,9 +63,10 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return ItemType
      */
     public function setId($id)
@@ -80,9 +77,9 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -90,9 +87,10 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Set slot
+     * Set slot.
      *
-     * @param integer $slot
+     * @param int $slot
+     *
      * @return ItemType
      */
     public function setSlot($slot)
@@ -103,9 +101,9 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Get slot
+     * Get slot.
      *
-     * @return integer
+     * @return int
      */
     public function getSlot()
     {
@@ -113,9 +111,10 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Set effectArea
+     * Set effectArea.
      *
      * @param string $effectArea
+     *
      * @return ItemType
      */
     public function setEffectArea($effectArea)
@@ -126,7 +125,7 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Get effectArea
+     * Get effectArea.
      *
      * @return string
      */
@@ -136,9 +135,10 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Add items
+     * Add items.
      *
      * @param ItemTemplate $items
+     *
      * @return ItemType
      */
     public function addItem(ItemTemplate $items)
@@ -149,9 +149,10 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Remove items
+     * Remove items.
      *
      * @param ItemTemplate $items
+     *
      * @return ItemType
      */
     public function removeItem(ItemTemplate $items)
@@ -162,7 +163,7 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Get items
+     * Get items.
      *
      * @return Collection
      */
@@ -175,8 +176,10 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     {
         $item = ItemTemplateFactory::createItemTemplate($this->getSlot(), $this->getId());
         $item->setType($this);
-        if ($autoAdd)
+        if ($autoAdd) {
             $this->addItem($item);
+        }
+
         return $item;
     }
 
@@ -189,13 +192,13 @@ class ItemType implements IdentifiableInterface, TimestampableInterface, Sluggab
     {
         return $this->exportTimestampableData($full) + $this->exportSluggableData($full) + [
             'name' => $this->getName($locale),
-            'slot' => $this->slot
+            'slot' => $this->slot,
         ] + ($full ? [
             'effectArea' => $this->effectArea,
             'release' => $this->release,
             'preliminary' => $this->preliminary,
-            'deprecated' => $this->deprecated
-        ] : [ ]);
+            'deprecated' => $this->deprecated,
+        ] : []);
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {

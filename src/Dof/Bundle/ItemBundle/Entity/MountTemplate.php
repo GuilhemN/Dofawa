@@ -3,11 +3,10 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * MountTemplate
+ * MountTemplate.
  *
  * @ORM\Entity(repositoryClass="MountTemplateRepository")
  */
@@ -28,20 +27,21 @@ class MountTemplate extends AnimalTemplate
     private $colors;
 
     /**
-     * @var integer
+     * @var int
      * @ORM\Column(name="gestation_duration", type="integer", nullable=true)
      */
     private $gestationDuration;
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
-     * Set skins
+     * Set skins.
      *
      * @param array $skins
+     *
      * @return MountTemplate
      */
     public function setSkins(array $skins = null)
@@ -52,7 +52,7 @@ class MountTemplate extends AnimalTemplate
     }
 
     /**
-     * Get skins
+     * Get skins.
      *
      * @return array
      */
@@ -62,9 +62,10 @@ class MountTemplate extends AnimalTemplate
     }
 
     /**
-     * Set colors
+     * Set colors.
      *
      * @param array $colors
+     *
      * @return MountTemplate
      */
     public function setColors(array $colors = null)
@@ -75,7 +76,7 @@ class MountTemplate extends AnimalTemplate
     }
 
     /**
-     * Get colors
+     * Get colors.
      *
      * @return array
      */
@@ -85,9 +86,10 @@ class MountTemplate extends AnimalTemplate
     }
 
     /**
-     * Set gestationDuration
+     * Set gestationDuration.
      *
-     * @param integer $gestationDuration
+     * @param int $gestationDuration
+     *
      * @return MountTemplate
      */
     public function setGestationDuration($gestationDuration)
@@ -98,29 +100,37 @@ class MountTemplate extends AnimalTemplate
     }
 
     /**
-     * Get gestationDuration
+     * Get gestationDuration.
      *
-     * @return integer
+     * @return int
      */
     public function getGestationDuration()
     {
         return $this->gestationDuration;
     }
 
-	public function isMount() { return true; }
-    public function getClassId() { return 'mount'; }
+    public function isMount()
+    {
+        return true;
+    }
+    public function getClassId()
+    {
+        return 'mount';
+    }
 
     public function exportData($full = true, $locale = 'fr')
     {
         return parent::exportData($full, $locale) + ($full ? [
             'skins' => $this->skins,
-            'colors' => $this->colors
-        ] : [ ]);
+            'colors' => $this->colors,
+        ] : []);
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
-        if (parent::importField($key, $value, $dm, $locale))
+        if (parent::importField($key, $value, $dm, $locale)) {
             return true;
+        }
+
         return false;
     }
 }

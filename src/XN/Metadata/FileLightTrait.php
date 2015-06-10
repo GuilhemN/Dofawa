@@ -1,40 +1,41 @@
 <?php
+
 namespace XN\Metadata;
 
 use Doctrine\ORM\Mapping as ORM;
-
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 
 trait FileLightTrait
 {
-
     /**
-    * @ORM\Column(type="string", length=255, nullable=true)
-    */
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     protected $path;
 
     /**
-    * @ORM\Column(name="upload_index", type="integer", nullable=true)
-    */
+     * @ORM\Column(name="upload_index", type="integer", nullable=true)
+     */
     protected $uploadIndex;
 
     private $pathToRemove;
 
-    public function getPath(){
+    public function getPath()
+    {
         return $this->path;
     }
 
-    public function setPath($path){
+    public function setPath($path)
+    {
         $this->path = $path;
+
         return $this;
     }
 
     /**
-    * Sets file.
-    *
-    * @param UploadedFile $file
-    */
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
     public function setFile(File $file = null)
     {
         $this->file = $file;
@@ -42,10 +43,10 @@ trait FileLightTrait
     }
 
     /**
-    * Get file.
-    *
-    * @return UploadedFile
-    */
+     * Get file.
+     *
+     * @return UploadedFile
+     */
     public function getFile()
     {
         return $this->file;
@@ -69,7 +70,7 @@ trait FileLightTrait
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__ . '/../../../web/' . $this->getUploadDir();
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
     protected function getUploadDir()
@@ -82,9 +83,10 @@ trait FileLightTrait
     public function preUpload()
     {
         if (null !== $this->file) {
-            if(!empty($this->path))
+            if (!empty($this->path)) {
                 $this->pathToRemove = $this->path;
-            $this->path = time() . '-' . $this->id . '.'.$this->file->guessExtension();
+            }
+            $this->path = time().'-'.$this->id.'.'.$this->file->guessExtension();
         }
     }
 
@@ -95,7 +97,7 @@ trait FileLightTrait
         }
 
         $this->file->move($this->getUploadRootDir(), $this->path);
-        if(!empty($this->pathToRemove)){
+        if (!empty($this->pathToRemove)) {
             unlink($this->pathToRemove);
             $this->pathToRemove = null;
         }

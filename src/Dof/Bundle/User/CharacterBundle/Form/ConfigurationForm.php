@@ -6,20 +6,20 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use Dof\Bundle\CharacterBundle\Gender;
 
 class ConfigurationForm extends AbstractType
 {
     private $locale;
 
-    public function __construct($locale) {
+    public function __construct($locale)
+    {
         $this->locale = $locale;
     }
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -27,7 +27,7 @@ class ConfigurationForm extends AbstractType
                 'precision' => 0,
                 'attr' => array('min' => '0', 'max' => '1100', 'step' => '1'),
                 'constraints' => new Assert\Range(['min' => 0, 'max' => 1100]),
-                'translation_domain' => 'item'
+                'translation_domain' => 'item',
             ];
         $builder
             // Stuff
@@ -36,7 +36,7 @@ class ConfigurationForm extends AbstractType
             ->add('vitality', 'number', $caractOptions + ['label' => 'Vitality', 'translation_domain' => 'item'])
             ->add('wisdom', 'number', $caractOptions + ['label' => 'Wisdom', 'translation_domain' => 'item'])
             ->add('strength', 'number', $caractOptions + ['label' => 'Strength', 'translation_domain' => 'item'])
-            ->add('intelligence', 'number', $caractOptions+['label' => 'Intelligence', 'translation_domain' => 'item'])
+            ->add('intelligence', 'number', $caractOptions + ['label' => 'Intelligence', 'translation_domain' => 'item'])
             ->add('chance', 'number', $caractOptions + ['label' => 'Chance', 'translation_domain' => 'item'])
             ->add('agility', 'number', $caractOptions + ['label' => 'Agility', 'translation_domain' => 'item'])
 
@@ -45,22 +45,22 @@ class ConfigurationForm extends AbstractType
             ->add('characterVisibility', 'checkbox', ['label' => 'Public', 'required' => false])
             ->add('level', 'number', array(
                 'attr' => array('min' => '1', 'max' => '200', 'step' => '1'),
-                'constraints' => new Assert\Range(['min' => 1, 'max' => 200]), 'label' => 'list.level', 'translation_domain' => 'item'
+                'constraints' => new Assert\Range(['min' => 1, 'max' => 200]), 'label' => 'list.level', 'translation_domain' => 'item',
                 )
             )
-            ->add('breed', 'entity', ['class' => 'DofCharacterBundle:Breed', 'property' => 'name' . ucfirst($this->locale), 'label' => 'breed', 'translation_domain' => 'breed'])
+            ->add('breed', 'entity', ['class' => 'DofCharacterBundle:Breed', 'property' => 'name'.ucfirst($this->locale), 'label' => 'breed', 'translation_domain' => 'breed'])
             ->add('gender', 'choice', array(
                   'label' => 'gender',
-                  'choices'   => array_flip(Gender::getValues()),
-                  'required'  => true,
-                  'expanded'  => true,
-                  'translation_domain' => 'gender'
+                  'choices' => array_flip(Gender::getValues()),
+                  'required' => true,
+                  'expanded' => true,
+                  'translation_domain' => 'gender',
               ))
             ->add('face', 'choice', array(
                 'label' => 'face',
                 'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
                 'required' => true,
-                'translation_domain' => 'face'
+                'translation_domain' => 'face',
             ))
         ;
     }

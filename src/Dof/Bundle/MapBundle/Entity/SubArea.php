@@ -4,23 +4,19 @@ namespace Dof\Bundle\MapBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
-
 use Dof\Bundle\MonsterBundle\Entity\Monster;
 
 /**
- * SubArea
+ * SubArea.
  *
  * @ORM\Table(name="dof_map_subareas")
  * @ORM\Entity(repositoryClass="SubAreaRepository")
@@ -28,7 +24,7 @@ use Dof\Bundle\MonsterBundle\Entity\Monster;
 class SubArea implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -46,60 +42,59 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $area;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="left_", type="integer")
      */
     private $left;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="top_", type="integer")
      */
     private $top;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="width_", type="integer")
      */
     private $width;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="height_", type="integer")
      */
     private $height;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="level", type="integer")
      */
     private $level;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="type", type="integer")
      */
     private $type;
 
     /**
-    * @var Collection
-    *
-    * @ORM\OneToMany(targetEntity="MapPosition", mappedBy="subArea")
-    */
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="MapPosition", mappedBy="subArea")
+     */
     private $maps;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Monster", inversedBy="subAreas")
-    * @ORM\JoinTable(name="dof_monsters_sub_areas")
-    */
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Monster", inversedBy="subAreas")
+     * @ORM\JoinTable(name="dof_monsters_sub_areas")
+     */
     private $monsters;
-
 
     public function __construct()
     {
@@ -108,9 +103,10 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return SubArea
      */
     public function setId($id)
@@ -121,9 +117,9 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -131,9 +127,10 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set area
+     * Set area.
      *
      * @param Area $area
+     *
      * @return SubArea
      */
     public function setArea(Area $area)
@@ -144,7 +141,7 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get area
+     * Get area.
      *
      * @return Area
      */
@@ -154,9 +151,10 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set left
+     * Set left.
      *
-     * @param integer $left
+     * @param int $left
+     *
      * @return SubArea
      */
     public function setLeft($left)
@@ -167,9 +165,9 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get left
+     * Get left.
      *
-     * @return integer
+     * @return int
      */
     public function getLeft()
     {
@@ -177,9 +175,10 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set top
+     * Set top.
      *
-     * @param integer $top
+     * @param int $top
+     *
      * @return SubArea
      */
     public function setTop($top)
@@ -190,9 +189,9 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get top
+     * Get top.
      *
-     * @return integer
+     * @return int
      */
     public function getTop()
     {
@@ -200,9 +199,10 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set width
+     * Set width.
      *
-     * @param integer $width
+     * @param int $width
+     *
      * @return SubArea
      */
     public function setWidth($width)
@@ -213,9 +213,9 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get width
+     * Get width.
      *
-     * @return integer
+     * @return int
      */
     public function getWidth()
     {
@@ -223,9 +223,10 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set height
+     * Set height.
      *
-     * @param integer $height
+     * @param int $height
+     *
      * @return SubArea
      */
     public function setHeight($height)
@@ -236,9 +237,9 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get height
+     * Get height.
      *
-     * @return integer
+     * @return int
      */
     public function getHeight()
     {
@@ -246,9 +247,10 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set level
+     * Set level.
      *
-     * @param integer $level
+     * @param int $level
+     *
      * @return SubArea
      */
     public function setLevel($level)
@@ -259,9 +261,9 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get level
+     * Get level.
      *
-     * @return integer
+     * @return int
      */
     public function getLevel()
     {
@@ -269,9 +271,10 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param integer $type
+     * @param int $type
+     *
      * @return SubArea
      */
     public function setType($type)
@@ -282,20 +285,21 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return integer
+     * @return int
      */
     public function getType()
     {
         return $this->type;
     }
     /**
-    * Add maps
-    *
-    * @param MapPosition $maps
-    * @return SubArea
-    */
+     * Add maps.
+     *
+     * @param MapPosition $maps
+     *
+     * @return SubArea
+     */
     public function addMap(MapPosition $maps)
     {
         $this->maps[] = $maps;
@@ -304,11 +308,12 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Remove maps
-    *
-    * @param MapPosition $maps
-    * @return SubArea
-    */
+     * Remove maps.
+     *
+     * @param MapPosition $maps
+     *
+     * @return SubArea
+     */
     public function removeMap(MapPosition $maps)
     {
         $this->maps->removeElement($maps);
@@ -317,21 +322,22 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get maps
-    *
-    * @return Collection
-    */
+     * Get maps.
+     *
+     * @return Collection
+     */
     public function getMaps()
     {
         return $this->maps;
     }
 
     /**
-    * Add monsters
-    *
-    * @param Monster $monsters
-    * @return SubArea
-    */
+     * Add monsters.
+     *
+     * @param Monster $monsters
+     *
+     * @return SubArea
+     */
     public function addMonster(Monster $monsters)
     {
         $this->monsters[] = $monsters;
@@ -340,11 +346,12 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Remove monsters
-    *
-    * @param Monster $monsters
-    * @return SubArea
-    */
+     * Remove monsters.
+     *
+     * @param Monster $monsters
+     *
+     * @return SubArea
+     */
     public function removeMonster(Monster $monsters)
     {
         $this->monsters->removeElement($monsters);
@@ -353,10 +360,10 @@ class SubArea implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get monsters
-    *
-    * @return Collection
-    */
+     * Get monsters.
+     *
+     * @return Collection
+     */
     public function getMonsters()
     {
         return $this->monsters;

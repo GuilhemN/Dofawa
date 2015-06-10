@@ -3,7 +3,7 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 /**
- * UseableItemTemplateRepository
+ * UseableItemTemplateRepository.
  */
 class UseableItemTemplateRepository extends ItemTemplateRepository
 {

@@ -4,31 +4,24 @@ namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Common\UrlSafeBase64;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
-
 use XN\Metadata\FileLightTrait;
 use XN\Metadata\FileInterface;
-
-use Dof\Bundle\CharacterBundle\Entity\Breed;
 use Dof\Bundle\MonsterBundle\Entity\Monster;
+
 /**
- * Spell
+ * Spell.
  *
  * @ORM\Table(name="dof_spells")
  * @ORM\Entity(repositoryClass="SpellRepository")
@@ -36,7 +29,7 @@ use Dof\Bundle\MonsterBundle\Entity\Monster;
 class Spell implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface, FileInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -46,21 +39,21 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, ReleaseBoundTrait, FileLightTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="iconId", type="integer")
      */
     private $iconId;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="typeId", type="integer")
      */
     private $typeId;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="publiclyVisible", type="boolean")
      */
@@ -75,32 +68,32 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $ranks;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\CharacterBundle\Entity\Breed", inversedBy="spells")
-    * @ORM\JoinTable(name="dof_breed_spells")
-    */
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\CharacterBundle\Entity\Breed", inversedBy="spells")
+     * @ORM\JoinTable(name="dof_breed_spells")
+     */
     private $breeds;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Monster", inversedBy="spells")
-    * @ORM\JoinTable(name="dof_monster_spells")
-    */
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Monster", inversedBy="spells")
+     * @ORM\JoinTable(name="dof_monster_spells")
+     */
     private $monsters;
-    
-	/**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Monster", inversedBy="passiveSpells")
-    * @ORM\JoinTable(name="dof_monster_passive_spells")
-    */
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\Monster", inversedBy="passiveSpells")
+     * @ORM\JoinTable(name="dof_monster_passive_spells")
+     */
     private $passiveOfMonsters;
 
     /**
-    * @Assert\Image(
-    *     maxSize = "1024k",
-    *     minWidth = 55,
-    *     maxWidth = 55,
-    *     minHeight = 55,
-    *     maxHeight = 55,
-    *     mimeTypesMessage = "Choisissez un fichier image valide.")
-    */
+     * @Assert\Image(
+     *     maxSize = "1024k",
+     *     minWidth = 55,
+     *     maxWidth = 55,
+     *     minHeight = 55,
+     *     maxHeight = 55,
+     *     mimeTypesMessage = "Choisissez un fichier image valide.")
+     */
     private $file;
 
     public function __construct()
@@ -112,9 +105,10 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return Spell
      */
     public function setId($id)
@@ -125,9 +119,9 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -135,9 +129,10 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set iconId
+     * Set iconId.
      *
-     * @param integer $iconId
+     * @param int $iconId
+     *
      * @return Spell
      */
     public function setIconId($iconId)
@@ -148,9 +143,9 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get iconId
+     * Get iconId.
      *
-     * @return integer
+     * @return int
      */
     public function getIconId()
     {
@@ -158,9 +153,10 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set typeId
+     * Set typeId.
      *
-     * @param integer $typeId
+     * @param int $typeId
+     *
      * @return Spell
      */
     public function setTypeId($typeId)
@@ -171,9 +167,9 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get typeId
+     * Get typeId.
      *
-     * @return integer
+     * @return int
      */
     public function getTypeId()
     {
@@ -181,9 +177,10 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set publiclyVisible
+     * Set publiclyVisible.
      *
-     * @param boolean $publiclyVisible
+     * @param bool $publiclyVisible
+     *
      * @return Spell
      */
     public function setPubliclyVisible($publiclyVisible)
@@ -194,9 +191,9 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get publiclyVisible
+     * Get publiclyVisible.
      *
-     * @return boolean
+     * @return bool
      */
     public function getPubliclyVisible()
     {
@@ -204,9 +201,9 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get publiclyVisible
+     * Get publiclyVisible.
      *
-     * @return boolean
+     * @return bool
      */
     public function isPubliclyVisible()
     {
@@ -214,9 +211,10 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Add ranks
+     * Add ranks.
      *
      * @param SpellRank $ranks
+     *
      * @return Spell
      */
     public function addRank(SpellRank $ranks)
@@ -227,9 +225,10 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Remove ranks
+     * Remove ranks.
      *
      * @param SpellRank $ranks
+     *
      * @return Spell
      */
     public function removeRank(SpellRank $ranks)
@@ -240,7 +239,7 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get ranks
+     * Get ranks.
      *
      * @return Collection
      */
@@ -250,11 +249,12 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Add breeds
-    *
-    * @param Breed $breeds
-    * @return Spell
-    */
+     * Add breeds.
+     *
+     * @param Breed $breeds
+     *
+     * @return Spell
+     */
     public function addBreed(Breed $breeds)
     {
         $this->breeds[] = $breeds;
@@ -263,11 +263,12 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Remove breeds
-    *
-    * @param Breed $breeds
-    * @return Spell
-    */
+     * Remove breeds.
+     *
+     * @param Breed $breeds
+     *
+     * @return Spell
+     */
     public function removeBreed(Breed $breeds)
     {
         $this->breeds->removeElement($breeds);
@@ -276,21 +277,22 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get breeds
-    *
-    * @return Collection
-    */
+     * Get breeds.
+     *
+     * @return Collection
+     */
     public function getBreeds()
     {
         return $this->breeds;
     }
 
     /**
-    * Add monsters
-    *
-    * @param Monster $monsters
-    * @return Spell
-    */
+     * Add monsters.
+     *
+     * @param Monster $monsters
+     *
+     * @return Spell
+     */
     public function addMonster(Monster $monsters)
     {
         $this->monsters[] = $monsters;
@@ -299,11 +301,12 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Remove monsters
-    *
-    * @param Monster $monsters
-    * @return Spell
-    */
+     * Remove monsters.
+     *
+     * @param Monster $monsters
+     *
+     * @return Spell
+     */
     public function removeMonster(Monster $monsters)
     {
         $this->monsters->removeElement($monsters);
@@ -312,19 +315,20 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get monsters
-    *
-    * @return Collection
-    */
+     * Get monsters.
+     *
+     * @return Collection
+     */
     public function getMonsters()
     {
         return $this->monsters;
     }
 
     /**
-     * Add passiveOfMonsters
+     * Add passiveOfMonsters.
      *
      * @param Monster $passiveOfMonsters
+     *
      * @return Spell
      */
     public function addPassiveOfMonster(Monster $passiveOfMonsters)
@@ -335,9 +339,10 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Remove passiveOfMonsters
+     * Remove passiveOfMonsters.
      *
      * @param Monster $passiveOfMonsters
+     *
      * @return Spell
      */
     public function removePassiveOfMonster(Monster $passiveOfMonsters)
@@ -348,7 +353,7 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get passiveOfMonsters
+     * Get passiveOfMonsters.
      *
      * @return Collection
      */
@@ -372,9 +377,10 @@ class Spell implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function preUpload()
     {
         if (null !== $this->file) {
-            if(!empty($this->path))
-            $this->pathToRemove = $this->path;
-            $this->path = UrlSafeBase64::encode($this->iconId) . '.' . $this->file->guessExtension();
+            if (!empty($this->path)) {
+                $this->pathToRemove = $this->path;
+            }
+            $this->path = UrlSafeBase64::encode($this->iconId).'.'.$this->file->guessExtension();
         }
     }
 }

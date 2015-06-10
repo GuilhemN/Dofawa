@@ -3,7 +3,7 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 /**
- * PetTemplateRepository
+ * PetTemplateRepository.
  */
 class PetTemplateRepository extends AnimalTemplateRepository
 {

@@ -63,9 +63,10 @@ trait LocalizedDescriptionTrait
     private $descriptionRu;
 
     /**
-     * Set descriptionFr
+     * Set descriptionFr.
      *
      * @param string $descriptionFr
+     *
      * @return object
      */
     public function setDescriptionFr($descriptionFr)
@@ -76,7 +77,7 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Get descriptionFr
+     * Get descriptionFr.
      *
      * @return string
      */
@@ -86,9 +87,10 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Set descriptionEn
+     * Set descriptionEn.
      *
      * @param string $descriptionEn
+     *
      * @return object
      */
     public function setDescriptionEn($descriptionEn)
@@ -99,7 +101,7 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Get descriptionEn
+     * Get descriptionEn.
      *
      * @return string
      */
@@ -109,9 +111,10 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Set descriptionDe
+     * Set descriptionDe.
      *
      * @param string $descriptionDe
+     *
      * @return object
      */
     public function setDescriptionDe($descriptionDe)
@@ -122,7 +125,7 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Get descriptionDe
+     * Get descriptionDe.
      *
      * @return string
      */
@@ -132,9 +135,10 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Set descriptionEs
+     * Set descriptionEs.
      *
      * @param string $descriptionEs
+     *
      * @return object
      */
     public function setDescriptionEs($descriptionEs)
@@ -145,7 +149,7 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Get descriptionEs
+     * Get descriptionEs.
      *
      * @return string
      */
@@ -155,9 +159,10 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Set descriptionIt
+     * Set descriptionIt.
      *
      * @param string $descriptionIt
+     *
      * @return object
      */
     public function setDescriptionIt($descriptionIt)
@@ -168,7 +173,7 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Get descriptionIt
+     * Get descriptionIt.
      *
      * @return string
      */
@@ -178,9 +183,10 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Set descriptionPt
+     * Set descriptionPt.
      *
      * @param string $descriptionPt
+     *
      * @return object
      */
     public function setDescriptionPt($descriptionPt)
@@ -191,7 +197,7 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Get descriptionPt
+     * Get descriptionPt.
      *
      * @return string
      */
@@ -201,9 +207,10 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Set descriptionJa
+     * Set descriptionJa.
      *
      * @param string $descriptionJa
+     *
      * @return object
      */
     public function setDescriptionJa($descriptionJa)
@@ -214,7 +221,7 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Get descriptionJa
+     * Get descriptionJa.
      *
      * @return string
      */
@@ -224,9 +231,10 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Set descriptionRu
+     * Set descriptionRu.
      *
      * @param string $descriptionRu
+     *
      * @return object
      */
     public function setDescriptionRu($descriptionRu)
@@ -237,7 +245,7 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Get descriptionRu
+     * Get descriptionRu.
      *
      * @return string
      */
@@ -247,10 +255,11 @@ trait LocalizedDescriptionTrait
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      * @param string $locale
+     *
      * @return object
      */
     public function setDescription($description, $locale = 'fr')
@@ -265,13 +274,15 @@ trait LocalizedDescriptionTrait
             case 'ja': $this->descriptionJa = $description; break;
             case 'ru': $this->descriptionRu = $description; break;
         }
+
         return $this;
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @param string|array $locale
+     *
      * @return string
      */
     public function getDescription($locale = 'fr')
@@ -279,10 +290,12 @@ trait LocalizedDescriptionTrait
         if (is_array($locale)) {
             foreach ($locale as $loc) {
                 $description = $this->getDescription($loc);
-                if ($description !== null)
+                if ($description !== null) {
                     return $description;
+                }
             }
-            return null;
+
+            return;
         }
         switch ($locale) {
             case 'fr': return $this->descriptionFr;
@@ -293,7 +306,7 @@ trait LocalizedDescriptionTrait
             case 'pt': return $this->descriptionPt;
             case 'ja': return $this->descriptionJa;
             case 'ru': return $this->descriptionRu;
-            default: return null;
+            default: return;
         }
     }
 }

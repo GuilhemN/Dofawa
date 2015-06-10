@@ -4,7 +4,6 @@ namespace Dof\Bundle\GraphicsBundle;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Doctrine\ORM\EntityManager;
-
 use XN\Common\Inflector;
 use Dof\Bundle\ItemBundle\AnimalColorizationType;
 use Dof\Bundle\ItemBundle\ItemSlot;
@@ -24,29 +23,37 @@ class ChameleonDragoturkey
         $this->translator = $translator;
         $this->em = $em;
     }
-    public static function getId(){
-      static $id = null;
-      if ($id === null)
-          $id = 'chameleon';
-      return $id;
+    public static function getId()
+    {
+        static $id = null;
+        if ($id === null) {
+            $id = 'chameleon';
+        }
+
+        return $id;
     }
     public function getName($locale = null)
     {
-        if($locale === null)
+        if ($locale === null) {
             $locale = $this->translator->getLocale();
+        }
 
         $locale = (array) $locale;
 
-        if(is_array($locale))
-            foreach($locale as $l)
-                return $this->translator->transChoice('dragoturkey.chameleon', 1, [ ], 'type_item', $l);
+        if (is_array($locale)) {
+            foreach ($locale as $l) {
+                return $this->translator->transChoice('dragoturkey.chameleon', 1, [], 'type_item', $l);
+            }
+        }
     }
 
-    public function getType(){
-      if (empty($this->type))
-          $this->type = $this->em->getRepository('DofItemBundle:ItemType')->findBySlot(ItemSlot::MOUNT)[0];
+    public function getType()
+    {
+        if (empty($this->type)) {
+            $this->type = $this->em->getRepository('DofItemBundle:ItemType')->findBySlot(ItemSlot::MOUNT)[0];
+        }
 
-      return $this->type;
+        return $this->type;
     }
 
     public function getBone()
@@ -64,22 +71,43 @@ class ChameleonDragoturkey
         return AnimalColorizationType::SHIFTED_CHAMELEON;
     }
 
-    public function isEquipment() { return true; }
-    public function isSkinned() { return false; }
-    public function isWeapon() { return false; }
-    public function isAnimal() { return true; }
-    public function isPet() { return false; }
-    public function isMount() { return true; }
-    public function isUseable() { return false; }
+    public function isEquipment()
+    {
+        return true;
+    }
+    public function isSkinned()
+    {
+        return false;
+    }
+    public function isWeapon()
+    {
+        return false;
+    }
+    public function isAnimal()
+    {
+        return true;
+    }
+    public function isPet()
+    {
+        return false;
+    }
+    public function isMount()
+    {
+        return true;
+    }
+    public function isUseable()
+    {
+        return false;
+    }
 
     public function getSkins()
     {
-        return [ ];
+        return [];
     }
 
     public function getColors()
     {
-        return [ ];
+        return [];
     }
 
     public function __toString()

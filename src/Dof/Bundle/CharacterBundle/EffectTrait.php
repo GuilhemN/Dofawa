@@ -1,23 +1,18 @@
 <?php
+
 namespace Dof\Bundle\CharacterBundle;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Persistence\ObjectManager;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
-
 use Dof\Bundle\CharacterBundle\Entity\EffectTemplate;
-use Dof\Common\GameTemplateString;
-
 use Dof\Common\SnippetDescriptionTrait;
 
 trait EffectTrait
 {
     use SnippetDescriptionTrait;
-    
+
     /**
      * @var EffectTemplate
      *
@@ -27,7 +22,7 @@ trait EffectTrait
     private $effectTemplate;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="raw_param1", type="integer")
      */
@@ -39,7 +34,7 @@ trait EffectTrait
     private $param1;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="raw_param2", type="integer")
      */
@@ -51,7 +46,7 @@ trait EffectTrait
     private $param2;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="raw_param3", type="integer")
      */
@@ -68,9 +63,10 @@ trait EffectTrait
     private $fragments;
 
     /**
-     * Set effectTemplate
+     * Set effectTemplate.
      *
      * @param EffectTemplate $effectTemplate
+     *
      * @return object
      */
     public function setEffectTemplate(EffectTemplate $effectTemplate)
@@ -81,7 +77,7 @@ trait EffectTrait
     }
 
     /**
-     * Get effectTemplate
+     * Get effectTemplate.
      *
      * @return EffectTemplate
      */
@@ -91,26 +87,28 @@ trait EffectTrait
     }
 
     /**
-     * Set param1
+     * Set param1.
      *
-     * @param object|integer $param1
+     * @param object|int $param1
+     *
      * @return object
      */
     public function setParam1($param1)
     {
         $this->param1 = $param1;
-        if ($param1 instanceof IdentifiableInterface)
+        if ($param1 instanceof IdentifiableInterface) {
             $this->rawParam1 = intval($param1->getId());
-        else
+        } else {
             $this->rawParam1 = intval($param1);
+        }
 
         return $this;
     }
 
     /**
-     * Get param1
+     * Get param1.
      *
-     * @return object|integer
+     * @return object|int
      */
     public function getParam1()
     {
@@ -118,26 +116,28 @@ trait EffectTrait
     }
 
     /**
-     * Set param2
+     * Set param2.
      *
-     * @param object|integer $param2
+     * @param object|int $param2
+     *
      * @return object
      */
     public function setParam2($param2)
     {
         $this->param2 = $param2;
-        if ($param2 instanceof IdentifiableInterface)
+        if ($param2 instanceof IdentifiableInterface) {
             $this->rawParam2 = intval($param2->getId());
-        else
+        } else {
             $this->rawParam2 = intval($param2);
+        }
 
         return $this;
     }
 
     /**
-     * Get param2
+     * Get param2.
      *
-     * @return object|integer
+     * @return object|int
      */
     public function getParam2()
     {
@@ -145,26 +145,28 @@ trait EffectTrait
     }
 
     /**
-     * Set param3
+     * Set param3.
      *
-     * @param object|integer $param3
+     * @param object|int $param3
+     *
      * @return object
      */
     public function setParam3($param3)
     {
         $this->param3 = $param3;
-        if ($param3 instanceof IdentifiableInterface)
+        if ($param3 instanceof IdentifiableInterface) {
             $this->rawParam3 = intval($param3->getId());
-        else
+        } else {
             $this->rawParam3 = intval($param3);
+        }
 
         return $this;
     }
 
     /**
-     * Get param3
+     * Get param3.
      *
-     * @return object|integer
+     * @return object|int
      */
     public function getParam3()
     {
@@ -172,9 +174,10 @@ trait EffectTrait
     }
 
     /**
-     * Add fragments
+     * Add fragments.
      *
      * @param object $fragments
+     *
      * @return object
      */
     public function addFragment($fragments)
@@ -186,9 +189,10 @@ trait EffectTrait
     }
 
     /**
-     * Remove fragments
+     * Remove fragments.
      *
      * @param object $fragments
+     *
      * @return object
      */
     public function removeFragment($fragments)
@@ -199,14 +203,16 @@ trait EffectTrait
     }
 
     /**
-     * Get fragments
+     * Get fragments.
      *
      * @return Collection
      */
     public function getFragments()
     {
-        if (!$this->fragments)
+        if (!$this->fragments) {
             $this->fragments = new ArrayCollection();
+        }
+
         return $this->fragments;
     }
 }

@@ -5,7 +5,6 @@ namespace Dof\Bundle\ItemBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use XN\Annotations as Utils;
-
 use Dof\Bundle\ItemBundle\Entity\ItemSet;
 use Dof\Bundle\ItemBundle\Form\SetSearch;
 
@@ -14,7 +13,8 @@ class SetsController extends Controller
     /**
      * @Utils\UsesSession
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofItemBundle:ItemSet');
 
@@ -28,7 +28,7 @@ class SetsController extends Controller
 
         return $this->render('DofItemBundle:Sets:index.html.twig', [
             'sets' => $sets,
-            'form' => $form->createView()
+            'form' => $form->createView(),
             ]);
     }
 
@@ -38,21 +38,24 @@ class SetsController extends Controller
     public function showAction(ItemSet $set)
     {
         $characters = [];
-        if($this->getUser() !== null) {
+        if ($this->getUser() !== null) {
             $criteriaLoader = $this->get('dof_items.criteria_loader');
             $criteriaLoader->setEnabled(false);
             $em = $this->getDoctrine()->getManager();
             $repo = $em->getRepository('DofUserCharacterBundle:PlayerCharacter');
 
             $characters = $repo->findBy(['owner' => $this->getUser()]);
-            foreach($characters as $character)
-                foreach($character->getStuffs() as $stuff)
+            foreach ($characters as $character) {
+                foreach ($character->getStuffs() as $stuff) {
                     $stuff->getName();
+                }
+            }
             $criteriaLoader->setEnabled(true);
         }
+
         return $this->render('DofItemBundle:Sets:show.html.twig', [
             'set' => $set,
-            'characters' => $characters
+            'characters' => $characters,
             ]);
     }
 }

@@ -1,92 +1,106 @@
 <?php
+
 namespace XN\Common;
 
 class VariableBag implements \ArrayAccess
 {
     private $data;
-	private $lazy;
+    private $lazy;
 
-    public function __construct(array $data = [ ])
-	{
+    public function __construct(array $data = [])
+    {
         $this->data = $data;
-		$this->lazy = [ ];
+        $this->lazy = [];
     }
 
     public function get($key)
-	{
-		if (isset($this->lazy[$key])) {
-			$this->data[$key] = call_user_func($this->lazy[$key]);
-			unset($this->lazy[$key]);
-		}
+    {
+        if (isset($this->lazy[$key])) {
+            $this->data[$key] = call_user_func($this->lazy[$key]);
+            unset($this->lazy[$key]);
+        }
 
-        if (!isset($this->data[$key]))
+        if (!isset($this->data[$key])) {
             throw new \LogicException(sprintf('The variable "%s" must be defined.', $key));
+        }
 
         return $this->data[$key];
     }
 
     public function set($key, $value)
-	{
+    {
         $this->data[$key] = $value;
-		unset($this->lazy[$key]);
+        unset($this->lazy[$key]);
+
         return $this;
     }
 
-	public function setLazy($key, $lazyValue, $service = null, $method = null)
-	{
-		if (isset($service)) {
-			$container = $lazyValue;
-			if (isset($method))
-				$lazyValue = function () use ($container, $service, $method) {
-					return call_user_func($container->get($service), $method);
-				};
-			else
-				$lazyValue = function () use ($container, $service) {
-					return $container->get($service);
-				};
-		} elseif (isset($method))
-			$lazyValue = [ $lazyValue, $method ];
+    public function setLazy($key, $lazyValue, $service = null, $method = null)
+    {
+        if (isset($service)) {
+            $container = $lazyValue;
+            if (isset($method)) {
+                $lazyValue = function () use ($container, $service, $method) {
+                    return call_user_func($container->get($service), $method);
+                };
+            } else {
+                $lazyValue = function () use ($container, $service) {
+                    return $container->get($service);
+                };
+            }
+        } elseif (isset($method)) {
+            $lazyValue = [$lazyValue, $method];
+        }
 
-		if (!is_callable($lazyValue))
-			throw new \LogicException('A "lazy value" must be a callable.');
+        if (!is_callable($lazyValue)) {
+            throw new \LogicException('A "lazy value" must be a callable.');
+        }
 
-		$this->lazy[$key] = $lazyValue;
-		unset($this->data[$key]);
-		return $this;
-	}
+        $this->lazy[$key] = $lazyValue;
+        unset($this->data[$key]);
+
+        return $this;
+    }
 
     public function has($key)
-	{
+    {
         return isset($this->data[$key]) || isset($this->lazy[$key]);
     }
 
-	public function remove($key)
-	{
-		unset($this->data[$key]);
-		unset($this->lazy[$key]);
-		return $this;
-	}
+    public function remove($key)
+    {
+        unset($this->data[$key]);
+        unset($this->lazy[$key]);
 
-	public function toArray()
-	{
-		if (!empty($this->lazy)) {
-			foreach ($this->lazy as $key => $lazyValue)
-				$this->data[$key] = call_user_func($lazyValue);
-			$this->lazy = [ ];
-		}
-		return $this->data;
-	}
+        return $this;
+    }
 
-    public function offsetSet($offset, $value) {
+    public function toArray()
+    {
+        if (!empty($this->lazy)) {
+            foreach ($this->lazy as $key => $lazyValue) {
+                $this->data[$key] = call_user_func($lazyValue);
+            }
+            $this->lazy = [];
+        }
+
+        return $this->data;
+    }
+
+    public function offsetSet($offset, $value)
+    {
         $this->set($offset, $value);
     }
-    public function offsetExists($offset) {
+    public function offsetExists($offset)
+    {
         return $this->has($offset);
     }
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset)
+    {
         $this->remove($offset);
     }
-    public function offsetGet($offset) {
+    public function offsetGet($offset)
+    {
         return $this->get($offset);
     }
 }

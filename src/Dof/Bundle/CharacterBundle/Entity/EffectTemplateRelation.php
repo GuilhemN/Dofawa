@@ -3,11 +3,10 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 
 /**
- * EffectTemplateRelation
+ * EffectTemplateRelation.
  *
  * @ORM\Table(name="dof_effect_template_relations")
  * @ORM\Entity(repositoryClass="EffectTemplateRelationRepository")
@@ -15,7 +14,7 @@ use XN\Persistence\IdentifiableInterface;
 class EffectTemplateRelation implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -23,13 +22,13 @@ class EffectTemplateRelation implements IdentifiableInterface
      */
     private $id;
 
-	/**
-	 * @var EffectTemplate
-	 *
-	 * @ORM\ManyToOne(targetEntity="EffectTemplate", inversedBy="relations", fetch="EAGER")
-	 * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-	 */
-	private $effectTemplate;
+    /**
+     * @var EffectTemplate
+     *
+     * @ORM\ManyToOne(targetEntity="EffectTemplate", inversedBy="relations", fetch="EAGER")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
+    private $effectTemplate;
 
     /**
      * @var string
@@ -60,16 +59,16 @@ class EffectTemplateRelation implements IdentifiableInterface
     private $column3;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="fragment", type="boolean")
      */
     private $fragment;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -77,9 +76,10 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set effectTemplate
+     * Set effectTemplate.
      *
      * @param EffectTemplate $effectTemplate
+     *
      * @return EffectTemplateRelation
      */
     public function setEffectTemplate(EffectTemplate $effectTemplate)
@@ -90,7 +90,7 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get effectTemplate
+     * Get effectTemplate.
      *
      * @return EffectTemplate
      */
@@ -100,9 +100,10 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set targetEntity
+     * Set targetEntity.
      *
      * @param string $targetEntity
+     *
      * @return EffectTemplateRelation
      */
     public function setTargetEntity($targetEntity)
@@ -113,7 +114,7 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get targetEntity
+     * Get targetEntity.
      *
      * @return string
      */
@@ -123,9 +124,10 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set column1
+     * Set column1.
      *
      * @param string $column1
+     *
      * @return EffectTemplateRelation
      */
     public function setColumn1($column1)
@@ -136,7 +138,7 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get column1
+     * Get column1.
      *
      * @return string
      */
@@ -146,9 +148,10 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set column2
+     * Set column2.
      *
      * @param string $column2
+     *
      * @return EffectTemplateRelation
      */
     public function setColumn2($column2)
@@ -159,7 +162,7 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get column2
+     * Get column2.
      *
      * @return string
      */
@@ -169,9 +172,10 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set column3
+     * Set column3.
      *
      * @param string $column3
+     *
      * @return EffectTemplateRelation
      */
     public function setColumn3($column3)
@@ -182,7 +186,7 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get column3
+     * Get column3.
      *
      * @return string
      */
@@ -192,9 +196,10 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set fragment
+     * Set fragment.
      *
-     * @param boolean $fragment
+     * @param bool $fragment
+     *
      * @return EffectTemplateRelation
      */
     public function setFragment($fragment)
@@ -205,9 +210,9 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get fragment
+     * Get fragment.
      *
-     * @return boolean
+     * @return bool
      */
     public function getFragment()
     {
@@ -215,9 +220,9 @@ class EffectTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get fragment
+     * Get fragment.
      *
-     * @return boolean
+     * @return bool
      */
     public function isFragment()
     {

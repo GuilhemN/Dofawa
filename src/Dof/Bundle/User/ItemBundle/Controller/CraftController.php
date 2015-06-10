@@ -4,13 +4,12 @@ namespace Dof\Bundle\User\ItemBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use XN\Annotations as Utils;
-
 use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
 use Dof\Bundle\User\ItemBundle\Entity\Craft;
 
 /**
-* @Utils\Secure("ROLE_USER")
-*/
+ * @Utils\Secure("ROLE_USER")
+ */
 class CraftController extends Controller
 {
     /**

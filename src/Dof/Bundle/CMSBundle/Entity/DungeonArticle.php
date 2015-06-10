@@ -3,39 +3,39 @@
 namespace Dof\Bundle\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use Dof\Bundle\MonsterBundle\Entity\Dungeon;
 
 /**
- * DungeonArticle
+ * DungeonArticle.
  *
  * @ORM\Entity(repositoryClass="Dof\Bundle\CMSBundle\Entity\DungeonArticleRepository")
  */
 class DungeonArticle extends Article
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="roomsCount", type="integer")
      */
     private $roomsCount;
 
     /**
-    * @var Dungeon
-    *
-    * @ORM\OneToOne(targetEntity="Dof\Bundle\MonsterBundle\Entity\Dungeon", inversedBy="article")
-    */
+     * @var Dungeon
+     *
+     * @ORM\OneToOne(targetEntity="Dof\Bundle\MonsterBundle\Entity\Dungeon", inversedBy="article")
+     */
     private $dungeon;
 
-
-    public function getName($locale = 'fr'){
+    public function getName($locale = 'fr')
+    {
         return !empty($this->dungeon) ? $this->dungeon->getName($locale) : parent::getName($locale);
     }
 
     /**
-     * Set roomsCount
+     * Set roomsCount.
      *
-     * @param integer $roomsCount
+     * @param int $roomsCount
+     *
      * @return DungeonArticle
      */
     public function setRoomsCount($roomsCount)
@@ -46,9 +46,9 @@ class DungeonArticle extends Article
     }
 
     /**
-     * Get roomsCount
+     * Get roomsCount.
      *
-     * @return integer
+     * @return int
      */
     public function getRoomsCount()
     {
@@ -56,11 +56,12 @@ class DungeonArticle extends Article
     }
 
     /**
-    * Set dungeon
-    *
-    * @param Dungeon $dungeon
-    * @return DungeonArticle
-    */
+     * Set dungeon.
+     *
+     * @param Dungeon $dungeon
+     *
+     * @return DungeonArticle
+     */
     public function setDungeon(Dungeon $dungeon = null)
     {
         $this->dungeon = $dungeon;
@@ -69,19 +70,26 @@ class DungeonArticle extends Article
     }
 
     /**
-    * Get dungeon
-    *
-    * @return Dungeon
-    */
+     * Get dungeon.
+     *
+     * @return Dungeon
+     */
     public function getDungeon()
     {
         return $this->dungeon;
     }
 
-    public function isDungeonArticle() { return true; }
-    public function getClass() { return 'dungeon'; }
+    public function isDungeonArticle()
+    {
+        return true;
+    }
+    public function getClass()
+    {
+        return 'dungeon';
+    }
 
-    public function __toString() {
+    public function __toString()
+    {
         return !empty($this->dungeon) ? $this->dungeon->getNameFr() : $this->getNameFr();
     }
 }

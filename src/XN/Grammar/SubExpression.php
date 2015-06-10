@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\Grammar;
 
 use Doctrine\Common\Annotations\Annotation;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Dof\Bundle\QuestBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -23,21 +24,22 @@ class QuestSeasonCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $value = $input->getArgument('value');
-        if($value == 'false')
+        if ($value == 'false') {
             $value = false;
-        elseif($value == 'true')
+        } elseif ($value == 'true') {
             $value = true;
-        else
+        } else {
             $value = null;
+        }
 
         $em = $this->getContainer()->get('doctrine')->getManager();
         $cRepo = $em->getRepository('DofQuestBundle:QuestCategory');
         $qRepo = $em->getRepository('DofQuestBundle:Quest');
 
-        foreach ($input->getOption('category') as $sCategory){
+        foreach ($input->getOption('category') as $sCategory) {
             $category = $cRepo->findOneBySlug($sCategory);
-            if($category === null){
-                $output->writeln('<error>' . $sCategory .' n\'a pas été trouvé.</error>');
+            if ($category === null) {
+                $output->writeln('<error>'.$sCategory.' n\'a pas été trouvé.</error>');
                 continue;
             }
 
@@ -46,18 +48,16 @@ class QuestSeasonCommand extends ContainerAwareCommand
                 ->setParameter('value', $value)
                 ->setParameter('category', $category)
                 ->execute();
-            $output->writeln('<info>' . $return .' quêtes affectées pour la catégorie ' . $category->getName() . '</info>');
+            $output->writeln('<info>'.$return.' quêtes affectées pour la catégorie '.$category->getName().'</info>');
         }
 
-        foreach ($input->getOption('quest') as $quest){
+        foreach ($input->getOption('quest') as $quest) {
             $em
                 ->createQuery('UPDATE DofQuestBundle:Quest s SET s.season = :value WHERE s.slug = :slug')
                 ->setParameter('value', $value)
                 ->setParameter('slug', $quest)
                 ->execute();
-            $output->writeln('<info>' . $return .' lignes affectées pour la quête ' . $quest . '</info>');
+            $output->writeln('<info>'.$return.' lignes affectées pour la quête '.$quest.'</info>');
         }
-
-
     }
 }

@@ -10,6 +10,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $spellRank = $em->getRepository('DofCharacterBundle:SpellRank')->findOneById($id);
+
         return $this->render('DofCharacterBundle:Default:index.html.twig', array('spell' => $spellRank));
     }
 }

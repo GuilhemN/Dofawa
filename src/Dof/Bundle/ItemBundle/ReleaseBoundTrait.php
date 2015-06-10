@@ -14,23 +14,24 @@ trait ReleaseBoundTrait
     private $release;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="preliminary", type="boolean")
      */
     private $preliminary;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="deprecated", type="boolean")
      */
     private $deprecated;
 
     /**
-     * Set release
+     * Set release.
      *
      * @param string $release
+     *
      * @return object
      */
     public function setRelease($release)
@@ -41,7 +42,7 @@ trait ReleaseBoundTrait
     }
 
     /**
-     * Get release
+     * Get release.
      *
      * @return string
      */
@@ -51,9 +52,10 @@ trait ReleaseBoundTrait
     }
 
     /**
-     * Set preliminary
+     * Set preliminary.
      *
-     * @param boolean $preliminary
+     * @param bool $preliminary
+     *
      * @return object
      */
     public function setPreliminary($preliminary)
@@ -64,9 +66,9 @@ trait ReleaseBoundTrait
     }
 
     /**
-     * Get preliminary
+     * Get preliminary.
      *
-     * @return boolean
+     * @return bool
      */
     public function getPreliminary()
     {
@@ -74,9 +76,9 @@ trait ReleaseBoundTrait
     }
 
     /**
-     * Get preliminary
+     * Get preliminary.
      *
-     * @return boolean
+     * @return bool
      */
     public function isPreliminary()
     {
@@ -84,9 +86,10 @@ trait ReleaseBoundTrait
     }
 
     /**
-     * Set deprecated
+     * Set deprecated.
      *
-     * @param boolean $deprecated
+     * @param bool $deprecated
+     *
      * @return object
      */
     public function setDeprecated($deprecated)
@@ -97,9 +100,9 @@ trait ReleaseBoundTrait
     }
 
     /**
-     * Get deprecated
+     * Get deprecated.
      *
-     * @return boolean
+     * @return bool
      */
     public function getDeprecated()
     {
@@ -107,9 +110,9 @@ trait ReleaseBoundTrait
     }
 
     /**
-     * Get deprecated
+     * Get deprecated.
      *
-     * @return boolean
+     * @return bool
      */
     public function isDeprecated()
     {

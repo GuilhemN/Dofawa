@@ -2,12 +2,6 @@
 
 namespace Dof\Bundle\UserBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\Security\Core\SecurityContext;
-use Symfony\Component\Httpfoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use XN\Annotations as Utils;
-
 use FOS\UserBundle\Controller\SecurityController as BaseController;
 
 class SecurityController extends BaseController
@@ -17,6 +11,7 @@ class SecurityController extends BaseController
         $vb = $this->get('variables');
         $lastUsername = $vb->has('dof_user_last_username') ? $vb->get('dof_user_last_username') : '';
         $csrfToken = $vb->get('dof_user_csrf_authenticate');
+
         return $this->render('FOSUserBundle:Security:login.html.twig', $data + ['last_username' => $lastUsername, 'csrf_token' => $csrfToken]);
     }
 

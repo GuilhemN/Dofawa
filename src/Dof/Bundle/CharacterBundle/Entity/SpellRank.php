@@ -4,20 +4,15 @@ namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Persistence\ObjectManager;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-
 use Dof\Bundle\CharacterBundle\CastableTrait;
-
 use Dof\Bundle\CharacterBundle\RankDamageEffect;
 
 /**
- * SpellRank
+ * SpellRank.
  *
  * @ORM\Table(name="dof_spell_ranks", uniqueConstraints={
  *     @ORM\UniqueConstraint(name="UQ_sr_spell_rank", columns={ "spell_id", "rank" })
@@ -27,7 +22,7 @@ use Dof\Bundle\CharacterBundle\RankDamageEffect;
 class SpellRank implements IdentifiableInterface, TimestampableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -45,77 +40,77 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     private $spell;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="rank", type="integer")
      */
     private $rank;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="needs_free_cell", type="boolean")
      */
     private $needsFreeCell;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="needs_taken_cell", type="boolean")
      */
     private $needsTakenCell;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="needs_free_trap_cell", type="boolean")
      */
     private $needsFreeTrapCell;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="modifiable_cast_range", type="boolean")
      */
     private $modifiableCastRange;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="max_effect_stack", type="integer")
      */
     private $maxEffectStack;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="max_casts_per_target", type="integer")
      */
     private $maxCastsPerTarget;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="cooldown", type="integer")
      */
     private $cooldown;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="initial_cooldown", type="integer")
      */
     private $initialCooldown;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="global_cooldown", type="boolean")
      */
     private $globalCooldown;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="obtainment_level", type="integer")
      */
@@ -146,9 +141,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return SpellRank
      */
     public function setId($id)
@@ -159,9 +155,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -169,9 +165,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set spell
+     * Set spell.
      *
      * @param Spell $spell
+     *
      * @return SpellRank
      */
     public function setSpell(Spell $spell)
@@ -182,7 +179,7 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get spell
+     * Get spell.
      *
      * @return Spell
      */
@@ -192,9 +189,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set rank
+     * Set rank.
      *
-     * @param integer $rank
+     * @param int $rank
+     *
      * @return SpellRank
      */
     public function setRank($rank)
@@ -205,9 +203,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get rank
+     * Get rank.
      *
-     * @return integer
+     * @return int
      */
     public function getRank()
     {
@@ -215,9 +213,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set needsFreeCell
+     * Set needsFreeCell.
      *
-     * @param boolean $needsFreeCell
+     * @param bool $needsFreeCell
+     *
      * @return SpellRank
      */
     public function setNeedsFreeCell($needsFreeCell)
@@ -228,9 +227,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get needsFreeCell
+     * Get needsFreeCell.
      *
-     * @return boolean
+     * @return bool
      */
     public function getNeedsFreeCell()
     {
@@ -238,9 +237,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set needsTakenCell
+     * Set needsTakenCell.
      *
-     * @param boolean $needsTakenCell
+     * @param bool $needsTakenCell
+     *
      * @return SpellRank
      */
     public function setNeedsTakenCell($needsTakenCell)
@@ -251,9 +251,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get needsTakenCell
+     * Get needsTakenCell.
      *
-     * @return boolean
+     * @return bool
      */
     public function getNeedsTakenCell()
     {
@@ -261,9 +261,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set needsFreeTrapCell
+     * Set needsFreeTrapCell.
      *
-     * @param boolean $needsFreeTrapCell
+     * @param bool $needsFreeTrapCell
+     *
      * @return SpellRank
      */
     public function setNeedsFreeTrapCell($needsFreeTrapCell)
@@ -274,9 +275,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get needsFreeTrapCell
+     * Get needsFreeTrapCell.
      *
-     * @return boolean
+     * @return bool
      */
     public function getNeedsFreeTrapCell()
     {
@@ -284,9 +285,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set modifiableCastRange
+     * Set modifiableCastRange.
      *
-     * @param boolean $modifiableCastRange
+     * @param bool $modifiableCastRange
+     *
      * @return SpellRank
      */
     public function setModifiableCastRange($modifiableCastRange)
@@ -297,9 +299,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get modifiableCastRange
+     * Get modifiableCastRange.
      *
-     * @return boolean
+     * @return bool
      */
     public function getModifiableCastRange()
     {
@@ -307,9 +309,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set maxEffectStack
+     * Set maxEffectStack.
      *
-     * @param integer $maxEffectStack
+     * @param int $maxEffectStack
+     *
      * @return SpellRank
      */
     public function setMaxEffectStack($maxEffectStack)
@@ -320,9 +323,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get maxEffectStack
+     * Get maxEffectStack.
      *
-     * @return integer
+     * @return int
      */
     public function getMaxEffectStack()
     {
@@ -330,9 +333,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set maxCastsPerTarget
+     * Set maxCastsPerTarget.
      *
-     * @param integer $maxCastsPerTarget
+     * @param int $maxCastsPerTarget
+     *
      * @return SpellRank
      */
     public function setMaxCastsPerTarget($maxCastsPerTarget)
@@ -343,9 +347,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get maxCastsPerTarget
+     * Get maxCastsPerTarget.
      *
-     * @return integer
+     * @return int
      */
     public function getMaxCastsPerTarget()
     {
@@ -353,9 +357,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set cooldown
+     * Set cooldown.
      *
-     * @param integer $cooldown
+     * @param int $cooldown
+     *
      * @return SpellRank
      */
     public function setCooldown($cooldown)
@@ -366,9 +371,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get cooldown
+     * Get cooldown.
      *
-     * @return integer
+     * @return int
      */
     public function getCooldown()
     {
@@ -376,9 +381,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set initialCooldown
+     * Set initialCooldown.
      *
-     * @param integer $initialCooldown
+     * @param int $initialCooldown
+     *
      * @return SpellRank
      */
     public function setInitialCooldown($initialCooldown)
@@ -389,9 +395,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get initialCooldown
+     * Get initialCooldown.
      *
-     * @return integer
+     * @return int
      */
     public function getInitialCooldown()
     {
@@ -399,9 +405,10 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set globalCooldown
+     * Set globalCooldown.
      *
-     * @param boolean $globalCooldown
+     * @param bool $globalCooldown
+     *
      * @return SpellRank
      */
     public function setGlobalCooldown($globalCooldown)
@@ -412,29 +419,30 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get globalCooldown
-    *
-    * @return boolean
-    */
+     * Get globalCooldown.
+     *
+     * @return bool
+     */
     public function getGlobalCooldown()
     {
         return $this->globalCooldown;
     }
 
     /**
-    * Get globalCooldown
-    *
-    * @return boolean
-    */
+     * Get globalCooldown.
+     *
+     * @return bool
+     */
     public function isGlobalCooldown()
     {
         return $this->globalCooldown;
     }
 
     /**
-     * Set obtainmentLevel
+     * Set obtainmentLevel.
      *
-     * @param integer $obtainmentLevel
+     * @param int $obtainmentLevel
+     *
      * @return SpellRank
      */
     public function setObtainmentLevel($obtainmentLevel)
@@ -445,9 +453,9 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get obtainmentLevel
+     * Get obtainmentLevel.
      *
-     * @return integer
+     * @return int
      */
     public function getObtainmentLevel()
     {
@@ -455,11 +463,12 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Add stateRequirements
-    *
-    * @param SpellRankStateRequirement $stateRequirements
-    * @return SpellRank
-    */
+     * Add stateRequirements.
+     *
+     * @param SpellRankStateRequirement $stateRequirements
+     *
+     * @return SpellRank
+     */
     public function addStateRequirement(SpellRankStateRequirement $stateRequirements)
     {
         $this->stateRequirements[] = $stateRequirements;
@@ -468,11 +477,12 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Remove stateRequirements
-    *
-    * @param SpellRankStateRequirement $stateRequirements
-    * @return SpellRank
-    */
+     * Remove stateRequirements.
+     *
+     * @param SpellRankStateRequirement $stateRequirements
+     *
+     * @return SpellRank
+     */
     public function removeStateRequirement(SpellRankStateRequirement $stateRequirements)
     {
         $this->stateRequirements->removeElement($stateRequirements);
@@ -481,21 +491,22 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get stateRequirements
-    *
-    * @return Collection
-    */
+     * Get stateRequirements.
+     *
+     * @return Collection
+     */
     public function getStateRequirements()
     {
         return $this->stateRequirements;
     }
 
     /**
-    * Add effects
-    *
-    * @param SpellRankEffect $effects
-    * @return SpellRank
-    */
+     * Add effects.
+     *
+     * @param SpellRankEffect $effects
+     *
+     * @return SpellRank
+     */
     public function addEffect(SpellRankEffect $effects)
     {
         $this->effects[] = $effects;
@@ -504,11 +515,12 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Remove effects
-    *
-    * @param SpellRankEffect $effects
-    * @return SpellRank
-    */
+     * Remove effects.
+     *
+     * @param SpellRankEffect $effects
+     *
+     * @return SpellRank
+     */
     public function removeEffect(SpellRankEffect $effects)
     {
         $this->effects->removeElement($effects);
@@ -517,47 +529,50 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get effects
-    *
-    * @return Collection
-    */
+     * Get effects.
+     *
+     * @return Collection
+     */
     public function getEffects()
     {
         return $this->effects;
     }
 
-    public function setDamageEffects(array $de){
+    public function setDamageEffects(array $de)
+    {
         $this->damageEffects = $de;
+
         return $this;
     }
-    public function getDamageEffects(){
+    public function getDamageEffects()
+    {
         return $this->damageEffects;
     }
 
     public function getNormalDamageEffects()
     {
-        return array_filter((array) $this->damageEffects, function($v){
+        return array_filter((array) $this->damageEffects, function ($v) {
             return !$v->isCritical();
         });
     }
 
     public function getCriticalDamageEffects()
     {
-        return array_filter((array) $this->damageEffects, function($v){
+        return array_filter((array) $this->damageEffects, function ($v) {
             return $v->isCritical();
         });
     }
 
     public function getNormalEffects()
     {
-        return array_filter((array) $this->effects->toArray(), function($v){
+        return array_filter((array) $this->effects->toArray(), function ($v) {
             return !$v->isCritical();
         });
     }
 
     public function getCriticalEffects()
     {
-        return array_filter((array) $this->effects->toArray(), function($v){
+        return array_filter((array) $this->effects->toArray(), function ($v) {
             return $v->isCritical();
         });
     }
@@ -565,41 +580,47 @@ class SpellRank implements IdentifiableInterface, TimestampableInterface
     public function getEffectsForDamage()
     {
         $dm = RankDamageEffect::getDamageMap();
-        return array_filter((array) $this->effects->toArray(), function($v) use ($dm){
+
+        return array_filter((array) $this->effects->toArray(), function ($v) use ($dm) {
             return array_key_exists($v->getEffectTemplate()->getId(), $dm);
         });
     }
 
-	public function getDamageEntries()
-	{
-		$ents = [ ];
-		foreach ($this->effects as $row) {
-			if (!$row->isCritical()) {
-				$ent = $row->getDamageEntry();
-				if ($ent)
-					$ents[] = $ent;
-			}
-		}
-		return $ents;
-	}
-	
-	public function getCriticalDamageEntries()
-	{
-		if (!$this->getCriticalHitDenominator())
-			return $this->getDamageEntries();
-		$ents = [ ];
-		foreach ($this->effects as $row) {
-			if ($row->isCritical()) {
-				$ent = $row->getDamageEntry();
-				if ($ent)
-					$ents[] = $ent;
-			}
-		}
-		return $ents;
-	}
+    public function getDamageEntries()
+    {
+        $ents = [];
+        foreach ($this->effects as $row) {
+            if (!$row->isCritical()) {
+                $ent = $row->getDamageEntry();
+                if ($ent) {
+                    $ents[] = $ent;
+                }
+            }
+        }
 
-	public function __toString()
-	{
-		return $this->spell . ' [' . $this->rank . ']';
-	}
+        return $ents;
+    }
+
+    public function getCriticalDamageEntries()
+    {
+        if (!$this->getCriticalHitDenominator()) {
+            return $this->getDamageEntries();
+        }
+        $ents = [];
+        foreach ($this->effects as $row) {
+            if ($row->isCritical()) {
+                $ent = $row->getDamageEntry();
+                if ($ent) {
+                    $ents[] = $ent;
+                }
+            }
+        }
+
+        return $ents;
+    }
+
+    public function __toString()
+    {
+        return $this->spell.' ['.$this->rank.']';
+    }
 }

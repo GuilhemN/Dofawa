@@ -3,11 +3,10 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 
 /**
- * SoftCap
+ * SoftCap.
  *
  * @ORM\Table(name="dof_breed_soft_caps")
  * @ORM\Entity(repositoryClass="SoftCapRepository")
@@ -15,7 +14,7 @@ use XN\Persistence\IdentifiableInterface;
 class SoftCap implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -32,37 +31,37 @@ class SoftCap implements IdentifiableInterface
     private $breed;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="characteristic", type="integer")
      */
     private $characteristic;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="min", type="integer")
      */
     private $min;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="cost", type="integer")
      */
     private $cost;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="gain", type="integer")
      */
     private $gain;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -70,9 +69,10 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Set breed
+     * Set breed.
      *
      * @param Breed $breed
+     *
      * @return SoftCap
      */
     public function setBreed(Breed $breed)
@@ -83,7 +83,7 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Get breed
+     * Get breed.
      *
      * @return Breed
      */
@@ -93,9 +93,10 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Set characteristic
+     * Set characteristic.
      *
-     * @param integer $characteristic
+     * @param int $characteristic
+     *
      * @return SoftCap
      */
     public function setCharacteristic($characteristic)
@@ -106,9 +107,9 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Get characteristic
+     * Get characteristic.
      *
-     * @return integer
+     * @return int
      */
     public function getCharacteristic()
     {
@@ -116,9 +117,10 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Set min
+     * Set min.
      *
-     * @param integer $min
+     * @param int $min
+     *
      * @return SoftCap
      */
     public function setMin($min)
@@ -129,9 +131,9 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Get min
+     * Get min.
      *
-     * @return integer
+     * @return int
      */
     public function getMin()
     {
@@ -139,9 +141,10 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Set cost
+     * Set cost.
      *
-     * @param integer $cost
+     * @param int $cost
+     *
      * @return SoftCap
      */
     public function setCost($cost)
@@ -152,9 +155,9 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Get cost
+     * Get cost.
      *
-     * @return integer
+     * @return int
      */
     public function getCost()
     {
@@ -162,9 +165,10 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Set gain
+     * Set gain.
      *
-     * @param integer $gain
+     * @param int $gain
+     *
      * @return SoftCap
      */
     public function setGain($gain)
@@ -175,9 +179,9 @@ class SoftCap implements IdentifiableInterface
     }
 
     /**
-     * Get gain
+     * Get gain.
      *
-     * @return integer
+     * @return int
      */
     public function getGain()
     {

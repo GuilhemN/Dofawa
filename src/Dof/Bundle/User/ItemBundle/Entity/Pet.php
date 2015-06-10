@@ -1,43 +1,43 @@
 <?php
+
 namespace Dof\Bundle\User\ItemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use Dof\Bundle\ItemBundle\Entity\PetTemplate;
 
 /**
-* Pet
-*
-* @ORM\Entity(repositoryClass="Dof\Bundle\User\ItemBundle\Entity\PetRepository")
-*/
+ * Pet.
+ *
+ * @ORM\Entity(repositoryClass="Dof\Bundle\User\ItemBundle\Entity\PetRepository")
+ */
 class Pet extends Animal
 {
     /**
-    * @var datetime
-    *
-    * @ORM\Column(name="last_feeding", type="datetime")
-    */
+     * @var datetime
+     *
+     * @ORM\Column(name="last_feeding", type="datetime")
+     */
     protected $lastFeeding;
     /**
-    * @var datetime
-    *
-    * @ORM\Column(name="next_feeding", type="datetime")
-    */
+     * @var datetime
+     *
+     * @ORM\Column(name="next_feeding", type="datetime")
+     */
     protected $nextFeeding;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="raise", type="boolean")
      */
     protected $raise;
 
     /**
-    * @var PetTemplate
-    *
-    * @ORM\ManyToOne(targetEntity="Dof\Bundle\ItemBundle\Entity\PetTemplate")
-    * @ORM\JoinColumn(onDelete="SET NULL")
-    */
+     * @var PetTemplate
+     *
+     * @ORM\ManyToOne(targetEntity="Dof\Bundle\ItemBundle\Entity\PetTemplate")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
     protected $mimibioteTemplate;
 
     /**
@@ -48,22 +48,23 @@ class Pet extends Animal
     protected $lastNotification;
 
     /**
-     * Set lastFeeding
+     * Set lastFeeding.
      *
      * @param datetime $lastFeeding
+     *
      * @return Pet
      */
     public function setLastFeeding($lastFeeding)
     {
         $this->lastFeeding = $lastFeeding;
         $nextFeeding = clone $lastFeeding;
-        $this->nextFeeding = $nextFeeding->modify('+' . $this->getItemTemplate()->getMinFeedInterval() . ' hour');
+        $this->nextFeeding = $nextFeeding->modify('+'.$this->getItemTemplate()->getMinFeedInterval().' hour');
 
         return $this;
     }
 
     /**
-     * Get lastFeeding
+     * Get lastFeeding.
      *
      * @return datetime
      */
@@ -73,19 +74,20 @@ class Pet extends Animal
     }
 
     /**
-    * Get nextFeeding
-    *
-    * @return datetime
-    */
+     * Get nextFeeding.
+     *
+     * @return datetime
+     */
     public function getNextFeeding()
     {
         return $this->nextFeeding;
     }
 
     /**
-     * Set raise
+     * Set raise.
      *
-     * @param boolean $raise
+     * @param bool $raise
+     *
      * @return Pet
      */
     public function setRaise($raise)
@@ -96,9 +98,9 @@ class Pet extends Animal
     }
 
     /**
-     * Get raise
+     * Get raise.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRaise()
     {
@@ -106,22 +108,22 @@ class Pet extends Animal
     }
 
     /**
-     * Get raise
+     * Get raise.
      *
-     * @return boolean
+     * @return bool
      */
     public function isRaise()
     {
         return $this->raise;
     }
 
-
     /**
-    * Set mimibioteTemplate
-    *
-    * @param Mount $mimibioteTemplate
-    * @return SkinnedItem
-    */
+     * Set mimibioteTemplate.
+     *
+     * @param Mount $mimibioteTemplate
+     *
+     * @return SkinnedItem
+     */
     public function setMimibioteTemplate(PetTemplate $mimibioteTemplate)
     {
         $this->mimibioteTemplate = $mimibioteTemplate;
@@ -130,19 +132,20 @@ class Pet extends Animal
     }
 
     /**
-    * Get mimibioteTemplate
-    *
-    * @return mimibioteTemplate
-    */
+     * Get mimibioteTemplate.
+     *
+     * @return mimibioteTemplate
+     */
     public function getMimibioteTemplate()
     {
         return ($this->mimibioteTemplate !== null) ? $this->mimibioteTemplate : $this->itemTemplate;
     }
 
     /**
-     * Set lastNotification
+     * Set lastNotification.
      *
      * @param datetime $lastNotification
+     *
      * @return Pet
      */
     public function setLastNotification($lastNotification)
@@ -153,7 +156,7 @@ class Pet extends Animal
     }
 
     /**
-     * Get lastNotification
+     * Get lastNotification.
      *
      * @return datetime
      */
@@ -162,6 +165,12 @@ class Pet extends Animal
         return $this->lastNotification;
     }
 
-    public function isPet() { return true; }
-    public function getClassId() { return 'pet'; }
+    public function isPet()
+    {
+        return true;
+    }
+    public function getClassId()
+    {
+        return 'pet';
+    }
 }

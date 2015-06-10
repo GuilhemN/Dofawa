@@ -5,64 +5,63 @@ namespace Dof\Bundle\ItemBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use Dof\Bundle\MapBundle\Entity\SubArea;
 
 /**
- * AnimalTemplate
+ * AnimalTemplate.
  *
  * @ORM\Entity(repositoryClass="AnimalTemplateRepository")
  */
 class AnimalTemplate extends EquipmentTemplate
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="bone", type="integer", nullable=true, unique=false)
      */
     private $bone;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="colorization_type", type="integer", nullable=true)
      */
     private $colorizationType;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="favorite_area_bonus", type="integer")
      */
     private $favoriteAreaBonus;
 
-	/**
-	 * @var Collection
-	 *
-	 * @ORM\ManyToMany(targetEntity="Dof\Bundle\MapBundle\Entity\SubArea")
+    /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\MapBundle\Entity\SubArea")
      * @ORM\JoinTable(name="dof_animal_favorite_areas")
-	 */
-	private $favoriteAreas;
+     */
+    private $favoriteAreas;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="size", type="integer", nullable=true)
      */
     private $size;
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
         $this->favoriteAreas = new ArrayCollection();
-	}
+    }
 
     /**
-     * Set bone
+     * Set bone.
      *
-     * @param integer $bone
+     * @param int $bone
+     *
      * @return AnimalTemplate
      */
     public function setBone($bone)
@@ -73,9 +72,9 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Get bone
+     * Get bone.
      *
-     * @return integer
+     * @return int
      */
     public function getBone()
     {
@@ -83,9 +82,10 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Set colorizationType
+     * Set colorizationType.
      *
-     * @param integer $colorizationType
+     * @param int $colorizationType
+     *
      * @return AnimalTemplate
      */
     public function setColorizationType($colorizationType)
@@ -96,9 +96,9 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Get colorizationType
+     * Get colorizationType.
      *
-     * @return integer
+     * @return int
      */
     public function getColorizationType()
     {
@@ -106,9 +106,10 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Set favoriteAreaBonus
+     * Set favoriteAreaBonus.
      *
-     * @param integer $favoriteAreaBonus
+     * @param int $favoriteAreaBonus
+     *
      * @return AnimalTemplate
      */
     public function setFavoriteAreaBonus($favoriteAreaBonus)
@@ -119,9 +120,9 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Get favoriteAreaBonus
+     * Get favoriteAreaBonus.
      *
-     * @return integer
+     * @return int
      */
     public function getFavoriteAreaBonus()
     {
@@ -129,9 +130,10 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Set size
+     * Set size.
      *
-     * @param integer $size
+     * @param int $size
+     *
      * @return AnimalTemplate
      */
     public function setSize($size)
@@ -142,9 +144,9 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Get size
+     * Get size.
      *
-     * @return integer
+     * @return int
      */
     public function getSize()
     {
@@ -152,9 +154,10 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Add favoriteAreas
+     * Add favoriteAreas.
      *
      * @param SubArea $favoriteAreas
+     *
      * @return AnimalTemplate
      */
     public function addFavoriteArea(SubArea $favoriteAreas)
@@ -165,9 +168,10 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Remove favoriteAreas
+     * Remove favoriteAreas.
      *
      * @param SubArea $favoriteAreas
+     *
      * @return AnimalTemplate
      */
     public function removeFavoriteArea(SubArea $favoriteAreas)
@@ -178,31 +182,38 @@ class AnimalTemplate extends EquipmentTemplate
     }
 
     /**
-     * Get favoriteAreas
+     * Get favoriteAreas.
      *
      * @return Collection
      */
-
     public function getFavoriteAreas()
     {
         return $this->favoriteAreas;
     }
 
-	public function isAnimal() { return true; }
-    public function getClassId() { return 'animal'; }
+    public function isAnimal()
+    {
+        return true;
+    }
+    public function getClassId()
+    {
+        return 'animal';
+    }
 
     public function exportData($full = true, $locale = 'fr')
     {
         return parent::exportData($full, $locale) + ($full ? [
             'bone' => $this->bone,
             'colorizationType' => $this->colorizationType,
-            'size' => $this->size
-        ] : [ ]);
+            'size' => $this->size,
+        ] : []);
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
-        if (parent::importField($key, $value, $dm, $locale))
+        if (parent::importField($key, $value, $dm, $locale)) {
             return true;
+        }
+
         return false;
     }
-}
+}

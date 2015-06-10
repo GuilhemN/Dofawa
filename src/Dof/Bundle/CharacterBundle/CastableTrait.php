@@ -1,4 +1,5 @@
 <?php
+
 namespace Dof\Bundle\CharacterBundle;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -6,65 +7,66 @@ use Doctrine\ORM\Mapping as ORM;
 trait CastableTrait
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="critical_hit_denominator", type="integer")
      */
     private $criticalHitDenominator;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="max_casts_per_turn", type="integer")
      */
     private $maxCastsPerTurn;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="ap_cost", type="integer")
      */
     private $apCost;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="min_cast_range", type="integer")
      */
     private $minCastRange;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="max_cast_range", type="integer")
      */
     private $maxCastRange;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="sight_cast", type="boolean")
      */
     private $sightCast;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="line_cast", type="boolean")
      */
     private $lineCast;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="diagonal_cast", type="boolean")
      */
     private $diagonalCast;
 
     /**
-     * Set criticalHitDenominator
+     * Set criticalHitDenominator.
      *
-     * @param integer $criticalHitDenominator
+     * @param int $criticalHitDenominator
+     *
      * @return object
      */
     public function setCriticalHitDenominator($criticalHitDenominator)
@@ -75,9 +77,9 @@ trait CastableTrait
     }
 
     /**
-     * Get criticalHitDenominator
+     * Get criticalHitDenominator.
      *
-     * @return integer
+     * @return int
      */
     public function getCriticalHitDenominator()
     {
@@ -85,9 +87,10 @@ trait CastableTrait
     }
 
     /**
-     * Set maxCastsPerTurn
+     * Set maxCastsPerTurn.
      *
-     * @param integer $maxCastsPerTurn
+     * @param int $maxCastsPerTurn
+     *
      * @return object
      */
     public function setMaxCastsPerTurn($maxCastsPerTurn)
@@ -98,9 +101,9 @@ trait CastableTrait
     }
 
     /**
-     * Get maxCastsPerTurn
+     * Get maxCastsPerTurn.
      *
-     * @return integer
+     * @return int
      */
     public function getMaxCastsPerTurn()
     {
@@ -108,9 +111,10 @@ trait CastableTrait
     }
 
     /**
-     * Set apCost
+     * Set apCost.
      *
-     * @param integer $apCost
+     * @param int $apCost
+     *
      * @return object
      */
     public function setApCost($apCost)
@@ -121,9 +125,9 @@ trait CastableTrait
     }
 
     /**
-     * Get apCost
+     * Get apCost.
      *
-     * @return integer
+     * @return int
      */
     public function getApCost()
     {
@@ -131,9 +135,10 @@ trait CastableTrait
     }
 
     /**
-     * Set minCastRange
+     * Set minCastRange.
      *
-     * @param integer $minCastRange
+     * @param int $minCastRange
+     *
      * @return object
      */
     public function setMinCastRange($minCastRange)
@@ -144,9 +149,9 @@ trait CastableTrait
     }
 
     /**
-     * Get minCastRange
+     * Get minCastRange.
      *
-     * @return integer
+     * @return int
      */
     public function getMinCastRange()
     {
@@ -154,9 +159,10 @@ trait CastableTrait
     }
 
     /**
-     * Set maxCastRange
+     * Set maxCastRange.
      *
-     * @param integer $maxCastRange
+     * @param int $maxCastRange
+     *
      * @return object
      */
     public function setMaxCastRange($maxCastRange)
@@ -167,9 +173,9 @@ trait CastableTrait
     }
 
     /**
-     * Get maxCastRange
+     * Get maxCastRange.
      *
-     * @return integer
+     * @return int
      */
     public function getMaxCastRange()
     {
@@ -177,32 +183,35 @@ trait CastableTrait
     }
 
     /**
-     * Set cast range
+     * Set cast range.
      *
      * @param array $castRange
+     *
      * @return object
      */
     public function setCastRange(array $castRange)
     {
         $this->minCastRange = $castRange['min'];
         $this->maxCastRange = $castRange['max'];
+
         return $this;
     }
 
     /**
-     * Get cast range
+     * Get cast range.
      *
      * @return array
      */
     public function getCastRange()
     {
-        return [ 'min' => $this->minCastRange, 'max' => $this->maxCastRange ];
+        return ['min' => $this->minCastRange, 'max' => $this->maxCastRange];
     }
 
     /**
-     * Set sightCast
+     * Set sightCast.
      *
-     * @param boolean $sightCast
+     * @param bool $sightCast
+     *
      * @return object
      */
     public function setSightCast($sightCast)
@@ -213,9 +222,9 @@ trait CastableTrait
     }
 
     /**
-     * Get sightCast
+     * Get sightCast.
      *
-     * @return boolean
+     * @return bool
      */
     public function getSightCast()
     {
@@ -223,9 +232,9 @@ trait CastableTrait
     }
 
     /**
-     * Get sightCast
+     * Get sightCast.
      *
-     * @return boolean
+     * @return bool
      */
     public function isSightCast()
     {
@@ -233,9 +242,10 @@ trait CastableTrait
     }
 
     /**
-     * Set lineCast
+     * Set lineCast.
      *
-     * @param boolean $lineCast
+     * @param bool $lineCast
+     *
      * @return object
      */
     public function setLineCast($lineCast)
@@ -246,9 +256,9 @@ trait CastableTrait
     }
 
     /**
-     * Get lineCast
+     * Get lineCast.
      *
-     * @return boolean
+     * @return bool
      */
     public function getLineCast()
     {
@@ -256,9 +266,9 @@ trait CastableTrait
     }
 
     /**
-     * Get lineCast
+     * Get lineCast.
      *
-     * @return boolean
+     * @return bool
      */
     public function isLineCast()
     {
@@ -266,9 +276,10 @@ trait CastableTrait
     }
 
     /**
-     * Set diagonalCast
+     * Set diagonalCast.
      *
-     * @param boolean $diagonalCast
+     * @param bool $diagonalCast
+     *
      * @return object
      */
     public function setDiagonalCast($diagonalCast)
@@ -279,9 +290,9 @@ trait CastableTrait
     }
 
     /**
-     * Get diagonalCast
+     * Get diagonalCast.
      *
-     * @return boolean
+     * @return bool
      */
     public function getDiagonalCast()
     {
@@ -289,19 +300,19 @@ trait CastableTrait
     }
 
     /**
-     * Get diagonalCast
+     * Get diagonalCast.
      *
-     * @return boolean
+     * @return bool
      */
     public function isDiagonalCast()
     {
         return $this->diagonalCast;
     }
 
-	public function getCastArea()
-	{
-		return Areas::makeCastArea($this->minCastRange, $this->maxCastRange, $this->lineCast, $this->diagonalCast);
-	}
+    public function getCastArea()
+    {
+        return Areas::makeCastArea($this->minCastRange, $this->maxCastRange, $this->lineCast, $this->diagonalCast);
+    }
 
     protected function exportCastableData($full = true)
     {
@@ -314,10 +325,10 @@ trait CastableTrait
             'sightCast' => $this->sightCast,
             'lineCast' => $this->lineCast,
             'diagonalCast' => $this->diagonalCast,
-			'castArea' => $this->getCastArea()
-        ] : [ ];
+            'castArea' => $this->getCastArea(),
+        ] : [];
     }
 
-	public abstract function getDamageEntries();
-	public abstract function getCriticalDamageEntries();
+    abstract public function getDamageEntries();
+    abstract public function getCriticalDamageEntries();
 }

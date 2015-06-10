@@ -5,9 +5,7 @@ namespace Dof\Bundle\ItemBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
@@ -17,13 +15,12 @@ use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use Dof\Bundle\ItemBundle\PrimaryBonusInterface;
 use Dof\Bundle\ItemBundle\PrimaryBonusTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * ItemSet
+ * ItemSet.
  *
  * @ORM\Table(name="dof_item_sets")
  * @ORM\Entity(repositoryClass="ItemSetRepository")
@@ -31,7 +28,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, PrimaryBonusInterface, LocalizedNameInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -63,9 +60,10 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return ItemSet
      */
     public function setId($id)
@@ -76,9 +74,9 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -86,9 +84,10 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Add items
+     * Add items.
      *
      * @param EquipmentTemplate $items
+     *
      * @return ItemSet
      */
     public function addItem(EquipmentTemplate $items)
@@ -99,9 +98,10 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Remove items
+     * Remove items.
      *
      * @param EquipmentTemplate $items
+     *
      * @return ItemSet
      */
     public function removeItem(EquipmentTemplate $items)
@@ -112,7 +112,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get items
+     * Get items.
      *
      * @return Collection
      */
@@ -122,9 +122,10 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Add combinations
+     * Add combinations.
      *
      * @param ItemSetCombination $combinations
+     *
      * @return ItemSet
      */
     public function addCombination(ItemSetCombination $combinations)
@@ -135,9 +136,10 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Remove combinations
+     * Remove combinations.
      *
      * @param ItemSetCombination $combinations
+     *
      * @return ItemSet
      */
     public function removeCombination(ItemSetCombination $combinations)
@@ -148,7 +150,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get combinations
+     * Get combinations.
      *
      * @return Collection
      */
@@ -158,22 +160,25 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get level
+     * Get level.
      *
-     * @return integer
+     * @return int
      */
     public function getLevel()
     {
         $max = 0;
-        foreach($this->items as $i)
+        foreach ($this->items as $i) {
             $max = max($i->getLevel(), $max);
+        }
+
         return $max;
     }
 
     /**
-     * Set itemCount
+     * Set itemCount.
      *
-     * @param integer $itemCount
+     * @param int $itemCount
+     *
      * @return ItemSet
      */
     public function setItemCount($itemCount)
@@ -184,9 +189,9 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get itemCount
+     * Get itemCount.
      *
-     * @return integer
+     * @return int
      */
     public function getItemCount()
     {
@@ -201,33 +206,35 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function exportData($full = true, $locale = 'fr')
     {
         return $this->exportTimestampableData($full) + $this->exportSluggableData($full) + [
-            'name' => $this->getName($locale)
+            'name' => $this->getName($locale),
         ] + ($full ? [
             'items' => array_map(function ($ent) use ($locale) { return $ent->exportData(false, $locale); }, $this->items->toArray()),
             'release' => $this->release,
             'preliminary' => $this->preliminary,
-            'deprecated' => $this->deprecated
-        ] : [ ]);
+            'deprecated' => $this->deprecated,
+        ] : []);
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
         return false;
     }
 
-    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array()){
-
+    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array())
+    {
         $biggestCombination = null;
         $countItem = count($this->getItems());
-        foreach($this->getCombinations() as $combination)
-            if($combination->getItemCount() == $countItem){
+        foreach ($this->getCombinations() as $combination) {
+            if ($combination->getItemCount() == $countItem) {
                 $biggestCombination = $combination;
 
                 $caracts = $biggestCombination->getCharacteristicsForPrimaryBonus($primaryFields, $caracts);
                 break;
             }
+        }
 
-        foreach($this->getItems() as $item)
+        foreach ($this->getItems() as $item) {
             $caracts = $item->getCharacteristicsForPrimaryBonus($primaryFields, $caracts);
+        }
 
         return $caracts;
     }

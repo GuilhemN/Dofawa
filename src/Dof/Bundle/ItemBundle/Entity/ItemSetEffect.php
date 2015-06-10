@@ -3,16 +3,13 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
-
 use Dof\Bundle\CharacterBundle\EffectInterface;
 use Dof\Bundle\CharacterBundle\EffectTrait;
-
 use Dof\Common\GameTemplateString;
 
 /**
- * ItemSetEffect
+ * ItemSetEffect.
  *
  * @ORM\Table(name="dof_item_set_effects")
  * @ORM\Entity(repositoryClass="ItemSetEffectRepository")
@@ -22,7 +19,7 @@ class ItemSetEffect implements IdentifiableInterface, EffectInterface
     use EffectTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -39,16 +36,16 @@ class ItemSetEffect implements IdentifiableInterface, EffectInterface
     private $combination;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="order_", type="integer")
      */
     private $order;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -56,9 +53,10 @@ class ItemSetEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Set combination
+     * Set combination.
      *
      * @param ItemSetCombination $combination
+     *
      * @return ItemSetEffect
      */
     public function setCombination(ItemSetCombination $combination)
@@ -69,7 +67,7 @@ class ItemSetEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get combination
+     * Get combination.
      *
      * @return ItemSetCombination
      */
@@ -79,9 +77,10 @@ class ItemSetEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Set order
+     * Set order.
      *
-     * @param integer $order
+     * @param int $order
+     *
      * @return ItemTemplateEffect
      */
     public function setOrder($order)
@@ -92,9 +91,9 @@ class ItemSetEffect implements IdentifiableInterface, EffectInterface
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
@@ -106,10 +105,12 @@ class ItemSetEffect implements IdentifiableInterface, EffectInterface
         $desc = $this->getEffectTemplate()->expandDescription([
             '1' => $this->getParam1(),
             '2' => $this->getParam2(),
-            '3' => $this->getParam3()
+            '3' => $this->getParam3(),
         ], $locale);
-        if($full)
-            array_unshift($desc, [ '[' . $this->getEffectTemplate()->getId() . '] ', GameTemplateString::COMES_FROM_TEMPLATE ]);
+        if ($full) {
+            array_unshift($desc, ['['.$this->getEffectTemplate()->getId().'] ', GameTemplateString::COMES_FROM_TEMPLATE]);
+        }
+
         return $desc;
     }
 

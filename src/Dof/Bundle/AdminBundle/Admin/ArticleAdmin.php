@@ -15,9 +15,8 @@ class ArticleAdmin extends Admin
       'de',
       'es',
       'ru',
-      'it'
+      'it',
     ];
-
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
@@ -29,13 +28,12 @@ class ArticleAdmin extends Admin
           ->add('published', null, array('required' => false))
         ;
 
-
-
-        foreach($this->locales as $locale)
-          $formMapper
+        foreach ($this->locales as $locale) {
+            $formMapper
               ->add('name'.ucfirst($locale))
               ->add('description'.ucfirst($locale))
           ;
+        }
     }
 
     // Fields to be shown on filter forms

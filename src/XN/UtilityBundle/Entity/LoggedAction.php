@@ -3,7 +3,6 @@
 namespace XN\UtilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait; # TO CHANGE ACCORDING TO THE PROJECT
@@ -12,7 +11,7 @@ use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SimpleLazyFieldTrait;
 
 /**
- * LoggedAction
+ * LoggedAction.
  *
  * @ORM\Table(name="xn_actions")
  * @ORM\Entity(repositoryClass="XN\UtilityBundle\Entity\LoggedActionRepository")
@@ -22,7 +21,7 @@ class LoggedAction implements IdentifiableInterface, OwnableInterface, Timestamp
     use OwnableTrait, TimestampableTrait, SimpleLazyFieldTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -44,11 +43,10 @@ class LoggedAction implements IdentifiableInterface, OwnableInterface, Timestamp
      */
     private $context;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -56,9 +54,10 @@ class LoggedAction implements IdentifiableInterface, OwnableInterface, Timestamp
     }
 
     /**
-     * Set key
+     * Set key.
      *
      * @param string $key
+     *
      * @return LoggedAction
      */
     public function setKey($key)
@@ -69,7 +68,7 @@ class LoggedAction implements IdentifiableInterface, OwnableInterface, Timestamp
     }
 
     /**
-     * Get key
+     * Get key.
      *
      * @return string
      */
@@ -78,11 +77,11 @@ class LoggedAction implements IdentifiableInterface, OwnableInterface, Timestamp
         return $this->key;
     }
 
-
     /**
-     * Set context
+     * Set context.
      *
      * @param array $context
+     *
      * @return LoggedAction
      */
     public function setContext($context)
@@ -93,7 +92,7 @@ class LoggedAction implements IdentifiableInterface, OwnableInterface, Timestamp
     }
 
     /**
-     * Get context
+     * Get context.
      *
      * @return array
      */

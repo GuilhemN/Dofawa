@@ -1,12 +1,10 @@
 <?php
+
 namespace Dof\Bundle\User\ItemBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\MainBundle\Entity\Notification;
 
 class PetsManagerCommand extends ContainerAwareCommand
@@ -40,6 +38,6 @@ class PetsManagerCommand extends ContainerAwareCommand
         }
         $em->flush();
 
-        $output->writeln('<info>' . $notifs .' notifications ont été envoyées.</info>');
+        $output->writeln('<info>'.$notifs.' notifications ont été envoyées.</info>');
     }
 }

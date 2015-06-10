@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\Grammar\Test;
 
 use XN\Grammar as Gr;
@@ -25,24 +26,24 @@ class Calculator
     /**
      * @var array
      */
-    public $constants = [ ];
+    public $constants = [];
 
     /**
      * @Gr\Expression({
-	 *		@Gr\SubExpression("multiplyDivide"),
-	 *		@Gr\Repeated({
-	 *			@Gr\Any({
-	 *				"+",
-	 *				"-"
-	 *			}),
-	 *			@Gr\SubExpression("multiplyDivide")
-	 *		})
-	 * })
+     *		@Gr\SubExpression("multiplyDivide"),
+     *		@Gr\Repeated({
+     *			@Gr\Any({
+     *				"+",
+     *				"-"
+     *			}),
+     *			@Gr\SubExpression("multiplyDivide")
+     *		})
+     * })
      */
     public function addSubtract($term0, $ops, $otherTerms)
     {
         foreach (array_map(null, $ops, $otherTerms) as $pair) {
-			list($op, $term) = $pair;
+            list($op, $term) = $pair;
             switch ($op) {
                 case '+':
                     $term0 += $term;
@@ -52,25 +53,26 @@ class Calculator
                     break;
             }
         }
+
         return $term0;
     }
 
     /**
      * @Gr\Expression({
-	 *		@Gr\SubExpression("power"),
-	 *		@Gr\Repeated({
-	 *			@Gr\Any({
-	 *				"*",
-	 *				"/"
-	 *			}),
-	 *			@Gr\SubExpression("power")
-	 *		})
-	 * })
+     *		@Gr\SubExpression("power"),
+     *		@Gr\Repeated({
+     *			@Gr\Any({
+     *				"*",
+     *				"/"
+     *			}),
+     *			@Gr\SubExpression("power")
+     *		})
+     * })
      */
     public function multiplyDivide($factor0, $ops, $otherFactors)
     {
         foreach (array_map(null, $ops, $otherFactors) as $pair) {
-			list($op, $factor) = $pair;
+            list($op, $factor) = $pair;
             switch ($op) {
                 case '*':
                     $factor0 *= $factor;
@@ -80,35 +82,40 @@ class Calculator
                     break;
             }
         }
+
         return $factor0;
     }
 
     /**
      * @Gr\Expression({
-	 *		@Gr\SubExpression("terminalOrCall"),
-	 *		@Gr\Optional({
-	 *			"**",
-	 *			@Gr\SubExpression("power")
-	 *		})
-	 * })
+     *		@Gr\SubExpression("terminalOrCall"),
+     *		@Gr\Optional({
+     *			"**",
+     *			@Gr\SubExpression("power")
+     *		})
+     * })
      */
     public function power($base, $exponent)
     {
-        if ($exponent !== null)
+        if ($exponent !== null) {
             $base = pow($base, $exponent);
+        }
+
         return $base;
     }
 
     /**
      * @Gr\Expression({
-	 *		@Gr\SubExpression("terminal"),
-	 *		@Gr\Repeated(@Gr\SubExpression("terminal"))
-	 * })
+     *		@Gr\SubExpression("terminal"),
+     *		@Gr\Repeated(@Gr\SubExpression("terminal"))
+     * })
      */
     public function terminalOrCall($constOrFn, $args)
     {
-        if (is_callable($constOrFn))
+        if (is_callable($constOrFn)) {
             return call_user_func_array($constOrFn, $args);
+        }
+
         return $constOrFn;
     }
 

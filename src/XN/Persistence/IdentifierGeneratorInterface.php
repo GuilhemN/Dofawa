@@ -4,5 +4,5 @@ namespace XN\Persistence;
 
 interface IdentifierGeneratorInterface
 {
-	public function generate($num = 1);
+    public function generate($num = 1);
 }

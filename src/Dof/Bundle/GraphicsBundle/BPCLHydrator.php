@@ -3,16 +3,14 @@
 namespace Dof\Bundle\GraphicsBundle;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 
 class BPCLHydrator
 {
-
-	/**
-	 * @var ContainerInterface
-	 */
-	private $di;
+    /**
+     * @var ContainerInterface
+     */
+    private $di;
 
     /**
      * @var LivingItemFactory
@@ -31,15 +29,17 @@ class BPCLHydrator
 
     private function initialize()
     {
-        if ($this->livingItemFactory === null)
+        if ($this->livingItemFactory === null) {
             $this->livingItemFactory = $this->di->get('dof_graphics.living_item_factory');
-        if ($this->chameleonDragoturkey === null)
+        }
+        if ($this->chameleonDragoturkey === null) {
             $this->chameleonDragoturkey = $this->di->get('dof_graphics.chameleon_dragoturkey');
+        }
     }
 
     public function postLoad(LifecycleEventArgs $args)
     {
-		$ent = $args->getEntity();
+        $ent = $args->getEntity();
         if ($ent instanceof BasicPCLook) {
             $this->initialize();
             $ent->translateRelations($args->getEntityManager(), $this->livingItemFactory, $this->chameleonDragoturkey);

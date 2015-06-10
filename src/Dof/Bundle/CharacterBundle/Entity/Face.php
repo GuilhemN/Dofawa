@@ -3,11 +3,10 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 
 /**
- * Face
+ * Face.
  *
  * @ORM\Table(name="dof_breed_faces")
  * @ORM\Entity(repositoryClass="FaceRepository")
@@ -15,7 +14,7 @@ use XN\Persistence\IdentifiableInterface;
 class Face implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -38,23 +37,24 @@ class Face implements IdentifiableInterface
     private $breed;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="gender", type="integer")
      */
     private $gender;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="order_", type="integer")
      */
     private $order;
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return Face
      */
     public function setId($id)
@@ -65,9 +65,9 @@ class Face implements IdentifiableInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -75,9 +75,10 @@ class Face implements IdentifiableInterface
     }
 
     /**
-     * Set label
+     * Set label.
      *
      * @param string $label
+     *
      * @return Face
      */
     public function setLabel($label)
@@ -88,7 +89,7 @@ class Face implements IdentifiableInterface
     }
 
     /**
-     * Get label
+     * Get label.
      *
      * @return string
      */
@@ -98,9 +99,10 @@ class Face implements IdentifiableInterface
     }
 
     /**
-     * Set breed
+     * Set breed.
      *
      * @param Breed $breed
+     *
      * @return Face
      */
     public function setBreed(Breed $breed)
@@ -111,7 +113,7 @@ class Face implements IdentifiableInterface
     }
 
     /**
-     * Get breed
+     * Get breed.
      *
      * @return Breed
      */
@@ -121,9 +123,10 @@ class Face implements IdentifiableInterface
     }
 
     /**
-     * Set gender
+     * Set gender.
      *
-     * @param integer $gender
+     * @param int $gender
+     *
      * @return Face
      */
     public function setGender($gender)
@@ -134,9 +137,9 @@ class Face implements IdentifiableInterface
     }
 
     /**
-     * Get gender
+     * Get gender.
      *
-     * @return integer
+     * @return int
      */
     public function getGender()
     {
@@ -144,9 +147,10 @@ class Face implements IdentifiableInterface
     }
 
     /**
-     * Set order
+     * Set order.
      *
-     * @param integer $order
+     * @param int $order
+     *
      * @return Face
      */
     public function setOrder($order)
@@ -157,9 +161,9 @@ class Face implements IdentifiableInterface
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {

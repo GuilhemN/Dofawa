@@ -3,11 +3,10 @@
 namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 
 /**
- * QuestObjectiveTypeRelation
+ * QuestObjectiveTypeRelation.
  *
  * @ORM\Table(name="dof_quest_objective_type_relations")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\QuestObjectiveTemplateRelationRepository")
@@ -15,7 +14,7 @@ use XN\Persistence\IdentifiableInterface;
 class QuestObjectiveTemplateRelation implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -24,11 +23,11 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     private $id;
 
     /**
-    * @var objectiveTemplate
-    *
-    * @ORM\ManyToOne(targetEntity="QuestObjectiveTemplate", inversedBy="relations", fetch="EAGER")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var objectiveTemplate
+     *
+     * @ORM\ManyToOne(targetEntity="QuestObjectiveTemplate", inversedBy="relations", fetch="EAGER")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $objectiveTemplate;
 
     /**
@@ -66,11 +65,10 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
      */
     private $column4;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -78,11 +76,12 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-    * Set objectiveTemplate
-    *
-    * @param QuestObjectiveTemplate $objectiveTemplate
-    * @return QuestObjectiveTemplateRelation
-    */
+     * Set objectiveTemplate.
+     *
+     * @param QuestObjectiveTemplate $objectiveTemplate
+     *
+     * @return QuestObjectiveTemplateRelation
+     */
     public function setObjectiveTemplate(QuestObjectiveTemplate $objectiveTemplate)
     {
         $this->objectiveTemplate = $objectiveTemplate;
@@ -91,19 +90,20 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-    * Get objectiveTemplate
-    *
-    * @return QuestObjectiveTemplate
-    */
+     * Get objectiveTemplate.
+     *
+     * @return QuestObjectiveTemplate
+     */
     public function getObjectiveTemplate()
     {
         return $this->objectiveTemplate;
     }
 
     /**
-     * Set targetEntity
+     * Set targetEntity.
      *
      * @param string $targetEntity
+     *
      * @return QuestObjectiveTypeRelation
      */
     public function setTargetEntity($targetEntity)
@@ -114,7 +114,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get targetEntity
+     * Get targetEntity.
      *
      * @return string
      */
@@ -124,9 +124,10 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set column1
+     * Set column1.
      *
      * @param string $column1
+     *
      * @return QuestObjectiveTypeRelation
      */
     public function setColumn1($column1)
@@ -137,7 +138,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get column1
+     * Get column1.
      *
      * @return string
      */
@@ -147,9 +148,10 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set column2
+     * Set column2.
      *
      * @param string $column2
+     *
      * @return QuestObjectiveTypeRelation
      */
     public function setColumn2($column2)
@@ -160,7 +162,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get column2
+     * Get column2.
      *
      * @return string
      */
@@ -170,9 +172,10 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set column3
+     * Set column3.
      *
      * @param string $column3
+     *
      * @return QuestObjectiveTypeRelation
      */
     public function setColumn3($column3)
@@ -183,7 +186,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get column3
+     * Get column3.
      *
      * @return string
      */
@@ -193,9 +196,10 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set column4
+     * Set column4.
      *
      * @param string $column4
+     *
      * @return QuestObjectiveTypeRelation
      */
     public function setColumn4($column4)
@@ -206,7 +210,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get column4
+     * Get column4.
      *
      * @return string
      */

@@ -34,7 +34,7 @@
                     <input class="changeId" type="hidden" name="idChange" value="">
                     <input type="submit" class="btn" value="Changer"/>
                 </form>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
@@ -46,7 +46,7 @@
     {{ parent() }}
     <script defer="" async="">
         $('.lien-modal').click(function (event) {
-            var link = $(this) 
+            var link = $(this)
             var id = link.data('id')
             var name = link.data('name')
             $('.changeId').val(id)

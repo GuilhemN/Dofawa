@@ -7,9 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Dof\Bundle\CharacterBundle\Gender;
 use Dof\Bundle\GraphicsBundle\LivingItem;
 
@@ -34,8 +32,7 @@ class CharacterLookType extends AbstractType
         $request = $this->requestStack->getCurrentRequest();
         $fieldName = 'name'.ucfirst($request->getLocale());
 
-
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $entity = $event->getData();
             $form = $event->getForm();
 
@@ -51,41 +48,48 @@ class CharacterLookType extends AbstractType
 
         $entity = $builder->getData();
 
-        if(($weapon = $entity->getWeapon()) !== null)
+        if (($weapon = $entity->getWeapon()) !== null) {
             $weapon = $weapon->getId();
-        if(($shield = $entity->getShield()) !== null)
-            $shield = $shield->getId();
-        if(($hat = $entity->getHat()) !== null){
-            if($hat instanceOf LivingItem)
-                $hat = $hat->getTemplate()->getId().'/'.$hat->getLevel();
-            else
-                $hat = $hat->getId();
         }
-        if(($cloak = $entity->getCloak()) !== null)
-            if($cloak instanceOf LivingItem)
+        if (($shield = $entity->getShield()) !== null) {
+            $shield = $shield->getId();
+        }
+        if (($hat = $entity->getHat()) !== null) {
+            if ($hat instanceof LivingItem) {
+                $hat = $hat->getTemplate()->getId().'/'.$hat->getLevel();
+            } else {
+                $hat = $hat->getId();
+            }
+        }
+        if (($cloak = $entity->getCloak()) !== null) {
+            if ($cloak instanceof LivingItem) {
                 $cloak = $cloak->getTemplate()->getId().'/'.$cloak->getLevel();
-            else
+            } else {
                 $cloak = $cloak->getId();
-        if(($animal = $entity->getAnimal()) !== null)
+            }
+        }
+        if (($animal = $entity->getAnimal()) !== null) {
             $animal = $animal->getId();
-        if(($face = $entity->getFace()) !== null)
+        }
+        if (($face = $entity->getFace()) !== null) {
             $face = $face->getLabel();
+        }
         $builder
             ->add('name', null, array('label' => $this->translator->trans('name', [], 'generalTrans'), 'required' => true))
             ->add('breed', null, array('label' => $this->translator->trans('breed', [], 'breed'), 'property' => $fieldName, 'required' => true))
             ->add('gender', 'choice', array(
                   'label' => 'gender',
-                  'choices'   => array_flip(Gender::getValues()),
-                  'required'  => true,
-                  'expanded'  => true,
-                  'translation_domain' => 'gender'
+                  'choices' => array_flip(Gender::getValues()),
+                  'required' => true,
+                  'expanded' => true,
+                  'translation_domain' => 'gender',
               ))
             ->add('face', 'choice', array(
                 'label' => $this->translator->trans('face', [], 'face'),
                 'choices' => array('I' => 'I', 'II' => 'II', 'III' => 'III', 'IV' => 'IV', 'V' => 'V', 'VI' => 'VI', 'VII' => 'VII', 'VIII' => 'VIII'),
                 'required' => true,
                 'mapped' => false,
-                'data' => $face
+                'data' => $face,
               ))
             ->add('weapon', 'text', array('label' => $this->translator->transChoice('weapons.main', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $weapon))
             ->add('shield', 'text', array('label' => $this->translator->transChoice('equipments.shield', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $shield))
@@ -93,8 +97,8 @@ class CharacterLookType extends AbstractType
             ->add('cloak', 'text', array('label' => $this->translator->transChoice('equipments.cloak', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $cloak))
             ->add('animal', 'text', array('label' => $this->translator->transChoice('animals.main', 1, [], 'type_item'), 'required' => false, 'mapped' => false, 'data' => $animal))
             ->add('colors', 'collection', array(
-                'options'  => array(
-                    'required'  => false,
+                'options' => array(
+                    'required' => false,
                 ),
             ))
             ->add('submit', 'submit')

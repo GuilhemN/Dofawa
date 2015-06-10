@@ -3,19 +3,17 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * Emoticon
+ * Emoticon.
  *
  * @ORM\Table(name="dof_emoticons")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CharacterBundle\Entity\EmoticonRepository")
@@ -25,91 +23,90 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="id", type="integer")
-    * @ORM\Id
-    */
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     */
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="_order", type="integer")
      */
     private $order;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="aura", type="boolean")
      */
     private $aura;
 
-
     /**
-    * @var string
-    *
-    * @ORM\Column(name="shortcut_fr", type="string", length=255)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="shortcut_fr", type="string", length=255)
+     */
     private $shortcutFr;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="shortcut_en", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="shortcut_en", type="string", length=255, nullable=true)
+     */
     private $shortcutEn;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="shortcut_de", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="shortcut_de", type="string", length=255, nullable=true)
+     */
     private $shortcutDe;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="shortcut_es", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="shortcut_es", type="string", length=255, nullable=true)
+     */
     private $shortcutEs;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="shortcut_it", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="shortcut_it", type="string", length=255, nullable=true)
+     */
     private $shortcutIt;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="shortcut_pt", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="shortcut_pt", type="string", length=255, nullable=true)
+     */
     private $shortcutPt;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="shortcut_ja", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="shortcut_ja", type="string", length=255, nullable=true)
+     */
     private $shortcutJa;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="shortcut_ru", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="shortcut_ru", type="string", length=255, nullable=true)
+     */
     private $shortcutRu;
 
-
     /**
-    * Set id
-    *
-    * @param integer $id
-    * @return Emoticon
-    */
+     * Set id.
+     *
+     * @param int $id
+     *
+     * @return Emoticon
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -118,19 +115,20 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Get id
-    *
-    * @return integer
-    */
+     * Get id.
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set order
+     * Set order.
      *
-     * @param integer $order
+     * @param int $order
+     *
      * @return Emoticon
      */
     public function setOrder($order)
@@ -141,9 +139,9 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
@@ -151,9 +149,10 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Set aura
+     * Set aura.
      *
-     * @param boolean $aura
+     * @param bool $aura
+     *
      * @return Emoticon
      */
     public function setAura($aura)
@@ -164,9 +163,9 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-     * Get aura
+     * Get aura.
      *
-     * @return boolean
+     * @return bool
      */
     public function getAura()
     {
@@ -174,11 +173,12 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Set shortcutFr
-    *
-    * @param string $shortcutFr
-    * @return Emoticon
-    */
+     * Set shortcutFr.
+     *
+     * @param string $shortcutFr
+     *
+     * @return Emoticon
+     */
     public function setShortcutFr($shortcutFr)
     {
         $this->shortcutFr = $shortcutFr;
@@ -187,21 +187,22 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Get shortcutNameFr
-    *
-    * @return string
-    */
+     * Get shortcutNameFr.
+     *
+     * @return string
+     */
     public function getShortcutFr()
     {
         return $this->shortcutNameFr;
     }
 
     /**
-    * Set shortcutNameEn
-    *
-    * @param string $shortcutNameEn
-    * @return Emoticon
-    */
+     * Set shortcutNameEn.
+     *
+     * @param string $shortcutNameEn
+     *
+     * @return Emoticon
+     */
     public function setShortcutEn($shortcutNameEn)
     {
         $this->shortcutNameEn = $shortcutNameEn;
@@ -210,21 +211,22 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Get shortcutNameEn
-    *
-    * @return string
-    */
+     * Get shortcutNameEn.
+     *
+     * @return string
+     */
     public function getShortcutEn()
     {
         return $this->shortcutNameEn;
     }
 
     /**
-    * Set shortcutNameDe
-    *
-    * @param string $shortcutNameDe
-    * @return Emoticon
-    */
+     * Set shortcutNameDe.
+     *
+     * @param string $shortcutNameDe
+     *
+     * @return Emoticon
+     */
     public function setShortcutDe($shortcutNameDe)
     {
         $this->shortcutNameDe = $shortcutNameDe;
@@ -233,21 +235,22 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Get shortcutNameDe
-    *
-    * @return string
-    */
+     * Get shortcutNameDe.
+     *
+     * @return string
+     */
     public function getShortcutDe()
     {
         return $this->shortcutDe;
     }
 
     /**
-    * Set shortcutEs
-    *
-    * @param string $shortcutEs
-    * @return Emoticon
-    */
+     * Set shortcutEs.
+     *
+     * @param string $shortcutEs
+     *
+     * @return Emoticon
+     */
     public function setShortcutEs($shortcutEs)
     {
         $this->shortcutEs = $shortcutEs;
@@ -256,21 +259,22 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Get shortcutEs
-    *
-    * @return string
-    */
+     * Get shortcutEs.
+     *
+     * @return string
+     */
     public function getShortcutEs()
     {
         return $this->shortcutEs;
     }
 
     /**
-    * Set shortcutIt
-    *
-    * @param string $shortcutIt
-    * @return Emoticon
-    */
+     * Set shortcutIt.
+     *
+     * @param string $shortcutIt
+     *
+     * @return Emoticon
+     */
     public function setShortcutIt($shortcutIt)
     {
         $this->shortcutIt = $shortcutIt;
@@ -279,21 +283,22 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Get shortcutIt
-    *
-    * @return string
-    */
+     * Get shortcutIt.
+     *
+     * @return string
+     */
     public function getShortcutIt()
     {
         return $this->shortcutIt;
     }
 
     /**
-    * Set shortcutPt
-    *
-    * @param string $shortcutPt
-    * @return Emoticon
-    */
+     * Set shortcutPt.
+     *
+     * @param string $shortcutPt
+     *
+     * @return Emoticon
+     */
     public function setShortcutPt($shortcutPt)
     {
         $this->shortcutPt = $shortcutPt;
@@ -302,21 +307,22 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Get longNamePt
-    *
-    * @return string
-    */
+     * Get longNamePt.
+     *
+     * @return string
+     */
     public function getShortcutPt()
     {
         return $this->longNamePt;
     }
 
     /**
-    * Set shortcutNameJa
-    *
-    * @param string $shortcutNameJa
-    * @return Emoticon
-    */
+     * Set shortcutNameJa.
+     *
+     * @param string $shortcutNameJa
+     *
+     * @return Emoticon
+     */
     public function setShortcutJa($shortcutNameJa)
     {
         $this->shortcutNameJa = $shortcutNameJa;
@@ -325,21 +331,22 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Get shortcutNameJa
-    *
-    * @return string
-    */
+     * Get shortcutNameJa.
+     *
+     * @return string
+     */
     public function getShortcutJa()
     {
         return $this->shortcutNameJa;
     }
 
     /**
-    * Set shortcutNameRu
-    *
-    * @param string $shortcutNameRu
-    * @return Emoticon
-    */
+     * Set shortcutNameRu.
+     *
+     * @param string $shortcutNameRu
+     *
+     * @return Emoticon
+     */
     public function setShortcutRu($shortcutNameRu)
     {
         $this->shortcutNameRu = $shortcutNameRu;
@@ -348,22 +355,23 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
     }
 
     /**
-    * Get shortcutNameRu
-    *
-    * @return string
-    */
+     * Get shortcutNameRu.
+     *
+     * @return string
+     */
     public function getShortcutRu()
     {
         return $this->shortcutNameRu;
     }
 
     /**
-    * Set shortcut
-    *
-    * @param string $shortcut
-    * @param string $locale
-    * @return Emoticon
-    */
+     * Set shortcut.
+     *
+     * @param string $shortcut
+     * @param string $locale
+     *
+     * @return Emoticon
+     */
     public function setShortcut($shortcut, $locale = 'fr')
     {
         switch ($locale) {
@@ -376,24 +384,28 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
             case 'ja': $this->shortcutJa = $shortcut; break;
             case 'ru': $this->shortcutRu = $shortcut; break;
         }
+
         return $this;
     }
 
     /**
-    * Get shortcut
-    *
-    * @param string|array $locale
-    * @return string
-    */
+     * Get shortcut.
+     *
+     * @param string|array $locale
+     *
+     * @return string
+     */
     public function getShortcut($locale = 'fr')
     {
         if (is_array($locale)) {
             foreach ($locale as $loc) {
                 $shortcut = $this->getShortcut($loc);
-                if ($shortcut !== null)
-                return $shortcut;
+                if ($shortcut !== null) {
+                    return $shortcut;
+                }
             }
-            return null;
+
+            return;
         }
         switch ($locale) {
             case 'fr': return $this->shortcutFr;
@@ -404,11 +416,12 @@ class Emoticon implements IdentifiableInterface, TimestampableInterface, Sluggab
             case 'pt': return $this->shortcutPt;
             case 'ja': return $this->shortcutJa;
             case 'ru': return $this->shortcutRu;
-            default: return null;
+            default: return;
         }
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }

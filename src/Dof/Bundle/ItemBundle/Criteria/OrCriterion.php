@@ -1,30 +1,37 @@
 <?php
+
 namespace Dof\Bundle\ItemBundle\Criteria;
 
 class OrCriterion extends Criterion
 {
     private $criteria;
 
-    public function __construct(array $criteria = array()) {
+    public function __construct(array $criteria = array())
+    {
         $this->criteria = $criteria;
     }
 
-    public function setCriteria(array $criteria) {
+    public function setCriteria(array $criteria)
+    {
         $this->criteria = $criteria;
+
         return $this;
     }
 
-    public function getCriteria() {
+    public function getCriteria()
+    {
         return $this->criteria;
     }
 
-    public function countVisibleCriteria() {
-        return count(array_filter($this->criteria, function($v) {
+    public function countVisibleCriteria()
+    {
+        return count(array_filter($this->criteria, function ($v) {
             return $v->getVisible();
         }));
     }
 
-    public function isStructureVisible() {
+    public function isStructureVisible()
+    {
         return $this->countVisibleCriteria() > 1;
     }
 }

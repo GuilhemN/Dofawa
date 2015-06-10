@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\Grammar;
 
 class StringReader implements Reader
@@ -9,22 +10,22 @@ class StringReader implements Reader
     private $data;
 
     /**
-     * @var integer
+     * @var int
      */
     private $size;
 
     /**
-     * @var integer
+     * @var int
      */
     private $start;
 
     /**
-     * @var integer
+     * @var int
      */
     private $end;
 
     /**
-     * @var integer
+     * @var int
      */
     private $offset;
 
@@ -57,152 +58,188 @@ class StringReader implements Reader
     {
         $this->offset = $opaqueState;
     }
-	public function freeState($opaqueState)
-	{
-		// no-op because our state is just an offset
-	}
-	public function transact($transactionFn)
-	{
-		if (!is_callable($transactionFn))
-			return;
-		$offset = $this->offset;
-		try {
-			$retval = call_user_func($transactionFn);
-			if (!$retval && $retval !== null)
-				$this->offset = $offset;
-			return $retval;
-		} catch (\Exception $ex) {
-			$this->offset = $offset;
-			throw $ex;
-		}
-	}
+    public function freeState($opaqueState)
+    {
+        // no-op because our state is just an offset
+    }
+    public function transact($transactionFn)
+    {
+        if (!is_callable($transactionFn)) {
+            return;
+        }
+        $offset = $this->offset;
+        try {
+            $retval = call_user_func($transactionFn);
+            if (!$retval && $retval !== null) {
+                $this->offset = $offset;
+            }
+
+            return $retval;
+        } catch (\Exception $ex) {
+            $this->offset = $offset;
+            throw $ex;
+        }
+    }
 
     public function eat($string, $caseInsensitive = false)
     {
         $string = strval($string);
         $len = strlen($string);
         if ($caseInsensitive) {
-            if ($this->end - $this->offset < $len)
-                return null;
-            if (substr_compare($this->data, $string, $this->offset, strlen($string), true) != 0)
-                return null;
+            if ($this->end - $this->offset < $len) {
+                return;
+            }
+            if (substr_compare($this->data, $string, $this->offset, strlen($string), true) != 0) {
+                return;
+            }
             $offset = $this->offset;
             $this->offset += $len;
+
             return substr($this->data, $offset, $len);
         } else {
-            if ($this->end - $this->offset < $len)
+            if ($this->end - $this->offset < $len) {
                 return false;
-            if (substr_compare($this->data, $string, $this->offset, strlen($string)) != 0)
+            }
+            if (substr_compare($this->data, $string, $this->offset, strlen($string)) != 0) {
                 return false;
+            }
             $this->offset += $len;
+
             return true;
         }
     }
     public function eatAny($strings, $caseInsensitive = false)
     {
         if ($caseInsensitive) {
-            foreach ($strings as $string)
-                if (($string2 = $this->eat($string, true)) !== null)
+            foreach ($strings as $string) {
+                if (($string2 = $this->eat($string, true)) !== null) {
                     return $string2;
+                }
+            }
         } else {
-            foreach ($strings as $string)
-                if ($this->eat($string))
+            foreach ($strings as $string) {
+                if ($this->eat($string)) {
                     return $string;
+                }
+            }
         }
-        return null;
+
+        return;
     }
     public function eatRegex($pcrePattern, $flags = 0)
     {
-        if (!preg_match($pcrePattern, $this->data, $matches, $flags | PREG_OFFSET_CAPTURE, $this->offset))
-            return null;
+        if (!preg_match($pcrePattern, $this->data, $matches, $flags | PREG_OFFSET_CAPTURE, $this->offset)) {
+            return;
+        }
         $offset = $this->offset;
-        if ($matches[0][1] != $offset)
-            return null;
+        if ($matches[0][1] != $offset) {
+            return;
+        }
         $length = strlen($matches[0][0]);
         if ($offset + $length > $this->end) {
-            if (!preg_match($pcrePattern, substr($this->data, 0, $this->end), $matches, $flags | PREG_OFFSET_CAPTURE, $this->offset))
-                return null;
+            if (!preg_match($pcrePattern, substr($this->data, 0, $this->end), $matches, $flags | PREG_OFFSET_CAPTURE, $this->offset)) {
+                return;
+            }
             $offset = $this->offset;
-            if ($matches[0][1] != $offset)
-                return null;
+            if ($matches[0][1] != $offset) {
+                return;
+            }
             $length = strlen($matches[0][0]);
         }
         $this->offset += $length;
         if (($flags & PREG_OFFSET_CAPTURE) != 0) {
-            foreach ($matches as &$match)
+            foreach ($matches as &$match) {
                 $match[1] -= $offset;
+            }
         } else {
-            foreach ($matches as &$match)
+            foreach ($matches as &$match) {
                 $match = $match[0];
+            }
         }
+
         return $matches;
     }
-	public function eatSpan($mask, $length = null)
-	{
-		$maxLength = $this->end - $this->offset;
-		$length = ($length === null) ? $maxLength : min($length, $maxLength);
-		$length = strspn($this->data, $mask, $this->offset, $length);
-		$substr = substr($this->data, $this->offset, $length);
-		$this->offset += $length;
-		return $substr;
-	}
-	public function eatCSpan($mask, $length = null)
-	{
-		$maxLength = $this->end - $this->offset;
-		$length = ($length === null) ? $maxLength : min($length, $maxLength);
-		$length = strcspn($this->data, $mask, $this->offset, $length);
-		$substr = substr($this->data, $this->offset, $length);
-		$this->offset += $length;
-		return $substr;
-	}
+    public function eatSpan($mask, $length = null)
+    {
+        $maxLength = $this->end - $this->offset;
+        $length = ($length === null) ? $maxLength : min($length, $maxLength);
+        $length = strspn($this->data, $mask, $this->offset, $length);
+        $substr = substr($this->data, $this->offset, $length);
+        $this->offset += $length;
+
+        return $substr;
+    }
+    public function eatCSpan($mask, $length = null)
+    {
+        $maxLength = $this->end - $this->offset;
+        $length = ($length === null) ? $maxLength : min($length, $maxLength);
+        $length = strcspn($this->data, $mask, $this->offset, $length);
+        $substr = substr($this->data, $this->offset, $length);
+        $this->offset += $length;
+
+        return $substr;
+    }
     public function eatWhiteSpace()
     {
-        if ($this->isEof())
+        if ($this->isEof()) {
             return 0;
+        }
         list($wspace) = $this->eatRegex('/\s+/A');
+
         return strlen($wspace);
     }
-	public function eatToEnd()
-	{
-		$byteCount = $this->end - $this->offset;
-		if ($byteCount <= 0)
-			return null;
-		$str = substr($this->data, $this->offset, $byteCount);
-		$this->offset = $this->end;
-		return $str;
-	}
+    public function eatToEnd()
+    {
+        $byteCount = $this->end - $this->offset;
+        if ($byteCount <= 0) {
+            return;
+        }
+        $str = substr($this->data, $this->offset, $byteCount);
+        $this->offset = $this->end;
+
+        return $str;
+    }
 
     public function read($byteCount, $allowIncomplete = false)
     {
-		if ($byteCount < 0)
-			return null;
+        if ($byteCount < 0) {
+            return;
+        }
         $maxByteCount = $this->getRemainingBytes();
-        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
-            return null;
+        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete) {
+            return;
+        }
         $byteCount = min($byteCount, $maxByteCount);
         $substr = substr($this->data, $this->offset, $byteCount);
         $this->offset += $byteCount;
+
         return $substr;
     }
     public function peek($byteCount, $allowIncomplete = false)
     {
-		if ($byteCount < 0)
-			return null;
+        if ($byteCount < 0) {
+            return;
+        }
         $maxByteCount = $this->getRemainingBytes();
-        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
-            return null;
+        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete) {
+            return;
+        }
         $byteCount = min($byteCount, $maxByteCount);
+
         return substr($this->data, $this->offset, $byteCount);
     }
     public function skip($byteCount, $allowIncomplete = false)
     {
-		if ($byteCount < 0)
-			return 0;
-        $maxByteCount = $this->getRemainingBytes();
-        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete)
+        if ($byteCount < 0) {
             return 0;
+        }
+        $maxByteCount = $this->getRemainingBytes();
+        if ($maxByteCount < 0 || $maxByteCount < $byteCount && !$allowIncomplete) {
+            return 0;
+        }
         $byteCount = min($byteCount, $maxByteCount);
         $this->offset += $byteCount;
+
         return $byteCount;
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\BBCode\TagTemplate;
 
 use XN\BBCode\NodeInterface;
@@ -7,7 +8,9 @@ use XN\BBCode\TagTemplateInterface;
 
 class ImageTagTemplate implements TagTemplateInterface
 {
-    public function __construct() { }
+    public function __construct()
+    {
+    }
 
     public function getNames()
     {
@@ -26,18 +29,23 @@ class ImageTagTemplate implements TagTemplateInterface
     public function toDOMNode(Tag $tag, \DOMDocument $doc)
     {
         $src = '';
-        foreach ($tag->getChildren() as $child)
+        foreach ($tag->getChildren() as $child) {
             $src .= $child->getValue();
+        }
 
         $elem = $doc->createElement('img');
         $elem->setAttribute('src', $src);
         $elem->setAttribute('alt', $tag->getAttribute('alt'));
         $elem->setAttribute('class', 'img-responsive');
+
         return $elem;
     }
 
-    public function verifyParent(Tag $child, NodeInterface $parent) {
+    public function verifyParent(Tag $child, NodeInterface $parent)
+    {
     }
 
-    public function verifyChild(Tag $parent, NodeInterface $child) { }
+    public function verifyChild(Tag $parent, NodeInterface $child)
+    {
+    }
 }

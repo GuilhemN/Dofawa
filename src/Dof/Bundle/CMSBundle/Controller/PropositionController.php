@@ -3,20 +3,16 @@
 namespace Dof\Bundle\CMSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use XN\Annotations as Utils;
-
 use Dof\Bundle\CMSBundle\Entity\Article;
-use Dof\Bundle\CMSBundle\Entity\QuestArticle;
-use Dof\Bundle\CMSBundle\Entity\DungeonArticle;
-use Dof\Bundle\CMSBundle\Entity\TutorialArticle;
 use Dof\Bundle\CMSBundle\Entity\Proposition;
 use Dof\Bundle\MainBundle\Entity\Notification;
 
 class PropositionController extends Controller
 {
-    public function indexAction() {
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $propositions = $em->getRepository('DofCMSBundle:Proposition')->findAll();
 
@@ -26,7 +22,8 @@ class PropositionController extends Controller
     /**
      * @Utils\Secure("ROLE_REDACTOR")
      */
-    public function validAction(Article $article) {
+    public function validAction(Article $article)
+    {
         $newArticle = true;
         $diffs = null;
         $original = $article->getOriginalArticle();
@@ -35,15 +32,15 @@ class PropositionController extends Controller
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
-
             $em = $this->getDoctrine()->getManager();
 
-            if($request->get('action') == 'valider'){
-                if(!empty($original)){
+            if ($request->get('action') == 'valider') {
+                if (!empty($original)) {
                     $original->setArchive(1);
                     $edits = $original->getEdits();
-                    foreach ($edits as $edit)
+                    foreach ($edits as $edit) {
                         $edit->setOriginalArticle($article);
+                    }
                     $em->persist($original);
                 }
                 $article->setPublished(1);
@@ -56,9 +53,9 @@ class PropositionController extends Controller
                     ->setEntity($article);
                 $em->persist($notification)->flush();
 
-                return $this->render('DofCMSBundle:Edit:success.html.twig', array('type' =>$type, 'action' => 'Validation'));
+                return $this->render('DofCMSBundle:Edit:success.html.twig', array('type' => $type, 'action' => 'Validation'));
             }
-            if ($request->get('action') == 'supprimer'){
+            if ($request->get('action') == 'supprimer') {
                 $article->setArchive(1);
                 $em->flush();
 
@@ -69,12 +66,11 @@ class PropositionController extends Controller
                     ->setEntity($article);
                 $em->persist($notification)->flush();
 
-                return $this->render('DofCMSBundle:Edit:success.html.twig', array('type' =>$type, 'action' => 'Suppression'));
+                return $this->render('DofCMSBundle:Edit:success.html.twig', array('type' => $type, 'action' => 'Suppression'));
             }
-
         }
 
-        if(!empty($original)) {
+        if (!empty($original)) {
             $descOriginal = $original->getDescription();
             exec('echo '.escapeshellarg($descOriginal).' > /tmp/validation/original.txt');
             $descArticle = $article->getDescription();
@@ -88,32 +84,36 @@ class PropositionController extends Controller
             'article' => $article,
             'diffs' => $diffs,
             'type' => $type,
-            'newArticle' => $newArticle
+            'newArticle' => $newArticle,
         ));
     }
 
     /**
      * @Utils\Secure("ROLE_REDACTOR")
      */
-    public function validateAction(Proposition $proposition) {
-        if($proposition->isPublished())
+    public function validateAction(Proposition $proposition)
+    {
+        if ($proposition->isPublished()) {
             throw $this->createNotFoundException();
+        }
 
         $em = $this->getDoctrine()->getManager();
         $locale = $proposition->getCreatedOnLocale();
         $article = $proposition->getArticle();
         $options = $proposition->getOptions();
 
-        if($proposition->getName() !== null)
+        if ($proposition->getName() !== null) {
             $article->setName($proposition->getName(), $locale);
+        }
         $article->setDescription($proposition->getDescription(), $locale);
 
-        if($article->isQuestArticle())
+        if ($article->isQuestArticle()) {
             $article->setQuest($em->getRepository('DofQuestBundle:Quest')->find($options['quest']));
-        elseif($article->isDungeonArticle())
+        } elseif ($article->isDungeonArticle()) {
             $article->setQuest($em->getRepository('DofMonsterBundle:Dungeon')->find($options['dungeon']));
-        else
+        } else {
             throw new \LogicException('not implemented');
+        }
 
         $em->remove($proposition);
         $em->flush();

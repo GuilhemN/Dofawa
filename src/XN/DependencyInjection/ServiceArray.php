@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\DependencyInjection;
 
 class ServiceArray extends \ArrayObject

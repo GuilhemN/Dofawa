@@ -9,7 +9,9 @@ class MapType extends Enum
     const OUTDOOR = 0;
     const INDOOR = 1;
 
-    private function __construct() { }
+    private function __construct()
+    {
+    }
 
     public static function isValid($element)
     {

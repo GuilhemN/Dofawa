@@ -2,29 +2,17 @@
 
 namespace Dof\Bundle\UserBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-
 use Dof\Bundle\UserBundle\Entity\User;
-
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 use FOS\UserBundle\Model\UserInterface;
-
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
-use Dof\Bundle\MainBundle\Entity\Badge;
-use Dof\Bundle\MainBundle\BadgeType;
-use Dof\Bundle\UserBundle\Entity\Badge as UserBadge;
-
 
 class ProfileController extends BaseController
 {
-	/**
-	 * @ParamConverter("user", options={"mapping": {"slug": "slug"}})
-	 */
+    /**
+     * @ParamConverter("user", options={"mapping": {"slug": "slug"}})
+     */
     public function userpageAction(User $user)
     {
         $em = $this->getDoctrine()->getManager();
@@ -34,7 +22,7 @@ class ProfileController extends BaseController
     }
 
     /**
-     * Show the user
+     * Show the user.
      */
     public function showAction()
     {
@@ -44,6 +32,7 @@ class ProfileController extends BaseController
         }
         $em = $this->getDoctrine()->getManager();
         $badges = $em->getRepository('DofMainBundle:BadgeLevel')->getBadgeUser($user);
+
         return $this->container->get('templating')->renderResponse('DofUserBundle:Profile:index.html.twig', array('user' => $user, 'badges' => $badges));
     }
 }

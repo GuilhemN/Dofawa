@@ -1,8 +1,11 @@
 <?php
+
 namespace Dof\Bundle\ItemBundle;
 
-class NoteHelper {
-    public static function getPowerRate() {
+class NoteHelper
+{
+    public static function getPowerRate()
+    {
         return [
             // Caracts
             'vitality' => 0.25,
@@ -52,20 +55,22 @@ class NoteHelper {
             'earthDamage' => 5,
             'fireDamage' => 5,
             'waterDamage' => 5,
-            'airDamage' => 5
+            'airDamage' => 5,
             ];
     }
 
-    public static function calcPowerRate(array $characts, $range = true){
+    public static function calcPowerRate(array $characts, $range = true)
+    {
         $powerRates = self::getPowerRate();
 
         $pwrg = 0; // Power-Rate Global
-        foreach($powerRates as $charact => $powerRate){
+        foreach ($powerRates as $charact => $powerRate) {
             $row = $characts[$charact];
-            if($range)
+            if ($range) {
                 $pwrg += ($row['min'] + $row['max']) / 2 * $powerRate;
-            else
+            } else {
                 $pwrg += $row * $powerRate;
+            }
         }
 
         return $pwrg;

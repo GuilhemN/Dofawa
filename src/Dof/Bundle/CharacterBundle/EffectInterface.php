@@ -1,8 +1,8 @@
 <?php
+
 namespace Dof\Bundle\CharacterBundle;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Dof\Bundle\CharacterBundle\Entity\EffectTemplate;
 
 interface EffectInterface

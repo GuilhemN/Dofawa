@@ -3,11 +3,10 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 
 /**
- * ItemComponent
+ * ItemComponent.
  *
  * @ORM\Table(name="dof_item_components")
  * @ORM\Entity(repositoryClass="ItemComponentRepository")
@@ -15,7 +14,7 @@ use XN\Persistence\IdentifiableInterface;
 class ItemComponent implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -40,23 +39,23 @@ class ItemComponent implements IdentifiableInterface
     private $component;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity", type="integer")
      */
     private $quantity;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="sticky", type="boolean")
      */
     private $sticky;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -64,9 +63,10 @@ class ItemComponent implements IdentifiableInterface
     }
 
     /**
-     * Set compound
+     * Set compound.
      *
      * @param ItemTemplate $compound
+     *
      * @return ItemComponent
      */
     public function setCompound(ItemTemplate $compound)
@@ -77,7 +77,7 @@ class ItemComponent implements IdentifiableInterface
     }
 
     /**
-     * Get compound
+     * Get compound.
      *
      * @return ItemTemplate
      */
@@ -87,9 +87,10 @@ class ItemComponent implements IdentifiableInterface
     }
 
     /**
-     * Set component
+     * Set component.
      *
      * @param ItemTemplate $component
+     *
      * @return ItemComponent
      */
     public function setComponent(ItemTemplate $component)
@@ -100,7 +101,7 @@ class ItemComponent implements IdentifiableInterface
     }
 
     /**
-     * Get component
+     * Get component.
      *
      * @return ItemTemplate
      */
@@ -110,9 +111,10 @@ class ItemComponent implements IdentifiableInterface
     }
 
     /**
-     * Set quantity
+     * Set quantity.
      *
-     * @param integer $quantity
+     * @param int $quantity
+     *
      * @return ItemIngredient
      */
     public function setQuantity($quantity)
@@ -123,18 +125,19 @@ class ItemComponent implements IdentifiableInterface
     }
 
     /**
-     * Get quantity
+     * Get quantity.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity()
     {
         return $this->quantity;
     }
     /**
-     * Set sticky
+     * Set sticky.
      *
-     * @param boolean $sticky
+     * @param bool $sticky
+     *
      * @return ItemComponent
      */
     public function setSticky($sticky)
@@ -145,9 +148,9 @@ class ItemComponent implements IdentifiableInterface
     }
 
     /**
-     * Get sticky
+     * Get sticky.
      *
-     * @return boolean
+     * @return bool
      */
     public function getSticky()
     {
@@ -155,9 +158,9 @@ class ItemComponent implements IdentifiableInterface
     }
 
     /**
-     * Get sticky
+     * Get sticky.
      *
-     * @return boolean
+     * @return bool
      */
     public function isSticky()
     {

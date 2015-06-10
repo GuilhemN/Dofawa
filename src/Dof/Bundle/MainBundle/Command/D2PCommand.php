@@ -1,14 +1,12 @@
 <?php
+
 namespace Dof\Bundle\MainBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Common\D2PContentProvider;
-
 use XN\Common\Unpacker;
 use XN\Grammar\FileReader;
 
@@ -31,45 +29,46 @@ class D2PCommand extends ContainerAwareCommand
         $d2pcp->process($input->getArgument('path'));
 
         // foreach($d2pcp->enumerate() as $path){
-            try{
+            try {
                 $id = '73401862';
                 $ent = $repo->find($id);
-                $map = $d2pcp->open($id % 10 .'/' . $id . '.dlm');
+                $map = $d2pcp->open($id % 10 .'/'.$id.'.dlm');
                 $this->processMap($map, $ent);
                 echo 'Réussi';
-            }
-            catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw $e;
             }
         // }
     }
-    protected function processMap($map, $ent) {
-        echo '[' . $ent->getX() . ',' .  $ent->getY() . "]\n";
-        echo (int)$ent->isOutdoor();
+    protected function processMap($map, $ent)
+    {
+        echo '['.$ent->getX().','.$ent->getY()."]\n";
+        echo (int) $ent->isOutdoor();
         $re = new FileReader($map);
         $up = new Unpacker($re);
         $header = $up->readByte();
-        if($header != 77){
+        if ($header != 77) {
             fseek($map, 0);
             $u = gzuncompress(stream_get_contents($map));
-            $map = fopen('php://memory', "rw+");
+            $map = fopen('php://memory', 'rw+');
             fwrite($map, $u);
             fseek($map, 0);
             unset($u);
             $re = new FileReader($map);
             $up = new Unpacker($re);
             $header = $up->readByte();
-            if($header != 77)
+            if ($header != 77) {
                 throw new \Exception('unknown file format');
+            }
         }
         $version = $up->readByte();
         $id = $up->readUnsignedInt();
-        if($version >= 7) {
+        if ($version >= 7) {
             $encrypted = $up->readBoolean();
             $encryptionVersion = $up->readByte();
             $dataLen = $up->readInt();
             $offset = $re->getState();
-            if($encrypted){
+            if ($encrypted) {
                 $key = [];
                 $encryptedData = $up->readBytes(0, $dataLen);
                 $re->setState($offset);

@@ -1,9 +1,9 @@
 <?php
+
 namespace Dof\Bundle\ItemBundle\Criteria;
 
 use Dof\Bundle\ItemBundle\Entity\CriterionTemplate;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Dof\Common\SnippetDescriptionTrait;
 
 class SimpleCriterion extends Criterion
@@ -17,68 +17,88 @@ class SimpleCriterion extends Criterion
     private $criterionTemplate;
     private $visible;
 
-    public function __construct($characteristic = null, $operator = null, array $params = array()){
+    public function __construct($characteristic = null, $operator = null, array $params = array())
+    {
         $this->characteristic = $characteristic;
         $this->operator = $operator;
         $this->params = $params;
         $this->visible = false;
     }
 
-    public function setCharacteristic($characteristic) {
+    public function setCharacteristic($characteristic)
+    {
         $this->characteristic = $characteristic;
+
         return $this;
     }
 
-    public function getCharacteristic() {
+    public function getCharacteristic()
+    {
         return $this->characteristic;
     }
 
-    public function setOperator($operator) {
+    public function setOperator($operator)
+    {
         $this->operator = $operator;
+
         return $this;
     }
 
-    public function getOperator() {
+    public function getOperator()
+    {
         return $this->operator;
     }
 
-    public function setParams(array $params) {
+    public function setParams(array $params)
+    {
         $this->params = $params;
+
         return $this;
     }
 
-    public function getParams() {
+    public function getParams()
+    {
         return $this->params;
     }
 
-    public function setCriterionTemplate(CriterionTemplate $criterionTemplate){
+    public function setCriterionTemplate(CriterionTemplate $criterionTemplate)
+    {
         $this->criterionTemplate = $criterionTemplate;
+
         return $this;
     }
 
-    public function getCriterionTemplate() {
+    public function getCriterionTemplate()
+    {
         return $this->criterionTemplate;
     }
 
-    public function setVisible($visible) {
+    public function setVisible($visible)
+    {
         $this->visible = $visible;
+
         return $this;
     }
 
-    public function getVisible() {
+    public function getVisible()
+    {
         return $this->visible;
     }
 
-    public function isStructureVisible() {
+    public function isStructureVisible()
+    {
         return $this->getVisible();
     }
 
-    public function setContainer(ContainerInterface $di) {
+    public function setContainer(ContainerInterface $di)
+    {
         $this->di = $di;
+
         return $this;
     }
 
-    public function getContainer() {
+    public function getContainer()
+    {
         return $this->di;
     }
 
@@ -88,25 +108,33 @@ class SimpleCriterion extends Criterion
         array_unshift($params, $this->operator);
         $translator = $this->di->get('translator');
         $desc = $this->criterionTemplate->expandDescription($params, $locale);
+
         return $desc;
     }
 
-    public function setParam1($param1) {
+    public function setParam1($param1)
+    {
         $this->params[0] = $param1;
+
         return $this;
     }
 
-    public function setParam2($param2) {
+    public function setParam2($param2)
+    {
         $this->params[1] = $param2;
+
         return $this;
     }
 
-    public function setParam3($param3) {
+    public function setParam3($param3)
+    {
         $this->params[2] = $param3;
+
         return $this;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getPlainTextDescription();
     }
 }

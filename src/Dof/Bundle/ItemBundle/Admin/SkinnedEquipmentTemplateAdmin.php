@@ -46,7 +46,7 @@ class SkinnedEquipmentTemplateAdmin extends Admin
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
-                )
+                ),
             ))
         ;
     }

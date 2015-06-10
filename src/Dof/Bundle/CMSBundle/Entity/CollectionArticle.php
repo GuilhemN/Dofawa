@@ -1,4 +1,5 @@
 <?php
+
 namespace Dof\Bundle\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -6,15 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
-* CollectionArticle
-*
-* @ORM\Entity(repositoryClass="Dof\Bundle\CMSBundle\Entity\CollectionArticleRepository")
-*/
+ * CollectionArticle.
+ *
+ * @ORM\Entity(repositoryClass="Dof\Bundle\CMSBundle\Entity\CollectionArticleRepository")
+ */
 class CollectionArticle extends Article
 {
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\CMSBundle\Entity\Article", mappedBy="parents")
-    */
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\CMSBundle\Entity\Article", mappedBy="parents")
+     */
     private $children;
 
     public function __construct()
@@ -24,11 +25,12 @@ class CollectionArticle extends Article
     }
 
     /**
-    * Add children
-    *
-    * @param Article $children
-    * @return CollectionArticle
-    */
+     * Add children.
+     *
+     * @param Article $children
+     *
+     * @return CollectionArticle
+     */
     public function addChild(Article $children)
     {
         $this->children[] = $children;
@@ -37,11 +39,12 @@ class CollectionArticle extends Article
     }
 
     /**
-    * Remove children
-    *
-    * @param Article $children
-    * @return CollectionArticle
-    */
+     * Remove children.
+     *
+     * @param Article $children
+     *
+     * @return CollectionArticle
+     */
     public function removeChild(Article $children)
     {
         $this->children->removeElement($children);
@@ -50,15 +53,21 @@ class CollectionArticle extends Article
     }
 
     /**
-    * Get children
-    *
-    * @return Collection
-    */
+     * Get children.
+     *
+     * @return Collection
+     */
     public function getChildren()
     {
         return $this->children;
     }
 
-    public function isCollection() { return true; }
-    public function getClass() { return 'collection'; }
+    public function isCollection()
+    {
+        return true;
+    }
+    public function getClass()
+    {
+        return 'collection';
+    }
 }

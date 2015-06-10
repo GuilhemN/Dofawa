@@ -4,17 +4,15 @@ namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * QuestCategory
+ * QuestCategory.
  *
  * @ORM\Table(name="dof_quest_categories")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\QuestCategoryRepository")
@@ -24,7 +22,7 @@ class QuestCategory implements IdentifiableInterface, SluggableInterface, Locali
     use SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -32,37 +30,39 @@ class QuestCategory implements IdentifiableInterface, SluggableInterface, Locali
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="order_", type="integer")
      */
     private $order;
 
     /**
-    * @ORM\OneToMany(targetEntity="Quest", mappedBy="category")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\OneToMany(targetEntity="Quest", mappedBy="category")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $quests;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->quests = new ArrayCollection();
     }
 
     /**
-     * Set id
+     * Set id.
      *
      * @return QuestCategory
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -70,9 +70,10 @@ class QuestCategory implements IdentifiableInterface, SluggableInterface, Locali
     }
 
     /**
-     * Set order
+     * Set order.
      *
-     * @param integer $order
+     * @param int $order
+     *
      * @return QuestCategory
      */
     public function setOrder($order)
@@ -83,22 +84,22 @@ class QuestCategory implements IdentifiableInterface, SluggableInterface, Locali
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
         return $this->order;
     }
 
-
     /**
-    * Add quests
-    *
-    * @param Quest $quests
-    * @return QuestCategory
-    */
+     * Add quests.
+     *
+     * @param Quest $quests
+     *
+     * @return QuestCategory
+     */
     public function addQuest(Quest $quests)
     {
         $this->quests[] = $quests;
@@ -107,11 +108,12 @@ class QuestCategory implements IdentifiableInterface, SluggableInterface, Locali
     }
 
     /**
-    * Remove quests
-    *
-    * @param Quest $quests
-    * @return QuestCategory
-    */
+     * Remove quests.
+     *
+     * @param Quest $quests
+     *
+     * @return QuestCategory
+     */
     public function removeQuest(Quest $quests)
     {
         $this->quests->removeElement($quests);
@@ -120,16 +122,17 @@ class QuestCategory implements IdentifiableInterface, SluggableInterface, Locali
     }
 
     /**
-    * Get quests
-    *
-    * @return Collection
-    */
+     * Get quests.
+     *
+     * @return Collection
+     */
     public function getQuests()
     {
         return $this->quests;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }

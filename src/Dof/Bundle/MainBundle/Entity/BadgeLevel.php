@@ -3,24 +3,17 @@
 namespace Dof\Bundle\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-
 //Traduction Titre/Description
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use XN\Metadata\FileTrait;
 use XN\Metadata\FileInterface;
 
-use Dof\Bundle\MainBundle\Entity\Badge;
-
 /**
- * BadgeLevel
+ * BadgeLevel.
  *
  * @ORM\Table("dof_badge_levels")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MainBundle\Entity\BadgeLevelRepository")
@@ -30,7 +23,7 @@ class BadgeLevel implements IdentifiableInterface, TimestampableInterface, FileI
     use TimestampableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -39,7 +32,7 @@ class BadgeLevel implements IdentifiableInterface, TimestampableInterface, FileI
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="minCount", type="integer")
      */
@@ -52,9 +45,9 @@ class BadgeLevel implements IdentifiableInterface, TimestampableInterface, FileI
     protected $badge;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -62,9 +55,10 @@ class BadgeLevel implements IdentifiableInterface, TimestampableInterface, FileI
     }
 
     /**
-     * Set minCount
+     * Set minCount.
      *
-     * @param integer $minCount
+     * @param int $minCount
+     *
      * @return BadgeLevel
      */
     public function setMinCount($minCount)
@@ -75,9 +69,9 @@ class BadgeLevel implements IdentifiableInterface, TimestampableInterface, FileI
     }
 
     /**
-     * Get minCount
+     * Get minCount.
      *
-     * @return integer
+     * @return int
      */
     public function getMinCount()
     {
@@ -85,9 +79,10 @@ class BadgeLevel implements IdentifiableInterface, TimestampableInterface, FileI
     }
 
     /**
-     * Set badge
+     * Set badge.
      *
      * @param Badge $badge
+     *
      * @return BadgeLevel
      */
     public function setBadge(Badge $badge)
@@ -98,7 +93,7 @@ class BadgeLevel implements IdentifiableInterface, TimestampableInterface, FileI
     }
 
     /**
-     * Get badge
+     * Get badge.
      *
      * @return Badge
      */

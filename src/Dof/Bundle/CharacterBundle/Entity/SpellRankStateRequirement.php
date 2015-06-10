@@ -3,11 +3,10 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 
 /**
- * SpellRankStateRequirement
+ * SpellRankStateRequirement.
  *
  * @ORM\Table(name="dof_spell_rank_state_requirements", uniqueConstraints={
  *     @ORM\UniqueConstraint(name="UQ_srsr_spellrank_state", columns={ "spellRank_id", "state_id" })
@@ -17,7 +16,7 @@ use XN\Persistence\IdentifiableInterface;
 class SpellRankStateRequirement implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -42,16 +41,16 @@ class SpellRankStateRequirement implements IdentifiableInterface
     private $state;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="requirement", type="boolean")
      */
     private $requirement;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -59,9 +58,10 @@ class SpellRankStateRequirement implements IdentifiableInterface
     }
 
     /**
-     * Set spellRank
+     * Set spellRank.
      *
      * @param SpellRank $spellRank
+     *
      * @return SpellRankStateRequirement
      */
     public function setSpellRank(SpellRank $spellRank)
@@ -72,7 +72,7 @@ class SpellRankStateRequirement implements IdentifiableInterface
     }
 
     /**
-     * Get spellRank
+     * Get spellRank.
      *
      * @return SpellRank
      */
@@ -82,9 +82,10 @@ class SpellRankStateRequirement implements IdentifiableInterface
     }
 
     /**
-     * Set state
+     * Set state.
      *
      * @param State $state
+     *
      * @return SpellRankStateRequirement
      */
     public function setState(State $state)
@@ -95,7 +96,7 @@ class SpellRankStateRequirement implements IdentifiableInterface
     }
 
     /**
-     * Get state
+     * Get state.
      *
      * @return State
      */
@@ -105,9 +106,10 @@ class SpellRankStateRequirement implements IdentifiableInterface
     }
 
     /**
-     * Set requirement
+     * Set requirement.
      *
-     * @param boolean $requirement
+     * @param bool $requirement
+     *
      * @return SpellRankStateRequirement
      */
     public function setRequirement($requirement)
@@ -118,9 +120,9 @@ class SpellRankStateRequirement implements IdentifiableInterface
     }
 
     /**
-     * Get requirement
+     * Get requirement.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRequirement()
     {

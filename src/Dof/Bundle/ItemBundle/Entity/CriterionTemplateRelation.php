@@ -3,11 +3,10 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 
 /**
- * CriterionTemplateRelation
+ * CriterionTemplateRelation.
  *
  * @ORM\Table(name="dof_criterion_template_relations")
  * @ORM\Entity(repositoryClass="Dof\Bundle\ItemBundle\Entity\CriterionTemplateRelationRepository")
@@ -15,7 +14,7 @@ use XN\Persistence\IdentifiableInterface;
 class CriterionTemplateRelation implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -24,11 +23,11 @@ class CriterionTemplateRelation implements IdentifiableInterface
     private $id;
 
     /**
-    * @var criterionTemplate
-    *
-    * @ORM\ManyToOne(targetEntity="CriterionTemplate", inversedBy="relations", fetch="EAGER")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var criterionTemplate
+     *
+     * @ORM\ManyToOne(targetEntity="CriterionTemplate", inversedBy="relations", fetch="EAGER")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $criterionTemplate;
 
     /**
@@ -53,16 +52,16 @@ class CriterionTemplateRelation implements IdentifiableInterface
     private $column2;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="column3", type="string", length=255, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="column3", type="string", length=255, nullable=true)
+     */
     private $column3;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -70,11 +69,12 @@ class CriterionTemplateRelation implements IdentifiableInterface
     }
 
     /**
-    * Set criterionTemplate
-    *
-    * @param CriterionTemplate $criterionTemplate
-    * @return CriterionTemplateRelation
-    */
+     * Set criterionTemplate.
+     *
+     * @param CriterionTemplate $criterionTemplate
+     *
+     * @return CriterionTemplateRelation
+     */
     public function setCriterionTemplate(CriterionTemplate $criterionTemplate)
     {
         $this->criterionTemplate = $criterionTemplate;
@@ -83,19 +83,20 @@ class CriterionTemplateRelation implements IdentifiableInterface
     }
 
     /**
-    * Get criterionTemplate
-    *
-    * @return CriterionTemplate
-    */
+     * Get criterionTemplate.
+     *
+     * @return CriterionTemplate
+     */
     public function getCriterionTemplate()
     {
         return $this->criterionTemplate;
     }
 
     /**
-     * Set targetEntity
+     * Set targetEntity.
      *
      * @param string $targetEntity
+     *
      * @return CriterionTemplateRelation
      */
     public function setTargetEntity($targetEntity)
@@ -106,7 +107,7 @@ class CriterionTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get targetEntity
+     * Get targetEntity.
      *
      * @return string
      */
@@ -116,9 +117,10 @@ class CriterionTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set column1
+     * Set column1.
      *
      * @param string $column1
+     *
      * @return CriterionTemplateRelation
      */
     public function setColumn1($column1)
@@ -129,7 +131,7 @@ class CriterionTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get column1
+     * Get column1.
      *
      * @return string
      */
@@ -139,9 +141,10 @@ class CriterionTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Set column2
+     * Set column2.
      *
      * @param string $column2
+     *
      * @return CriterionTemplateRelation
      */
     public function setColumn2($column2)
@@ -152,7 +155,7 @@ class CriterionTemplateRelation implements IdentifiableInterface
     }
 
     /**
-     * Get column2
+     * Get column2.
      *
      * @return string
      */
@@ -162,11 +165,12 @@ class CriterionTemplateRelation implements IdentifiableInterface
     }
 
     /**
-    * Set column3
-    *
-    * @param string $column3
-    * @return CriterionTemplateRelation
-    */
+     * Set column3.
+     *
+     * @param string $column3
+     *
+     * @return CriterionTemplateRelation
+     */
     public function setColumn3($column3)
     {
         $this->column3 = $column3;
@@ -175,10 +179,10 @@ class CriterionTemplateRelation implements IdentifiableInterface
     }
 
     /**
-    * Get column3
-    *
-    * @return string
-    */
+     * Get column3.
+     *
+     * @return string
+     */
     public function getColumn3()
     {
         return $this->column3;

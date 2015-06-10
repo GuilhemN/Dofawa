@@ -4,29 +4,26 @@ namespace Dof\Bundle\MapBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * SuperArea
+ * SuperArea.
  *
  * @ORM\Table(name="dof_map_superareas")
  * @ORM\Entity(repositoryClass="SuperAreaRepository")
  */
-class SuperArea implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface 
+class SuperArea implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -48,9 +45,10 @@ class SuperArea implements IdentifiableInterface, TimestampableInterface, Slugga
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return SuperArea
      */
     public function setId($id)
@@ -61,9 +59,9 @@ class SuperArea implements IdentifiableInterface, TimestampableInterface, Slugga
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -71,9 +69,10 @@ class SuperArea implements IdentifiableInterface, TimestampableInterface, Slugga
     }
 
     /**
-     * Add areas
+     * Add areas.
      *
      * @param Area $areas
+     *
      * @return SuperArea
      */
     public function addArea(Area $areas)
@@ -84,9 +83,10 @@ class SuperArea implements IdentifiableInterface, TimestampableInterface, Slugga
     }
 
     /**
-     * Remove areas
+     * Remove areas.
      *
      * @param Area $areas
+     *
      * @return SuperArea
      */
     public function removeArea(Area $areas)
@@ -97,7 +97,7 @@ class SuperArea implements IdentifiableInterface, TimestampableInterface, Slugga
     }
 
     /**
-     * Get areas
+     * Get areas.
      *
      * @return Collection
      */

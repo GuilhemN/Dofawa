@@ -3,7 +3,7 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 /**
- * MountTemplateRepository
+ * MountTemplateRepository.
  */
 class MountTemplateRepository extends AnimalTemplateRepository
 {

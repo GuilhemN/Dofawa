@@ -4,18 +4,14 @@ namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
-
 use Dof\Bundle\CharacterBundle\EffectInterface;
 use Dof\Bundle\CharacterBundle\EffectTrait;
 
-use Dof\Common\GameTemplateString;
-
 /**
- * ItemTemplateEffect
+ * ItemTemplateEffect.
  *
  * @ORM\Table(name="dof_item_template_effects")
  * @ORM\Entity(repositoryClass="ItemTemplateEffectRepository")
@@ -23,7 +19,7 @@ use Dof\Common\GameTemplateString;
 class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, EffectInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -42,16 +38,16 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
     private $item;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="order_", type="integer")
      */
     private $order;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -59,9 +55,10 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
     }
 
     /**
-     * Set item
+     * Set item.
      *
      * @param ItemTemplate $item
+     *
      * @return ItemTemplateEffect
      */
     public function setItem(ItemTemplate $item)
@@ -72,7 +69,7 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
     }
 
     /**
-     * Get item
+     * Get item.
      *
      * @return ItemTemplate
      */
@@ -82,9 +79,10 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
     }
 
     /**
-     * Set order
+     * Set order.
      *
-     * @param integer $order
+     * @param int $order
+     *
      * @return ItemTemplateEffect
      */
     public function setOrder($order)
@@ -95,9 +93,9 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
@@ -110,11 +108,11 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
             'effect' => $this->effectTemplate->getId(),
             'param1' => $this->param1,
             'param2' => $this->param2,
-            'param3' => $this->param3
+            'param3' => $this->param3,
         ] + ($full ? [
             'item' => $this->item->exportData(false, $locale),
-            'order' => $this->order
-        ] : [ ]);
+            'order' => $this->order,
+        ] : []);
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
@@ -126,8 +124,9 @@ class ItemTemplateEffect implements IdentifiableInterface, ExportableInterface, 
         $desc = $this->getEffectTemplate()->expandDescription([
             '1' => $this->getParam1(),
             '2' => $this->getParam2(),
-            '3' => $this->getParam3()
+            '3' => $this->getParam3(),
         ], $locale);
+
         return $desc;
     }
 

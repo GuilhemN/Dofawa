@@ -3,18 +3,15 @@
 namespace Dof\Bundle\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
-
-use XN\Annotations as Utils;
 use XN\Metadata\SimpleLazyFieldTrait;
 
 /**
- * Notification
+ * Notification.
  *
  * @ORM\Table(name="dof_notifications")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MainBundle\Entity\NotificationRepository")
@@ -24,7 +21,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     use TimestampableTrait, OwnableTrait, SimpleLazyFieldTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -40,7 +37,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     private $type;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="is_read", type="boolean")
      */
@@ -62,14 +59,15 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
 
     private $valid;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->valid = true;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -77,9 +75,10 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param string $type
+     *
      * @return Notification
      */
     public function setType($type)
@@ -90,7 +89,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return string
      */
@@ -100,9 +99,10 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Set isRead
+     * Set isRead.
      *
-     * @param boolean $isRead
+     * @param bool $isRead
+     *
      * @return Notification
      */
     public function setIsRead($isRead)
@@ -113,23 +113,25 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Get isRead
+     * Get isRead.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsRead()
     {
         return $this->isRead;
     }
 
-    public function isRead(){
+    public function isRead()
+    {
         return $this->isRead;
     }
 
     /**
-     * Set message
+     * Set message.
      *
      * @param string $message
+     *
      * @return Notification
      */
     public function setMessage($message)
@@ -140,7 +142,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Get message
+     * Get message.
      *
      * @return string
      */
@@ -150,9 +152,10 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Set path
+     * Set path.
      *
      * @param string $path
+     *
      * @return Notification
      */
     public function setPath($path)
@@ -163,7 +166,7 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
     }
 
     /**
-     * Get message
+     * Get message.
      *
      * @return string
      */
@@ -172,16 +175,20 @@ class Notification implements IdentifiableInterface, TimestampableInterface, Own
         return $this->path;
     }
 
-    public function setValid($valid){
+    public function setValid($valid)
+    {
         $this->valid = $valid;
+
         return $this;
     }
 
-    public function getValid(){
+    public function getValid()
+    {
         return $this->isValid();
     }
 
-    public function isValid(){
+    public function isValid()
+    {
         return ($this->getEntity() === null && $this->getClass() === null)
             or ($this->getEntity() !== null && $this->getClass() !== null);
     }

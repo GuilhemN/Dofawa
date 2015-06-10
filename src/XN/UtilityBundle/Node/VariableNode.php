@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\UtilityBundle\Node;
 
 class VariableNode  extends \Twig_Node

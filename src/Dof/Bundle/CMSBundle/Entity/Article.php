@@ -5,7 +5,6 @@ namespace Dof\Bundle\CMSBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -13,14 +12,13 @@ use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
-
 //Traduction Titre/Description
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 
 /**
- * Article
+ * Article.
  *
  * @ORM\Table(name="dof_articles")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CMSBundle\Entity\ArticleRepository")
@@ -31,7 +29,7 @@ use XN\L10n\LocalizedDescriptionTrait;
 class Article implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, LocalizedNameInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -49,7 +47,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     protected $keys;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="validation", type="boolean")
      */
@@ -63,8 +61,8 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     protected $category;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\CMSBundle\Entity\CollectionArticle", inversedBy="children")
-    */
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\CMSBundle\Entity\CollectionArticle", inversedBy="children")
+     */
     protected $parents;
 
     public function __construct()
@@ -73,9 +71,9 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -83,9 +81,10 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set keys
+     * Set keys.
      *
      * @param string $keys
+     *
      * @return Article
      */
     public function setKeys($keys)
@@ -96,7 +95,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get keys
+     * Get keys.
      *
      * @return string
      */
@@ -106,9 +105,10 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set published
+     * Set published.
      *
-     * @param integer $published
+     * @param int $published
+     *
      * @return Article
      */
     public function setPublished($published)
@@ -119,9 +119,9 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get published
+     * Get published.
      *
-     * @return integer
+     * @return int
      */
     public function getPublished()
     {
@@ -129,9 +129,10 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set category
+     * Set category.
      *
      * @param string $category
+     *
      * @return Article
      */
     public function setCategory($category)
@@ -142,7 +143,7 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get category
+     * Get category.
      *
      * @return string
      */
@@ -152,11 +153,12 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Add parents
-    *
-    * @param CollectionArticle $parents
-    * @return Article
-    */
+     * Add parents.
+     *
+     * @param CollectionArticle $parents
+     *
+     * @return Article
+     */
     public function addParent(CollectionArticle $parents)
     {
         $this->parents[] = $parents;
@@ -165,11 +167,12 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Remove parents
-    *
-    * @param CollectionArticle $parents
-    * @return Article
-    */
+     * Remove parents.
+     *
+     * @param CollectionArticle $parents
+     *
+     * @return Article
+     */
     public function removeParent(CollectionArticle $parents)
     {
         $this->parents->removeElement($parents);
@@ -178,10 +181,10 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get parents
-    *
-    * @return Collection
-    */
+     * Get parents.
+     *
+     * @return Collection
+     */
     public function getParents()
     {
         return $this->parents;
@@ -192,10 +195,25 @@ class Article implements IdentifiableInterface, TimestampableInterface, Sluggabl
         return $this->nameFr;
     }
 
-    public function isCollection() { return false; }
-    public function isQuestArticle() { return false; }
-    public function isDungeonArticle() { return false; }
-    public function isTutorialArticle() { return false; }
+    public function isCollection()
+    {
+        return false;
+    }
+    public function isQuestArticle()
+    {
+        return false;
+    }
+    public function isDungeonArticle()
+    {
+        return false;
+    }
+    public function isTutorialArticle()
+    {
+        return false;
+    }
 
-    public function getClass() { return 'article'; }
+    public function getClass()
+    {
+        return 'article';
+    }
 }

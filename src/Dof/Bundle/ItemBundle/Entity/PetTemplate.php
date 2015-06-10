@@ -5,57 +5,57 @@ namespace Dof\Bundle\ItemBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PetTemplate
+ * PetTemplate.
  *
  * @ORM\Entity(repositoryClass="PetTemplateRepository")
  */
 class PetTemplate extends AnimalTemplate
 {
-	/**
-	 * @var Collection
-	 *
-	 * @ORM\ManyToMany(targetEntity="ItemType")
+    /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity="ItemType")
      * @ORM\JoinTable(name="dof_pet_food_types")
-	 */
-	private $foodTypes;
-
-	/**
-	 * @var Collection
-	 *
-	 * @ORM\ManyToMany(targetEntity="ItemTemplate")
-     * @ORM\JoinTable(name="dof_pet_feed_items")
-	 */
-	private $foodItems;
+     */
+    private $foodTypes;
 
     /**
-     * @var integer
+     * @var Collection
      *
-	 * @ORM\Column(name="min_feed_interval", type="integer")
+     * @ORM\ManyToMany(targetEntity="ItemTemplate")
+     * @ORM\JoinTable(name="dof_pet_feed_items")
+     */
+    private $foodItems;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="min_feed_interval", type="integer")
      */
     private $minFeedInterval;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="max_feed_interval", type="integer")
      */
     private $maxFeedInterval;
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->foodTypes = new ArrayCollection();
-		$this->foodItems = new ArrayCollection();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->foodTypes = new ArrayCollection();
+        $this->foodItems = new ArrayCollection();
+    }
 
     /**
-     * Add foodTypes
+     * Add foodTypes.
      *
      * @param ItemType $foodTypes
+     *
      * @return PetTemplate
      */
     public function addFoodType(ItemType $foodTypes)
@@ -66,9 +66,10 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Remove foodTypes
+     * Remove foodTypes.
      *
      * @param ItemType $foodTypes
+     *
      * @return PetTemplate
      */
     public function removeFoodType(ItemType $foodTypes)
@@ -79,7 +80,7 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Get foodTypes
+     * Get foodTypes.
      *
      * @return Collection
      */
@@ -89,9 +90,10 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Add foodItems
+     * Add foodItems.
      *
      * @param ItemTemplate $foodItems
+     *
      * @return PetTemplate
      */
     public function addFoodItem(ItemTemplate $foodItems)
@@ -102,9 +104,10 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Remove foodItems
+     * Remove foodItems.
      *
      * @param ItemTemplate $foodItems
+     *
      * @return PetTemplate
      */
     public function removeFoodItem(ItemTemplate $foodItems)
@@ -115,7 +118,7 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Get foodItems
+     * Get foodItems.
      *
      * @return Collection
      */
@@ -125,9 +128,10 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Set minFeedInterval
+     * Set minFeedInterval.
      *
-     * @param integer $minFeedInterval
+     * @param int $minFeedInterval
+     *
      * @return PetTemplate
      */
     public function setMinFeedInterval($minFeedInterval)
@@ -138,9 +142,9 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Get minFeedInterval
+     * Get minFeedInterval.
      *
-     * @return integer
+     * @return int
      */
     public function getMinFeedInterval()
     {
@@ -148,9 +152,10 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Set maxFeedInterval
+     * Set maxFeedInterval.
      *
-     * @param integer $maxFeedInterval
+     * @param int $maxFeedInterval
+     *
      * @return PetTemplate
      */
     public function setMaxFeedInterval($maxFeedInterval)
@@ -161,19 +166,23 @@ class PetTemplate extends AnimalTemplate
     }
 
     /**
-     * Get maxFeedInterval
+     * Get maxFeedInterval.
      *
-     * @return integer
+     * @return int
      */
     public function getMaxFeedInterval()
     {
         return $this->maxFeedInterval;
     }
 
-	public function isPet() { return true; }
-	public function getClassId() { return 'pet'; }
-
-
+    public function isPet()
+    {
+        return true;
+    }
+    public function getClassId()
+    {
+        return 'pet';
+    }
 
     public function exportData($full = true, $locale = 'fr')
     {
@@ -181,8 +190,10 @@ class PetTemplate extends AnimalTemplate
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
-        if (parent::importField($key, $value, $dm, $locale))
+        if (parent::importField($key, $value, $dm, $locale)) {
             return true;
+        }
+
         return false;
     }
 }

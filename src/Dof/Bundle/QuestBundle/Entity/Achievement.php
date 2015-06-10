@@ -3,20 +3,18 @@
 namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * Achievement
+ * Achievement.
  *
  * @ORM\Table(name="dof_achievements")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\AchievementRepository")
@@ -26,7 +24,7 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -34,36 +32,36 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     private $id;
 
     /**
-    * @var AchievementCategory
-    *
-    * @ORM\ManyToOne(targetEntity="AchievementCategory", inversedBy="achievements")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var AchievementCategory
+     *
+     * @ORM\ManyToOne(targetEntity="AchievementCategory", inversedBy="achievements")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $category;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="order_", type="integer")
      */
     private $order;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="iconId", type="integer")
      */
     private $iconId;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="points", type="integer")
      */
     private $points;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="level", type="integer")
      */
@@ -84,20 +82,21 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     private $xpRatio;
 
     /**
-    * set id
-    *
-    * @return Achievement
-    */
+     * set id.
+     *
+     * @return Achievement
+     */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -105,11 +104,12 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-    * Set category
-    *
-    * @param AchievementCategory $category
-    * @return Achievement
-    */
+     * Set category.
+     *
+     * @param AchievementCategory $category
+     *
+     * @return Achievement
+     */
     public function setCategory(AchievementCategory $category)
     {
         $this->category = $category;
@@ -118,21 +118,22 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-    * Get category
-    *
-    * @return AchievementCategory
-    */
+     * Get category.
+     *
+     * @return AchievementCategory
+     */
     public function getCategory()
     {
         return $this->category;
     }
 
     /**
-    * Set order
-    *
-    * @param integer $order
-    * @return Achievement
-    */
+     * Set order.
+     *
+     * @param int $order
+     *
+     * @return Achievement
+     */
     public function setOrder($order)
     {
         $this->order = $order;
@@ -141,19 +142,20 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-    * Get order
-    *
-    * @return integer
-    */
+     * Get order.
+     *
+     * @return int
+     */
     public function getOrder()
     {
         return $this->order;
     }
 
     /**
-     * Set iconId
+     * Set iconId.
      *
-     * @param integer $iconId
+     * @param int $iconId
+     *
      * @return Achievement
      */
     public function setIconId($iconId)
@@ -164,9 +166,9 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-     * Get iconId
+     * Get iconId.
      *
-     * @return integer
+     * @return int
      */
     public function getIconId()
     {
@@ -174,9 +176,10 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-     * Set points
+     * Set points.
      *
-     * @param integer $points
+     * @param int $points
+     *
      * @return Achievement
      */
     public function setPoints($points)
@@ -187,9 +190,9 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-     * Get points
+     * Get points.
      *
-     * @return integer
+     * @return int
      */
     public function getPoints()
     {
@@ -197,9 +200,10 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-     * Set level
+     * Set level.
      *
-     * @param integer $level
+     * @param int $level
+     *
      * @return Achievement
      */
     public function setLevel($level)
@@ -210,9 +214,9 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-     * Get level
+     * Get level.
      *
-     * @return integer
+     * @return int
      */
     public function getLevel()
     {
@@ -220,9 +224,10 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-     * Set kamasRatio
+     * Set kamasRatio.
      *
      * @param float $kamasRatio
+     *
      * @return Achievement
      */
     public function setKamasRatio($kamasRatio)
@@ -233,7 +238,7 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-     * Get kamasRatio
+     * Get kamasRatio.
      *
      * @return float
      */
@@ -243,9 +248,10 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-     * Set xpRatio
+     * Set xpRatio.
      *
      * @param float $xpRatio
+     *
      * @return Achievement
      */
     public function setXpRatio($xpRatio)
@@ -256,7 +262,7 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-     * Get xpRatio
+     * Get xpRatio.
      *
      * @return float
      */
@@ -265,7 +271,8 @@ class Achievement implements IdentifiableInterface, TimestampableInterface, Slug
         return $this->xpRatio;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }

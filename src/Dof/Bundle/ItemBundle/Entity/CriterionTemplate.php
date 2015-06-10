@@ -2,21 +2,16 @@
 
 namespace Dof\Bundle\ItemBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-
 use XN\L10n\LocalizedDescriptionTrait;
-
 use Dof\Common\GameTemplateString;
 
 /**
- * Criterion
+ * Criterion.
  *
  * @ORM\Table("dof_criterion_templates", indexes={ @ORM\Index(name="IX_criterion_unique", columns={ "characteristic", "operator", "value" }) })
  * @ORM\Entity(repositoryClass="Dof\Bundle\ItemBundle\Entity\CriterionTemplateRepository")
@@ -26,7 +21,7 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     use TimestampableTrait, LocalizedDescriptionTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -49,31 +44,30 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     private $operator;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="value", type="string", length=30, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="value", type="string", length=30, nullable=true)
+     */
     private $value;
 
     /**
-    * @var Collection
-    *
-    * @ORM\OneToMany(targetEntity="CriterionTemplateRelation", mappedBy="criterionTemplate", fetch="EAGER")
-    */
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="CriterionTemplateRelation", mappedBy="criterionTemplate", fetch="EAGER")
+     */
     private $relations;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="visible", type="boolean")
-    */
+     * @var string
+     *
+     * @ORM\Column(name="visible", type="boolean")
+     */
     private $visible;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -81,9 +75,10 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set characteristic
+     * Set characteristic.
      *
      * @param string $characteristic
+     *
      * @return CriterionTemplate
      */
     public function setCharacteristic($characteristic)
@@ -94,7 +89,7 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get characteristic
+     * Get characteristic.
      *
      * @return string
      */
@@ -104,9 +99,10 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Set operator
+     * Set operator.
      *
      * @param string $operator
+     *
      * @return CriterionTemplate
      */
     public function setOperator($operator)
@@ -117,7 +113,7 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-     * Get operator
+     * Get operator.
      *
      * @return string
      */
@@ -127,11 +123,12 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Set value
-    *
-    * @param string $value
-    * @return CriterionTemplate
-    */
+     * Set value.
+     *
+     * @param string $value
+     *
+     * @return CriterionTemplate
+     */
     public function setValue($value)
     {
         $this->value = $value;
@@ -140,21 +137,22 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get value
-    *
-    * @return string
-    */
+     * Get value.
+     *
+     * @return string
+     */
     public function getValue()
     {
         return $this->value;
     }
 
     /**
-    * Add relations
-    *
-    * @param CriterionTemplateRelation $relations
-    * @return CriterionTemplate
-    */
+     * Add relations.
+     *
+     * @param CriterionTemplateRelation $relations
+     *
+     * @return CriterionTemplate
+     */
     public function addRelation(CriterionTemplateRelation $relations)
     {
         $this->relations[] = $relations;
@@ -163,11 +161,12 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Remove relations
-    *
-    * @param CriterionTemplateRelation $relations
-    * @return CriterionTemplate
-    */
+     * Remove relations.
+     *
+     * @param CriterionTemplateRelation $relations
+     *
+     * @return CriterionTemplate
+     */
     public function removeRelation(CriterionTemplateRelation $relations)
     {
         $this->relations->removeElement($relations);
@@ -176,20 +175,21 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get relations
-    *
-    * @return Collection
-    */
+     * Get relations.
+     *
+     * @return Collection
+     */
     public function getRelations()
     {
         return $this->relations;
     }
     /**
-    * Set visible
-    *
-    * @param boolean $visible
-    * @return CriterionTemplate
-    */
+     * Set visible.
+     *
+     * @param bool $visible
+     *
+     * @return CriterionTemplate
+     */
     public function setVisible($visible)
     {
         $this->visible = $visible;
@@ -198,20 +198,20 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     }
 
     /**
-    * Get visible
-    *
-    * @return boolean
-    */
+     * Get visible.
+     *
+     * @return bool
+     */
     public function getVisible()
     {
         return $this->visible;
     }
 
     /**
-    * Get visible
-    *
-    * @return boolean
-    */
+     * Get visible.
+     *
+     * @return bool
+     */
     public function isVisible()
     {
         return $this->visible;
@@ -221,14 +221,16 @@ class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
     {
         $description = $this->getDescription($locale);
         $tpl = !empty($description) ? $description : $this->getDescription('fr');
-        if ($tpl === null)
-            return [ ];
+        if ($tpl === null) {
+            return [];
+        }
         $context = $context + [
             0 => null,
             1 => null,
             2 => null,
-            3 => null
+            3 => null,
         ];
+
         return GameTemplateString::expand($tpl, $context);
     }
 }

@@ -3,13 +3,11 @@
 namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
-
 use Dof\Bundle\MapBundle\Entity\MapPosition;
 
 /**
- * QuestObjective
+ * QuestObjective.
  *
  * @ORM\Table(name="dof_quest_step_objectives")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\QuestObjectiveRepository")
@@ -17,7 +15,7 @@ use Dof\Bundle\MapBundle\Entity\MapPosition;
 class QuestObjective implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -25,99 +23,102 @@ class QuestObjective implements IdentifiableInterface
     private $id;
 
     /**
-    * @var QuestObjectiveTemplate
-    *
-    * @ORM\ManyToOne(targetEntity="QuestObjectiveTemplate")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var QuestObjectiveTemplate
+     *
+     * @ORM\ManyToOne(targetEntity="QuestObjectiveTemplate")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $objectiveTemplate;
 
     /**
-    * @var MapPosition
-    *
-    * @ORM\ManyToOne(targetEntity="Dof\Bundle\MapBundle\Entity\MapPosition")
-    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-    */
+     * @var MapPosition
+     *
+     * @ORM\ManyToOne(targetEntity="Dof\Bundle\MapBundle\Entity\MapPosition")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
     private $map;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="x", type="integer", nullable=true)
      */
     private $x;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="y", type="integer", nullable=true)
      */
     private $y;
 
     /**
-    * @var QuestStep
-    *
-    * @ORM\ManyToOne(targetEntity="QuestStep", inversedBy="objectives")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var QuestStep
+     *
+     * @ORM\ManyToOne(targetEntity="QuestStep", inversedBy="objectives")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $step;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="param1", type="integer", nullable=true)
-    */
+     * @var int
+     *
+     * @ORM\Column(name="param1", type="integer", nullable=true)
+     */
     private $param1;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="param2", type="integer", nullable=true)
-    */
+     * @var int
+     *
+     * @ORM\Column(name="param2", type="integer", nullable=true)
+     */
     private $param2;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="param3", type="integer", nullable=true)
-    */
+     * @var int
+     *
+     * @ORM\Column(name="param3", type="integer", nullable=true)
+     */
     private $param3;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="param4", type="integer", nullable=true)
-    */
+     * @var int
+     *
+     * @ORM\Column(name="param4", type="integer", nullable=true)
+     */
     private $param4;
 
     /**
-    * Set id
-    *
-    * @param integer $id
-    * @return QuestObjective
-    */
+     * Set id.
+     *
+     * @param int $id
+     *
+     * @return QuestObjective
+     */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-    * Get id
-    *
-    * @return integer
-    */
+     * Get id.
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-    * Set objectiveTemplate
-    *
-    * @param QuestObjectiveTemplate $objectiveTemplate
-    * @return QuestObjective
-    */
+     * Set objectiveTemplate.
+     *
+     * @param QuestObjectiveTemplate $objectiveTemplate
+     *
+     * @return QuestObjective
+     */
     public function setObjectiveTemplate(QuestObjectiveTemplate $objectiveTemplate)
     {
         $this->objectiveTemplate = $objectiveTemplate;
@@ -126,21 +127,22 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-    * Get objectiveTemplate
-    *
-    * @return QuestObjectiveTemplate
-    */
+     * Get objectiveTemplate.
+     *
+     * @return QuestObjectiveTemplate
+     */
     public function getObjectiveTemplate()
     {
         return $this->objectiveTemplate;
     }
 
     /**
-    * Set map
-    *
-    * @param MapPosition $map
-    * @return QuestObjective
-    */
+     * Set map.
+     *
+     * @param MapPosition $map
+     *
+     * @return QuestObjective
+     */
     public function setMap(MapPosition $map = null)
     {
         $this->map = $map;
@@ -149,19 +151,20 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-    * Get map
-    *
-    * @return MapPosition
-    */
+     * Get map.
+     *
+     * @return MapPosition
+     */
     public function getMap()
     {
         return $this->map;
     }
 
     /**
-     * Set x
+     * Set x.
      *
-     * @param integer $x
+     * @param int $x
+     *
      * @return QuestObjective
      */
     public function setX($x)
@@ -172,9 +175,9 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-     * Get x
+     * Get x.
      *
-     * @return integer
+     * @return int
      */
     public function getX()
     {
@@ -182,9 +185,10 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-     * Set y
+     * Set y.
      *
-     * @param integer $y
+     * @param int $y
+     *
      * @return QuestObjective
      */
     public function setY($y)
@@ -195,9 +199,9 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-     * Get y
+     * Get y.
      *
-     * @return integer
+     * @return int
      */
     public function getY()
     {
@@ -205,11 +209,12 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-    * Set step
-    *
-    * @param QuestStep $step
-    * @return QuestObjective
-    */
+     * Set step.
+     *
+     * @param QuestStep $step
+     *
+     * @return QuestObjective
+     */
     public function setStep(QuestStep $step)
     {
         $this->step = $step;
@@ -218,21 +223,22 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-    * Get step
-    *
-    * @return QuestStep
-    */
+     * Get step.
+     *
+     * @return QuestStep
+     */
     public function getStep()
     {
         return $this->step;
     }
 
     /**
-    * Set param1
-    *
-    * @param integer $param1
-    * @return QuestObjective
-    */
+     * Set param1.
+     *
+     * @param int $param1
+     *
+     * @return QuestObjective
+     */
     public function setParam1($param1)
     {
         $this->param1 = $param1;
@@ -241,21 +247,22 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-    * Get param1
-    *
-    * @return integer
-    */
+     * Get param1.
+     *
+     * @return int
+     */
     public function getParam1()
     {
         return $this->param1;
     }
 
     /**
-    * Set param2
-    *
-    * @param integer $param2
-    * @return QuestObjective
-    */
+     * Set param2.
+     *
+     * @param int $param2
+     *
+     * @return QuestObjective
+     */
     public function setParam2($param2)
     {
         $this->param2 = $param2;
@@ -264,21 +271,22 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-    * Get param2
-    *
-    * @return integer
-    */
+     * Get param2.
+     *
+     * @return int
+     */
     public function getParam2()
     {
         return $this->param2;
     }
 
     /**
-    * Set param3
-    *
-    * @param integer $param3
-    * @return QuestObjective
-    */
+     * Set param3.
+     *
+     * @param int $param3
+     *
+     * @return QuestObjective
+     */
     public function setParam3($param3)
     {
         $this->param3 = $param3;
@@ -287,21 +295,22 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-    * Get param3
-    *
-    * @return integer
-    */
+     * Get param3.
+     *
+     * @return int
+     */
     public function getParam3()
     {
         return $this->param3;
     }
 
     /**
-    * Set param4
-    *
-    * @param integer $param4
-    * @return QuestObjective
-    */
+     * Set param4.
+     *
+     * @param int $param4
+     *
+     * @return QuestObjective
+     */
     public function setParam4($param4)
     {
         $this->param4 = $param4;
@@ -310,21 +319,24 @@ class QuestObjective implements IdentifiableInterface
     }
 
     /**
-    * Get param4
-    *
-    * @return integer
-    */
+     * Get param4.
+     *
+     * @return int
+     */
     public function getParam4()
     {
         return $this->param4;
     }
 
-    public function setParam($param, $id = 1) {
-        call_user_func([$this, 'setParam' . $id], $param);
+    public function setParam($param, $id = 1)
+    {
+        call_user_func([$this, 'setParam'.$id], $param);
+
         return $this;
     }
-    
-    public function getParams() {
+
+    public function getParams()
+    {
         return [
             1 => $this->param1,
             2 => $this->param2,
@@ -333,11 +345,13 @@ class QuestObjective implements IdentifiableInterface
         ];
     }
 
-    public function __toStringByLocale($locales){
+    public function __toStringByLocale($locales)
+    {
         return $this->step->getQuest()->getName($locales);
     }
 
-    public function __toString(){
-        return $this->step->getQuest()->getName() . ' [' . $this->step->getName() . ']';
+    public function __toString()
+    {
+        return $this->step->getQuest()->getName().' ['.$this->step->getName().']';
     }
 }

@@ -10,28 +10,30 @@ class LazyVariablesCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('variables'))
+        if (!$container->hasDefinition('variables')) {
             return;
+        }
 
         $definition = $container->getDefinition('variables');
 
         $taggedServices = $container->findTaggedServiceIds('variable');
         foreach ($taggedServices as $id => $tagAttributes) {
             foreach ($tagAttributes as $attributes) {
-				if (isset($attributes['getter']))
-					$definition->addMethodCall('setLazy', [
-						$attributes['key'],
-						new Reference('service_container'),
-						$id,
-						$attributes['getter']
-					]);
-				else
-					$definition->addMethodCall('setLazy', [
-						$attributes['key'],
-						new Reference('service_container'),
-						$id
-					]);
-			}
-		}
+                if (isset($attributes['getter'])) {
+                    $definition->addMethodCall('setLazy', [
+                        $attributes['key'],
+                        new Reference('service_container'),
+                        $id,
+                        $attributes['getter'],
+                    ]);
+                } else {
+                    $definition->addMethodCall('setLazy', [
+                        $attributes['key'],
+                        new Reference('service_container'),
+                        $id,
+                    ]);
+                }
+            }
+        }
     }
 }

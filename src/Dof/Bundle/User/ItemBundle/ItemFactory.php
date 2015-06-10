@@ -1,34 +1,37 @@
 <?php
+
 namespace Dof\Bundle\User\ItemBundle;
 
 use Symfony\Component\Security\Core\SecurityContext;
-
 use Dof\Bundle\UserBundle\Entity\User;
 use Dof\Bundle\ItemBundle\Entity\EquipmentTemplate;
 use Dof\Bundle\User\ItemBundle\Entity as Ent;
-
 use Dof\Bundle\ItemBundle\ItemSlot;
 
-class ItemFactory {
-
+class ItemFactory
+{
     /**
-    * @var Symfony\Component\Security\Core\SecurityContext
-    */
+     * @var Symfony\Component\Security\Core\SecurityContext
+     */
     private $sc;
 
-    public function __construct(SecurityContext $sc) {
+    public function __construct(SecurityContext $sc)
+    {
         $this->sc = $sc;
     }
 
-    public function createItem(EquipmentTemplate $item, $percent = null, User $user = null){
-        if($user === null)
+    public function createItem(EquipmentTemplate $item, $percent = null, User $user = null)
+    {
+        if ($user === null) {
             $user = $this->sc->getToken()->getUser();
-        if(!($user instanceOf User))
+        }
+        if (!($user instanceof User)) {
             return;
-        if($percent === null)
+        }
+        if ($percent === null) {
             $percent = 85;
+        }
         $percent = intval($percent);
-
 
         switch ($item->getType()->getSlot()) {
             case ItemSlot::WEAPON:
@@ -40,19 +43,21 @@ class ItemFactory {
                 $ent = new Ent\SkinnedItem();
                 break;
             case ItemSlot::PET:
-                if($item->isMount())
+                if ($item->isMount()) {
                     $ent = new Ent\Mount();
-                else
+                } else {
                     $ent = new Ent\Pet();
+                }
                 break;
             case ItemSlot::MOUNT:
                 $ent = new Ent\Mount();
                 break;
             default:
-                if($item->isMount())
+                if ($item->isMount()) {
                     $ent = new Ent\Mount();
-                else
+                } else {
                     $ent = new Ent\Item();
+                }
                 break;
         }
 
@@ -60,9 +65,9 @@ class ItemFactory {
         $ent->setItemTemplate($item);
 
         $caracts = $item->getCharacteristics();
-        foreach($caracts as $k => &$caract){
-            $min = $item->{'getMin' . ucfirst($k)}();
-            $max = $item->{'getMax' . ucfirst($k)}();
+        foreach ($caracts as $k => &$caract) {
+            $min = $item->{'getMin'.ucfirst($k)}();
+            $max = $item->{'getMax'.ucfirst($k)}();
             $caract = round($min + ($max - $min) * $percent / 100);
         }
         $ent->setCharacteristics($caracts, true);

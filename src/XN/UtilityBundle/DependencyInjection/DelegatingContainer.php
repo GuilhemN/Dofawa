@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\UtilityBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Container;
@@ -8,19 +9,20 @@ class DelegatingContainer extends Container
 {
     public function has($id)
     {
-		if (parent::has($id))
-			return true;
+        if (parent::has($id)) {
+            return true;
+        }
 
-		if (false !== ($pos = strpos($id, '\\'))) {
-			// Proceed with a delegate container
-			if ($this->has($delegateId = substr($id, 0, $pos))
-				&& (!method_exists($delegate = $this->get($delegateId), 'has')
-					|| $delegate->has(substr($id, $pos + 1)))) {
-				return true;
-			}
-		}
+        if (false !== ($pos = strpos($id, '\\'))) {
+            // Proceed with a delegate container
+            if ($this->has($delegateId = substr($id, 0, $pos))
+                && (!method_exists($delegate = $this->get($delegateId), 'has')
+                    || $delegate->has(substr($id, $pos + 1)))) {
+                return true;
+            }
+        }
 
-		return false;
+        return false;
     }
 
     public function get($id, $invalidBehavior = self::EXCEPTION_ON_INVALID_REFERENCE)
@@ -53,9 +55,9 @@ class DelegatingContainer extends Container
             $method = $this->methodMap[$id];
         } elseif (method_exists($this, $method = 'get'.strtr($id, array('_' => '', '.' => '_', '\\' => '_')).'Service')) {
             // $method is set to the right value, proceed
-		} elseif (false !== ($pos = strpos($id, '\\'))) {
-			// Proceed with a delegate container
-			return $this->get(substr($id, 0, $pos), $invalidBehavior)->get(substr($id, $pos + 1), $invalidBehavior);
+        } elseif (false !== ($pos = strpos($id, '\\'))) {
+            // Proceed with a delegate container
+            return $this->get(substr($id, 0, $pos), $invalidBehavior)->get(substr($id, $pos + 1), $invalidBehavior);
         } else {
             if (self::EXCEPTION_ON_INVALID_REFERENCE === $invalidBehavior) {
                 if (!$id) {

@@ -4,5 +4,5 @@ namespace XN\Metadata;
 
 interface MinorColumnsInterface
 {
-	public function getMinorColumns();
+    public function getMinorColumns();
 }

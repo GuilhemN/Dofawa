@@ -6,11 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Common\UrlSafeBase64;
-
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
@@ -18,21 +15,18 @@ use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 use XN\Metadata\FileInterface;
 use XN\Metadata\FileLightTrait;
-
 use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaTrait;
 use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaInterface;
-
 use Dof\Bundle\MonsterBundle\Entity\MonsterDrop;
 
 /**
- * ItemTemplate
+ * ItemTemplate.
  *
  * @ORM\Table(name="dof_item_templates", indexes={ @ORM\Index(name="IX_item_skin", columns={ "skin" }), @ORM\Index(name="IX_item_bone", columns={ "bone" }) })
  * @ORM\Entity(repositoryClass="ItemTemplateRepository")
@@ -43,7 +37,7 @@ use Dof\Bundle\MonsterBundle\Entity\MonsterDrop;
 class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, LocalizedNameInterface, FileInterface, ParsedCriteriaInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -117,21 +111,21 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $obtainmentRu;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="icon_relative_path", type="string", length=31, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="icon_relative_path", type="string", length=31, nullable=true)
+     */
     private $iconRelativePath;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="icon_id", type="integer", nullable=true)
-    */
+     * @var int
+     *
+     * @ORM\Column(name="icon_id", type="integer", nullable=true)
+     */
     private $iconId;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="dominant_color", type="integer", nullable=true)
      */
@@ -145,28 +139,28 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $criteria;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="level", type="integer")
      */
     private $level;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="weight", type="integer")
      */
     private $weight;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="tradeable", type="boolean")
      */
     private $tradeable;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="npc_price", type="integer")
      */
@@ -195,14 +189,14 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $compounds;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="visible", type="boolean")
      */
     private $visible;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="sticky", type="boolean")
      */
@@ -217,7 +211,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $gatheringJob;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="gathering_job_min_level", type="integer", nullable=true)
      */
@@ -232,23 +226,22 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     private $craftingJob;
 
     /**
-    * @var Collection
-    *
-    * @ORM\OneToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\MonsterDrop", mappedBy="object")
-    */
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\MonsterDrop", mappedBy="object")
+     */
     private $drops;
 
     /**
-    * @Assert\Image(
-    *     maxSize = "1024k",
-    *     minWidth = 131,
-    *     maxWidth = 200,
-    *     minHeight = 131,
-    *     maxHeight = 200,
-    *     mimeTypesMessage = "Choisissez un fichier image valide.")
-    */
+     * @Assert\Image(
+     *     maxSize = "1024k",
+     *     minWidth = 131,
+     *     maxWidth = 200,
+     *     minHeight = 131,
+     *     maxHeight = 200,
+     *     mimeTypesMessage = "Choisissez un fichier image valide.")
+     */
     private $file;
-
 
     public function __construct()
     {
@@ -259,9 +252,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return ItemTemplate
      */
     public function setId($id)
@@ -272,9 +266,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -282,9 +276,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param ItemType $type
+     *
      * @return ItemTemplate
      */
     public function setType(ItemType $type)
@@ -295,7 +290,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return ItemType
      */
@@ -305,9 +300,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainmentFr
+     * Set obtainmentFr.
      *
      * @param string $obtainmentFr
+     *
      * @return ItemTemplate
      */
     public function setObtainmentFr($obtainmentFr)
@@ -318,7 +314,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get obtainmentFr
+     * Get obtainmentFr.
      *
      * @return string
      */
@@ -328,9 +324,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainmentEn
+     * Set obtainmentEn.
      *
      * @param string $obtainmentEn
+     *
      * @return ItemTemplate
      */
     public function setObtainmentEn($obtainmentEn)
@@ -341,7 +338,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get obtainmentEn
+     * Get obtainmentEn.
      *
      * @return string
      */
@@ -351,9 +348,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainmentDe
+     * Set obtainmentDe.
      *
      * @param string $obtainmentDe
+     *
      * @return ItemTemplate
      */
     public function setObtainmentDe($obtainmentDe)
@@ -364,7 +362,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get obtainmentDe
+     * Get obtainmentDe.
      *
      * @return string
      */
@@ -374,9 +372,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainmentEs
+     * Set obtainmentEs.
      *
      * @param string $obtainmentEs
+     *
      * @return ItemTemplate
      */
     public function setObtainmentEs($obtainmentEs)
@@ -387,7 +386,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get obtainmentEs
+     * Get obtainmentEs.
      *
      * @return string
      */
@@ -397,9 +396,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainmentIt
+     * Set obtainmentIt.
      *
      * @param string $obtainmentIt
+     *
      * @return ItemTemplate
      */
     public function setObtainmentIt($obtainmentIt)
@@ -410,7 +410,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get obtainmentIt
+     * Get obtainmentIt.
      *
      * @return string
      */
@@ -420,9 +420,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainmentPt
+     * Set obtainmentPt.
      *
      * @param string $obtainmentPt
+     *
      * @return ItemTemplate
      */
     public function setObtainmentPt($obtainmentPt)
@@ -433,7 +434,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get obtainmentPt
+     * Get obtainmentPt.
      *
      * @return string
      */
@@ -443,9 +444,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainmentJa
+     * Set obtainmentJa.
      *
      * @param string $obtainmentJa
+     *
      * @return ItemTemplate
      */
     public function setObtainmentJa($obtainmentJa)
@@ -456,7 +458,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get obtainmentJa
+     * Get obtainmentJa.
      *
      * @return string
      */
@@ -466,9 +468,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainmentRu
+     * Set obtainmentRu.
      *
      * @param string $obtainmentRu
+     *
      * @return ItemTemplate
      */
     public function setObtainmentRu($obtainmentRu)
@@ -479,7 +482,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get obtainmentRu
+     * Get obtainmentRu.
      *
      * @return string
      */
@@ -489,10 +492,11 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set obtainment
+     * Set obtainment.
      *
      * @param string $obtainment
      * @param string $locale
+     *
      * @return object
      */
     public function setObtainment($obtainment, $locale = 'fr')
@@ -507,13 +511,15 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
             case 'ja': $this->obtainmentJa = $obtainment; break;
             case 'ru': $this->obtainmentRu = $obtainment; break;
         }
+
         return $this;
     }
 
     /**
-     * Get obtainment
+     * Get obtainment.
      *
      * @param string|array $locale
+     *
      * @return string
      */
     public function getObtainment($locale = 'fr')
@@ -521,10 +527,12 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         if (is_array($locale)) {
             foreach ($locale as $loc) {
                 $obtainment = $this->getObtainment($loc);
-                if ($obtainment !== null)
+                if ($obtainment !== null) {
                     return $obtainment;
+                }
             }
-            return null;
+
+            return;
         }
         switch ($locale) {
             case 'fr': return $this->obtainmentFr;
@@ -535,14 +543,15 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
             case 'pt': return $this->obtainmentPt;
             case 'ja': return $this->obtainmentJa;
             case 'ru': return $this->obtainmentRu;
-            default: return null;
+            default: return;
         }
     }
 
     /**
-     * Set iconRelativePath
+     * Set iconRelativePath.
      *
      * @param string $iconRelativePath
+     *
      * @return ItemTemplate
      */
     public function setIconRelativePath($iconRelativePath)
@@ -553,7 +562,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get iconRelativePath
+     * Get iconRelativePath.
      *
      * @return string
      */
@@ -563,11 +572,12 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-    * Set iconId
-    *
-    * @param integer $iconId
-    * @return ItemTemplate
-    */
+     * Set iconId.
+     *
+     * @param int $iconId
+     *
+     * @return ItemTemplate
+     */
     public function setIconId($iconId)
     {
         $this->iconId = $iconId;
@@ -576,19 +586,20 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-    * Get iconId
-    *
-    * @return integer
-    */
+     * Get iconId.
+     *
+     * @return int
+     */
     public function getIconId()
     {
         return $this->iconId;
     }
 
     /**
-     * Set dominantColor
+     * Set dominantColor.
      *
-     * @param integer $dominantColor
+     * @param int $dominantColor
+     *
      * @return ItemTemplate
      */
     public function setDominantColor($dominantColor)
@@ -599,9 +610,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get dominantColor
+     * Get dominantColor.
      *
-     * @return integer
+     * @return int
      */
     public function getDominantColor()
     {
@@ -609,9 +620,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set criteria
+     * Set criteria.
      *
      * @param string $criteria
+     *
      * @return ItemTemplate
      */
     public function setCriteria($criteria)
@@ -622,7 +634,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get criteria
+     * Get criteria.
      *
      * @return string
      */
@@ -632,9 +644,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set level
+     * Set level.
      *
-     * @param integer $level
+     * @param int $level
+     *
      * @return ItemTemplate
      */
     public function setLevel($level)
@@ -645,9 +658,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get level
+     * Get level.
      *
-     * @return integer
+     * @return int
      */
     public function getLevel()
     {
@@ -655,9 +668,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set weight
+     * Set weight.
      *
-     * @param integer $weight
+     * @param int $weight
+     *
      * @return ItemTemplate
      */
     public function setWeight($weight)
@@ -668,9 +682,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get weight
+     * Get weight.
      *
-     * @return integer
+     * @return int
      */
     public function getWeight()
     {
@@ -678,9 +692,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set tradeable
+     * Set tradeable.
      *
-     * @param boolean $tradeable
+     * @param bool $tradeable
+     *
      * @return ItemTemplate
      */
     public function setTradeable($tradeable)
@@ -691,9 +706,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get tradeable
+     * Get tradeable.
      *
-     * @return boolean
+     * @return bool
      */
     public function getTradeable()
     {
@@ -701,9 +716,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get tradeable
+     * Get tradeable.
      *
-     * @return boolean
+     * @return bool
      */
     public function isTradeable()
     {
@@ -711,9 +726,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set npcPrice
+     * Set npcPrice.
      *
-     * @param integer $npcPrice
+     * @param int $npcPrice
+     *
      * @return ItemTemplate
      */
     public function setNpcPrice($npcPrice)
@@ -724,9 +740,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get npcPrice
+     * Get npcPrice.
      *
-     * @return integer
+     * @return int
      */
     public function getNpcPrice()
     {
@@ -734,9 +750,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Add effects
+     * Add effects.
      *
      * @param ItemTemplateEffect $effects
+     *
      * @return ItemTemplate
      */
     public function addEffect(ItemTemplateEffect $effects)
@@ -747,9 +764,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Remove effects
+     * Remove effects.
      *
      * @param ItemTemplateEffect $effects
+     *
      * @return ItemTemplate
      */
     public function removeEffect(ItemTemplateEffect $effects)
@@ -760,7 +778,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get effects
+     * Get effects.
      *
      * @return Collection
      */
@@ -770,9 +788,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Add components
+     * Add components.
      *
      * @param ItemComponent $components
+     *
      * @return ItemTemplate
      */
     public function addComponent(ItemComponent $components)
@@ -783,9 +802,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Remove components
+     * Remove components.
      *
      * @param ItemComponent $components
+     *
      * @return ItemTemplate
      */
     public function removeComponent(ItemComponent $components)
@@ -796,7 +816,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get components
+     * Get components.
      *
      * @return Collection
      */
@@ -806,9 +826,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Add compounds
+     * Add compounds.
      *
      * @param ItemComponent $compounds
+     *
      * @return ItemTemplate
      */
     public function addCompound(ItemComponent $compounds)
@@ -819,9 +840,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Remove compounds
+     * Remove compounds.
      *
      * @param ItemComponent $compounds
+     *
      * @return ItemTemplate
      */
     public function removeCompound(ItemComponent $compounds)
@@ -832,7 +854,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get compounds
+     * Get compounds.
      *
      * @return Collection
      */
@@ -842,9 +864,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set visible
+     * Set visible.
      *
-     * @param boolean $visible
+     * @param bool $visible
+     *
      * @return ItemTemplate
      */
     public function setVisible($visible)
@@ -855,9 +878,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get visible
+     * Get visible.
      *
-     * @return boolean
+     * @return bool
      */
     public function getVisible()
     {
@@ -865,9 +888,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get visible
+     * Get visible.
      *
-     * @return boolean
+     * @return bool
      */
     public function isVisible()
     {
@@ -875,11 +898,12 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-    * Set sticky
-    *
-    * @param boolean $sticky
-    * @return ItemTemplate
-    */
+     * Set sticky.
+     *
+     * @param bool $sticky
+     *
+     * @return ItemTemplate
+     */
     public function setSticky($sticky)
     {
         $this->sticky = $sticky;
@@ -888,29 +912,30 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-    * Get sticky
-    *
-    * @return boolean
-    */
+     * Get sticky.
+     *
+     * @return bool
+     */
     public function getSticky()
     {
         return $this->sticky;
     }
 
     /**
-    * Get sticky
-    *
-    * @return boolean
-    */
+     * Get sticky.
+     *
+     * @return bool
+     */
     public function isSticky()
     {
         return $this->sticky;
     }
 
     /**
-     * Set gatheringJob
+     * Set gatheringJob.
      *
      * @param Job $gatheringJob
+     *
      * @return ItemTemplate
      */
     public function setGatheringJob(Job $gatheringJob = null)
@@ -921,7 +946,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get gatheringJob
+     * Get gatheringJob.
      *
      * @return Job
      */
@@ -931,9 +956,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set gatheringJobMinLevel
+     * Set gatheringJobMinLevel.
      *
-     * @param integer $gatheringJobMinLevel
+     * @param int $gatheringJobMinLevel
+     *
      * @return ItemTemplate
      */
     public function setGatheringJobMinLevel($gatheringJobMinLevel)
@@ -944,9 +970,9 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get gatheringJobMinLevel
+     * Get gatheringJobMinLevel.
      *
-     * @return integer
+     * @return int
      */
     public function getGatheringJobMinLevel()
     {
@@ -954,9 +980,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Set craftingJob
+     * Set craftingJob.
      *
      * @param Job $craftingJob
+     *
      * @return ItemTemplate
      */
     public function setCraftingJob(Job $craftingJob = null)
@@ -967,7 +994,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-     * Get craftingJob
+     * Get craftingJob.
      *
      * @return Job
      */
@@ -977,11 +1004,12 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-    * Add drops
-    *
-    * @param MonsterDrop $drops
-    * @return ItemTemplate
-    */
+     * Add drops.
+     *
+     * @param MonsterDrop $drops
+     *
+     * @return ItemTemplate
+     */
     public function addDrop(MonsterDrop $drops)
     {
         $this->drops[] = $drops;
@@ -990,11 +1018,12 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-    * Remove drops
-    *
-    * @param MonsterDrop $drops
-    * @return ItemTemplate
-    */
+     * Remove drops.
+     *
+     * @param MonsterDrop $drops
+     *
+     * @return ItemTemplate
+     */
     public function removeDrop(MonsterDrop $drops)
     {
         $this->drops->removeElement($drops);
@@ -1003,10 +1032,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     }
 
     /**
-    * Get drops
-    *
-    * @return Collection
-    */
+     * Get drops.
+     *
+     * @return Collection
+     */
     public function getDrops()
     {
         return $this->drops;
@@ -1017,16 +1046,46 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         return $this->nameFr;
     }
 
-    public function isPersonalized() { return false; }
-    public function isEquipment() { return false; }
-    public function isSkinned() { return false; }
-    public function isWeapon() { return false; }
-    public function isAnimal() { return false; }
-    public function isPet() { return false; }
-    public function isMount() { return false; }
-    public function isUseable() { return false; }
-    public function isCraft() { return false; }
-    public function getClassId() { return 'item'; }
+    public function isPersonalized()
+    {
+        return false;
+    }
+    public function isEquipment()
+    {
+        return false;
+    }
+    public function isSkinned()
+    {
+        return false;
+    }
+    public function isWeapon()
+    {
+        return false;
+    }
+    public function isAnimal()
+    {
+        return false;
+    }
+    public function isPet()
+    {
+        return false;
+    }
+    public function isMount()
+    {
+        return false;
+    }
+    public function isUseable()
+    {
+        return false;
+    }
+    public function isCraft()
+    {
+        return false;
+    }
+    public function getClassId()
+    {
+        return 'item';
+    }
 
     public function exportData($full = true, $locale = 'fr')
     {
@@ -1034,7 +1093,7 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
             'name' => $this->getName($locale),
             'type' => $this->type->exportData(false, $locale),
             'level' => $this->level,
-            'class' => $this->getClassId()
+            'class' => $this->getClassId(),
         ] + ($full ? [
             'description' => $this->getDescription($locale),
             'obtainment' => $this->getObtainment($locale),
@@ -1047,8 +1106,8 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
             'effects' => array_map(function ($ent) use ($locale) { return $ent->exportData(false, $locale); }, $this->effects->toArray()),
             'release' => $this->release,
             'preliminary' => $this->preliminary,
-            'deprecated' => $this->deprecated
-        ] : [ ]);
+            'deprecated' => $this->deprecated,
+        ] : []);
     }
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
@@ -1065,9 +1124,10 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
     public function preUpload()
     {
         if (null !== $this->file) {
-            if(!empty($this->path))
+            if (!empty($this->path)) {
                 $this->pathToRemove = $this->path;
-            $this->path = UrlSafeBase64::encode($this->iconId) . '.' . $this->file->guessExtension();
+            }
+            $this->path = UrlSafeBase64::encode($this->iconId).'.'.$this->file->guessExtension();
         }
     }
 
@@ -1076,18 +1136,20 @@ class ItemTemplate implements IdentifiableInterface, TimestampableInterface, Slu
         if (null === $this->file) {
             return;
         }
-        if(!empty($this->pathToRemove)){
+        if (!empty($this->pathToRemove)) {
             unlink($this->pathToRemove);
             $this->pathToRemove = null;
         }
-        system("/usr/bin/convert " . escapeshellarg(strval($this->file)) . " -resize 131x131 " . escapeshellarg($this->getUploadRootDir() . '/' . $this->path));
+        system('/usr/bin/convert '.escapeshellarg(strval($this->file)).' -resize 131x131 '.escapeshellarg($this->getUploadRootDir().'/'.$this->path));
 
         unset($this->file);
     }
 
-    public function setPath($path){
-        if($this->path == $path)
+    public function setPath($path)
+    {
+        if ($this->path == $path) {
             return;
+        }
         $this->removeUpload();
         $this->path = $path;
     }

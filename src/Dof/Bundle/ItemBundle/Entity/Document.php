@@ -3,14 +3,13 @@
 namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * Document
+ * Document.
  *
  * @ORM\Table(name="dof_documents")
  * @ORM\Entity(repositoryClass="Dof\Bundle\ItemBundle\Entity\DocumentRepository")
@@ -20,7 +19,7 @@ class Document implements IdentifiableInterface, LocalizedNameInterface
     use LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -28,11 +27,12 @@ class Document implements IdentifiableInterface, LocalizedNameInterface
     private $id;
 
     /**
-    * Set id
-    *
-    * @param integer $id
-    * @return ItemTemplate
-    */
+     * Set id.
+     *
+     * @param int $id
+     *
+     * @return ItemTemplate
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -41,9 +41,9 @@ class Document implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {

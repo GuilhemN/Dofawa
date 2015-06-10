@@ -10,18 +10,18 @@ class SearchIntentCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-		$taggedServices = $container->findTaggedServiceIds('dof_search.intent');
+        $taggedServices = $container->findTaggedServiceIds('dof_search.intent');
         $sm = $container->getDefinition('dof_search.search_manager');
-		foreach ($taggedServices as $id => $tagAttributes) {
-			// $definition = $container->getDefinition($id);
-			foreach ($tagAttributes as $attributes) {
-				if (isset($attributes['intent'])) {
-					$sm->addMethodCall('addIntent', [
+        foreach ($taggedServices as $id => $tagAttributes) {
+            // $definition = $container->getDefinition($id);
+            foreach ($tagAttributes as $attributes) {
+                if (isset($attributes['intent'])) {
+                    $sm->addMethodCall('addIntent', [
                         $attributes['intent'],
-					    new Reference($id)
-					]);
-				}
-			}
-		}
+                        new Reference($id),
+                    ]);
+                }
+            }
+        }
     }
 }

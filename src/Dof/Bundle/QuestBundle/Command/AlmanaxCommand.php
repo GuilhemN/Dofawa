@@ -1,12 +1,10 @@
 <?php
+
 namespace Dof\Bundle\QuestBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use XN\Common\DOMUtils;
 use Dof\Bundle\QuestBundle\QuestType;
 
@@ -26,12 +24,12 @@ class AlmanaxCommand extends ContainerAwareCommand
         $repo = $em->getRepository('DofQuestBundle:Quest');
 
         $doc = new \DOMDocument();
-        $doc->loadHTMLFile("http://www.krosmoz.com/fr/almanax");
+        $doc->loadHTMLFile('http://www.krosmoz.com/fr/almanax');
 
         $dofus = $doc->getElementById('achievement_dofus');
         $mi = DOMUtils::getFirstElementByClassName($dofus, 'more-infos');
         $quest = DOMUtils::getFirstElementByNodeName($mi, 'p');
-        $output->writeln('<info>HTML trouvé : ' . $quest->textContent . '</info>');
+        $output->writeln('<info>HTML trouvé : '.$quest->textContent.'</info>');
         preg_match('/^(Quête :)? (.*)$/', $quest->textContent, $title);
 
         $em
@@ -40,14 +38,13 @@ class AlmanaxCommand extends ContainerAwareCommand
             ->execute();
 
         $quest = $repo->findOneByNameFr($title[2]);
-        if($quest !== null){
+        if ($quest !== null) {
             $quest->setSeason(true);
             $em->flush();
 
-            $output->writeln('Quête almanax du jour : ' . $quest->getName());
-        }
-        else
+            $output->writeln('Quête almanax du jour : '.$quest->getName());
+        } else {
             $output->writeln('<error>La quête n\'a pas été trouvé.</error>');
-
+        }
     }
 }

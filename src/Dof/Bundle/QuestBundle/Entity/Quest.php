@@ -3,21 +3,18 @@
 namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
-
 use Dof\Bundle\CMSBundle\Entity\QuestArticle;
 
 /**
- * Quest
+ * Quest.
  *
  * @ORM\Table(name="dof_quests")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\QuestRepository")
@@ -27,7 +24,7 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,83 +32,84 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $id;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="isRepeatable", type="boolean")
      */
     private $isRepeatable;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="type", type="integer")
      */
     private $type;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="isDungeonQuest", type="boolean")
      */
     private $isDungeonQuest;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="levelMin", type="integer")
      */
     private $levelMin;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="levelMax", type="integer")
      */
     private $levelMax;
 
     /**
-    * @var QuestCategory
-    *
-    * @ORM\ManyToOne(targetEntity="QuestCategory", inversedBy="quests")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var QuestCategory
+     *
+     * @ORM\ManyToOne(targetEntity="QuestCategory", inversedBy="quests")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $category;
 
     /**
-    * @ORM\OneToMany(targetEntity="QuestStep", mappedBy="quest")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\OneToMany(targetEntity="QuestStep", mappedBy="quest")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $steps;
 
     /**
-    * @var boolean
-    *
-    * @ORM\Column(name="season", type="boolean", nullable=true)
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="season", type="boolean", nullable=true)
+     */
     private $season;
 
     /**
-    * @var QuestArticle
-    *
-    * @ORM\OneToOne(targetEntity="Dof\Bundle\CMSBundle\Entity\QuestArticle", mappedBy="quest")
-    */
+     * @var QuestArticle
+     *
+     * @ORM\OneToOne(targetEntity="Dof\Bundle\CMSBundle\Entity\QuestArticle", mappedBy="quest")
+     */
     private $article;
 
     /**
-    * Set id
-    *
-    * @return Quest
-    */
+     * Set id.
+     *
+     * @return Quest
+     */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -119,9 +117,10 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set isRepeatable
+     * Set isRepeatable.
      *
-     * @param boolean $isRepeatable
+     * @param bool $isRepeatable
+     *
      * @return Quest
      */
     public function setIsRepeatable($isRepeatable)
@@ -132,9 +131,9 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get isRepeatable
+     * Get isRepeatable.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsRepeatable()
     {
@@ -142,9 +141,10 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param integer $type
+     * @param int $type
+     *
      * @return Quest
      */
     public function setType($type)
@@ -155,9 +155,9 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return integer
+     * @return int
      */
     public function getType()
     {
@@ -165,9 +165,10 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set isDungeonQuest
+     * Set isDungeonQuest.
      *
-     * @param boolean $isDungeonQuest
+     * @param bool $isDungeonQuest
+     *
      * @return Quest
      */
     public function setIsDungeonQuest($isDungeonQuest)
@@ -178,9 +179,9 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get isDungeonQuest
+     * Get isDungeonQuest.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsDungeonQuest()
     {
@@ -188,9 +189,10 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set levelMin
+     * Set levelMin.
      *
-     * @param integer $levelMin
+     * @param int $levelMin
+     *
      * @return Quest
      */
     public function setLevelMin($levelMin)
@@ -201,9 +203,9 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get levelMin
+     * Get levelMin.
      *
-     * @return integer
+     * @return int
      */
     public function getLevelMin()
     {
@@ -211,9 +213,10 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set levelMax
+     * Set levelMax.
      *
-     * @param integer $levelMax
+     * @param int $levelMax
+     *
      * @return Quest
      */
     public function setLevelMax($levelMax)
@@ -224,9 +227,9 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get levelMax
+     * Get levelMax.
      *
-     * @return integer
+     * @return int
      */
     public function getLevelMax()
     {
@@ -234,11 +237,12 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Set category
-    *
-    * @param QuestCategory $category
-    * @return Quest
-    */
+     * Set category.
+     *
+     * @param QuestCategory $category
+     *
+     * @return Quest
+     */
     public function setCategory(QuestCategory $category)
     {
         $this->category = $category;
@@ -247,20 +251,21 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get category
-    *
-    * @return QuestCategory
-    */
+     * Get category.
+     *
+     * @return QuestCategory
+     */
     public function getCategory()
     {
         return $this->category;
     }
     /**
-    * Add steps
-    *
-    * @param QuestStep $steps
-    * @return Quest
-    */
+     * Add steps.
+     *
+     * @param QuestStep $steps
+     *
+     * @return Quest
+     */
     public function addStep(QuestStep $steps)
     {
         $this->steps[] = $steps;
@@ -269,11 +274,12 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Remove steps
-    *
-    * @param QuestStep $steps
-    * @return Quest
-    */
+     * Remove steps.
+     *
+     * @param QuestStep $steps
+     *
+     * @return Quest
+     */
     public function removeStep(QuestStep $steps)
     {
         $this->steps->removeElement($steps);
@@ -282,21 +288,22 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get steps
-    *
-    * @return Collection
-    */
+     * Get steps.
+     *
+     * @return Collection
+     */
     public function getSteps()
     {
         return $this->steps;
     }
 
     /**
-    * Set season
-    *
-    * @param boolean $season
-    * @return Quest
-    */
+     * Set season.
+     *
+     * @param bool $season
+     *
+     * @return Quest
+     */
     public function setSeason($season)
     {
         $this->season = $season;
@@ -305,21 +312,22 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get season
-    *
-    * @return boolean
-    */
+     * Get season.
+     *
+     * @return bool
+     */
     public function getSeason()
     {
         return $this->season;
     }
 
     /**
-    * Set article
-    *
-    * @param QuestArticle $article
-    * @return Quest
-    */
+     * Set article.
+     *
+     * @param QuestArticle $article
+     *
+     * @return Quest
+     */
     public function setArticle(QuestArticle $article = null)
     {
         $this->article = $article;
@@ -328,16 +336,17 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-    * Get article
-    *
-    * @return QuestArticle
-    */
+     * Get article.
+     *
+     * @return QuestArticle
+     */
     public function getArticle()
     {
         return $this->article;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }

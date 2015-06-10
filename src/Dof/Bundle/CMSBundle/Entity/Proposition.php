@@ -3,18 +3,16 @@
 namespace Dof\Bundle\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
-
 use XN\L10n\LocalizedOriginInterface;
 use XN\L10n\LocalizedOriginTrait;
 
 /**
- * Proposition
+ * Proposition.
  *
  * @ORM\Table(name="dof_article_propositions")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CMSBundle\Entity\PropositionRepository")
@@ -24,7 +22,7 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     use TimestampableTrait, OwnableTrait, LocalizedOriginTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -54,10 +52,10 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     private $options;
 
     /**
-    * @var boolean
-    *
-    * @ORM\Column(name="published", type="boolean")
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
     private $published;
 
     /**
@@ -68,11 +66,10 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
      */
     private $article;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -80,9 +77,10 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Proposition
      */
     public function setName($name)
@@ -93,7 +91,7 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -103,9 +101,10 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Proposition
      */
     public function setDescription($description)
@@ -116,7 +115,7 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -126,9 +125,10 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Set options
+     * Set options.
      *
      * @param array $options
+     *
      * @return Proposition
      */
     public function setOptions($options)
@@ -139,7 +139,7 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Get options
+     * Get options.
      *
      * @return array
      */
@@ -149,11 +149,12 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-    * Set published
-    *
-    * @param boolean $published
-    * @return Proposition
-    */
+     * Set published.
+     *
+     * @param bool $published
+     *
+     * @return Proposition
+     */
     public function setPublished($published)
     {
         $this->published = $published;
@@ -162,31 +163,32 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-    * Get published
-    *
-    * @return boolean
-    */
+     * Get published.
+     *
+     * @return bool
+     */
     public function getPublished()
     {
         return $this->published;
     }
 
     /**
-    * Get published
-    *
-    * @return boolean
-    */
+     * Get published.
+     *
+     * @return bool
+     */
     public function isPublished()
     {
         return $this->published;
     }
 
     /**
-    * Set article
-    *
-    * @param Article $article
-    * @return Proposition
-    */
+     * Set article.
+     *
+     * @param Article $article
+     *
+     * @return Proposition
+     */
     public function setArticle(Article $article)
     {
         $this->article = $article;
@@ -195,10 +197,10 @@ class Proposition implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-    * Get article
-    *
-    * @return Article
-    */
+     * Get article.
+     *
+     * @return Article
+     */
     public function getArticle()
     {
         return $this->article;

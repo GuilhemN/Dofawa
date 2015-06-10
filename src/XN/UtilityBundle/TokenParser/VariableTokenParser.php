@@ -1,4 +1,5 @@
 <?php
+
 namespace XN\UtilityBundle\TokenParser;
 
 use XN\UtilityBundle\Node\VariableNode;

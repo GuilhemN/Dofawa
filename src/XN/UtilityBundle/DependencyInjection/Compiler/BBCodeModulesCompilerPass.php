@@ -10,37 +10,40 @@ class BBCodeModulesCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-		$modules = [ ];
+        $modules = [];
 
         $taggedServices = $container->findTaggedServiceIds('xn.bbcode.publish');
         foreach ($taggedServices as $id => $tagAttributes) {
             foreach ($tagAttributes as $attributes) {
-				if (isset($attributes['module'])) {
-					$module = $attributes['module'];
-					if (!isset($modules[$module]))
-						$modules[$module] = [ ];
-					$modules[$module][] = $id;
-				}
-			}
-		}
+                if (isset($attributes['module'])) {
+                    $module = $attributes['module'];
+                    if (!isset($modules[$module])) {
+                        $modules[$module] = [];
+                    }
+                    $modules[$module][] = $id;
+                }
+            }
+        }
 
-		$taggedServices = $container->findTaggedServiceIds('xn.bbcode.use');
-		foreach ($taggedServices as $id => $tagAttributes) {
-			$definition = $container->getDefinition($id);
-			foreach ($tagAttributes as $attributes) {
-				if (isset($attributes['module'])) {
-					$module = $attributes['module'];
-					if (isset($modules[$module]))
-						foreach ($modules[$module] as $service)
-							$definition->addMethodCall('registerTagTemplate', [
-								new Reference($service)
-							]);
-				} elseif (isset($attributes['service'])) {
-					$definition->addMethodCall('registerTagTemplate', [
-					    new Reference($attributes['service'])
-					]);
-				}
-			}
-		}
+        $taggedServices = $container->findTaggedServiceIds('xn.bbcode.use');
+        foreach ($taggedServices as $id => $tagAttributes) {
+            $definition = $container->getDefinition($id);
+            foreach ($tagAttributes as $attributes) {
+                if (isset($attributes['module'])) {
+                    $module = $attributes['module'];
+                    if (isset($modules[$module])) {
+                        foreach ($modules[$module] as $service) {
+                            $definition->addMethodCall('registerTagTemplate', [
+                                new Reference($service),
+                            ]);
+                        }
+                    }
+                } elseif (isset($attributes['service'])) {
+                    $definition->addMethodCall('registerTagTemplate', [
+                        new Reference($attributes['service']),
+                    ]);
+                }
+            }
+        }
     }
 }

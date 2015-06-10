@@ -13,7 +13,9 @@ class BaseCharacteristic extends Enum
     const CHANCE = 4;
     const AGILITY = 5;
 
-    private function __construct() { }
+    private function __construct()
+    {
+    }
 
     public static function isValid($characteristic)
     {
