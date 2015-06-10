@@ -3,7 +3,6 @@
 namespace Dof\Bundle\TranslationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -11,18 +10,17 @@ use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
 
 /**
- * Translation
+ * Translation.
  *
  * @ORM\Table(name="dof_translations")
  * @ORM\Entity(repositoryClass="Dof\Bundle\TranslationBundle\Entity\TranslationRepository")
  */
 class Translation implements IdentifiableInterface, TimestampableInterface, OwnableInterface
 {
-
     use TimestampableTrait, OwnableTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -65,11 +63,10 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
      */
     private $published;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -77,9 +74,10 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Set label
+     * Set label.
      *
      * @param string $label
+     *
      * @return Translation
      */
     public function setLabel($label)
@@ -90,7 +88,7 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Get label
+     * Get label.
      *
      * @return string
      */
@@ -100,9 +98,10 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Set translation
+     * Set translation.
      *
      * @param string $translation
+     *
      * @return Translation
      */
     public function setTranslation($translation)
@@ -113,7 +112,7 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Get translation
+     * Get translation.
      *
      * @return string
      */
@@ -123,9 +122,10 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Set domain
+     * Set domain.
      *
      * @param string $domain
+     *
      * @return Translation
      */
     public function setDomain($domain)
@@ -136,7 +136,7 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Get domain
+     * Get domain.
      *
      * @return string
      */
@@ -146,9 +146,10 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
+     *
      * @return Translation
      */
     public function setLocale($locale)
@@ -159,7 +160,7 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Get locale
+     * Get locale.
      *
      * @return string
      */
@@ -169,9 +170,10 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Set published
+     * Set published.
      *
      * @param string $published
+     *
      * @return Translation
      */
     public function setPublished($published)
@@ -182,7 +184,7 @@ class Translation implements IdentifiableInterface, TimestampableInterface, Owna
     }
 
     /**
-     * Get published
+     * Get published.
      *
      * @return string
      */

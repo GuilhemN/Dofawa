@@ -25,12 +25,14 @@ class MessageMetadata extends BaseMessageMetadata
      *   targetEntity="Dof\Bundle\Social\MessageBundle\Entity\Message",
      *   inversedBy="metadata"
      * )
+     *
      * @var MessageInterface
      */
     protected $message;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\Bundle\UserBundle\Entity\User")
+     *
      * @var ParticipantInterface
      */
     protected $participant;

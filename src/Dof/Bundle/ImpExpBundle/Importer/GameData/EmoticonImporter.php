@@ -4,9 +4,7 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
-
 use XN\Common\Inflector;
 use Dof\Bundle\CharacterBundle\Entity\Emoticon;
 
@@ -19,14 +17,15 @@ class EmoticonImporter extends AbstractGameDataImporter
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
 
-        if (!$beta && $write)
+        if (!$beta && $write) {
             $this->dm->createQuery('UPDATE DofCharacterBundle:Emoticon s SET s.deprecated = true')->execute();
+        }
 
-        $stmt = $conn->query('SELECT o.*' .
-        $this->generateD2ISelects('name', $locales) .
-        $this->generateD2ISelects('shortcut', $locales) .
-        ' FROM ' . $db . '.D2O_Emoticon o' .
-        $this->generateD2IJoins('name', $db, $locales) .
+        $stmt = $conn->query('SELECT o.*'.
+        $this->generateD2ISelects('name', $locales).
+        $this->generateD2ISelects('shortcut', $locales).
+        ' FROM '.$db.'.D2O_Emoticon o'.
+        $this->generateD2IJoins('name', $db, $locales).
         $this->generateD2IJoins('shortcut', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -34,28 +33,31 @@ class EmoticonImporter extends AbstractGameDataImporter
         $repo = $this->dm->getRepository('DofCharacterBundle:Emoticon');
 
         $rowsProcessed = 0;
-        if ($output && $progress)
-        $progress->start($output, count($all));
+        if ($output && $progress) {
+            $progress->start($output, count($all));
+        }
 
         foreach ($all as $row) {
             $emoticon = $repo->find($row['id']);
-            if ($emoticon === null){
+            if ($emoticon === null) {
                 $emoticon = new Emoticon();
                 $emoticon->setId($row['id']);
                 $emoticon->setDeprecated(true);
             }
-            if($emoticon->isDeprecated()){
+            if ($emoticon->isDeprecated()) {
                 $emoticon->setDeprecated(false);
-                if (!$emoticon->getRelease())
+                if (!$emoticon->getRelease()) {
                     $emoticon->setRelease($release);
+                }
                 $emoticon->setPreliminary($beta);
                 $emoticon->setOrder($row['order']);
                 $emoticon->setAura($row['aura']);
                 $this->copyI18NProperty($emoticon, 'setName', $row, 'name');
                 $this->copyI18NProperty($emoticon, 'setShortcut', $row, 'shortcut');
 
-                if(!Inflector::slugify(strval($emoticon)))
+                if (!Inflector::slugify(strval($emoticon))) {
                     $emoticon->setNameFr('Emote');
+                }
 
                 $this->dm->persist($emoticon);
                 $this->su->reassignSlug($emoticon);
@@ -65,12 +67,13 @@ class EmoticonImporter extends AbstractGameDataImporter
             if (($rowsProcessed % 300) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
-                if ($output && $progress)
-                $progress->advance(300);
+                if ($output && $progress) {
+                    $progress->advance(300);
+                }
             }
         }
-        if ($output && $progress)
+        if ($output && $progress) {
             $progress->finish();
-
+        }
     }
 }

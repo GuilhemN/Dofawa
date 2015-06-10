@@ -3,17 +3,15 @@
 namespace Dof\Bundle\MonsterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaTrait;
 use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaInterface;
-
 use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
 
 /**
- * MonsterDrop
+ * MonsterDrop.
  *
  * @ORM\Table(name="dof_monster_drops")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MonsterBundle\Entity\MonsterDropRepository")
@@ -23,7 +21,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     use TimestampableTrait, ParsedCriteriaTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -32,26 +30,26 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     private $id;
 
     /**
-    * @var Monster
-    *
-    * @ORM\ManyToOne(targetEntity="Monster", inversedBy="drops")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var Monster
+     *
+     * @ORM\ManyToOne(targetEntity="Monster", inversedBy="drops")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $monster;
 
     /**
-    * @var ItemTemplate
-    *
-    * @ORM\ManyToOne(targetEntity="Dof\Bundle\ItemBundle\Entity\ItemTemplate", inversedBy="drops")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var ItemTemplate
+     *
+     * @ORM\ManyToOne(targetEntity="Dof\Bundle\ItemBundle\Entity\ItemTemplate", inversedBy="drops")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $object;
 
     /**
-    * @var integer
-    *
-    * @ORM\Column(name="index_", type="integer")
-    */
+     * @var int
+     *
+     * @ORM\Column(name="index_", type="integer")
+     */
     private $index;
 
     /**
@@ -69,38 +67,37 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     private $maxPercent;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="count", type="integer")
      */
     private $count;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="threshold", type="integer")
      */
     private $threshold;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="has_criteria", type="boolean")
      */
     private $hasCriteria;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="criteria", type="string", length=127, nullable=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="criteria", type="string", length=127, nullable=true)
+     */
     private $criteria;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -108,11 +105,12 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-    * Set monster
-    *
-    * @param Monster $monster
-    * @return MonsterGrade
-    */
+     * Set monster.
+     *
+     * @param Monster $monster
+     *
+     * @return MonsterGrade
+     */
     public function setMonster(Monster $monster)
     {
         $this->monster = $monster;
@@ -121,21 +119,22 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-    * Get monster
-    *
-    * @return Monster
-    */
+     * Get monster.
+     *
+     * @return Monster
+     */
     public function getMonster()
     {
         return $this->monster;
     }
 
     /**
-    * Set object
-    *
-    * @param ItemTemplate $object
-    * @return MonsterDrop
-    */
+     * Set object.
+     *
+     * @param ItemTemplate $object
+     *
+     * @return MonsterDrop
+     */
     public function setObject(ItemTemplate $object)
     {
         $this->object = $object;
@@ -144,21 +143,22 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-    * Get object
-    *
-    * @return ItemTemplate
-    */
+     * Get object.
+     *
+     * @return ItemTemplate
+     */
     public function getObject()
     {
         return $this->object;
     }
 
     /**
-    * Set index
-    *
-    * @param integer $index
-    * @return MonsterDrop
-    */
+     * Set index.
+     *
+     * @param int $index
+     *
+     * @return MonsterDrop
+     */
     public function setIndex($index)
     {
         $this->index = $index;
@@ -167,19 +167,20 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-    * Get index
-    *
-    * @return integer
-    */
+     * Get index.
+     *
+     * @return int
+     */
     public function getIndex()
     {
         return $this->index;
     }
 
     /**
-     * Set minPercent
+     * Set minPercent.
      *
      * @param float $minPercent
+     *
      * @return MonsterDrop
      */
     public function setMinPercent($minPercent)
@@ -190,7 +191,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-     * Get minPercent
+     * Get minPercent.
      *
      * @return float
      */
@@ -200,9 +201,10 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-     * Set maxPercent
+     * Set maxPercent.
      *
      * @param float $maxPercent
+     *
      * @return MonsterDrop
      */
     public function setMaxPercent($maxPercent)
@@ -213,7 +215,7 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-     * Get maxPercent
+     * Get maxPercent.
      *
      * @return float
      */
@@ -223,9 +225,10 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-     * Set count
+     * Set count.
      *
-     * @param integer $count
+     * @param int $count
+     *
      * @return MonsterDrop
      */
     public function setCount($count)
@@ -236,9 +239,9 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-     * Get count
+     * Get count.
      *
-     * @return integer
+     * @return int
      */
     public function getCount()
     {
@@ -246,9 +249,10 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-     * Set threshold
+     * Set threshold.
      *
-     * @param integer $threshold
+     * @param int $threshold
+     *
      * @return MonsterDrop
      */
     public function setThreshold($threshold)
@@ -259,20 +263,21 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-     * Get threshold
+     * Get threshold.
      *
-     * @return integer
+     * @return int
      */
     public function getThreshold()
     {
         return $this->threshold;
     }
     /**
-    * Set hasCriteria
-    *
-    * @param boolean $hasCriteria
-    * @return MonsterDrop
-    */
+     * Set hasCriteria.
+     *
+     * @param bool $hasCriteria
+     *
+     * @return MonsterDrop
+     */
     public function setHasCriteria($hasCriteria)
     {
         $this->hasCriteria = $hasCriteria;
@@ -281,31 +286,32 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-    * Get hasCriteria
-    *
-    * @return boolean
-    */
+     * Get hasCriteria.
+     *
+     * @return bool
+     */
     public function getHasCriteria()
     {
         return $this->hasCriteria;
     }
 
     /**
-    * Get hasCriteria
-    *
-    * @return boolean
-    */
+     * Get hasCriteria.
+     *
+     * @return bool
+     */
     public function hasCriteria()
     {
         return $this->hasCriteria;
     }
 
     /**
-    * Set criteria
-    *
-    * @param string $criteria
-    * @return MonsterDrop
-    */
+     * Set criteria.
+     *
+     * @param string $criteria
+     *
+     * @return MonsterDrop
+     */
     public function setCriteria($criteria)
     {
         $this->criteria = $criteria;
@@ -314,10 +320,10 @@ class MonsterDrop implements IdentifiableInterface, TimestampableInterface, Pars
     }
 
     /**
-    * Get criteria
-    *
-    * @return string
-    */
+     * Get criteria.
+     *
+     * @return string
+     */
     public function getCriteria()
     {
         return $this->criteria;

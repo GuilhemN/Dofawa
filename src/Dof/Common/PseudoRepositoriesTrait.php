@@ -1,4 +1,5 @@
 <?php
+
 namespace Dof\Common;
 
 use XN\Graphics\ColorPseudoRepository;
@@ -8,8 +9,7 @@ trait PseudoRepositoriesTrait
 {
     public function getPseudoRepository($type)
     {
-        switch ($type)
-        {
+        switch ($type) {
             case 'color':
                 return new ColorPseudoRepository();
             default:

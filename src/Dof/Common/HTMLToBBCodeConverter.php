@@ -1,9 +1,11 @@
 <?php
+
 namespace Dof\Common;
 
 class HTMLToBBCodeConverter
 {
-    public static function process ($text) {
+    public static function process($text)
+    {
         $replaces = [
             "\n" => '',
             "\r" => '',
@@ -45,7 +47,7 @@ class HTMLToBBCodeConverter
         $values = array_values($replaces);
 
         $keys = array_map(function ($k) {
-            return '#' . $k . '#Uis';
+            return '#'.$k.'#Uis';
         }, $keys);
 
         return preg_replace($keys, $values, html_entity_decode($text, ENT_QUOTES));

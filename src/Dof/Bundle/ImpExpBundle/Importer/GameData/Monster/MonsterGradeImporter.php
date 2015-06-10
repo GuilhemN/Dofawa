@@ -4,11 +4,9 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Monster;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
 use XN\Persistence\CollectionSynchronizationHelper;
-
 use Dof\Bundle\MonsterBundle\Entity\MonsterGrade;
 
 class MonsterGradeImporter extends AbstractGameDataImporter
@@ -20,28 +18,32 @@ class MonsterGradeImporter extends AbstractGameDataImporter
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
 
-        $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Monster_grade o');
+        $stmt = $conn->query('SELECT o.* FROM '.$db.'.D2O_Monster_grade o');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
         $g = [];
-        foreach($all as $row)
+        foreach ($all as $row) {
             $g[$row['monsterId']][] = $row;
+        }
 
         $repo = $this->dm->getRepository('DofMonsterBundle:Monster');
 
         $rowsProcessed = 0;
-        if ($output && $progress)
+        if ($output && $progress) {
             $progress->start($output, count($g));
+        }
 
         foreach ($g as $monster => $grades) {
             $monster = $repo->find($monster);
-            if($monster === null || ($monster->isPreliminary() ^ $beta))
+            if ($monster === null || ($monster->isPreliminary() ^ $beta)) {
                 continue;
+            }
 
             CollectionSynchronizationHelper::synchronize($this->dm, $monster->getGrades()->toArray(), $grades, function () use ($monster) {
                 $monsterG = new MonsterGrade();
                 $monsterG->setMonster($monster);
+
                 return $monsterG;
             }, function ($monsterG, $row) {
                 $monsterG->setGrade($row['grade']);
@@ -62,11 +64,13 @@ class MonsterGradeImporter extends AbstractGameDataImporter
 
             ++$rowsProcessed;
             if (($rowsProcessed % 150) == 0) {
-                if ($output && $progress)
-                $progress->advance(150);
+                if ($output && $progress) {
+                    $progress->advance(150);
+                }
             }
         }
-        if ($output && $progress)
-        $progress->finish();
+        if ($output && $progress) {
+            $progress->finish();
+        }
     }
 }

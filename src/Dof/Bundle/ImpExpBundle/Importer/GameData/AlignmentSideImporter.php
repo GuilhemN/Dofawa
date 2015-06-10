@@ -4,9 +4,7 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
-
 use Dof\Bundle\CharacterBundle\Entity\AlignmentSide;
 
 class AlignmentSideImporter extends AbstractGameDataImporter
@@ -17,11 +15,12 @@ class AlignmentSideImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-        if (!$beta && $write)
-        $this->dm->createQuery('UPDATE DofCharacterBundle:AlignmentSide b SET b.deprecated = true')->execute();
-        $stmt = $conn->query('SELECT o.*' .
-        $this->generateD2ISelects('name', $locales) .
-        ' FROM ' . $db . '.D2O_AlignmentSide o' .
+        if (!$beta && $write) {
+            $this->dm->createQuery('UPDATE DofCharacterBundle:AlignmentSide b SET b.deprecated = true')->execute();
+        }
+        $stmt = $conn->query('SELECT o.*'.
+        $this->generateD2ISelects('name', $locales).
+        ' FROM '.$db.'.D2O_AlignmentSide o'.
         $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -35,8 +34,9 @@ class AlignmentSideImporter extends AbstractGameDataImporter
             }
             if ($side->isDeprecated()) {
                 $side->setDeprecated(false);
-                if (!$side->getRelease())
+                if (!$side->getRelease()) {
                     $side->setRelease($release);
+                }
                 $side->setPreliminary($beta);
                 $this->copyI18NProperty($side, 'setName', $row, 'name');
                 $side->setCanConquest($row['canConquest']);

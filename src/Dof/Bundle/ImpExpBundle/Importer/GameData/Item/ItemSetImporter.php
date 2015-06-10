@@ -4,10 +4,8 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Item;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
-
 use Dof\Bundle\ItemBundle\Entity\ItemSet;
 
 class ItemSetImporter extends AbstractGameDataImporter
@@ -18,11 +16,12 @@ class ItemSetImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-        if (!$beta && $write)
+        if (!$beta && $write) {
             $this->dm->createQuery('UPDATE DofItemBundle:ItemSet s SET s.deprecated = true')->execute();
-        $stmt = $conn->query('SELECT o.*' .
-            $this->generateD2ISelects('name', $locales) .
-            ' FROM ' . $db . '.D2O_ItemSet o' .
+        }
+        $stmt = $conn->query('SELECT o.*'.
+            $this->generateD2ISelects('name', $locales).
+            ' FROM '.$db.'.D2O_ItemSet o'.
             $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -36,8 +35,9 @@ class ItemSetImporter extends AbstractGameDataImporter
             }
             if ($set->isDeprecated()) {
                 $set->setDeprecated(false);
-                if (!$set->getRelease())
+                if (!$set->getRelease()) {
                     $set->setRelease($release);
+                }
                 $set->setPreliminary($beta);
                 $this->copyI18NProperty($set, 'setName', $row, 'name');
                 $this->dm->persist($set);

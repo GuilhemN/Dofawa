@@ -4,10 +4,8 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Quest;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
-
 use Dof\Bundle\QuestBundle\Entity\Quest;
 use Dof\Bundle\QuestBundle\QuestType;
 
@@ -19,23 +17,26 @@ class QuestImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-        if (!$beta && $write)
+        if (!$beta && $write) {
             $this->dm->createQuery('UPDATE DofQuestBundle:Quest s SET s.deprecated = true')->execute();
-        $stmt = $conn->query('SELECT o.*' .
-        $this->generateD2ISelects('name', $locales) .
-        ' FROM ' . $db . '.D2O_Quest o' .
+        }
+        $stmt = $conn->query('SELECT o.*'.
+        $this->generateD2ISelects('name', $locales).
+        ' FROM '.$db.'.D2O_Quest o'.
         $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
         $repo = $this->dm->getRepository('DofQuestBundle:Quest');
         $categRepo = $this->dm->getRepository('DofQuestBundle:QuestCategory');
         $rowsProcessed = 0;
-        if ($output && $progress)
-        $progress->start($output, count($all));
+        if ($output && $progress) {
+            $progress->start($output, count($all));
+        }
         foreach ($all as $row) {
             $category = $categRepo->find($row['categoryId']);
-            if($category === null)
+            if ($category === null) {
                 continue;
+            }
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
                 $tpl = new Quest();
@@ -44,8 +45,9 @@ class QuestImporter extends AbstractGameDataImporter
             }
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
-                if (!$tpl->getRelease())
-                $tpl->setRelease($release);
+                if (!$tpl->getRelease()) {
+                    $tpl->setRelease($release);
+                }
                 $tpl->setPreliminary($beta);
                 $tpl->setIsRepeatable($row['isRepeatable']);
                 $tpl->setIsDungeonQuest($row['isDungeonQuest']);
@@ -53,13 +55,13 @@ class QuestImporter extends AbstractGameDataImporter
                 $tpl->setLevelMin($row['levelMin']);
                 $tpl->setLevelMax($row['levelMax']);
 
-                if($row['repeatType'] == 3)
+                if ($row['repeatType'] == 3) {
                     $tpl->setType(QuestType::ALMANAX);
-                elseif($row['isRepeatable'])
+                } elseif ($row['isRepeatable']) {
                     $tpl->setType(QuestType::REPEATABLE);
-                else
+                } else {
                     $tpl->setType(QuestType::ONE_SHOT);
-
+                }
 
                 $this->copyI18NProperty($tpl, 'setName', $row, 'name');
                 $this->dm->persist($tpl);
@@ -69,12 +71,13 @@ class QuestImporter extends AbstractGameDataImporter
             if (($rowsProcessed % 300) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
-                if ($output && $progress)
-                $progress->advance(300);
+                if ($output && $progress) {
+                    $progress->advance(300);
+                }
             }
         }
-        if ($output && $progress)
-        $progress->finish();
-
+        if ($output && $progress) {
+            $progress->finish();
+        }
     }
 }

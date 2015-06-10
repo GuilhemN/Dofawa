@@ -12,8 +12,10 @@ abstract class FixedURLScraper extends URLScraper
     public static function getInstance()
     {
         static $inst = null;
-        if ($inst === null)
+        if ($inst === null) {
             $inst = new static();
+        }
+
         return $inst;
     }
 

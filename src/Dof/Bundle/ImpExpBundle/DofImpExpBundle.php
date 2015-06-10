@@ -4,7 +4,6 @@ namespace Dof\Bundle\ImpExpBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-
 use Dof\Bundle\ImpExpBundle\DependencyInjection\Compiler\ImportersCompilerPass;
 
 class DofImpExpBundle extends Bundle

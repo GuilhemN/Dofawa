@@ -4,7 +4,6 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Monster;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
 
@@ -16,22 +15,25 @@ class ArchMonsterImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-        if (!$beta && $write)
+        if (!$beta && $write) {
             $this->dm->createQuery('UPDATE DofMonsterBundle:Monster s SET s.archMonster = null')->execute();
+        }
 
-        $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_MonsterMiniBos o');
+        $stmt = $conn->query('SELECT o.* FROM '.$db.'.D2O_MonsterMiniBos o');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
         $repo = $this->dm->getRepository('DofMonsterBundle:Monster');
         $rowsProcessed = 0;
-        if ($output && $progress)
+        if ($output && $progress) {
             $progress->start($output, count($all));
+        }
         foreach ($all as $row) {
             $tpl = $repo->find($row['monsterReplacingId']);
             $archi = $repo->find($row['id']);
-            if($tpl === null or $tpl->isPreliminary() ^ $beta)
+            if ($tpl === null or $tpl->isPreliminary() ^ $beta) {
                 continue;
+            }
 
             $tpl->setArchMonster($archi);
 
@@ -39,12 +41,13 @@ class ArchMonsterImporter extends AbstractGameDataImporter
             if (($rowsProcessed % 150) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
-                if ($output && $progress)
+                if ($output && $progress) {
                     $progress->advance(150);
+                }
             }
         }
-        if ($output && $progress)
+        if ($output && $progress) {
             $progress->finish();
-
+        }
     }
 }

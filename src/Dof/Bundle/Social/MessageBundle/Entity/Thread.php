@@ -3,9 +3,7 @@
 namespace Dof\Bundle\Social\MessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use FOS\MessageBundle\Entity\Thread as BaseThread;
-
 use XN\Persistence\IdentifiableInterface;
 
 /**
@@ -31,6 +29,7 @@ class Thread extends BaseThread implements IdentifiableInterface
      *   targetEntity="Dof\Bundle\Social\MessageBundle\Entity\Message",
      *   mappedBy="thread"
      * )
+     *
      * @var Message[]|\Doctrine\Common\Collections\Collection
      */
     protected $messages;
@@ -41,6 +40,7 @@ class Thread extends BaseThread implements IdentifiableInterface
      *   mappedBy="thread",
      *   cascade={"all"}
      * )
+     *
      * @var ThreadMetadata[]|\Doctrine\Common\Collections\Collection
      */
     protected $metadata;

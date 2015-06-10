@@ -23,12 +23,14 @@ class ThreadMetadata extends BaseThreadMetadata
      *   targetEntity="Dof\Bundle\Social\MessageBundle\Entity\Thread",
      *   inversedBy="metadata"
      * )
+     *
      * @var ThreadInterface
      */
     protected $thread;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dof\Bundle\UserBundle\Entity\User")
+     *
      * @var ParticipantInterface
      */
     protected $participant;

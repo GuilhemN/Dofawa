@@ -4,14 +4,14 @@ namespace Dof\Bundle\MonsterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
 use Dof\Bundle\MonsterBundle\Entity\Monster;
 
 class MonsterController extends Controller
 {
     const PER_PAGE = 20;
 
-    public function indexAction ($page, Request $request) {
+    public function indexAction($page, Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('DofMonsterBundle:Monster');
         $options = $request->query->get('monster');
@@ -23,11 +23,12 @@ class MonsterController extends Controller
             'page' => $page,
             'route' => $request->attributes->get('_route'),
             'pages_count' => ceil($count / self::PER_PAGE),
-            'route_params' => []
+            'route_params' => [],
         );
+
         return $this->render('DofMonsterBundle:Monster:index.html.twig', [
             'monsters' => $monsters,
-            'pagination' => $pagination
+            'pagination' => $pagination,
             ]);
     }
 
@@ -38,8 +39,9 @@ class MonsterController extends Controller
             $dm = $this->getDoctrine()->getManager();
             $spellRepo = $dm->getRepository('DofCharacterBundle:Spell');
             $paramOf = $spellRepo->findByMonsterEffectParam($monster);
-        } else
-            $paramOf = [ ];
+        } else {
+            $paramOf = [];
+        }
 
         return $this->render('DofMonsterBundle:Monster:show.html.twig', array('monster' => $monster, 'paramOf' => $paramOf));
     }

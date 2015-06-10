@@ -5,7 +5,6 @@ namespace Dof\Bundle\TranslationBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use XN\Annotations as Utils;
-
 use Dof\Bundle\TranslationBundle\Entity\Translation;
 
 class TranslationController extends Controller
@@ -19,7 +18,7 @@ class TranslationController extends Controller
         return $this->render('DofTranslationBundle:Translation:locale.html.twig', array(
           'baseCatalogue' => $baseCatalogue,
           'locale' => $tLocale,
-          'excludes' => $this->domainExclude()
+          'excludes' => $this->domainExclude(),
         ));
     }
 
@@ -27,11 +26,13 @@ class TranslationController extends Controller
      * @Utils\Secure("ROLE_USER")
      * @Utils\UsesSession
      */
-    public function createAction($tLocale, $domain, $label, Request $request){
+    public function createAction($tLocale, $domain, $label, Request $request)
+    {
         $translator = $this->get('translator');
 
-        if(!$translator->has($label, $domain, 'fr'))
+        if (!$translator->has($label, $domain, 'fr')) {
             throw $this->createAccessDeniedException();
+        }
 
         $translation = new Translation();
 
@@ -54,16 +55,18 @@ class TranslationController extends Controller
                 'translations',
                 'thanks'
             );
+
             return $this->redirect($this->generateUrl('dof_translation_homepage', array('tLocale' => $tLocale)));
         }
 
         return $this->render('DofTranslationBundle:Translation:create.html.twig', ['locale' => $tLocale, 'form' => $form->createView()]);
     }
 
-    private function domainExclude(){
+    private function domainExclude()
+    {
         return array(
             'FOSUserBundle',
-            'routes'
+            'routes',
         );
     }
 }

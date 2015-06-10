@@ -5,19 +5,17 @@ namespace Dof\Bundle\MonsterBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * MonsterRace
+ * MonsterRace.
  *
  * @ORM\Table(name="dof_monster_races")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MonsterBundle\Entity\MonsterRaceRepository")
@@ -27,7 +25,7 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,18 +33,17 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
     private $id;
 
     /**
-    * @var Monster
-    *
-    * @ORM\ManyToOne(targetEntity="MonsterSuperRace", inversedBy="children")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var Monster
+     *
+     * @ORM\ManyToOne(targetEntity="MonsterSuperRace", inversedBy="children")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $parent;
 
     /**
-    * @ORM\OneToMany(targetEntity="Monster", mappedBy="race")
-    */
+     * @ORM\OneToMany(targetEntity="Monster", mappedBy="race")
+     */
     private $monsters;
-
 
     public function __construct()
     {
@@ -54,21 +51,23 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-    * Set id
-    *
-    * @param integer $id
-    * @return MonsterRace
-    */
+     * Set id.
+     *
+     * @param int $id
+     *
+     * @return MonsterRace
+     */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -76,11 +75,12 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-    * Set parent
-    *
-    * @param MonsterSuperRace $parent
-    * @return MonsterRace
-    */
+     * Set parent.
+     *
+     * @param MonsterSuperRace $parent
+     *
+     * @return MonsterRace
+     */
     public function setParent(MonsterSuperRace $parent)
     {
         $this->parent = $parent;
@@ -89,20 +89,21 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-    * Get parent
-    *
-    * @return MonsterSuperRace
-    */
+     * Get parent.
+     *
+     * @return MonsterSuperRace
+     */
     public function getParent()
     {
         return $this->parent;
     }
     /**
-    * Add monsters
-    *
-    * @param Monster $monsters
-    * @return MonsterRace
-    */
+     * Add monsters.
+     *
+     * @param Monster $monsters
+     *
+     * @return MonsterRace
+     */
     public function addMonster(Monster $monsters)
     {
         $this->monsters[] = $monsters;
@@ -111,11 +112,12 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-    * Remove monsters
-    *
-    * @param Monster $monsters
-    * @return MonsterRace
-    */
+     * Remove monsters.
+     *
+     * @param Monster $monsters
+     *
+     * @return MonsterRace
+     */
     public function removeMonster(Monster $monsters)
     {
         $this->monsters->removeElement($monsters);
@@ -124,16 +126,17 @@ class MonsterRace implements IdentifiableInterface, TimestampableInterface, Slug
     }
 
     /**
-    * Get monsters
-    *
-    * @return Collection
-    */
+     * Get monsters.
+     *
+     * @return Collection
+     */
     public function getMonsters()
     {
         return $this->monsters;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }

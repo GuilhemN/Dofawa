@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -14,16 +13,12 @@ use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
-
 use XN\L10n\LocalizedOriginInterface;
 use XN\L10n\LocalizedOriginTrait;
-
-use Dof\Bundle\Social\ForumBundle\Entity\Forum;
-use Dof\Bundle\Social\ForumBundle\Entity\Message;
 use Dof\Bundle\UserBundle\Entity\User;
 
 /**
- * topic
+ * topic.
  *
  * @ORM\Table(name="dof_forum_topics")
  * @ORM\Entity(repositoryClass="Dof\Bundle\Social\ForumBundle\Entity\TopicRepository")
@@ -33,7 +28,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     use TimestampableTrait, SluggableTrait, OwnableTrait, LocalizedOriginTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -49,7 +44,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="locked", type="boolean")
      */
@@ -95,9 +90,9 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -105,9 +100,10 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return name
      */
     public function setName($name)
@@ -118,7 +114,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -128,9 +124,10 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set locked
+     * Set locked.
      *
-     * @param boolean $locked
+     * @param bool $locked
+     *
      * @return topic
      */
     public function setLocked($locked)
@@ -141,9 +138,9 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get locked
+     * Get locked.
      *
-     * @return boolean
+     * @return bool
      */
     public function getLocked()
     {
@@ -151,7 +148,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set forum
+     * Set forum.
      *
      * @param Forum $forum
      */
@@ -160,8 +157,8 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
         $this->forum = $forum;
     }
 
-     /**
-     * Get forum
+    /**
+     * Get forum.
      *
      * @return Forum
      */
@@ -171,9 +168,10 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Add messages
+     * Add messages.
      *
      * @param Message $messages
+     *
      * @return Topic
      */
     public function addMessage(Message $messages)
@@ -184,9 +182,10 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Remove messages
+     * Remove messages.
      *
      * @param Message $messages
+     *
      * @return Topic
      */
     public function removeMessage(Message $messages)
@@ -197,7 +196,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get messages
+     * Get messages.
      *
      * @return Collection
      */
@@ -207,9 +206,9 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set countPosts
+     * Set countPosts.
      *
-     * @param integer $countPosts
+     * @param int $countPosts
      */
     public function setCountPosts($countPosts)
     {
@@ -217,9 +216,9 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get countPosts
+     * Get countPosts.
      *
-     * @return integer
+     * @return int
      */
     public function getCountPosts()
     {
@@ -227,7 +226,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Set lastPost
+     * Set lastPost.
      *
      * @param datetime $lastPost
      */
@@ -237,7 +236,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get lastPost
+     * Get lastPost.
      *
      * @return datetime
      */
@@ -246,20 +245,25 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
         return $this->lastPost;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->name;
     }
 
-    public function getLastMessageCreatedAt() {
-        foreach ($this->messages->matching(Criteria::create()->orderBy('createdAt', 'DESC')->setFirstResult( 0 )->setMaxResults(1)) as $message)
+    public function getLastMessageCreatedAt()
+    {
+        foreach ($this->messages->matching(Criteria::create()->orderBy('createdAt', 'DESC')->setFirstResult(0)->setMaxResults(1)) as $message) {
             return $message->getCreatedAt();
-        return null;
+        }
+
+        return;
     }
 
     /**
-     * Add readBy
+     * Add readBy.
      *
      * @param User $readBy
+     *
      * @return object
      */
     public function addReadBy(User $readBy)
@@ -270,9 +274,10 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Remove readBy
+     * Remove readBy.
      *
      * @param User $readBy
+     *
      * @return object
      */
     public function removeReadBy(User $readBy)
@@ -283,7 +288,7 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * Get readBy
+     * Get readBy.
      *
      * @return Collection
      */
@@ -298,15 +303,18 @@ class Topic implements IdentifiableInterface, TimestampableInterface, SluggableI
     }
 
     /**
-     * isReadBy
+     * isReadBy.
      *
      * @param User $user
-     * @return boolean
+     *
+     * @return bool
      */
     public function isReadBy(User $user = null)
     {
-        if($user === null)
+        if ($user === null) {
             return true;
+        }
+
         return $this->readBy->contains($user);
     }
 }

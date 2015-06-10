@@ -3,7 +3,6 @@
 namespace Dof\Bundle\ImpExpBundle\Scraper;
 
 use Dof\Bundle\GraphicsBundle\EntityLook;
-
 use Dof\Bundle\ImpExpBundle\URLFamilyScraper;
 
 class CharacterPageScraper extends URLFamilyScraper
@@ -22,16 +21,20 @@ class CharacterPageScraper extends URLFamilyScraper
             if ($doc !== null) {
                 foreach ($doc->getElementsByTagName('h1') as $h1) {
                     $this->name = '';
-                    foreach ($h1->childNodes as $cld)
-                        if ($cld->nodeType == XML_TEXT_NODE)
+                    foreach ($h1->childNodes as $cld) {
+                        if ($cld->nodeType == XML_TEXT_NODE) {
                             $this->name .= $cld->nodeValue;
+                        }
+                    }
                     $this->name = trim($this->name);
                     break;
                 }
             }
         }
-        if ($this->name === false)
-            return null;
+        if ($this->name === false) {
+            return;
+        }
+
         return $this->name;
     }
     public function getServerName()
@@ -41,36 +44,44 @@ class CharacterPageScraper extends URLFamilyScraper
             $this->serverName = false;
             if ($doc !== null) {
                 foreach ($doc->getElementsByTagName('span') as $span) {
-                    if (strpos(' ' . $span->getAttribute('class') . ' ', ' ak-directories-server-name ') === false)
+                    if (strpos(' '.$span->getAttribute('class').' ', ' ak-directories-server-name ') === false) {
                         continue;
+                    }
                     $this->serverName = '';
-                    foreach ($span->childNodes as $cld)
-                        if ($cld->nodeType == XML_TEXT_NODE)
+                    foreach ($span->childNodes as $cld) {
+                        if ($cld->nodeType == XML_TEXT_NODE) {
                             $this->serverName .= $cld->nodeValue;
+                        }
+                    }
                     $this->serverName = trim($this->serverName);
                     break;
                 }
             }
         }
-        if ($this->serverName === false)
-            return null;
+        if ($this->serverName === false) {
+            return;
+        }
+
         return $this->serverName;
     }
 
     public function getEntityLook()
     {
         if ($this->entityLook === null) {
-            if (preg_match('~' . EntityLook::AK_RENDERER_PATTERN . '~', $this->contents, $matches)) {
+            if (preg_match('~'.EntityLook::AK_RENDERER_PATTERN.'~', $this->contents, $matches)) {
                 try {
                     $this->entityLook = new EntityLook(hex2bin($matches[1]));
                 } catch (\Exception $e) {
                     $this->entityLook = false;
                 }
-            } else
+            } else {
                 $this->entityLook = false;
+            }
         }
-        if ($this->entityLook === false)
-            return null;
+        if ($this->entityLook === false) {
+            return;
+        }
+
         return $this->entityLook;
     }
 }

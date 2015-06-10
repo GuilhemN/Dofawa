@@ -4,14 +4,10 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Item;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
-
 use Dof\Bundle\ItemBundle\Entity\ItemTemplateEffect;
 use Dof\Bundle\ItemBundle\Entity\WeaponDamageRow;
-
 use XN\Persistence\CollectionSynchronizationHelper;
-
 use Dof\Bundle\ItemBundle\EffectListHelper;
 
 class ItemEffectImporter extends AbstractGameDataImporter
@@ -26,39 +22,41 @@ class ItemEffectImporter extends AbstractGameDataImporter
         $this->loaders[0]->setEnabled(false);
         $this->loaders[1]->setEnabled(false);
 
-        $items = [ ];
+        $items = [];
         $stmt = $conn->query('SELECT o.id, o._index1, o.effectId, o.diceNum, o.diceSide, o.value
-            FROM ' . $db . '.D2O_Item_possibleEffect o
-            WHERE o.effectId IN (SELECT id FROM ' . $db . '.D2O_Effect)
+            FROM '.$db.'.D2O_Item_possibleEffect o
+            WHERE o.effectId IN (SELECT id FROM '.$db.'.D2O_Effect)
             ');
         $stmt2 = $conn->query('SELECT o.id, o._index1, o.effectId, o.diceNum, o.diceSide, o.value
-            FROM ' . $db . '.D2O_Pet_possibleEffect o
-            WHERE o.effectId IN (SELECT id FROM ' . $db . '.D2O_Effect)
+            FROM '.$db.'.D2O_Pet_possibleEffect o
+            WHERE o.effectId IN (SELECT id FROM '.$db.'.D2O_Effect)
             ');
         foreach ($stmt->fetchAll() as $row) {
             $itemId = intval($row['id']);
             $order = intval($row['_index1']);
-            if (!isset($items[$itemId]))
-            $items[$itemId] = [ ];
+            if (!isset($items[$itemId])) {
+                $items[$itemId] = [];
+            }
             $items[$itemId][$order] = [
                 'order' => $order,
                 'type' => $row['effectId'],
                 'param1' => $row['diceNum'],
                 'param2' => $row['diceSide'],
-                'param3' => $row['value']
+                'param3' => $row['value'],
             ];
         }
         foreach ($stmt2->fetchAll() as $row) {
             $itemId = intval($row['id']);
-            $order = - intval($row['_index1']);
-            if (!isset($items[$itemId]))
-            $items[$itemId] = [ ];
+            $order = -intval($row['_index1']);
+            if (!isset($items[$itemId])) {
+                $items[$itemId] = [];
+            }
             $items[$itemId][$order] = [
                 'order' => $order,
                 'type' => $row['effectId'],
                 'param1' => $row['diceNum'],
                 'param2' => $row['diceSide'],
-                'param3' => $row['value']
+                'param3' => $row['value'],
             ];
         }
         $stmt->closeCursor();
@@ -68,12 +66,14 @@ class ItemEffectImporter extends AbstractGameDataImporter
         $effectRepo = $this->dm->getRepository('DofCharacterBundle:EffectTemplate');
 
         $rowsProcessed = 0;
-        if ($output && $progress)
+        if ($output && $progress) {
             $progress->start($output, count($items));
+        }
         foreach ($items as $item => $effects) {
             $item = $itemRepo->find($item);
-            if ($item === null || $item->isSticky() || ($item->isPreliminary() ^ $beta))
+            if ($item === null || $item->isSticky() || ($item->isPreliminary() ^ $beta)) {
                 continue;
+            }
             ksort($effects);
             if ($item->isEquipment()) {
                 $charas = EffectListHelper::extractCharacteristicsRanges($effects);
@@ -83,6 +83,7 @@ class ItemEffectImporter extends AbstractGameDataImporter
                     CollectionSynchronizationHelper::synchronize($this->dm, $item->getDamageRows()->toArray(), $damages, function () use ($item) {
                         $wdr = new WeaponDamageRow();
                         $wdr->setWeapon($item);
+
                         return $wdr;
                     }, function ($wdr, $row) {
                         $wdr->setOrder($row['order']);
@@ -92,11 +93,13 @@ class ItemEffectImporter extends AbstractGameDataImporter
                         $wdr->setLeech($row['leech']);
                     });
                 }
-            } else
+            } else {
                 $effects = array_values($effects);
+            }
             CollectionSynchronizationHelper::synchronize($this->dm, $item->getEffects()->toArray(), $effects, function () use ($item) {
                 $fx = new ItemTemplateEffect();
                 $fx->setItem($item);
+
                 return $fx;
             }, function ($fx, $row) use ($effectRepo) {
                 $fx->setOrder($row['order']);
@@ -110,18 +113,21 @@ class ItemEffectImporter extends AbstractGameDataImporter
             if (($rowsProcessed % 300) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
-                if ($output && $progress)
+                if ($output && $progress) {
                     $progress->advance(300);
+                }
             }
         }
-        if ($output && $progress)
+        if ($output && $progress) {
             $progress->finish();
+        }
 
         $this->loaders[0]->setEnabled(true);
         $this->loaders[1]->setEnabled(true);
     }
 
-    public function setLoaders($loaders){
+    public function setLoaders($loaders)
+    {
         $this->loaders = $loaders;
     }
 }

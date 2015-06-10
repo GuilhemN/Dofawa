@@ -3,18 +3,16 @@
 namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Monster;
 
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\ImporterInterface;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
 
 class MonsterDungeonImporter implements ImporterInterface
 {
     /**
-    * @var ObjectManager
-    */
+     * @var ObjectManager
+     */
     protected $dm;
 
     public function __construct(ObjectManager $dm)
@@ -24,8 +22,9 @@ class MonsterDungeonImporter implements ImporterInterface
 
     public function import($dataSet, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
-        if ($dataSet != 'monster_dungeons')
+        if ($dataSet != 'monster_dungeons') {
             return;
+        }
         $this->dm->clear();
         $repo = $this->dm->getRepository('DofMonsterBundle:Monster');
         $dungeonRepo = $this->dm->getRepository('DofMonsterBundle:Dungeon');
@@ -33,34 +32,38 @@ class MonsterDungeonImporter implements ImporterInterface
         $boss = $repo->findByBoss(true);
 
         $rowsProcessed = 0;
-        if ($output && $progress)
+        if ($output && $progress) {
             $progress->start($output, count($boss));
+        }
 
-        foreach ($boss as $row){
-            foreach($row->getSubAreas() as $subArea){
+        foreach ($boss as $row) {
+            foreach ($row->getSubAreas() as $subArea) {
                 $dungeon = $dungeonRepo->findOneByNameFr($subArea->getNameFr());
 
-                if($dungeon !== null && !$row->getDungeons()->contains($dungeon)){
+                if ($dungeon !== null && !$row->getDungeons()->contains($dungeon)) {
                     $row->addDungeon($dungeon);
                 }
             }
 
             ++$rowsProcessed;
             if (($rowsProcessed % 150) == 0) {
-                if ($output && $progress)
-                $progress->advance(150);
+                if ($output && $progress) {
+                    $progress->advance(150);
+                }
             }
         }
 
-        if (($flags & ImporterFlags::DRY_RUN) == 0)
+        if (($flags & ImporterFlags::DRY_RUN) == 0) {
             $this->dm->flush();
+        }
         $this->dm->clear();
 
-        if ($output && $progress)
+        if ($output && $progress) {
             $progress->finish();
+        }
     }
 
-    private function progress(&$rowsProcessed, OutputInterface $output = null, ProgressHelper $progress = null) {
-
+    private function progress(&$rowsProcessed, OutputInterface $output = null, ProgressHelper $progress = null)
+    {
     }
 }

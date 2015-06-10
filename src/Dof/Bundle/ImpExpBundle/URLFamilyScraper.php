@@ -9,8 +9,9 @@ abstract class URLFamilyScraper extends URLScraper
 
     public function __construct($url)
     {
-        if (!preg_match(static::URL_FAMILY_REGEX, $url, $matches))
+        if (!preg_match(static::URL_FAMILY_REGEX, $url, $matches)) {
             throw new \Exception('This scraper doesn\'t support this URL');
+        }
         $this->url = $url;
         $this->urlMatches = $matches;
         $this->contents = file_get_contents($url);

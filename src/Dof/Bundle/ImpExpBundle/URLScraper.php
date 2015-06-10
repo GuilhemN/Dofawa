@@ -8,7 +8,7 @@ abstract class URLScraper
     private $contentsAsHTMLDocument;
     private $contentsAsXMLDocument;
 
-    public abstract function getURL();
+    abstract public function getURL();
     public function getContents()
     {
         return $this->contents;
@@ -19,15 +19,18 @@ abstract class URLScraper
             $err = libxml_use_internal_errors(true);
             try {
                 $this->contentsAsHTMLDocument = new \DOMDocument();
-                if (!$this->contentsAsHTMLDocument->loadHTML($this->contents))
+                if (!$this->contentsAsHTMLDocument->loadHTML($this->contents)) {
                     $this->contentsAsHTMLDocument = false;
+                }
             } catch (\Exception $e) {
                 $this->contentsAsHTMLDocument = false;
             }
             libxml_use_internal_errors($err);
         }
-        if ($this->contentsAsHTMLDocument === false)
-            return null;
+        if ($this->contentsAsHTMLDocument === false) {
+            return;
+        }
+
         return $this->contentsAsHTMLDocument;
     }
     public function getContentsAsXMLDocument()
@@ -36,15 +39,18 @@ abstract class URLScraper
             $err = libxml_use_internal_errors(true);
             try {
                 $this->contentsAsXMLDocument = new \DOMDocument();
-                if (!$this->contentsAsXMLDocument->loadXML($this->contents))
+                if (!$this->contentsAsXMLDocument->loadXML($this->contents)) {
                     $this->contentsAsXMLDocument = false;
+                }
             } catch (\Exception $e) {
                 $this->contentsAsXMLDocument = false;
             }
             libxml_use_internal_errors($err);
         }
-        if ($this->contentsAsXMLDocument === false)
-            return null;
+        if ($this->contentsAsXMLDocument === false) {
+            return;
+        }
+
         return $this->contentsAsXMLDocument;
     }
 }

@@ -3,22 +3,19 @@
 namespace Dof\Bundle\MonsterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
-
 use Dof\Bundle\MapBundle\Entity\MapPosition;
 use Dof\Bundle\CMSBundle\Entity\DungeonArticle;
 
 /**
- * Dungeon
+ * Dungeon.
  *
  * @ORM\Table(name="dof_dungeons")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MonsterBundle\Entity\DungeonRepository")
@@ -28,7 +25,7 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -36,38 +33,38 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="optimalPlayerLevel", type="integer")
      */
     private $optimalPlayerLevel;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Dof\Bundle\MapBundle\Entity\MapPosition", inversedBy="entranceDungeons")
-    * @ORM\JoinColumn(nullable=false)
-    */
+     * @ORM\ManyToOne(targetEntity="Dof\Bundle\MapBundle\Entity\MapPosition", inversedBy="entranceDungeons")
+     * @ORM\JoinColumn(nullable=false)
+     */
     private $entranceMap;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Dof\Bundle\MapBundle\Entity\MapPosition", inversedBy="exitDungeons")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\ManyToOne(targetEntity="Dof\Bundle\MapBundle\Entity\MapPosition", inversedBy="exitDungeons")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $exitMap;
 
     /**
-    * @var DungeonArticle
-    *
-    * @ORM\OneToOne(targetEntity="Dof\Bundle\CMSBundle\Entity\DungeonArticle", mappedBy="dungeon")
-    */
+     * @var DungeonArticle
+     *
+     * @ORM\OneToOne(targetEntity="Dof\Bundle\CMSBundle\Entity\DungeonArticle", mappedBy="dungeon")
+     */
     private $article;
 
-
     /**
-    * Set id
-    *
-    * @param integer $id
-    * @return Dungeon
-    */
+     * Set id.
+     *
+     * @param int $id
+     *
+     * @return Dungeon
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -76,9 +73,9 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -86,9 +83,10 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set optimalPlayerLevel
+     * Set optimalPlayerLevel.
      *
-     * @param integer $optimalPlayerLevel
+     * @param int $optimalPlayerLevel
+     *
      * @return Dungeon
      */
     public function setOptimalPlayerLevel($optimalPlayerLevel)
@@ -99,9 +97,9 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get optimalPlayerLevel
+     * Get optimalPlayerLevel.
      *
-     * @return integer
+     * @return int
      */
     public function getOptimalPlayerLevel()
     {
@@ -109,11 +107,12 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Set entranceMap
-    *
-    * @param MapPosition $entranceMap
-    * @return Dungeon
-    */
+     * Set entranceMap.
+     *
+     * @param MapPosition $entranceMap
+     *
+     * @return Dungeon
+     */
     public function setEntranceMap(MapPosition $entranceMap)
     {
         $this->entranceMap = $entranceMap;
@@ -122,21 +121,22 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get entranceMap
-    *
-    * @return MapPosition
-    */
+     * Get entranceMap.
+     *
+     * @return MapPosition
+     */
     public function getEntranceMap()
     {
         return $this->entranceMap;
     }
 
     /**
-    * Set exitMap
-    *
-    * @param MapPosition $exitMap
-    * @return Dungeon
-    */
+     * Set exitMap.
+     *
+     * @param MapPosition $exitMap
+     *
+     * @return Dungeon
+     */
     public function setExitMap(MapPosition $exitMap = null)
     {
         $this->exitMap = $exitMap;
@@ -145,21 +145,22 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get exitMap
-    *
-    * @return MapPosition
-    */
+     * Get exitMap.
+     *
+     * @return MapPosition
+     */
     public function getExitMap()
     {
         return $this->exitMap;
     }
 
     /**
-    * Set article
-    *
-    * @param DungeonArticle $article
-    * @return Dungeon
-    */
+     * Set article.
+     *
+     * @param DungeonArticle $article
+     *
+     * @return Dungeon
+     */
     public function setArticle(DungeonArticle $article = null)
     {
         $this->article = $article;
@@ -168,16 +169,17 @@ class Dungeon implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get article
-    *
-    * @return DungeonArticle
-    */
+     * Get article.
+     *
+     * @return DungeonArticle
+     */
     public function getArticle()
     {
         return $this->article;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }

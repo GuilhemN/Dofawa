@@ -6,26 +6,22 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use XN\Common\UrlSafeBase64;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 use XN\Metadata\FileInterface;
 use XN\Metadata\FileLightTrait;
-
 use Dof\Bundle\CharacterBundle\Entity\Spell;
 use Dof\Bundle\MapBundle\Entity\SubArea;
 
 /**
- * Monster
+ * Monster.
  *
  * @ORM\Table(name="dof_monsters")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MonsterBundle\Entity\MonsterRepository")
@@ -35,7 +31,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait, FileLightTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -43,130 +39,130 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     private $id;
 
     /**
-    * @var MonsterRace
-    *
-    * @ORM\ManyToOne(targetEntity="MonsterRace", inversedBy="monsters")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var MonsterRace
+     *
+     * @ORM\ManyToOne(targetEntity="MonsterRace", inversedBy="monsters")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $race;
 
     /**
-    * @ORM\OneToMany(targetEntity="MonsterGrade", mappedBy="monster")
-    */
+     * @ORM\OneToMany(targetEntity="MonsterGrade", mappedBy="monster")
+     */
     private $grades;
 
     /**
-    * @ORM\OneToMany(targetEntity="MonsterDrop", mappedBy="monster")
-    */
+     * @ORM\OneToMany(targetEntity="MonsterDrop", mappedBy="monster")
+     */
     private $drops;
 
     /**
-    * @var Monster
-    *
-    * @ORM\OneToOne(targetEntity="Monster", inversedBy="normalMonster")
-    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-    */
+     * @var Monster
+     *
+     * @ORM\OneToOne(targetEntity="Monster", inversedBy="normalMonster")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
     private $archMonster;
 
     /**
-    * @var Monster
-    *
-    * @ORM\OneToOne(targetEntity="Monster", mappedBy="archMonster")
-    */
+     * @var Monster
+     *
+     * @ORM\OneToOne(targetEntity="Monster", mappedBy="archMonster")
+     */
     private $normalMonster;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\CharacterBundle\Entity\Spell", mappedBy="monsters")
-    */
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\CharacterBundle\Entity\Spell", mappedBy="monsters")
+     */
     private $spells;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\CharacterBundle\Entity\Spell", mappedBy="passiveOfMonsters")
-    */
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\CharacterBundle\Entity\Spell", mappedBy="passiveOfMonsters")
+     */
     private $passiveSpells;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dof\Bundle\MapBundle\Entity\SubArea", mappedBy="monsters")
-    */
+     * @ORM\ManyToMany(targetEntity="Dof\Bundle\MapBundle\Entity\SubArea", mappedBy="monsters")
+     */
     private $subAreas;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Dungeon")
-    */
+     * @ORM\ManyToMany(targetEntity="Dungeon")
+     */
     private $dungeons;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="visible", type="boolean")
      */
     private $visible;
 
     /**
-    * @var boolean
-    *
-    * @ORM\Column(name="use_summon_slot", type="boolean")
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="use_summon_slot", type="boolean")
+     */
     private $useSummonSlot;
 
     /**
-    * @var boolean
-    *
-    * @ORM\Column(name="use_bomb_slot", type="boolean")
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="use_bomb_slot", type="boolean")
+     */
     private $useBombSlot;
 
     /**
-    * @var boolean
-    *
-    * @ORM\Column(name="can_play", type="boolean")
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="can_play", type="boolean")
+     */
     private $canPlay;
 
     /**
-    * @var boolean
-    *
-    * @ORM\Column(name="can_tackle", type="boolean")
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="can_tackle", type="boolean")
+     */
     private $canTackle;
 
     /**
-    * @var boolean
-    *
-    * @ORM\Column(name="boss", type="boolean")
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="boss", type="boolean")
+     */
     private $boss;
 
     /**
-    * @var boolean
-    *
-    * @ORM\Column(name="mini_boss", type="boolean")
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="mini_boss", type="boolean")
+     */
     private $miniBoss;
 
     /**
-    * @var boolean
-    *
-    * @ORM\Column(name="can_be_pushed", type="boolean")
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="can_be_pushed", type="boolean")
+     */
     private $canBePushed;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="look", type="string", length=255)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="look", type="string", length=255)
+     */
     private $look;
 
     /**
-    * @Assert\Image(
-    *     maxSize = "1024k",
-    *     minWidth = 131,
-    *     maxWidth = 200,
-    *     minHeight = 131,
-    *     maxHeight = 200,
-    *     mimeTypesMessage = "Choisissez un fichier image valide.")
-    */
+     * @Assert\Image(
+     *     maxSize = "1024k",
+     *     minWidth = 131,
+     *     maxWidth = 200,
+     *     minHeight = 131,
+     *     maxHeight = 200,
+     *     mimeTypesMessage = "Choisissez un fichier image valide.")
+     */
     private $file;
 
     public function __construct()
@@ -180,9 +176,10 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return Monster
      */
     public function setId($id)
@@ -193,20 +190,21 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
     /**
-    * Set race
-    *
-    * @param MonsterRace $race
-    * @return Monster
-    */
+     * Set race.
+     *
+     * @param MonsterRace $race
+     *
+     * @return Monster
+     */
     public function setRace(MonsterRace $race)
     {
         $this->race = $race;
@@ -215,21 +213,22 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get race
-    *
-    * @return MonsterRace
-    */
+     * Get race.
+     *
+     * @return MonsterRace
+     */
     public function getRace()
     {
         return $this->race;
     }
 
     /**
-    * Add grades
-    *
-    * @param MonsterGrade $grades
-    * @return Monster
-    */
+     * Add grades.
+     *
+     * @param MonsterGrade $grades
+     *
+     * @return Monster
+     */
     public function addGrade(MonsterGrade $grades)
     {
         $this->grades[] = $grades;
@@ -238,11 +237,12 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Remove grades
-    *
-    * @param MonsterGrade $grades
-    * @return Monster
-    */
+     * Remove grades.
+     *
+     * @param MonsterGrade $grades
+     *
+     * @return Monster
+     */
     public function removeGrade(MonsterGrade $grades)
     {
         $this->grades->removeElement($grades);
@@ -251,43 +251,50 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get grades
-    *
-    * @return Collection
-    */
+     * Get grades.
+     *
+     * @return Collection
+     */
     public function getGrades()
     {
         return $this->grades;
     }
 
-    public function getMinGrade(){
-        $min = null; $minGrade = null;
-        foreach($this->grades as $grade)
-            if($min === null or $min > $grade->getGrade()){
+    public function getMinGrade()
+    {
+        $min = null;
+        $minGrade = null;
+        foreach ($this->grades as $grade) {
+            if ($min === null or $min > $grade->getGrade()) {
                 $min = $grade->getGrade();
                 $minGrade = $grade;
             }
+        }
 
         return $minGrade;
     }
 
-    public function getMaxGrade(){
-        $max = null; $maxGrade = null;
-        foreach($this->grades as $grade)
-            if($max === null or $max < $grade->getGrade()){
+    public function getMaxGrade()
+    {
+        $max = null;
+        $maxGrade = null;
+        foreach ($this->grades as $grade) {
+            if ($max === null or $max < $grade->getGrade()) {
                 $max = $grade->getGrade();
                 $maxGrade = $grade;
             }
+        }
 
         return $maxGrade;
     }
 
     /**
-    * Add drops
-    *
-    * @param MonsterDrop $drops
-    * @return Monster
-    */
+     * Add drops.
+     *
+     * @param MonsterDrop $drops
+     *
+     * @return Monster
+     */
     public function addDrop(MonsterDrop $drops)
     {
         $this->drops[] = $drops;
@@ -296,11 +303,12 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Remove drops
-    *
-    * @param MonsterDrop $drops
-    * @return Monster
-    */
+     * Remove drops.
+     *
+     * @param MonsterDrop $drops
+     *
+     * @return Monster
+     */
     public function removeDrop(MonsterDrop $drops)
     {
         $this->drops->removeElement($drops);
@@ -309,45 +317,46 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get drops
-    *
-    * @return Collection
-    */
+     * Get drops.
+     *
+     * @return Collection
+     */
     public function getDrops()
     {
         return $this->drops;
     }
 
     /**
-    * Get drops
-    *
-    * @return Collection
-    */
+     * Get drops.
+     *
+     * @return Collection
+     */
     public function getNormalDrops()
     {
-        return array_filter($this->drops->toArray(), function($v){
+        return array_filter($this->drops->toArray(), function ($v) {
             return !$v->getHasCriteria();
         });
     }
 
     /**
-    * Get drops
-    *
-    * @return Collection
-    */
+     * Get drops.
+     *
+     * @return Collection
+     */
     public function getConditionedDrops()
     {
-        return array_filter($this->drops->toArray(), function($v){
+        return array_filter($this->drops->toArray(), function ($v) {
             return $v->getHasCriteria();
         });
     }
 
     /**
-    * Add spells
-    *
-    * @param Spell $spells
-    * @return Monster
-    */
+     * Add spells.
+     *
+     * @param Spell $spells
+     *
+     * @return Monster
+     */
     public function addSpell(Spell $spells)
     {
         $this->spells[] = $spells;
@@ -356,11 +365,12 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Remove spells
-    *
-    * @param Spell $spells
-    * @return Monster
-    */
+     * Remove spells.
+     *
+     * @param Spell $spells
+     *
+     * @return Monster
+     */
     public function removeSpell(Spell $spells)
     {
         $this->spells->removeElement($spells);
@@ -369,19 +379,20 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get spells
-    *
-    * @return Collection
-    */
+     * Get spells.
+     *
+     * @return Collection
+     */
     public function getSpells()
     {
         return $this->spells;
     }
 
     /**
-     * Add passiveSpells
+     * Add passiveSpells.
      *
      * @param Spell $passiveSpells
+     *
      * @return Monster
      */
     public function addPassiveSpell(Spell $passiveSpells)
@@ -392,9 +403,10 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Remove passiveSpells
+     * Remove passiveSpells.
      *
      * @param Spell $passiveSpells
+     *
      * @return Monster
      */
     public function removePassiveSpell(Spell $passiveSpells)
@@ -405,7 +417,7 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get passiveSpells
+     * Get passiveSpells.
      *
      * @return Collection
      */
@@ -414,22 +426,26 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
         return $this->passiveSpells;
     }
 
-    public function getSortedSpells(){
+    public function getSortedSpells()
+    {
         $spells = $this->spells->toArray();
-        usort($spells, function($a, $b){
+        usort($spells, function ($a, $b) {
             $aLevel = $a->getRanks()[0]->getObtainmentLevel();
             $bLevel = $b->getRanks()[0]->getObtainmentLevel();
+
             return $aLevel - $bLevel;
         });
+
         return $spells;
     }
 
     /**
-    * Add subAreas
-    *
-    * @param SubArea $subAreas
-    * @return Monster
-    */
+     * Add subAreas.
+     *
+     * @param SubArea $subAreas
+     *
+     * @return Monster
+     */
     public function addSubArea(SubArea $subAreas)
     {
         $this->subAreas[] = $subAreas;
@@ -438,11 +454,12 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Remove subAreas
-    *
-    * @param SubArea $subAreas
-    * @return Monster
-    */
+     * Remove subAreas.
+     *
+     * @param SubArea $subAreas
+     *
+     * @return Monster
+     */
     public function removeSubArea(SubArea $subAreas)
     {
         $this->subAreas->removeElement($subAreas);
@@ -451,20 +468,21 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get subAreas
-    *
-    * @return Collection
-    */
+     * Get subAreas.
+     *
+     * @return Collection
+     */
     public function getSubAreas()
     {
         return $this->subAreas;
     }
     /**
-    * Add dungeons
-    *
-    * @param Dungeon $dungeons
-    * @return Monster
-    */
+     * Add dungeons.
+     *
+     * @param Dungeon $dungeons
+     *
+     * @return Monster
+     */
     public function addDungeon(Dungeon $dungeons)
     {
         $this->dungeons[] = $dungeons;
@@ -473,11 +491,12 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Remove dungeons
-    *
-    * @param Dungeon $dungeons
-    * @return Monster
-    */
+     * Remove dungeons.
+     *
+     * @param Dungeon $dungeons
+     *
+     * @return Monster
+     */
     public function removeDungeon(Dungeon $dungeons)
     {
         $this->dungeons->removeElement($dungeons);
@@ -486,19 +505,20 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get dungeons
-    *
-    * @return Collection
-    */
+     * Get dungeons.
+     *
+     * @return Collection
+     */
     public function getDungeons()
     {
         return $this->dungeons;
     }
 
     /**
-     * Set visible
+     * Set visible.
      *
-     * @param boolean $visible
+     * @param bool $visible
+     *
      * @return Monster
      */
     public function setVisible($visible)
@@ -509,9 +529,9 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-     * Get visible
+     * Get visible.
      *
-     * @return boolean
+     * @return bool
      */
     public function getVisible()
     {
@@ -519,11 +539,12 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Set useSummonSlot
-    *
-    * @param boolean $useSummonSlot
-    * @return Monster
-    */
+     * Set useSummonSlot.
+     *
+     * @param bool $useSummonSlot
+     *
+     * @return Monster
+     */
     public function setUseSummonSlot($useSummonSlot)
     {
         $this->useSummonSlot = $useSummonSlot;
@@ -532,31 +553,32 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get useSummonSlot
-    *
-    * @return boolean
-    */
+     * Get useSummonSlot.
+     *
+     * @return bool
+     */
     public function getUseSummonSlot()
     {
         return $this->useSummonSlot;
     }
 
     /**
-    * Get useSummonSlot
-    *
-    * @return boolean
-    */
+     * Get useSummonSlot.
+     *
+     * @return bool
+     */
     public function isUseSummonSlot()
     {
         return $this->useSummonSlot;
     }
 
     /**
-    * Set useBombSlot
-    *
-    * @param boolean $useBombSlot
-    * @return Monster
-    */
+     * Set useBombSlot.
+     *
+     * @param bool $useBombSlot
+     *
+     * @return Monster
+     */
     public function setUseBombSlot($useBombSlot)
     {
         $this->useBombSlot = $useBombSlot;
@@ -565,31 +587,32 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get useBombSlot
-    *
-    * @return boolean
-    */
+     * Get useBombSlot.
+     *
+     * @return bool
+     */
     public function getUseBombSlot()
     {
         return $this->useBombSlot;
     }
 
     /**
-    * Get useBombSlot
-    *
-    * @return boolean
-    */
+     * Get useBombSlot.
+     *
+     * @return bool
+     */
     public function isUseBombSlot()
     {
         return $this->useBombSlot;
     }
 
     /**
-    * Set canPlay
-    *
-    * @param boolean $canPlay
-    * @return Monster
-    */
+     * Set canPlay.
+     *
+     * @param bool $canPlay
+     *
+     * @return Monster
+     */
     public function setCanPlay($canPlay)
     {
         $this->canPlay = $canPlay;
@@ -598,31 +621,32 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get canPlay
-    *
-    * @return boolean
-    */
+     * Get canPlay.
+     *
+     * @return bool
+     */
     public function getCanPlay()
     {
         return $this->canPlay;
     }
 
     /**
-    * Get canPlay
-    *
-    * @return boolean
-    */
+     * Get canPlay.
+     *
+     * @return bool
+     */
     public function isCanPlay()
     {
         return $this->canPlay;
     }
 
     /**
-    * Set canTackle
-    *
-    * @param boolean $canTackle
-    * @return Monster
-    */
+     * Set canTackle.
+     *
+     * @param bool $canTackle
+     *
+     * @return Monster
+     */
     public function setCanTackle($canTackle)
     {
         $this->canTackle = $canTackle;
@@ -631,31 +655,32 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get canTackle
-    *
-    * @return boolean
-    */
+     * Get canTackle.
+     *
+     * @return bool
+     */
     public function getCanTackle()
     {
         return $this->canTackle;
     }
 
     /**
-    * Get canTackle
-    *
-    * @return boolean
-    */
+     * Get canTackle.
+     *
+     * @return bool
+     */
     public function isCanTackle()
     {
         return $this->canTackle;
     }
 
     /**
-    * Set boss
-    *
-    * @param boolean $boss
-    * @return Monster
-    */
+     * Set boss.
+     *
+     * @param bool $boss
+     *
+     * @return Monster
+     */
     public function setBoss($boss)
     {
         $this->boss = $boss;
@@ -664,31 +689,32 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get boss
-    *
-    * @return boolean
-    */
+     * Get boss.
+     *
+     * @return bool
+     */
     public function getBoss()
     {
         return $this->boss;
     }
 
     /**
-    * Get boss
-    *
-    * @return boolean
-    */
+     * Get boss.
+     *
+     * @return bool
+     */
     public function isBoss()
     {
         return $this->boss;
     }
 
     /**
-    * Set miniBoss
-    *
-    * @param boolean $miniBoss
-    * @return Monster
-    */
+     * Set miniBoss.
+     *
+     * @param bool $miniBoss
+     *
+     * @return Monster
+     */
     public function setMiniBoss($miniBoss)
     {
         $this->miniBoss = $miniBoss;
@@ -697,31 +723,32 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get miniBoss
-    *
-    * @return boolean
-    */
+     * Get miniBoss.
+     *
+     * @return bool
+     */
     public function getMiniBoss()
     {
         return $this->miniBoss;
     }
 
     /**
-    * Get miniBoss
-    *
-    * @return boolean
-    */
+     * Get miniBoss.
+     *
+     * @return bool
+     */
     public function isMiniBoss()
     {
         return $this->miniBoss;
     }
 
     /**
-    * Set canBePushed
-    *
-    * @param boolean $canBePushed
-    * @return Monster
-    */
+     * Set canBePushed.
+     *
+     * @param bool $canBePushed
+     *
+     * @return Monster
+     */
     public function setCanBePushed($canBePushed)
     {
         $this->canBePushed = $canBePushed;
@@ -730,31 +757,32 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get canBePushed
-    *
-    * @return boolean
-    */
+     * Get canBePushed.
+     *
+     * @return bool
+     */
     public function getCanBePushed()
     {
         return $this->canBePushed;
     }
 
     /**
-    * Get canBePushed
-    *
-    * @return boolean
-    */
+     * Get canBePushed.
+     *
+     * @return bool
+     */
     public function isCanBePushed()
     {
         return $this->canBePushed;
     }
 
     /**
-    * Set archMonster
-    *
-    * @param Monster $archMonster
-    * @return Monster
-    */
+     * Set archMonster.
+     *
+     * @param Monster $archMonster
+     *
+     * @return Monster
+     */
     public function setArchMonster(Monster $archMonster = null)
     {
         $this->archMonster = $archMonster;
@@ -763,21 +791,22 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get archMonster
-    *
-    * @return Monster
-    */
+     * Get archMonster.
+     *
+     * @return Monster
+     */
     public function getArchMonster()
     {
         return $this->archMonster;
     }
 
     /**
-    * Set normalMonster
-    *
-    * @param Monster $normalMonster
-    * @return Monster
-    */
+     * Set normalMonster.
+     *
+     * @param Monster $normalMonster
+     *
+     * @return Monster
+     */
     public function setNormalMonster(Monster $normalMonster = null)
     {
         $this->normalMonster = $normalMonster;
@@ -786,20 +815,21 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get normalMonster
-    *
-    * @return Monster
-    */
+     * Get normalMonster.
+     *
+     * @return Monster
+     */
     public function getNormalMonster()
     {
         return $this->normalMonster;
     }
     /**
-    * Set look
-    *
-    * @param string $look
-    * @return Monster
-    */
+     * Set look.
+     *
+     * @param string $look
+     *
+     * @return Monster
+     */
     public function setLook($look)
     {
         $this->look = $look;
@@ -808,10 +838,10 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     }
 
     /**
-    * Get look
-    *
-    * @return string
-    */
+     * Get look.
+     *
+     * @return string
+     */
     public function getLook()
     {
         return $this->look;
@@ -832,9 +862,10 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
     public function preUpload()
     {
         if (null !== $this->file) {
-            if(!empty($this->path))
-            $this->pathToRemove = $this->path;
-            $this->path = UrlSafeBase64::encode($this->look) . '.' . $this->file->guessExtension();
+            if (!empty($this->path)) {
+                $this->pathToRemove = $this->path;
+            }
+            $this->path = UrlSafeBase64::encode($this->look).'.'.$this->file->guessExtension();
         }
     }
 
@@ -843,18 +874,20 @@ class Monster implements IdentifiableInterface, TimestampableInterface, Sluggabl
         if (null === $this->file) {
             return;
         }
-        if(!empty($this->pathToRemove)){
+        if (!empty($this->pathToRemove)) {
             unlink($this->pathToRemove);
             $this->pathToRemove = null;
         }
-        system("/usr/bin/convert " . escapeshellarg(strval($this->file)) . " -resize 131x180 " . escapeshellarg($this->getUploadRootDir() . '/' . $this->path));
+        system('/usr/bin/convert '.escapeshellarg(strval($this->file)).' -resize 131x180 '.escapeshellarg($this->getUploadRootDir().'/'.$this->path));
 
         unset($this->file);
     }
 
-    public function setPath($path){
-        if($this->path == $path)
+    public function setPath($path)
+    {
+        if ($this->path == $path) {
             return;
+        }
         $this->removeUpload();
         $this->path = $path;
     }

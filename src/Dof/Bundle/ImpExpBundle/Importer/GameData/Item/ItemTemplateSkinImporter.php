@@ -3,10 +3,8 @@
 namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Item;
 
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\ImporterInterface;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
 
@@ -32,8 +30,9 @@ class ItemTemplateSkinImporter implements ImporterInterface
 
     public function import($dataSet, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
-        if ($dataSet != 'item_template_skins')
+        if ($dataSet != 'item_template_skins') {
             return;
+        }
         $this->loaders[0]->setEnabled(false);
         $this->loaders[1]->setEnabled(false);
 
@@ -47,15 +46,17 @@ class ItemTemplateSkinImporter implements ImporterInterface
                 $this->dm->persist($equip);
             }
         }
-        if (($flags & ImporterFlags::DRY_RUN) == 0)
+        if (($flags & ImporterFlags::DRY_RUN) == 0) {
             $this->dm->flush();
+        }
         $this->dm->clear();
 
         $this->loaders[0]->setEnabled(true);
         $this->loaders[1]->setEnabled(true);
     }
 
-    public function setLoaders($loaders){
+    public function setLoaders($loaders)
+    {
         $this->loaders = $loaders;
     }
 }

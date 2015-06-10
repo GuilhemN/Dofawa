@@ -44,7 +44,7 @@ class MessageAdmin extends Admin
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
-                )
+                ),
             ))
         ;
     }
@@ -83,6 +83,6 @@ class MessageAdmin extends Admin
      */
     public function configureRoutes(RouteCollection $collection)
     {
-      $collection->remove('create');
+        $collection->remove('create');
     }
 }

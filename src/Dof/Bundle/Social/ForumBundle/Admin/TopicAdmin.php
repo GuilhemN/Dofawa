@@ -9,8 +9,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
-use Dof\Bundle\Social\ForumBundle\Form\MessageType;
-
 class TopicAdmin extends Admin
 {
     /**
@@ -49,7 +47,7 @@ class TopicAdmin extends Admin
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
-                )
+                ),
             ))
         ;
     }
@@ -92,6 +90,6 @@ class TopicAdmin extends Admin
      */
     public function configureRoutes(RouteCollection $collection)
     {
-      $collection->remove('create');
+        $collection->remove('create');
     }
 }

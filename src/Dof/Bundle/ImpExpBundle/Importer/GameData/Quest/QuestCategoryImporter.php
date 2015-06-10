@@ -4,10 +4,8 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Quest;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
-
 use Dof\Bundle\QuestBundle\Entity\QuestCategory;
 
 class QuestCategoryImporter extends AbstractGameDataImporter
@@ -18,18 +16,20 @@ class QuestCategoryImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-        if (!$beta && $write)
+        if (!$beta && $write) {
             $this->dm->createQuery('UPDATE DofQuestBundle:QuestCategory s SET s.deprecated = true')->execute();
-        $stmt = $conn->query('SELECT o.*' .
-        $this->generateD2ISelects('name', $locales) .
-        ' FROM ' . $db . '.D2O_QuestCategory o' .
+        }
+        $stmt = $conn->query('SELECT o.*'.
+        $this->generateD2ISelects('name', $locales).
+        ' FROM '.$db.'.D2O_QuestCategory o'.
         $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
         $repo = $this->dm->getRepository('DofQuestBundle:QuestCategory');
         $rowsProcessed = 0;
-        if ($output && $progress)
-        $progress->start($output, count($all));
+        if ($output && $progress) {
+            $progress->start($output, count($all));
+        }
         foreach ($all as $row) {
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
@@ -39,8 +39,9 @@ class QuestCategoryImporter extends AbstractGameDataImporter
             }
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
-                if (!$tpl->getRelease())
+                if (!$tpl->getRelease()) {
                     $tpl->setRelease($release);
+                }
                 $tpl->setPreliminary($beta);
                 $tpl->setOrder($row['order']);
 
@@ -52,12 +53,13 @@ class QuestCategoryImporter extends AbstractGameDataImporter
             if (($rowsProcessed % 300) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
-                if ($output && $progress)
-                $progress->advance(300);
+                if ($output && $progress) {
+                    $progress->advance(300);
+                }
             }
         }
-        if ($output && $progress)
-        $progress->finish();
-
+        if ($output && $progress) {
+            $progress->finish();
+        }
     }
 }

@@ -3,7 +3,6 @@
 namespace Dof\Bundle\GuildBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -11,11 +10,10 @@ use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Guild
+ * Guild.
  *
  * @ORM\Table(name="dof_guild")
  * @ORM\Entity(repositoryClass="Dof\Bundle\GuildBundle\Entity\GuildRepository")
@@ -25,7 +23,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     use OwnableTrait, TimestampableTrait, SluggableTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -41,7 +39,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     private $server;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="lvlguild", type="integer")
      * @Assert\Range(
@@ -54,7 +52,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     private $lvlguild;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="lvlmini", type="integer")
      * @Assert\Range(
@@ -81,7 +79,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="recruitment", type="boolean")
      */
@@ -108,11 +106,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
      */
     private $forum;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -120,9 +117,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set server
+     * Set server.
      *
      * @param string $server
+     *
      * @return Guild
      */
     public function setServer($server)
@@ -133,7 +131,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get server
+     * Get server.
      *
      * @return string
      */
@@ -143,9 +141,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set lvlguild
+     * Set lvlguild.
      *
-     * @param integer $lvlguild
+     * @param int $lvlguild
+     *
      * @return Guild
      */
     public function setLvlguild($lvlguild)
@@ -156,9 +155,9 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get lvlguild
+     * Get lvlguild.
      *
-     * @return integer
+     * @return int
      */
     public function getLvlguild()
     {
@@ -166,9 +165,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set lvlmini
+     * Set lvlmini.
      *
-     * @param integer $lvlmini
+     * @param int $lvlmini
+     *
      * @return Guild
      */
     public function setLvlmini($lvlmini)
@@ -179,9 +179,9 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get lvlmini
+     * Get lvlmini.
      *
-     * @return integer
+     * @return int
      */
     public function getLvlmini()
     {
@@ -189,9 +189,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set leader
+     * Set leader.
      *
      * @param string $leader
+     *
      * @return Guild
      */
     public function setLeader($leader)
@@ -202,7 +203,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get leader
+     * Get leader.
      *
      * @return string
      */
@@ -212,9 +213,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set recruitment
+     * Set recruitment.
      *
-     * @param boolean $recruitment
+     * @param bool $recruitment
+     *
      * @return Guild
      */
     public function setRecruitment($recruitment)
@@ -225,9 +227,9 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get recruitment
+     * Get recruitment.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRecruitment()
     {
@@ -235,9 +237,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set speciality
+     * Set speciality.
      *
      * @param string $speciality
+     *
      * @return Guild
      */
     public function setSpeciality($speciality)
@@ -248,7 +251,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get speciality
+     * Get speciality.
      *
      * @return string
      */
@@ -258,9 +261,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param text $description
+     *
      * @return Guild
      */
     public function setDescription($description)
@@ -271,7 +275,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return text
      */
@@ -281,9 +285,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set forum
+     * Set forum.
      *
      * @param string $forum
+     *
      * @return Guild
      */
     public function setForum($forum)
@@ -294,7 +299,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get forum
+     * Get forum.
      *
      * @return string
      */
@@ -304,9 +309,10 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Guild
      */
     public function setName($name)
@@ -317,7 +323,7 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -326,7 +332,8 @@ class Guild implements IdentifiableInterface, TimestampableInterface, OwnableInt
         return $this->name;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->getName();
     }
 }

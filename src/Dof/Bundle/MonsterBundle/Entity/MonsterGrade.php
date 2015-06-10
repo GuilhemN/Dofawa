@@ -3,11 +3,10 @@
 namespace Dof\Bundle\MonsterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 
 /**
- * MonsterGrade
+ * MonsterGrade.
  *
  * @ORM\Table(name="dof_monster_grades")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MonsterBundle\Entity\MonsterGradeRepository")
@@ -15,7 +14,7 @@ use XN\Persistence\IdentifiableInterface;
 class MonsterGrade implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -24,116 +23,115 @@ class MonsterGrade implements IdentifiableInterface
     private $id;
 
     /**
-    * @var Monster
-    *
-    * @ORM\ManyToOne(targetEntity="Monster", inversedBy="grades")
-    * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-    */
+     * @var Monster
+     *
+     * @ORM\ManyToOne(targetEntity="Monster", inversedBy="grades")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
     private $monster;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="grade", type="integer")
      */
     private $grade;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="level", type="integer")
      */
     private $level;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="lifePoints", type="integer")
      */
     private $lifePoints;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="actionPoints", type="integer")
      */
     private $actionPoints;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="movementPoints", type="integer")
      */
     private $movementPoints;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="paDodge", type="integer")
      */
     private $paDodge;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="pmDodge", type="integer")
      */
     private $pmDodge;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="wisdom", type="integer")
      */
     private $wisdom;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="earthResistance", type="integer")
      */
     private $earthResistance;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="airResistance", type="integer")
      */
     private $airResistance;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="fireResistance", type="integer")
      */
     private $fireResistance;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="waterResistance", type="integer")
      */
     private $waterResistance;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="neutralResistance", type="integer")
      */
     private $neutralResistance;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="gradeXp", type="integer")
      */
     private $gradeXp;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -141,11 +139,12 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-    * Set monster
-    *
-    * @param Monster $monster
-    * @return MonsterGrade
-    */
+     * Set monster.
+     *
+     * @param Monster $monster
+     *
+     * @return MonsterGrade
+     */
     public function setMonster(Monster $monster)
     {
         $this->monster = $monster;
@@ -154,19 +153,20 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-    * Get monster
-    *
-    * @return Monster
-    */
+     * Get monster.
+     *
+     * @return Monster
+     */
     public function getMonster()
     {
         return $this->monster;
     }
 
     /**
-     * Set grade
+     * Set grade.
      *
-     * @param integer $grade
+     * @param int $grade
+     *
      * @return MonsterGrade
      */
     public function setGrade($grade)
@@ -177,9 +177,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get grade
+     * Get grade.
      *
-     * @return integer
+     * @return int
      */
     public function getGrade()
     {
@@ -187,9 +187,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set level
+     * Set level.
      *
-     * @param integer $level
+     * @param int $level
+     *
      * @return MonsterGrade
      */
     public function setLevel($level)
@@ -200,9 +201,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get level
+     * Get level.
      *
-     * @return integer
+     * @return int
      */
     public function getLevel()
     {
@@ -210,9 +211,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set lifePoints
+     * Set lifePoints.
      *
-     * @param integer $lifePoints
+     * @param int $lifePoints
+     *
      * @return MonsterGrade
      */
     public function setLifePoints($lifePoints)
@@ -223,9 +225,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get lifePoints
+     * Get lifePoints.
      *
-     * @return integer
+     * @return int
      */
     public function getLifePoints()
     {
@@ -233,9 +235,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set actionPoints
+     * Set actionPoints.
      *
-     * @param integer $actionPoints
+     * @param int $actionPoints
+     *
      * @return MonsterGrade
      */
     public function setActionPoints($actionPoints)
@@ -246,9 +249,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get actionPoints
+     * Get actionPoints.
      *
-     * @return integer
+     * @return int
      */
     public function getActionPoints()
     {
@@ -256,9 +259,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set movementPoints
+     * Set movementPoints.
      *
-     * @param integer $movementPoints
+     * @param int $movementPoints
+     *
      * @return MonsterGrade
      */
     public function setMovementPoints($movementPoints)
@@ -269,9 +273,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get movementPoints
+     * Get movementPoints.
      *
-     * @return integer
+     * @return int
      */
     public function getMovementPoints()
     {
@@ -279,9 +283,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set paDodge
+     * Set paDodge.
      *
-     * @param integer $paDodge
+     * @param int $paDodge
+     *
      * @return MonsterGrade
      */
     public function setPaDodge($paDodge)
@@ -292,9 +297,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get paDodge
+     * Get paDodge.
      *
-     * @return integer
+     * @return int
      */
     public function getPaDodge()
     {
@@ -302,9 +307,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set pmDodge
+     * Set pmDodge.
      *
-     * @param integer $pmDodge
+     * @param int $pmDodge
+     *
      * @return MonsterGrade
      */
     public function setPmDodge($pmDodge)
@@ -315,9 +321,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get pmDodge
+     * Get pmDodge.
      *
-     * @return integer
+     * @return int
      */
     public function getPmDodge()
     {
@@ -325,9 +331,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set wisdom
+     * Set wisdom.
      *
-     * @param integer $wisdom
+     * @param int $wisdom
+     *
      * @return MonsterGrade
      */
     public function setWisdom($wisdom)
@@ -338,9 +345,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get wisdom
+     * Get wisdom.
      *
-     * @return integer
+     * @return int
      */
     public function getWisdom()
     {
@@ -348,9 +355,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set earthResistance
+     * Set earthResistance.
      *
-     * @param integer $earthResistance
+     * @param int $earthResistance
+     *
      * @return MonsterGrade
      */
     public function setEarthResistance($earthResistance)
@@ -361,9 +369,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get earthResistance
+     * Get earthResistance.
      *
-     * @return integer
+     * @return int
      */
     public function getEarthResistance()
     {
@@ -371,9 +379,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set airResistance
+     * Set airResistance.
      *
-     * @param integer $airResistance
+     * @param int $airResistance
+     *
      * @return MonsterGrade
      */
     public function setAirResistance($airResistance)
@@ -384,9 +393,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get airResistance
+     * Get airResistance.
      *
-     * @return integer
+     * @return int
      */
     public function getAirResistance()
     {
@@ -394,9 +403,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set fireResistance
+     * Set fireResistance.
      *
-     * @param integer $fireResistance
+     * @param int $fireResistance
+     *
      * @return MonsterGrade
      */
     public function setFireResistance($fireResistance)
@@ -407,9 +417,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get fireResistance
+     * Get fireResistance.
      *
-     * @return integer
+     * @return int
      */
     public function getFireResistance()
     {
@@ -417,9 +427,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set waterResistance
+     * Set waterResistance.
      *
-     * @param integer $waterResistance
+     * @param int $waterResistance
+     *
      * @return MonsterGrade
      */
     public function setWaterResistance($waterResistance)
@@ -430,9 +441,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get waterResistance
+     * Get waterResistance.
      *
-     * @return integer
+     * @return int
      */
     public function getWaterResistance()
     {
@@ -440,9 +451,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set neutralResistance
+     * Set neutralResistance.
      *
-     * @param integer $neutralResistance
+     * @param int $neutralResistance
+     *
      * @return MonsterGrade
      */
     public function setNeutralResistance($neutralResistance)
@@ -453,9 +465,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get neutralResistance
+     * Get neutralResistance.
      *
-     * @return integer
+     * @return int
      */
     public function getNeutralResistance()
     {
@@ -463,9 +475,10 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Set gradeXp
+     * Set gradeXp.
      *
-     * @param integer $gradeXp
+     * @param int $gradeXp
+     *
      * @return MonsterGrade
      */
     public function setGradeXp($gradeXp)
@@ -476,9 +489,9 @@ class MonsterGrade implements IdentifiableInterface
     }
 
     /**
-     * Get gradeXp
+     * Get gradeXp.
      *
-     * @return integer
+     * @return int
      */
     public function getGradeXp()
     {

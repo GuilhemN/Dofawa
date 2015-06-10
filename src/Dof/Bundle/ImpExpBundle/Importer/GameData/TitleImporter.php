@@ -4,9 +4,7 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
-
 use Dof\Bundle\CharacterBundle\Entity\Title;
 
 class TitleImporter extends AbstractGameDataImporter
@@ -18,14 +16,15 @@ class TitleImporter extends AbstractGameDataImporter
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
 
-        if (!$beta && $write)
+        if (!$beta && $write) {
             $this->dm->createQuery('UPDATE DofCharacterBundle:Title s SET s.deprecated = true')->execute();
+        }
 
-        $stmt = $conn->query('SELECT o.*' .
-        $this->generateD2ISelects('nameMale', $locales) .
-        $this->generateD2ISelects('nameFemale', $locales) .
-        ' FROM ' . $db . '.D2O_Title o' .
-        $this->generateD2IJoins('nameMale', $db, $locales) .
+        $stmt = $conn->query('SELECT o.*'.
+        $this->generateD2ISelects('nameMale', $locales).
+        $this->generateD2ISelects('nameFemale', $locales).
+        ' FROM '.$db.'.D2O_Title o'.
+        $this->generateD2IJoins('nameMale', $db, $locales).
         $this->generateD2IJoins('nameFemale', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -33,20 +32,22 @@ class TitleImporter extends AbstractGameDataImporter
         $repo = $this->dm->getRepository('DofCharacterBundle:Title');
 
         $rowsProcessed = 0;
-        if ($output && $progress)
-        $progress->start($output, count($all));
+        if ($output && $progress) {
+            $progress->start($output, count($all));
+        }
 
         foreach ($all as $row) {
             $tpl = $repo->find($row['id']);
-            if ($tpl === null){
+            if ($tpl === null) {
                 $tpl = new Title();
                 $tpl->setId($row['id']);
                 $tpl->setDeprecated(true);
             }
-            if($tpl->isDeprecated()){
+            if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
-                if (!$tpl->getRelease())
+                if (!$tpl->getRelease()) {
                     $tpl->setRelease($release);
+                }
                 $tpl->setPreliminary($beta);
                 $tpl->setVisible($row['visible']);
                 $tpl->setCategoryId($row['categoryId']);
@@ -61,12 +62,13 @@ class TitleImporter extends AbstractGameDataImporter
             if (($rowsProcessed % 300) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
-                if ($output && $progress)
-                $progress->advance(300);
+                if ($output && $progress) {
+                    $progress->advance(300);
+                }
             }
         }
-        if ($output && $progress)
-        $progress->finish();
-
+        if ($output && $progress) {
+            $progress->finish();
+        }
     }
 }

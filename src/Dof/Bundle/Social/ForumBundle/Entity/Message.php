@@ -3,17 +3,14 @@
 namespace Dof\Bundle\Social\ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
 
-use Dof\Bundle\Social\ForumBundle\Entity\Topic;
-
 /**
- * Message
+ * Message.
  *
  * @ORM\Table(name="dof_forum_messages")
  * @ORM\Entity(repositoryClass="Dof\Bundle\Social\ForumBundle\Entity\MessageRepository")
@@ -23,7 +20,7 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     use OwnableTrait, TimestampableTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -44,11 +41,10 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
      */
     private $topic;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -56,9 +52,10 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param text $content
+     *
      * @return Message
      */
     public function setContent($content)
@@ -69,7 +66,7 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return text
      */
@@ -79,7 +76,7 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
     }
 
     /**
-     * Set topic
+     * Set topic.
      *
      * @param Topic $topic
      */
@@ -88,8 +85,8 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
         $this->topic = $topic;
     }
 
-     /**
-     * Get topic
+    /**
+     * Get topic.
      *
      * @return Topic
      */
@@ -98,7 +95,8 @@ class Message implements IdentifiableInterface, TimestampableInterface, OwnableI
         return $this->topic;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->content;
     }
 }

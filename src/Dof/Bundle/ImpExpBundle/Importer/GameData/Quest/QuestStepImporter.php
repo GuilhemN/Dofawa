@@ -4,10 +4,8 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Quest;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
-
 use Dof\Bundle\QuestBundle\Entity\QuestStep;
 
 class QuestStepImporter extends AbstractGameDataImporter
@@ -18,23 +16,25 @@ class QuestStepImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-        $stmt = $conn->query('SELECT o.*' .
-        $this->generateD2ISelects('name', $locales) .
-        $this->generateD2ISelects('description', $locales) .
-        ' FROM ' . $db . '.D2O_QuestStep o' .
-        $this->generateD2IJoins('name', $db, $locales) .
+        $stmt = $conn->query('SELECT o.*'.
+        $this->generateD2ISelects('name', $locales).
+        $this->generateD2ISelects('description', $locales).
+        ' FROM '.$db.'.D2O_QuestStep o'.
+        $this->generateD2IJoins('name', $db, $locales).
         $this->generateD2IJoins('description', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
         $repo = $this->dm->getRepository('DofQuestBundle:QuestStep');
         $questRepo = $this->dm->getRepository('DofQuestBundle:Quest');
         $rowsProcessed = 0;
-        if ($output && $progress)
-        $progress->start($output, count($all));
+        if ($output && $progress) {
+            $progress->start($output, count($all));
+        }
         foreach ($all as $row) {
             $quest = $questRepo->find($row['questId']);
-            if($quest === null or $quest->isPreliminary() ^ $beta)
+            if ($quest === null or $quest->isPreliminary() ^ $beta) {
                 continue;
+            }
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
                 $tpl = new QuestStep();
@@ -54,12 +54,13 @@ class QuestStepImporter extends AbstractGameDataImporter
             if (($rowsProcessed % 300) == 0) {
                 $this->dm->flush();
                 $this->dm->clear();
-                if ($output && $progress)
+                if ($output && $progress) {
                     $progress->advance(300);
+                }
             }
         }
-        if ($output && $progress)
-        $progress->finish();
-
+        if ($output && $progress) {
+            $progress->finish();
+        }
     }
 }

@@ -1,13 +1,12 @@
 <?php
+
 namespace Dof\BBCode\TagTemplate;
 
 use XN\BBCode\NodeInterface;
 use XN\BBCode\Tag;
 use XN\BBCode\TagTemplateInterface;
-
 use Symfony\Component\Templating\EngineInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use XN\Common\DOMUtils;
 
 class ObjectTagTemplate implements TagTemplateInterface
@@ -15,7 +14,8 @@ class ObjectTagTemplate implements TagTemplateInterface
     private $em;
     private $tp;
 
-    public function __construct(ObjectManager $em, EngineInterface $tp) {
+    public function __construct(ObjectManager $em, EngineInterface $tp)
+    {
         $this->em = $em;
         $this->tp = $tp;
     }
@@ -36,21 +36,28 @@ class ObjectTagTemplate implements TagTemplateInterface
 
     public function toDOMNode(Tag $tag, \DOMDocument $doc)
     {
-        if($tag->getValue() === null)
+        if ($tag->getValue() === null) {
             return;
+        }
 
         $item = $this->em->getRepository('DofItemBundle:ItemTemplate')->findOneBySlug($tag->getValue());
-        if($item === null)
+        if ($item === null) {
             return;
+        }
 
         $view = $this->tp->render('DofItemBundle::item.html.twig', ['item' => $item]);
+
         return DOMUtils::parseHTMLBodyFragment(str_replace(array("\r", "\n"), '', $view), $doc); # FIXME Just temporarly
     }
 
-    public function verifyParent(Tag $child, NodeInterface $parent) {
-        if($parent instanceof Tag && $parent->getTemplate() instanceof self)
-        throw new \Exception("Link can't be a child of another link.");
+    public function verifyParent(Tag $child, NodeInterface $parent)
+    {
+        if ($parent instanceof Tag && $parent->getTemplate() instanceof self) {
+            throw new \Exception("Link can't be a child of another link.");
+        }
     }
 
-    public function verifyChild(Tag $parent, NodeInterface $child) { }
+    public function verifyChild(Tag $parent, NodeInterface $child)
+    {
+    }
 }

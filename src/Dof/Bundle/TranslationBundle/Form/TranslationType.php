@@ -9,7 +9,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class TranslationType extends AbstractType
 {
-
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -18,15 +17,15 @@ class TranslationType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $entity = $builder->getData();
 
         $builder
-            ->add('label', null, array( 'disabled' => true ))
-            ->add('nameFr', null, array( 'data' => $this->translator->trans($entity->getLabel(), array(), $entity->getDomain(), 'fr'), 'disabled' => true, 'mapped' => false ))
+            ->add('label', null, array('disabled' => true))
+            ->add('nameFr', null, array('data' => $this->translator->trans($entity->getLabel(), array(), $entity->getDomain(), 'fr'), 'disabled' => true, 'mapped' => false))
             ->add('translation')
             ->add('submit', 'submit')
         ;
@@ -38,7 +37,7 @@ class TranslationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Dof\Bundle\TranslationBundle\Entity\Translation'
+            'data_class' => 'Dof\Bundle\TranslationBundle\Entity\Translation',
         ));
     }
 

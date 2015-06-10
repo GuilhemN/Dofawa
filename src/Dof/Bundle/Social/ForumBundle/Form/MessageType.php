@@ -8,22 +8,22 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class MessageType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('content');
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Dof\Bundle\Social\ForumBundle\Entity\Message'
+            'data_class' => 'Dof\Bundle\Social\ForumBundle\Entity\Message',
         ));
     }
 

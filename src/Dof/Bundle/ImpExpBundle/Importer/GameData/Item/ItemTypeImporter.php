@@ -4,10 +4,8 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Item;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
-
 use Dof\Bundle\ItemBundle\Entity\ItemType;
 
 class ItemTypeImporter extends AbstractGameDataImporter
@@ -18,11 +16,12 @@ class ItemTypeImporter extends AbstractGameDataImporter
     protected function doImport($conn, $beta, $release, $db, array $locales, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
-        if (!$beta && $write)
+        if (!$beta && $write) {
             $this->dm->createQuery('UPDATE DofItemBundle:ItemType s SET s.deprecated = true')->execute();
-        $stmt = $conn->query('SELECT o.*' .
-            $this->generateD2ISelects('name', $locales) .
-            ' FROM ' . $db . '.D2O_ItemType o' .
+        }
+        $stmt = $conn->query('SELECT o.*'.
+            $this->generateD2ISelects('name', $locales).
+            ' FROM '.$db.'.D2O_ItemType o'.
             $this->generateD2IJoins('name', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -36,8 +35,9 @@ class ItemTypeImporter extends AbstractGameDataImporter
             }
             if ($type->isDeprecated()) {
                 $type->setDeprecated(false);
-                if (!$type->getRelease())
+                if (!$type->getRelease()) {
                     $type->setRelease($release);
+                }
                 $type->setPreliminary($beta);
                 $this->copyI18NProperty($type, 'setName', $row, 'name');
                 $type->setSlot($row['superTypeId']);

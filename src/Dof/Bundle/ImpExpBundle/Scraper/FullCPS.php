@@ -16,7 +16,7 @@ class FullCPS extends BaseScraper
     {
         preg_match(static::URL_FAMILY_REGEX, $url, $matches);
 
-        $url = 'http://www.dofus.com/fr/' . $matches[1] . '/caracteristiques';
+        $url = 'http://www.dofus.com/fr/'.$matches[1].'/caracteristiques';
         parent::__construct($url);
     }
 
@@ -27,8 +27,9 @@ class FullCPS extends BaseScraper
             $this->items = false;
             if ($doc !== null) {
                 foreach ($doc->getElementsByTagName('span') as $span) {
-                    if (strpos(' ' . $span->getAttribute('class') . ' ', ' ak-linker ') === false)
+                    if (strpos(' '.$span->getAttribute('class').' ', ' ak-linker ') === false) {
                         continue;
+                    }
 
                     $data = $span->getAttribute('data-hasqtip');
                     preg_match('~^linker_item_([0-9]+)$~', $data, $matches);
@@ -42,8 +43,10 @@ class FullCPS extends BaseScraper
                 $this->items = $repository->findById($idItems);
             }
         }
-        if ($this->items === false)
-            return null;
+        if ($this->items === false) {
+            return;
+        }
+
         return $this->items;
     }
 }

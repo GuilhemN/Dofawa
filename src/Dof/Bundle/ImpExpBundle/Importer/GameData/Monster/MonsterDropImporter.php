@@ -4,11 +4,9 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData\Monster;
 
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use Dof\Bundle\ImpExpBundle\Importer\GameData\AbstractGameDataImporter;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
 use XN\Persistence\CollectionSynchronizationHelper;
-
 use Dof\Bundle\MonsterBundle\Entity\MonsterDrop;
 
 class MonsterDropImporter extends AbstractGameDataImporter
@@ -23,30 +21,34 @@ class MonsterDropImporter extends AbstractGameDataImporter
         $write = ($flags & ImporterFlags::DRY_RUN) == 0;
 
         $this->loader->setEnabled(false);
-        
-        $stmt = $conn->query('SELECT o.* FROM ' . $db . '.D2O_Monster_drop o');
+
+        $stmt = $conn->query('SELECT o.* FROM '.$db.'.D2O_Monster_drop o');
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
 
         $g = [];
-        foreach($all as $row)
+        foreach ($all as $row) {
             $g[$row['monsterId']][] = $row;
+        }
 
         $repo = $this->dm->getRepository('DofMonsterBundle:Monster');
         $itemRepo = $this->dm->getRepository('DofItemBundle:ItemTemplate');
 
         $rowsProcessed = 0;
-        if ($output && $progress)
-        $progress->start($output, count($g));
+        if ($output && $progress) {
+            $progress->start($output, count($g));
+        }
 
         foreach ($g as $monster => $drops) {
             $monster = $repo->find($monster);
-            if($monster === null || ($monster->isPreliminary() ^ $beta))
+            if ($monster === null || ($monster->isPreliminary() ^ $beta)) {
                 continue;
+            }
 
             CollectionSynchronizationHelper::synchronize($this->dm, $monster->getDrops()->toArray(), $drops, function () use ($monster) {
                 $monsterD = new MonsterDrop();
                 $monsterD->setMonster($monster);
+
                 return $monsterD;
             }, function ($monsterD, $row) use ($itemRepo) {
                 $item = $itemRepo->find($row['objectId']);
@@ -61,16 +63,19 @@ class MonsterDropImporter extends AbstractGameDataImporter
 
             ++$rowsProcessed;
             if (($rowsProcessed % 150) == 0) {
-                if ($output && $progress)
-                $progress->advance(150);
+                if ($output && $progress) {
+                    $progress->advance(150);
+                }
             }
         }
-        if ($output && $progress)
+        if ($output && $progress) {
             $progress->finish();
+        }
         $this->loader->setEnabled(true);
     }
 
-    public function setLoader($loader) {
+    public function setLoader($loader)
+    {
         $this->loader = $loader;
     }
 }

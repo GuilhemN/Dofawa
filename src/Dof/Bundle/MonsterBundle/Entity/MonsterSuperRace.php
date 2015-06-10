@@ -5,19 +5,17 @@ namespace Dof\Bundle\MonsterBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * MonsterSuperRace
+ * MonsterSuperRace.
  *
  * @ORM\Table(name="dof_monster_super_races")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MonsterBundle\Entity\MonsterSuperRaceRepository")
@@ -27,7 +25,7 @@ class MonsterSuperRace implements IdentifiableInterface, TimestampableInterface,
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,9 +33,9 @@ class MonsterSuperRace implements IdentifiableInterface, TimestampableInterface,
     private $id;
 
     /**
-    * @ORM\OneToMany(targetEntity="MonsterRace", mappedBy="parent")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\OneToMany(targetEntity="MonsterRace", mappedBy="parent")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $children;
 
     public function __construct()
@@ -46,33 +44,36 @@ class MonsterSuperRace implements IdentifiableInterface, TimestampableInterface,
     }
 
     /**
-     * Set id
+     * Set id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return MonsterSuperRace
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-    * Get id
-    *
-    * @return integer
-    */
+     * Get id.
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-    * Add children
-    *
-    * @param MonsterRace $children
-    * @return MonsterSuperRace
-    */
+     * Add children.
+     *
+     * @param MonsterRace $children
+     *
+     * @return MonsterSuperRace
+     */
     public function addChild(MonsterRace $children)
     {
         $this->children[] = $children;
@@ -81,11 +82,12 @@ class MonsterSuperRace implements IdentifiableInterface, TimestampableInterface,
     }
 
     /**
-    * Remove children
-    *
-    * @param MonsterRace $children
-    * @return MonsterSuperRace
-    */
+     * Remove children.
+     *
+     * @param MonsterRace $children
+     *
+     * @return MonsterSuperRace
+     */
     public function removeChild(MonsterRace $children)
     {
         $this->children->removeElement($children);
@@ -94,16 +96,17 @@ class MonsterSuperRace implements IdentifiableInterface, TimestampableInterface,
     }
 
     /**
-    * Get children
-    *
-    * @return Collection
-    */
+     * Get children.
+     *
+     * @return Collection
+     */
     public function getChildren()
     {
         return $this->children;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->nameFr;
     }
 }
