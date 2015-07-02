@@ -18,7 +18,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_monster_races")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MonsterBundle\Entity\MonsterRaceRepository")
  */
-class MonsterRace implements IdentifiableInterface, LocalizedNameInterface
+class MonsterRace implements IdentifiableInterface
 {
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
