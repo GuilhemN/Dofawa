@@ -11,7 +11,7 @@ trait LocalizedNameTrait
      * @var string
      *
      * @Gedmo\Translatable
-     * @ORM\Column(name="name", type="string", length=150)
+     * @ORM\Column(name="name", type="string", length=150, nullable=true)
      */
     protected $name;
 
