@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use Dof\Bundle\CharacterBundle\CastableTrait;
 use Dof\Bundle\CharacterBundle\RankDamageEffect;
@@ -19,7 +18,7 @@ use Dof\Bundle\CharacterBundle\RankDamageEffect;
  * })
  * @ORM\Entity(repositoryClass="SpellRankRepository")
  */
-class SpellRank implements IdentifiableInterface, TimestampableInterface
+class SpellRank implements IdentifiableInterface
 {
     /**
      * @var int

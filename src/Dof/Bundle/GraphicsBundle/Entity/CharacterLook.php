@@ -4,9 +4,7 @@ namespace Dof\Bundle\GraphicsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
@@ -18,7 +16,7 @@ use Dof\Bundle\GraphicsBundle\BasicPCLook;
  * @ORM\Table(name="dof_character_looks")
  * @ORM\Entity(repositoryClass="CharacterLookRepository")
  */
-class CharacterLook extends BasicPCLook implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface
+class CharacterLook extends BasicPCLook implements IdentifiableInterface, OwnableInterface
 {
     /**
      * @var int

@@ -4,7 +4,6 @@ namespace Dof\Bundle\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 //Traduction Titre/Description
 use XN\L10n\LocalizedNameTrait;
@@ -18,7 +17,7 @@ use XN\Metadata\FileInterface;
  * @ORM\Table("dof_badge_levels")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MainBundle\Entity\BadgeLevelRepository")
  */
-class BadgeLevel implements IdentifiableInterface, TimestampableInterface, FileInterface
+class BadgeLevel implements IdentifiableInterface, FileInterface
 {
     use TimestampableTrait, LocalizedNameTrait, LocalizedDescriptionTrait, FileTrait;
 

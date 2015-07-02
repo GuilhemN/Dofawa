@@ -51,13 +51,9 @@ class MonsterRaceImporter extends AbstractGameDataImporter
                 }
                 $tpl->setPreliminary($beta);
                 $tpl->setParent($superRace);
-                $this->copyI18NProperty($tpl, 'setName', $row, 'name');
-                if ($tpl->getNameFr() === null) {
-                    $tpl->setNameFr('Monstres');
-                }
+                $this->copyI18NProperty($tpl, 'name', $row, 'name');
 
                 $this->dm->persist($tpl);
-                $this->su->reassignSlug($tpl);
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

@@ -46,8 +46,8 @@ class QuestStepImporter extends AbstractGameDataImporter
             $tpl->setXpRatio($row['xpRatio']);
             $tpl->setOptimalLevel($row['optimalLevel']);
 
-            $this->copyI18NProperty($tpl, 'setName', $row, 'name');
-            $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
+            $this->copyI18NProperty($tpl, 'name', $row, 'name');
+            $this->copyI18NProperty($tpl, 'description', $row, 'description');
             $this->dm->persist($tpl);
 
             ++$rowsProcessed;

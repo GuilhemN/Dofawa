@@ -7,9 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -23,7 +21,7 @@ use Dof\Bundle\CharacterBundle\Gender;
  * @ORM\Table(name="dof_breeds")
  * @ORM\Entity(repositoryClass="BreedRepository")
  */
-class Breed implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
+class Breed implements IdentifiableInterface, LocalizedNameInterface
 {
     /**
      * @var int

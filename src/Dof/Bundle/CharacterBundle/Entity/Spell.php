@@ -8,9 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use XN\Common\UrlSafeBase64;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -26,7 +24,7 @@ use Dof\Bundle\MonsterBundle\Entity\Monster;
  * @ORM\Table(name="dof_spells")
  * @ORM\Entity(repositoryClass="SpellRepository")
  */
-class Spell implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface, FileInterface
+class Spell implements IdentifiableInterface, LocalizedNameInterface, FileInterface
 {
     /**
      * @var int

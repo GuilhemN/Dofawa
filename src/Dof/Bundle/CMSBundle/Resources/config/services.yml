@@ -1,9 +1,0 @@
-parameters:
-    dof_cms.bbcode.object_tag_template.class: Dof\BBCode\TagTemplate\ObjectTagTemplate
-
-services:
-    dof_cms.bbcode.object_tag_template:
-        class: %dof_cms.bbcode.object_tag_template.class%
-        arguments: [ @doctrine.orm.default_entity_manager, @templating ]
-        tags:
-            - { name: xn.bbcode.publish, module: entities }

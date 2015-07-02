@@ -37,7 +37,6 @@ class StateImporter extends AbstractGameDataImporter
                 $tpl = new State();
                 $tpl->setDeprecated(true);
                 $tpl->setId($row['id']);
-                $tpl->setNameFr('État '.$row['id']);
             }
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
@@ -46,7 +45,7 @@ class StateImporter extends AbstractGameDataImporter
                 }
                 $tpl->setPreliminary($beta);
                 if ($row['nameFr']) {
-                    $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                    $this->copyI18NProperty($tpl, 'name', $row, 'name');
                 }
 
                 $tpl->setPreventsSpellUsage($row['preventsSpellCast']);

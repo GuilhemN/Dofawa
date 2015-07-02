@@ -3,15 +3,23 @@
 namespace XN\Metadata;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait SluggableTrait
 {
-    /**
+    /*
      * @var string
      *
      * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
      */
-    protected $slug;
+    // protected $slug;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
 
     /**
      * Get slug.
@@ -28,7 +36,7 @@ trait SluggableTrait
      *
      * @param string $slug
      *
-     * @return SluggableInterface
+     * @return SluggableTrait
      */
     public function setSlug($slug)
     {
@@ -37,17 +45,8 @@ trait SluggableTrait
         return $this;
     }
 
-    /**
-     * Get a string representation of the entity.
-     *
-     * @return string
-     */
-    abstract public function __toString();
-
-    protected function exportSluggableData($full = true)
+    public function setTranslatableLocale($locale)
     {
-        return [
-            'slug' => $this->slug,
-        ];
+        $this->locale = $locale;
     }
 }

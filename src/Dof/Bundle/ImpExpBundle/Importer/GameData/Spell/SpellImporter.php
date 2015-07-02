@@ -51,9 +51,6 @@ class SpellImporter extends AbstractGameDataImporter
                 $tpl->setDeprecated(true);
                 $tpl->setId($row['id']);
                 $tpl->setPubliclyVisible(false);
-
-                $tpl->setNameFr('Sort sans nom');
-                $tpl->setDescriptionFr('-');
             }
             if ($tpl->isDeprecated()) {
                 $tpl->setDeprecated(false);
@@ -62,10 +59,10 @@ class SpellImporter extends AbstractGameDataImporter
                 }
                 $tpl->setPreliminary($beta);
                 if (!empty($row['nameId'])) {
-                    $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                    $this->copyI18NProperty($tpl, 'name', $row, 'name');
                 }
                 if (!empty($row['descriptionId'])) {
-                    $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
+                    $this->copyI18NProperty($tpl, 'description', $row, 'description');
                 }
 
                 $tpl->setTypeId($row['typeId']);
@@ -82,7 +79,7 @@ class SpellImporter extends AbstractGameDataImporter
                 }
 
                 $this->dm->persist($tpl);
-                $this->su->reassignSlug($tpl);
+
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

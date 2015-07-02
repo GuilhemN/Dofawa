@@ -42,7 +42,7 @@ class DocumentImporter extends AbstractGameDataImporter
                     $tpl->setRelease($release);
                 }
                 $tpl->setPreliminary($beta);
-                $this->copyI18NProperty($tpl, 'setName', $row, 'title');
+                $this->copyI18NProperty($tpl, 'name', $row, 'title');
                 $this->dm->persist($tpl);
             }
             ++$rowsProcessed;

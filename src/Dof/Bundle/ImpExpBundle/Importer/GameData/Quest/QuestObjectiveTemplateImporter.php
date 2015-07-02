@@ -44,7 +44,7 @@ class QuestObjectiveTemplateImporter extends AbstractGameDataImporter
                 }
                 $tpl->setPreliminary($beta);
 
-                $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                $this->copyI18NProperty($tpl, 'name', $row, 'name');
                 $this->dm->persist($tpl);
             }
             ++$rowsProcessed;

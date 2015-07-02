@@ -6,9 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -20,7 +18,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_monster_super_races")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MonsterBundle\Entity\MonsterSuperRaceRepository")
  */
-class MonsterSuperRace implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
+class MonsterSuperRace implements IdentifiableInterface, LocalizedNameInterface
 {
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 

@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
 
@@ -16,7 +15,7 @@ use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
  * @ORM\Table(name="dof_user_crafts")
  * @ORM\Entity(repositoryClass="Dof\Bundle\User\ItemBundle\Entity\CraftRepository")
  */
-class Craft implements IdentifiableInterface, OwnableInterface, TimestampableInterface
+class Craft implements IdentifiableInterface, OwnableInterface
 {
     use OwnableTrait, TimestampableTrait;
 

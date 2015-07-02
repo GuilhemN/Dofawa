@@ -39,11 +39,10 @@ class ItemTypeImporter extends AbstractGameDataImporter
                     $type->setRelease($release);
                 }
                 $type->setPreliminary($beta);
-                $this->copyI18NProperty($type, 'setName', $row, 'name');
+                $this->copyI18NProperty($type, 'name', $row, 'name');
                 $type->setSlot($row['superTypeId']);
                 $type->setEffectArea(($row['rawZone'] === 'null') ? null : $row['rawZone']);
                 $this->dm->persist($type);
-                $this->su->reassignSlug($type);
             }
         }
     }

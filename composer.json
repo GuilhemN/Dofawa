@@ -21,8 +21,6 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "dev-master",
         "patchwork/utf8": "1.1.*",
-    	"friendsofsymfony/jsrouting-bundle": "1.5.*",
-        "jms/i18n-routing-bundle": "dev-master",
         "sonata-project/core-bundle": "dev-master",
         "sonata-project/admin-bundle": "dev-master",
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
@@ -30,17 +28,14 @@
         "sonata-project/jquery-bundle": "dev-master",
         "knplabs/knp-menu": "2.0.*@dev",
         "knplabs/knp-menu-bundle": "2.0.*@dev",
-        "friendsofsymfony/message-bundle": "dev-master",
-        "braincrafted/bootstrap-bundle": "~2.0",
-        "excelwebzone/recaptcha-bundle": "dev-master",
         "symfony/icu": "1.0.*",
         "knplabs/knp-snappy": "dev-master",
         "knplabs/knp-snappy-bundle": "dev-master",
         "h4cc/wkhtmltopdf-amd64": "dev-master",
         "h4cc/wkhtmltoimage-amd64": "dev-master",
-        "willdurand/js-translation-bundle": "@stable",
         "liip/imagine-bundle": "dev-master",
-        "guzzlehttp/guzzle": "~5.2"
+        "guzzlehttp/guzzle": "~5.2",
+        "stof/doctrine-extensions-bundle": "^1.1"
     },
     "scripts": {
         "post-install-cmd": [

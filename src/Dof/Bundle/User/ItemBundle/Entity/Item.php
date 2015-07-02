@@ -8,7 +8,6 @@ use Dof\Bundle\ItemBundle\CharacteristicsTrait;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use Dof\Bundle\ItemBundle\ItemSlot;
 use Dof\Bundle\User\CharacterBundle\Entity\Stuff;
@@ -23,7 +22,7 @@ use Dof\Bundle\ItemBundle\Entity\EquipmentTemplate;
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "Item", "skitem" = "SkinnedItem", "animal" = "Animal", "weapon" = "Weapon", "mount": "Mount", "pet": "Pet"})
  */
-class Item implements IdentifiableInterface, OwnableInterface, TimestampableInterface
+class Item implements IdentifiableInterface, OwnableInterface
 {
     use CharacteristicsTrait, TimestampableTrait, OwnableTrait;
 

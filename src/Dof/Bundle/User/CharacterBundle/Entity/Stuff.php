@@ -3,9 +3,7 @@
 namespace Dof\Bundle\User\CharacterBundle\Entity;
 
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Dof\Bundle\User\ItemBundle\Entity\Item as PItem;
@@ -20,7 +18,7 @@ use Dof\Bundle\ItemBundle\ItemSlot;
  * @ORM\Table(name="dof_build_stuff")
  * @ORM\Entity(repositoryClass="Dof\Bundle\User\CharacterBundle\Entity\StuffRepository")
  */
-class Stuff implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class Stuff implements IdentifiableInterface
 {
     use TimestampableTrait, SluggableTrait;
 

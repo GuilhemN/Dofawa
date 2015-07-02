@@ -7,9 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
@@ -25,7 +23,7 @@ use Dof\Bundle\CharacterBundle\Entity\Breed;
  * @ORM\Table(name="dof_build_playercharacter")
  * @ORM\Entity(repositoryClass="Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacterRepository")
  */
-class PlayerCharacter implements IdentifiableInterface, TimestampableInterface, SluggableInterface, OwnableInterface, RequireSecurityContextInterface
+class PlayerCharacter implements IdentifiableInterface, OwnableInterface, RequireSecurityContextInterface
 {
     use TimestampableTrait, SluggableTrait, OwnableTrait, RequireSecurityContextTrait;
 

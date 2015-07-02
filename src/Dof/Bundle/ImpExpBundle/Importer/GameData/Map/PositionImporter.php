@@ -53,10 +53,7 @@ class PositionImporter extends AbstractGameDataImporter
                 $tpl->setWorldMap($row['worldMap']);
                 $tpl->setHasPriorityOnWorldMap($row['hasPriorityOnWorldmap']);
 
-                $this->copyI18NProperty($tpl, 'setName', $row, 'name');
-                if ($tpl->getNameFr() === null) {
-                    $tpl->setNameFr('');
-                }
+                $this->copyI18NProperty($tpl, 'name', $row, 'name');
                 $this->dm->persist($tpl);
             }
             ++$rowsProcessed;

@@ -3,12 +3,14 @@
 namespace XN\Metadata;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait TimestampableTrait
 {
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
@@ -16,6 +18,7 @@ trait TimestampableTrait
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated_at", type="datetime")
      */
     protected $updatedAt;
@@ -34,8 +37,6 @@ trait TimestampableTrait
      * Set createdAt.
      *
      * @param \DateTime $createdAt
-     *
-     * @return TimestampableInterface
      */
     public function setCreatedAt(\DateTime $createdAt)
     {
@@ -58,21 +59,11 @@ trait TimestampableTrait
      * Set updatedAt.
      *
      * @param \DateTime $updatedAt
-     *
-     * @return TimestampableInterface
      */
     public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
-    }
-
-    protected function exportTimestampableData($full = true)
-    {
-        return $full ? [
-            'createdAt' => ($this->createdAt === null) ? null : $this->createdAt->format('c'),
-            'updatedAt' => ($this->updatedAt === null) ? null : $this->updatedAt->format('c'),
-        ] : [];
     }
 }

@@ -55,14 +55,14 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                     $tpl->setRelease($release);
                 }
                 $tpl->setPreliminary($beta);
-                $this->copyI18NProperty($tpl, 'setName', $row, 'name');
-                if ($tpl->getNameFr() === null) {
-                    $tpl->setNameFr('Item sans nom');
+                $this->copyI18NProperty($tpl, 'name', $row, 'name');
+                if ($tpl->getName() === null) {
+                    $tpl->setName('Item sans nom');
                 }
-                if ($tpl->getDescriptionFr() === null) {
-                    $tpl->setDescriptionFr('Item sans nom');
+                if ($tpl->getDescription() === null) {
+                    $tpl->setDescription('Item sans nom');
                 }
-                $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
+                $this->copyI18NProperty($tpl, 'description', $row, 'description');
                 $tpl->setCriteria(($row['criteria'] === 'null') ? null : $row['criteria']);
                 $tpl->setLevel($row['level']);
                 $tpl->setWeight($row['realWeight']);
@@ -99,7 +99,7 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                     $tpl->setTargetCriteria(($row['criteriaTarget'] === 'null') ? null : $row['criteriaTarget']);
                 }
                 $this->dm->persist($tpl);
-                $this->su->reassignSlug($tpl);
+                
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

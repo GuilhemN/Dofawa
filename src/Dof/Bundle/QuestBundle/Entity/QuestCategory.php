@@ -5,7 +5,6 @@ namespace Dof\Bundle\QuestBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -17,7 +16,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_quest_categories")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\QuestCategoryRepository")
  */
-class QuestCategory implements IdentifiableInterface, SluggableInterface, LocalizedNameInterface
+class QuestCategory implements IdentifiableInterface, LocalizedNameInterface
 {
     use SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 

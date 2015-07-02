@@ -4,9 +4,7 @@ namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
@@ -16,7 +14,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_titles")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CharacterBundle\Entity\TitleRepository")
  */
-class Title implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class Title implements IdentifiableInterface
 {
     use TimestampableTrait, SluggableTrait, ReleaseBoundTrait;
 

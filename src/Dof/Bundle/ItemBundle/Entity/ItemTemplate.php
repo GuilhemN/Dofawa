@@ -11,9 +11,7 @@ use XN\Common\UrlSafeBase64;
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -34,7 +32,7 @@ use Dof\Bundle\MonsterBundle\Entity\MonsterDrop;
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
  */
-class ItemTemplate implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, LocalizedNameInterface, FileInterface, ParsedCriteriaInterface
+class ItemTemplate implements IdentifiableInterface, ExportableInterface, LocalizedNameInterface, FileInterface, ParsedCriteriaInterface
 {
     /**
      * @var int

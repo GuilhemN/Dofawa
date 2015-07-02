@@ -4,9 +4,7 @@ namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -19,7 +17,7 @@ use Dof\Bundle\CMSBundle\Entity\QuestArticle;
  * @ORM\Table(name="dof_quests")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\QuestRepository")
  */
-class Quest implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
+class Quest implements IdentifiableInterface, LocalizedNameInterface
 {
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
@@ -86,13 +84,6 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
      * @ORM\Column(name="season", type="boolean", nullable=true)
      */
     private $season;
-
-    /**
-     * @var QuestArticle
-     *
-     * @ORM\OneToOne(targetEntity="Dof\Bundle\CMSBundle\Entity\QuestArticle", mappedBy="quest")
-     */
-    private $article;
 
     /**
      * Set id.
@@ -319,30 +310,6 @@ class Quest implements IdentifiableInterface, TimestampableInterface, SluggableI
     public function getSeason()
     {
         return $this->season;
-    }
-
-    /**
-     * Set article.
-     *
-     * @param QuestArticle $article
-     *
-     * @return Quest
-     */
-    public function setArticle(QuestArticle $article = null)
-    {
-        $this->article = $article;
-
-        return $this;
-    }
-
-    /**
-     * Get article.
-     *
-     * @return QuestArticle
-     */
-    public function getArticle()
-    {
-        return $this->article;
     }
 
     public function __toString()

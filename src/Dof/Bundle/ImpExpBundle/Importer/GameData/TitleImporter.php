@@ -51,11 +51,10 @@ class TitleImporter extends AbstractGameDataImporter
                 $tpl->setPreliminary($beta);
                 $tpl->setVisible($row['visible']);
                 $tpl->setCategoryId($row['categoryId']);
-                $this->copyI18NProperty($tpl, 'setNameMale', $row, 'nameMale');
-                $this->copyI18NProperty($tpl, 'setNameFemale', $row, 'nameFemale');
+                $this->copyI18NProperty($tpl, 'nameMale', $row, 'nameMale');
+                $this->copyI18NProperty($tpl, 'nameFemale', $row, 'nameFemale');
 
                 $this->dm->persist($tpl);
-                $this->su->reassignSlug($tpl);
             }
 
             ++$rowsProcessed;

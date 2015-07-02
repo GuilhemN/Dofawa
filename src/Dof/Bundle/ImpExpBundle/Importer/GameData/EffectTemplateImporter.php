@@ -49,7 +49,7 @@ class EffectTemplateImporter extends AbstractGameDataImporter
                 }
                 $tpl->setPreliminary($beta);
                 if (!empty($row['descriptionId'])) {
-                    $this->copyI18NProperty($tpl, 'setDescription', $row, 'description');
+                    $this->copyI18NProperty($tpl, 'description', $row, 'description');
                 }
                 $tpl->setCharacteristic(($row['characteristic'] === 'null') ? null : $row['characteristic']);
                 $tpl->setElement(($row['elementId'] == -1) ? null : $row['elementId']);

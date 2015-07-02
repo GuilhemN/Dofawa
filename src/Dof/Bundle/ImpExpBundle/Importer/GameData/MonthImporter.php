@@ -33,10 +33,10 @@ class MonthImporter extends AbstractGameDataImporter
                 $tpl->setId($row['id']);
             }
 
-            $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+            $this->copyI18NProperty($tpl, 'name', $row, 'name');
 
             $this->dm->persist($tpl);
-            $this->su->reassignSlug($tpl);
+            
 
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

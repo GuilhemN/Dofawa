@@ -52,15 +52,10 @@ class EmoticonImporter extends AbstractGameDataImporter
                 $emoticon->setPreliminary($beta);
                 $emoticon->setOrder($row['order']);
                 $emoticon->setAura($row['aura']);
-                $this->copyI18NProperty($emoticon, 'setName', $row, 'name');
-                $this->copyI18NProperty($emoticon, 'setShortcut', $row, 'shortcut');
-
-                if (!Inflector::slugify(strval($emoticon))) {
-                    $emoticon->setNameFr('Emote');
-                }
+                $this->copyI18NProperty($emoticon, 'name', $row, 'name');
+                $this->copyI18NProperty($emoticon, 'shortcut', $row, 'shortcut');
 
                 $this->dm->persist($emoticon);
-                $this->su->reassignSlug($emoticon);
             }
 
             ++$rowsProcessed;

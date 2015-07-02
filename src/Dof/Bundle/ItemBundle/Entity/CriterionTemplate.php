@@ -5,7 +5,6 @@ namespace Dof\Bundle\ItemBundle\Entity;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\Common\GameTemplateString;
@@ -16,7 +15,7 @@ use Dof\Common\GameTemplateString;
  * @ORM\Table("dof_criterion_templates", indexes={ @ORM\Index(name="IX_criterion_unique", columns={ "characteristic", "operator", "value" }) })
  * @ORM\Entity(repositoryClass="Dof\Bundle\ItemBundle\Entity\CriterionTemplateRepository")
  */
-class CriterionTemplate implements IdentifiableInterface, TimestampableInterface
+class CriterionTemplate implements IdentifiableInterface
 {
     use TimestampableTrait, LocalizedDescriptionTrait;
 

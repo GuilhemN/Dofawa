@@ -22,16 +22,9 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new FOS\MessageBundle\FOSMessageBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
-            new JMS\TranslationBundle\JMSTranslationBundle(),
-            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
-            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
-            new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
 
             new XN\UtilityBundle\XNUtilityBundle(),
-            new SymfonyExtender\TranslationsBundle\SymfonyExtenderTranslationsBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -44,24 +37,17 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
 
             new Dof\Bundle\UserBundle\DofUserBundle(),
-            new Dof\Bundle\CMSBundle\DofCMSBundle(),
             new Dof\Bundle\ItemBundle\DofItemBundle(),
             new Dof\Bundle\MainBundle\DofMainBundle(),
-            new Dof\Bundle\ArtBundle\DofArtBundle(),
             new Dof\Bundle\MapBundle\DofMapBundle(),
             new Dof\Bundle\GraphicsBundle\DofGraphicsBundle(),
             new Dof\Bundle\AdminBundle\DofAdminBundle(),
             new Dof\Bundle\CharacterBundle\DofCharacterBundle(),
             new Dof\Bundle\ImpExpBundle\DofImpExpBundle(),
-            new Dof\Bundle\Social\MessageBundle\DofMessageBundle(),
-            new Dof\Bundle\TranslationBundle\DofTranslationBundle(),
             new Dof\Bundle\User\CharacterBundle\DofUserCharacterBundle(),
-            new Dof\Bundle\Social\ForumBundle\DofForumBundle(),
-            new Dof\Bundle\GuildBundle\DofGuildBundle(),
-            new Dof\Bundle\MonsterBundle\DofMonsterBundle(),
             new Dof\Bundle\User\ItemBundle\DofUserItemBundle(),
+            new Dof\Bundle\MonsterBundle\DofMonsterBundle(),
             new Dof\Bundle\QuestBundle\DofQuestBundle(),
-            new Dof\Bundle\SearchBundle\DofSearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

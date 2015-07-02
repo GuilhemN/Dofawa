@@ -47,10 +47,10 @@ class BreedImporter extends AbstractGameDataImporter
                     $breed->setRelease($release);
                 }
                 $breed->setPreliminary($beta);
-                $this->copyI18NProperty($breed, 'setName', $row, 'shortName');
-                $this->copyI18NProperty($breed, 'setLongName', $row, 'longName');
-                $this->copyI18NProperty($breed, 'setDescription', $row, 'description');
-                $this->copyI18NProperty($breed, 'setGameplayDescription', $row, 'gameplayDescription');
+                $this->copyI18NProperty($breed, 'name', $row, 'shortName');
+                $this->copyI18NProperty($breed, 'longName', $row, 'longName');
+                $this->copyI18NProperty($breed, 'description', $row, 'description');
+                $this->copyI18NProperty($breed, 'gameplayDescription', $row, 'gameplayDescription');
                 $maleLook = new EntityLook($row['maleLook']);
                 $breed->setMaleSkin($maleLook->getSkins()[0]);
                 $breed->setMaleLodefSkin($breed->getMaleSkin());
@@ -63,7 +63,6 @@ class BreedImporter extends AbstractGameDataImporter
                 $breed->setFemaleArtworkBone($row['femaleArtwork']);
                 $breed->setCreatureBone($row['creatureBonesId']);
                 $this->dm->persist($breed);
-                $this->su->reassignSlug($breed);
             }
         }
     }

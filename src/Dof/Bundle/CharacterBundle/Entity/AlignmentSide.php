@@ -4,7 +4,6 @@ namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -16,7 +15,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_alignment_sides")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CharacterBundle\Entity\AlignmentSideRepository")
  */
-class AlignmentSide implements IdentifiableInterface, SluggableInterface, LocalizedNameInterface
+class AlignmentSide implements IdentifiableInterface, LocalizedNameInterface
 {
     use SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 

@@ -4,9 +4,7 @@ namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -18,7 +16,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_emoticons")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CharacterBundle\Entity\EmoticonRepository")
  */
-class Emoticon implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
+class Emoticon implements IdentifiableInterface, LocalizedNameInterface
 {
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 

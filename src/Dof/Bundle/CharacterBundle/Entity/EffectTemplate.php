@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
@@ -19,7 +18,7 @@ use Dof\Bundle\CharacterBundle\EffectTemplateExpressionLanguage;
  * @ORM\Table(name="dof_effect_templates")
  * @ORM\Entity(repositoryClass="EffectTemplateRepository")
  */
-class EffectTemplate implements IdentifiableInterface, TimestampableInterface
+class EffectTemplate implements IdentifiableInterface
 {
     /**
      * @var int

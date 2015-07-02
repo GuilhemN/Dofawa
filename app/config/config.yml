@@ -9,13 +9,7 @@ parameters:
   locales: [fr, en, de, it, es, pt, ru, ja]
   current_release_database: dofawa2
   beta_release_database: dofawa3
-  session_annotation_namespace: ["Dof", "XN"]
   wit_private_key: "DQCNE665II22LYW3SA7TTZ7GWR7NXLBI"
-
-jms_i18n_routing:
-    default_locale: fr
-    locales: %locales%
-    strategy: prefix_except_default
 
 framework:
     esi: { enabled: true }
@@ -62,21 +56,14 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: true
     bundles:        [ FOSUserBundle, DofUserBundle ]
-    #java: /usr/bin/java
     filters:
         cssrewrite: ~
         lessphp:
-            # Formatter options: compressed, lessjs, classic
             formatter: "compressed"
             preserve_comments: false
             presets:
                 my_variable: "#000"
-        #closure:
-        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
-        #yui_css:
-        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
-# Doctrine Configuration
 doctrine:
     dbal:
         driver:   "%database_driver%"
@@ -86,9 +73,6 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver, add the path in parameters.yml
-        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        # path:     "%database_path%"
         mapping_types:
             enum: string
 
@@ -98,6 +82,13 @@ doctrine:
         metadata_cache_driver: apc
         query_cache_driver: apc
         result_cache_driver: apc
+        mappings:
+            gedmo_translatable:
+                type: annotation
+                prefix: Gedmo\Translatable\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
+                is_bundle: false
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -122,19 +113,11 @@ fos_user:
         form:
             type: dof_user_resetting
 
-fos_message:
-    db_driver: orm
-    thread_class: Dof\Bundle\Social\MessageBundle\Entity\Thread
-    message_class: Dof\Bundle\Social\MessageBundle\Entity\Message
-
-# app/config/config.yml
 sonata_block:
     default_contexts: [cms]
     blocks:
-        # Enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
-        # Your other blocks
 
 sonata_admin:
     templates:
@@ -153,25 +136,11 @@ sonata_admin:
             OPERATOR: OPERATOR
             MASTER: MASTER
 
-        # the DELETE admin permission means the user is allowed to batch delete objects
         admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
-        # permission related to the objects
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
 
     options:
-        pager_links:    15     # pager max links to display
-braincrafted_bootstrap:
-    less_filter: none
-    auto_configure:
-        assetic: false
-        twig: false
-        knp_menu: false
-        knp_paginator: false
-
-ewz_recaptcha:
-    public_key:   6Lc4ZfYSAAAAAG10vxtJkhBO0xCcPfqm9fAT_Qg8
-    private_key:  6Lc4ZfYSAAAAAD5Bg-xjfAlFmZBFUeqgJEJqGGmC
-    locale_key:   %kernel.default_locale%
+        pager_links:    15
 
 knp_snappy:
     pdf:
@@ -183,13 +152,18 @@ knp_snappy:
         binary: %kernel.root_dir%/../vendor/h4cc/wkhtmltoimage-amd64/bin/wkhtmltoimage-amd64
         options: []
 
-bazinga_js_translation:
-    locale_fallback: fr
-
-
 liip_imagine:
     filter_sets:
         50x50:
             quality: 85
             filters:
                 thumbnail: { size: [50, 50], mode: outbound, allow_upscale: true }
+
+stof_doctrine_extensions:
+    default_locale: fr
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
+            blameable: true
+            translatable: true

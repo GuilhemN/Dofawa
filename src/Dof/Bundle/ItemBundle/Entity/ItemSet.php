@@ -9,12 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
-use Dof\Bundle\ItemBundle\PrimaryBonusInterface;
-use Dof\Bundle\ItemBundle\PrimaryBonusTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
@@ -25,7 +21,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_item_sets")
  * @ORM\Entity(repositoryClass="ItemSetRepository")
  */
-class ItemSet implements IdentifiableInterface, TimestampableInterface, SluggableInterface, ExportableInterface, PrimaryBonusInterface, LocalizedNameInterface
+class ItemSet implements IdentifiableInterface, ExportableInterface, LocalizedNameInterface
 {
     /**
      * @var int
@@ -35,7 +31,7 @@ class ItemSet implements IdentifiableInterface, TimestampableInterface, Sluggabl
      */
     private $id;
 
-    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait, PrimaryBonusTrait;
+    use TimestampableTrait, SluggableTrait, ImportableTrait, ReleaseBoundTrait, LocalizedNameTrait;
 
     /**
      * @var Collection

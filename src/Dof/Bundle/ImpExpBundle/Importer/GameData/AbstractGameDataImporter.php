@@ -20,16 +20,10 @@ abstract class AbstractGameDataImporter implements ImporterInterface
      */
     protected $dm;
 
-    /**
-     * @var SluggableUpdater
-     */
-    protected $su;
-
     public function __construct(ServiceArray $sa)
     {
         $this->gd = $sa[0];
         $this->dm = $sa[1];
-        $this->su = $sa[2];
     }
 
     public function import($dataSet, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
@@ -84,31 +78,32 @@ abstract class AbstractGameDataImporter implements ImporterInterface
         }, $locales));
     }
 
-    protected function copyI18NProperty($entity, $setter, $row, $alias)
+    protected function copyI18NProperty($entity, $field, $row, $alias)
     {
+        $repo = $this->dm->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         if (isset($row[$alias.'Fr'])) {
-            $entity->$setter($row[$alias.'Fr'], 'fr');
+            $repo->translate($entity, $field, 'fr', $row[$alias.'Fr']);
         }
         if (isset($row[$alias.'En'])) {
-            $entity->$setter($row[$alias.'En'], 'en');
+            $repo->translate($entity, $field, 'en', $row[$alias.'En']);
         }
         if (isset($row[$alias.'De'])) {
-            $entity->$setter($row[$alias.'De'], 'de');
+            $repo->translate($entity, $field, 'de', $row[$alias.'De']);
         }
         if (isset($row[$alias.'Es'])) {
-            $entity->$setter($row[$alias.'Es'], 'es');
+            $repo->translate($entity, $field, 'es', $row[$alias.'Es']);
         }
         if (isset($row[$alias.'It'])) {
-            $entity->$setter($row[$alias.'It'], 'it');
+            $repo->translate($entity, $field, 'it', $row[$alias.'It']);
         }
         if (isset($row[$alias.'Pt'])) {
-            $entity->$setter($row[$alias.'Pt'], 'pt');
+            $repo->translate($entity, $field, 'pt', $row[$alias.'Pt']);
         }
         if (isset($row[$alias.'Ja'])) {
-            $entity->$setter($row[$alias.'Ja'], 'ja');
+            $repo->translate($entity, $field, 'ja', $row[$alias.'Ja']);
         }
         if (isset($row[$alias.'Ru'])) {
-            $entity->$setter($row[$alias.'Ru'], 'ru');
+            $repo->translate($entity, $field, 'ru', $row[$alias.'Ru']);
         }
     }
 }

@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 # L'interface n'est pas utilisé afin que le __toString() soit utilisé et non le nom de l'entité
 # use XN\L10n\LocalizedNameInterface;
@@ -20,7 +19,7 @@ use Dof\Bundle\MonsterBundle\Entity\Dungeon;
  * @ORM\Table(name="dof_map_positions")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MapBundle\Entity\MapPositionRepository")
  */
-class MapPosition implements IdentifiableInterface, TimestampableInterface
+class MapPosition implements IdentifiableInterface
 {
     use TimestampableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 

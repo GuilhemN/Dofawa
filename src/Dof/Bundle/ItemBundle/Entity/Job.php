@@ -6,9 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -19,7 +17,7 @@ use XN\L10n\LocalizedNameTrait;
  * @ORM\Table(name="dof_jobs")
  * @ORM\Entity(repositoryClass="JobRepository")
  */
-class Job implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
+class Job implements IdentifiableInterface, LocalizedNameInterface
 {
     /**
      * @var int

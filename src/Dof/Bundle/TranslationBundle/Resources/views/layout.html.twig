@@ -1,7 +1,0 @@
-{% extends '::layout.html.twig' %}
-
-{% trans_default_domain "DofTranslationBundle" %}
-
-{% block breadcrumb %}
-    <li><a href="{{ path('dof_translation_homepage', {'tLocale': locale}) }}">{{ 'translations' | trans() }} {{ locale }}</a></li>
-{% endblock %}

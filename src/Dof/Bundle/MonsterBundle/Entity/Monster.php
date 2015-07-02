@@ -8,9 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use XN\Common\UrlSafeBase64;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -26,7 +24,7 @@ use Dof\Bundle\MapBundle\Entity\SubArea;
  * @ORM\Table(name="dof_monsters")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MonsterBundle\Entity\MonsterRepository")
  */
-class Monster implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface, FileInterface
+class Monster implements IdentifiableInterface, LocalizedNameInterface, FileInterface
 {
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait, FileLightTrait;
 

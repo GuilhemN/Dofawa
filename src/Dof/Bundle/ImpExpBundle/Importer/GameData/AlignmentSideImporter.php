@@ -38,11 +38,10 @@ class AlignmentSideImporter extends AbstractGameDataImporter
                     $side->setRelease($release);
                 }
                 $side->setPreliminary($beta);
-                $this->copyI18NProperty($side, 'setName', $row, 'name');
+                $this->copyI18NProperty($side, 'name', $row, 'name');
                 $side->setCanConquest($row['canConquest']);
 
                 $this->dm->persist($side);
-                $this->su->reassignSlug($side);
             }
         }
     }

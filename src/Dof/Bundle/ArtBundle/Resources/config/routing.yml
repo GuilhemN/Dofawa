@@ -1,3 +1,0 @@
-dof_art_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: DofArtBundle:Default:index }

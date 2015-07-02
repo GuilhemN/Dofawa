@@ -54,10 +54,10 @@ class DungeonImporter extends AbstractGameDataImporter
                 $tpl->setEntranceMap($entrance);
                 $tpl->setExitMap($exit);
                 $tpl->setOptimalPlayerLevel($row['optimalPlayerLevel']);
-                $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                $this->copyI18NProperty($tpl, 'name', $row, 'name');
 
                 $this->dm->persist($tpl);
-                $this->su->reassignSlug($tpl);
+                
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

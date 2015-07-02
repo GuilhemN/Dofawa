@@ -6,33 +6,10 @@ parameters:
     xn.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
     xn.grammar.class: XN\Grammar\ParserFactory
 
-    xn.bbcode.language.class: XN\BBCode\Language
-    xn.bbcode.tag_template.simple.class: XN\BBCode\TagTemplate\SimpleTagTemplate
-    xn.bbcode.tag_template.list.class: XN\BBCode\TagTemplate\ListTagTemplate
-    xn.bbcode.tag_template.item.class: XN\BBCode\TagTemplate\ItemTagTemplate
-    xn.bbcode.tag_template.new_line.class: XN\BBCode\TagTemplate\NewLineTagTemplate
-    xn.bbcode.tag_template.link.class: XN\BBCode\TagTemplate\LinkTagTemplate
-    xn.bbcode.tag_template.image.class: XN\BBCode\TagTemplate\ImageTagTemplate
-    xn.bbcode.tag_template.raw.class: XN\BBCode\TagTemplate\RawTextTagTemplate
-    xn.bbcode.text_filter.new_line.class: XN\BBCode\TextFilter\NewLineTextFilter
-
     xn.doctrine.entity_dependency_injection.class: XN\UtilityBundle\Doctrine\EntityDependencyInjection
-    xn.doctrine.identifiable_updater.class: XN\UtilityBundle\Doctrine\IdentifiableUpdater
-    xn.doctrine.ownable_updater.class: XN\UtilityBundle\Doctrine\OwnableUpdater
-    xn.doctrine.localized_origin_updater.class: XN\UtilityBundle\Doctrine\LocalizedOriginUpdater
-    xn.doctrine.sluggable_updater.class: XN\UtilityBundle\Doctrine\SluggableUpdater
-    xn.doctrine.timestampable_updater.class: XN\UtilityBundle\Doctrine\TimestampableUpdater
-    xn.doctrine.primary_bonus_updater.class: XN\UtilityBundle\Doctrine\PrimaryBonusUpdater
-    xn.doctrine.message_notification.class: XN\UtilityBundle\Doctrine\MessageNotification
-    xn.doctrine.file_updater.class: XN\UtilityBundle\Doctrine\FileUpdater
 
-    xn.session_controller_listener.class: XN\UtilityBundle\Annotations\SessionControllerListener
     xn.secure_controller_listener.class: XN\UtilityBundle\Annotations\SecureControllerListener
     xn.lazy_field_listener.class: XN\UtilityBundle\Annotations\LazyFieldListener
-    xn.action_controller_listener.class: XN\UtilityBundle\Annotations\ActionControllerListener
-    xn.event_listener.action_subsriber.class: XN\UtilityBundle\EventListener\ActionSubscriber
-
-    xn.action_logger.class: XN\UtilityBundle\ActionLogger
 
 services:
     lazy:
@@ -66,134 +43,12 @@ services:
         class: %xn.grammar.class%
         arguments: [ "@annotation_reader" ]
 
-    simple_bbcode:
-        class: %xn.bbcode.language.class%
-        calls:
-            - [ setLenient, [ true ] ]
-            - [ addTextFilter, [ @xn.bbcode.text_filter.new_line ] ]
-        tags:
-            - { name: xn.bbcode.use, module: lists }
-            - { name: xn.bbcode.use, module: basics }
-            - { name: xn.bbcode.use, module: media }
-            - { name: xn.bbcode.use, module: entities }
-
-    xn.bbcode.tag_template.list:
-        class: %xn.bbcode.tag_template.list.class%
-        arguments: [ [ 'list', 'ul' ], 'ul', '', '' ]
-        tags:
-            - { name: xn.bbcode.publish, module: lists }
-
-    xn.bbcode.tag_template.new_line:
-        class: %xn.bbcode.tag_template.new_line.class%
-        tags:
-            - { name: xn.bbcode.publish, module: basics }
-
-    xn.bbcode.tag_template.item:
-        class: %xn.bbcode.tag_template.item.class%
-        tags:
-            - { name: xn.bbcode.publish, module: lists }
-
-    xn.bbcode.tag_template.bold:
-        class: %xn.bbcode.tag_template.simple.class%
-        arguments: [ 'b', 'span', ~, 'font-weight: bold;' ]
-        tags:
-            - { name: xn.bbcode.publish, module: basics }
-
-    xn.bbcode.tag_template.italic:
-        class: %xn.bbcode.tag_template.simple.class%
-        arguments: [ 'i', 'span', ~, 'font-style: italic;' ]
-        tags:
-            - { name: xn.bbcode.publish, module: basics }
-
-    xn.bbcode.tag_template.underline:
-        class: %xn.bbcode.tag_template.simple.class%
-        arguments: [ 'u', 'span', ~, 'text-decoration: underline;' ]
-        tags:
-            - { name: xn.bbcode.publish, module: basics }
-
-    xn.bbcode.tag_template.strikethrough:
-        class: %xn.bbcode.tag_template.simple.class%
-        arguments: [ [ 's', 'strike' ], 'span', ~, 'text-decoration: line-through;' ]
-        tags:
-            - { name: xn.bbcode.publish, module: basics }
-
-    xn.bbcode.tag_template.align_center:
-        class: %xn.bbcode.tag_template.simple.class%
-        arguments: [ [ 'center' ], 'div', ~, 'text-align: center;' ]
-        tags:
-            - { name: xn.bbcode.publish, module: basics }
-
-    xn.bbcode.tag_template.raw:
-        class: %xn.bbcode.tag_template.raw.class%
-        arguments: [ 'raw' ]
-        tags:
-            - { name: xn.bbcode.publish, module: basics }
-
-    xn.bbcode.tag_template.link:
-        class: %xn.bbcode.tag_template.link.class%
-        tags:
-            - { name: xn.bbcode.publish, module: basics }
-
-    xn.bbcode.tag_template.image:
-        class: %xn.bbcode.tag_template.image.class%
-        tags:
-            - { name: xn.bbcode.publish, module: media }
-
-    xn.bbcode.text_filter.new_line:
-        class: %xn.bbcode.text_filter.new_line.class%
-        arguments: [ @xn.bbcode.tag_template.new_line ]
-
-#    xn.doctrine.identifiable_updater:
-#        class:     "%xn.doctrine.identifiable_updater.class%"
-#        arguments: [ "@xn.id_generator" ]
-#        tags:
-#            - { name: doctrine.event_listener, event: prePersist }
-
     xn.doctrine.entity_dependency_injection:
         class:     "%xn.doctrine.entity_dependency_injection.class%"
         arguments: [ @lazy\security.context ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
 
-    xn.doctrine.ownable_updater:
-        class:     "%xn.doctrine.ownable_updater.class%"
-        arguments: [ "@service_container" ]
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: onFlush }
-
-    xn.doctrine.localized_origin_updater:
-        class:     "%xn.doctrine.localized_origin_updater.class%"
-        arguments: [ "@service_container" ]
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: onFlush }
-
-    xn.doctrine.sluggable_updater:
-        class: "%xn.doctrine.sluggable_updater.class%"
-        arguments: [ "@lazy\doctrine.orm.default_entity_manager" ]
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-
-    xn.doctrine.timestampable_updater:
-        class: "%xn.doctrine.timestampable_updater.class%"
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: onFlush }
-
-    xn.doctrine.file_updater:
-        class:     "%xn.doctrine.file_updater.class%"
-        tags:
-            - { name: doctrine.event_listener, event: postPersist }
-            - { name: doctrine.event_listener, event: preUpdate }
-            - { name: doctrine.event_listener, event: postUpdate }
-            - { name: doctrine.event_listener, event: postRemove }
-
-    xn.session_controller_listener:
-        class: %xn.session_controller_listener.class%
-        arguments: [ @security.context, @session, @annotation_reader, @variables, @service_container ]
-        tags:
-            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController, priority: -1 }
 
     xn.secure_controller_listener:
         class: %xn.secure_controller_listener.class%
@@ -208,19 +63,3 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: postLoad }
             - { name: doctrine.event_listener, event: onFlush }
-
-    xn.action_controller_listener:
-        class: %xn.action_controller_listener.class%
-        arguments: [ @annotation_reader, @event_dispatcher ]
-        tags:
-            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
-
-    xn.event_listener.action_subsriber:
-        class: %xn.event_listener.action_subsriber.class%
-        arguments: [ @xn.action_logger ]
-        tags:
-            - { name: kernel.event_subscriber }
-
-    xn.action_logger:
-        class: %xn.action_logger.class%
-        arguments: [ @doctrine.orm.entity_manager, @security.context ]

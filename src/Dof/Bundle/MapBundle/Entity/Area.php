@@ -6,9 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
@@ -19,7 +17,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_map_areas")
  * @ORM\Entity(repositoryClass="AreaRepository")
  */
-class Area implements IdentifiableInterface, TimestampableInterface, SluggableInterface
+class Area implements IdentifiableInterface
 {
     /**
      * @var int

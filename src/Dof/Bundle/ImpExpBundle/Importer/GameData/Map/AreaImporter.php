@@ -54,9 +54,9 @@ class AreaImporter extends AbstractGameDataImporter
                 $tpl->setWidth($row['bounds_width']);
                 $tpl->setHeight($row['bounds_height']);
 
-                $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                $this->copyI18NProperty($tpl, 'name', $row, 'name');
                 $this->dm->persist($tpl);
-                $this->su->reassignSlug($tpl);
+                
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

@@ -5,9 +5,7 @@ namespace Dof\Bundle\QuestBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
-use XN\Metadata\SluggableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
@@ -19,7 +17,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_achievement_categories")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\AchievementCategoryRepository")
  */
-class AchievementCategory implements IdentifiableInterface, TimestampableInterface, SluggableInterface, LocalizedNameInterface
+class AchievementCategory implements IdentifiableInterface, LocalizedNameInterface
 {
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 

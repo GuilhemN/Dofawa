@@ -4,7 +4,6 @@ namespace Dof\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
@@ -16,7 +15,7 @@ use Dof\Bundle\MainBundle\Entity\Badge as BaseBadge;
  * @ORM\Table(name="dof_user_badges")
  * @ORM\Entity(repositoryClass="Dof\Bundle\UserBundle\Entity\BadgeRepository")
  */
-class Badge implements IdentifiableInterface, TimestampableInterface, OwnableInterface
+class Badge implements IdentifiableInterface, OwnableInterface
 {
     use TimestampableTrait, OwnableTrait;
 

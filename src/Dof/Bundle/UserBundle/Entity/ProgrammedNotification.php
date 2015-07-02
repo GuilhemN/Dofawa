@@ -4,7 +4,6 @@ namespace Dof\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
@@ -16,7 +15,7 @@ use XN\Metadata\SimpleLazyFieldTrait;
  * @ORM\Table(name="dof_user_programmed_notifications")
  * @ORM\Entity(repositoryClass="Dof\Bundle\UserBundle\Entity\ProgrammedNotificationRepository")
  */
-class ProgrammedNotification implements IdentifiableInterface, TimestampableInterface, OwnableInterface
+class ProgrammedNotification implements IdentifiableInterface, OwnableInterface
 {
     use TimestampableTrait, OwnableTrait, SimpleLazyFieldTrait;
 

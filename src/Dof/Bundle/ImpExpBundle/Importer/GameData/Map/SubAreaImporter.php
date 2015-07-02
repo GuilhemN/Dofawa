@@ -57,9 +57,9 @@ class SubAreaImporter extends AbstractGameDataImporter
                 $tpl->setLevel($row['level']);
                 $tpl->setType($row['isConquestVillage'] ? SubAreaType::CONQUEST_VILLAGE : $row['capturable'] ? SubAreaType::NORMAL : SubAreaType::NEUTRAL);
 
-                $this->copyI18NProperty($tpl, 'setName', $row, 'name');
+                $this->copyI18NProperty($tpl, 'name', $row, 'name');
                 $this->dm->persist($tpl);
-                $this->su->reassignSlug($tpl);
+                
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

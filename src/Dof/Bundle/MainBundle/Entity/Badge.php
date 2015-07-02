@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use XN\Persistence\IdentifiableInterface;
-use XN\Metadata\TimestampableInterface;
 use XN\Metadata\TimestampableTrait;
 //Traduction Titre/Description
 use XN\L10n\LocalizedNameInterface;
@@ -19,7 +18,7 @@ use Dof\Bundle\UserBundle\Entity\Badge as UserBadge;
  * @ORM\Table(name="dof_badges")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MainBundle\Entity\BadgeRepository")
  */
-class Badge implements IdentifiableInterface, TimestampableInterface, LocalizedNameInterface
+class Badge implements IdentifiableInterface, LocalizedNameInterface
 {
     use TimestampableTrait, LocalizedNameTrait;
     /**
