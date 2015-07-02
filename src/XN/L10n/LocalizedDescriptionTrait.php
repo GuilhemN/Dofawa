@@ -11,7 +11,7 @@ trait LocalizedDescriptionTrait
      * @var string
      *
      * @Gedmo\Translatable
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     protected $description;
 
