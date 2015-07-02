@@ -3,10 +3,10 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
-use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
@@ -16,7 +16,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
  * @ORM\Table(name="dof_emoticons")
  * @ORM\Entity(repositoryClass="Dof\Bundle\CharacterBundle\Entity\EmoticonRepository")
  */
-class Emoticon implements IdentifiableInterface, LocalizedNameInterface
+class Emoticon implements IdentifiableInterface
 {
     use TimestampableTrait, SluggableTrait, LocalizedNameTrait, ReleaseBoundTrait;
 
@@ -45,58 +45,10 @@ class Emoticon implements IdentifiableInterface, LocalizedNameInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="shortcut_fr", type="string", length=255)
+     * @Gedmo\Translatable
+     * @ORM\Column(name="shortcut", type="string", length=255, nullable=true)
      */
-    private $shortcutFr;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="shortcut_en", type="string", length=255, nullable=true)
-     */
-    private $shortcutEn;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="shortcut_de", type="string", length=255, nullable=true)
-     */
-    private $shortcutDe;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="shortcut_es", type="string", length=255, nullable=true)
-     */
-    private $shortcutEs;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="shortcut_it", type="string", length=255, nullable=true)
-     */
-    private $shortcutIt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="shortcut_pt", type="string", length=255, nullable=true)
-     */
-    private $shortcutPt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="shortcut_ja", type="string", length=255, nullable=true)
-     */
-    private $shortcutJa;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="shortcut_ru", type="string", length=255, nullable=true)
-     */
-    private $shortcutRu;
+    private $shortcut;
 
     /**
      * Set id.
@@ -171,255 +123,31 @@ class Emoticon implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Set shortcutFr.
-     *
-     * @param string $shortcutFr
-     *
-     * @return Emoticon
-     */
-    public function setShortcutFr($shortcutFr)
-    {
-        $this->shortcutFr = $shortcutFr;
-
-        return $this;
-    }
-
-    /**
-     * Get shortcutNameFr.
-     *
-     * @return string
-     */
-    public function getShortcutFr()
-    {
-        return $this->shortcutNameFr;
-    }
-
-    /**
-     * Set shortcutNameEn.
-     *
-     * @param string $shortcutNameEn
-     *
-     * @return Emoticon
-     */
-    public function setShortcutEn($shortcutNameEn)
-    {
-        $this->shortcutNameEn = $shortcutNameEn;
-
-        return $this;
-    }
-
-    /**
-     * Get shortcutNameEn.
-     *
-     * @return string
-     */
-    public function getShortcutEn()
-    {
-        return $this->shortcutNameEn;
-    }
-
-    /**
-     * Set shortcutNameDe.
-     *
-     * @param string $shortcutNameDe
-     *
-     * @return Emoticon
-     */
-    public function setShortcutDe($shortcutNameDe)
-    {
-        $this->shortcutNameDe = $shortcutNameDe;
-
-        return $this;
-    }
-
-    /**
-     * Get shortcutNameDe.
-     *
-     * @return string
-     */
-    public function getShortcutDe()
-    {
-        return $this->shortcutDe;
-    }
-
-    /**
-     * Set shortcutEs.
-     *
-     * @param string $shortcutEs
-     *
-     * @return Emoticon
-     */
-    public function setShortcutEs($shortcutEs)
-    {
-        $this->shortcutEs = $shortcutEs;
-
-        return $this;
-    }
-
-    /**
-     * Get shortcutEs.
-     *
-     * @return string
-     */
-    public function getShortcutEs()
-    {
-        return $this->shortcutEs;
-    }
-
-    /**
-     * Set shortcutIt.
-     *
-     * @param string $shortcutIt
-     *
-     * @return Emoticon
-     */
-    public function setShortcutIt($shortcutIt)
-    {
-        $this->shortcutIt = $shortcutIt;
-
-        return $this;
-    }
-
-    /**
-     * Get shortcutIt.
-     *
-     * @return string
-     */
-    public function getShortcutIt()
-    {
-        return $this->shortcutIt;
-    }
-
-    /**
-     * Set shortcutPt.
-     *
-     * @param string $shortcutPt
-     *
-     * @return Emoticon
-     */
-    public function setShortcutPt($shortcutPt)
-    {
-        $this->shortcutPt = $shortcutPt;
-
-        return $this;
-    }
-
-    /**
-     * Get longNamePt.
-     *
-     * @return string
-     */
-    public function getShortcutPt()
-    {
-        return $this->longNamePt;
-    }
-
-    /**
-     * Set shortcutNameJa.
-     *
-     * @param string $shortcutNameJa
-     *
-     * @return Emoticon
-     */
-    public function setShortcutJa($shortcutNameJa)
-    {
-        $this->shortcutNameJa = $shortcutNameJa;
-
-        return $this;
-    }
-
-    /**
-     * Get shortcutNameJa.
-     *
-     * @return string
-     */
-    public function getShortcutJa()
-    {
-        return $this->shortcutNameJa;
-    }
-
-    /**
-     * Set shortcutNameRu.
-     *
-     * @param string $shortcutNameRu
-     *
-     * @return Emoticon
-     */
-    public function setShortcutRu($shortcutNameRu)
-    {
-        $this->shortcutNameRu = $shortcutNameRu;
-
-        return $this;
-    }
-
-    /**
-     * Get shortcutNameRu.
-     *
-     * @return string
-     */
-    public function getShortcutRu()
-    {
-        return $this->shortcutNameRu;
-    }
-
-    /**
      * Set shortcut.
      *
      * @param string $shortcut
-     * @param string $locale
      *
      * @return Emoticon
      */
-    public function setShortcut($shortcut, $locale = 'fr')
+    public function setShortcut($shortcut)
     {
-        switch ($locale) {
-            case 'fr': $this->shortcutFr = $shortcut; break;
-            case 'en': $this->shortcutEn = $shortcut; break;
-            case 'de': $this->shortcutDe = $shortcut; break;
-            case 'es': $this->shortcutEs = $shortcut; break;
-            case 'it': $this->shortcutIt = $shortcut; break;
-            case 'pt': $this->shortcutPt = $shortcut; break;
-            case 'ja': $this->shortcutJa = $shortcut; break;
-            case 'ru': $this->shortcutRu = $shortcut; break;
-        }
+        $this->shortcut = $shortcut;
 
         return $this;
     }
 
     /**
-     * Get shortcut.
-     *
-     * @param string|array $locale
+     * Get shortcutName.
      *
      * @return string
      */
-    public function getShortcut($locale = 'fr')
+    public function getShortcut()
     {
-        if (is_array($locale)) {
-            foreach ($locale as $loc) {
-                $shortcut = $this->getShortcut($loc);
-                if ($shortcut !== null) {
-                    return $shortcut;
-                }
-            }
-
-            return;
-        }
-        switch ($locale) {
-            case 'fr': return $this->shortcutFr;
-            case 'en': return $this->shortcutEn;
-            case 'de': return $this->shortcutDe;
-            case 'es': return $this->shortcutEs;
-            case 'it': return $this->shortcutIt;
-            case 'pt': return $this->shortcutPt;
-            case 'ja': return $this->shortcutJa;
-            case 'ru': return $this->shortcutRu;
-            default: return;
-        }
+        return $this->shortcutName;
     }
 
     public function __toString()
     {
-        return $this->nameFr;
+        return $this->name;
     }
 }

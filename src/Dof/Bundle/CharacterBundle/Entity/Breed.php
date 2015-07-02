@@ -6,10 +6,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
-use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
@@ -21,7 +21,7 @@ use Dof\Bundle\CharacterBundle\Gender;
  * @ORM\Table(name="dof_breeds")
  * @ORM\Entity(repositoryClass="BreedRepository")
  */
-class Breed implements IdentifiableInterface, LocalizedNameInterface
+class Breed implements IdentifiableInterface
 {
     /**
      * @var int
@@ -36,114 +36,18 @@ class Breed implements IdentifiableInterface, LocalizedNameInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="long_name_fr", type="string", length=255)
+     * @Gedmo\Translatable
+     * @ORM\Column(name="long_name", type="string", length=255, nullable=true)
      */
-    private $longNameFr;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="long_name_en", type="string", length=255, nullable=true)
-     */
-    private $longNameEn;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="long_name_de", type="string", length=255, nullable=true)
-     */
-    private $longNameDe;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="long_name_es", type="string", length=255, nullable=true)
-     */
-    private $longNameEs;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="long_name_it", type="string", length=255, nullable=true)
-     */
-    private $longNameIt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="long_name_pt", type="string", length=255, nullable=true)
-     */
-    private $longNamePt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="long_name_ja", type="string", length=255, nullable=true)
-     */
-    private $longNameJa;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="long_name_ru", type="string", length=255, nullable=true)
-     */
-    private $longNameRu;
+    private $longName;
 
     /**
      * @var text
      *
-     * @ORM\Column(name="gameplay_description_fr", type="text")
+     * @Gedmo\Translatable
+     * @ORM\Column(name="gameplay_description", type="text", nullable=true)
      */
-    private $gameplayDescriptionFr;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="gameplay_description_en", type="text", nullable=true)
-     */
-    private $gameplayDescriptionEn;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="gameplay_description_de", type="text", nullable=true)
-     */
-    private $gameplayDescriptionDe;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="gameplay_description_es", type="text", nullable=true)
-     */
-    private $gameplayDescriptionEs;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="gameplay_description_it", type="text", nullable=true)
-     */
-    private $gameplayDescriptionIt;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="gameplay_description_pt", type="text", nullable=true)
-     */
-    private $gameplayDescriptionPt;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="gameplay_description_ja", type="text", nullable=true)
-     */
-    private $gameplayDescriptionJa;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="gameplay_description_ru", type="text", nullable=true)
-     */
-    private $gameplayDescriptionRu;
+    private $gameplayDescription;
 
     /**
      * @var int
@@ -275,217 +179,15 @@ class Breed implements IdentifiableInterface, LocalizedNameInterface
     }
 
     /**
-     * Set longNameFr.
-     *
-     * @param string $longNameFr
-     *
-     * @return Breed
-     */
-    public function setLongNameFr($longNameFr)
-    {
-        $this->longNameFr = $longNameFr;
-
-        return $this;
-    }
-
-    /**
-     * Get longNameFr.
-     *
-     * @return string
-     */
-    public function getLongNameFr()
-    {
-        return $this->longNameFr;
-    }
-
-    /**
-     * Set longNameEn.
-     *
-     * @param string $longNameEn
-     *
-     * @return Breed
-     */
-    public function setLongNameEn($longNameEn)
-    {
-        $this->longNameEn = $longNameEn;
-
-        return $this;
-    }
-
-    /**
-     * Get longNameEn.
-     *
-     * @return string
-     */
-    public function getLongNameEn()
-    {
-        return $this->longNameEn;
-    }
-
-    /**
-     * Set longNameDe.
-     *
-     * @param string $longNameDe
-     *
-     * @return Breed
-     */
-    public function setLongNameDe($longNameDe)
-    {
-        $this->longNameDe = $longNameDe;
-
-        return $this;
-    }
-
-    /**
-     * Get longNameDe.
-     *
-     * @return string
-     */
-    public function getLongNameDe()
-    {
-        return $this->longNameDe;
-    }
-
-    /**
-     * Set longNameEs.
-     *
-     * @param string $longNameEs
-     *
-     * @return Breed
-     */
-    public function setLongNameEs($longNameEs)
-    {
-        $this->longNameEs = $longNameEs;
-
-        return $this;
-    }
-
-    /**
-     * Get longNameEs.
-     *
-     * @return string
-     */
-    public function getLongNameEs()
-    {
-        return $this->longNameEs;
-    }
-
-    /**
-     * Set longNameIt.
-     *
-     * @param string $longNameIt
-     *
-     * @return Breed
-     */
-    public function setLongNameIt($longNameIt)
-    {
-        $this->longNameIt = $longNameIt;
-
-        return $this;
-    }
-
-    /**
-     * Get longNameIt.
-     *
-     * @return string
-     */
-    public function getLongNameIt()
-    {
-        return $this->longNameIt;
-    }
-
-    /**
-     * Set longNamePt.
-     *
-     * @param string $longNamePt
-     *
-     * @return Breed
-     */
-    public function setLongNamePt($longNamePt)
-    {
-        $this->longNamePt = $longNamePt;
-
-        return $this;
-    }
-
-    /**
-     * Get longNamePt.
-     *
-     * @return string
-     */
-    public function getLongNamePt()
-    {
-        return $this->longNamePt;
-    }
-
-    /**
-     * Set longNameJa.
-     *
-     * @param string $longNameJa
-     *
-     * @return Breed
-     */
-    public function setLongNameJa($longNameJa)
-    {
-        $this->longNameJa = $longNameJa;
-
-        return $this;
-    }
-
-    /**
-     * Get longNameJa.
-     *
-     * @return string
-     */
-    public function getLongNameJa()
-    {
-        return $this->longNameJa;
-    }
-
-    /**
-     * Set longNameRu.
-     *
-     * @param string $longNameRu
-     *
-     * @return Breed
-     */
-    public function setLongNameRu($longNameRu)
-    {
-        $this->longNameRu = $longNameRu;
-
-        return $this;
-    }
-
-    /**
-     * Get longNameRu.
-     *
-     * @return string
-     */
-    public function getLongNameRu()
-    {
-        return $this->longNameRu;
-    }
-
-    /**
      * Set longName.
      *
      * @param string $longName
-     * @param string $locale
      *
      * @return Breed
      */
-    public function setLongName($longName, $locale = 'fr')
+    public function setLongName($longName)
     {
-        switch ($locale) {
-            case 'fr': $this->longNameFr = $longName; break;
-            case 'en': $this->longNameEn = $longName; break;
-            case 'de': $this->longNameDe = $longName; break;
-            case 'es': $this->longNameEs = $longName; break;
-            case 'it': $this->longNameIt = $longName; break;
-            case 'pt': $this->longNamePt = $longName; break;
-            case 'ja': $this->longNameJa = $longName; break;
-            case 'ru': $this->longNameRu = $longName; break;
-        }
+        $this->longName = $longName;
 
         return $this;
     }
@@ -493,247 +195,23 @@ class Breed implements IdentifiableInterface, LocalizedNameInterface
     /**
      * Get longName.
      *
-     * @param string|array $locale
-     *
      * @return string
      */
-    public function getLongName($locale = 'fr')
+    public function getLongName()
     {
-        if (is_array($locale)) {
-            foreach ($locale as $loc) {
-                $longName = $this->getLongName($loc);
-                if ($longName !== null) {
-                    return $longName;
-                }
-            }
-
-            return;
-        }
-        switch ($locale) {
-            case 'fr': return $this->longNameFr;
-            case 'en': return $this->longNameEn;
-            case 'de': return $this->longNameDe;
-            case 'es': return $this->longNameEs;
-            case 'it': return $this->longNameIt;
-            case 'pt': return $this->longNamePt;
-            case 'ja': return $this->longNameJa;
-            case 'ru': return $this->longNameRu;
-            default: return;
-        }
-    }
-
-    /**
-     * Set gameplayDescriptionFr.
-     *
-     * @param string $gameplayDescriptionFr
-     *
-     * @return Breed
-     */
-    public function setGameplayDescriptionFr($gameplayDescriptionFr)
-    {
-        $this->gameplayDescriptionFr = $gameplayDescriptionFr;
-
-        return $this;
-    }
-
-    /**
-     * Get gameplayDescriptionFr.
-     *
-     * @return string
-     */
-    public function getGameplayDescriptionFr()
-    {
-        return $this->gameplayDescriptionFr;
-    }
-
-    /**
-     * Set gameplayDescriptionEn.
-     *
-     * @param string $gameplayDescriptionEn
-     *
-     * @return Breed
-     */
-    public function setGameplayDescriptionEn($gameplayDescriptionEn)
-    {
-        $this->gameplayDescriptionEn = $gameplayDescriptionEn;
-
-        return $this;
-    }
-
-    /**
-     * Get gameplayDescriptionEn.
-     *
-     * @return string
-     */
-    public function getGameplayDescriptionEn()
-    {
-        return $this->gameplayDescriptionEn;
-    }
-
-    /**
-     * Set gameplayDescriptionDe.
-     *
-     * @param string $gameplayDescriptionDe
-     *
-     * @return Breed
-     */
-    public function setGameplayDescriptionDe($gameplayDescriptionDe)
-    {
-        $this->gameplayDescriptionDe = $gameplayDescriptionDe;
-
-        return $this;
-    }
-
-    /**
-     * Get gameplayDescriptionDe.
-     *
-     * @return string
-     */
-    public function getGameplayDescriptionDe()
-    {
-        return $this->gameplayDescriptionDe;
-    }
-
-    /**
-     * Set gameplayDescriptionEs.
-     *
-     * @param string $gameplayDescriptionEs
-     *
-     * @return Breed
-     */
-    public function setGameplayDescriptionEs($gameplayDescriptionEs)
-    {
-        $this->gameplayDescriptionEs = $gameplayDescriptionEs;
-
-        return $this;
-    }
-
-    /**
-     * Get gameplayDescriptionEs.
-     *
-     * @return string
-     */
-    public function getGameplayDescriptionEs()
-    {
-        return $this->gameplayDescriptionEs;
-    }
-
-    /**
-     * Set gameplayDescriptionIt.
-     *
-     * @param string $gameplayDescriptionIt
-     *
-     * @return Breed
-     */
-    public function setGameplayDescriptionIt($gameplayDescriptionIt)
-    {
-        $this->gameplayDescriptionIt = $gameplayDescriptionIt;
-
-        return $this;
-    }
-
-    /**
-     * Get gameplayDescriptionIt.
-     *
-     * @return string
-     */
-    public function getGameplayDescriptionIt()
-    {
-        return $this->gameplayDescriptionIt;
-    }
-
-    /**
-     * Set gameplayDescriptionPt.
-     *
-     * @param string $gameplayDescriptionPt
-     *
-     * @return Breed
-     */
-    public function setGameplayDescriptionPt($gameplayDescriptionPt)
-    {
-        $this->gameplayDescriptionPt = $gameplayDescriptionPt;
-
-        return $this;
-    }
-
-    /**
-     * Get gameplayDescriptionPt.
-     *
-     * @return string
-     */
-    public function getGameplayDescriptionPt()
-    {
-        return $this->gameplayDescriptionPt;
-    }
-
-    /**
-     * Set gameplayDescriptionJa.
-     *
-     * @param string $gameplayDescriptionJa
-     *
-     * @return Breed
-     */
-    public function setGameplayDescriptionJa($gameplayDescriptionJa)
-    {
-        $this->gameplayDescriptionJa = $gameplayDescriptionJa;
-
-        return $this;
-    }
-
-    /**
-     * Get gameplayDescriptionJa.
-     *
-     * @return string
-     */
-    public function getGameplayDescriptionJa()
-    {
-        return $this->gameplayDescriptionJa;
-    }
-
-    /**
-     * Set gameplayDescriptionRu.
-     *
-     * @param string $gameplayDescriptionRu
-     *
-     * @return Breed
-     */
-    public function setGameplayDescriptionRu($gameplayDescriptionRu)
-    {
-        $this->gameplayDescriptionRu = $gameplayDescriptionRu;
-
-        return $this;
-    }
-
-    /**
-     * Get gameplayDescriptionRu.
-     *
-     * @return string
-     */
-    public function getGameplayDescriptionRu()
-    {
-        return $this->gameplayDescriptionRu;
+        return $this->longName;
     }
 
     /**
      * Set gameplayDescription.
      *
      * @param string $gameplayDescription
-     * @param string $locale
      *
      * @return Breed
      */
-    public function setGameplayDescription($gameplayDescription, $locale = 'fr')
+    public function setGameplayDescription($gameplayDescription)
     {
-        switch ($locale) {
-            case 'fr': $this->gameplayDescriptionFr = $gameplayDescription; break;
-            case 'en': $this->gameplayDescriptionEn = $gameplayDescription; break;
-            case 'de': $this->gameplayDescriptionDe = $gameplayDescription; break;
-            case 'es': $this->gameplayDescriptionEs = $gameplayDescription; break;
-            case 'it': $this->gameplayDescriptionIt = $gameplayDescription; break;
-            case 'pt': $this->gameplayDescriptionPt = $gameplayDescription; break;
-            case 'ja': $this->gameplayDescriptionJa = $gameplayDescription; break;
-            case 'ru': $this->gameplayDescriptionRu = $gameplayDescription; break;
-        }
+        $this->gameplayDescription = $gameplayDescription;
 
         return $this;
     }
@@ -741,33 +219,11 @@ class Breed implements IdentifiableInterface, LocalizedNameInterface
     /**
      * Get gameplayDescription.
      *
-     * @param string|array $locale
-     *
      * @return string
      */
-    public function getGameplayDescription($locale = 'fr')
+    public function getGameplayDescription()
     {
-        if (is_array($locale)) {
-            foreach ($locale as $loc) {
-                $gameplayDescription = $this->getGameplayDescription($loc);
-                if ($gameplayDescription !== null) {
-                    return $gameplayDescription;
-                }
-            }
-
-            return;
-        }
-        switch ($locale) {
-            case 'fr': return $this->gameplayDescriptionFr;
-            case 'en': return $this->gameplayDescriptionEn;
-            case 'de': return $this->gameplayDescriptionDe;
-            case 'es': return $this->gameplayDescriptionEs;
-            case 'it': return $this->gameplayDescriptionIt;
-            case 'pt': return $this->gameplayDescriptionPt;
-            case 'ja': return $this->gameplayDescriptionJa;
-            case 'ru': return $this->gameplayDescriptionRu;
-            default: return;
-        }
+        return $this->gameplayDescription;
     }
 
     /**

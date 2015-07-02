@@ -17,7 +17,7 @@ use XN\L10n\LocalizedNameTrait;
  * @ORM\Table(name="dof_jobs")
  * @ORM\Entity(repositoryClass="JobRepository")
  */
-class Job implements IdentifiableInterface, LocalizedNameInterface
+class Job implements IdentifiableInterface
 {
     /**
      * @var int

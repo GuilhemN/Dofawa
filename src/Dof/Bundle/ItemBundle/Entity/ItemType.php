@@ -11,7 +11,6 @@ use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
-use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 use Dof\Bundle\ItemBundle\ItemTemplateFactory;
@@ -22,7 +21,7 @@ use Dof\Bundle\ItemBundle\ItemTemplateFactory;
  * @ORM\Table(name="dof_item_types")
  * @ORM\Entity(repositoryClass="ItemTypeRepository")
  */
-class ItemType implements IdentifiableInterface, ExportableInterface, LocalizedNameInterface
+class ItemType implements IdentifiableInterface, ExportableInterface
 {
     /**
      * @var int

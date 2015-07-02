@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Common\UrlSafeBase64;
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
@@ -55,58 +56,10 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Locali
     /**
      * @var string
      *
-     * @ORM\Column(name="obtainment_fr", type="text", nullable=true)
+     * @Gedmo\Translatable
+     * @ORM\Column(name="obtainment", type="text", nullable=true)
      */
-    private $obtainmentFr;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="obtainment_en", type="text", nullable=true)
-     */
-    private $obtainmentEn;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="obtainment_de", type="text", nullable=true)
-     */
-    private $obtainmentDe;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="obtainment_es", type="text", nullable=true)
-     */
-    private $obtainmentEs;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="obtainment_it", type="text", nullable=true)
-     */
-    private $obtainmentIt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="obtainment_pt", type="text", nullable=true)
-     */
-    private $obtainmentPt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="obtainment_ja", type="text", nullable=true)
-     */
-    private $obtainmentJa;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="obtainment_ru", type="text", nullable=true)
-     */
-    private $obtainmentRu;
+    private $obtainment;
 
     /**
      * @var string
@@ -298,217 +251,15 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Locali
     }
 
     /**
-     * Set obtainmentFr.
-     *
-     * @param string $obtainmentFr
-     *
-     * @return ItemTemplate
-     */
-    public function setObtainmentFr($obtainmentFr)
-    {
-        $this->obtainmentFr = $obtainmentFr;
-
-        return $this;
-    }
-
-    /**
-     * Get obtainmentFr.
-     *
-     * @return string
-     */
-    public function getObtainmentFr()
-    {
-        return $this->obtainmentFr;
-    }
-
-    /**
-     * Set obtainmentEn.
-     *
-     * @param string $obtainmentEn
-     *
-     * @return ItemTemplate
-     */
-    public function setObtainmentEn($obtainmentEn)
-    {
-        $this->obtainmentEn = $obtainmentEn;
-
-        return $this;
-    }
-
-    /**
-     * Get obtainmentEn.
-     *
-     * @return string
-     */
-    public function getObtainmentEn()
-    {
-        return $this->obtainmentEn;
-    }
-
-    /**
-     * Set obtainmentDe.
-     *
-     * @param string $obtainmentDe
-     *
-     * @return ItemTemplate
-     */
-    public function setObtainmentDe($obtainmentDe)
-    {
-        $this->obtainmentDe = $obtainmentDe;
-
-        return $this;
-    }
-
-    /**
-     * Get obtainmentDe.
-     *
-     * @return string
-     */
-    public function getObtainmentDe()
-    {
-        return $this->obtainmentDe;
-    }
-
-    /**
-     * Set obtainmentEs.
-     *
-     * @param string $obtainmentEs
-     *
-     * @return ItemTemplate
-     */
-    public function setObtainmentEs($obtainmentEs)
-    {
-        $this->obtainmentEs = $obtainmentEs;
-
-        return $this;
-    }
-
-    /**
-     * Get obtainmentEs.
-     *
-     * @return string
-     */
-    public function getObtainmentEs()
-    {
-        return $this->obtainmentEs;
-    }
-
-    /**
-     * Set obtainmentIt.
-     *
-     * @param string $obtainmentIt
-     *
-     * @return ItemTemplate
-     */
-    public function setObtainmentIt($obtainmentIt)
-    {
-        $this->obtainmentIt = $obtainmentIt;
-
-        return $this;
-    }
-
-    /**
-     * Get obtainmentIt.
-     *
-     * @return string
-     */
-    public function getObtainmentIt()
-    {
-        return $this->obtainmentIt;
-    }
-
-    /**
-     * Set obtainmentPt.
-     *
-     * @param string $obtainmentPt
-     *
-     * @return ItemTemplate
-     */
-    public function setObtainmentPt($obtainmentPt)
-    {
-        $this->obtainmentPt = $obtainmentPt;
-
-        return $this;
-    }
-
-    /**
-     * Get obtainmentPt.
-     *
-     * @return string
-     */
-    public function getObtainmentPt()
-    {
-        return $this->obtainmentPt;
-    }
-
-    /**
-     * Set obtainmentJa.
-     *
-     * @param string $obtainmentJa
-     *
-     * @return ItemTemplate
-     */
-    public function setObtainmentJa($obtainmentJa)
-    {
-        $this->obtainmentJa = $obtainmentJa;
-
-        return $this;
-    }
-
-    /**
-     * Get obtainmentJa.
-     *
-     * @return string
-     */
-    public function getObtainmentJa()
-    {
-        return $this->obtainmentJa;
-    }
-
-    /**
-     * Set obtainmentRu.
-     *
-     * @param string $obtainmentRu
-     *
-     * @return ItemTemplate
-     */
-    public function setObtainmentRu($obtainmentRu)
-    {
-        $this->obtainmentRu = $obtainmentRu;
-
-        return $this;
-    }
-
-    /**
-     * Get obtainmentRu.
-     *
-     * @return string
-     */
-    public function getObtainmentRu()
-    {
-        return $this->obtainmentRu;
-    }
-
-    /**
      * Set obtainment.
      *
      * @param string $obtainment
-     * @param string $locale
      *
-     * @return object
+     * @return ItemTemplate
      */
-    public function setObtainment($obtainment, $locale = 'fr')
+    public function setObtainment($obtainment)
     {
-        switch ($locale) {
-            case 'fr': $this->obtainmentFr = $obtainment; break;
-            case 'en': $this->obtainmentEn = $obtainment; break;
-            case 'de': $this->obtainmentDe = $obtainment; break;
-            case 'es': $this->obtainmentEs = $obtainment; break;
-            case 'it': $this->obtainmentIt = $obtainment; break;
-            case 'pt': $this->obtainmentPt = $obtainment; break;
-            case 'ja': $this->obtainmentJa = $obtainment; break;
-            case 'ru': $this->obtainmentRu = $obtainment; break;
-        }
+        $this->obtainment = $obtainment;
 
         return $this;
     }
@@ -516,33 +267,11 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Locali
     /**
      * Get obtainment.
      *
-     * @param string|array $locale
-     *
      * @return string
      */
-    public function getObtainment($locale = 'fr')
+    public function getObtainment()
     {
-        if (is_array($locale)) {
-            foreach ($locale as $loc) {
-                $obtainment = $this->getObtainment($loc);
-                if ($obtainment !== null) {
-                    return $obtainment;
-                }
-            }
-
-            return;
-        }
-        switch ($locale) {
-            case 'fr': return $this->obtainmentFr;
-            case 'en': return $this->obtainmentEn;
-            case 'de': return $this->obtainmentDe;
-            case 'es': return $this->obtainmentEs;
-            case 'it': return $this->obtainmentIt;
-            case 'pt': return $this->obtainmentPt;
-            case 'ja': return $this->obtainmentJa;
-            case 'ru': return $this->obtainmentRu;
-            default: return;
-        }
+        return $this->obtainment;
     }
 
     /**
