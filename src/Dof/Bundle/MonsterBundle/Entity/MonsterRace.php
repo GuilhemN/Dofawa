@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
-use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
