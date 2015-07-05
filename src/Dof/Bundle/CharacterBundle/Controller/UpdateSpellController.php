@@ -10,7 +10,7 @@ use Dof\Bundle\CharacterBundle\Entity\Spell;
 /**
  * @Utils\Secure("ROLE_SUPER_ADMIN")
  */
-class UpdateController extends Controller
+class UpdateSpellController extends Controller
 {
     public function addImageAction(Spell $spell)
     {

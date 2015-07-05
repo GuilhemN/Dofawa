@@ -1,15 +1,3 @@
-dof_main_homepage:
-    pattern:  /
-    defaults: { _controller: DofMainBundle:Default:index }
-
-#dof_search_engine:
-#    pattern:  /search
-#    defaults: { _controller: DofMainBundle:Default:searchEngine }
-
-dof_main_calculateur:
-    pattern:  /calculateur
-    defaults: { _controller: DofMainBundle:Calculateur:index }
-
 dof_notifications_ajax_list:
     pattern:  /notifications/ajax/list
     defaults: { _controller: DofMainBundle:Notification:ajax }
@@ -23,9 +11,3 @@ dof_notifications_ajax_check_unread:
 dof_notifications_show_all:
     pattern:  /notifications
     defaults: { _controller: DofMainBundle:Notification:showAll }
-
-dof_is_in_update:
-    pattern:  /in-update
-    defaults: { _controller: DofMainBundle:Default:inUpdate }
-    requirements: { _method: GET }
-    options:  { expose: true }

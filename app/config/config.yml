@@ -90,15 +90,6 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Dof\Bundle\UserBundle\Entity\User
-    profile:
-        form:
-            type: dof_user_profile
-    registration:
-        form:
-            type: dof_user_registration
-    resetting:
-        form:
-            type: dof_user_resetting
 
 sonata_block:
     default_contexts: [cms]
