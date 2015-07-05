@@ -20,8 +20,8 @@ services:
         arguments: [~, Dof\Bundle\MainBundle\Entity\Notification, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Utilisateurs, label: Notification}
-    app_main.event.authentication_success_listener:
-        class: App\MainBundle\EventListener\AuthenticationSuccessListener
-        arguments: [@app_user.role_helper]
+    dof_main.event.authentication_success_listener:
+        class: Dof\Bundle\MainBundle\EventListener\AuthenticationSuccessListener
+        arguments: [@dof_user.role_helper]
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }

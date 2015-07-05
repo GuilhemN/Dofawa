@@ -20,3 +20,7 @@ services:
         arguments: ["@service_container"]
         tags:
             - { name: kernel.event_subscriber }
+
+    dof_user.role_helper:
+        class: Dof\Bundle\UserBundle\RoleHelper
+        arguments: [@security.role_hierarchy, @security.token_storage]
