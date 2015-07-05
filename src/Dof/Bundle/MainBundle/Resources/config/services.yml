@@ -1,15 +1,4 @@
-parameters:
-    dof.main.doctrine.primary_bonus_updater.class: Dof\Bundle\MainBundle\Doctrine\PrimaryBonusUpdater
-    dof.main.doctrine.message_notification.class: Dof\Bundle\MainBundle\Doctrine\MessageNotification
-    dof_main.request_listener.class: Dof\Bundle\MainBundle\RequestListener
-
 services:
-    dof.twig.main_extension:
-        class: Dof\Bundle\MainBundle\Twig\MainExtension
-        tags:
-            - { name: twig.extension }
-        arguments: [ "@service_container" ]
-
     dof_main.admin.badge:
         class: Dof\Bundle\MainBundle\Admin\BadgeAdmin
         arguments: [~, Dof\Bundle\MainBundle\Entity\Badge, SonataAdminBundle:CRUD]
@@ -31,3 +20,8 @@ services:
         arguments: [~, Dof\Bundle\MainBundle\Entity\Notification, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Utilisateurs, label: Notification}
+    app_main.event.authentication_success_listener:
+        class: App\MainBundle\EventListener\AuthenticationSuccessListener
+        arguments: [@app_user.role_helper]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }

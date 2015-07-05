@@ -21,10 +21,17 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+
             new FOS\UserBundle\FOSUserBundle(),
+            new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
 
             new XN\UtilityBundle\XNUtilityBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
+            // Api
+            new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
 
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -36,6 +43,7 @@ class AppKernel extends Kernel
 
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
 
+            // App
             new Dof\Bundle\UserBundle\DofUserBundle(),
             new Dof\Bundle\ItemBundle\DofItemBundle(),
             new Dof\Bundle\MainBundle\DofMainBundle(),

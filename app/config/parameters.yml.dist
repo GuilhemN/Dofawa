@@ -13,3 +13,10 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    cors_allow_origin: http://localhost
+
+    jwt_private_key_path: %kernel.root_dir%/var/jwt/private.pem   # ssh private key path
+    jwt_public_key_path:  %kernel.root_dir%/var/jwt/public.pem    # ssh public key path
+    jwt_key_pass_phrase:  NjJyM2yqjarR794Hez4NGJUkZ4a8w64G        # ssh key pass phrase
+    jwt_token_ttl:        86400
