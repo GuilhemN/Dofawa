@@ -25,8 +25,7 @@ class UtilityExtension extends \Twig_Extension
     public function getGlobals()
     {
         return array(
-            'variables' => $this->container->get('variables'),
-            'action_logger' => $this->container->get('xn.action_logger'),
+            'variables' => $this->container->get('variables')
         );
     }
 

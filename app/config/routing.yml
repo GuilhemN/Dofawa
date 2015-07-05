@@ -43,5 +43,12 @@ dof_item:
     resource: "@DofItemBundle/Resources/config/routing.yml"
     prefix:   /items
 
+login:
+    path: /login
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc
+
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"

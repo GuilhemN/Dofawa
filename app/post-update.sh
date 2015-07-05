@@ -55,5 +55,3 @@ if [ "$1" == --dev ]; then
 else
 	php app/console assets:install
 fi
-
-php app/console bazinga:js-translation:dump web/js
