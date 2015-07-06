@@ -1,10 +1,9 @@
 <?php
 
-namespace App\MainBundle\EventListener;
+namespace Dof\Bundle\MainBundle\EventListener;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
-use App\UserBundle\RoleHelper;
-use App\UserBundle\Entity\User;
+use Dof\Bundle\UserBundle\RoleHelper;
 
 class AuthenticationSuccessListener
 {
