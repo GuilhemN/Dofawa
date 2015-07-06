@@ -1,3 +1,0 @@
-#dof_admin_users:
-#    resource: "@DofAdminBundle/Resources/config/routing/users.yml"
-#    prefix:   /users

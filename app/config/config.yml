@@ -3,7 +3,6 @@ imports:
     - { resource: release_parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: @DofAdminBundle/Resources/config/admin.yml }
 
 parameters:
   locales: [fr, en, de, it, es, pt, ru, ja]
@@ -12,45 +11,24 @@ parameters:
   wit_private_key: "DQCNE665II22LYW3SA7TTZ7GWR7NXLBI"
 
 framework:
-    serializer:
-        enable_annotations: true
-    esi: { enabled: true }
     #esi:             ~
+    translator:      ~
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:            ~
-    csrf_protection: ~
-    validation:
-        enable_annotations: true
+    validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
-    translator:
-        fallback: default
     trusted_hosts:   ~
     trusted_proxies: ~
-    session:
-        # handler_id set to null will use default session handler from php.ini
-        storage_id:  session.storage.php_bridge
-        handler_id:  ~
+    session: ~
+    form:            ~
     fragments:       ~
     http_method_override: true
-
-# Assetic Configuration
-assetic:
-    debug:          "%kernel.debug%"
-    use_controller: true
-    bundles:        [ FOSUserBundle, DofUserBundle ]
-    filters:
-        cssrewrite: ~
-        lessphp:
-            formatter: "compressed"
-            preserve_comments: false
-            presets:
-                my_variable: "#000"
+    serializer:      { enable_annotations: true }
 
 doctrine:
     dbal:
@@ -70,12 +48,6 @@ doctrine:
         metadata_cache_driver: apc
         query_cache_driver: apc
         result_cache_driver: apc
-        mappings:
-            gedmo_translatable:
-                type: annotation
-                prefix: Gedmo\Translatable\Entity
-                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-                is_bundle: false
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -88,37 +60,8 @@ swiftmailer:
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
+    firewall_name: login
     user_class: Dof\Bundle\UserBundle\Entity\User
-
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts:   [admin]
-
-sonata_admin:
-    templates:
-        dashboard: SonataAdminBundle:Core:dashboard.html.twig
-    security:
-        handler: sonata.admin.security.handler.role
-        acl_user_manager: fos_user.user_manager # Name of the user manager service used to retrieve ACL users
-        information:
-            EDIT: EDIT
-            EDITFULL: EDITFULL
-            LIST: LIST
-            CREATE: CREATE
-            VIEW: VIEW
-            DELETE: DELETE
-            EXPORT: EXPORT
-            OPERATOR: OPERATOR
-            MASTER: MASTER
-
-        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
-        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
-
-    options:
-        pager_links:    15
 
 knp_snappy:
     pdf:

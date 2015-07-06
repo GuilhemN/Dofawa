@@ -1,25 +1,8 @@
 services:
-    dof_main.admin.badge:
-        class: Dof\Bundle\MainBundle\Admin\BadgeAdmin
-        arguments: [~, Dof\Bundle\MainBundle\Entity\Badge, SonataAdminBundle:CRUD]
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: Badge, label: Badge}
-
-    dof_main.admin.badge_level:
-        class: Dof\Bundle\MainBundle\Admin\BadgeLevelAdmin
-        arguments: [~, Dof\Bundle\MainBundle\Entity\BadgeLevel, SonataAdminBundle:CRUD]
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: Badge, label: BadgeLevel}
-
     badge_manager:
         class: Dof\Bundle\MainBundle\BadgeManager
         arguments: [ "@service_container" ]
-
-    dof_main.admin.notification:
-        class: Dof\Bundle\MainBundle\Admin\NotificationAdmin
-        arguments: [~, Dof\Bundle\MainBundle\Entity\Notification, SonataAdminBundle:CRUD]
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: Utilisateurs, label: Notification}
+        
     dof_main.event.authentication_success_listener:
         class: Dof\Bundle\MainBundle\EventListener\AuthenticationSuccessListener
         arguments: [@dof_user.role_helper]

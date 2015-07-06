@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
@@ -33,12 +32,6 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
 
-            new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
-            new Sonata\jQueryBundle\SonatajQueryBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-            new Sonata\AdminBundle\SonataAdminBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
 
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
@@ -49,7 +42,6 @@ class AppKernel extends Kernel
             new Dof\Bundle\MainBundle\DofMainBundle(),
             new Dof\Bundle\MapBundle\DofMapBundle(),
             new Dof\Bundle\GraphicsBundle\DofGraphicsBundle(),
-            new Dof\Bundle\AdminBundle\DofAdminBundle(),
             new Dof\Bundle\CharacterBundle\DofCharacterBundle(),
             new Dof\Bundle\ImpExpBundle\DofImpExpBundle(),
             new Dof\Bundle\User\CharacterBundle\DofUserCharacterBundle(),

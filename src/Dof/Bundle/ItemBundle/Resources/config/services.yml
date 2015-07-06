@@ -2,42 +2,9 @@ parameters:
 #    dof_items.example.class: Dof\Bundle\ItemBundle\Example
 
 services:
-#    dof_items.example:
-#        class: %dof_items.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
-    dof_items.admin.item_template:
-        class: Dof\Bundle\ItemBundle\Admin\ItemTemplateAdmin
-        arguments: [~, Dof\Bundle\ItemBundle\Entity\ItemTemplate, SonataAdminBundle:CRUD]
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: Items, label: Item}
-
-    dof_items.admin.skinned_equipment_template:
-        class: Dof\Bundle\ItemBundle\Admin\SkinnedEquipmentTemplateAdmin
-        arguments: [~, Dof\Bundle\ItemBundle\Entity\SkinnedEquipmentTemplate, SonataAdminBundle:CRUD]
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: Items, label: Equipment}
-
-    dof_items.admin.item_set:
-        class: Dof\Bundle\ItemBundle\Admin\ItemSetAdmin
-        arguments: [~, Dof\Bundle\ItemBundle\Entity\ItemSet, SonataAdminBundle:CRUD]
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: Items, label: Set}
-
-    dof_items.admin.animal_template:
-        class: Dof\Bundle\ItemBundle\Admin\AnimalTemplateAdmin
-        arguments: [~, Dof\Bundle\ItemBundle\Entity\AnimalTemplate, SonataAdminBundle:CRUD]
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: Items, label: AnimalTemplate}
-
     # Criteria
     dof_items.criteria_loader:
         class: Dof\Bundle\ItemBundle\Criteria\CriteriaLoader
         arguments: [ @service_container ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
-
-    dof_items.admin.mount_template:
-        class: Dof\Bundle\ItemBundle\Admin\MountTemplateAdmin
-        arguments: [~, Dof\Bundle\ItemBundle\Entity\MountTemplate, SonataAdminBundle:CRUD]
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: Items, label: MountTemplate}

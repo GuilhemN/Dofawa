@@ -1,7 +1,0 @@
-parameters:
-#    dof_admin.example.class: Dof\Bundle\AdminBundle\Example
-
-services:
-#    dof_admin.example:
-#        class: %dof_admin.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
