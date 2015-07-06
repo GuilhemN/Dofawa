@@ -4,7 +4,6 @@ use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 
 date_default_timezone_set('UTC');
-session_start();
 
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 

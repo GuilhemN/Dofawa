@@ -44,7 +44,7 @@ dof_item:
     prefix:   /items
 
 login:
-    path: /login
+    path: /api/login
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
