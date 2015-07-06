@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserBundle;
+namespace Dof\Bundle\UserBundle;
 
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
