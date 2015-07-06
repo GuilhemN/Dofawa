@@ -33,7 +33,9 @@ class User extends BaseUser implements IdentifiableInterface, OwnableInterface, 
      */
     protected $id;
 
-    use TimestampableTrait,/* SluggableTrait,*/ OwnableTrait, TOTPAuthenticatableTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait, TOTPAuthenticatableTrait;
+
+    protected $username;
 
     /**
      * @var \DateTime
@@ -55,13 +57,13 @@ class User extends BaseUser implements IdentifiableInterface, OwnableInterface, 
      */
     private $preferences;
 
-    // /**
-    //  * @var string
-    //  *
-    //  * @Gedmo\Slug(fields={"username"})
-    //  * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
-    //  */
-    // protected $slug;
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"username"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     public function __construct()
     {
