@@ -36,6 +36,11 @@ class User extends BaseUser implements IdentifiableInterface, OwnableInterface, 
 
     use TimestampableTrait, SluggableTrait, OwnableTrait, TOTPAuthenticatableTrait;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="username", type="string")
+     */
     protected $username;
 
     /**
