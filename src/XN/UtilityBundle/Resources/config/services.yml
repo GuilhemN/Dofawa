@@ -1,7 +1,6 @@
 parameters:
     lazy.class: XN\UtilityBundle\DependencyInjection\LazyDelegateContainer
     variables.class: XN\Common\VariableBag
-    xn.twig_extension.class: XN\UtilityBundle\Twig\UtilityExtension
     xn.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
     xn.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
     xn.grammar.class: XN\Grammar\ParserFactory
@@ -21,12 +20,6 @@ services:
 
     cache:
         class: Doctrine\Common\Cache\ApcCache
-
-    xn.twig_extension:
-        class: %xn.twig_extension.class%
-        arguments: [ "@service_container" ]
-        tags:
-            - { name: twig.extension }
 
     xn.json_request_listener:
         class: %xn.json_request_listener.class%
