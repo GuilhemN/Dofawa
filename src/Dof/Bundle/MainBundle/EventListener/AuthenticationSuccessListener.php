@@ -4,6 +4,7 @@ namespace Dof\Bundle\MainBundle\EventListener;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Dof\Bundle\UserBundle\RoleHelper;
+use Dof\Bundle\UserBundle\Entity\User;
 
 class AuthenticationSuccessListener
 {
