@@ -15,11 +15,11 @@ services:
         tags:
             - { name: form.type, alias: dof_user_registration }
 
-    dof_user.registration_listener:
-        class: Dof\Bundle\UserBundle\EventListener\RegistrationListener
-        arguments: ["@service_container"]
-        tags:
-            - { name: kernel.event_subscriber }
+    # dof_user.registration_listener:
+    #     class: Dof\Bundle\UserBundle\EventListener\RegistrationListener
+    #     arguments: ["@service_container"]
+    #     tags:
+    #         - { name: kernel.event_subscriber }
 
     dof_user.role_helper:
         class: Dof\Bundle\UserBundle\RoleHelper
