@@ -21,7 +21,6 @@ use Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter;
  *
  * @ORM\Table(name="dof_user")
  * @ORM\Entity(repositoryClass="Dof\Bundle\UserBundle\Entity\UserRepository")
- * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser implements IdentifiableInterface, OwnableInterface, TOTPAuthenticatableInterface
 {
@@ -35,13 +34,6 @@ class User extends BaseUser implements IdentifiableInterface, OwnableInterface, 
     protected $id;
 
     use TimestampableTrait, SluggableTrait, OwnableTrait, TOTPAuthenticatableTrait;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="username", type="string")
-     */
-    protected $username;
 
     /**
      * @var \DateTime

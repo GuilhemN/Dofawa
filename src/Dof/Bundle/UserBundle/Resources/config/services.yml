@@ -3,18 +3,6 @@ parameters:
     dof_user.registration.form.class: Dof\Bundle\UserBundle\Form\Type\RegistrationFormType
 
 services:
-    dof_user.profile.form.type:
-        class: %dof_user.profile.form.class%
-        arguments: [%fos_user.model.user.class%]
-        tags:
-            - { name: form.type, alias: dof_user_profile }
-
-    dof_user.registration.form.type:
-        class: %dof_user.registration.form.class%
-        arguments: [%fos_user.model.user.class%]
-        tags:
-            - { name: form.type, alias: dof_user_registration }
-
     # dof_user.registration_listener:
     #     class: Dof\Bundle\UserBundle\EventListener\RegistrationListener
     #     arguments: ["@service_container"]
