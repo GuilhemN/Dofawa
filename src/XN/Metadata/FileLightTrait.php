@@ -4,6 +4,7 @@ namespace XN\Metadata;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait FileLightTrait
 {
@@ -59,6 +60,9 @@ trait FileLightTrait
         : $this->getUploadRootDir().'/'.$this->path;
     }
 
+    /**
+     * @Groups({"file"})
+     */
     public function getWebPath()
     {
         return null === $this->path

@@ -7,6 +7,7 @@ parameters:
     xn.grammar.class: XN\Grammar\ParserFactory
 
     xn.doctrine.entity_dependency_injection.class: XN\UtilityBundle\Doctrine\EntityDependencyInjection
+    xn.doctrine.file_updater.class: XN\UtilityBundle\Doctrine\FileUpdater
 
     xn.secure_controller_listener.class: XN\UtilityBundle\Annotations\SecureControllerListener
     xn.lazy_field_listener.class: XN\UtilityBundle\Annotations\LazyFieldListener
@@ -49,6 +50,13 @@ services:
         tags:
             - { name: doctrine.event_listener, event: postLoad }
 
+    xn.doctrine.file_updater:
+        class:     "%xn.doctrine.file_updater.class%"
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: postRemove }
 
     xn.secure_controller_listener:
         class: %xn.secure_controller_listener.class%
