@@ -12,7 +12,7 @@ class WeaponTemplateRepository extends SkinnedEquipmentTemplateRepository
         $req = $this->createQueryBuilder('w');
 
         if ($format == 'json') {
-            $req->select(array('w.id', 'w.name'.ucfirst($locale).' as name'));
+            $req->select(array('w.id', 'w.name'));
         }
 
         return $req

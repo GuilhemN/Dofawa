@@ -18,7 +18,7 @@ class QuestRepository extends EntityRepository
         ->createQueryBuilder('q')
         ->select(['q', 'a'])
         ->leftjoin('q.article', 'a')
-        ->orderBy('q.name'.ucfirst($locale), 'ASC')
+        ->orderBy('q.name', 'ASC')
         ->getQuery()
         ->getResult();
     }

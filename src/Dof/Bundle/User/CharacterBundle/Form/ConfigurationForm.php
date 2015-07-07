@@ -48,7 +48,7 @@ class ConfigurationForm extends AbstractType
                 'constraints' => new Assert\Range(['min' => 1, 'max' => 200]), 'label' => 'list.level', 'translation_domain' => 'item',
                 )
             )
-            ->add('breed', 'entity', ['class' => 'DofCharacterBundle:Breed', 'property' => 'name'.ucfirst($this->locale), 'label' => 'breed', 'translation_domain' => 'breed'])
+            ->add('breed', 'entity', ['class' => 'DofCharacterBundle:Breed', 'property' => 'name', 'label' => 'breed', 'translation_domain' => 'breed'])
             ->add('gender', 'choice', array(
                   'label' => 'gender',
                   'choices' => array_flip(Gender::getValues()),

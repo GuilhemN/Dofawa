@@ -19,7 +19,7 @@ class ItemSetRepository extends EntityRepository
                 ->createQueryBuilder('s')
                 ->select([
                     's.slug',
-                    's.name'.ucfirst($locale).' as name',
+                    's.name',
                     's.preliminary',
                     's.release',
                     's.primaryBonus',
@@ -33,7 +33,7 @@ class ItemSetRepository extends EntityRepository
 
         if (!empty($data['name'])) {
             $qb
-                ->andWhere('s.name'.ucfirst($locale).' LIKE :name')
+                ->andWhere('s.name LIKE :name')
                 ->setParameter('name', '%'.$data['name'].'%')
             ;
         }

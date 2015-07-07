@@ -56,7 +56,7 @@ class ItemsManagerController extends Controller
 
         $locale = $this->get('translator')->getLocale();
         $count = $repo->countWithOptions($options, $user, $locale);
-        $items = $repo->findWithOptions($options, $user, ['level' => 'DESC', 'name'.ucfirst($this->get('request')->getLocale()) => 'ASC'], $perPage, ($page - 1) * $perPage, $locale, 'normal', $full);
+        $items = $repo->findWithOptions($options, $user, ['level' => 'DESC', 'name' => 'ASC'], $perPage, ($page - 1) * $perPage, $locale, 'normal', $full);
 
         $pagination = array(
             'page' => $page,

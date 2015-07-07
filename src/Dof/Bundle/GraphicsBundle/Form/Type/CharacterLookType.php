@@ -30,7 +30,7 @@ class CharacterLookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $request = $this->requestStack->getCurrentRequest();
-        $fieldName = 'name'.ucfirst($request->getLocale());
+        $fieldName = 'name';
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $entity = $event->getData();

@@ -26,7 +26,7 @@ class SkinnedEquipmentTemplateRepository extends EquipmentTemplateRepository
     {
         return $this
                   ->createQueryBuilder('se')
-                  ->select(array('se.id', 'se.name'.ucfirst($locale).' as name'))
+                  ->select(array('se.id', 'se.name'))
                   ->join('se.type', 't')
                   ->where('t.slot = :slot AND se.skin IS NOT NULL')
                   ->getQuery()

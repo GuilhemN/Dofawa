@@ -23,7 +23,7 @@ class MonsterRepository extends EntityRepository
 
         if (!empty($options['name'])) {
             $qb
-            ->andWhere('m.name'.ucfirst($locale).' LIKE :name')
+            ->andWhere('m.name LIKE :name')
             ->setParameter('name', '%'.$options['name'].'%')
             ;
         }
@@ -35,7 +35,7 @@ class MonsterRepository extends EntityRepository
         }
         $qb
             ->andWhere('m.deprecated = false')
-            ->orderBy('m.name'.ucfirst($locale))
+            ->orderBy('m.name')
         ;
 
         foreach ($orders as $column => $order) {

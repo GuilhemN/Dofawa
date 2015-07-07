@@ -32,7 +32,7 @@ class ItemRepository extends EntityRepository
 
         if (!empty($options['name'])) {
             $qb
-            ->andWhere('it.name'.ucfirst($locale).' LIKE :name or i.name LIKE :name')
+            ->andWhere('it.name LIKE :name or i.name LIKE :name')
             ->setParameter('name', '%'.$options['name'].'%')
             ;
         }

@@ -15,8 +15,8 @@ class ItemTemplateRepository extends FilterableEntityRepository
 {
     protected function getFilterableExpr(QueryBuilder $qb, $alias, $locale = 'fr')
     {
-        $primary = $alias.'.name'.ucfirst($locale);
-        $secondary = $alias.'.nameFr';
+        $primary = $alias.'.name';
+        $secondary = $alias.'.name';
 
         return  /*" COALESCE(" . */ $primary /*. ", " . $secondary .") "*/;
     }
@@ -52,7 +52,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
         }
         if (!empty($options['name'])) {
             $qb
-            ->andWhere('i.name'.ucfirst($locale).' LIKE :name')
+            ->andWhere('i.name LIKE :name')
             ->setParameter('name', '%'.$options['name'].'%')
             ;
         }
@@ -107,7 +107,7 @@ class ItemTemplateRepository extends FilterableEntityRepository
     {
         return $this
                   ->createQueryBuilder('se')
-                  ->select(array('se.id', 'se.name'.ucfirst($locale).' as name'))
+                  ->select(array('se.id', 'se.name'))
                   ->join('se.type', 't')
                   ->where('t.slot = :slot')
                   ->getQuery()
