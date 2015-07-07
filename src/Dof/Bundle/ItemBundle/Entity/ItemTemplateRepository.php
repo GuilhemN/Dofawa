@@ -47,9 +47,6 @@ class ItemTemplateRepository extends FilterableEntityRepository
             ->join('i.type', 't')
             ->addOrderBy('i.level', 'DESC')
         ;
-        if (isset($options['without-image']) && $options['without-image']) {
-            $qb->andWhere('i.path IS NULL');
-        }
         if (!$full) {
             $qb->andWhere('i.visible = true');
         }
