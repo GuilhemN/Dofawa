@@ -31,8 +31,8 @@ class GenerateCharacteristicCodeCommand extends ContainerAwareCommand
 
         $stmt = $db->prepare(<<<'EOQ'
 SELECT idesc.value description, o.id, o.characteristic, o.bonusType FROM dofawa2.D2O_Effect o
-JOIN dofus2.D2I_en idesc ON o.descriptionId = idesc.id
-WHERE o.id IN (SELECT DISTINCT effectId FROM dofus2.D2O_Item_possibleEffect)
+JOIN dofawa2.D2I_en idesc ON o.descriptionId = idesc.id
+WHERE o.id IN (SELECT DISTINCT effectId FROM dofawa2.D2O_Item_possibleEffect)
 AND o.characteristic <> 0
 AND o.bonusType <> 0
 ORDER BY o.effectPriority ASC

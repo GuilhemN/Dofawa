@@ -1,13 +1,13 @@
 dof_notifications_ajax_list:
-    pattern:  /notifications/ajax/list
+    path:  /notifications/ajax/list
     defaults: { _controller: DofMainBundle:Notification:ajax }
     options:  { expose: true }
 
 dof_notifications_ajax_check_unread:
-    pattern:  /notifications/ajax/check-unread
+    path:  /notifications/ajax/check-unread
     defaults: { _controller: DofMainBundle:Notification:checkUnread }
     options:  { expose: true }
 
 dof_notifications_show_all:
-    pattern:  /notifications
+    path:  /notifications
     defaults: { _controller: DofMainBundle:Notification:showAll }

@@ -10,6 +10,7 @@
 namespace Dof\Bundle\ItemBundle;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait CharacteristicsRangeTrait
 {
@@ -47,7 +48,7 @@ trait CharacteristicsRangeTrait
 		$this->{{ ('min-' ~ chara.slug)|camelize }} = ${{ ('min-' ~ chara.slug)|camelize }};
 		return $this;
 	}
-	
+
 	/**
 	 * Get {{ ('min-' ~ chara.slug)|camelize }}
 	 *
@@ -69,7 +70,7 @@ trait CharacteristicsRangeTrait
 		$this->{{ ('max-' ~ chara.slug)|camelize }} = ${{ ('max-' ~ chara.slug)|camelize }};
 		return $this;
 	}
-	
+
 	/**
 	 * Get {{ ('max-' ~ chara.slug)|camelize }}
 	 *
@@ -92,7 +93,7 @@ trait CharacteristicsRangeTrait
 		$this->{{ ('max-' ~ chara.slug)|camelize }} = ${{ chara.slug|camelize }}['max'];
 		return $this;
 	}
-	
+
 	/**
 	 * Get {{ chara.slug|camelize }}
 	 *
@@ -103,8 +104,8 @@ trait CharacteristicsRangeTrait
 		return [ 'min' => $this->{{ ('min-' ~ chara.slug)|camelize }}, 'max' => $this->{{ ('max-' ~ chara.slug)|camelize }} ];
 	}
 {% endfor %}
-	
-	
+
+
 	/**
 	 * Set all characteristics
 	 *
@@ -129,6 +130,7 @@ trait CharacteristicsRangeTrait
 	/**
 	 * Get all characteristics
 	 *
+     * @Groups({"effects"})
 	 * @return array
 	 */
 	public function getCharacteristics()

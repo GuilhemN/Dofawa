@@ -4,12 +4,14 @@ namespace XN\L10n;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait LocalizedDescriptionTrait
 {
     /**
      * @var string
      *
+     * @Groups({"description"})
      * @Gedmo\Translatable
      * @ORM\Column(name="description", type="text", nullable=true)
      */

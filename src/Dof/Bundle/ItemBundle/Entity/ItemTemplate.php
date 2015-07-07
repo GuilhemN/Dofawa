@@ -8,6 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 use XN\Common\UrlSafeBase64;
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
@@ -48,6 +49,7 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Locali
     /**
      * @var ItemType
      *
+     * @Groups({"item"})
      * @ORM\ManyToOne(targetEntity="ItemType", inversedBy="items")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
@@ -92,6 +94,7 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Locali
     /**
      * @var int
      *
+     * @Groups({"item"})
      * @ORM\Column(name="level", type="integer")
      */
     private $level;
@@ -99,6 +102,7 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Locali
     /**
      * @var int
      *
+     * @Groups({"item"})
      * @ORM\Column(name="weight", type="integer")
      */
     private $weight;
@@ -120,6 +124,7 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Locali
     /**
      * @var Collection
      *
+     * @Groups({"effects"})
      * @ORM\OneToMany(targetEntity="ItemTemplateEffect", mappedBy="item")
      * @ORM\OrderBy({ "order" = "ASC", "id" = "ASC" })
      */
@@ -197,6 +202,7 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Locali
     /**
      * @var string
      *
+     * @Groups({"item"})
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
      */

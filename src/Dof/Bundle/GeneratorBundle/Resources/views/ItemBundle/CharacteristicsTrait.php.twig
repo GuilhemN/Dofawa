@@ -10,6 +10,7 @@
 namespace Dof\Bundle\ItemBundle;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 trait CharacteristicsTrait
 {
@@ -73,13 +74,14 @@ trait CharacteristicsTrait
 	/**
 	 * Get all characteristics
 	 *
+     * @Groups({"effects"})
 	 * @return array
 	 */
 	public function getCharacteristics()
 	{
 		return [
 {% for chara in characteristics %}
-			'{{ chara.slug|camelize }}' => $this->{{ chara.slug|camelize }}{% if not loop.last %},{% endif %}
+			'{{ chara.slug|camelize }}' => ['min' => $this->{{ chara.slug|camelize }}, 'max' => $this->{{ chara.slug|camelize }}]{% if not loop.last %},{% endif %}
 
 {% endfor %}
 		];

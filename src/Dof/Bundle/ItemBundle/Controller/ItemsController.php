@@ -2,15 +2,11 @@
 
 namespace Dof\Bundle\ItemBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Context\Context;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
-use Dof\Bundle\ItemBundle\ItemSlot;
-use Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter;
-use Dof\Bundle\User\CharacterBundle\Entity\Stuff;
-use Dof\Bundle\UserBundle\Entity\User;
 
-class ItemsController extends Controller
+class ItemsController extends FOSRestController
 {
     protected function getRepository() {
         return $this->get('doctrine')->getRepository('DofItemBundle:ItemTemplate');
@@ -27,10 +23,16 @@ class ItemsController extends Controller
     public function getItemAction($slug)
     {
         $repository = $this->getRepository();
-        $item = $repository->findOneBySlug();
+        $item = $repository->findOneBySlug($slug);
         if($item === null) {
             throw $this->createNotFoundException();
         }
-        return $item;
+        $context = new Context();
+        $context->addGroups(['item', 'name', 'description', 'effects']);
+        $response = $this->handleView($this->view($item)->setSerializationContext($context));
+        $response->setPublic();
+        $response->setLastModified($item->getUpdatedAt());
+        $response->isNotModified($this->getRequest());
+        return $response;
     }
 }

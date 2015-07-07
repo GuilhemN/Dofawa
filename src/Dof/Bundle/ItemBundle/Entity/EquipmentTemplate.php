@@ -4,9 +4,8 @@ namespace Dof\Bundle\ItemBundle\Entity;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Dof\Bundle\ItemBundle\CharacteristicsRangeTrait;
-use Dof\Bundle\ItemBundle\PrimaryBonusInterface;
-use Dof\Bundle\ItemBundle\PrimaryBonusTrait;
 
 /**
  * EquipmentTemplate.
@@ -14,9 +13,9 @@ use Dof\Bundle\ItemBundle\PrimaryBonusTrait;
  * @ORM\Entity(repositoryClass="EquipmentTemplateRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
+class EquipmentTemplate extends ItemTemplate
 {
-    use CharacteristicsRangeTrait, PrimaryBonusTrait;
+    use CharacteristicsRangeTrait;
 
     /**
      * @var bool
@@ -28,6 +27,7 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
     /**
      * @var ItemSet
      *
+     * @Groups({"item"})
      * @ORM\ManyToOne(targetEntity="ItemSet", inversedBy="items")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
@@ -140,25 +140,5 @@ class EquipmentTemplate extends ItemTemplate implements PrimaryBonusInterface
         }
 
         return false;
-    }
-
-    public function getCharacteristicsForPrimaryBonus(array $primaryFields, array $caracts = array())
-    {
-        $biggestCombination = null;
-
-        foreach ($primaryFields as $k => $v) {
-            if (!isset($caracts[$v['primaryBonus']])) {
-                $caracts[$v['primaryBonus']] = 0;
-            }
-
-            $caracts[$v['primaryBonus']] += ($this->{'getMax'.ucfirst($k)}() + $this->{'getMin'.ucfirst($k)}()) / 2 * $v['weight'];
-        }
-
-        return $caracts;
-    }
-
-    public function getCascadeForPrimaryBonus()
-    {
-        return $this->set;
     }
 }
