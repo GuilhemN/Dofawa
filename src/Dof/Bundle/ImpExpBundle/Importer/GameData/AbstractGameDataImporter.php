@@ -93,6 +93,7 @@ abstract class AbstractGameDataImporter implements ImporterInterface
         if (isset($row[$alias.'Es'])) {
             $repo->translate($entity, $field, 'es', $row[$alias.'Es']);
         }
+        /*
         if (isset($row[$alias.'It'])) {
             $repo->translate($entity, $field, 'it', $row[$alias.'It']);
         }
@@ -105,5 +106,6 @@ abstract class AbstractGameDataImporter implements ImporterInterface
         if (isset($row[$alias.'Ru'])) {
             $repo->translate($entity, $field, 'ru', $row[$alias.'Ru']);
         }
+        */
     }
 }

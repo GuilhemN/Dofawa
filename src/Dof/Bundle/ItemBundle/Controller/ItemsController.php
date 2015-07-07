@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Context\Context;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -27,16 +28,12 @@ class ItemsController extends FOSRestController
      *  output="Dof\Bundle\ItemBundle\Entity\ItemTemplate"
      * )
      *
-     * @Cache(lastmodified="slug.updatedAt()")
+     * @Get("/items/{slug}")
+     * @ParamConverter("item", options={"mappings": {"slug": "slug"}})
+     * @Cache(lastmodified="item.getUpdatedAt()", public=true)
      */
-    public function getItemAction(ItemTemplate $slug)
+    public function getItemAction(ItemTemplate $item)
     {
-        $item = $slug;
-        $repository = $this->getRepository();
-        $item = $repository->findOneBySlug($slug);
-        if($item === null) {
-            throw $this->createNotFoundException();
-        }
         $context = new Context();
         $context->addGroups(['item', 'name', 'description', 'effects', 'file']);
         $response = $this->handleView($this->view($item)->setSerializationContext($context));
@@ -53,9 +50,10 @@ class ItemsController extends FOSRestController
      *  resource=true,
      *  output="Dof\Bundle\ItemBundle\Entity\ItemTemplate"
      * )
+     *
+     * @Patch("/items/{slug}/update-icon")
      * @ParamConverter("item", options={"mappings": {"slug": "slug"}})
      * @Security("has_role('ROLE_ADMIN')")
-     * @Patch("/items/{slug}/update-icon")
      */
     public function updateItemIconAction(ItemTemplate $item)
     {
