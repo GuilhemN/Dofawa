@@ -93,7 +93,6 @@ class ItemTemplateImporter extends AbstractGameDataImporter
                     $tpl->setTargetCriteria(($row['criteriaTarget'] === 'null') ? null : $row['criteriaTarget']);
                 }
                 $this->dm->persist($tpl);
-
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

@@ -2,7 +2,7 @@ services:
     badge_manager:
         class: Dof\Bundle\MainBundle\BadgeManager
         arguments: [ "@service_container" ]
-        
+
     dof_main.event.authentication_success_listener:
         class: Dof\Bundle\MainBundle\EventListener\AuthenticationSuccessListener
         arguments: [@dof_user.role_helper]

@@ -9,7 +9,6 @@ use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
-use Dof\Bundle\CMSBundle\Entity\QuestArticle;
 
 /**
  * Quest.

@@ -26,9 +26,9 @@ dof_main:
     resource: "@DofMainBundle/Resources/config/routing.yml"
     prefix:   /
 
-dof_item:
-    resource: "@DofItemBundle/Resources/config/routing.yml"
-    prefix:   /items
+dof_items:
+    type:     rest
+    resource: Dof\Bundle\ItemBundle\Controller\ItemsController
 
 login:
     path: /login

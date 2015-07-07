@@ -15,6 +15,7 @@ class Weapon extends SkinnedItem
     {
         return true;
     }
+
     public function getClassId()
     {
         return 'weapon';

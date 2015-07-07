@@ -5,7 +5,6 @@ namespace Dof\Bundle\ImpExpBundle\Importer\GameData;
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
-use XN\Common\Inflector;
 use Dof\Bundle\CharacterBundle\Entity\Emoticon;
 
 class EmoticonImporter extends AbstractGameDataImporter

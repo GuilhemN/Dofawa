@@ -56,7 +56,6 @@ class AreaImporter extends AbstractGameDataImporter
 
                 $this->copyI18NProperty($tpl, 'name', $row, 'name');
                 $this->dm->persist($tpl);
-                
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {

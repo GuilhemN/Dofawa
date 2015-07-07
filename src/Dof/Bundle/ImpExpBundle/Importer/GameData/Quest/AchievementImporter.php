@@ -61,7 +61,6 @@ class AchievementImporter extends AbstractGameDataImporter
                 $this->copyI18NProperty($tpl, 'name', $row, 'name');
                 $this->copyI18NProperty($tpl, 'description', $row, 'description');
                 $this->dm->persist($tpl);
-                
             }
             ++$rowsProcessed;
             if (($rowsProcessed % 300) == 0) {
