@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use XN\Persistence\IdentifiableInterface;
 
 /**
- * QuestObjectiveTypeRelation.
+ * QuestObjectiveTemplateRelation.
  *
  * @ORM\Table(name="dof_quest_objective_type_relations")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\QuestObjectiveTemplateRelationRepository")
@@ -104,7 +104,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
      *
      * @param string $targetEntity
      *
-     * @return QuestObjectiveTypeRelation
+     * @return QuestObjectiveTemplateRelation
      */
     public function setTargetEntity($targetEntity)
     {
@@ -128,7 +128,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
      *
      * @param string $column1
      *
-     * @return QuestObjectiveTypeRelation
+     * @return QuestObjectiveTemplateRelation
      */
     public function setColumn1($column1)
     {
@@ -152,7 +152,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
      *
      * @param string $column2
      *
-     * @return QuestObjectiveTypeRelation
+     * @return QuestObjectiveTemplateRelation
      */
     public function setColumn2($column2)
     {
@@ -176,7 +176,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
      *
      * @param string $column3
      *
-     * @return QuestObjectiveTypeRelation
+     * @return QuestObjectiveTemplateRelation
      */
     public function setColumn3($column3)
     {
@@ -200,7 +200,7 @@ class QuestObjectiveTemplateRelation implements IdentifiableInterface
      *
      * @param string $column4
      *
-     * @return QuestObjectiveTypeRelation
+     * @return QuestObjectiveTemplateRelation
      */
     public function setColumn4($column4)
     {

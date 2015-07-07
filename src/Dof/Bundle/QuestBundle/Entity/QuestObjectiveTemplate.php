@@ -9,9 +9,9 @@ use XN\L10n\LocalizedNameTrait;
 use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 
 /**
- * QuestObjectiveType.
+ * QuestObjectiveTemplate.
  *
- * @ORM\Table(name="dof_quest_objective_types")
+ * @ORM\Table(name="dof_quest_objective_templates")
  * @ORM\Entity(repositoryClass="Dof\Bundle\QuestBundle\Entity\QuestObjectiveTemplateRepository")
  */
 class QuestObjectiveTemplate implements IdentifiableInterface, LocalizedNameInterface
@@ -29,7 +29,7 @@ class QuestObjectiveTemplate implements IdentifiableInterface, LocalizedNameInte
     /**
      * Set id.
      *
-     * @return QuestObjectiveType
+     * @return QuestObjectiveTemplate
      */
     public function setId($id)
     {

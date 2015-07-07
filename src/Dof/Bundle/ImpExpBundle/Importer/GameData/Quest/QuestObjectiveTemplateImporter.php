@@ -33,7 +33,7 @@ class QuestObjectiveTemplateImporter extends AbstractGameDataImporter
         foreach ($all as $row) {
             $tpl = $repo->find($row['id']);
             if ($tpl === null) {
-                $tpl = new QuestObjectiveType();
+                $tpl = new QuestObjectiveTemplate();
                 $tpl->setDeprecated(true);
                 $tpl->setId($row['id']);
             }
