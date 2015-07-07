@@ -26,12 +26,12 @@ class AnimalTemplateRepository extends EquipmentTemplateRepository
         return $bones;
     }
 
-    public function hasBone($format = 'normal', $locale = 'fr')
+    public function hasBone($format = 'normal')
     {
         $req = $this->createQueryBuilder('a');
 
         if ($format == 'json') {
-            $req->select(array('a.id', 'a.name'.ucfirst($locale).' as name'));
+            $req->select(array('a.id', 'a.name'));
         }
 
         $req
