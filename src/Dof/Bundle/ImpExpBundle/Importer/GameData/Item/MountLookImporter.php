@@ -32,7 +32,7 @@ class MountLookImporter extends AbstractGameDataImporter
             $progress->start($output, count($all));
         }
         foreach ($all as $row) {
-            $tpl = $repo->findOneByNameFr($row['nameFr']);
+            $tpl = $repo->findOneByName($row['nameFr']);
             if ($tpl === null) {
                 continue;
             }
