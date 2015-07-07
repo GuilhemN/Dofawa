@@ -856,7 +856,7 @@ class Monster implements IdentifiableInterface, LocalizedNameInterface, FileInte
 
     public function __toString()
     {
-        return $this->nameFr;
+        return $this->name;
     }
 
     protected function getUploadDir()

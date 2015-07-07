@@ -207,7 +207,7 @@ class ItemSet implements IdentifiableInterface, ExportableInterface, LocalizedNa
 
     public function __toString()
     {
-        return $this->nameFr;
+        return $this->name;
     }
 
     public function exportData($full = true, $locale = 'fr')

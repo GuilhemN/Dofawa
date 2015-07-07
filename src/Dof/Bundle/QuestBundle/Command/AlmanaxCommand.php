@@ -37,7 +37,7 @@ class AlmanaxCommand extends ContainerAwareCommand
             ->setParameter('type', QuestType::ALMANAX)
             ->execute();
 
-        $quest = $repo->findOneByNameFr($title[2]);
+        $quest = $repo->findOneByName($title[2]);
         if ($quest !== null) {
             $quest->setSeason(true);
             $em->flush();

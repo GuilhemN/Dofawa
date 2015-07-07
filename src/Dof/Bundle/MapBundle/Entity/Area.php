@@ -270,6 +270,6 @@ class Area implements IdentifiableInterface
 
     public function __toString()
     {
-        return $this->nameFr;
+        return $this->name;
     }
 }

@@ -781,7 +781,7 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
 
     public function __toString()
     {
-        return $this->nameFr;
+        return $this->name;
     }
 
     public function isPersonalized()

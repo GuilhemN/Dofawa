@@ -30,7 +30,7 @@ class ItemsController extends FOSRestController
      *
      * @Get("/items/{slug}")
      * @ParamConverter("item", options={"mappings": {"slug": "slug"}})
-     * @Cache(lastmodified="item.getUpdatedAt()", public=true)
+     * @Cache(lastmodified="item.getUpdatedAt()", maxage=86400, public=true)
      */
     public function getItemAction(ItemTemplate $item)
     {

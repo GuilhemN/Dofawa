@@ -281,6 +281,6 @@ class AchievementCategory implements IdentifiableInterface, LocalizedNameInterfa
 
     public function __toString()
     {
-        return $this->nameFr;
+        return $this->name;
     }
 }

@@ -115,6 +115,6 @@ class SuperArea implements IdentifiableInterface, LocalizedNameInterface
 
     public function __toString()
     {
-        return $this->nameFr;
+        return $this->name;
     }
 }
