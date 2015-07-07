@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Common\UrlSafeBase64;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
@@ -93,6 +94,14 @@ class Spell implements IdentifiableInterface, LocalizedNameInterface, FileInterf
      *     mimeTypesMessage = "Choisissez un fichier image valide.")
      */
     private $file;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     public function __construct()
     {

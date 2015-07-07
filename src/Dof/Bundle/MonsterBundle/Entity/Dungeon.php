@@ -3,6 +3,7 @@
 namespace Dof\Bundle\MonsterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
@@ -47,6 +48,14 @@ class Dungeon implements IdentifiableInterface, LocalizedNameInterface
      * @ORM\JoinColumn(nullable=true)
      */
     private $exitMap;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     /**
      * Set id.

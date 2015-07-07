@@ -3,6 +3,7 @@
 namespace Dof\Bundle\GraphicsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
@@ -42,6 +43,14 @@ class CharacterLook extends BasicPCLook implements IdentifiableInterface, Ownabl
      * @ORM\Column(name="publiclyVisible", type="boolean")
      */
     private $publiclyVisible;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     /**
      * Get id.

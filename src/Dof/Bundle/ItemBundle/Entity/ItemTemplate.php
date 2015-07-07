@@ -194,6 +194,14 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Locali
      */
     private $file;
 
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
+
     public function __construct()
     {
         $this->effects = new ArrayCollection();

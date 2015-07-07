@@ -5,6 +5,7 @@ namespace Dof\Bundle\MonsterBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use XN\Common\UrlSafeBase64;
 use XN\Persistence\IdentifiableInterface;
@@ -162,6 +163,14 @@ class Monster implements IdentifiableInterface, LocalizedNameInterface, FileInte
      *     mimeTypesMessage = "Choisissez un fichier image valide.")
      */
     private $file;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     public function __construct()
     {

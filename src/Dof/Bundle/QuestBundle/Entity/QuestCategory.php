@@ -3,6 +3,7 @@
 namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\SluggableTrait;
@@ -40,6 +41,14 @@ class QuestCategory implements IdentifiableInterface, LocalizedNameInterface
      * @ORM\JoinColumn(nullable=true)
      */
     private $quests;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     public function __construct()
     {

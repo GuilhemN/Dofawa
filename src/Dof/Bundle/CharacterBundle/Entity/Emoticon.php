@@ -51,6 +51,14 @@ class Emoticon implements IdentifiableInterface
     private $shortcut;
 
     /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
+
+    /**
      * Set id.
      *
      * @param int $id

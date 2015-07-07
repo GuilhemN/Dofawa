@@ -5,6 +5,7 @@ namespace Dof\Bundle\ItemBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
@@ -41,6 +42,14 @@ class Job implements IdentifiableInterface
      * @ORM\OneToMany(targetEntity="ItemTemplate", mappedBy="craftingJob")
      */
     private $craftableItems;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     public function __construct()
     {

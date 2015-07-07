@@ -3,6 +3,7 @@
 namespace Dof\Bundle\CharacterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
@@ -33,6 +34,14 @@ class AlignmentSide implements IdentifiableInterface, LocalizedNameInterface
      * @ORM\Column(name="canConquest", type="boolean")
      */
     private $canConquest;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     /**
      * Get id.

@@ -6,6 +6,7 @@ use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Dof\Bundle\User\ItemBundle\Entity\Item as PItem;
 use Dof\Bundle\User\ItemBundle\Entity\Animal;
 use Dof\Bundle\User\ItemBundle\Entity\Weapon;
@@ -232,6 +233,14 @@ class Stuff implements IdentifiableInterface
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $dofus6;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     public function __construct()
     {

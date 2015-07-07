@@ -147,6 +147,14 @@ class Breed implements IdentifiableInterface
      */
     private $spells;
 
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
+
     public function __construct()
     {
         $this->faces = new ArrayCollection();
@@ -629,6 +637,6 @@ class Breed implements IdentifiableInterface
 
     public function __toString()
     {
-        return $this->nameFr;
+        return $this->name;
     }
 }

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
@@ -48,6 +49,14 @@ class ItemSet implements IdentifiableInterface, ExportableInterface, LocalizedNa
      * @ORM\OrderBy({ "itemCount" = "ASC", "id" = "ASC" })
      */
     private $combinations;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     public function __construct()
     {

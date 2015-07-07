@@ -5,6 +5,7 @@ namespace Dof\Bundle\MapBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
@@ -71,6 +72,14 @@ class Area implements IdentifiableInterface
      * @ORM\Column(name="height_", type="integer")
      */
     private $height;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     public function __construct()
     {

@@ -3,6 +3,7 @@
 namespace Dof\Bundle\QuestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
@@ -78,6 +79,14 @@ class Achievement implements IdentifiableInterface, LocalizedNameInterface
      * @ORM\Column(name="xpRatio", type="float")
      */
     private $xpRatio;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     /**
      * set id.

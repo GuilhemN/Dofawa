@@ -58,6 +58,14 @@ class Title implements IdentifiableInterface
     private $nameFemale;
 
     /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"nameMale"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
+
+    /**
      * Set id.
      *
      * @param int $id

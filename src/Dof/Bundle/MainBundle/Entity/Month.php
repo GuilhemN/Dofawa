@@ -3,6 +3,7 @@
 namespace Dof\Bundle\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameInterface;
@@ -25,6 +26,14 @@ class Month implements IdentifiableInterface, LocalizedNameInterface
      * @ORM\Id
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
+     */
+    protected $slug;
 
     /**
      * Set id.

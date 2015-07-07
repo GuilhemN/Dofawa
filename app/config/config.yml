@@ -124,3 +124,11 @@ nelmio_api_doc:
             type:     bearer
         body_format:
             formats: [ json ]
+
+fos_rest:
+    routing_loader:
+        default_format:       json
+        include_format:       false
+    view:
+        view_response_listener:
+            enabled:              true
