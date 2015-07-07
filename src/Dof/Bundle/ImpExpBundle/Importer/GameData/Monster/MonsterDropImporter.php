@@ -57,7 +57,6 @@ class MonsterDropImporter extends AbstractGameDataImporter
                 $monsterD->setMinPercent($row['percentDropForGrade1']);
                 $monsterD->setMaxPercent($row['percentDropForGrade5']);
                 $monsterD->setCount($row['count']);
-                $monsterD->setThreshold($row['findCeil']);
                 $monsterD->setHasCriteria($row['hasCriteria']);
             });
 

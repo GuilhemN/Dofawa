@@ -75,13 +75,6 @@ class MonsterDrop implements IdentifiableInterface, ParsedCriteriaInterface
     /**
      * @var int
      *
-     * @ORM\Column(name="threshold", type="integer")
-     */
-    private $threshold;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="has_criteria", type="boolean")
      */
     private $hasCriteria;
@@ -247,29 +240,6 @@ class MonsterDrop implements IdentifiableInterface, ParsedCriteriaInterface
         return min(16, $this->count);
     }
 
-    /**
-     * Set threshold.
-     *
-     * @param int $threshold
-     *
-     * @return MonsterDrop
-     */
-    public function setThreshold($threshold)
-    {
-        $this->threshold = $threshold;
-
-        return $this;
-    }
-
-    /**
-     * Get threshold.
-     *
-     * @return int
-     */
-    public function getThreshold()
-    {
-        return $this->threshold;
-    }
     /**
      * Set hasCriteria.
      *
