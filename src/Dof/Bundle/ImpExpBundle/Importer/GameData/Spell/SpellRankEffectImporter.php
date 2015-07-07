@@ -95,7 +95,7 @@ class SpellRankEffectImporter extends AbstractGameDataImporter
                     $effect->setDuration($row['duration']);
                     $effect->setDelay($row['delay']);
                     $effect->setTriggers(explode('|', $row['triggers']));
-                    $effect->setHidden($row['hidden']);
+                    $effect->setHidden($row['visibleInTooltip']);
                     $effect->setCritical($row['critical']);
 
                     $effect->setParam1($row['diceNum']);
