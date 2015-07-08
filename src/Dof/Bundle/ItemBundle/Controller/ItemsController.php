@@ -21,6 +21,28 @@ class ItemsController extends FOSRestController
     }
 
     /**
+     * Gets a collection of items.
+     *
+     * @ApiDoc(
+     *  output="array<Dof\Bundle\ItemBundle\Entity\ItemTemplate>",
+     *  filters={
+     *      {"name"="tradeable", "dataType"="boolean"},
+     *      {"name"="name", "dataType"="string"}
+     *  }
+     * )
+     *
+     * @Get("/items")
+     * @Cache(maxage=3600, public=true)
+     */
+    public function getItemsAction()
+    {
+        $items = $this->getRepository()->findOptions($this->getRequest()->query->all(), [], 15);
+        $context = new Context();
+        $context->addGroups(['item', 'name', 'description', 'effects']);
+        return $this->view($items)->setSerializationContext($context);
+    }
+
+    /**
      * Gets an item.
      *
      * @ApiDoc(
@@ -35,11 +57,7 @@ class ItemsController extends FOSRestController
     public function getItemAction(ItemTemplate $item)
     {
         $context = new Context();
-        $context->addGroups(['item', 'name', 'description', 'effects', 'file']);
-        $response = $this->handleView($this->view($item)->setSerializationContext($context));
-        $response->setPublic();
-        $response->setLastModified($item->getUpdatedAt());
-        $response->isNotModified($this->getRequest());
-        return $response;
+        $context->addGroups(['item', 'name', 'description', 'effects']);
+        return $this->view($item)->setSerializationContext($context);
     }
 }

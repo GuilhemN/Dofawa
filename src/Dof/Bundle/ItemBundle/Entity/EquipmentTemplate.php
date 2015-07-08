@@ -33,13 +33,6 @@ class EquipmentTemplate extends ItemTemplate
      */
     private $set;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="power_rate", type="integer")
-     */
-    private $powerRate;
-
     public function __construct()
     {
         $this->originalSets = array();
@@ -104,18 +97,6 @@ class EquipmentTemplate extends ItemTemplate
         return $this->set;
     }
 
-    public function getPowerRate()
-    {
-        return $this->powerRate;
-    }
-
-    public function setPowerRate($powerRate)
-    {
-        $this->powerRate = $powerRate;
-
-        return $this;
-    }
-
     public function isEquipment()
     {
         return true;
@@ -133,6 +114,7 @@ class EquipmentTemplate extends ItemTemplate
             'characteristics' => $this->getCharacteristics(),
         ] : []);
     }
+
     protected function importField($key, $value, ObjectManager $dm, $locale = 'fr')
     {
         if (parent::importField($key, $value, $dm, $locale)) {
