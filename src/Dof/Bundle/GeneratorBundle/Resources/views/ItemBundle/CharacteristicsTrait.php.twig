@@ -79,11 +79,12 @@ trait CharacteristicsTrait
 	 */
 	public function getCharacteristics()
 	{
-		return [
+		$return = []
 {% for chara in characteristics %}
-			'{{ chara.slug|camelize }}' => ['min' => $this->{{ chara.slug|camelize }}, 'max' => $this->{{ chara.slug|camelize }}]{% if not loop.last %},{% endif %}
-
+		if(!empty($this->{{ chara.slug|camelize }}))
+			$return['{{ chara.slug|camelize }}'] = ['min' => $this->{{ chara.slug|camelize }}, 'max' => $this->{{ chara.slug|camelize }}];
+	
 {% endfor %}
-		];
+		return $return;
 	}
 }

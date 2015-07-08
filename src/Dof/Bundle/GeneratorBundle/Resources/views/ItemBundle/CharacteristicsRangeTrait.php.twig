@@ -135,11 +135,12 @@ trait CharacteristicsRangeTrait
 	 */
 	public function getCharacteristics()
 	{
-		return [
+		$return = [];
 {% for chara in characteristics %}
-			'{{ chara.slug|camelize }}' => [ 'min' => $this->{{ ('min-' ~ chara.slug)|camelize }}, 'max' => $this->{{ ('max-' ~ chara.slug)|camelize }} ]{% if not loop.last %},{% endif %}
+		if(!empty($this->{{ ('min-' ~ chara.slug)|camelize }}) || !empty($this->{{ ('max-' ~ chara.slug)|camelize }}))
+			$return['{{ chara.slug|camelize }}'] = [ 'min' => $this->{{ ('min-' ~ chara.slug)|camelize }}, 'max' => $this->{{ ('max-' ~ chara.slug)|camelize }} ];
 
 {% endfor %}
-		];
+		return $return;
 	}
 }

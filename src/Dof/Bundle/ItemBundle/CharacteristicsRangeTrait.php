@@ -3995,52 +3995,142 @@ trait CharacteristicsRangeTrait
 	 */
 	public function getCharacteristics()
 	{
-		return [
-			'vitality' => [ 'min' => $this->minVitality, 'max' => $this->maxVitality ],
-			'strength' => [ 'min' => $this->minStrength, 'max' => $this->maxStrength ],
-			'intelligence' => [ 'min' => $this->minIntelligence, 'max' => $this->maxIntelligence ],
-			'chance' => [ 'min' => $this->minChance, 'max' => $this->maxChance ],
-			'agility' => [ 'min' => $this->minAgility, 'max' => $this->maxAgility ],
-			'wisdom' => [ 'min' => $this->minWisdom, 'max' => $this->maxWisdom ],
-			'power' => [ 'min' => $this->minPower, 'max' => $this->maxPower ],
-			'ap' => [ 'min' => $this->minAp, 'max' => $this->maxAp ],
-			'mp' => [ 'min' => $this->minMp, 'max' => $this->maxMp ],
-			'range' => [ 'min' => $this->minRange, 'max' => $this->maxRange ],
-			'summons' => [ 'min' => $this->minSummons, 'max' => $this->maxSummons ],
-			'damage' => [ 'min' => $this->minDamage, 'max' => $this->maxDamage ],
-			'neutralDamage' => [ 'min' => $this->minNeutralDamage, 'max' => $this->maxNeutralDamage ],
-			'earthDamage' => [ 'min' => $this->minEarthDamage, 'max' => $this->maxEarthDamage ],
-			'fireDamage' => [ 'min' => $this->minFireDamage, 'max' => $this->maxFireDamage ],
-			'waterDamage' => [ 'min' => $this->minWaterDamage, 'max' => $this->maxWaterDamage ],
-			'airDamage' => [ 'min' => $this->minAirDamage, 'max' => $this->maxAirDamage ],
-			'heals' => [ 'min' => $this->minHeals, 'max' => $this->maxHeals ],
-			'prospecting' => [ 'min' => $this->minProspecting, 'max' => $this->maxProspecting ],
-			'initiative' => [ 'min' => $this->minInitiative, 'max' => $this->maxInitiative ],
-			'reflectedDamage' => [ 'min' => $this->minReflectedDamage, 'max' => $this->maxReflectedDamage ],
-			'percentNeutralResistance' => [ 'min' => $this->minPercentNeutralResistance, 'max' => $this->maxPercentNeutralResistance ],
-			'percentWaterResistance' => [ 'min' => $this->minPercentWaterResistance, 'max' => $this->maxPercentWaterResistance ],
-			'neutralResistance' => [ 'min' => $this->minNeutralResistance, 'max' => $this->maxNeutralResistance ],
-			'earthResistance' => [ 'min' => $this->minEarthResistance, 'max' => $this->maxEarthResistance ],
-			'fireResistance' => [ 'min' => $this->minFireResistance, 'max' => $this->maxFireResistance ],
-			'waterResistance' => [ 'min' => $this->minWaterResistance, 'max' => $this->maxWaterResistance ],
-			'airResistance' => [ 'min' => $this->minAirResistance, 'max' => $this->maxAirResistance ],
-			'neutralResistanceInPvp' => [ 'min' => $this->minNeutralResistanceInPvp, 'max' => $this->maxNeutralResistanceInPvp ],
-			'earthResistanceInPvp' => [ 'min' => $this->minEarthResistanceInPvp, 'max' => $this->maxEarthResistanceInPvp ],
-			'fireResistanceInPvp' => [ 'min' => $this->minFireResistanceInPvp, 'max' => $this->maxFireResistanceInPvp ],
-			'waterResistanceInPvp' => [ 'min' => $this->minWaterResistanceInPvp, 'max' => $this->maxWaterResistanceInPvp ],
-			'airResistanceInPvp' => [ 'min' => $this->minAirResistanceInPvp, 'max' => $this->maxAirResistanceInPvp ],
-			'lock' => [ 'min' => $this->minLock, 'max' => $this->maxLock ],
-			'dodge' => [ 'min' => $this->minDodge, 'max' => $this->maxDodge ],
-			'apReduction' => [ 'min' => $this->minApReduction, 'max' => $this->maxApReduction ],
-			'mpReduction' => [ 'min' => $this->minMpReduction, 'max' => $this->maxMpReduction ],
-			'apLossResistance' => [ 'min' => $this->minApLossResistance, 'max' => $this->maxApLossResistance ],
-			'mpLossResistance' => [ 'min' => $this->minMpLossResistance, 'max' => $this->maxMpLossResistance ],
-			'criticalDamage' => [ 'min' => $this->minCriticalDamage, 'max' => $this->maxCriticalDamage ],
-			'criticalResistance' => [ 'min' => $this->minCriticalResistance, 'max' => $this->maxCriticalResistance ],
-			'pushbackDamage' => [ 'min' => $this->minPushbackDamage, 'max' => $this->maxPushbackDamage ],
-			'pushbackResistance' => [ 'min' => $this->minPushbackResistance, 'max' => $this->maxPushbackResistance ],
-			'trapPower' => [ 'min' => $this->minTrapPower, 'max' => $this->maxTrapPower ],
-			'trapDamage' => [ 'min' => $this->minTrapDamage, 'max' => $this->maxTrapDamage ]
-		];
+		$return = [];
+		if(!empty($this->minVitality) || !empty($this->maxVitality))
+			$return['vitality'] = [ 'min' => $this->minVitality, 'max' => $this->maxVitality ];
+
+		if(!empty($this->minStrength) || !empty($this->maxStrength))
+			$return['strength'] = [ 'min' => $this->minStrength, 'max' => $this->maxStrength ];
+
+		if(!empty($this->minIntelligence) || !empty($this->maxIntelligence))
+			$return['intelligence'] = [ 'min' => $this->minIntelligence, 'max' => $this->maxIntelligence ];
+
+		if(!empty($this->minChance) || !empty($this->maxChance))
+			$return['chance'] = [ 'min' => $this->minChance, 'max' => $this->maxChance ];
+
+		if(!empty($this->minAgility) || !empty($this->maxAgility))
+			$return['agility'] = [ 'min' => $this->minAgility, 'max' => $this->maxAgility ];
+
+		if(!empty($this->minWisdom) || !empty($this->maxWisdom))
+			$return['wisdom'] = [ 'min' => $this->minWisdom, 'max' => $this->maxWisdom ];
+
+		if(!empty($this->minPower) || !empty($this->maxPower))
+			$return['power'] = [ 'min' => $this->minPower, 'max' => $this->maxPower ];
+
+		if(!empty($this->minAp) || !empty($this->maxAp))
+			$return['ap'] = [ 'min' => $this->minAp, 'max' => $this->maxAp ];
+
+		if(!empty($this->minMp) || !empty($this->maxMp))
+			$return['mp'] = [ 'min' => $this->minMp, 'max' => $this->maxMp ];
+
+		if(!empty($this->minRange) || !empty($this->maxRange))
+			$return['range'] = [ 'min' => $this->minRange, 'max' => $this->maxRange ];
+
+		if(!empty($this->minSummons) || !empty($this->maxSummons))
+			$return['summons'] = [ 'min' => $this->minSummons, 'max' => $this->maxSummons ];
+
+		if(!empty($this->minDamage) || !empty($this->maxDamage))
+			$return['damage'] = [ 'min' => $this->minDamage, 'max' => $this->maxDamage ];
+
+		if(!empty($this->minNeutralDamage) || !empty($this->maxNeutralDamage))
+			$return['neutralDamage'] = [ 'min' => $this->minNeutralDamage, 'max' => $this->maxNeutralDamage ];
+
+		if(!empty($this->minEarthDamage) || !empty($this->maxEarthDamage))
+			$return['earthDamage'] = [ 'min' => $this->minEarthDamage, 'max' => $this->maxEarthDamage ];
+
+		if(!empty($this->minFireDamage) || !empty($this->maxFireDamage))
+			$return['fireDamage'] = [ 'min' => $this->minFireDamage, 'max' => $this->maxFireDamage ];
+
+		if(!empty($this->minWaterDamage) || !empty($this->maxWaterDamage))
+			$return['waterDamage'] = [ 'min' => $this->minWaterDamage, 'max' => $this->maxWaterDamage ];
+
+		if(!empty($this->minAirDamage) || !empty($this->maxAirDamage))
+			$return['airDamage'] = [ 'min' => $this->minAirDamage, 'max' => $this->maxAirDamage ];
+
+		if(!empty($this->minHeals) || !empty($this->maxHeals))
+			$return['heals'] = [ 'min' => $this->minHeals, 'max' => $this->maxHeals ];
+
+		if(!empty($this->minProspecting) || !empty($this->maxProspecting))
+			$return['prospecting'] = [ 'min' => $this->minProspecting, 'max' => $this->maxProspecting ];
+
+		if(!empty($this->minInitiative) || !empty($this->maxInitiative))
+			$return['initiative'] = [ 'min' => $this->minInitiative, 'max' => $this->maxInitiative ];
+
+		if(!empty($this->minReflectedDamage) || !empty($this->maxReflectedDamage))
+			$return['reflectedDamage'] = [ 'min' => $this->minReflectedDamage, 'max' => $this->maxReflectedDamage ];
+
+		if(!empty($this->minPercentNeutralResistance) || !empty($this->maxPercentNeutralResistance))
+			$return['percentNeutralResistance'] = [ 'min' => $this->minPercentNeutralResistance, 'max' => $this->maxPercentNeutralResistance ];
+
+		if(!empty($this->minPercentWaterResistance) || !empty($this->maxPercentWaterResistance))
+			$return['percentWaterResistance'] = [ 'min' => $this->minPercentWaterResistance, 'max' => $this->maxPercentWaterResistance ];
+
+		if(!empty($this->minNeutralResistance) || !empty($this->maxNeutralResistance))
+			$return['neutralResistance'] = [ 'min' => $this->minNeutralResistance, 'max' => $this->maxNeutralResistance ];
+
+		if(!empty($this->minEarthResistance) || !empty($this->maxEarthResistance))
+			$return['earthResistance'] = [ 'min' => $this->minEarthResistance, 'max' => $this->maxEarthResistance ];
+
+		if(!empty($this->minFireResistance) || !empty($this->maxFireResistance))
+			$return['fireResistance'] = [ 'min' => $this->minFireResistance, 'max' => $this->maxFireResistance ];
+
+		if(!empty($this->minWaterResistance) || !empty($this->maxWaterResistance))
+			$return['waterResistance'] = [ 'min' => $this->minWaterResistance, 'max' => $this->maxWaterResistance ];
+
+		if(!empty($this->minAirResistance) || !empty($this->maxAirResistance))
+			$return['airResistance'] = [ 'min' => $this->minAirResistance, 'max' => $this->maxAirResistance ];
+
+		if(!empty($this->minNeutralResistanceInPvp) || !empty($this->maxNeutralResistanceInPvp))
+			$return['neutralResistanceInPvp'] = [ 'min' => $this->minNeutralResistanceInPvp, 'max' => $this->maxNeutralResistanceInPvp ];
+
+		if(!empty($this->minEarthResistanceInPvp) || !empty($this->maxEarthResistanceInPvp))
+			$return['earthResistanceInPvp'] = [ 'min' => $this->minEarthResistanceInPvp, 'max' => $this->maxEarthResistanceInPvp ];
+
+		if(!empty($this->minFireResistanceInPvp) || !empty($this->maxFireResistanceInPvp))
+			$return['fireResistanceInPvp'] = [ 'min' => $this->minFireResistanceInPvp, 'max' => $this->maxFireResistanceInPvp ];
+
+		if(!empty($this->minWaterResistanceInPvp) || !empty($this->maxWaterResistanceInPvp))
+			$return['waterResistanceInPvp'] = [ 'min' => $this->minWaterResistanceInPvp, 'max' => $this->maxWaterResistanceInPvp ];
+
+		if(!empty($this->minAirResistanceInPvp) || !empty($this->maxAirResistanceInPvp))
+			$return['airResistanceInPvp'] = [ 'min' => $this->minAirResistanceInPvp, 'max' => $this->maxAirResistanceInPvp ];
+
+		if(!empty($this->minLock) || !empty($this->maxLock))
+			$return['lock'] = [ 'min' => $this->minLock, 'max' => $this->maxLock ];
+
+		if(!empty($this->minDodge) || !empty($this->maxDodge))
+			$return['dodge'] = [ 'min' => $this->minDodge, 'max' => $this->maxDodge ];
+
+		if(!empty($this->minApReduction) || !empty($this->maxApReduction))
+			$return['apReduction'] = [ 'min' => $this->minApReduction, 'max' => $this->maxApReduction ];
+
+		if(!empty($this->minMpReduction) || !empty($this->maxMpReduction))
+			$return['mpReduction'] = [ 'min' => $this->minMpReduction, 'max' => $this->maxMpReduction ];
+
+		if(!empty($this->minApLossResistance) || !empty($this->maxApLossResistance))
+			$return['apLossResistance'] = [ 'min' => $this->minApLossResistance, 'max' => $this->maxApLossResistance ];
+
+		if(!empty($this->minMpLossResistance) || !empty($this->maxMpLossResistance))
+			$return['mpLossResistance'] = [ 'min' => $this->minMpLossResistance, 'max' => $this->maxMpLossResistance ];
+
+		if(!empty($this->minCriticalDamage) || !empty($this->maxCriticalDamage))
+			$return['criticalDamage'] = [ 'min' => $this->minCriticalDamage, 'max' => $this->maxCriticalDamage ];
+
+		if(!empty($this->minCriticalResistance) || !empty($this->maxCriticalResistance))
+			$return['criticalResistance'] = [ 'min' => $this->minCriticalResistance, 'max' => $this->maxCriticalResistance ];
+
+		if(!empty($this->minPushbackDamage) || !empty($this->maxPushbackDamage))
+			$return['pushbackDamage'] = [ 'min' => $this->minPushbackDamage, 'max' => $this->maxPushbackDamage ];
+
+		if(!empty($this->minPushbackResistance) || !empty($this->maxPushbackResistance))
+			$return['pushbackResistance'] = [ 'min' => $this->minPushbackResistance, 'max' => $this->maxPushbackResistance ];
+
+		if(!empty($this->minTrapPower) || !empty($this->maxTrapPower))
+			$return['trapPower'] = [ 'min' => $this->minTrapPower, 'max' => $this->maxTrapPower ];
+
+		if(!empty($this->minTrapDamage) || !empty($this->maxTrapDamage))
+			$return['trapDamage'] = [ 'min' => $this->minTrapDamage, 'max' => $this->maxTrapDamage ];
+
+		return $return;
 	}
 }
