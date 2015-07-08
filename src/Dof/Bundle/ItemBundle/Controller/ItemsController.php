@@ -38,7 +38,7 @@ class ItemsController extends FOSRestController
     {
         $items = $this->getRepository()->findOptions($this->getRequest()->query->all(), [], 15);
         $context = new Context();
-        $context->addGroups(['item', 'name', 'description', 'effects']);
+        $context->addGroups(['item', 'name']);
         return $this->view($items)->setSerializationContext($context);
     }
 
