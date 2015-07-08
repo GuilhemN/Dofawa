@@ -3,6 +3,7 @@
 namespace Dof\Bundle\MonsterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -167,6 +168,7 @@ class Monster implements IdentifiableInterface, LocalizedNameInterface, FileInte
     /**
      * @var string
      *
+     * @Groups({"item"})
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
      */

@@ -3,6 +3,7 @@
 namespace Dof\Bundle\MonsterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaTrait;
@@ -31,6 +32,7 @@ class MonsterDrop implements IdentifiableInterface, ParsedCriteriaInterface
     /**
      * @var Monster
      *
+     * @Groups({"item"})
      * @ORM\ManyToOne(targetEntity="Monster", inversedBy="drops")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
@@ -54,6 +56,7 @@ class MonsterDrop implements IdentifiableInterface, ParsedCriteriaInterface
     /**
      * @var float
      *
+     * @Groups({"item"})
      * @ORM\Column(name="minPercent", type="float")
      */
     private $minPercent;
@@ -61,6 +64,7 @@ class MonsterDrop implements IdentifiableInterface, ParsedCriteriaInterface
     /**
      * @var float
      *
+     * @Groups({"item"})
      * @ORM\Column(name="maxPercent", type="float")
      */
     private $maxPercent;
@@ -75,6 +79,7 @@ class MonsterDrop implements IdentifiableInterface, ParsedCriteriaInterface
     /**
      * @var int
      *
+     * @Groups({"item"})
      * @ORM\Column(name="has_criteria", type="boolean")
      */
     private $hasCriteria;

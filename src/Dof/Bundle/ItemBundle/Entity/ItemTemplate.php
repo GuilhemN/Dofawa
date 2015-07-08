@@ -181,20 +181,10 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
     /**
      * @var Collection
      *
+     * @Groups({"item"})
      * @ORM\OneToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\MonsterDrop", mappedBy="object")
      */
     private $drops;
-
-    /**
-     * @Assert\Image(
-     *     maxSize = "1024k",
-     *     minWidth = 131,
-     *     maxWidth = 200,
-     *     minHeight = 131,
-     *     maxHeight = 200,
-     *     mimeTypesMessage = "Choisissez un fichier image valide.")
-     */
-    private $file;
 
     /**
      * @var string
