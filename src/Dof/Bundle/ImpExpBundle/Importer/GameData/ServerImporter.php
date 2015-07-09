@@ -16,7 +16,7 @@ class ServerImporter extends AbstractGameDataImporter
         $this->generateD2ISelects('name', $locales).
         $this->generateD2ISelects('comment', $locales).
         ' FROM '.$db.'.D2O_Server o'.
-        $this->generateD2IJoins('name', $db, $locales));
+        $this->generateD2IJoins('name', $db, $locales).
         $this->generateD2IJoins('comment', $db, $locales));
         $all = $stmt->fetchAll();
         $stmt->closeCursor();
