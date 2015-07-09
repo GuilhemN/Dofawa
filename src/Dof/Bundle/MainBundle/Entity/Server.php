@@ -22,7 +22,7 @@ class Server implements IdentifiableInterface
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id
      */
     private $id;
 
@@ -70,7 +70,7 @@ class Server implements IdentifiableInterface
     {
         return $this->id;
     }
-    
+
     /**
      * Set locale
      *
