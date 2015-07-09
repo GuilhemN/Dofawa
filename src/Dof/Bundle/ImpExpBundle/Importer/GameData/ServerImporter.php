@@ -38,7 +38,10 @@ class ServerImporter extends AbstractGameDataImporter
             $this->copyI18NProperty($tpl, 'name', $row, 'name');
             $this->copyI18NProperty($tpl, 'description', $row, 'comment');
 
-            $tpl->setLocale($row['language']);
+            if(empty($row['language']) or $row['language'] == 'null')
+                $tpl->setLocale(null);
+            else
+                $tpl->setLocale($row['language']);
             $tpl->setGameType($row['gameTypeId']);
 
             $this->dm->persist($tpl);

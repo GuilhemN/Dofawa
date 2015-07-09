@@ -12,12 +12,11 @@ use XN\L10n\LocalizedDescriptionTrait;
 /**
  * Server
  *
- * @ORM\Table("of_servers")
+ * @ORM\Table("dof_servers")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MainBundle\Entity\ServerRepository")
  */
 class Server implements IdentifiableInterface
 {
-    use SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
     /**
      * @var integer
      *
@@ -25,6 +24,8 @@ class Server implements IdentifiableInterface
      * @ORM\Id
      */
     private $id;
+
+    use SluggableTrait, LocalizedNameTrait, LocalizedDescriptionTrait;
 
     /**
      * @var string
