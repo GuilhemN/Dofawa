@@ -103,10 +103,16 @@ services:
             - { name: dof_imp_exp.importer, provides: alignment_sides }
             - { name: dof_imp_exp.importer, provides: beta_alignment_sides, requires: alignment_sides }
 
-
     # DofMainBundle:Month
     dof_imp_exp.importer.months:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\MonthImporter
         arguments: [ "@importer_dependencies" ]
         tags:
             - { name: dof_imp_exp.importer, provides: months }
+
+    # DofMainBundle:Server
+    dof_imp_exp.importer.servers:
+        class: Dof\Bundle\ImpExpBundle\Importer\GameData\ServerImporter
+        arguments: [ "@importer_dependencies" ]
+        tags:
+            - { name: dof_imp_exp.importer, provides: servers }
