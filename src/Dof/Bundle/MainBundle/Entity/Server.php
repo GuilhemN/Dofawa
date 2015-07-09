@@ -4,6 +4,7 @@ namespace Dof\Bundle\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\SluggableTrait;
 use XN\L10n\LocalizedNameTrait;
@@ -44,6 +45,14 @@ class Server implements IdentifiableInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="visible", type="boolean", nullable=false)
+     */
+    private $visible;
+
+    /**
+     * @var string
+     *
+     * @Groups({"server"})
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
      */
@@ -60,7 +69,6 @@ class Server implements IdentifiableInterface
         $this->id = $id;
         return $this;
     }
-
 
     /**
      * Get id
@@ -116,5 +124,28 @@ class Server implements IdentifiableInterface
     public function getGameType()
     {
         return $this->gameType;
+    }
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     * @return Server
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean
+     */
+    public function getVisible()
+    {
+        return $this->visible;
     }
 }

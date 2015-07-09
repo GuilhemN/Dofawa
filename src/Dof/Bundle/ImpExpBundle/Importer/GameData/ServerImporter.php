@@ -33,6 +33,7 @@ class ServerImporter extends AbstractGameDataImporter
             if ($tpl === null) {
                 $tpl = new Server();
                 $tpl->setId($row['id']);
+                $tpl->setVisible(false);
             }
 
             $this->copyI18NProperty($tpl, 'name', $row, 'name');

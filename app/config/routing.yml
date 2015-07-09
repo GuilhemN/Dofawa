@@ -30,6 +30,10 @@ dof_items:
     type:     rest
     resource: Dof\Bundle\ItemBundle\Controller\ItemsController
 
+dof_servers:
+    type:     rest
+    resource: Dof\Bundle\MainBundle\Controller\ServersController
+
 login:
     path: /login
 
