@@ -4,7 +4,7 @@ namespace Dof\Bundle\UserBundle;
 
 use Doctrine\ORM\Mapping as ORM;;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Dof\Bundle\UserBundle\Entity\User
+use Dof\Bundle\UserBundle\Entity\User;
 
 trait OwnableTrait
 {
