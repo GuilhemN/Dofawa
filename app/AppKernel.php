@@ -48,6 +48,7 @@ class AppKernel extends Kernel
             new Dof\Bundle\User\ItemBundle\DofUserItemBundle(),
             new Dof\Bundle\MonsterBundle\DofMonsterBundle(),
             new Dof\Bundle\QuestBundle\DofQuestBundle(),
+            new Dof\Bundle\TradingBundle\DofTradingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

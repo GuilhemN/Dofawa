@@ -51,11 +51,11 @@ class User extends BaseUser implements IdentifiableInterface, OwnableInterface, 
     private $characters;
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="preferences", type="json_array", nullable=true)
+     * @ORM\Column(name="trusted", type="boolean")
      */
-    private $preferences;
+    protected $trusted;
 
     /**
      * @var string
@@ -142,45 +142,42 @@ class User extends BaseUser implements IdentifiableInterface, OwnableInterface, 
     {
         return $this->characters;
     }
+    
+    /**
+     * Set trusted
+     *
+     * @param boolean $trusted
+     * @return User
+     */
+    public function setTrusted($trusted)
+    {
+        $this->trusted = $trusted;
+
+        return $this;
+    }
+
+    /**
+     * Get trusted
+     *
+     * @return boolean
+     */
+    public function getTrusted()
+    {
+        return $this->trusted;
+    }
+
+    /**
+     * Get trusted
+     *
+     * @return boolean
+     */
+    public function isTrusted()
+    {
+        return $this->trusted;
+    }
 
     public function __toString()
     {
         return $this->getUsername();
-    }
-
-    public function hasPreference($id)
-    {
-        return (bool) $this->preferences[$id];
-    }
-
-    public function addPreference($id, $value)
-    {
-        $this->preferences[$id] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Set preferences.
-     *
-     * @param array $preferences
-     *
-     * @return User
-     */
-    public function setPreferences(array $preferences)
-    {
-        $this->preferences = $preferences;
-
-        return $this;
-    }
-
-    /**
-     * Get preferences.
-     *
-     * @return array
-     */
-    public function getPreferences()
-    {
-        return $this->preferences;
     }
 }

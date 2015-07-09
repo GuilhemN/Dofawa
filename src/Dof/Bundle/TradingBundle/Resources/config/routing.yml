@@ -1,0 +1,3 @@
+dof_trading_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: DofTradingBundle:Default:index }

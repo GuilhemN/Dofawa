@@ -1,0 +1,4 @@
+services:
+#    dof_trading.example:
+#        class: Dof\Bundle\TradingBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

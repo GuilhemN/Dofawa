@@ -2,14 +2,16 @@
 
 namespace Dof\Bundle\UserBundle;
 
-use Doctrine\ORM\Mapping as ORM;
-use Dof\Bundle\UserBundle\Entity\User;
+use Doctrine\ORM\Mapping as ORM;;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Dof\Bundle\UserBundle\Entity\User
 
 trait OwnableTrait
 {
     /**
      * @var User
      *
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Dof\Bundle\UserBundle\Entity\User")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
@@ -18,6 +20,7 @@ trait OwnableTrait
     /**
      * @var User
      *
+     * @Gedmo\Blameable(on="update")
      * @ORM\ManyToOne(targetEntity="Dof\Bundle\UserBundle\Entity\User")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
@@ -26,6 +29,7 @@ trait OwnableTrait
     /**
      * @var User
      *
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Dof\Bundle\UserBundle\Entity\User")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */

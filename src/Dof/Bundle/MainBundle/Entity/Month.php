@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\SluggableTrait;
-use XN\L10n\LocalizedNameInterface;
 use XN\L10n\LocalizedNameTrait;
 
 /**
@@ -15,7 +14,7 @@ use XN\L10n\LocalizedNameTrait;
  * @ORM\Table(name="dof_months")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MainBundle\Entity\MonthRepository")
  */
-class Month implements IdentifiableInterface, LocalizedNameInterface
+class Month implements IdentifiableInterface
 {
     use SluggableTrait, LocalizedNameTrait;
 
