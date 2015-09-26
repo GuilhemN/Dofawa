@@ -43,9 +43,5 @@ dof_login:
     defaults: { _controller: DofUserBundle:Login:login }
     methods: [ POST ]
 
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /doc
-
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
