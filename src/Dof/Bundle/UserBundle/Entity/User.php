@@ -53,9 +53,9 @@ class User extends BaseUser implements IdentifiableInterface, OwnableInterface, 
     /**
      * @var int
      *
-     * @ORM\Column(name="weight", type="integer", nullable=true)
+     * @ORM\Column(name="weight", type="integer")
      */
-    protected $weight;
+    protected $weight = 1;
 
     /**
      * @var string

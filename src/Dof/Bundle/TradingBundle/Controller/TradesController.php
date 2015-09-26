@@ -51,8 +51,10 @@ class TradesController extends FOSRestController
             ->checkSubmissionSpace($this->getUser(), $item, $server);
 
         if($canSubmit) {
+            $price = $params['price'];
+
             $trade = new Trade();
-            $trade->setPrice($params['price']);
+            $trade->setPrice($price > 1000 ? round($price, -3) : round($price, -1););
             $trade->setItem($item);
             $trade->setServer($server);
 

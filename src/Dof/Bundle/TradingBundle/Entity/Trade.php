@@ -55,6 +55,13 @@ class Trade implements IdentifiableInterface
     protected $weight = 0;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="valid", type="boolean")
+     */
+    protected $valid = false;
+
+    /**
      * Get id.
      *
      * @return int
@@ -158,5 +165,37 @@ class Trade implements IdentifiableInterface
     public function getWeight()
     {
         return $this->weight;
+    }
+    /**
+     * Set valid
+     *
+     * @param boolean $valid
+     * @return Trade
+     */
+    public function setValid($valid)
+    {
+        $this->valid = $valid;
+
+        return $this;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean
+     */
+    public function getValid()
+    {
+        return $this->valid;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean
+     */
+    public function isValid()
+    {
+        return $this->valid;
     }
 }
