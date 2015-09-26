@@ -77,5 +77,6 @@ security:
             - ROLE_ALLOWED_TO_SWITCH
             - ROLE_HIDE_RIGHT_MENU
             - ROLE_TRADE_TRUSTED
+        
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN

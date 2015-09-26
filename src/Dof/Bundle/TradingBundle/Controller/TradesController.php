@@ -59,6 +59,10 @@ class TradesController extends FOSRestController
             $trade->setServer($server);
             $trade->setWeight($this->getUser()->getWeight());
 
+            if($this->get('security.authorization_checker')->isGranted('ROLE_TRADE_TRUSTED')) {
+                $trade->setValid(true);
+            }
+
             $em->persist($trade);
             $em->flush();
         }

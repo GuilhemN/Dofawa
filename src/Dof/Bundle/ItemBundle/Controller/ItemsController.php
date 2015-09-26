@@ -28,7 +28,7 @@ class ItemsController extends FOSRestController
      *  }
      * )
      *
-     * @Cache(maxage=3600, public=true)
+     * @Cache(maxage=900, public=true)
      */
     public function getItemsAction()
     {
