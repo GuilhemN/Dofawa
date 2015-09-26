@@ -57,7 +57,7 @@ class TradesController extends FOSRestController
             $trade->setPrice($price > 1000 ? round($price, -3) : round($price, -1));
             $trade->setItem($item);
             $trade->setServer($server);
-            $trade->setWeight($this->getUser()->getTrade());
+            $trade->setWeight($this->getUser()->getWeight());
 
             $em->persist($trade);
             $em->flush();
