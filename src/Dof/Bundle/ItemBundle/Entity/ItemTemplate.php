@@ -21,6 +21,7 @@ use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaTrait;
 use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaInterface;
 use Dof\Bundle\MonsterBundle\Entity\MonsterDrop;
 use Dof\Bundle\TradingBundle\Entity\Trade;
+use Dof\Bundle\MainBundle\Entity\Server;
 
 /**
  * ItemTemplate.
@@ -200,6 +201,11 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
      * @ORM\Column(name="slug", type="string", nullable=false, unique=true)
      */
     protected $slug;
+
+    /**
+     * @var Server
+     */
+    private $currentServer;
 
     public function __construct()
     {
@@ -812,6 +818,10 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
         return $this->trades;
     }
 
+    public function setCurrentServer(Server $server) {
+        $this->currentServer = $server;
+    }
+
     /**
      * @Groups({"trade"})
      */
@@ -823,6 +833,11 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
                 'createdAt' => Criteria::DESC
             ])
             ->setMaxResults(1);
+
+        if(null !== $this->currentServer) {
+            $criteria->andWhere(Criteria::expr()->eq("server", $server));
+        }
+        
         $tradesCollection = $this->getTrades()->matching($criteria);
         $trades = $tradesCollection->toArray();
         return empty($trades) ? null : $trades[0]->getPrice();

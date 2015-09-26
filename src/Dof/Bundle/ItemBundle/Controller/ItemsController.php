@@ -32,7 +32,21 @@ class ItemsController extends FOSRestController
      */
     public function getItemsAction()
     {
-        $items = $this->getRepository()->findOptions($this->getRequest()->query->all(), [], 15);
+        $options = $this->getRequest()->query->all();
+
+        $items = $this->getRepository()->findOptions($options, [], 15);
+
+        if (isset($options['server']) && !empty($options['server'])) {
+            $server = $this->getDoctrine()->getRepository('DofMainBundle:Server')
+                ->findBySlug($options['server']);
+            if ($server === null) {
+                throw $this->createNotFoundException('Server not found.');
+            }
+            foreach ($items as $item) {
+                $item->setCurrentServer($server);
+            }
+        }
+
         $context = new Context();
         $context->addGroups(['item', 'name', 'trade']);
 
