@@ -20,4 +20,9 @@ class GameType extends Enum
     {
         return $gameType >= 0 & $gameType <= 4;
     }
+
+    public static function getBasicModes()
+    {
+        return [self::REGULAR, self::HEROIC, self::EPIC];
+    }
 }

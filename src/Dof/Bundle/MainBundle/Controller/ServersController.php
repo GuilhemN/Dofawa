@@ -2,12 +2,12 @@
 
 namespace Dof\Bundle\MainBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Context\Context;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Dof\Bundle\MainBundle\GameType;
+use FOS\RestBundle\Context\Context;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class ServersController extends FOSRestController
 {
@@ -28,7 +28,7 @@ class ServersController extends FOSRestController
      */
     public function getServersAction()
     {
-        $items = $this->getRepository()->findBy(['visible' => true, 'gameType' => [GameType::REGULAR, GameType::HEROIC, GameType::EPIC]]);
+        $items = $this->getRepository()->findBy(['visible' => true, 'gameType' => GameType::getBasicModes()]);
         $context = new Context();
         $context->addGroups(['server', 'name']);
 

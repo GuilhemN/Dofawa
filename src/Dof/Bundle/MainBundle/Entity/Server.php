@@ -31,7 +31,7 @@ class Server implements IdentifiableInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="locale", type="string", length=2)
+     * @ORM\Column(name="locale", type="string", length=2, nullable=true)
      */
     private $locale;
 

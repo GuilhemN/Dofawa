@@ -3,6 +3,9 @@
 namespace Dof\Bundle\TradingBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Dof\Bundle\UserBundle\Entity\User;
+use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
+use Dof\Bundle\MainBundle\Entity\Server;
 
 /**
  * TradeRepository.
@@ -12,4 +15,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class TradeRepository extends EntityRepository
 {
+    const SPACE_BETWEEN_TWO = 300; // 5 minutes
+
+    public function checkSubmissionSpace(User $user = null, ItemTemplate $item, Server $server)
+    {
+        $query = $this
+            ->createQueryBuilder('t')
+            ->select('COUNT(t)')
+            ->andWhere('t.item = :item')
+            ->setParameter('item', $item)
+            ->andWhere('t.server = :server')
+            ->setParameter('server', $server)
+            ->andWhere('t.createdAt > :date')
+            ->setParameter('date', new \DateTime('-' . self::SPACE_BETWEEN_TWO.' second'));
+
+        if(null !== $user) {
+            $query
+                ->andWhere('t.owner = :owner')
+                ->setParameter('owner', $user);
+        }
+
+        return $query
+            ->orderBy('t.createdAt', 'DESC')
+            ->getQuery()
+            ->getSingleScalarResult() == 0;
+    }
 }
