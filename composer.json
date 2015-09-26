@@ -31,8 +31,7 @@
 		"stof/doctrine-extensions-bundle": "^1.1",
 
 		"friendsofsymfony/rest-bundle": "dev-master",
-		"willdurant/negotiation": "dev-master",
-
+		"willdurand/negotiation": "@dev",
 
 		"nelmio/cors-bundle": "~1.4",
 		"lexik/jwt-authentication-bundle": "~1.0",

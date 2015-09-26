@@ -11,7 +11,7 @@ use FOS\RestBundle\Request\ParamFetcher;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
-class TradingsController extends FOSRestController
+class TradesController extends FOSRestController
 {
     /**
      * Sets a price for a given item.
@@ -25,7 +25,7 @@ class TradingsController extends FOSRestController
      * @RequestParam(name="server", requirements="[a-zA-Z0-9\-]+", description="Item slug", strict=true)
      * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
      *
-     * @POST("/tradings")
+     * @POST("/trades")
      */
     public function postTradingsAction(ParamFetcher $paramFetcher)
     {
