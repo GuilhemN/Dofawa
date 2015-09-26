@@ -3,17 +3,21 @@
 namespace Dof\Bundle\TradingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use XN\Persistence\IdentifiableInterface;
+use XN\Metadata\TimestampableTrait;
+use Dof\Bundle\UserBundle\OwnableTrait;
+use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
 
 /**
- * Trade
+ * Trade.
  *
- * @ORM\Table()
+ * @ORM\Table(name="dof_trades")
  * @ORM\Entity(repositoryClass="Dof\Bundle\TradingBundle\Entity\TradeRepository")
  */
-class Trade
+class Trade implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -21,25 +25,32 @@ class Trade
      */
     private $id;
 
+    use OwnableTrait, TimestampableTrait;
+
     /**
-     * @var integer
+     * @ORM\ManyToOne(targetEntity="Dof\Bundle\ItemBundle\Entity\ItemTemplate")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $item;
+
+    /**
+     * @var int
      *
      * @ORM\Column(name="price", type="integer")
      */
-    private $price;
+    protected $price;
 
     /**
-     * @var boolean
+     * @var int
      *
-     * @ORM\Column(name="valid", type="boolean")
+     * @ORM\Column(name="weight", type="integer")
      */
-    private $valid;
-
+    protected $weight = 0;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -47,9 +58,34 @@ class Trade
     }
 
     /**
-     * Set price
+     * Set item.
      *
-     * @param integer $price
+     * @param ItemTemplate $item
+     *
+     * @return Trade
+     */
+    public function setItem(ItemTemplate $item)
+    {
+        $this->item = $item;
+
+        return $this;
+    }
+
+    /**
+     * Get item.
+     *
+     * @return ItemTemplate
+     */
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    /**
+     * Set price.
+     *
+     * @param int $price
+     *
      * @return Trade
      */
     public function setPrice($price)
@@ -60,9 +96,9 @@ class Trade
     }
 
     /**
-     * Get price
+     * Get price.
      *
-     * @return integer 
+     * @return int
      */
     public function getPrice()
     {
@@ -70,25 +106,26 @@ class Trade
     }
 
     /**
-     * Set valid
+     * Set weight.
      *
-     * @param boolean $valid
+     * @param bool $weight
+     *
      * @return Trade
      */
-    public function setValid($valid)
+    public function setWeight($weight)
     {
-        $this->valid = $valid;
+        $this->weight = $weight;
 
         return $this;
     }
 
     /**
-     * Get valid
+     * Get weight.
      *
-     * @return boolean 
+     * @return bool
      */
-    public function getValid()
+    public function getWeight()
     {
-        return $this->valid;
+        return $this->weight;
     }
 }

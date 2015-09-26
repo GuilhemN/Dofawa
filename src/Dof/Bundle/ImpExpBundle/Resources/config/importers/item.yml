@@ -8,34 +8,34 @@ services:
     # DofItemBundle:ItemSet
     dof_imp_exp.importer.item_sets:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Item\ItemSetImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: item_sets }
-            - { name: dof_imp_exp.importer, provides: beta_item_sets, requires: item_sets }
+            - { name: dof_imp_exp.importer, provides: item_sets, groups: "items" }
+            - { name: dof_imp_exp.importer, provides: beta_item_sets, groups: "items beta" }
 
     # DofItemBundle:ItemSetCombination, DofItemBundle:ItemSetEffect
     dof_imp_exp.importer.item_set_effects:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Item\ItemSetEffectImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: item_set_effects, requires: item_sets }
-            - { name: dof_imp_exp.importer, provides: beta_item_set_effects, requires: beta_item_sets }
+            - { name: dof_imp_exp.importer, provides: item_set_effects, requires: item_sets, groups: "items" }
+            - { name: dof_imp_exp.importer, provides: beta_item_set_effects, requires: beta_item_sets, groups: "items beta" }
 
     # DofItemBundle:ItemType
     dof_imp_exp.importer.item_types:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Item\ItemTypeImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: item_types }
-            - { name: dof_imp_exp.importer, provides: beta_item_types, requires: item_types }
+            - { name: dof_imp_exp.importer, provides: item_types, groups: "items" }
+            - { name: dof_imp_exp.importer, provides: beta_item_types, groups: "items beta" }
 
     # DofItemBundle:ItemTemplate and subclasses
     dof_imp_exp.importer.item_templates:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Item\ItemTemplateImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: item_templates, requires: 'item_sets item_types' }
-            - { name: dof_imp_exp.importer, provides: beta_item_templates, requires: 'item_templates beta_item_sets beta_item_types' }
+            - { name: dof_imp_exp.importer, provides: item_templates, requires: "item_sets item_types", groups: "items" }
+            - { name: dof_imp_exp.importer, provides: beta_item_templates, requires: 'beta_item_sets beta_item_types', groups: "items beta" }
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
@@ -43,45 +43,45 @@ services:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Item\ItemTemplateSkinImporter
         arguments: [ "http://exter-n.fr/dofus/its.json", "@doctrine.orm.entity_manager" ]
         tags:
-            - { name: dof_imp_exp.importer, provides: item_template_skins, requires: item_templates }
+            - { name: dof_imp_exp.importer, provides: item_template_skins, requires: item_templates, groups: "items" }
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
     dof_imp_exp.importer.item_effects:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Item\ItemEffectImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: item_template_effects, requires: "item_templates effect_templates" }
-            - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: "beta_item_templates beta_effect_templates" }
+            - { name: dof_imp_exp.importer, provides: item_template_effects, requires: "item_templates effect_templates", groups: "items" }
+            - { name: dof_imp_exp.importer, provides: beta_item_template_effects, requires: "beta_item_templates beta_effect_templates", groups: "items beta" }
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
     # DofItemBundle:ItemComponent
     dof_imp_exp.importer.item_components:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Item\ItemComponentImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: item_components, requires: item_templates }
-            - { name: dof_imp_exp.importer, provides: beta_item_components, requires: beta_item_templates }
+            - { name: dof_imp_exp.importer, provides: item_components, requires: item_templates, groups: "items" }
+            - { name: dof_imp_exp.importer, provides: beta_item_components, requires: beta_item_templates, groups: "items beta" }
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
     # DofItemBundle:PetTemplate and subclasses
     dof_imp_exp.importer.pet_food:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Item\PetFoodImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: pet_food, requires: item_templates }
-            - { name: dof_imp_exp.importer, provides: beta_pet_food, requires: beta_item_templates }
+            - { name: dof_imp_exp.importer, provides: pet_food, requires: item_templates, groups: "items" }
+            - { name: dof_imp_exp.importer, provides: beta_pet_food, requires: beta_item_templates, groups: "items beta" }
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 
     # DofItemBundle:MountTemplate
     dof_imp_exp.importer.mount_looks:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Item\MountLookImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: mount_looks, requires: item_templates }
-            - { name: dof_imp_exp.importer, provides: beta_mount_looks, requires: beta_item_templates }
+            - { name: dof_imp_exp.importer, provides: mount_looks, requires: item_templates, groups: "items" }
+            - { name: dof_imp_exp.importer, provides: beta_mount_looks, requires: beta_item_templates, groups: "items beta" }
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]

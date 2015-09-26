@@ -26,6 +26,7 @@ class ImportManager
 
         return $this;
     }
+
     public function getWithRequirements()
     {
         return $this->withRequirements;
@@ -48,12 +49,13 @@ class ImportManager
 
         return $this;
     }
+
     public function getFork()
     {
         return $this->fork;
     }
 
-    public function registerDataSet($dataSet, ImporterInterface $importer, array $requirements)
+    public function registerDataSet($dataSet, ImporterInterface $importer, array $requirements, array $groups)
     {
         if (isset($this->importers[$dataSet])) {
             throw new \Exception('Importer for data set "'.$dataSet.'" already registered');
@@ -62,6 +64,7 @@ class ImportManager
         $this->importers[$dataSet] = [
             'importer' => $importer,
             'requirements' => $requirements,
+            'groups' => $groups,
             'checking' => false,
             'imported' => false,
         ];
@@ -76,6 +79,7 @@ class ImportManager
 
         return $dataSets;
     }
+
     public function getDataSetImporter($dataSet)
     {
         if (!isset($this->importers[$dataSet])) {
@@ -84,6 +88,7 @@ class ImportManager
 
         return $this->importers[$dataSet]['importer'];
     }
+
     public function getDataSetRequirements($dataSet)
     {
         if (!isset($this->importers[$dataSet])) {
@@ -91,6 +96,15 @@ class ImportManager
         }
 
         return $this->importers[$dataSet]['requirements'];
+    }
+
+    public function getDataSetGroups($dataSet)
+    {
+        if (!isset($this->importers[$dataSet])) {
+            throw new \Exception('Unknown data set "'.$dataSet.'"');
+        }
+
+        return $this->importers[$dataSet]['groups'];
     }
 
     public function import($dataSet, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
@@ -128,6 +142,7 @@ class ImportManager
 
         return $this;
     }
+
     private function realImport($dataSet, $flags, OutputInterface $output = null, ProgressHelper $progress = null)
     {
         if (!isset($this->importers[$dataSet])) {
@@ -177,6 +192,20 @@ class ImportManager
             throw new \Exception('Unknown data set "'.$dataSet.'"');
         }
         $this->importers[$dataSet]['imported'] = true;
+
+        return $this;
+    }
+
+    public function markGroupAsImported($group)
+    {
+        foreach ($this->importers as $dataset => $options) {
+            foreach ($options['groups'] as $g) {
+                if ($g == $group) {
+                    $this->markAsImported($dataset);
+                    break;
+                }
+            }
+        }
 
         return $this;
     }

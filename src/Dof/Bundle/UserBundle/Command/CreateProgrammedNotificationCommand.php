@@ -33,7 +33,7 @@ class CreateProgrammedNotificationCommand extends ContainerAwareCommand
                 ->setClassId($pn->getClassId());
             $em->persist($n);
             $em->remove($pn);
-            $i++;
+            ++$i;
         }
         $em->flush();
 

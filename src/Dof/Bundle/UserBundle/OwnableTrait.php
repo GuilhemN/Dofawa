@@ -2,7 +2,7 @@
 
 namespace Dof\Bundle\UserBundle;
 
-use Doctrine\ORM\Mapping as ORM;;
+use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Dof\Bundle\UserBundle\Entity\User;
 

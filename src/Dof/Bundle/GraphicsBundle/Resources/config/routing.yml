@@ -1,17 +1,17 @@
 dof_graphics_pipette_process:
-    pattern:  /pipette
+    path:  /pipette
     defaults: { _controller: DofGraphicsBundle:Pipette:process }
-    requirements: { _method: POST }
-
+    methods: [ POST ]
+    
 dof_graphics_pipette:
-    pattern:  /pipette
+    path:  /pipette
     defaults: { _controller: DofGraphicsBundle:Pipette:index }
 
 dof_graphics_renderer_look:
-    pattern: /render/{look}/{focus}/{direction}/{width}_{height}-{padding}.png
+    path: /render/{look}/{focus}/{direction}/{width}_{height}-{padding}.png
     defaults: { _controller: DofGraphicsBundle:Renderer:look }
+    methods: [ GET ]
     requirements:
-        _method: GET
         look: '(?:[0-9a-f]{2})+'
         focus: '[0-9a-z]+'
         direction: '[0-7]'
@@ -21,28 +21,28 @@ dof_graphics_renderer_look:
     options: { i18n: false }
 
 dof_graphics_skins_add_from_pipette:
-    pattern: /skins/add-from-pipette
+    path: /skins/add-from-pipette
     defaults: { _controller: DofGraphicsBundle:Pipette:addToGallery }
-    requirements: { _method: POST }
+    methods: [ POST ]
 
 dof_graphics_skins_list:
-    pattern:  /skins/{page}
+    path:  /skins/{page}
     defaults: { _controller: DofGraphicsBundle:CharacterLook:list, page: 1 }
     requirements:
         page: \d+
 
 dof_graphics_skins_create:
-    pattern:  /skins/create
+    path:  /skins/create
     defaults: { _controller: DofGraphicsBundle:CharacterLook:create }
 
 dof_graphics_skins_edit:
-    pattern:  /skins/{slug}/edit
+    path:  /skins/{slug}/edit
     defaults: { _controller: DofGraphicsBundle:CharacterLook:edit }
     requirements:
         slug: '[0-9a-z-]+'
 
 dof_graphics_skins_embed:
-    pattern:  /skins/{slug}/embed/{theme}.{format}
+    path:  /skins/{slug}/embed/{theme}.{format}
     defaults: { _controller: DofGraphicsBundle:CharacterLookEmbed:dispatch, format: html, theme: flipcard }
     requirements:
         slug: '[0-9a-z-]+'
@@ -50,9 +50,9 @@ dof_graphics_skins_embed:
         format: html|js
 
 dof_graphics_skins_js:
-    pattern:  /skins/data.js
+    path:  /skins/data.js
     defaults: { _controller: DofGraphicsBundle:Js:characterLook }
 
 dof_graphics_skins_colors_js:
-    pattern:  /skins/colors.js
+    path:  /skins/colors.js
     defaults: { _controller: DofGraphicsBundle:Js:colorSlots }

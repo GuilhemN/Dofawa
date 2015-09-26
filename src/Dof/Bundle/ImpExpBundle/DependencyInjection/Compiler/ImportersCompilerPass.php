@@ -20,9 +20,10 @@ class ImportersCompilerPass implements CompilerPassInterface
         foreach ($taggedServices as $id => $tagAttributes) {
             foreach ($tagAttributes as $attributes) {
                 $definition->addMethodCall('registerDataSet', [
-                    $attributes['provides'],
-                    new Reference($id),
-                    isset($attributes['requires']) ? explode(' ', $attributes['requires']) : [],
+                    $attributes['provides'], // dataset
+                    new Reference($id), // data importer
+                    isset($attributes['requires']) ? explode(' ', $attributes['requires']) : [], // requirements
+                    isset($attributes['groups']) ? explode(' ', $attributes['groups']) : [], // groups
                 ]);
             }
         }

@@ -51,11 +51,11 @@ class User extends BaseUser implements IdentifiableInterface, OwnableInterface, 
     private $characters;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="trusted", type="boolean")
+     * @ORM\Column(name="weight", type="integer", nullable=true)
      */
-    protected $trusted;
+    protected $weight;
 
     /**
      * @var string
@@ -142,38 +142,29 @@ class User extends BaseUser implements IdentifiableInterface, OwnableInterface, 
     {
         return $this->characters;
     }
-    
+
     /**
-     * Set trusted
+     * Set weight.
      *
-     * @param boolean $trusted
+     * @param int $weight
+     *
      * @return User
      */
-    public function setTrusted($trusted)
+    public function setWeight($weight)
     {
-        $this->trusted = $trusted;
+        $this->weight = $weight;
 
         return $this;
     }
 
     /**
-     * Get trusted
+     * Get weight.
      *
-     * @return boolean
+     * @return int
      */
-    public function getTrusted()
+    public function getWeight()
     {
-        return $this->trusted;
-    }
-
-    /**
-     * Get trusted
-     *
-     * @return boolean
-     */
-    public function isTrusted()
-    {
-        return $this->trusted;
+        return $this->weight;
     }
 
     public function __toString()

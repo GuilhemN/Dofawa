@@ -23,7 +23,7 @@ class RegistrationListener implements EventSubscriberInterface
         $this->di = $di;
     }
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function getSubscribedEvents()
     {

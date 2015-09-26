@@ -9,12 +9,6 @@
       "SymfonyStandard": "app/"
     }
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/Ener-Getick/FOSRestBundle"
-    }
-  ],
   "require": {
     "php": ">=5.3.3",
     "symfony/symfony": "~2.7",
@@ -35,7 +29,7 @@
     "liip/imagine-bundle": "dev-master",
     "guzzlehttp/guzzle": "~5.2",
     "stof/doctrine-extensions-bundle": "^1.1",
-    "friendsofsymfony/rest-bundle": "^1.7",
+    "friendsofsymfony/rest-bundle": "dev-master",
     "nelmio/cors-bundle": "~1.4",
     "lexik/jwt-authentication-bundle": "~1.0",
     "nelmio/api-doc-bundle": "~2.9"

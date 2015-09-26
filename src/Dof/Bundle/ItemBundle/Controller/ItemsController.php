@@ -3,20 +3,17 @@
 namespace Dof\Bundle\ItemBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Context\Context;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
-use Symfony\Component\HttpFoundation\File\File;
-
 
 class ItemsController extends FOSRestController
 {
-    protected function getRepository() {
+    protected function getRepository()
+    {
         return $this->get('doctrine')->getRepository('DofItemBundle:ItemTemplate');
     }
 
@@ -31,7 +28,6 @@ class ItemsController extends FOSRestController
      *  }
      * )
      *
-     * @Get("/items")
      * @Cache(maxage=3600, public=true)
      */
     public function getItemsAction()
@@ -39,6 +35,7 @@ class ItemsController extends FOSRestController
         $items = $this->getRepository()->findOptions($this->getRequest()->query->all(), [], 15);
         $context = new Context();
         $context->addGroups(['item', 'name']);
+
         return $this->view($items)->setSerializationContext($context);
     }
 
@@ -58,6 +55,7 @@ class ItemsController extends FOSRestController
     {
         $context = new Context();
         $context->addGroups(['item', 'name', 'description', 'effects']);
+
         return $this->view($item)->setSerializationContext($context);
     }
 }

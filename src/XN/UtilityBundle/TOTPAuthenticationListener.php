@@ -117,7 +117,7 @@ class TOTPAuthenticationListener
         $j = 0;
         $binary = '';
 
-        for ($i = 0; $i < $l; $i++) {
+        for ($i = 0; $i < $l; ++$i) {
             $n = $n << 5;                // Move buffer left by 5 to make room
             $n = $n + self::$lut[$b32[$i]];    // Add value into buffer
             $j = $j + 5;                // Keep track of number of bits in buffer

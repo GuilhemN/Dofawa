@@ -9,5 +9,5 @@ dof_monster_show:
     defaults: { _controller: DofMonsterBundle:Monster:show }
 
 dof_monster_addskin:
-    pattern: /add-skin/{id}
+    path: /add-skin/{id}
     defaults: { _controller: DofMonsterBundle:Skins:addImage }

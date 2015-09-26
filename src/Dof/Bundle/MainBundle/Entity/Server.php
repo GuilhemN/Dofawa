@@ -11,7 +11,7 @@ use XN\L10n\LocalizedNameTrait;
 use XN\L10n\LocalizedDescriptionTrait;
 
 /**
- * Server
+ * Server.
  *
  * @ORM\Table("dof_servers")
  * @ORM\Entity(repositoryClass="Dof\Bundle\MainBundle\Entity\ServerRepository")
@@ -19,7 +19,7 @@ use XN\L10n\LocalizedDescriptionTrait;
 class Server implements IdentifiableInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -36,7 +36,7 @@ class Server implements IdentifiableInterface
     private $locale;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="gameType", type="integer")
      */
@@ -58,22 +58,22 @@ class Server implements IdentifiableInterface
      */
     protected $slug;
 
-
     /**
-     * Set id
+     * Set id.
      *
      * @return Server
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -81,9 +81,10 @@ class Server implements IdentifiableInterface
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
+     *
      * @return Server
      */
     public function setLocale($locale)
@@ -94,7 +95,7 @@ class Server implements IdentifiableInterface
     }
 
     /**
-     * Get locale
+     * Get locale.
      *
      * @return string
      */
@@ -104,9 +105,10 @@ class Server implements IdentifiableInterface
     }
 
     /**
-     * Set gameType
+     * Set gameType.
      *
-     * @param integer $gameType
+     * @param int $gameType
+     *
      * @return Server
      */
     public function setGameType($gameType)
@@ -117,9 +119,9 @@ class Server implements IdentifiableInterface
     }
 
     /**
-     * Get gameType
+     * Get gameType.
      *
-     * @return integer
+     * @return int
      */
     public function getGameType()
     {
@@ -127,9 +129,10 @@ class Server implements IdentifiableInterface
     }
 
     /**
-     * Set visible
+     * Set visible.
      *
-     * @param boolean $visible
+     * @param bool $visible
+     *
      * @return Server
      */
     public function setVisible($visible)
@@ -140,9 +143,9 @@ class Server implements IdentifiableInterface
     }
 
     /**
-     * Get visible
+     * Get visible.
      *
-     * @return boolean
+     * @return bool
      */
     public function getVisible()
     {

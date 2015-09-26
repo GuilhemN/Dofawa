@@ -78,22 +78,22 @@ class SeqgenClient implements IdentifierGeneratorInterface
         $r1 = substr($ac, 0, -5);
         while ($r4 > 100000) {
             $r4 -= 100000;
-            $r3++;
+            ++$r3;
         }
         while ($r3 > 100000) {
             $r3 -= 100000;
-            $r2++;
+            ++$r2;
         }
         while ($r2 > 100000) {
             $r2 -= 100000;
-            $r1++;
+            ++$r1;
         }
 
         $r = sprintf('%d%05d%05d%05d', $r1, $r2, $r3, $r4);
         $l = strlen($r);
         $i = 0;
         while ($r[$i] == '0' && $i < $l - 1) {
-            $i++;
+            ++$i;
         }
 
         return substr($r, $i);

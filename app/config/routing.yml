@@ -30,12 +30,18 @@ dof_items:
     type:     rest
     resource: Dof\Bundle\ItemBundle\Controller\ItemsController
 
+dof_tradings:
+    type:     rest
+    resource: Dof\Bundle\TradingBundle\Controller\TradingsController
+
 dof_servers:
     type:     rest
     resource: Dof\Bundle\MainBundle\Controller\ServersController
 
-login:
+dof_login:
     path: /login
+    defaults: { _controller: DofUserBundle:Login:login }
+    methods: [ POST ]
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"

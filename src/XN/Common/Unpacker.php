@@ -22,6 +22,7 @@ class Unpacker
     {
         return $this->readPacked('C', 1);
     }
+
     public function readByte()
     {
         return $this->readPacked('c', 1);
@@ -31,7 +32,7 @@ class Unpacker
     {
         $bytes = [];
         $this->re->skip($offset);
-        for ($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; ++$i) {
             $bytes[] = $this->readByte();
         }
 
@@ -42,6 +43,7 @@ class Unpacker
     {
         return $this->readPacked('N', 4);
     }
+
     public function readInt()
     {
         $ex = (PHP_INT_SIZE - 4) << 3;
@@ -53,6 +55,7 @@ class Unpacker
     {
         return $this->readPacked('n', 2);
     }
+
     public function readShort()
     {
         $ex = (PHP_INT_SIZE - 2) << 3;

@@ -8,7 +8,7 @@ class TOTPGenerator
     {
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
         $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; ++$i) {
             $randomString .= $characters[rand(0, strlen($characters) - 1)];
         }
 

@@ -25,8 +25,10 @@ class ItemTemplateRepository extends EntityRepository
             ->getSingleScalarResult();
     }
 
-    public function findOptions(array $options = array(), array $orders = array(), $limit = null, $offset = null) {
+    public function findOptions(array $options = array(), array $orders = array(), $limit = null, $offset = null)
+    {
         $qb = $this->findOptionsQuery($options, $orders);
+
         return $qb
             ->getQuery()
             ->setFirstResult($offset)
@@ -38,6 +40,7 @@ class ItemTemplateRepository extends EntityRepository
     {
         $qb = $this->findOptionsQuery($options);
         $qb->select(['COUNT(i)']);
+
         return $qb
             ->getQuery()
             ->getSingleScalarResult();
@@ -65,6 +68,7 @@ class ItemTemplateRepository extends EntityRepository
         foreach ($orders as $column => $order) {
             $qb->addOrderBy('i.'.$column, $order);
         }
+
         return $qb;
     }
 }

@@ -5,11 +5,9 @@ namespace Dof\Bundle\ItemBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\Groups;
-use XN\Common\UrlSafeBase64;
 use XN\Rest\ExportableInterface;
 use XN\Rest\ImportableTrait;
 use XN\Persistence\IdentifiableInterface;
@@ -21,6 +19,7 @@ use Dof\Bundle\ItemBundle\ReleaseBoundTrait;
 use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaTrait;
 use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaInterface;
 use Dof\Bundle\MonsterBundle\Entity\MonsterDrop;
+use Dof\Bundle\TradingBundle\Entity\Trade;
 
 /**
  * ItemTemplate.
@@ -185,6 +184,12 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
      * @ORM\OneToMany(targetEntity="Dof\Bundle\MonsterBundle\Entity\MonsterDrop", mappedBy="object")
      */
     private $drops;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Dof\Bundle\TradingBundle\Entity\Trade", mappedBy="item")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $trades;
 
     /**
      * @var string
@@ -767,6 +772,43 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
     public function getDrops()
     {
         return $this->drops;
+    }
+    /**
+     * Add trades.
+     *
+     * @param Trade $trades
+     *
+     * @return ItemTemplate
+     */
+    public function addTrade(Trade $trades)
+    {
+        $this->trades[] = $trades;
+
+        return $this;
+    }
+
+    /**
+     * Remove trades.
+     *
+     * @param Trade $trades
+     *
+     * @return ItemTemplate
+     */
+    public function removeTrade(Trade $trades)
+    {
+        $this->trades->removeElement($trades);
+
+        return $this;
+    }
+
+    /**
+     * Get trades.
+     *
+     * @return Collection
+     */
+    public function getTrades()
+    {
+        return $this->trades;
     }
 
     public function __toString()

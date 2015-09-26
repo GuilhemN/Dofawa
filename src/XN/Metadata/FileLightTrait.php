@@ -40,7 +40,7 @@ trait FileLightTrait
     public function setFile(File $file = null)
     {
         $this->file = $file;
-        $this->uploadIndex++;
+        ++$this->uploadIndex;
     }
 
     /**

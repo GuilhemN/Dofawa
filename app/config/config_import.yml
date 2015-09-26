@@ -1,0 +1,6 @@
+imports:
+    - { resource: config.yml }
+
+parameters:
+    current_release_database: dofawa2
+    beta_release_database: dofawa3

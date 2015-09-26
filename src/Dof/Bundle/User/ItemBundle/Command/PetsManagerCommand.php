@@ -34,7 +34,7 @@ class PetsManagerCommand extends ContainerAwareCommand
                 ->setEntity($pet);
             $em->persist($notification);
 
-            $notifs++;
+            ++$notifs;
         }
         $em->flush();
 

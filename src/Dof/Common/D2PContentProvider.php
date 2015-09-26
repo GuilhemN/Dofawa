@@ -39,7 +39,7 @@ class D2PContentProvider
             $fs = fopen($path, 'r');
             $path = null;
             $this->fs[] = $fs;
-            $idx++;
+            ++$idx;
 
             $buf = fread($fs, 2);
             if (strlen($buf) < 2) {

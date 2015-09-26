@@ -6,8 +6,6 @@ imports:
 
 parameters:
   locales: [fr, en, de, it, es, pt, ru, ja]
-  current_release_database: dofawa2
-  beta_release_database: dofawa3
   wit_private_key: "DQCNE665II22LYW3SA7TTZ7GWR7NXLBI"
 
 framework:

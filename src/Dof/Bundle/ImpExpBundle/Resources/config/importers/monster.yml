@@ -2,72 +2,72 @@ services:
     # DofMonsterBundle:Dungeon
     dof_imp_exp.importer.dungeons:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\DungeonImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: dungeons, requires: map_positions }
-            - { name: dof_imp_exp.importer, provides: beta_dungeons, requires: "dungeons beta_map_positions" }
+            - { name: dof_imp_exp.importer, provides: dungeons, requires: map_positions, groups: "monsters" }
+            - { name: dof_imp_exp.importer, provides: beta_dungeons, requires: beta_map_positions, groups: "monsters beta" }
 
     dof_imp_exp.importer.monster_dungeons:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterDungeonImporter
-        arguments: [ "@doctrine.orm.entity_manager" ]
+        arguments: [ @doctrine.orm.entity_manager ]
         tags:
-            - { name: dof_imp_exp.importer, provides: monster_dungeons, requires: "beta_monsters beta_dungeons" }
+            - { name: dof_imp_exp.importer, provides: monster_dungeons, requires: "monsters beta_dungeons", groups: "monsters" }
 
     # DofMonsterBundle:Monster
     dof_imp_exp.importer.monster_super_races:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterSuperRaceImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: monster_super_races }
-            - { name: dof_imp_exp.importer, provides: beta_monster_super_races }
+            - { name: dof_imp_exp.importer, provides: monster_super_races, groups: "monsters" }
+            - { name: dof_imp_exp.importer, provides: beta_monster_super_races, groups: "monsters beta" }
 
     dof_imp_exp.importer.monster_races:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterRaceImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: monster_races, requires: monster_super_races }
-            - { name: dof_imp_exp.importer, provides: beta_monster_races, requires: "monster_races beta_monster_super_races" }
+            - { name: dof_imp_exp.importer, provides: monster_races, requires: monster_super_races, groups: "monsters" }
+            - { name: dof_imp_exp.importer, provides: beta_monster_races, requires: beta_monster_super_races, groups: "monsters beta" }
 
     dof_imp_exp.importer.monsters:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: monsters, requires: monster_races }
-            - { name: dof_imp_exp.importer, provides: beta_monsters, requires: "monsters beta_monster_races" }
+            - { name: dof_imp_exp.importer, provides: monsters, requires: monster_races, groups: "monsters" }
+            - { name: dof_imp_exp.importer, provides: beta_monsters, requires: beta_monster_races, groups: "monsters beta" }
 
     dof_imp_exp.importer.arch_monsters:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\ArchMonsterImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: arch_monsters, requires: monsters }
-            - { name: dof_imp_exp.importer, provides: beta_arch_monsters, requires: beta_monsters }
+            - { name: dof_imp_exp.importer, provides: arch_monsters, requires: monsters, groups: "monsters" }
+            - { name: dof_imp_exp.importer, provides: beta_arch_monsters, requires: beta_monsters, groups: "monsters beta" }
 
     dof_imp_exp.importer.monster_grades:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterGradeImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: monster_grades, requires: monsters }
-            - { name: dof_imp_exp.importer, provides: beta_monster_grades, requires: beta_monsters }
+            - { name: dof_imp_exp.importer, provides: monster_grades, requires: monsters, groups: "monsters" }
+            - { name: dof_imp_exp.importer, provides: beta_monster_grades, requires: beta_monsters, groups: "monsters beta" }
 
     dof_imp_exp.importer.monster_drops:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterDropImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: monster_drops, requires: "monsters item_templates" }
-            - { name: dof_imp_exp.importer, provides: beta_monster_drops, requires: "beta_monsters beta_item_templates" }
+            - { name: dof_imp_exp.importer, provides: monster_drops, requires: "monsters item_templates", groups: "monsters" }
+            - { name: dof_imp_exp.importer, provides: beta_monster_drops, requires: "beta_monsters beta_item_templates", groups: "monsters beta" }
         calls:
             - [ setLoader, [ "@dof_items.criteria_loader" ] ]
 
     dof_imp_exp.importer.monster_spells:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterSpellImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: monster_spells, requires: "monsters spells" }
-            - { name: dof_imp_exp.importer, provides: beta_monster_spells, requires: "beta_monsters beta_spells" }
+            - { name: dof_imp_exp.importer, provides: monster_spells, requires: "monsters spells", groups: "monsters" }
+            - { name: dof_imp_exp.importer, provides: beta_monster_spells, requires: "beta_monsters beta_spells", groups: "monsters beta" }
 
     dof_imp_exp.importer.monster_sub_areas:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterSubAreaImporter
-        arguments: [ "@importer_dependencies" ]
+        parent: dof_imp_exp.importer.game_importer
         tags:
-            - { name: dof_imp_exp.importer, provides: monster_sub_areas, requires: "monsters map_sub_areas" }
-            - { name: dof_imp_exp.importer, provides: beta_monster_sub_areas, requires: "beta_monsters beta_map_sub_areas" }
+            - { name: dof_imp_exp.importer, provides: monster_sub_areas, requires: "monsters map_sub_areas", groups: "monsters" }
+            - { name: dof_imp_exp.importer, provides: beta_monster_sub_areas, requires: "beta_monsters beta_map_sub_areas", groups: "monsters beta" }

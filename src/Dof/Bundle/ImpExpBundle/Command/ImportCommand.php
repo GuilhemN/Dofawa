@@ -17,6 +17,8 @@ class ImportCommand extends ContainerAwareCommand
             ->setName('dof:imp-exp:import')
             ->setDescription('Imports data from outer sources')
             ->addOption('skip', 'k', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Skip data sets (assume they were already imported)')
+            ->addOption('group', 'g', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter by groups')
+            ->addOption('exclude-group', 'x', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Filter by groups')
             ->addOption('all', 'a', InputOption::VALUE_NONE, 'Import all registered data sets')
             ->addOption('only', 'o', InputOption::VALUE_NONE, 'Import only the specified data sets (don\'t manage requirements)')
             ->addOption('dry-run', 'd', InputOption::VALUE_NONE, 'Perform a dry run (tell importers not to write data)')
@@ -34,11 +36,25 @@ class ImportCommand extends ContainerAwareCommand
         foreach ($input->getOption('skip') as $skip) {
             $impMgr->markAsImported($skip);
         }
+        foreach ($input->getOption('exclude-group') as $group) {
+            $impMgr->markGroupAsImported($group);
+        }
         $flags = 0;
         if ($input->getOption('dry-run')) {
             $flags |= ImporterFlags::DRY_RUN;
         }
         $dataSets = $input->getOption('all') ? $impMgr->getDataSets() : $input->getArgument('data-sets');
+        $groups = $input->getOption('group');
+        if (!empty($groups)) {
+            $dataSets = array_filter($dataSets, function ($val) use ($impMgr, $groups) {
+                foreach ($impMgr->getDataSetGroups($val) as $group) {
+                    if (in_array($group, $groups)) {
+                        return true;
+                    }
+                }
+            });
+        }
+
         if ($output->getVerbosity() <= OutputInterface::VERBOSITY_QUIET) {
             $output = null;
             $progress = null;

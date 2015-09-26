@@ -10,7 +10,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use XN\Metadata\SluggableTrait;
-use XN\Metadata\OwnableInterface;
 use Dof\Bundle\UserBundle\OwnableTrait;
 use XN\DependencyInjection\RequireSecurityContextInterface;
 use XN\DependencyInjection\RequireSecurityContextTrait;
@@ -24,7 +23,7 @@ use Dof\Bundle\CharacterBundle\Entity\Breed;
  * @ORM\Table(name="dof_build_playercharacter")
  * @ORM\Entity(repositoryClass="Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacterRepository")
  */
-class PlayerCharacter implements IdentifiableInterface, OwnableInterface, RequireSecurityContextInterface
+class PlayerCharacter implements IdentifiableInterface, RequireSecurityContextInterface
 {
     use TimestampableTrait, SluggableTrait, OwnableTrait, RequireSecurityContextTrait;
 

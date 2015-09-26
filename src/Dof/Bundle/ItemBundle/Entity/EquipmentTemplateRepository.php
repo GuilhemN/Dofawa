@@ -23,7 +23,7 @@ class EquipmentTemplateRepository extends ItemTemplateRepository
         $i = 0;
         // Ajout des critères à la requête
         foreach ($criteria as $k => $v) {
-            $i++;
+            ++$i;
             $qb
                 ->andWhere('i.'.$k.' LIKE :filterWord'.$i)
                 ->setParameter('filterWord'.$i, $v)

@@ -70,7 +70,7 @@ class BuildManager extends ServiceWithContainer
 
                 // Panos et nombres d'items associés dans le stuff
                 if ($item->getItemTemplate()->getSet() !== null) {
-                    $sets[$item->getItemTemplate()->getSet()->getId()]++;
+                    ++$sets[$item->getItemTemplate()->getSet()->getId()];
                 }
             }
         }

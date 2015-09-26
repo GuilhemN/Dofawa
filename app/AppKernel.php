@@ -43,7 +43,6 @@ class AppKernel extends Kernel
             new Dof\Bundle\MapBundle\DofMapBundle(),
             new Dof\Bundle\GraphicsBundle\DofGraphicsBundle(),
             new Dof\Bundle\CharacterBundle\DofCharacterBundle(),
-            new Dof\Bundle\ImpExpBundle\DofImpExpBundle(),
             new Dof\Bundle\User\CharacterBundle\DofUserCharacterBundle(),
             new Dof\Bundle\User\ItemBundle\DofUserItemBundle(),
             new Dof\Bundle\MonsterBundle\DofMonsterBundle(),
@@ -56,6 +55,10 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Dof\Bundle\GeneratorBundle\DofGeneratorBundle();
+        }
+
+        if($this->getEnvironment() == 'import') {
+            $bundles[] = new Dof\Bundle\ImpExpBundle\DofImpExpBundle();            
         }
 
         return $bundles;

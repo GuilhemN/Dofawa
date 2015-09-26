@@ -2,29 +2,27 @@
 dof_user_character_remove:
     path: /remove/character
     defaults: { _controller: DofUserCharacterBundle:Character:remove }
-    requirements:
-        _method: POST
+    methods: [ POST ]
 
 dof_user_character_stuff_remove:
     path:     /remove/stuff
     defaults: { _controller: DofUserCharacterBundle:Build:remove }
-    requirements:
-        _method: POST
+    methods: [ POST ]
 
 # CREATE
 dof_user_character_create:
     path: /create/character/{slug}
     defaults: { _controller: DofUserCharacterBundle:Character:create }
+    methods: [ POST ]
     requirements:
         slug: '[0-9a-z-]+'
-        _method: POST
 
 dof_user_character_stuff_create:
     path:     /create/stuff
     defaults: { _controller: DofUserCharacterBundle:Build:createStuff}
+    methods: [ POST ]
     requirements:
         slug: '[0-9a-z-]+'
-        _method: POST
 
 # SHOW PAGE
 dof_user_character_homepage:
@@ -80,8 +78,7 @@ dof_user_character_edit:
 dof_user_character_additem_post:
     path:     /add-items/
     defaults: { _controller: DofUserCharacterBundle:Stuff:addItems}
-    requirements:
-        _method: POST
+    methods: [ POST ]
 
 dof_user_character_additem:
     path:     /{user}/{character}/stuffs/{stuff}/add/{type}/{slot}/{page}

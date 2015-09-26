@@ -2,8 +2,6 @@
 
 namespace Dof\Bundle\MainBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -11,10 +9,10 @@ use FOS\RestBundle\Context\Context;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Dof\Bundle\MainBundle\GameType;
 
-
 class ServersController extends FOSRestController
 {
-    protected function getRepository() {
+    protected function getRepository()
+    {
         return $this->get('doctrine')->getRepository('DofMainBundle:Server');
     }
 
@@ -30,9 +28,10 @@ class ServersController extends FOSRestController
      */
     public function getServersAction()
     {
-        $items = $this->getRepository()->findBy(['visible' => true, 'gameType' => [ GameType::REGULAR, GameType::HEROIC, GameType::EPIC ]]);
+        $items = $this->getRepository()->findBy(['visible' => true, 'gameType' => [GameType::REGULAR, GameType::HEROIC, GameType::EPIC]]);
         $context = new Context();
         $context->addGroups(['server', 'name']);
+
         return $this->view($items)->setSerializationContext($context);
     }
 }
