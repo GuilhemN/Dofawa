@@ -28,7 +28,7 @@ class ServersController extends FOSRestController
      */
     public function getServersAction()
     {
-        $items = $this->getRepository()->findBy(['visible' => true, 'gameType' => GameType::getBasicModes()]);
+        $items = $this->getRepository()->findBy(['visible' => true, 'gameType' => GameType::getBasicModes()], ['name' => 'ASC']);
         $context = new Context();
         $context->addGroups(['server', 'name']);
 
