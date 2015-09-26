@@ -824,7 +824,7 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
             ])
             ->setMaxResults(1);
         $trade = $this->getTrades()->matching($criteria);
-        return empty($trade) ? null : $trade[0]->getPrice();
+        return empty($trade->toArray()) ? null : $trade[0]->getPrice();
     }
 
     public function __toString()
