@@ -35,7 +35,7 @@ class ValidationCommand extends ContainerAwareCommand
             ->setParameter('date', new \DateTime('-' . self::MAX_AGE.' second'))
 
             ->groupBy('t.item', 't.server', 't.price')
-            ->andHaving('SUM(t.weight) > :MIN_WEIGHT')
+            ->andHaving('SUM(t.weight) >= :MIN_WEIGHT')
             ->setParameter('MIN_WEIGHT', self::MIN_WEIGHT)
 
             ->andHaving('COUNT(t.owner) >= :MIN_PARTICIPANTS')
@@ -55,7 +55,7 @@ class ValidationCommand extends ContainerAwareCommand
             foreach($trades as $trade) {
                 $trade->setValid(true);
                 $owner = $trade->getOwner();
-                $owner->setWeight($owner->getWeight + 1);
+                $owner->setWeight($owner->getWeight() + 1);
             }
 
             ++$rowsProcessed;
