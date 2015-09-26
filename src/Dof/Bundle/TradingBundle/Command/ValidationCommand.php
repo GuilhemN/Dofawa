@@ -39,7 +39,7 @@ class ValidationCommand extends ContainerAwareCommand
             ->andHaving('SUM(t.weight) >= :MIN_WEIGHT')
             ->setParameter('MIN_WEIGHT', self::MIN_WEIGHT)
 
-            ->andHaving('COUNT(t.owner) >= :MIN_PARTICIPANTS')
+            ->andHaving('COUNT(DISTINCT t.owner) >= :MIN_PARTICIPANTS')
             ->setParameter('MIN_PARTICIPANTS', self::MIN_PARTICIPANTS)
 
             ->getQuery()

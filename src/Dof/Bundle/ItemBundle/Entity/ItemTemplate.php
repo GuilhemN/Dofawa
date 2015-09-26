@@ -5,6 +5,7 @@ namespace Dof\Bundle\ItemBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -809,6 +810,21 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
     public function getTrades()
     {
         return $this->trades;
+    }
+
+    /**
+     * @Groups({"trade"})
+     */
+    public function getPrice()
+    {
+        $criteria = Criteria::create()
+            ->where(Criteria::expr()->eq("valid", true))
+            ->orderBy([
+                'createdAt' => Criteria::DESC
+            ])
+            ->setMaxResults(1);
+        $trade = $this->getTrades()->matching($criteria);
+        return empty($trade) ? null : $trade[0]->getPrice();
     }
 
     public function __toString()
