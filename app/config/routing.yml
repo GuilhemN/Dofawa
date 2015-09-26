@@ -30,9 +30,9 @@ dof_items:
     type:     rest
     resource: Dof\Bundle\ItemBundle\Controller\ItemsController
 
-dof_tradings:
+dof_trades:
     type:     rest
-    resource: Dof\Bundle\TradingBundle\Controller\TradingsController
+    resource: Dof\Bundle\TradingBundle\Controller\TradesController
 
 dof_servers:
     type:     rest
