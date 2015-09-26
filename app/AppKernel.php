@@ -29,7 +29,6 @@ class AppKernel extends Kernel
 
             // Api
             new FOS\RestBundle\FOSRestBundle(),
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
 
             new Liip\ImagineBundle\LiipImagineBundle(),
@@ -55,10 +54,12 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Dof\Bundle\GeneratorBundle\DofGeneratorBundle();
+
+            $bundles[] = new Nelmio\ApiDocBundle\NelmioApiDocBundle();
         }
 
         if($this->getEnvironment() == 'import') {
-            $bundles[] = new Dof\Bundle\ImpExpBundle\DofImpExpBundle();            
+            $bundles[] = new Dof\Bundle\ImpExpBundle\DofImpExpBundle();
         }
 
         return $bundles;

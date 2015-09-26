@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Dof\Bundle\TradingBundle\Entity\Trade;
 
-class TradingController extends FOSRestController
+class TradingsController extends FOSRestController
 {
     /**
      * Sets a price for a given item.
