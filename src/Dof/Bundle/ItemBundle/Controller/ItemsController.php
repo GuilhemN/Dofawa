@@ -38,7 +38,7 @@ class ItemsController extends FOSRestController
 
         if (isset($options['server']) && !empty($options['server'])) {
             $server = $this->getDoctrine()->getRepository('DofMainBundle:Server')
-                ->findBySlug($options['server']);
+                ->findOneBySlug($options['server']);
             if ($server === null) {
                 throw $this->createNotFoundException('Server not found.');
             }
