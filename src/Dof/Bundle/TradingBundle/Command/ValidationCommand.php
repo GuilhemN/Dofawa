@@ -31,6 +31,7 @@ class ValidationCommand extends ContainerAwareCommand
             ->select('t')
             ->from('DofTradingBundle:Trade', 't')
 
+            ->andWhere('t.valid != 1')
             ->andWhere('t.createdAt > :date')
             ->setParameter('date', new \DateTime('-' . self::MAX_AGE.' second'))
 
