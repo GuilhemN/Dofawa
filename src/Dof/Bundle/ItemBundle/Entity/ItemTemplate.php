@@ -835,9 +835,9 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
             ->setMaxResults(1);
 
         if(null !== $this->currentServer) {
-            $criteria->andWhere(Criteria::expr()->eq("server", $server));
+            $criteria->andWhere(Criteria::expr()->eq("server", $this->currentServer));
         }
-        
+
         $tradesCollection = $this->getTrades()->matching($criteria);
         $trades = $tradesCollection->toArray();
         return empty($trades) ? null : $trades[0]->getPrice();
