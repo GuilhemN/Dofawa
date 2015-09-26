@@ -7,6 +7,7 @@ use XN\Persistence\IdentifiableInterface;
 use XN\Metadata\TimestampableTrait;
 use Dof\Bundle\UserBundle\OwnableTrait;
 use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
+use Dof\Bundle\MainBundle\Entity\Server;
 
 /**
  * Trade.
@@ -32,6 +33,12 @@ class Trade implements IdentifiableInterface
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $item;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Dof\Bundle\MainBundle\Entity\Server")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $server;
 
     /**
      * @var int
@@ -79,6 +86,30 @@ class Trade implements IdentifiableInterface
     public function getItem()
     {
         return $this->item;
+    }
+
+    /**
+     * Set server.
+     *
+     * @param Server $server
+     *
+     * @return Trade
+     */
+    public function setServer(Server $server)
+    {
+        $this->server = $server;
+
+        return $this;
+    }
+
+    /**
+     * Get server.
+     *
+     * @return Server
+     */
+    public function getServer()
+    {
+        return $this->server;
     }
 
     /**
