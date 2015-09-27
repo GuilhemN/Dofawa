@@ -200,12 +200,4 @@ class Trade implements IdentifiableInterface
     {
         return $this->valid;
     }
-
-    /**
-     * @Groups({"price"})
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
 }

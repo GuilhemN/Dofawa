@@ -66,4 +66,20 @@ trait TimestampableTrait
 
         return $this;
     }
+
+    public function getCreated()
+    {
+        if($this->created === null) {
+            return;
+        }
+        return $this->created->format(\DateTime::W3C);
+    }
+
+    public function getUpdated()
+    {
+        if($this->updated === null) {
+            return;
+        }
+        return $this->updated->format(\DateTime::W3C);
+    }
 }
