@@ -8,6 +8,7 @@ use XN\Metadata\TimestampableTrait;
 use Dof\Bundle\UserBundle\OwnableTrait;
 use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
 use Dof\Bundle\MainBundle\Entity\Server;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Trade.
@@ -44,6 +45,7 @@ class Trade implements IdentifiableInterface
      * @var int
      *
      * @ORM\Column(name="price", type="integer")
+     * @Groups({"price"})
      */
     protected $price;
 
@@ -197,5 +199,13 @@ class Trade implements IdentifiableInterface
     public function isValid()
     {
         return $this->valid;
+    }
+
+    /**
+     * @Groups({"price"})
+     */
+    public function getCreatedAt()
+    {
+        return parent::getCreatedAt();
     }
 }

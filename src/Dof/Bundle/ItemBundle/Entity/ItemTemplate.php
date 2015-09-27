@@ -823,7 +823,7 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
     }
 
     /**
-     * @Groups({"trade"})
+     * @Groups({"price"})
      */
     public function getPrice()
     {
@@ -840,7 +840,7 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
 
         $tradesCollection = $this->getTrades()->matching($criteria);
         $trades = $tradesCollection->toArray();
-        return empty($trades) ? null : $trades[0]->getPrice();
+        return empty($trades) ? null : $trades[0];
     }
 
     public function __toString()

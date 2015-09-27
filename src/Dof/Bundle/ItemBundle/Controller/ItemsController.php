@@ -48,7 +48,7 @@ class ItemsController extends FOSRestController
         }
 
         $context = new Context();
-        $context->addGroups(['item', 'name', 'trade']);
+        $context->addGroups(['item', 'name', 'price']);
 
         return $this->view($items)->setSerializationContext($context);
     }
