@@ -3,6 +3,7 @@
 namespace Dof\Bundle\UserBundle\Controller;
 
 use Dof\Bundle\UserBundle\Entity\User;
+use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Request\ParamFetcher;
