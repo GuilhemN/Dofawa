@@ -1,0 +1,8 @@
+Dof\Bundle\UserBundle\Entity\User:
+    attributes:
+        username:
+            groups: ['user']
+        slug:
+            groups: ['user']
+        created:
+            groups: ['user']

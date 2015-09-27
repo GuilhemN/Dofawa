@@ -26,6 +26,10 @@ dof_main:
     resource: "@DofMainBundle/Resources/config/routing.yml"
     prefix:   /
 
+dof_users:
+    type:     rest
+    resource: Dof\Bundle\UserBundle\Controller\UsersController
+
 dof_items:
     type:     rest
     resource: Dof\Bundle\ItemBundle\Controller\ItemsController
@@ -41,6 +45,11 @@ dof_servers:
 dof_login:
     path: /login
     defaults: { _controller: DofUserBundle:Login:login }
+    methods: [ POST ]
+
+app_registration:
+    path: /register
+    defaults: { _controller: DofUserBundle:Registration:register }
     methods: [ POST ]
 
 _liip_imagine:
