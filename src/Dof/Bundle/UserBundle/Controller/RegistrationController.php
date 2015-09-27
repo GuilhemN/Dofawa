@@ -34,7 +34,15 @@ class RegistrationController extends FOSRestController
 
         $errors = $this->get('validator')->validate($user, null, ['Registration']);
         if (count($errors) > 0) {
-            throw new BadRequestHttpException((string) $errors);
+            $readableErrors = [];
+            foreach ($errors as $error) {
+                $property = $error->getPropertyPath();
+                if (!isset($readableErrors[$property])) {
+                    $readableErrors[$property] = [];
+                }
+                $readableErrors[$property][] = $error->getMessage();
+            }
+            return $this->view($readableErrors, 400);
         }
 
         $manager->updateUser($user, true); // Update and flush the user
@@ -42,6 +50,7 @@ class RegistrationController extends FOSRestController
 
         $context = new Context();
         $context->addGroups(['user']);
+
         return $this->view($user)->setSerializationContext($context);
     }
 }
