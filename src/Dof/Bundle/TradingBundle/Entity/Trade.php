@@ -206,6 +206,6 @@ class Trade implements IdentifiableInterface
      */
     public function getCreatedAt()
     {
-        return parent::getCreatedAt();
+        return $this->createdAt;
     }
 }
