@@ -45,7 +45,6 @@ class Trade implements IdentifiableInterface
      * @var int
      *
      * @ORM\Column(name="price", type="integer")
-     * @Groups({"price"})
      */
     protected $price;
 

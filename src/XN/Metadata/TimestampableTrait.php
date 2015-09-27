@@ -69,17 +69,17 @@ trait TimestampableTrait
 
     public function getCreated()
     {
-        if($this->created === null) {
+        if($this->createdAt === null) {
             return;
         }
-        return $this->created->format(\DateTime::W3C);
+        return $this->createdAt->format(\DateTime::W3C);
     }
 
     public function getUpdated()
     {
-        if($this->updated === null) {
+        if($this->updatedAt === null) {
             return;
         }
-        return $this->updated->format(\DateTime::W3C);
+        return $this->updatedAt->format(\DateTime::W3C);
     }
 }
