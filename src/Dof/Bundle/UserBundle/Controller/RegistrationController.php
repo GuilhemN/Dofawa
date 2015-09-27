@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class RegistrationController extends FOSRestController
@@ -42,15 +43,11 @@ class RegistrationController extends FOSRestController
                 }
                 $readableErrors[$property][] = $error->getMessage();
             }
-            return $this->view($readableErrors, 400);
+            return new Response($this->get('serializer')->serialize($readableErrors, 'json'), 400);
         }
 
         $manager->updateUser($user, true); // Update and flush the user
 
-
-        $context = new Context();
-        $context->addGroups(['user']);
-
-        return $this->view($user)->setSerializationContext($context);
+        return new Response($this->get('serializer')->serialize($readableErrors, 'json', ['groups' => ['user']]));
     }
 }

@@ -47,7 +47,7 @@ dof_login:
     defaults: { _controller: DofUserBundle:Login:login }
     methods: [ POST ]
 
-app_registration:
+dof_registration:
     path: /register
     defaults: { _controller: DofUserBundle:Registration:register }
     methods: [ POST ]
