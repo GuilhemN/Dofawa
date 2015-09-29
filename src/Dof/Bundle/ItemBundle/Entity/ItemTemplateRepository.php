@@ -68,11 +68,12 @@ class ItemTemplateRepository extends EntityRepository
             $sort = $options['sort'];
             if(($sort == 'priceDate' || $sort == '-priceDate') && isset($options['server'])) {
                 $qb
+                    ->addSelect('MAX(t.createdAt) AS HIDDEN last_price_creation')
                     ->leftJoin('i.trades', 't')
                     ->innerJoin('t.server', 's')
                     ->andWhere('s.slug = :server')
                     ->groupBy('i.id')
-                    ->addOrderBy('MAX(t.createdAt)', $sort == 'priceDate' ? 'DESC' : 'ASC')
+                    ->addOrderBy('last_price_creation', $sort == 'priceDate' ? 'DESC' : 'ASC')
                     ->setParameter('server', $options['server']);
             }
         }
