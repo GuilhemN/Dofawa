@@ -51,8 +51,7 @@ class ItemTemplateRepository extends EntityRepository
         $qb = $this->createQueryBuilder('i');
         $qb
             ->andWhere('i.deprecated = false')
-            ->andWhere('i.visible = true')
-            ->addOrderBy('i.level', 'DESC');
+            ->andWhere('i.visible = true');
 
         if (!empty($options['name'])) {
             $qb
@@ -61,13 +60,32 @@ class ItemTemplateRepository extends EntityRepository
         }
         if (!empty($options['tradeable'])) {
             $qb
-            ->andWhere('i.tradeable LIKE :tradeable')
-            ->setParameter('tradeable', $options['tradeable']);
+                ->andWhere('i.tradeable LIKE :tradeable')
+                ->setParameter('tradeable', $options['tradeable']);
+        }
+
+        if(!empty($options['sort'])) {
+            $sort = $options['sort'];
+            if($sort == 'priceDate' && isset($options['server'])) {
+                $qb
+                    ->leftJoin('i.trades', 't')
+                    ->innerJoin('t.server', 's', 'WITH', 's.slug = :server')
+                    ->addOrderBy('t.createdAt', 'DESC')
+                    ->setParameter('server', $options['server']);
+            } elseif ($sort == '-priceDate') {
+                $qb
+                    ->leftJoin('i.trades', 't')
+                    ->innerJoin('t.server', 's', 'WITH', 's.slug = :server')
+                    ->addOrderBy('t.createdAt', 'ASC')
+                    ->setParameter('server', $options['server']);;
+            }
         }
 
         foreach ($orders as $column => $order) {
             $qb->addOrderBy('i.'.$column, $order);
         }
+
+        $qb->addOrderBy('i.level', 'DESC');
 
         return $qb;
     }

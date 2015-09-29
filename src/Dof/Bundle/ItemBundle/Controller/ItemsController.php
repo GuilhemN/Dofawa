@@ -24,7 +24,9 @@ class ItemsController extends FOSRestController
      *  output="array<Dof\Bundle\ItemBundle\Entity\ItemTemplate>",
      *  filters={
      *      {"name"="tradeable", "dataType"="boolean"},
-     *      {"name"="name", "dataType"="string"}
+     *      {"name"="name", "dataType"="string"},
+     *      {"name"="sort", "dataType"="string"},
+     *      {"name"="server", "dataType"="string"}
      *  }
      * )
      *
@@ -36,7 +38,11 @@ class ItemsController extends FOSRestController
 
         $items = $this->getRepository()->findOptions($options, [], 15);
 
+        $context = new Context();
+        $context->addGroups(['item', 'name']);
+
         if (isset($options['server']) && !empty($options['server'])) {
+            $context->addGroup('price');
             $server = $this->getDoctrine()->getRepository('DofMainBundle:Server')
                 ->findOneBySlug($options['server']);
             if ($server === null) {
@@ -46,9 +52,6 @@ class ItemsController extends FOSRestController
                 $item->setCurrentServer($server);
             }
         }
-
-        $context = new Context();
-        $context->addGroups(['item', 'name', 'price']);
 
         return $this->view($items)->setSerializationContext($context);
     }

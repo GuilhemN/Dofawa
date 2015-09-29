@@ -70,7 +70,7 @@ class ValidationCommand extends ContainerAwareCommand
         $em->clear();
 
         $message = sprintf('%d prices processed.', $rowsProcessed);
-        $this->getContainer()->get('logger')->debug('command.Debug: dof:trading:valid '.$message);
+        $this->getContainer()->get('logger')->debug('dof:trading:valid '.$message);
         $output->writeLn($message);
     }
 }
