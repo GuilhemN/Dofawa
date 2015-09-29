@@ -66,18 +66,14 @@ class ItemTemplateRepository extends EntityRepository
 
         if(!empty($options['sort'])) {
             $sort = $options['sort'];
-            if($sort == 'priceDate' && isset($options['server'])) {
+            if(($sort == 'priceDate' || $sort == '-priceDate') && isset($options['server'])) {
                 $qb
                     ->leftJoin('i.trades', 't')
-                    ->innerJoin('t.server', 's', 'WITH', 's.slug = :server')
-                    ->addOrderBy('t.createdAt', 'DESC')
+                    ->innerJoin('t.server', 's')
+                    ->andWhere('s.slug = :server')
+                    ->groupBy('i.id')
+                    ->addOrderBy('MAX(t.createdAt)', $sort == 'priceDate' ? 'DESC' : 'ASC')
                     ->setParameter('server', $options['server']);
-            } elseif ($sort == '-priceDate') {
-                $qb
-                    ->leftJoin('i.trades', 't')
-                    ->innerJoin('t.server', 's', 'WITH', 's.slug = :server')
-                    ->addOrderBy('t.createdAt', 'ASC')
-                    ->setParameter('server', $options['server']);;
             }
         }
 
