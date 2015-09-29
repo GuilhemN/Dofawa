@@ -55,10 +55,12 @@ class ItemsController extends FOSRestController
             }
         }
 
-        $this->view($items)->setSerializationContext($context);
-        $response = $this->handleView($this->view($brands));
-        $response->setEtag(EtagGenerator::getEtag($brands));
+        $response = $this->handleView(
+            $this->view($items)->setSerializationContext($context)
+        );
+        $response->setEtag(EtagGenerator::getEtag($items));
         $response->isNotModified($request);
+
         return $response;
     }
 
