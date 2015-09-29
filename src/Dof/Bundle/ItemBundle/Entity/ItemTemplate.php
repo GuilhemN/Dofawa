@@ -22,6 +22,7 @@ use Dof\Bundle\ItemBundle\Criteria\ParsedCriteriaInterface;
 use Dof\Bundle\MonsterBundle\Entity\MonsterDrop;
 use Dof\Bundle\TradingBundle\Entity\Trade;
 use Dof\Bundle\MainBundle\Entity\Server;
+use XN\Metadata\EtaggableInterface;
 
 /**
  * ItemTemplate.
@@ -32,7 +33,7 @@ use Dof\Bundle\MainBundle\Entity\Server;
  * @ORM\DiscriminatorColumn(name="class", type="string")
  * @ORM\DiscriminatorMap({"item" = "ItemTemplate", "equip" = "EquipmentTemplate", "skequip" = "SkinnedEquipmentTemplate", "weapon" = "WeaponTemplate", "animal" = "AnimalTemplate", "pet" = "PetTemplate", "mount" = "MountTemplate", "useable" = "UseableItemTemplate"})
  */
-class ItemTemplate implements IdentifiableInterface, ExportableInterface, ParsedCriteriaInterface
+class ItemTemplate implements IdentifiableInterface, ExportableInterface, ParsedCriteriaInterface, EtaggableInterface
 {
     /**
      * @var int
@@ -841,6 +842,10 @@ class ItemTemplate implements IdentifiableInterface, ExportableInterface, Parsed
         $tradesCollection = $this->getTrades()->matching($criteria);
         $trades = $tradesCollection->toArray();
         return empty($trades) ? null : $trades[0];
+    }
+
+    public function getEtag() {
+        return $this->getId() . '/' . $this->getUpdatedAt()->getTimestamp();
     }
 
     public function __toString()

@@ -2,6 +2,8 @@
 
 namespace Dof\Bundle\ItemBundle\Controller;
 
+use Dof\Bundle\MainBundle\EtagGenerator;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -30,9 +32,9 @@ class ItemsController extends FOSRestController
      *  }
      * )
      *
-     * @Cache(maxage=900, public=true)
+     * @Cache(public=true)
      */
-    public function getItemsAction()
+    public function getItemsAction(Request $request)
     {
         $options = $this->getRequest()->query->all();
 
@@ -53,7 +55,11 @@ class ItemsController extends FOSRestController
             }
         }
 
-        return $this->view($items)->setSerializationContext($context);
+        $this->view($items)->setSerializationContext($context);
+        $response = $this->handleView($this->view($brands));
+        $response->setEtag(EtagGenerator::getEtag($brands));
+        $response->isNotModified($request);
+        return $response;
     }
 
     /**
