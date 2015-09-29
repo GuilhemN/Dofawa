@@ -1,0 +1,2 @@
+# m h dom mon dow     user    command
+*/5 6   1   *   * www-data    cd /var/lib/dofawa; app/console dof:trading:valid

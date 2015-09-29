@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e061300626539985a691bb32f94ca9d4",
+    "hash": "17c6a7af3bf2faa8faa931b40d2a74aa",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -743,17 +743,99 @@
             "time": "2015-08-31 13:19:01"
         },
         {
+            "name": "exsyst/io",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EXSyst/IO.git",
+                "reference": "7146c4bb0659bec19de8e7f38ac18bb57a9d65d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EXSyst/IO/zipball/7146c4bb0659bec19de8e7f38ac18bb57a9d65d9",
+                "reference": "7146c4bb0659bec19de8e7f38ac18bb57a9d65d9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.1",
+                "react/event-loop": ">=0.1 <0.5"
+            },
+            "suggest": {
+                "react/event-loop": "Evented I/O : allows being called back when a stream has available data, instead of having to poll it yourself"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EXSyst\\Component\\IO\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "EXSyst"
+                }
+            ],
+            "description": "Object-oriented I/O facility",
+            "time": "2015-09-14 15:54:02"
+        },
+        {
+            "name": "exsyst/xml-component",
+            "version": "v0.0.3",
+            "target-dir": "EXSyst/Component/XML",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EXSyst/XMLComponent.git",
+                "reference": "2353b8d8e6e4559aec2777ce537646d4372d6e3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EXSyst/XMLComponent/zipball/2353b8d8e6e4559aec2777ce537646d4372d6e3b",
+                "reference": "2353b8d8e6e4559aec2777ce537646d4372d6e3b",
+                "shasum": ""
+            },
+            "require": {
+                "exsyst/io": "~0.1",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "EXSyst\\Component\\XML": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "EXSyst"
+                }
+            ],
+            "description": "Provides a xml reader helper",
+            "time": "2015-09-27 19:14:16"
+        },
+        {
             "name": "friendsofsymfony/rest-bundle",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "28a38e65d79383113e17e5585395bfdeb77c87a4"
+                "reference": "c1006e9ced13b992dca0bc650610a612f3477cde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/28a38e65d79383113e17e5585395bfdeb77c87a4",
-                "reference": "28a38e65d79383113e17e5585395bfdeb77c87a4",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/c1006e9ced13b992dca0bc650610a612f3477cde",
+                "reference": "c1006e9ced13b992dca0bc650610a612f3477cde",
                 "shasum": ""
             },
             "require": {
@@ -820,7 +902,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2015-09-24 12:50:47"
+            "time": "2015-09-27 16:09:25"
         },
         {
             "name": "friendsofsymfony/user-bundle",

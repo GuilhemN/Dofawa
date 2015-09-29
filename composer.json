@@ -35,7 +35,8 @@
 
 		"nelmio/cors-bundle": "~1.4",
 		"lexik/jwt-authentication-bundle": "~1.0",
-		"nelmio/api-doc-bundle": "~2.9"
+		"nelmio/api-doc-bundle": "~2.9",
+		"exsyst/xml-component": "^0.0.3"
 	},
 	"require-dev": {
 		"sensio/generator-bundle": "~2.3"
