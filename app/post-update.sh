@@ -31,16 +31,13 @@ if [ "$1" == --dev ]; then
 else
 	php "$(type -p composer)" install -o --no-scripts
 fi
-cp -f pinned/PDOConnection.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
-cp -f pinned/PDOStatement.php vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver
-cp -f pinned/QueryBuilder.php vendor/doctrine/orm/lib/Doctrine/ORM
 
-php app/console cache:clear -e dev &
-php app/console cache:clear -e prod
+php bin/console cache:clear -e dev &
+php bin/console cache:clear -e prod
 wait "$!"
 
-php app/console doctrine:schema:update --dump-sql
-php app/console doctrine:schema:update --force
+php bin/console doctrine:schema:update --dump-sql
+php bin/console doctrine:schema:update --force
 
 if [ "$(id -u)" == 0 ]; then
 	chown -R www-data:www-data app/cache
@@ -51,7 +48,7 @@ if [ "$(id -u)" == 0 ]; then
 fi
 
 if [ "$1" == --dev ]; then
-	php app/console assets:install --symlink --relative
+	php bin/console assets:install --symlink --relative
 else
-	php app/console assets:install
+	php bin/console assets:install
 fi
