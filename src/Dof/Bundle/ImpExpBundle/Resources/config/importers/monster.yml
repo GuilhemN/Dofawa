@@ -9,7 +9,7 @@ services:
 
     dof_imp_exp.importer.monster_dungeons:
         class: Dof\Bundle\ImpExpBundle\Importer\GameData\Monster\MonsterDungeonImporter
-        arguments: [ @doctrine.orm.entity_manager ]
+        arguments: [ "@doctrine.orm.entity_manager" ]
         tags:
             - { name: dof_imp_exp.importer, provides: monster_dungeons, requires: "monsters beta_dungeons", groups: "monsters" }
 

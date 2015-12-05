@@ -1,59 +1,70 @@
-dof_items_json_itemtemplate:
-    path:  /json/item-template/{l1id}/data.json
-    defaults: { _controller: DofItemBundle:ItemTemplateRest:fetch }
+dof_items_cget:
+    path: /
+    defaults: { _controller: DofItemBundle:Item:getItems }
     methods: [ GET ]
-    requirements: { l1id: '[0-9a-z-]+' }
-    options:  { expose: true }
 
-dof_items_json_itemtemplate_store:
-    path:  /json/item-template/{l1id}/data.json
-    defaults: { _controller: DofItemBundle:ItemTemplateRest:fetch }
-    methods: [ PUT ]
-    requirements: { l1id: '[0-9a-z-]+' }
-
-dof_items_json_itemtemplate_delete:
-    path:  /json/item-template/{l1id}/data.json
-    defaults: { _controller: DofItemBundle:ItemTemplateRest:fetch }
-    methods: [ DELETE ]
-    requirements: { l1id: '[0-9a-z-]+' }
-
-dof_items_json_itemtemplate_searchequipment:
-    path:  /json/item-template/search-equipment.json
-    defaults: { _controller: DofItemBundle:ItemTemplateRest:searchEquipment }
-    methods: [ GET ]
-    options:  { expose: true }
-
-dof_items_qualitydiagram:
-    path:  /quality-diagram
-    defaults: { _controller: DofItemBundle:QualityDiagram:index }
-
-dof_items_qualitydiagram_pdf:
-    path:  /quality-diagram.pdf
-    defaults: { _controller: DofItemBundle:QualityDiagram:pdf }
-    methods: [ POST ]
-
-dof_items_homepage:
-    path:   /{page}
-    defaults: { _controller: DofItemBundle:Items:index, page: 1}
-    requirements:
-        page: \d+
-
-dof_items_show:
+dof_items_get:
     path: /{slug}
-    defaults: { _controller: DofItemBundle:Items:show }
-    requirements:
-        slug: '[0-9a-z-]+'
+    defaults: { _controller: DofItemBundle:Item:getItem }
+    methods: [ GET ]
 
-dof_items_addskin:
-    path: /add-skin/{id}
-    defaults: { _controller: DofItemBundle:Skins:addImage }
 
-dof_set_homepage:
-    path: /sets/
-    defaults: { _controller: DofItemBundle:Sets:index }
-
-dof_set_show:
-    path: /sets/{slug}
-    defaults: { _controller: DofItemBundle:Sets:show }
-    requirements:
-        slug: '[0-9a-z-]+'
+# dof_items_json_itemtemplate:
+#     path:  /json/item-template/{l1id}/data.json
+#     defaults: { _controller: DofItemBundle:ItemTemplateRest:fetch }
+#     methods: [ GET ]
+#     requirements: { l1id: '[0-9a-z-]+' }
+#     options:  { expose: true }
+#
+# dof_items_json_itemtemplate_store:
+#     path:  /json/item-template/{l1id}/data.json
+#     defaults: { _controller: DofItemBundle:ItemTemplateRest:fetch }
+#     methods: [ PUT ]
+#     requirements: { l1id: '[0-9a-z-]+' }
+#
+# dof_items_json_itemtemplate_delete:
+#     path:  /json/item-template/{l1id}/data.json
+#     defaults: { _controller: DofItemBundle:ItemTemplateRest:fetch }
+#     methods: [ DELETE ]
+#     requirements: { l1id: '[0-9a-z-]+' }
+#
+# dof_items_json_itemtemplate_searchequipment:
+#     path:  /json/item-template/search-equipment.json
+#     defaults: { _controller: DofItemBundle:ItemTemplateRest:searchEquipment }
+#     methods: [ GET ]
+#     options:  { expose: true }
+#
+# dof_items_qualitydiagram:
+#     path:  /quality-diagram
+#     defaults: { _controller: DofItemBundle:QualityDiagram:index }
+#
+# dof_items_qualitydiagram_pdf:
+#     path:  /quality-diagram.pdf
+#     defaults: { _controller: DofItemBundle:QualityDiagram:pdf }
+#     methods: [ POST ]
+#
+# dof_items_homepage:
+#     path:   /{page}
+#     defaults: { _controller: DofItemBundle:Items:index, page: 1}
+#     requirements:
+#         page: \d+
+#
+# dof_items_show:
+#     path: /{slug}
+#     defaults: { _controller: DofItemBundle:Items:show }
+#     requirements:
+#         slug: '[0-9a-z-]+'
+#
+# dof_items_addskin:
+#     path: /add-skin/{id}
+#     defaults: { _controller: DofItemBundle:Skins:addImage }
+#
+# dof_set_homepage:
+#     path: /sets/
+#     defaults: { _controller: DofItemBundle:Sets:index }
+#
+# dof_set_show:
+#     path: /sets/{slug}
+#     defaults: { _controller: DofItemBundle:Sets:show }
+#     requirements:
+#         slug: '[0-9a-z-]+'

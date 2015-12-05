@@ -4,7 +4,7 @@ namespace XN\UtilityBundle\Annotations;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Doctrine\Common\Annotations\Reader;
 use XN\Annotations\Secure;
 
@@ -13,7 +13,7 @@ class SecureControllerListener
     private $sc;
     private $re;
 
-    public function __construct(SecurityContext $sc, Reader $re)
+    public function __construct(AuthorizationChecker $sc, Reader $re)
     {
         $this->sc = $sc;
         $this->re = $re;

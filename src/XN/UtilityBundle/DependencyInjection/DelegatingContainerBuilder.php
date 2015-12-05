@@ -5,6 +5,7 @@ namespace XN\UtilityBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 class DelegatingContainerBuilder extends ContainerBuilder
 {
@@ -23,8 +24,7 @@ class DelegatingContainerBuilder extends ContainerBuilder
             $this->setDefinition(strtolower($id), new Definition(
                     method_exists($delegate, 'getClassOf') ? $delegate->getClassOf($childId) : 'stdClass',
                     [$childId]))
-                ->setFactoryService($delegateId)
-                ->setFactoryMethod('get');
+                ->setFactory([new Reference($delegateId), 'get']);
 
             return true;
         }

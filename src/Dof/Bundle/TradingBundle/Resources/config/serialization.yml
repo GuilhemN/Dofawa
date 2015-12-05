@@ -1,6 +1,6 @@
 Dof\Bundle\TradingBundle\Entity\Trade:
-  attributes:
-    price:
-      groups: ['price']
-    created:
-      groups: ['price']
+    attributes:
+        price:
+            groups: ['price']
+        created:
+            groups: ['price']

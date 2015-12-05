@@ -1,10 +1,7 @@
-parameters:
-#    dof_items.example.class: Dof\Bundle\ItemBundle\Example
-
 services:
     # Criteria
     dof_items.criteria_loader:
         class: Dof\Bundle\ItemBundle\Criteria\CriteriaLoader
-        arguments: [ @service_container ]
+        arguments: [ "@service_container" ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }

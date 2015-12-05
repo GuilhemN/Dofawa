@@ -1,0 +1,4 @@
+dof_servers_cget:
+    path: /
+    defaults: { _controller: DofMainBundle:Servers:getServers }
+    methods: [ GET ]

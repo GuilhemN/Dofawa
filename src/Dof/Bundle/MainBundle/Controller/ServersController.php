@@ -3,13 +3,11 @@
 namespace Dof\Bundle\MainBundle\Controller;
 
 use Dof\Bundle\MainBundle\GameType;
-use FOS\RestBundle\Context\Context;
-use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\FOSRestController;
+use EXSyst\Bundle\ApiBundle\Controller\ApiController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
-class ServersController extends FOSRestController
+class ServersController extends ApiController
 {
     protected function getRepository()
     {
@@ -23,15 +21,13 @@ class ServersController extends FOSRestController
      *  output="array<Dof\Bundle\MainBundle\Entity\Server>"
      * )
      *
-     * @Get("/servers")
      * @Cache(maxage=3600, public=true)
      */
     public function getServersAction()
     {
-        $items = $this->getRepository()->findBy(['visible' => true, 'gameType' => GameType::getBasicModes()], ['name' => 'ASC']);
-        $context = new Context();
-        $context->addGroups(['server', 'name']);
+        $items = $this->getRepository()
+            ->findBy(['visible' => true, 'gameType' => GameType::getBasicModes()], ['name' => 'ASC']);
 
-        return $this->view($items)->setSerializationContext($context);
+        return $this->serialize($items, ['groups' => ['server', 'name']]);
     }
 }

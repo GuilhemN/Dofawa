@@ -2,7 +2,7 @@
 
 namespace Dof\Bundle\User\ItemBundle;
 
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Dof\Bundle\UserBundle\Entity\User;
 use Dof\Bundle\ItemBundle\Entity\EquipmentTemplate;
 use Dof\Bundle\User\ItemBundle\Entity as Ent;
@@ -11,11 +11,11 @@ use Dof\Bundle\ItemBundle\ItemSlot;
 class ItemFactory
 {
     /**
-     * @var Symfony\Component\Security\Core\SecurityContext
+     * @var TokenStorageInterface
      */
     private $sc;
 
-    public function __construct(SecurityContext $sc)
+    public function __construct(TokenStorageInterface $sc)
     {
         $this->sc = $sc;
     }

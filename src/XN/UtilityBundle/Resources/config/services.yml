@@ -46,7 +46,7 @@ services:
 
     xn.doctrine.entity_dependency_injection:
         class:     "%xn.doctrine.entity_dependency_injection.class%"
-        arguments: [ @lazy\security.context ]
+        arguments: [ "@lazy\\security.context" ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
 
@@ -60,13 +60,13 @@ services:
 
     xn.secure_controller_listener:
         class: %xn.secure_controller_listener.class%
-        arguments: [ @security.context, @annotation_reader ]
+        arguments: [ "@security.authorization_checker", "@annotation_reader"]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
 
     xn.lazy_field_listener:
         class: %xn.lazy_field_listener.class%
-        arguments: [ @cache, @annotation_reader ]
+        arguments: [ "@cache", "@annotation_reader" ]
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: postLoad }

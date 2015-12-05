@@ -80,11 +80,11 @@ dof_user_character_additem_post:
     defaults: { _controller: DofUserCharacterBundle:Stuff:addItems}
     methods: [ POST ]
 
-dof_user_character_additem:
-    path:     /{user}/{character}/stuffs/{stuff}/add/{type}/{slot}/{page}
-    defaults: { _controller: DofItemBundle:Items:showBuildItems, slot: 0, page: 1}
-    requirements:
-        user: '[0-9a-z-]+'
-        character: '[0-9a-z-]+'
-        stuff: '[0-9a-z-]+'
-        page: \d+
+# dof_user_character_additem:
+#     path:     /{user}/{character}/stuffs/{stuff}/add/{type}/{slot}/{page}
+#     defaults: { _controller: DofItemBundle:Items:showBuildItems, slot: 0, page: 1}
+#     requirements:
+#         user: '[0-9a-z-]+'
+#         character: '[0-9a-z-]+'
+#         stuff: '[0-9a-z-]+'
+#         page: \d+

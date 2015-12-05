@@ -3,7 +3,7 @@
 namespace Dof\Bundle\User\CharacterBundle;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 class SelectedCharacter
 {
@@ -13,7 +13,7 @@ class SelectedCharacter
     private $stuff;
     private $processed;
 
-    public function __construct(ObjectManager $em, SecurityContext $sc)
+    public function __construct(ObjectManager $em, AuthorizationChecker $sc)
     {
         $this->em = $em;
         $this->sc = $sc;

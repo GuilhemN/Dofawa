@@ -32,7 +32,7 @@ class Quest implements IdentifiableInterface, LocalizedNameInterface
     /**
      * @var bool
      *
-     * @ORM\Column(name="isRepeatable", type="boolean")
+     * @ORM\Column(name="isRepeatable", type="boolean", nullable=true)
      */
     private $isRepeatable;
 

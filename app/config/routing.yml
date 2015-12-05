@@ -27,20 +27,20 @@ dof_main:
     prefix:   /
 
 dof_users:
-    type:     rest
-    resource: Dof\Bundle\UserBundle\Controller\UsersController
+    resource: "@DofUserBundle/Resources/config/routing.yml"
+    prefix:   /users
 
 dof_items:
-    type:     rest
-    resource: Dof\Bundle\ItemBundle\Controller\ItemsController
+    resource: "@DofItemBundle/Resources/config/routing.yml"
+    prefix:   /items
 
 dof_trades:
-    type:     rest
-    resource: Dof\Bundle\TradingBundle\Controller\TradesController
+    resource: "@DofTradingBundle/Resources/config/routing.yml"
+    prefix:   /trades
 
 dof_servers:
-    type:     rest
-    resource: Dof\Bundle\MainBundle\Controller\ServersController
+    resource: "@DofMainBundle/Resources/config/routing/servers.yml"
+    prefix:   /servers
 
 dof_login:
     path: /login

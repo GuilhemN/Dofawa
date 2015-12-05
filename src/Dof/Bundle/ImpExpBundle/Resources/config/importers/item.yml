@@ -35,7 +35,7 @@ services:
         parent: dof_imp_exp.importer.game_importer
         tags:
             - { name: dof_imp_exp.importer, provides: item_templates, requires: "item_sets item_types", groups: "items" }
-            - { name: dof_imp_exp.importer, provides: beta_item_templates, requires: 'beta_item_sets beta_item_types', groups: "items beta" }
+            - { name: dof_imp_exp.importer, provides: beta_item_templates, requires: "beta_item_sets beta_item_types", groups: "items beta" }
         calls:
             - [ setLoaders, [ "@dof_imp_exp.item_loaders" ] ]
 

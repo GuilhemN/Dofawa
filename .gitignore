@@ -1,22 +1,24 @@
+# SF3
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+/web/bundles/
+app/var
+
 # Bootstrap
 app/bootstrap*
-
-# Symfony directories
-vendor/*
-*/logs/*
-*/cache/*
-web/uploads/*
-web/bundles/*
-web/js/*
-web/media/*
-
-# Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
-/app/var/
-
-# Composer
-composer.phar
 
 # SFTP log
 sftp-config*
@@ -30,13 +32,6 @@ sftp-config*
 # Temporary (build etc.) files
 tmp/*
 !tmp/.gitkeep
-
-# Vendor-provided binaries
-bin/
-
-# Operating system files
-Thumbs.db
-.DS_Store
 
 # Private files
 src/Dof/ImpExpBundle/Command/TestCommand.php

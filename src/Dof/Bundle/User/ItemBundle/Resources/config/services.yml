@@ -1,4 +1,4 @@
 services:
     item_factory:
         class: Dof\Bundle\User\ItemBundle\ItemFactory
-        arguments: [@security.context]
+        arguments: ["@security.token_storage"]

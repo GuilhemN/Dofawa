@@ -11,4 +11,4 @@ services:
 
     dof_user.role_helper:
         class: Dof\Bundle\UserBundle\RoleHelper
-        arguments: [@security.role_hierarchy, @security.token_storage]
+        arguments: ["@security.role_hierarchy", "@security.token_storage"]

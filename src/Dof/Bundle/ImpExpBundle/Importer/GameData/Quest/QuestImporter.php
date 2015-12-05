@@ -49,7 +49,7 @@ class QuestImporter extends AbstractGameDataImporter
                     $tpl->setRelease($release);
                 }
                 $tpl->setPreliminary($beta);
-                $tpl->setIsRepeatable($row['isRepeatable']);
+                // $tpl->setIsRepeatable($row['repeatLimit']);
                 $tpl->setIsDungeonQuest($row['isDungeonQuest']);
                 $tpl->setCategory($category);
                 $tpl->setLevelMin($row['levelMin']);

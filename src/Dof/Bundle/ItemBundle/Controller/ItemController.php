@@ -2,17 +2,16 @@
 
 namespace Dof\Bundle\ItemBundle\Controller;
 
-use Dof\Bundle\MainBundle\EtagGenerator;
+use EXSyst\Bundle\ApiBundle\Controller\ApiController;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Context\Context;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
 
-class ItemsController extends FOSRestController
+class ItemController extends ApiController
 {
     protected function getRepository()
     {
@@ -36,15 +35,16 @@ class ItemsController extends FOSRestController
      */
     public function getItemsAction(Request $request)
     {
-        $options = $this->getRequest()->query->all();
+        $options = $request->query->all();
 
         $items = $this->getRepository()->findOptions($options, [], 15);
 
-        $context = new Context();
-        $context->addGroups(['item', 'name']);
+        $context = [
+            'groups' => ['item', 'name'],
+        ];
 
         if (isset($options['server']) && !empty($options['server'])) {
-            $context->addGroup('price');
+            $context['groups'][] = 'price';
             $server = $this->getDoctrine()->getRepository('DofMainBundle:Server')
                 ->findOneBySlug($options['server']);
             if ($server === null) {
@@ -55,13 +55,7 @@ class ItemsController extends FOSRestController
             }
         }
 
-        $response = $this->handleView(
-            $this->view($items)->setSerializationContext($context)
-        );
-        $response->setEtag(EtagGenerator::getEtag($items));
-        $response->isNotModified($request);
-
-        return $response;
+        return $this->serialize($items, $context);
     }
 
     /**
@@ -72,15 +66,11 @@ class ItemsController extends FOSRestController
      *  output="Dof\Bundle\ItemBundle\Entity\ItemTemplate"
      * )
      *
-     * @Get("/items/{slug}")
      * @ParamConverter("item", options={"mappings": {"slug": "slug"}})
      * @Cache(lastmodified="item.getUpdatedAt()", maxage=86400, public=true)
      */
     public function getItemAction(ItemTemplate $item)
     {
-        $context = new Context();
-        $context->addGroups(['item', 'name', 'description', 'effects']);
-
-        return $this->view($item)->setSerializationContext($context);
+        return $this->serialize($item, ['groups' => ['item', 'name', 'description', 'effects']]);
     }
 }

@@ -1,29 +1,22 @@
-parameters:
-    dof_graphics.bpcl_hydrator.class: Dof\Bundle\GraphicsBundle\BPCLHydrator
-    dof_graphics.bpcl_identifier.class: Dof\Bundle\GraphicsBundle\BPCLIdentifier
-    dof_graphics.living_item_factory.class: Dof\Bundle\GraphicsBundle\LivingItemFactory
-    dof_graphics.chameleon_dragoturkey.class: Dof\Bundle\GraphicsBundle\ChameleonDragoturkey
-    dof_graphics.form.type.character_look.class: Dof\Bundle\GraphicsBundle\Form\Type\CharacterLookType
-
 services:
     dof_graphics.bpcl_hydrator:
-        class: %dof_graphics.bpcl_hydrator.class%
-        arguments: [@service_container]
+        class: Dof\Bundle\GraphicsBundle\BPCLHydrator
+        arguments: ["@service_container"]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
     dof_graphics.bpcl_identifier:
-        class: %dof_graphics.bpcl_identifier.class%
-        arguments: [@doctrine.orm.default_entity_manager, @dof_graphics.living_item_factory, @dof_graphics.chameleon_dragoturkey]
+        class: Dof\Bundle\GraphicsBundle\BPCLIdentifier
+        arguments: ["@doctrine.orm.default_entity_manager", "@dof_graphics.living_item_factory", "@dof_graphics.chameleon_dragoturkey"]
     dof_graphics.living_item_factory:
-        class: %dof_graphics.living_item_factory.class%
-        arguments: [@doctrine.orm.default_entity_manager]
+        class: Dof\Bundle\GraphicsBundle\LivingItemFactory
+        arguments: ["@doctrine.orm.default_entity_manager"]
     dof_graphics.chameleon_dragoturkey:
-        class: %dof_graphics.chameleon_dragoturkey.class%
-        arguments: [@translator, @doctrine.orm.entity_manager]
+        class: Dof\Bundle\GraphicsBundle\ChameleonDragoturkey
+        arguments: ["@translator", "@doctrine.orm.entity_manager"]
 
     # FORMS
     dof_graphics.form.type.character_look:
-        class: %dof_graphics.form.type.character_look.class%
+        class: Dof\Bundle\GraphicsBundle\Form\Type\CharacterLookType
         tags:
             - { name: form.type, alias: character_look }
-        arguments: ['@service_container']
+        arguments: ["@service_container"]
