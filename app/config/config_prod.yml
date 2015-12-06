@@ -2,8 +2,9 @@ imports:
     - { resource: config.yml }
 
 framework:
-    validation:
-        cache: apc
+    # Wait for https://github.com/symfony/symfony/pull/16795 to be merged
+    # validation:
+    #     cache: apc
 
 doctrine:
     orm:
