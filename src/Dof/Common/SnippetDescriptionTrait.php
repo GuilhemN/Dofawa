@@ -37,10 +37,9 @@ trait SnippetDescriptionTrait
 
     public function getPlainTextDescription($locale = 'fr', $full = false, $technical = false)
     {
-        $securityContext = $this->di->get('security.context');
         $translator = $this->di->get('translator');
 
-        return implode('', array_map(function (array $row) {
+        return implode('', array_map(function (array $row) use ($translator) {
             if ($row[0] instanceof LocalizedNameTrait) {
                 return $row[0]->getName($translator->getLocales());
             } else {
@@ -51,7 +50,7 @@ trait SnippetDescriptionTrait
 
     public function getHtmlDescription()
     {
-        $securityContext = $this->di->get('security.context');
+        $securityContext = $this->di->get('security.authorization_checker');
         $translator = $this->di->get('translator');
         $router = $this->di->get('router');
 

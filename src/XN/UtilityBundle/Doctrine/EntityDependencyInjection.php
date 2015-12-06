@@ -8,18 +8,21 @@ use XN\DependencyInjection\RequireSecurityContextInterface;
 
 class EntityDependencyInjection
 {
-    private $sc;
+    private $tokenStorage;
+    private $authorizationChecker;
 
-    public function __construct(LazyServiceBox $sc)
+    public function __construct(LazyServiceBox $tokenStorage, LazyServiceBox $authorizationChecker)
     {
-        $this->sc = $sc;
+        $this->tokenStorage = $tokenStorage;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     public function postLoad(LifecycleEventArgs $args)
     {
         $ent = $args->getEntity();
         if ($ent instanceof RequireSecurityContextInterface) {
-            $ent->setSecurityContext($this->sc->unwrap());
+            $ent->setTokenStorage($this->tokenStorage->unwrap());
+            $ent->setAuthorizationChecker($this->authorizationChecker->unwrap());
         }
     }
 }

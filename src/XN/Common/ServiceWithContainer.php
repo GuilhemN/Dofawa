@@ -17,8 +17,4 @@ class ServiceWithContainer
     {
         return $this->di->get('doctrine.orm.default_entity_manager');
     }
-    protected function getSecurityContext()
-    {
-        return $this->di->get('security.context');
-    }
 }

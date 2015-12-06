@@ -46,7 +46,7 @@ services:
 
     xn.doctrine.entity_dependency_injection:
         class:     "%xn.doctrine.entity_dependency_injection.class%"
-        arguments: [ "@lazy\\security.context" ]
+        arguments: [ "@lazy\\security.token_storage", "@lazy\\security.authorization_checker" ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
 

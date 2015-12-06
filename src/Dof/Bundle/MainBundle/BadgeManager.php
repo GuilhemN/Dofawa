@@ -22,7 +22,7 @@ class BadgeManager
     public function addBadge($slug, $user = null)
     {
         if (!($user instanceof User)) {
-            $user = $this->di->get('security.context')->getToken()->getUser();
+            $user = $this->di->get('security.token_storage')->getToken()->getUser();
             if ($user === null) {
                 return;
             }
