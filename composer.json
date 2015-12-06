@@ -28,7 +28,7 @@
 		"guzzlehttp/guzzle": "~5.2",
 		"stof/doctrine-extensions-bundle": "^1.1@dev",
 
-		"friendsofsymfony/rest-bundle": "~2.0@dev",
+		"friendsofsymfony/rest-bundle": "~1.7",
 
 		"nelmio/cors-bundle": "~1.4@dev",
 		"lexik/jwt-authentication-bundle": "~2.0@dev",
