@@ -23,9 +23,9 @@ use Dof\Bundle\CharacterBundle\Entity\Breed;
  * @ORM\Table(name="dof_build_playercharacter")
  * @ORM\Entity(repositoryClass="Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacterRepository")
  */
-class PlayerCharacter implements IdentifiableInterface, RequireSecurityContextInterface
+class PlayerCharacter implements IdentifiableInterface
 {
-    use TimestampableTrait, SluggableTrait, OwnableTrait, RequireSecurityContextTrait;
+    use TimestampableTrait, SluggableTrait, OwnableTrait;
 
     /**
      * @var int
@@ -256,14 +256,14 @@ class PlayerCharacter implements IdentifiableInterface, RequireSecurityContextIn
 
     public function canWrite()
     {
-        return $this->sc->isGranted('ROLE_ADMIN') || $this->getCurrentUser() === $this->getOwner();
+        // FIXME
+        return false;
     }
 
     public function getCurrentUser()
     {
-        return ($token = $this->sc->getToken()) !== null ?
-            is_object($user = $token->getUser()) ? $user : null
-        : null;
+        // FIXME
+        return null;
     }
 
     public function __toString()

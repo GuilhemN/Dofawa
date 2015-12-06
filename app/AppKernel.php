@@ -66,22 +66,6 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
-	public function getContainerBaseClass()
-	{
-		return '\XN\UtilityBundle\DependencyInjection\DelegatingContainer';
-	}
-
-	protected function getContainerBuilder()
-    {
-        $container = new DelegatingContainerBuilder(new ParameterBag($this->getKernelParameters()));
-
-        if (class_exists('ProxyManager\Configuration')) {
-            $container->setProxyInstantiator(new RuntimeInstantiator());
-        }
-
-        return $container;
-	}
-
     public function getRootDir()
     {
         return __DIR__;

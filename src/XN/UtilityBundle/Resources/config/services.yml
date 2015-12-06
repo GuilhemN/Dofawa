@@ -44,12 +44,6 @@ services:
         class: %xn.grammar.class%
         arguments: [ "@annotation_reader" ]
 
-    xn.doctrine.entity_dependency_injection:
-        class:     "%xn.doctrine.entity_dependency_injection.class%"
-        arguments: [ "@lazy\\security.token_storage", "@lazy\\security.authorization_checker" ]
-        tags:
-            - { name: doctrine.event_listener, event: postLoad }
-
     xn.doctrine.file_updater:
         class:     "%xn.doctrine.file_updater.class%"
         tags:
