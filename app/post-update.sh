@@ -12,11 +12,10 @@ else
 	}
 fi
 
-mkdir -p app/logs
-mkdir -p bin/cache
+mkdir -p var/logs
 
-rm -rf app/cache
-mkdir -p app/cache
+rm -rf var/cache
+mkdir -p var/cache
 
 mkdir -p web/uploads/badges
 mkdir -p web/uploads/avatars
@@ -40,9 +39,8 @@ php bin/console doctrine:schema:update --dump-sql
 php bin/console doctrine:schema:update --force
 
 if [ "$(id -u)" == 0 ]; then
-	chown -R www-data:www-data app/cache
-	chown -R www-data:www-data app/logs
-	chown -R www-data:www-data bin/cache
+	chown -R www-data:www-data var/cache
+	chown -R www-data:www-data var/logs
 	chown -R www-data:www-data web/uploads/
 	chown -R www-data:www-data web/media/
 fi
