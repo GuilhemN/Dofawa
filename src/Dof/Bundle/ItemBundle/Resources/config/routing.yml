@@ -1,10 +1,10 @@
 dof_items_cget:
-    path: /
+    path: /items
     defaults: { _controller: DofItemBundle:Item:getItems }
     methods: [ GET ]
 
 dof_items_get:
-    path: /{slug}
+    path: /items/{slug}
     defaults: { _controller: DofItemBundle:Item:getItem }
     methods: [ GET ]
 

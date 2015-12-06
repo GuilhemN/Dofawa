@@ -28,19 +28,20 @@ dof_main:
 
 dof_users:
     resource: "@DofUserBundle/Resources/config/routing.yml"
-    prefix:   /users
+    prefix:   /
 
 dof_items:
     resource: "@DofItemBundle/Resources/config/routing.yml"
-    prefix:   /items
+    prefix:   /
 
 dof_trades:
     resource: "@DofTradingBundle/Resources/config/routing.yml"
-    prefix:   /trades
+    prefix:   /
 
-dof_servers:
-    resource: "@DofMainBundle/Resources/config/routing/servers.yml"
-    prefix:   /servers
+dof_servers_cget:
+    path: /servers
+    defaults: { _controller: DofMainBundle:Servers:getServers }
+    methods: [ GET ]
 
 dof_login:
     path: /login

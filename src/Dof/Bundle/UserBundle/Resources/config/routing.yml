@@ -1,4 +1,4 @@
 dof_users_get:
-    path:  /{slug}
+    path:  /users/{slug}
     defaults: { _controller: DofUserBundle:User:getUser }
     methods: [ GET ]
