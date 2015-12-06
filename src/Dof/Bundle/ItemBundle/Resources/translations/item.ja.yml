@@ -20,7 +20,7 @@ criticalHits: クリティカルヒット %1%
 ap: AP %1%
 mp: MP %1%
 range: 有効エリア %1%
-summons: 召喚 : %1%
+summons: "召喚 : %1%"
 damage: ダメージ %1%
 neutralDamage: ニュートラル属性ダメージ %1%
 earthDamage: 地属性ダメージ %1%
