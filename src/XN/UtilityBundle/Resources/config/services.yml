@@ -1,51 +1,33 @@
-parameters:
-    lazy.class: XN\UtilityBundle\DependencyInjection\LazyDelegateContainer
-    variables.class: XN\Common\VariableBag
-    xn.twig_extension.class: XN\UtilityBundle\Twig\UtilityExtension
-    xn.json_request_listener.class: XN\UtilityBundle\JsonRequestListener
-    xn.totp_authentication_listener.class: XN\UtilityBundle\TOTPAuthenticationListener
-    xn.grammar.class: XN\Grammar\ParserFactory
-
-    xn.doctrine.entity_dependency_injection.class: XN\UtilityBundle\Doctrine\EntityDependencyInjection
-    xn.doctrine.file_updater.class: XN\UtilityBundle\Doctrine\FileUpdater
-
-    xn.secure_controller_listener.class: XN\UtilityBundle\Annotations\SecureControllerListener
-    xn.lazy_field_listener.class: XN\UtilityBundle\Annotations\LazyFieldListener
-
 services:
-    lazy:
-        class: %lazy.class%
-        arguments: [ "@service_container" ]
-
     variables:
-        class: %variables.class%
+        class: XN\Common\VariableBag
 
     cache:
         class: Doctrine\Common\Cache\ApcCache
 
     xn.twig_extension:
-        class: %xn.twig_extension.class%
+        class: XN\UtilityBundle\Twig\UtilityExtension
         arguments: [ "@service_container" ]
         tags:
             - { name: twig.extension }
 
     xn.json_request_listener:
-        class: %xn.json_request_listener.class%
+        class: XN\UtilityBundle\JsonRequestListener
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
     xn.totp_authentication_listener:
-        class: %xn.totp_authentication_listener.class%
+        class: XN\UtilityBundle\TOTPAuthenticationListener
         arguments: [ "@doctrine.orm.default_entity_manager", 3 ]
         tags:
             - { name: kernel.event_listener, event: security.interactive_login, method: onSecurityInteractiveLogin }
 
     xn.grammar:
-        class: %xn.grammar.class%
+        class: XN\Grammar\ParserFactory
         arguments: [ "@annotation_reader" ]
 
     xn.doctrine.file_updater:
-        class:     "%xn.doctrine.file_updater.class%"
+        class: XN\UtilityBundle\Doctrine\FileUpdater
         tags:
             - { name: doctrine.event_listener, event: postPersist }
             - { name: doctrine.event_listener, event: preUpdate }
@@ -53,13 +35,13 @@ services:
             - { name: doctrine.event_listener, event: postRemove }
 
     xn.secure_controller_listener:
-        class: %xn.secure_controller_listener.class%
+        class: XN\UtilityBundle\Annotations\SecureControllerListener
         arguments: [ "@security.authorization_checker", "@annotation_reader"]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
 
     xn.lazy_field_listener:
-        class: %xn.lazy_field_listener.class%
+        class: XN\UtilityBundle\Annotations\LazyFieldListener
         arguments: [ "@cache", "@annotation_reader" ]
         tags:
             - { name: doctrine.event_listener, event: prePersist }

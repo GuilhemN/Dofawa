@@ -1,7 +1,3 @@
-parameters:
-    dof_user.profile.form.class: Dof\Bundle\UserBundle\Form\Type\ProfileFormType
-    dof_user.registration.form.class: Dof\Bundle\UserBundle\Form\Type\RegistrationFormType
-
 services:
     # dof_user.registration_listener:
     #     class: Dof\Bundle\UserBundle\EventListener\RegistrationListener

@@ -1,7 +1,4 @@
-parameters:
-#    dof_generator.example.class: Dof\Bundle\GeneratorBundle\Example
-
 services:
 #    dof_generator.example:
-#        class: %dof_generator.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+#        class: Dof\Bundle\GeneratorBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
