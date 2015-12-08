@@ -1,0 +1,4 @@
+services:
+    doctrine.repository:
+        abstract: true
+        factory: [ "@doctrine.orm.default_entity_manager", getRepository ]

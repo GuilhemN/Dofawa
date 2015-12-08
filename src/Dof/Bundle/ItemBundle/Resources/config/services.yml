@@ -2,6 +2,6 @@ services:
     # Criteria
     dof_items.criteria_loader:
         class: Dof\Bundle\ItemBundle\Criteria\CriteriaLoader
-        arguments: [ "@service_container" ]
+        arguments: [ "@service_container", "@security.authorization_checker", "@doctrine.orm.entity_manager" ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }

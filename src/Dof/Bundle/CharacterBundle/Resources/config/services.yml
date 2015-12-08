@@ -7,7 +7,6 @@ services:
 
     dof_characters.effect_t_loader:
         class: Dof\Bundle\CharacterBundle\EffectTLoader
-        arguments: [ "@service_container" ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
 

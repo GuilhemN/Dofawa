@@ -2,13 +2,15 @@
 
 namespace Dof\Bundle\ItemBundle\Criteria;
 
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Common\Persistence\ObjectManager;
+use Dof\Common\PseudoRepositoriesTrait;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use XN\Common\ServiceWithContainer;
 use XN\Persistence\IdentifiableInterface;
-use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Dof\Common\PseudoRepositoriesTrait;
 
-class CriteriaLoader extends ServiceWithContainer
+class CriteriaLoader
 {
     use PseudoRepositoriesTrait;
 
@@ -19,12 +21,18 @@ class CriteriaLoader extends ServiceWithContainer
      * for example when importing data
      */
     private $enabled;
+    private $container;
+    private $authorizationChecker;
+    private $objectManager;
 
     private $criteriaTemplates = array();
 
-    public function __construct(ContainerInterface $di)
+    public function __construct(ContainerInterface $container, AuthorizationCheckerInterface $authorizationChecker, ObjectManager $objectManager)
     {
-        parent::__construct($di);
+        $this->container = $container;
+        $this->authorizationChecker = $authorizationChecker;
+        $this->objectManager = $objectManager;
+
         $this->enabled = true;
     }
 
@@ -46,11 +54,11 @@ class CriteriaLoader extends ServiceWithContainer
     public function transform(Criterion $ent)
     {
         if ($ent instanceof SimpleCriterion) {
-            $em = $this->getEntityManager();
-            $ent->setContainer($this->di);
+            $em = $this->objectManager;
+            $ent->setContainer($this->container);
             $params = $ent->getParams();
             $tpl = $this->getCriterionTemplate($ent->getCharacteristic(), $ent->getOperator(), $params[0]);
-            if ($tpl === null or (!$tpl->getVisible() && !$this->di->get('security.context')->isGranted('ROLE_ITEM_XRAY'))) {
+            if ($tpl === null or (!$tpl->getVisible() && !$this->authorizationChecker->isGranted('ROLE_ITEM_XRAY'))) {
                 $ent->setVisible(false);
 
                 return;
@@ -153,7 +161,7 @@ class CriteriaLoader extends ServiceWithContainer
                 return;
             }
         } elseif ($searchInDb) {
-            $em = $this->getEntityManager();
+            $em = $this->objectManager;
             $repo = $em->getRepository('DofItemBundle:CriterionTemplate');
             $cTpls = $repo->findByCharacteristic($characteristic);
             $cTpls2 = array();

@@ -8,7 +8,7 @@ use XN\Common\ServiceWithContainer;
 use Dof\Common\PseudoRepositoriesTrait;
 use Dof\Bundle\CharacterBundle\Entity\SpellRankEffect;
 
-class EffectTLoader extends ServiceWithContainer
+class EffectTLoader
 {
     use PseudoRepositoriesTrait;
 
@@ -20,9 +20,8 @@ class EffectTLoader extends ServiceWithContainer
      */
     private $enabled;
 
-    public function __construct(ContainerInterface $di)
+    public function __construct()
     {
-        parent::__construct($di);
         $this->enabled = true;
     }
 

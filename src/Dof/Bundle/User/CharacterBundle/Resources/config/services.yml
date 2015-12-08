@@ -6,13 +6,13 @@ services:
 
     dof_user_character.stuff_converter:
         class: Dof\Bundle\User\CharacterBundle\ParamConverter\BuildParamConverter
-        arguments: ["@service_container"]
+        arguments: ["@build_manager"]
         tags:
             - { name: request.param_converter, priority: 1}
 
     build_manager:
         class: Dof\Bundle\User\CharacterBundle\BuildManager
-        arguments: ["@service_container"]
+        arguments: [ "@doctrine.orm.entity_manager" ]
 
     selected_character:
         class: Dof\Bundle\User\CharacterBundle\SelectedCharacter

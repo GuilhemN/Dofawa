@@ -11,19 +11,21 @@
 
 namespace Dof\Bundle\User\CharacterBundle\ParamConverter;
 
-use XN\Common\ServiceWithContainer;
+use Dof\Bundle\User\CharacterBundle\BuildManager;
+use Dof\Bundle\User\CharacterBundle\Entity\Stuff;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 
-/**
- * DoctrineParamConverter.
- *
- * @author Fabien Potencier <fabien@symfony.com>
- */
-class BuildParamConverter extends ServiceWithContainer implements ParamConverterInterface
+class BuildParamConverter implements ParamConverterInterface
 {
+    private $buildManager;
+
+    public function __construct(BuildManager $buildManager) {
+        $this->buildManager = $buildManager;
+    }
+
     /**
      * {@inheritdoc}
      *
@@ -42,8 +44,7 @@ class BuildParamConverter extends ServiceWithContainer implements ParamConverter
             throw new \LogicException('Paramètres manquants dans la route pour récupérer le playerCharacter (doit contenir user, character et stuff).');
         }
 
-        $bm = $this->di->get('build_manager');
-        $stuff = $bm->getBySlugs(
+        $stuff = $this->buildManager->getBySlugs(
                     $request->attributes->get('user'),
                     $request->attributes->get('character'),
                     $request->attributes->get('stuff')

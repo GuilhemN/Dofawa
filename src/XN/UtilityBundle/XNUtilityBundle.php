@@ -13,7 +13,6 @@ class XNUtilityBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new BBCodeModulesCompilerPass());
         $container->addCompilerPass(new LazyVariablesCompilerPass());
     }
 }

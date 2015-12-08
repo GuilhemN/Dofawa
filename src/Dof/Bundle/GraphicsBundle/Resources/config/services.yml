@@ -6,10 +6,12 @@ services:
             - { name: doctrine.event_listener, event: postLoad }
     dof_graphics.bpcl_identifier:
         class: Dof\Bundle\GraphicsBundle\BPCLIdentifier
-        arguments: ["@doctrine.orm.default_entity_manager", "@dof_graphics.living_item_factory", "@dof_graphics.chameleon_dragoturkey"]
+        arguments: ["@doctrine.orm.entity_manager", "@dof_graphics.living_item_factory", "@dof_graphics.chameleon_dragoturkey"]
+
     dof_graphics.living_item_factory:
         class: Dof\Bundle\GraphicsBundle\LivingItemFactory
-        arguments: ["@doctrine.orm.default_entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager"]
+
     dof_graphics.chameleon_dragoturkey:
         class: Dof\Bundle\GraphicsBundle\ChameleonDragoturkey
         arguments: ["@translator", "@doctrine.orm.entity_manager"]

@@ -2,15 +2,22 @@
 
 namespace Dof\Bundle\User\CharacterBundle;
 
-use XN\Common\ServiceWithContainer;
+use Doctrine\Common\Persistence\ObjectManager;
 use Dof\Bundle\User\CharacterBundle\Entity\Stuff;
 use Dof\Bundle\ItemBundle\CharacteristicsMetadata;
+use XN\Common\ServiceWithContainer;
 
-class BuildManager extends ServiceWithContainer
+class BuildManager
 {
+    private $objectManager;
+
+    public function __construct(ObjectManager $objectManager) {
+        $this->objectManager = $objectManager;
+    }
+
     public function reloadStuff(Stuff $stuff)
     {
-        $em = $this->getEntityManager();
+        $em = $this->objectManager;
         $stuffs = $em->getRepository('DofUserCharacterBundle:Stuff');
 
         return $this->transformStuff($stuffs->findOneById($stuff->getId()));
@@ -18,7 +25,7 @@ class BuildManager extends ServiceWithContainer
 
     public function getStuffBySlug($slug)
     {
-        $em = $this->getEntityManager();
+        $em = $this->objectManager;
         $repository = $em->getRepository('DofUserCharacterBundle:Stuff');
 
         $stuff = $repository->findOneBySlug($slug);
@@ -32,7 +39,7 @@ class BuildManager extends ServiceWithContainer
 
     public function getBySlugs($user, $character, $stuff)
     {
-        $em = $this->getEntityManager();
+        $em = $this->objectManager;
         $repository = $em->getRepository('DofUserCharacterBundle:Stuff');
 
         $stuff = $repository->findParamConverter($user, $character, $stuff);
@@ -42,7 +49,7 @@ class BuildManager extends ServiceWithContainer
 
     public function transformStuff(Stuff $stuff)
     {
-        $em = $this->getEntityManager();
+        $em = $this->objectManager;
         $faces = $em->getRepository('DofCharacterBundle:Face');
 
         $face = $faces->findOneBy(array('breed' => $stuff->getCharacter()->getBreed(), 'label' => $stuff->getFaceLabel(), 'gender' => $stuff->getLook()->getGender()));
@@ -54,7 +61,7 @@ class BuildManager extends ServiceWithContainer
 
     public function getCharacteristics(Stuff $stuff, &$bonus)
     {
-        $em = $this->getEntityManager();
+        $em = $this->objectManager;
         $return = array_map(function () { return 0; }, CharacteristicsMetadata::getAll());
         $sets = [];
         $bonus = [];

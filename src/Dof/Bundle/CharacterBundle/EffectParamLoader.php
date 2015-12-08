@@ -8,9 +8,11 @@ use XN\Persistence\IdentifiableInterface;
 use XN\Common\ServiceWithContainer;
 use Dof\Common\PseudoRepositoriesTrait;
 
-class EffectParamLoader extends ServiceWithContainer
+class EffectParamLoader
 {
     use PseudoRepositoriesTrait;
+
+    private $container;
 
     /**
      * @var bool
@@ -20,9 +22,9 @@ class EffectParamLoader extends ServiceWithContainer
      */
     private $enabled;
 
-    public function __construct(ContainerInterface $di)
+    public function __construct(ContainerInterface $container)
     {
-        parent::__construct($di);
+        $this->container = $container;
         $this->enabled = true;
     }
 
@@ -31,7 +33,7 @@ class EffectParamLoader extends ServiceWithContainer
         $em = $args->getEntityManager();
         $ent = $args->getEntity();
         if ($ent instanceof EffectInterface) {
-            $ent->setContainer($this->di);
+            $ent->setContainer($this->container);
             if ($this->enabled) {
                 // Docs say associations are not loaded when postLoad is called
                 // Code seems to say that they actually are ...
