@@ -4,6 +4,9 @@ services:
 
     cache:
         class: Doctrine\Common\Cache\ApcCache
+        public: false
+        calls:
+            - [ setNamespace, [ apiCache ]]
 
     xn.twig_extension:
         class: XN\UtilityBundle\Twig\UtilityExtension
