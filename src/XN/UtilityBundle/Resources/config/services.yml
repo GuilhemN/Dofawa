@@ -3,7 +3,8 @@ services:
         class: XN\Common\VariableBag
 
     cache:
-        class: Doctrine\Common\Cache\ApcCache
+        # class: Doctrine\Common\Cache\ApcCache
+        class: Doctrine\Common\Cache\ArrayCache
         public: false
         calls:
             - [ setNamespace, [ apiCache ]]
