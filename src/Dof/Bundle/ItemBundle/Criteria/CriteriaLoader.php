@@ -3,10 +3,8 @@
 namespace Dof\Bundle\ItemBundle\Criteria;
 
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use Doctrine\Common\Persistence\ObjectManager;
 use Dof\Common\PseudoRepositoriesTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use XN\Common\ServiceWithContainer;
 use XN\Persistence\IdentifiableInterface;
 
@@ -22,17 +20,12 @@ class CriteriaLoader
      */
     private $enabled;
     private $container;
-    private $authorizationChecker;
-    private $objectManager;
 
     private $criteriaTemplates = array();
 
-    public function __construct(ContainerInterface $container, AuthorizationCheckerInterface $authorizationChecker, ObjectManager $objectManager)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->authorizationChecker = $authorizationChecker;
-        $this->objectManager = $objectManager;
-
         $this->enabled = true;
     }
 
@@ -58,7 +51,7 @@ class CriteriaLoader
             $ent->setContainer($this->container);
             $params = $ent->getParams();
             $tpl = $this->getCriterionTemplate($ent->getCharacteristic(), $ent->getOperator(), $params[0]);
-            if ($tpl === null or (!$tpl->getVisible() && !$this->authorizationChecker->isGranted('ROLE_ITEM_XRAY'))) {
+            if ($tpl === null or (!$tpl->getVisible() && !$this->getAuthorizationChecker()->isGranted('ROLE_ITEM_XRAY'))) {
                 $ent->setVisible(false);
 
                 return;
@@ -161,7 +154,7 @@ class CriteriaLoader
                 return;
             }
         } elseif ($searchInDb) {
-            $em = $this->objectManager;
+            $em = $this->container->get('doctrine.orm.entity_manager');
             $repo = $em->getRepository('DofItemBundle:CriterionTemplate');
             $cTpls = $repo->findByCharacteristic($characteristic);
             $cTpls2 = array();
@@ -194,5 +187,9 @@ class CriteriaLoader
     public function isEnabled()
     {
         return $this->enabled;
+    }
+
+    private function getAuthorizationChecker() {
+        return $this->container->get('security.authorization_checker');
     }
 }
