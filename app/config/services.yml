@@ -13,5 +13,5 @@ services:
     validator.mapping.cache.apc:
         class: Doctrine\Common\Cache\ApcCache
         calls:
-            - [ setNamespace, %validator.mapping.cache.prefix%]
+            - [ setNamespace, [ %validator.mapping.cache.prefix% ]]
         public: false
