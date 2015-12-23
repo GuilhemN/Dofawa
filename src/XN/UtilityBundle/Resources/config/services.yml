@@ -37,12 +37,6 @@ services:
             - { name: doctrine.event_listener, event: postUpdate }
             - { name: doctrine.event_listener, event: postRemove }
 
-    xn.secure_controller_listener:
-        class: XN\UtilityBundle\Annotations\SecureControllerListener
-        arguments: [ "@security.authorization_checker", "@annotation_reader"]
-        tags:
-            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
-
     xn.lazy_field_listener:
         class: XN\UtilityBundle\Annotations\LazyFieldListener
         arguments: [ "@cache", "@annotation_reader" ]

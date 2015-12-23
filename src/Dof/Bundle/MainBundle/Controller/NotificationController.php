@@ -6,9 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use XN\Annotations as Utils;
 use XN\Common\AjaxControllerTrait;
 use XN\Common\DateFormat;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
- * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+ * @Security("has_role('IS_AUTHENTICATED_REMEMBERED')")
  */
 class NotificationController extends Controller
 {

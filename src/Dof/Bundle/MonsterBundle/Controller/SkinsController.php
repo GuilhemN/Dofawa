@@ -6,9 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use XN\Annotations as Utils;
 use Dof\Bundle\MonsterBundle\Entity\Monster;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
- * @Utils\Secure("ROLE_SUPER_ADMIN")
+ * @Security("has_role('ROLE_SUPER_ADMIN')")
  */
 class SkinsController extends Controller
 {

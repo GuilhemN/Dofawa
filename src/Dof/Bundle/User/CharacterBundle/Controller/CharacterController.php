@@ -8,11 +8,12 @@ use XN\Annotations as Utils;
 use Symfony\Component\HttpFoundation\Request;
 use Dof\Bundle\UserBundle\Entity\User;
 use Dof\Bundle\User\CharacterBundle\Entity\PlayerCharacter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class CharacterController extends Controller
 {
     /**
-     * @Utils\Secure("ROLE_USER")
+     * @Security("has_role('ROLE_USER')")
      */
     public function indexAction(User $user = null)
     {
@@ -44,7 +45,7 @@ class CharacterController extends Controller
     }
 
     /**
-     * @Utils\Secure("ROLE_USER")
+     * @Security("has_role('ROLE_USER')")
      */
     public function createAction(User $user = null, Request $request)
     {
@@ -84,7 +85,7 @@ class CharacterController extends Controller
     }
 
     /**
-     * @Utils\Secure("ROLE_USER")
+     * @Security("has_role('ROLE_USER')")
      */
     public function removeAction(Request $request)
     {

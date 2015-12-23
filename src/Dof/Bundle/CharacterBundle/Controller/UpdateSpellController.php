@@ -7,13 +7,14 @@ use Symfony\Component\HttpFoundation\File\File;
 use XN\Annotations as Utils;
 use Dof\Bundle\CharacterBundle\Entity\Spell;
 
-/**
- * @Utils\Secure("ROLE_SUPER_ADMIN")
- */
 class UpdateSpellController extends Controller
 {
+    const ACCESS_ROLE = 'ROLE_SUPER_ADMIN';
+
     public function addImageAction(Spell $spell)
     {
+        $this->denyAccessUnlessGranted(self::ACCESS_ROLE);
+
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, 'http://staticns.ankama.com/dofus/www/game/spells/55/sort_'.$spell->getIconId().'.png');
         curl_setopt($curl, CURLOPT_COOKIESESSION, true);
@@ -47,6 +48,8 @@ class UpdateSpellController extends Controller
 
     public function changeVisibilityAction(Spell $spell)
     {
+        $this->denyAccessUnlessGranted(self::ACCESS_ROLE);
+        
         $spell->setPubliclyVisible(!$spell->getPubliclyVisible());
         $this->getDoctrine()->getManager()->flush($spell);
 

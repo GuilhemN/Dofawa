@@ -42,11 +42,12 @@ class CharacterLookController extends Controller
     }
 
     /**
-     * @Utils\Secure("ROLE_STYLIST_BETA")
      * @Utils\UsesSession
      */
     public function createAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_STYLIST_BETA');
+
         $look = new CharacterLook();
         $look->setColors(array(
           '1' => '',
@@ -74,11 +75,12 @@ class CharacterLookController extends Controller
     }
 
     /**
-     * @Utils\Secure("ROLE_STYLIST_BETA")
      * @Utils\UsesSession
      */
     public function editAction(Request $request, CharacterLook $look)
     {
+        $this->denyAccessUnlessGranted('ROLE_STYLIST_BETA');
+
         $securityContext = $this->get('security.context');
         if (!$securityContext->isGranted('ROLE_STYLIST_ADMIN') and $look->getCreator() != $securityContext->getToken()->getUser()) {
             throw $this->createAccessDeniedException();

@@ -6,9 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use XN\Annotations as Utils;
 use Dof\Bundle\ItemBundle\Entity\PetTemplate;
 use Dof\Bundle\User\ItemBundle\Entity\Pet;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
- * @Utils\Secure("IS_AUTHENTICATED_REMEMBERED")
+ * @Security("has_role('IS_AUTHENTICATED_REMEMBERED')")
  */
 class PetsManagerController extends Controller
 {

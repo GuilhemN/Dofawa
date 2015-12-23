@@ -10,13 +10,12 @@ use Dof\Bundle\GraphicsBundle\EntityLook;
 use Dof\Bundle\GraphicsBundle\EntityLookTransforms;
 use Dof\Bundle\GraphicsBundle\Entity\CharacterLook;
 
-/**
- * @Utils\Secure("ROLE_STYLIST_BETA")
- */
 class PipetteController extends Controller
 {
     public function indexAction()
     {
+        $this->denyAccessUnlessGranted('ROLE_STYLIST_BETA');
+
         return $this->render('DofGraphicsBundle:Pipette:index.html.twig', [
             'results' => [],
         ]);
@@ -24,6 +23,8 @@ class PipetteController extends Controller
 
     public function processAction(Request $req)
     {
+        $this->denyAccessUnlessGranted('ROLE_STYLIST_BETA');
+
         $results = array_map(function ($url) {
             try {
                 $scraper = new CharacterPageScraper($url);
@@ -57,6 +58,8 @@ class PipetteController extends Controller
 
     public function addToGalleryAction(Request $req)
     {
+        $this->denyAccessUnlessGranted('ROLE_STYLIST_BETA');
+        
         $name = $req->request->get('name');
         $look = new EntityLook($req->request->get('look'));
         $cl = new CharacterLook();
