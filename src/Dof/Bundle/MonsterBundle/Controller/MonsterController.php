@@ -4,11 +4,19 @@ namespace Dof\Bundle\MonsterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Dof\Bundle\MonsterBundle\Entity\Monster;
 
 class MonsterController extends Controller
 {
     const PER_PAGE = 20;
+
+    private $authorizationChecker;
+
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker)
+    {
+        $this->authorizationChecker = $authorizationChecker;
+    }
 
     public function indexAction($page, Request $request)
     {
@@ -34,8 +42,7 @@ class MonsterController extends Controller
 
     public function showAction(Monster $monster)
     {
-        $xRay = $this->get('security.context')->isGranted('ROLE_SPELL_XRAY');
-        if ($xRay) {
+        if ($this->authorizationChecker->isGranted('ROLE_SPELL_XRAY')) {
             $dm = $this->getDoctrine()->getManager();
             $spellRepo = $dm->getRepository('DofCharacterBundle:Spell');
             $paramOf = $spellRepo->findByMonsterEffectParam($monster);

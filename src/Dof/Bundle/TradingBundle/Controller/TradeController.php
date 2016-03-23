@@ -2,9 +2,11 @@
 
 namespace Dof\Bundle\TradingBundle\Controller;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Dof\Bundle\MainBundle\GameType;
 use Dof\Bundle\TradingBundle\Entity\Trade;
-use EXSyst\Bundle\ApiBundle\Controller\ApiController;
+use Dof\Bundle\ItemBundle\Entity\ItemTemplate;
+use Dof\Bundle\MainBundle\Entity\Server;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -12,9 +14,23 @@ use FOS\RestBundle\Request\ParamFetcher;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class TradeController extends ApiController
+class TradeController
 {
+    private $authorizationChecker;
+    private $tokenStorage;
+    private $doctrine;
+
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage, ManagerRegistry $doctrine)
+    {
+        $this->authorizationChecker = $authorizationChecker;
+        $this->tokenStorage = $tokenStorage;
+        $this->doctrine = $doctrine;
+    }
+
     /**
      * Sets a price for a given item.
      *
@@ -30,25 +46,25 @@ class TradeController extends ApiController
     public function postTradesAction(ParamFetcher $paramFetcher)
     {
         $params = $paramFetcher->all();
-        $em = $this->getDoctrine()->getManager();
 
-        $item = $em->getRepository('DofItemBundle:ItemTemplate')->findOneBySlug(
+        $item = $this->doctrine->getRepository(ItemTemplate::class)->findOneBySlug(
             $params['item']
         );
         if ($item === null) {
-            throw $this->createNotFoundException('Item not found.');
+            throw new NotFoundHttpException('Item not found.');
         }
 
-        $server = $em->getRepository('DofMainBundle:Server')->findOneBy([
+        $server = $this->doctrine->getRepository(Server::class)->findOneBy([
             'slug' => $params['server'],
             'gameType' => GameType::getBasicModes(),
         ]);
         if ($server === null) {
-            throw $this->createNotFoundException('Server not found.');
+            throw new NotFoundHttpException('Server not found.');
         }
 
-        $canSubmit = $em->getRepository('DofTradingBundle:Trade')
-            ->checkSubmissionSpace($this->getUser(), $item, $server);
+        $user = $this->tokenStorage->getToken()->getUser();
+        $canSubmit = $this->doctrine->getRepository(Trade::class)
+            ->checkSubmissionSpace($user, $item, $server);
 
         if($canSubmit) {
             $price = $params['price'];
@@ -57,14 +73,15 @@ class TradeController extends ApiController
             $trade->setPrice($price > 1000 ? round($price, -3) : round($price, -1));
             $trade->setItem($item);
             $trade->setServer($server);
-            $trade->setWeight($this->getUser()->getWeight());
+            $trade->setWeight($user->getWeight());
 
-            if($this->get('security.authorization_checker')->isGranted('ROLE_TRADE_TRUSTED')) {
+            if($this->authorizationChecker->isGranted('ROLE_TRADE_TRUSTED')) {
                 $trade->setValid(true);
             }
 
-            $em->persist($trade);
-            $em->flush();
+            $manager = $this->doctrine->getManagerForClass(Trade::class);
+            $manager->persist($trade);
+            $manager->flush();
         }
 
         return new Response(null, Response::HTTP_CREATED);

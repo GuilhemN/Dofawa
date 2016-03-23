@@ -2,13 +2,21 @@
 
 namespace Dof\Bundle\ImpExpBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Dof\Bundle\ImpExpBundle\ImportManager;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ListCommand extends ContainerAwareCommand
+class ListCommand extends Command
 {
+    private $importManager;
+
+    public function __construct(ImportManager $importManager)
+    {
+        $this->importManager = $importManager;
+    }
+
     protected function configure()
     {
         $this
@@ -19,16 +27,15 @@ class ListCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $impMgr = $this->getContainer()->get('dof_imp_exp.import_manager');
         $verbosity = $output->getVerbosity();
         $requirements = $input->getOption('requirements');
         if (empty($requirements)) {
             $requirements = null;
         }
-        $dataSetNames = ($requirements !== null) ? $impMgr->getDataSetRequirements($requirements) : $impMgr->getDataSets();
+        $dataSetNames = ($requirements !== null) ? $this->importManager->getDataSetRequirements($requirements) : $this->importManager->getDataSets();
         $dataSets = [];
         foreach ($dataSetNames as $dataSet) {
-            $dataSets[$dataSet] = $impMgr->getDataSetImporter($dataSet);
+            $dataSets[$dataSet] = $this->importManager->getDataSetImporter($dataSet);
         }
         if ($verbosity <= OutputInterface::VERBOSITY_QUIET) {
             return;
@@ -36,7 +43,7 @@ class ListCommand extends ContainerAwareCommand
         $output->writeln(($requirements !== null) ? ('Data sets required by <comment>'.$requirements.'</comment> :') : 'Available data sets :');
         foreach ($dataSets as $dataSet => $importer) {
             if ($verbosity >= OutputInterface::VERBOSITY_VERBOSE) {
-                $clazz = get_class($impMgr->getDataSetImporter($dataSet));
+                $clazz = get_class($this->importManager->getDataSetImporter($dataSet));
                 if ($verbosity < OutputInterface::VERBOSITY_VERY_VERBOSE) {
                     $pos = strrpos($clazz, '\\');
                     if ($pos !== false) {

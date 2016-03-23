@@ -2,7 +2,7 @@ dof_graphics_pipette_process:
     path:  /pipette
     defaults: { _controller: DofGraphicsBundle:Pipette:process }
     methods: [ POST ]
-    
+
 dof_graphics_pipette:
     path:  /pipette
     defaults: { _controller: DofGraphicsBundle:Pipette:index }
@@ -33,11 +33,11 @@ dof_graphics_skins_list:
 
 dof_graphics_skins_create:
     path:  /skins/create
-    defaults: { _controller: DofGraphicsBundle:CharacterLook:create }
+    defaults: { _controller: Dof\Bundle\GraphicsBundle\Controller\CharacterLookController:createAction }
 
 dof_graphics_skins_edit:
     path:  /skins/{slug}/edit
-    defaults: { _controller: DofGraphicsBundle:CharacterLook:edit }
+    defaults: { _controller: Dof\Bundle\GraphicsBundle\Controller\CharacterLookController:editAction }
     requirements:
         slug: '[0-9a-z-]+'
 

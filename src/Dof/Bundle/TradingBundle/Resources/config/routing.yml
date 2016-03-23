@@ -1,4 +1,4 @@
 dof_trading_post:
     path: /trades
-    defaults: { _controller: DofTradingBundle:Trade:postTrades }
+    defaults: { _controller: Dof\Bundle\TradingBundle\Controller\TradeController:postTradesAction }
     methods: [ POST ]

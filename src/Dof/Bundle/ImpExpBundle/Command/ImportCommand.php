@@ -2,15 +2,23 @@
 
 namespace Dof\Bundle\ImpExpBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Dof\Bundle\ImpExpBundle\ImporterFlags;
+use Dof\Bundle\ImpExpBundle\ImportManager;
 
-class ImportCommand extends ContainerAwareCommand
+class ImportCommand extends Command
 {
+    private $importManager;
+
+    public function __construct(ImportManager $importManager)
+    {
+        $this->importManager = $importManager;
+    }
+
     protected function configure()
     {
         $this
@@ -29,25 +37,24 @@ class ImportCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $impMgr = $this->getContainer()->get('dof_imp_exp.import_manager');
-        $impMgr->setWithRequirements(!$input->getOption('only'));
-        $impMgr->setRunImporters(!$input->getOption('dry-dry-run'));
-        $impMgr->setFork(!$input->getOption('one-process'));
+        $this->importManager->setWithRequirements(!$input->getOption('only'));
+        $this->importManager->setRunImporters(!$input->getOption('dry-dry-run'));
+        $this->importManager->setFork(!$input->getOption('one-process'));
         foreach ($input->getOption('skip') as $skip) {
-            $impMgr->markAsImported($skip);
+            $this->importManager->markAsImported($skip);
         }
         foreach ($input->getOption('exclude-group') as $group) {
-            $impMgr->markGroupAsImported($group);
+            $this->importManager->markGroupAsImported($group);
         }
         $flags = 0;
         if ($input->getOption('dry-run')) {
             $flags |= ImporterFlags::DRY_RUN;
         }
-        $dataSets = $input->getOption('all') ? $impMgr->getDataSets() : $input->getArgument('data-sets');
+        $dataSets = $input->getOption('all') ? $this->importManager->getDataSets() : $input->getArgument('data-sets');
         $groups = $input->getOption('group');
         if (!empty($groups)) {
-            $dataSets = array_filter($dataSets, function ($val) use ($impMgr, $groups) {
-                foreach ($impMgr->getDataSetGroups($val) as $group) {
+            $dataSets = array_filter($dataSets, function ($val) use ($groups) {
+                foreach ($this->importManager->getDataSetGroups($val) as $group) {
                     if (in_array($group, $groups)) {
                         return true;
                     }
@@ -62,7 +69,7 @@ class ImportCommand extends ContainerAwareCommand
             $progress = $this->getHelperSet()->get('progress');
         }
         foreach ($dataSets as $dataSet) {
-            $impMgr->import($dataSet, $flags, $output, $progress);
+            $this->importManager->import($dataSet, $flags, $output, $progress);
         }
     }
 }

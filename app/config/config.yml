@@ -122,3 +122,10 @@ fos_rest:
         templating_formats:
             html: false
     param_fetcher_listener: true
+
+dunglas_action:
+    directories:
+        - ../src/Dof/Bundle/*Bundle/Controller
+        - ../src/Dof/Bundle/*/*Bundle/Controller
+        - ../src/Dof/Bundle/*Bundle/Command
+        - ../src/Dof/Bundle/*/*Bundle/Command

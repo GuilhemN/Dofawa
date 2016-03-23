@@ -4,6 +4,8 @@ namespace Dof\Bundle\GraphicsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 use XN\Annotations as Utils;
 use Dof\Bundle\GraphicsBundle\Entity\CharacterLook;
 use Dof\Bundle\ItemBundle\ItemSlot;
@@ -11,9 +13,15 @@ use Dof\Bundle\GraphicsBundle\LivingItem;
 
 class CharacterLookController extends Controller
 {
+    private $authorizationChecker;
+
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker)
+    {
+        $this->authorizationChecker = $authorizationChecker;
+    }
+
     public function listAction($page)
     {
-        $translator = $this->get('translator');
         $repository = $this->getDoctrine()->getRepository('DofGraphicsBundle:CharacterLook');
         $countLooks = $repository->countTotal(true);
 
@@ -81,8 +89,7 @@ class CharacterLookController extends Controller
     {
         $this->denyAccessUnlessGranted('ROLE_STYLIST_BETA');
 
-        $securityContext = $this->get('security.context');
-        if (!$securityContext->isGranted('ROLE_STYLIST_ADMIN') and $look->getCreator() != $securityContext->getToken()->getUser()) {
+        if (!$this->authorizationChecker->isGranted('ROLE_STYLIST_ADMIN') and $look->getCreator() != $this->authorizationChecker->getToken()->getUser()) {
             throw $this->createAccessDeniedException();
         }
 
@@ -113,7 +120,7 @@ class CharacterLookController extends Controller
 
     protected function handler($request, $look)
     {
-        if (!$this->get('security.context')->isGranted('ROLE_STYLIST')) {
+        if (!$this->authorizationChecker->isGranted('ROLE_STYLIST')) {
             $look->setPubliclyVisible(0);
         }
 

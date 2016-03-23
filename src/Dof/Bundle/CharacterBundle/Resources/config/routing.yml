@@ -7,7 +7,7 @@ dof_characters_show:
 
 dof_spell_show:
     path:  /spells/{slug}
-    defaults: { _controller: DofCharacterBundle:Spell:show }
+    defaults: { _controller: Dof\Bundle\CharacterBundle\Controller\SpellController:showAction }
     requirements:
        slug: '[0-9a-z-]+'
 
